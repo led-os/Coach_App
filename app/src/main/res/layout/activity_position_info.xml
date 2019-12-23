@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defult_background"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:elevation="4dp"
+        android:paddingTop="@dimen/dp_24"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_back_b" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="健身教练"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_18" />
+
+        <ImageView
+            android:id="@+id/btnShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="60dp"
+            android:src="@drawable/ic_share" />
+
+        <ImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_edit" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:text="职位"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/status_drawable"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvPosition"
+                 />
+
+            <TextView
+                android:id="@+id/tvSalary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:text="7-15k"
+                android:textColor="#FF303030"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPosition" />
+
+            <TextView
+                android:id="@+id/tvCoordinate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:drawableLeft="@drawable/ic_coordinate"
+                android:drawablePadding="5dp"
+                android:text="北京朝阳"
+                android:textColor="#FF303030"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSalary" />
+
+            <TextView
+                android:id="@+id/tvEducation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/ic_education"
+                android:drawablePadding="5dp"
+                android:text="学历不限"
+                android:textColor="#FF303030"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/tvCoordinate"
+                app:layout_constraintTop_toTopOf="@+id/tvCoordinate" />
+
+            <TextView
+                android:id="@+id/tvExp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/ic_exp"
+                android:drawablePadding="5dp"
+                android:text="经验不限"
+                android:textColor="#FF303030"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/tvEducation"
+                app:layout_constraintTop_toTopOf="@+id/tvCoordinate" />
+            <!-- 职位描述 -->
+            <View
+                android:id="@+id/line1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                android:background="#FFE2E2E2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCoordinate" />
+
+            <TextView
+                android:id="@+id/tvContentTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:text="职位描述"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                android:gravity="center|left"
+                android:text="职位描述职位描述职位描述职位描述职位描述"
+                android:textColor="#FF878787"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvContentTitle" />
+
+            <!-- 技能要求 -->
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                android:background="#FFE2E2E2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvContent" />
+
+            <TextView
+                android:id="@+id/tvSkillTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:text="技能要求"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+            <LinearLayout
+                android:id="@+id/llSkill"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSkillTitle">
+
+            </LinearLayout>
+            <!-- 俱乐部 -->
+            <View
+                android:id="@+id/line3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                android:background="#FFE2E2E2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llSkill" />
+
+            <TextView
+                android:id="@+id/tvClubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:text="俱乐部主页"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line3" />
+
+
+            <ImageView
+                android:id="@+id/imClub"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/golden"
+                app:layout_constraintStart_toStartOf="@+id/tvClubTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvClubTitle" />
+
+            <TextView
+                android:id="@+id/tvClubName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="8dp"
+                android:text="XXX健身房"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imClub"
+                app:layout_constraintTop_toTopOf="@+id/imClub" />
+
+            <TextView
+                android:id="@+id/tvClubContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="7-15人"
+                android:textColor="#FF303030"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imClub"
+                app:layout_constraintStart_toStartOf="@+id/tvClubName" />
+
+
+            <TextView
+                android:id="@+id/tvClubCoordinate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:drawableLeft="@drawable/ic_coordinate"
+                android:drawablePadding="5dp"
+                android:text="北京朝阳北京朝阳北京朝阳北京朝阳北京"
+                android:textColor="#FF303030"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imClub" />
+
+
+            <!-- 发布者 -->
+            <View
+                android:id="@+id/line4"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                android:background="#FFE2E2E2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvClubCoordinate" />
+
+            <ImageView
+                android:id="@+id/imRelease"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@color/golden"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line4" />
+
+            <TextView
+                android:id="@+id/tvReleaseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:text="发布者"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imRelease" />
+
+            <TextView
+                android:id="@+id/tvRelease"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="18dp"
+                android:gravity="center|left"
+                android:text="需求发布者"
+                android:textColor="#FF878787"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/imRelease"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReleaseTitle" />
+
+
+            <View
+                android:id="@+id/line5"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                android:background="#FFE2E2E2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRelease" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:text="关闭职位"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginLeft="38dp"
+        android:background="@drawable/dr_btn_login_y"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

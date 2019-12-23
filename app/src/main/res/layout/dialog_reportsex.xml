@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <com.jsjlzj.wayne.widgets.MyRecyclerView
+        android:id="@+id/report_lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/dr_btn_login_w"
+        android:orientation="vertical">
+    </com.jsjlzj.wayne.widgets.MyRecyclerView>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/dr_btn_login_w"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="取消"
+        android:textColor="#494949"
+        android:textSize="17sp" />
+
+</LinearLayout>

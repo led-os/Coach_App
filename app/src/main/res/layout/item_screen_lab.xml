@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/sl_btn_screen"
+        android:textColor="@color/dc_text_gy_selector"
+        android:id="@+id/tvScreenItem"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</FrameLayout>

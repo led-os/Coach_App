@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:paddingTop="@dimen/dp_24"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_back_b" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="工作经历"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_18" />
+
+        <TextView
+            android:id="@+id/btnRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:paddingRight="20dp"
+            android:text="保存"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="#FFE2E2E2" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 俱乐部名称 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="俱乐部名称"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvStoreName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingTop="10dp"
+                    android:text="填写俱乐部名称"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/item_line" />
+            <!-- 开始时间 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="开始时间"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvJobStartTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingTop="10dp"
+                    android:text="添加开始时间"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/item_line" />
+            <!-- 结束时间 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="结束时间"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvJobEndTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingTop="10dp"
+                    android:text="添加结束时间"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/item_line" />
+            <!-- 职位名称 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="职位名称"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvPositionName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingTop="10dp"
+                    android:text="添加职位名称"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/item_line" />
+            <!-- 工作内容 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="工作内容"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvJonContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingTop="10dp"
+                    android:text="添加工作内容"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/item_line" />
+            <!-- 技能标签 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="技能标签"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvSkill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingTop="10dp"
+                    android:text="添加技能标签"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:background="#F8F8F8" />
+            <!-- 是否隐藏简历 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="对这家公司隐藏我的简历"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp" />
+
+                <Switch
+                    android:id="@+id/btnHide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingTop="10dp"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp"
+                    android:thumb="@drawable/dr_bg_switch_icon"
+                    android:track="@drawable/dr_slt_switch" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

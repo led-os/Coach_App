@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/defult_background"
+    android:paddingLeft="@dimen/dp_25"
+    android:paddingRight="@dimen/dp_25"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="绑定手机号"
+        android:layout_marginTop="75dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/line_gray"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+        <TextView
+            android:text="+86"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/edPhone"
+            android:paddingLeft="@dimen/dp_10"
+            android:background="@null"
+            android:textSize="@dimen/font_14"
+            android:textColor="@color/black"
+            android:hint="请输入手机号"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_marginBottom="65dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/line_gray"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+        <EditText
+            android:id="@+id/edSmes"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:textSize="@dimen/font_14"
+            android:textColor="@color/black"
+            android:hint="输入手机验证码"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <com.jsjlzj.wayne.widgets.text.CountDownTextView
+            android:id="@+id/btnGetSmes"
+            android:textColor="@color/login_btn_smes"
+            android:text="获取验证码"
+            android:textSize="@dimen/font_14"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnLogin"
+        android:background="@drawable/sl_btn_login"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"/>
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvExpStoreName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="俱乐部名字"
+        android:textColor="@color/text_black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvExpPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="职位"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvExpStoreName" />
+
+    <TextView
+        android:id="@+id/tvSalary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:drawableRight="@drawable/ic_back_g"
+        android:drawablePadding="5dp"
+        android:gravity="center|right"
+        android:text="2018-2019"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvExpPosition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvExpStoreName"
+        app:layout_constraintTop_toTopOf="@+id/tvExpStoreName" />
+
+    <TextView
+        android:id="@+id/tvExpContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:drawablePadding="5dp"
+        android:gravity="center|left"
+        android:text="1.负责俱乐部的授课\n2.负责俱乐部的拓展"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvExpPosition"
+
+        />
+</android.support.constraint.ConstraintLayout>

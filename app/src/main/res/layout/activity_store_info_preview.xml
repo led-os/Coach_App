@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_black"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_stroreinfo_bg">
+
+                <TextView
+                    android:id="@+id/tvStoreName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="67dp"
+                    android:paddingLeft="20dp"
+                    android:text="XXX健身俱乐部"
+                    android:textColor="@color/white"
+                    android:textSize="23sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="20dp"
+                    android:text="0-20人"
+                    android:textColor="@color/text_gray2"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvStoreName" />
+
+                <com.jsjlzj.wayne.widgets.img.CimageView
+                    android:id="@+id/image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="57dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!-- 上班时间 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvWorkTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_time_w"
+                    android:drawablePadding="5dp"
+                    android:text="上午9:00-下午6:00"
+                    android:textColor="@color/text_gray2"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvRestTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_calendar_w"
+                    android:drawablePadding="5dp"
+                    android:text="双休"
+                    android:textColor="@color/text_gray2"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvOverTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_work_w"
+                android:drawablePadding="5dp"
+                android:paddingLeft="20dp"
+                android:text="不加班"
+                android:textColor="@color/text_gray2"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/line_dotted" />
+
+            <!-- 俱乐部介绍 -->
+
+            <TextView
+                android:id="@+id/store_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:paddingLeft="20dp"
+                android:text="俱乐部介绍"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvStoreContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="20dp"
+                android:text="这里是俱乐部介绍文字，请输入您所属的俱乐部营业执照上的名称，请注意区分总部和分部，这里是俱乐部介绍文字。"
+                android:textColor="@color/text_gray2"
+                android:textSize="14sp" />
+
+
+            <!-- 俱乐部福利 -->
+            <TextView
+                android:id="@+id/tvSkillTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:paddingLeft="20dp"
+                android:text="俱乐部福利"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flexbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:flexWrap="wrap"></com.google.android.flexbox.FlexboxLayout>
+            <!-- 俱乐部照片 -->
+            <TextView
+                android:id="@+id/store_ivPics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:paddingLeft="20dp"
+                android:text="俱乐部照片"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewPics"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="20dp"></android.support.v7.widget.RecyclerView>
+            <!-- 俱乐部地址 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:paddingLeft="20dp"
+                android:text="俱乐部地址"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="15dp" >
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+          />
+            <TextView
+                android:id="@+id/addressTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:textSize="12sp"
+                android:background="@color/white"
+                android:padding="5dp"
+                android:text=""/>
+</RelativeLayout>
+
+            <!-- 工商信息 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:paddingLeft="20dp"
+                android:text="工商信息"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:text="俱乐部全称"
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:text="俱乐部法人"
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:text="注册时间"
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:text="注册资本"
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/tvClubName"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="俱乐部全称"
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvUsName"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=""
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=""
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvCapital"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="7dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="@color/text_gray"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingTop="24dp"
+        android:layout_marginRight="12dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="center"
+            android:src="@drawable/ic_back_w_l" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/btnFengxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_share" />
+
+        <ImageView
+            android:id="@+id/btnJubao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_jinggao" />
+
+        <ImageView
+            android:id="@+id/btnShoucang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_dianzang" />
+
+    </LinearLayout>
+
+</FrameLayout>

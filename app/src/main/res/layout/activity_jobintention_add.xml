@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defult_background"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:paddingTop="@dimen/dp_24"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_back_b"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="添加求职期望"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFEEEEEE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="15dp"
+                android:text="求职期望的不同，推荐的职位也会不同"
+                android:textColor="@color/text_black"
+                android:textSize="14sp" />
+            <!-- 期望职位 -->
+            <LinearLayout
+                android:id="@+id/llType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="18dp"
+                android:paddingTop="18dp"
+                android:paddingRight="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="期望职位"
+                    android:textColor="@color/text_black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:text="请选择期望职位"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/item_line" />
+            </LinearLayout>
+            <!-- 工作城市 -->
+            <LinearLayout
+                android:id="@+id/llSkill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="18dp"
+                android:paddingTop="18dp"
+                android:paddingRight="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="工作城市"
+                    android:textColor="@color/text_black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:text="请选择工作地点"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/item_line" />
+            </LinearLayout>
+            <!-- 薪资要求 -->
+            <LinearLayout
+                android:id="@+id/llExp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="18dp"
+                android:paddingTop="18dp"
+                android:paddingRight="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="薪资要求"
+                    android:textColor="@color/text_black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvSalary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:text="请选择薪资要求"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/item_line" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/dr_btn_login_y"
+        android:text="添加期望"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+</LinearLayout>

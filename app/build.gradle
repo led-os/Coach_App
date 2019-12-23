@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('../jsjlzj.jks')
+            storePassword 'jsjlzj2019'
+            keyAlias = 'key0'
+            keyPassword 'jsjlzj-2019'
+        }
+    }
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.jsjlzj.wayne"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //设置支持的SO库架构
+            abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
+
+    implementation project(':xrecyclerview')
+    implementation project(':Zxing')
+    implementation project(':PhotoPicker')
+    implementation project(':uikit')
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.12'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation 'com.github.donkingliang:LabelsView:1.5.0'//标签
+    implementation 'com.android.support:support-annotations:20.0.0;'
+    implementation 'com.google.android:flexbox:0.3.0-alpha3'
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    api 'com.bm.photoview:library:1.4.1'
+
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'
+    //魅族推送
+    implementation 'com.meizu.flyme.internet:push-internal:3.8.4'
+}

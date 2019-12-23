@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defult_background"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:paddingTop="@dimen/dp_24"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:scaleType="center"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_back_b"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="俱乐部信息"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/btnService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:text="联系客服"
+            android:textColor="@color/text_blue"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFEEEEEE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- 创建俱乐部名片 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="40dp"
+                    android:paddingRight="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="俱乐部全称"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/edName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@null"
+                        android:hint="请输入您所属俱乐部营业执照上的名称"
+                        android:textColor="@color/text_gray"
+                        android:textSize="17sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="18dp"
+                        android:background="@color/item_line" />
+                </LinearLayout>
+                <!-- 姓名 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="18dp"
+                    android:paddingRight="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择规模"
+                        android:textColor="@color/text_black"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:id="@+id/tvNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:drawableRight="@drawable/ic_back_g"
+                        android:text="请选择人员规模"
+                        android:textColor="@color/text_gray"
+                        android:textSize="17sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="18dp"
+                        android:background="@color/item_line" />
+                </LinearLayout>
+                <!-- 上传营业执照 -->
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="18dp"
+                    android:paddingRight="18dp"
+                    android:text="上传营业执照"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp" />
+
+                <FrameLayout
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="10dp">
+
+                    <com.jsjlzj.wayne.widgets.img.KimageView
+                        android:id="@+id/image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="bottom|left"/>
+                    <ImageView
+                        android:id="@+id/btnIcAdd"
+                        android:padding="40dp"
+                        android:background="@drawable/bg_im_g"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/ic_add"
+                        android:layout_gravity="bottom|left"/>
+                    <ImageView
+                        android:id="@+id/btnIcClose"
+                        android:visibility="gone"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="top|right"
+                        android:src="@drawable/ic_close" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+        <View
+            android:visibility="gone"
+            android:id="@+id/bgView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/dr_btn_login_y"
+        android:text="完成"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btnTips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#FFF4887E"
+        android:text="俱乐部信息正在审核中"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+</LinearLayout>

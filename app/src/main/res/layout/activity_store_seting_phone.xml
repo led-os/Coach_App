@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defult_background"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/defult_background"
+        android:elevation="4dp"
+        android:paddingTop="@dimen/dp_24"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_back_b" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="设置"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_18" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="#FFEEEEEE" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:background="#FFF2F2F2"
+        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:paddingLeft="20dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="当前绑定手机号"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            />
+        <TextView
+            android:id="@+id/tvCurrentPhone"
+            android:paddingRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/line_gray"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_14" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/line_gray"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edSmes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="输入手机验证码"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_14" />
+
+        <com.jsjlzj.wayne.widgets.text.CountDownTextView
+            android:id="@+id/btnGetSmes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="获取验证码"
+            android:textColor="@color/login_btn_smes"
+            android:textSize="@dimen/font_14" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/dr_btn_login_y"
+        android:text="确定修改手机号"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="修改手机号后，可以使用新手机登录健身教练之家\n聊天时“交换电话”功能的手机会一同修改"
+        android:textColor="@color/text_gray"
+        android:textSize="12sp" />
+
+</LinearLayout>

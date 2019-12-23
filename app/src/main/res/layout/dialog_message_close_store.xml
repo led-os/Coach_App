@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_gravity="center|bottom"
+android:background="@drawable/bg_message_item"
+android:orientation="vertical">
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:text="选择原因，推荐更合适的人"
+        android:textColor="#333333"
+        android:textSize="20sp" />
+
+</FrameLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="25dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/btn0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="学历"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="薪资不符"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="过往经历"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="距离"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="25dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/btn4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="已找到工作"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/btn5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="年龄不符"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/btn6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="学历"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/btn7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="简历不真实"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="25dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/btn8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="其他"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/btn9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="游泳教练"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/btn10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/sl_bg_lab"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="瑜伽教练"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="13sp" />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:id="@+id/btnCancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/gray"
+        android:textSize="16sp" />
+
+    <TextView
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:id="@+id/btnConfirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/blue"
+        android:textSize="16sp" />
+</LinearLayout>
+
+</LinearLayout>

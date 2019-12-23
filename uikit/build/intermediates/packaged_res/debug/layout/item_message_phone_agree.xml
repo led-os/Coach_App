@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/llItemPhone"
+        android:layout_width="230dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_message_item">
+
+        <ImageView
+            android:id="@+id/imageItemPhone"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_message_room_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvItemPhoneAgree"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="对方想要和您交换联系方式，您是否同意"
+            android:textColor="#494949"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageItemPhone"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/lineItemPhone"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#D5D5D5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageItemPhone" />
+
+        <View
+            android:id="@+id/line2ItemPhone"
+            android:layout_width="1dp"
+            android:layout_height="14dp"
+            android:background="#D5D5D5"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSendItemPhone"
+            app:layout_constraintStart_toEndOf="@+id/btnSendItemPhone"
+            app:layout_constraintTop_toTopOf="@+id/btnSendItemPhone" />
+
+        <View
+            android:id="@+id/line3ItemPhone"
+            android:layout_width="1dp"
+            android:layout_height="14dp"
+            android:background="#D5D5D5"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSendItemPhone"
+            app:layout_constraintStart_toEndOf="@+id/btnCallItemPhoneAgree"
+            app:layout_constraintTop_toTopOf="@+id/btnSendItemPhone" />
+
+        <TextView
+            android:id="@+id/btnSendItemPhone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="发短信"
+            android:textColor="#494949"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnCallItemPhoneAgree"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lineItemPhone" />
+
+
+        <TextView
+            android:id="@+id/btnCallItemPhoneAgree"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="拨号"
+            android:textColor="#494949"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnCopeItemPhoneAgree"
+            app:layout_constraintStart_toEndOf="@+id/btnSendItemPhone"
+            app:layout_constraintTop_toTopOf="@+id/btnSendItemPhone" />
+
+
+        <TextView
+            android:id="@+id/btnCopeItemPhoneAgree"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="复制"
+            android:textColor="#494949"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnCallItemPhoneAgree"
+            app:layout_constraintTop_toTopOf="@+id/btnSendItemPhone" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</FrameLayout>

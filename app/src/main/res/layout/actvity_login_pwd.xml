@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defult_background"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_25"
+    android:paddingRight="@dimen/dp_25">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="账号密码登录"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_23" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/line_gray"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+86"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/edPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingLeft="@dimen/dp_10"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/line_gray"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:maxLength="20"
+            android:id="@+id/edPwd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_14" />
+
+        <ImageView
+            android:id="@+id/btnEys"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/sl_eys_open_close" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@drawable/sl_btn_login"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15">
+        <TextView
+            android:id="@+id/btnFastLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:padding="@dimen/dp_5"
+            android:text="快捷登录"
+            android:textColor="@color/login_title"
+            android:textSize="@dimen/font_14" />
+        <TextView
+            android:id="@+id/btnForgetPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/dp_5"
+            android:padding="@dimen/dp_5"
+            android:text="忘记密码"
+            android:textColor="@color/login_title"
+            android:textSize="@dimen/font_14" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <ImageView
+        android:id="@+id/btnWechat"
+        android:src="@drawable/ic_wechat"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="微信登录"
+        android:textColor="@color/login_title"
+        android:textSize="@dimen/font_14" />
+</LinearLayout>

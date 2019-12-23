@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    android:background="@drawable/dr_bg_common_dialog"
+    >
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
+        android:gravity="center"
+        android:text="您被下线"
+        android:textColor="@color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/font_14" />
+    <TextView
+        android:id="@+id/tvMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/font_12"
+        android:text="您的账号被踢下线"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/item_line"/>
+    <TextView
+        android:id="@+id/confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:paddingTop="10dp"
+        android:textColor="@color/text_blue"
+        android:gravity="center"
+        android:paddingBottom="10dp"/>
+</LinearLayout>

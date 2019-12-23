@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="25dp"
+    android:background="@color/white"
+    android:paddingBottom="20dp"
+    android:layout_marginBottom="7dp"
+   >
+
+<ImageView
+    android:layout_width="45dp"
+    android:layout_height="45dp"
+    android:id="@+id/headImg"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="10dp"
+    android:src="@drawable/ic_role_trainer1"/>
+    <TextView
+        android:id="@+id/tvStoreName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="俱乐部名称"
+        android:layout_toRightOf="@+id/headImg"
+        android:textColor="@color/text_black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvStoreNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="人数"
+        android:layout_toRightOf="@+id/headImg"
+        android:layout_below="@+id/tvStoreName"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/text_gray"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/tvStoreAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="地址"
+        android:layout_toRightOf="@+id/headImg"
+        android:layout_below="@+id/headImg"
+        android:layout_marginTop="18dp"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp" />
+
+</RelativeLayout>

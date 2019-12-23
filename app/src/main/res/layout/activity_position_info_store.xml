@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="24dp"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- 职位名称 -->
+            <!-- 发布者名称 职位 -->
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/tvPositionName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="67dp"
+                    android:paddingLeft="20dp"
+                    android:text="职位名称"
+                    android:textColor="@color/text_black"
+                    android:textSize="23sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPositionContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="杭州 三墩   1-3年经验   大专"
+                    android:textColor="@color/text_gray2"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPositionName" />
+
+                <TextView
+                    android:id="@+id/tvSalary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="20dp"
+                    android:text="10-15K"
+                    android:textColor="@color/text_black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvPositionName"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPublisherName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="20dp"
+                    android:text="发布者名称"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/image" />
+
+
+                <TextView
+                    android:id="@+id/tvPublisherPositon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:paddingLeft="20dp"
+                    android:text="发布者职位"
+                    android:textColor="@color/text_gray2"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/image"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.jsjlzj.wayne.widgets.img.CimageView
+                    android:id="@+id/image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPositionContent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:background="@drawable/line_dotted" />
+
+            <!-- 职位介绍 -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:paddingLeft="20dp"
+                android:text="职位介绍"
+                android:textColor="@color/text_black"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPositionContent2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="这里是职位介绍文字，请输入您所属的俱乐部营业执照上的名称，请注意区分总部和分部，这里是俱乐部介绍文字。"
+                android:textColor="@color/text_gray2"
+                android:textSize="14sp" />
+            <!-- 技能要求 -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:paddingLeft="20dp"
+                android:text="技能要求"
+                android:textColor="@color/text_black"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/llLabelSkill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                app:flexWrap="wrap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvInfo">
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+
+            <!-- 俱乐部福利 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:paddingLeft="20dp"
+                android:text="俱乐部福利"
+                android:textColor="@color/text_black"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/llLabelWelfare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="18dp"
+                app:flexWrap="wrap"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvInfo">
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <!-- 公司详情 -->
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/llStoreAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:paddingLeft="18dp"
+                android:paddingTop="18dp"
+                android:paddingRight="18dp">
+
+                <com.jsjlzj.wayne.widgets.img.KimageView
+                    android:id="@+id/imageStore"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/ic_role_store"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tvStoreName"
+                    android:drawableRight="@drawable/ic_back_g"
+                    android:maxLines="1"
+                    android:text="杭州雨天健身服务有限公司"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageStore"
+                    app:layout_constraintTop_toTopOf="@+id/imageStore" />
+
+                <TextView
+                    android:id="@+id/tvNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:maxLines="1"
+                    android:text="100-200人"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageStore"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageStore" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <!-- 地图 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:paddingLeft="20dp"
+                android:text="俱乐部地址"
+                android:textColor="@color/text_black"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="100dp">
+                <com.baidu.mapapi.map.MapView
+                    android:id="@+id/baiduMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/addressTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="25dp"
+                    android:textSize="12sp"
+                    android:background="@color/white"
+                    android:padding="5dp"
+                    android:text=""/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="center"
+            android:src="@drawable/ic_back_b" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/btnFengxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_share" />
+
+        <ImageView
+            android:id="@+id/btnJubao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/node" />
+
+        <ImageView
+            android:id="@+id/btnShoucang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/uncollected" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/dr_btn_login_y"
+        android:text="立即沟通"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+</FrameLayout>

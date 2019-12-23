@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:paddingTop="@dimen/dp_24"
+        android:paddingRight="12dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:scaleType="center"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_back_b" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="达人卡"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_18" />
+        <ImageView
+            android:id="@+id/btnJubao"
+            android:layout_width="wrap_content"
+            android:layout_toLeftOf="@+id/btnShoucang"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/node" />
+
+        <ImageView
+            android:id="@+id/btnShoucang"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/uncollected" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="bottom"
+        android:background="#FFE2E2E2" />
+    <ScrollView
+        android:id="@+id/preview_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="81dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="80dp"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvTrainerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    android:paddingLeft="20dp"
+                    android:text="姓名"
+                    android:textColor="@color/text_black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPosition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="33dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTrainerName" />
+
+                <com.jsjlzj.wayne.widgets.img.CimageView
+                    android:id="@+id/image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="19dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#E2E2E2" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="22dp"
+                android:drawablePadding="5dp"
+                android:textColor="@color/text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="5dp"
+                android:paddingLeft="20dp"
+                android:textColor="@color/text_gray2"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/trainer_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:textColor="@color/text_gray"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+                android:background="#E2E2E2" />
+
+            <!-- 俱乐部介绍 -->
+
+
+            <TextView
+                android:id="@+id/tvStoreContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="20dp"
+                android:text="求职期望"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <com.jsjlzj.wayne.widgets.MyListView
+                android:id="@+id/lv_workHope"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:focusable="false"
+                android:divider="@null"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#E2E2E2" />
+            <!-- 俱乐部福利 -->
+            <TextView
+                android:id="@+id/tvWorkExpricence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="20dp"
+                android:text="工作经历"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.jsjlzj.wayne.widgets.MyListView
+                android:id="@+id/lvWorkExpricence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:focusable="false"
+                android:divider="@null"
+                android:layout_marginTop="25dp" />
+            <!-- 俱乐部照片 -->
+            <TextView
+                android:id="@+id/trainer_ivPics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="20dp"
+                android:text="照片墙"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.jsjlzj.wayne.widgets.MyListView
+                android:id="@+id/trainer_ivlv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:focusable="false"
+                android:layout_margin="20dp"></com.jsjlzj.wayne.widgets.MyListView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/line_dotted" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingLeft="20dp"
+                android:text="教育经历"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.jsjlzj.wayne.widgets.MyListView
+                android:id="@+id/trainer_lvEducation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:divider="@null"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/dr_btn_login_y"
+        android:text="立即沟通"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+</FrameLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_message_item"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <View
+            android:layout_width="97dp"
+            android:layout_height="97dp"
+            android:background="@drawable/ic_notifi_bg" />
+
+        <View
+            android:layout_width="97dp"
+            android:layout_height="97dp"
+            android:layout_gravity="right"
+            android:background="@drawable/ic_notifi_bg" />
+
+        <com.jsjlzj.wayne.widgets.img.CimageView
+            android:id="@+id/image1"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_avatars" />
+
+        <com.jsjlzj.wayne.widgets.img.CimageView
+            android:id="@+id/image2"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_avatars" />
+
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:text="xxx俱乐部\n向你发出面试邀请"
+        android:textColor="@color/action_bar_tittle_color_555555"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/bg_dialog_btncomfire"
+        android:gravity="center"
+        android:text="打开"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
+
+    <TextView
+        android:layout_marginBottom="@dimen/dp_10"
+        android:id="@+id/tv_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center"
+        android:text="暂不查看"
+        android:textColor="#666666"
+        android:textSize="13sp" />
+</LinearLayout>

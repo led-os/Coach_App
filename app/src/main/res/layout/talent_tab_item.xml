@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+    <TextView
+        android:id="@+id/tv_tab_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/dc_text_gb_selector"
+        android:textSize="@dimen/font_16" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_tab_msg"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="top|center"
+        android:background="@drawable/dr_bg_tv_red"
+        android:gravity="center"
+        android:text="1"
+        android:textSize="@dimen/font_14"
+        android:textColor="@color/white" />
+</FrameLayout>
