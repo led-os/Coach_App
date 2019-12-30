@@ -16,7 +16,11 @@ import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.ui.MainActivity;
 import com.jsjlzj.wayne.utils.SPUtil;
 
-
+/**
+* @description 欢迎页面
+* @date:   modify 2019/12/23
+* @author: 曾海强
+*/
 public class WelcomeActivity extends AppCompatActivity {
 
     public static void go2this(Context context, String... urls) {

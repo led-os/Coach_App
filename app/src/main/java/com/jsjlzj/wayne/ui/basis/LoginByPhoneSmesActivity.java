@@ -172,7 +172,7 @@ public class LoginByPhoneSmesActivity extends MVPBaseNoLoginActivity<LoginActivi
         }
         if (null == mapLoginSmes) mapLoginSmes = new HashMap<>();
         mapLoginSmes.clear();
-        if(isBind==1){
+        if(isBind == 1){
             mapLoginSmes.put("code", smes);
             presenter.unBindWeChat(mapLoginSmes);
         }else {

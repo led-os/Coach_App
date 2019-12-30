@@ -58,6 +58,13 @@ public class MyApp extends Application {
     public DisplayMetrics dm;
 
 
+    public static MyApp getApp(){
+        return ME;
+    }
+
+    public static MdlUser.MdlUserBean getUser(){
+        return user;
+    }
     @Override
     public void onCreate() {
         super.onCreate();

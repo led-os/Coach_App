@@ -25,6 +25,8 @@ import com.jsjlzj.wayne.ui.basis.LoginByPhoneActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
+import com.jsjlzj.wayne.ui.store.home.TabItemHomeFragment;
+import com.jsjlzj.wayne.ui.store.home.TabItemStudyFragment;
 import com.jsjlzj.wayne.ui.store.personal.TabItemStoreInfoFragment;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.InterviewDetailActivity;
 import com.jsjlzj.wayne.ui.store.talent.menu.TabItemTrainerFragment;
@@ -55,7 +57,7 @@ import java.util.List;
 /**
  * 主页  根据身份  “ 门店、教练”  适应菜单
  */
-public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivityPresenter> implements LoginActivityView, ReminderManager.UnreadNumChangedCallback {
+public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivityPresenter> implements LoginActivityView, ReminderManager.UnreadNumChangedCallback, RequestCallback<LoginInfo> {
 
     public static void go2this(Activity context, boolean isStore) {
         if(SPUtil.getFist()&&isFlyme()){//SPUtil.getFist()
@@ -77,6 +79,10 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
 
         }
     }
+
+    /**
+     * 是否是门店端
+     */
     private boolean isStore;
 
     @Override
@@ -90,21 +96,24 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     }
 
     private int[][] stroeDrawableSelector = {
+            {R.drawable.icon_home_select, R.drawable.icon_home_select},
             {R.drawable.ic_talent_w, R.drawable.ic_talent_y},
             {R.drawable.ic_message_w, R.drawable.ic_message_y},
-            {R.drawable.ic_mine_w, R.drawable.ic_mine_y}
+            {R.drawable.icon_mine_no_select, R.drawable.icon_mine_no_select}
     };
     private int[][] trainerDrawableSelector = {
-            {R.drawable.ic_talent_w, R.drawable.ic_talent_y},
-            {R.drawable.ic_message_w, R.drawable.ic_message_y},
-            {R.drawable.ic_mine_w, R.drawable.ic_mine_y}
+            {R.drawable.icon_home_select, R.drawable.icon_home_select},
+            {R.drawable.icon_study_no_select, R.drawable.icon_study_no_select},
+            {R.drawable.icon_job_no_select, R.drawable.icon_job_no_select},
+            {R.drawable.icon_community_no_select,R.drawable.icon_community_no_select},
+            {R.drawable.icon_mine_no_select,R.drawable.icon_mine_no_select}
     };
 
     private String[] stroeNames = {
-            "达人", "消息", "我的"
+           "首页", "招聘", "消息", "我的"
     };
     private String[] trainerNames = {
-            "职位", "消息", "我的"
+           "首页", "学习", "求职", "社区", "我的"
     };
     private MyViewPager viewPager;
     private List<Fragment> mFragments = new ArrayList<>();
@@ -121,68 +130,32 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
         MyApp.ME.dm = Utility.getDisplayScreenSize(this);
         MyApp.user = SPUtil.getUserFromSP();
         //登不上去的话 在AndroidManifest 有appkey
-        user = MyApp.ME.user;
-        if (user != null)
-            YunXingUtil.LoginYunxing(new LoginInfo(user.getYunXinAccount(), user.getYunXinToken()), new RequestCallback<LoginInfo>() {
-                @Override
-                public void onSuccess(LoginInfo param) {
-                    LogAndToastUtil.log("云信登录成功" + param.getAccount());
-                    NimUIKit.loginSuccess(user.getYunXinAccount());//必要
-                    SPUtil.saveYXTokenSP(param.getToken());
-                    SPUtil.saveYXAccountSP(param.getAccount());
-                    //设置用户信息
-//                    YunXingUtil.setUserInfo(user.getName(), user.getHeadImg(), new RequestCallbackWrapper<Void>() {
-//                        @Override
-//                        public void onResult(int i, Void aVoid, Throwable throwable) {
-//
-//                        }
-//                    });
-                }
+        user = MyApp.getUser();
+        if (user != null) {
+            YunXingUtil.LoginYunxing(new LoginInfo(user.getYunXinAccount(), user.getYunXinToken()), this);
+        }
 
-                @Override
-                public void onFailed(int code) {
-                    LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(),"","","","","");
-                    finish();
-                    LogAndToastUtil.log("云信登录成功" + code);
-                }
-
-                @Override
-                public void onException(Throwable exception) {
-                    LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(),"","","","","");
-                    finish();
-                    LogAndToastUtil.log("云信登录成功" + exception);
-                }
-            });
-
-        NIMClient.getService(MsgServiceObserve.class).observeCustomNotification(new Observer<CustomNotification>() {
-            @Override
-            public void onEvent(CustomNotification message) {
-                // 在这里处理自定义通知。
-                // {"type":  "InterviewNotice", ext:{"sHeadImg":俱乐部头像， "tHeadImg": 教练头像 ， "storeName": 俱乐部名称, "id": 面试ID}}
-                String content = message.getContent();
-                if (!TextUtils.isEmpty(content)) {
-                    try {
-                        MdlInterviewMessage mdlInterviewMessage = new Gson().fromJson(content, new TypeToken<MdlInterviewMessage>() {}.getType());
-                        if (mdlInterviewMessage != null) {
-                            if ("InterviewNotice".equals(mdlInterviewMessage.getType())) {
-                                if (null != mdlInterviewMessage.getExt()) {
-                                    new CommonInterviewDialog(AppManager.getAppManager().currentActivity(),
-                                            mdlInterviewMessage.getExt().getTHeadImg(),
-                                            mdlInterviewMessage.getExt().getSHeadImg(),
-                                            mdlInterviewMessage.getExt().getStoreName(),
-                                            new CommonInterviewDialog.ClickListener() {
-                                                @Override
-                                                public void clickConfirm() {
-                                                    InterviewDetailActivity.go2this(AppManager.getAppManager().currentActivity(), mdlInterviewMessage.getExt().getId() + "");
-                                                }
-                                            }
-                                    ).show();
-                                }
+        NIMClient.getService(MsgServiceObserve.class).observeCustomNotification((Observer<CustomNotification>) message -> {
+            // 在这里处理自定义通知。
+            // {"type":  "InterviewNotice", ext:{"sHeadImg":俱乐部头像， "tHeadImg": 教练头像 ， "storeName": 俱乐部名称, "id": 面试ID}}
+            String content = message.getContent();
+            if (!TextUtils.isEmpty(content)) {
+                try {
+                    MdlInterviewMessage mdlInterviewMessage = new Gson().fromJson(content, new TypeToken<MdlInterviewMessage>() {}.getType());
+                    if (mdlInterviewMessage != null) {
+                        if ("InterviewNotice".equals(mdlInterviewMessage.getType())) {
+                            if (null != mdlInterviewMessage.getExt()) {
+                                new CommonInterviewDialog(AppManager.getAppManager().currentActivity(),
+                                        mdlInterviewMessage.getExt().getTHeadImg(),
+                                        mdlInterviewMessage.getExt().getSHeadImg(),
+                                        mdlInterviewMessage.getExt().getStoreName(),
+                                        () -> InterviewDetailActivity.go2this(AppManager.getAppManager().currentActivity(), mdlInterviewMessage.getExt().getId() + "")
+                                ).show();
                             }
                         }
-                    } catch (Exception e) {
-
                     }
+                } catch (Exception e) {
+
                 }
             }
         }, true);
@@ -198,6 +171,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             nams = stroeNames;
             drawableSelector = stroeDrawableSelector;
             tabItemTrainerFragment = (TabItemTrainerFragment) TabItemTrainerFragment.getInstance();
+            mFragments.add(TabItemHomeFragment.getInstance());
             mFragments.add(tabItemTrainerFragment);
             mFragments.add(MySessionListFragment.getInstance(false));
             mFragments.add(TabItemStoreInfoFragment.getInstance());
@@ -205,6 +179,8 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             nams = trainerNames;
             drawableSelector = trainerDrawableSelector;
             tabItemPositionFragment = (TabItemPositionFragment) TabItemPositionFragment.getInstance();
+            mFragments.add(TabItemHomeFragment.getInstance());
+            mFragments.add(TabItemStudyFragment.getInstance());
             mFragments.add(tabItemPositionFragment);
             mFragments.add(MySessionListFragment.getInstance(true));
             mFragments.add(TabItemTrainerInfoFragment.getInstance());
@@ -295,7 +271,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             if (tab != null) {
                 View customView = tab.getCustomView();
                 if (customView != null) {
-                    TextView tvCount  =customView.findViewById(R.id.tv_tab_msg);
+                    TextView tvCount  = customView.findViewById(R.id.tv_tab_msg);
                     if (tvCount != null) {
                         if (item == null) {
                             tvCount.setVisibility(View.GONE);
@@ -303,7 +279,9 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
                         }
                         int unread = item.unread();
                         tvCount.setVisibility(unread > 0 ? View.VISIBLE : View.GONE);
-                        if(unread>0)tvCount.setText(unread+"");
+                        if(unread > 0) {
+                            tvCount.setText(unread+"");
+                        }
                     }
                 }
             }
@@ -359,4 +337,32 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     }
 
 
+    @Override
+    public void onSuccess(LoginInfo param) {
+        LogAndToastUtil.log("云信登录成功" + param.getAccount());
+        NimUIKit.loginSuccess(user.getYunXinAccount());//必要
+        SPUtil.saveYXTokenSP(param.getToken());
+        SPUtil.saveYXAccountSP(param.getAccount());
+        //设置用户信息
+//                    YunXingUtil.setUserInfo(user.getName(), user.getHeadImg(), new RequestCallbackWrapper<Void>() {
+//                        @Override
+//                        public void onResult(int i, Void aVoid, Throwable throwable) {
+//
+//                        }
+//                    });
+    }
+
+    @Override
+    public void onFailed(int code) {
+        LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(),"","","","","");
+        finish();
+        LogAndToastUtil.log("云信登录成功" + code);
+    }
+
+    @Override
+    public void onException(Throwable exception) {
+        LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(),"","","","","");
+        finish();
+        LogAndToastUtil.log("云信登录成功" + exception);
+    }
 }

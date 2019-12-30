@@ -34,7 +34,11 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import static com.jsjlzj.wayne.constant.HttpConstant.WXAPPID;
-
+/**
+* @description 手机号登陆
+* @date: 2019/12/23
+* @author: 曾海强
+*/
 public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityView, LoginActivityPresenter> implements LoginActivityView {
     public static final String LOGIN_OPENID = "openid";
     public static final String LOGIN_HEADIMG = "headImg";
@@ -177,6 +181,8 @@ public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityVi
                 case R.id.btnNode:
                     JsjlAgreementActivity.go2this2(LoginByPhoneActivity.this);
 //                    WebViewActivity.go2this(LoginByPhoneActivity.this);
+                    break;
+                default:
                     break;
             }
         }

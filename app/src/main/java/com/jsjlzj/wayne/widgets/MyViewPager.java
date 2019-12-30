@@ -56,6 +56,8 @@ public class MyViewPager extends ViewPager {
             return false;
         }
     }
+
+    @Override
     protected boolean canScroll(View v, boolean checkV, int dx, int x, int y) {
 
         if (v instanceof HorizontalScrollView) {

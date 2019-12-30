@@ -250,6 +250,8 @@ public class LoginActivityPresenter extends BasePresenter<LoginActivityView> {
             case REQ_UPDATE_PSD:
                 view.updatePsd(resp);
                 break;
+            default:
+                break;
         }
     }
 }
