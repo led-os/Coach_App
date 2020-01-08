@@ -56,19 +56,22 @@ import java.util.List;
 
 /**
  * 主页  根据身份  “ 门店、教练”  适应菜单
+ * @author zenghaiqiang
  */
 public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivityPresenter> implements LoginActivityView, ReminderManager.UnreadNumChangedCallback, RequestCallback<LoginInfo> {
 
     public static void go2this(Activity context, boolean isStore) {
-        if(SPUtil.getFist()&&isFlyme()){//SPUtil.getFist()
-            JsjlAgreementActivity.go2this(context,isStore);
+        //SPUtil.getFist()
+        if (SPUtil.getFist() && isFlyme()) {
+            JsjlAgreementActivity.go2this(context, isStore);
             SPUtil.saveFist();
-        }else {
+        } else {
             Intent intent = new Intent(context, MainActivity.class);
             intent.putExtra("isStore", isStore);
             context.startActivity(intent);
         }
     }
+
     public static boolean isFlyme() {
         try {
             // Invoke Build.hasSmartBar()
@@ -96,24 +99,24 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     }
 
     private int[][] stroeDrawableSelector = {
-            {R.drawable.icon_home_select, R.drawable.icon_home_select},
-            {R.drawable.ic_talent_w, R.drawable.ic_talent_y},
-            {R.drawable.ic_message_w, R.drawable.ic_message_y},
-            {R.drawable.icon_mine_no_select, R.drawable.icon_mine_no_select}
+            {R.drawable.ic_homepage_normal, R.drawable.ic_homepage_pressed},
+            {R.drawable.ic_applyjob_normal, R.drawable.ic_applyjob_pressed},
+            {R.drawable.ic_community_normal, R.drawable.ic_community_pressed},
+            {R.drawable.ic_me_noarmal, R.drawable.ic_me_pressed}
     };
     private int[][] trainerDrawableSelector = {
-            {R.drawable.icon_home_select, R.drawable.icon_home_select},
-            {R.drawable.icon_study_no_select, R.drawable.icon_study_no_select},
-            {R.drawable.icon_job_no_select, R.drawable.icon_job_no_select},
-            {R.drawable.icon_community_no_select,R.drawable.icon_community_no_select},
-            {R.drawable.icon_mine_no_select,R.drawable.icon_mine_no_select}
+            {R.drawable.ic_homepage_normal, R.drawable.ic_homepage_pressed},
+            {R.drawable.ic_study_normal, R.drawable.ic_study_pressed},
+            {R.drawable.ic_applyjob_normal, R.drawable.ic_applyjob_pressed},
+            {R.drawable.ic_community_normal, R.drawable.ic_community_pressed},
+            {R.drawable.ic_me_noarmal, R.drawable.ic_me_pressed}
     };
 
     private String[] stroeNames = {
-           "首页", "招聘", "消息", "我的"
+            "首页", "招聘", "消息", "我的"
     };
     private String[] trainerNames = {
-           "首页", "学习", "求职", "社区", "我的"
+            "首页", "学习", "求职", "社区", "我的"
     };
     private MyViewPager viewPager;
     private List<Fragment> mFragments = new ArrayList<>();
@@ -141,7 +144,8 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             String content = message.getContent();
             if (!TextUtils.isEmpty(content)) {
                 try {
-                    MdlInterviewMessage mdlInterviewMessage = new Gson().fromJson(content, new TypeToken<MdlInterviewMessage>() {}.getType());
+                    MdlInterviewMessage mdlInterviewMessage = new Gson().fromJson(content, new TypeToken<MdlInterviewMessage>() {
+                    }.getType());
                     if (mdlInterviewMessage != null) {
                         if ("InterviewNotice".equals(mdlInterviewMessage.getType())) {
                             if (null != mdlInterviewMessage.getExt()) {
@@ -189,6 +193,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
         registerMsgUnreadInfoObserver(true);
 
     }
+
     /**
      * 注册未读消息数量观察者
      */
@@ -199,15 +204,18 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             ReminderManager.getInstance().unregisterUnreadNumChangedCallback(this);
         }
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         registerMsgUnreadInfoObserver(false);
     }
+
     @Override
     public void onUnreadNumChanged(ReminderItem item) {
         setTabTip(item);
     }
+
     private void initViewPager() {
         FragmentPagerAdapter mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -265,13 +273,14 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
         }
         return v;
     }
-    private void setTabTip(ReminderItem item){
-        if(tabLayout!=null && tabLayout.getTabCount()>1){
+
+    private void setTabTip(ReminderItem item) {
+        if (tabLayout != null && tabLayout.getTabCount() > 1) {
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             if (tab != null) {
                 View customView = tab.getCustomView();
                 if (customView != null) {
-                    TextView tvCount  = customView.findViewById(R.id.tv_tab_msg);
+                    TextView tvCount = customView.findViewById(R.id.tv_tab_msg);
                     if (tvCount != null) {
                         if (item == null) {
                             tvCount.setVisibility(View.GONE);
@@ -279,8 +288,8 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
                         }
                         int unread = item.unread();
                         tvCount.setVisibility(unread > 0 ? View.VISIBLE : View.GONE);
-                        if(unread > 0) {
-                            tvCount.setText(unread+"");
+                        if (unread > 0) {
+                            tvCount.setText(unread + "");
                         }
                     }
                 }
@@ -354,14 +363,14 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
 
     @Override
     public void onFailed(int code) {
-        LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(),"","","","","");
+        LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(), "", "", "", "", "");
         finish();
         LogAndToastUtil.log("云信登录成功" + code);
     }
 
     @Override
     public void onException(Throwable exception) {
-        LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(),"","","","","");
+        LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(), "", "", "", "", "");
         finish();
         LogAndToastUtil.log("云信登录成功" + exception);
     }
