@@ -126,6 +126,7 @@ public class TalentTabFragment extends MVPBaseFragment<TalentPersonalView, Talen
         }
     }
 
+    @Override
     public void showPositionTypePublished(MdlBaseHttpResp<MdlPositionType> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             strList.add("全部");

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:scrollbars="none"
     android:overScrollMode="never"
     tools:context=".ui.store.home.TabItemHomeFragment">
@@ -19,24 +20,31 @@
             <android.support.design.widget.TabLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                app:tabIndicatorHeight="0dp"
                 android:layout_height="@dimen/padding_59"/>
 
             <View
                 android:layout_width="@dimen/padding_1"
                 android:layout_height="@dimen/padding_23"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/bg_shape_line_home"/>
 
             <ImageView
+                android:id="@+id/img_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="@dimen/padding_16"
+                android:layout_marginStart="@dimen/padding_6"
+                android:layout_marginEnd="@dimen/padding_6"
+                android:padding="@dimen/padding_10"
                 android:src="@drawable/ic_search_home"/>
 
-            
         </LinearLayout>
 
-
+        <com.jsjlzj.wayne.widgets.MyViewPager
+            android:id="@+id/my_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
-  compileSdkVersion rootProject.ext.compileSdkVersion
+  compileSdkVersion rootProject.ext.android.compileSdkVersion
 
   resourcePrefix "__picker_"
 
@@ -9,8 +9,8 @@ android {
     javaMaxHeapSize "4g"
   }
   defaultConfig {
-    minSdkVersion rootProject.ext.minSdkVersion
-    targetSdkVersion rootProject.ext.targetSdkVersion
+    minSdkVersion rootProject.ext.android.minSdkVersion
+    targetSdkVersion rootProject.ext.android.targetSdkVersion
   }
   lintOptions {
     abortOnError false

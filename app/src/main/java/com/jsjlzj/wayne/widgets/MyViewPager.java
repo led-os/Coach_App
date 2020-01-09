@@ -1,5 +1,6 @@
 package com.jsjlzj.wayne.widgets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -25,6 +26,7 @@ public class MyViewPager extends ViewPager {
     public MyViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
@@ -64,6 +66,12 @@ public class MyViewPager extends ViewPager {
             return true;
         }
         return super.canScroll(v, checkV, dx, x, y);
+    }
+
+
+    @Override
+    public void setCurrentItem(int item, boolean smoothScroll) {
+        super.setCurrentItem(item, smoothScroll);
     }
 
     @Override

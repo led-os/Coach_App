@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
@@ -38,6 +40,8 @@ import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenActivity;
 import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenLabActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewActivity;
 import com.jsjlzj.wayne.widgets.MyRecyclerView;
+
+import org.greenrobot.greendao.annotation.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,6 +78,54 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
 
     @Override
     protected void initViewAndControl(View view) {
+        initViewPager();
+    }
+
+    private void initViewPager() {
+//        mTitles = getResources().getStringArray(R.array.negative_title);
+//        categerys = getResources().getStringArray(R.array.negative_categery);
+//        for (int i = 0; i < mTitles.length; i++) {
+//            InformationListFragment informationListFragment = InformationListFragment.getInstance("3", categerys[i],100+i);
+//            fragments.add(informationListFragment);
+//        }
+//        viewPager.setNoScroll(false);
+//        viewPager.setOffscreenPageLimit(mTitles.length - 1);
+//        viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager(), 0) {
+//
+//            @Override
+//            public int getCount() {
+//                return fragments.size();
+//            }
+//
+//            @NotNull
+//            @Override
+//            public Fragment getItem(int position) {
+//                return fragments.get(position);
+//            }
+//
+//            @Nullable
+//            @Override
+//            public CharSequence getPageTitle(int position) {
+//                return mTitles[position];
+//            }
+//        });
+//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                tabTitle.setupWithViewPager(viewPager);
+//                setTabStyle(position);
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//            }
+//        });
+//        tabTitle.setupWithViewPager(viewPager);
+//        setTabStyle(tabTitle.getSelectedTabPosition());
     }
 
 
