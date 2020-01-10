@@ -2,7 +2,7 @@ package com.jsjlzj.wayne.utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;

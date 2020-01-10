@@ -20,6 +20,7 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url "https://maven.google.com" }
     }
 }
 
@@ -48,15 +49,27 @@ ext {
             versionCode              : VERSION_CODE,
             versionName              : VERSION_NAME,
             flavorDimensions         : "version",
-            testInstrumentationRunner: "android.support.test.runner.AndroidJUnitRunner",
+            testInstrumentationRunner: "androidx.test.runner.AndroidJUnitRunner",
             applicationId            : "com.jsjlzj.wayne"
 
     ]
     //update time 2018-12-19
     dependencies = [
+            "junit"             : "junit:junit:4.12",
+            "support"           : "com.android.support:support-v4:" + SUPPORT_CODE,
+            "design"            : "com.android.support:design:27.1.1",
+            "runner"            : "com.android.support.test:runner:1.1.0",
+            "espresso"          : "com.android.support.test.espresso:espresso-core:3.1.0",
+            "appcompat"         : "androidx.appcompat:appcompat:1.1.0",
+            "material"          : "com.google.android.material:material:1.0.0",
+            "legacy"            : "androidx.legacy:legacy-support-v4:1.0.0",
 
-
+            "constraint"        : "androidx.constraintlayout:constraintlayout:2.0.0-beta2",
             "multidex"          : "com.android.support:multidex:1.0.3",
+            "recyclerview"          : "androidx.recyclerview:recyclerview:1.0.0",
+            "gson"              : "com.google.code.gson:gson:2.8.2",
+            "rxjava2"           : "io.reactivex.rxjava2:rxjava:2.1.12",
+            "greenDao"          : "org.greenrobot:greendao:3.2.2",
 
             "retrofit"          : "com.squareup.retrofit2:retrofit:2.6.1",
             "converter-gson"    : "com.squareup.retrofit2:converter-gson:2.6.1",
@@ -79,6 +92,25 @@ ext {
             "butterknife"       : "com.jakewharton:butterknife:10.2.0",
             "butt_compiler"     : "com.jakewharton:butterknife-compiler:10.2.0",
 
+            "wmrouter"          : "com.sankuai.waimai.router:router:1.1.2",
+            "wmrouter_compiler" : "com.sankuai.waimai.router:compiler:1.1.2",
+            "picker_view"       : "com.contrarywind:Android-PickerView:4.1.7",
+            "walle"             : "com.meituan.android.walle:library:1.1.6",
+            "XTabLayout"        : "com.androidkun:XTabLayout:1.1.4",
+            "eventbus"          : "org.greenrobot:eventbus:3.1.1",
+            "getui"             : "com.getui:sdk:2.13.1.0",
+            "SmartRefreshLayout": "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-2",
+            "SmartRefreshHeader": "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-2",
+            "spiderman"         : "com.simple:spiderman:1.0.8",
+            "spiderman_no_op"   : "com.simple:spiderman-no-op:1.0.8",
+            "pdfviewpager"      : "es.voghdev.pdfviewpager:library:1.0.6",
+            "flowlayout"        : "com.hyman:flowlayout-lib:1.1.2",
+            "wechat-sdk-android": "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.4.3",
+            "commons-codec"     : "commons-codec:commons-codec:1.10",
+            "convenientbanner"  : "com.bigkoo:convenientbanner:2.1.5",
+            "tbs_tbssdk"        : "com.tencent.tbs.tbssdk:sdk:43697",
+            "converter-scalars" : "com.squareup.retrofit2:converter-scalars:2.6.2",
+            "scrollablepanel"   : "com.kelin.scrollablepanel:library:1.2.0",
     ]
 }
 

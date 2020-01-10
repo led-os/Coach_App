@@ -16,7 +16,7 @@
             android:orientation="vertical"
             android:layout_marginTop="20dp">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_stroreinfo_bg">
@@ -56,7 +56,7 @@
                     android:src="@drawable/ic_camera"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- 上班时间 -->
             <LinearLayout
@@ -167,11 +167,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewPics"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:layout_margin="20dp"></android.support.v7.widget.RecyclerView>
+                android:layout_margin="20dp"></androidx.recyclerview.widget.RecyclerView>
             <!-- 俱乐部地址 -->
             <TextView
                 android:layout_width="wrap_content"

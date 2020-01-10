@@ -8,11 +8,11 @@
     >
 
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/view_Pager"></android.support.v4.view.ViewPager>
+        android:id="@+id/view_Pager"></androidx.viewpager.widget.ViewPager>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

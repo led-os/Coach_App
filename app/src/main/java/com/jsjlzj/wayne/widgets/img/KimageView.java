@@ -14,7 +14,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 
 import com.jsjlzj.wayne.R;
@@ -24,7 +23,7 @@ import com.jsjlzj.wayne.R;
  * 正方形 有圆角  描边 点击效果的imagview
  */
 
-public class KimageView extends android.support.v7.widget.AppCompatImageView {
+public class KimageView extends androidx.appcompat.widget.AppCompatImageView {
     // 图片的宽高
     private int width;
     private int height;
@@ -124,13 +123,14 @@ public class KimageView extends android.support.v7.widget.AppCompatImageView {
         //Paint 的 Xfermode，PorterDuff.Mode.SRC_IN 取两层图像的交集部门, 只显示上层图像。
         PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
         // 标志
-        int saveFlags = Canvas.MATRIX_SAVE_FLAG
-                | Canvas.CLIP_SAVE_FLAG
-                | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
-                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG
-                | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
+        // TODO: 2020/1/10
+//        int saveFlags = Canvas.MATRIX_SAVE_FLAG
+//                | Canvas.CLIP_SAVE_FLAG
+//                | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
+//                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG
+//                | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            canvas.saveLayer(0, 0, width, height, null,saveFlags);
+//            canvas.saveLayer(0, 0, width, height, null,saveFlags);
 //        }
 
         // 当ShapeType == 2 时 图片为圆角矩形 （这里在宽高上 -1 是为了不让图片超出边框）

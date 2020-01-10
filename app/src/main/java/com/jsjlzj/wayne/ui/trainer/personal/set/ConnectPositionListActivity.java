@@ -2,7 +2,7 @@ package com.jsjlzj.wayne.ui.trainer.personal.set;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,7 +17,6 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlPosition;
 import com.jsjlzj.wayne.entity.store.MdlPositionList;
-import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;

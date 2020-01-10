@@ -2,7 +2,7 @@ package com.jsjlzj.wayne.ui.mvp.base.mvp;
 
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;

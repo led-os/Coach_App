@@ -4,16 +4,14 @@ package com.jsjlzj.wayne.ui.store.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import androidx.fragment.app.Fragment;
+
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
-import com.jsjlzj.wayne.ui.store.talent.menu.TabItemTrainerFragment;
 
 /**
  * @description 学习

@@ -8,8 +8,8 @@ import android.graphics.BitmapFactory.Options;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v4.util.LruCache;
 import android.util.DisplayMetrics;
+import android.util.LruCache;
 import android.util.Xml;
 
 import com.netease.nim.uikit.api.NimUIKit;
@@ -52,8 +52,9 @@ public class EmojiManager {
         drawableCache = new LruCache<String, Bitmap>(CACHE_MAX_SIZE) {
             @Override
             protected void entryRemoved(boolean evicted, String key, Bitmap oldValue, Bitmap newValue) {
-                if (oldValue != newValue)
+                if (oldValue != newValue) {
                     oldValue.recycle();
+                }
             }
         };
     }

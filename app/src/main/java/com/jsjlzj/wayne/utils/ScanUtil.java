@@ -4,11 +4,10 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 
 import com.google.gson.reflect.TypeToken;
-import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.enums.EnumQrCode;

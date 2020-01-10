@@ -16,7 +16,7 @@
             android:orientation="vertical">
             <!-- 职位名称 -->
             <!-- 发布者名称 职位 -->
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
@@ -90,7 +90,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvPositionContent" />
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -177,7 +177,7 @@
             </com.google.android.flexbox.FlexboxLayout>
 
             <!-- 公司详情 -->
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/llStoreAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageStore" />
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- 地图 -->
             <TextView

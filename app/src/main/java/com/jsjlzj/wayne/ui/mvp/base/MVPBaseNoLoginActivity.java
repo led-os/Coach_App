@@ -4,10 +4,10 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.ColorRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -17,8 +17,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.ui.AppManager;
-import com.jsjlzj.wayne.ui.basis.LoginByPhoneActivity;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
@@ -30,16 +28,9 @@ import com.jsjlzj.wayne.utils.eventbus.MdlEventBus;
 import com.jsjlzj.wayne.utils.permission.MyPermissionResultListener;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 import com.jsjlzj.wayne.widgets.dialog.OnLineDialog;
-import com.netease.nimlib.sdk.NIMClient;
-import com.netease.nimlib.sdk.Observer;
-import com.netease.nimlib.sdk.StatusCode;
-import com.netease.nimlib.sdk.auth.AuthServiceObserver;
-import com.netease.nimlib.sdk.auth.OnlineClient;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.List;
 
 
 public abstract class MVPBaseNoLoginActivity<MVP_V extends BaseView, MVP_P extends BasePresenter<MVP_V>> extends AppCompatActivity implements MyPermissionResultListener {

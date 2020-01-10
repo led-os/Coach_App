@@ -1,8 +1,8 @@
 package com.jsjlzj.wayne.adapter.recycler;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 
 import com.jsjlzj.wayne.utils.LogAndToastUtil;

@@ -4,51 +4,14 @@ package com.jsjlzj.wayne.ui.store.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import androidx.fragment.app.Fragment;
 
-import com.google.android.flexbox.FlexboxLayout;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import android.view.View;
+
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.adapter.recycler.BaseAdapterHelper;
-import com.jsjlzj.wayne.adapter.recycler.MyRecyclerAdapter;
-import com.jsjlzj.wayne.adapter.recycler.WrapContentLinearLayoutManager;
-import com.jsjlzj.wayne.constant.HttpConstant;
-import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
-import com.jsjlzj.wayne.entity.store.MdlCV;
-import com.jsjlzj.wayne.entity.store.MdlPositionType;
-import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
-import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
-import com.jsjlzj.wayne.ui.publicac.AddressActivity;
-import com.jsjlzj.wayne.ui.store.talent.menu.TabItemTrainerFragment;
-import com.jsjlzj.wayne.ui.store.talent.position.PositionSelectActivity;
-import com.jsjlzj.wayne.ui.store.talent.position.RecruitActivity;
-import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenActivity;
-import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenLabActivity;
-import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewActivity;
-import com.jsjlzj.wayne.widgets.MyRecyclerView;
-
-import org.greenrobot.greendao.annotation.NotNull;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.jsjlzj.wayne.constant.HttpConstant.SIZE10;
 
 /**
 * @description 首页

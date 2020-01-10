@@ -1,18 +1,15 @@
 package com.jsjlzj.wayne.widgets.img;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 
 /**
@@ -21,7 +18,7 @@ import android.util.AttributeSet;
  * 有圆角  描边 点击效果的imagview
  */
 
-public class CimageView extends android.support.v7.widget.AppCompatImageView {
+public class CimageView extends androidx.appcompat.widget.AppCompatImageView {
     // 图片的宽高
     private int width;
     private int height;
@@ -86,13 +83,13 @@ public class CimageView extends android.support.v7.widget.AppCompatImageView {
         //Paint 的 Xfermode，PorterDuff.Mode.SRC_IN 取两层图像的交集部门, 只显示上层图像。
         PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
         // 标志
-        int saveFlags = Canvas.MATRIX_SAVE_FLAG
-                | Canvas.CLIP_SAVE_FLAG
-                | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
-                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG
-                | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
+//        int saveFlags = Canvas.MATRIX_SAVE_FLAG
+//                | Canvas.CLIP_SAVE_FLAG
+//                | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
+//                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG
+//                | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            canvas.saveLayer(0, 0, width, height, null,saveFlags);
+//            canvas.saveLayer(0, 0, width, height, null,saveFlags);
 //        }
 
         // 画遮罩，画出来就是一个和空间大小相匹配的圆（这里在半径上 -1 是为了不让图片超出边框）

@@ -1,6 +1,6 @@
 package com.jsjlzj.wayne.utils.test;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public abstract class Observer<T> {
     //组件状态
