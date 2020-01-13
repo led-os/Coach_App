@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <FrameLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/white"
         android:elevation="4dp"
-        android:paddingTop="@dimen/dp_24"
-        >
+        android:paddingTop="@dimen/dp_24">
 
 
         <TextView
@@ -26,28 +27,23 @@
             android:textSize="@dimen/font_18" />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/ssssssssssssss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:padding="20dp"
             android:text="测试"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:visibility="gone" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="bottom"
             android:background="#FFE2E2E2" />
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:cacheColorHint="@android:color/transparent"
-            />
 
         <RelativeLayout
             android:id="@+id/emptyBg"
@@ -63,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:contentDescription="@string/empty"
-                android:src="@drawable/nim_messages_list_empty_bg"/>
+                android:src="@drawable/nim_messages_list_empty_bg" />
 
             <TextView
                 android:id="@+id/message_list_empty_hint"
@@ -72,7 +68,13 @@
                 android:layout_below="@id/emptyBg1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dip"
-                android:gravity="center"/>
+                android:gravity="center" />
         </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent" />
     </FrameLayout>
 </LinearLayout>

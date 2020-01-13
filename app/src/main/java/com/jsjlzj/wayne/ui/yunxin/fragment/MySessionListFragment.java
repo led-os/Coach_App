@@ -46,7 +46,7 @@ public class MySessionListFragment extends RecentContactsFragment {
     @Override
     public void onResume() {
         super.onResume();
-        user = MyApp.ME.user;
+        user = MyApp.getUser();
         callback = new RecentContactsCallback() {
             @Override
             public void onRecentContactsLoaded() {

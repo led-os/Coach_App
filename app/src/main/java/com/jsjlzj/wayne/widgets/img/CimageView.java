@@ -109,6 +109,7 @@ public class CimageView extends androidx.appcompat.widget.AppCompatImageView {
 
         //draw 上去
         canvas.drawBitmap(bitmap, 0, 0, paint);
+        canvas.save();
         canvas.restore();
     }
 

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.trainer.personal.set.CollectStoresActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -19,12 +20,13 @@
             android:id="@+id/btnBack"
             android:layout_width="50dp"
             android:layout_height="80dp"
-            android:scaleType="center"
             android:layout_gravity="center_vertical"
+            android:scaleType="center"
             android:src="@drawable/ic_back_b"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/toolbarTitle"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
@@ -50,9 +52,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-<com.jsjlzj.wayne.widgets.MyRecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F8F8F8"
-    android:id="@+id/recyclerView"></com.jsjlzj.wayne.widgets.MyRecyclerView>
+
+    <com.jsjlzj.wayne.widgets.MyRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8F8F8"></com.jsjlzj.wayne.widgets.MyRecyclerView>
 </LinearLayout>
