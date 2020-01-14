@@ -241,4 +241,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <string-array name="home_title_list">
+        <item>推荐</item>
+        <item>淘学</item>
+        <item>赛事</item>
+        <item>干活</item>
+        <item>资讯</item>
+        <item>产品</item>
+    </string-array>
+
 </resources>

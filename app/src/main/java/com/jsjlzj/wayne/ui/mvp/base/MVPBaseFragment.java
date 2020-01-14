@@ -6,6 +6,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,7 +102,7 @@ public abstract class MVPBaseFragment<MVP_V extends BaseView, MVP_P extends Base
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        ButterKnife.bind(this,view);
         initViewAndControl(view);
     }
 
