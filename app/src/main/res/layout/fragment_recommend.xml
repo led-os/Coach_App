@@ -1,21 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.store.home.RecommendFragment">
 
-    <com.bigkoo.convenientbanner.ConvenientBanner
-        android:id="@+id/scroll_banner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/padding_154"
-        android:layout_marginTop="@dimen/padding_2"
-        android:layout_marginBottom="@dimen/padding_2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:canLoop="true"
-        app:autoTurningTime="4000"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.bigkoo.convenientbanner.ConvenientBanner
+            android:id="@+id/scroll_banner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_154"
+            android:layout_marginTop="@dimen/padding_2"
+            android:layout_marginBottom="@dimen/padding_2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:canLoop="true"
+            app:autoTurningTime="4000"/>
+
+        <RelativeLayout
+            android:id="@+id/rel_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_video"
+                android:paddingTop="@dimen/padding_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="视频"
+                android:textSize="@dimen/text_size_17"
+                android:textColor="@color/color_333333"
+                android:paddingStart="@dimen/padding_14"/>
+
+            <TextView
+                android:id="@+id/tv_video_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全部分类"
+                android:paddingTop="@dimen/padding_17"
+                android:layout_toStartOf="@+id/img_video_right"
+                android:textSize="@dimen/text_size_13"
+                android:textColor="@color/color_666666"/>
+
+            <ImageView
+                android:id="@+id/img_video_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/padding_15"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:src="@drawable/icon_home_right"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_video"
+                android:layout_below="@+id/tv_video"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_19"
+                android:layout_marginBottom="@dimen/padding_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_curriculum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_curriculum"
+                android:paddingTop="@dimen/padding_17"
+                android:paddingBottom="@dimen/padding_17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="课程"
+                android:textSize="@dimen/text_size_17"
+                android:textColor="@color/color_333333"
+                android:paddingStart="@dimen/padding_14"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_curriculum"
+                android:layout_below="@+id/tv_curriculum"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rel_like"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_like"
+                android:paddingTop="@dimen/padding_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="猜你喜欢"
+                android:textSize="@dimen/text_size_17"
+                android:textColor="@color/color_333333"
+                android:paddingStart="@dimen/padding_14"/>
+
+            <TextView
+                android:id="@+id/tv_like_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更多"
+                android:paddingTop="@dimen/padding_17"
+                android:layout_toStartOf="@+id/img_like_right"
+                android:textSize="@dimen/text_size_13"
+                android:textColor="@color/color_666666"/>
+
+            <ImageView
+                android:id="@+id/img_like_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/padding_15"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:src="@drawable/icon_home_right"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_like"
+                android:layout_below="@+id/tv_like"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_marginTop="@dimen/padding_19"
+                android:layout_marginBottom="@dimen/padding_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_hot"
+                android:paddingTop="@dimen/padding_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门资讯"
+                android:textSize="@dimen/text_size_17"
+                android:textColor="@color/color_333333"
+                android:paddingStart="@dimen/padding_14"/>
+
+            <TextView
+                android:id="@+id/tv_hot_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更多"
+                android:paddingTop="@dimen/padding_17"
+                android:layout_toStartOf="@+id/img_hot_right"
+                android:textSize="@dimen/text_size_13"
+                android:textColor="@color/color_666666"/>
+
+            <ImageView
+                android:id="@+id/img_hot_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/padding_15"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:src="@drawable/icon_home_right"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hot"
+                android:layout_below="@+id/tv_hot"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_marginTop="@dimen/padding_19"
+                android:layout_marginBottom="@dimen/padding_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

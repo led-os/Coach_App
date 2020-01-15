@@ -26,7 +26,10 @@ public class TabLayoutUtils {
         for (int i = mTitles.length - 1; i >= 0; i--) {
             TabLayout.Tab tab = tabLayout.getTabAt(i);
             if (tab != null) {
-                View view = LayoutInflater.from(context).inflate(itemLayoutId, null);
+                View view = tab.getCustomView();
+                if(view == null){
+                    view = LayoutInflater.from(context).inflate(itemLayoutId, null);
+                }
                 TextView tvTitle = view.findViewById(R.id.tv_title);
                 tvTitle.setText(mTitles[i]);
                 //第一个默认为选择样式

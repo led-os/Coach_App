@@ -116,8 +116,8 @@ public class GlideImageLoader implements ImageLoader {
     }
 
 
-    public static void displayAlbumThumb(ImageView imageView, String path, int placeHolder) {
-        displayAlbum(imageView, path, createRounded(), placeHolder);
+    public static void displayAlbumThumb(ImageView imageView, String path, int placeHolder,int round) {
+        displayAlbum(imageView, path, createRounded(round), placeHolder);
     }
     private static Transformation<Bitmap> createRounded() {
         return createRounded(4);

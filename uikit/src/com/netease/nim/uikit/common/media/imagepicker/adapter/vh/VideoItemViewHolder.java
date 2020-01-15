@@ -35,6 +35,6 @@ public class VideoItemViewHolder extends ItemViewHolder {
         final GLImage GLImage = model.getImage();
         timeMask.setVisibility(View.VISIBLE);
         timeMask.setText(TimeUtil.secToTime((int) (GLImage.getDuration() / 1000f)));
-        GlideImageLoader.displayAlbumThumb(ivThumb, GLImage.getPath(), R.drawable.nim_image_default);
+        GlideImageLoader.displayAlbumThumb(ivThumb, GLImage.getPath(), R.drawable.nim_image_default,4);
     }
 }

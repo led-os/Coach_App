@@ -18,6 +18,7 @@ import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 import com.jsjlzj.wayne.widgets.MyViewPager;
+import com.jsjlzj.wayne.widgets.NoScrollViewPager;
 import com.luck.picture.lib.tools.Constant;
 
 import org.jetbrains.annotations.NotNull;
@@ -95,11 +96,6 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
                 return fragments.get(position);
             }
 
-            @Nullable
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return mTitles[position];
-            }
         });
         myViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -108,13 +104,11 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
 
             @Override
             public void onPageSelected(int position) {
-                tabLayout.setupWithViewPager(myViewPager);
                 TabLayoutUtils.setTabStyle(tabLayout,mTitles,position,R.layout.item_tablayout,getActivity());
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
         tabLayout.setupWithViewPager(myViewPager);
         TabLayoutUtils.setTabStyle(tabLayout,mTitles,tabLayout.getSelectedTabPosition(),R.layout.item_tablayout,getActivity());

@@ -98,4 +98,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["butt_compiler"]
     //轮播图
     implementation rootProject.ext.dependencies["convenientbanner"]
+
+    // multidex
+    implementation rootProject.ext.dependencies["multidex"]
 }
