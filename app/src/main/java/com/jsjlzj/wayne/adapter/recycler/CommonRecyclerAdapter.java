@@ -212,23 +212,17 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter impl
             super(itemView);
             this.mAdapterHelper = adapterHelper;
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (null != mItemClickListener) {
-                        mItemClickListener.onItemClick(RecyclerViewHolder.this, v, getAdapterPosition());
-                    }
+            itemView.setOnClickListener(v -> {
+                if (null != mItemClickListener) {
+                    mItemClickListener.onItemClick(RecyclerViewHolder.this, v, getAdapterPosition());
                 }
             });
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    if (null != mItemLongClickListener) {
-                        mItemLongClickListener.onItemLongClick(RecyclerViewHolder.this, v, getAdapterPosition());
-                        return true;
-                    }
-                    return false;
+            itemView.setOnLongClickListener(v -> {
+                if (null != mItemLongClickListener) {
+                    mItemLongClickListener.onItemLongClick(RecyclerViewHolder.this, v, getAdapterPosition());
+                    return true;
                 }
+                return false;
             });
         }
     }
