@@ -89,8 +89,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_curriculum"
                 android:layout_below="@+id/tv_curriculum"
-                android:layout_marginStart="@dimen/padding_14"
-                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </RelativeLayout>

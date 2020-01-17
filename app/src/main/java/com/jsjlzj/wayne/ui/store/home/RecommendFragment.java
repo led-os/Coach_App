@@ -7,10 +7,13 @@ import android.widget.TextView;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.adapter.recycler.home.CurriculumAdapter;
+import com.jsjlzj.wayne.adapter.recycler.home.HomeLikeAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.HomeVideoAdapter;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 
 import java.util.ArrayList;
@@ -48,6 +51,9 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     @BindView(R.id.rv_hot)
     RecyclerView rvHot;
     private HomeVideoAdapter homeVideoAdapter;
+    private CurriculumAdapter curriculumAdapter;
+    private HomeLikeAdapter homeLikeAdapter;
+    private HomeLikeAdapter informationAdapter;
 
     public RecommendFragment() {
     }
@@ -69,9 +75,23 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
     private void initRecycler() {
-        rvVideo.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        rvVideo.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         homeVideoAdapter = new HomeVideoAdapter(getActivity());
         rvVideo.setAdapter(homeVideoAdapter);
+
+        curriculumAdapter = new CurriculumAdapter(new ArrayList<>(), getActivity());
+        CustomGridLayoutManager curriculumAdapterLayoutManager = curriculumAdapter.getLayoutManager(getActivity());
+        rvCurriculum.setLayoutManager(curriculumAdapterLayoutManager);
+        rvCurriculum.setAdapter(curriculumAdapter);
+
+        homeLikeAdapter = new HomeLikeAdapter(new ArrayList<>(), getActivity());
+        homeLikeAdapter.setShowBigOne(true);
+        rvLike.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvLike.setAdapter(homeLikeAdapter);
+
+        informationAdapter = new HomeLikeAdapter(new ArrayList<>(), getActivity());
+        rvHot.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvHot.setAdapter(informationAdapter);
     }
 
     @Override
@@ -131,7 +151,8 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
             case R.id.tv_hot_right:
             case R.id.img_hot_right:
                 break;
-                default:break;
+            default:
+                break;
         }
     }
 }

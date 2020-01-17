@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/padding_10"
+    android:layout_marginBottom="@dimen/padding_9"
+    android:layout_marginStart="@dimen/padding_4"
+    android:layout_marginEnd="@dimen/padding_4">
+
+    <ImageView
+        android:id="@+id/img_one"
+        android:layout_width="@dimen/padding_115"
+        android:layout_height="@dimen/padding_82"
+        android:src="@drawable/ic_buffer1"/>
+    <TextView
+        android:id="@+id/tv_play_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_7"
+        android:paddingEnd="@dimen/padding_7"
+        android:textColor="@color/white"
+        android:layout_alignEnd="@+id/img_one"
+        android:layout_alignBottom="@+id/img_one"
+        android:background="@drawable/bg_solide_61000000_8"
+        android:layout_marginEnd="@dimen/padding_6"
+        android:layout_marginBottom="@dimen/padding_7"
+        android:textSize="@dimen/text_size_10"
+        android:gravity="center"
+        android:text="08:15"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/text_size_13"
+        android:layout_toEndOf="@+id/img_one"
+        android:layout_alignTop="@+id/img_one"
+        android:layout_marginStart="@dimen/padding_12"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="中年人如何保持精瘦"/>
+
+    <ImageView
+        android:id="@+id/img_author"
+        android:layout_width="@dimen/padding_23"
+        android:layout_height="@dimen/padding_23"
+        android:src="@drawable/icon_mine_no_select"
+        android:layout_alignBottom="@+id/img_one"
+        android:layout_toEndOf="@+id/img_one"
+        android:layout_marginStart="@dimen/padding_12"
+        android:layout_marginTop="@dimen/padding_8"
+        android:layout_marginEnd="@dimen/padding_4"
+        android:layout_marginBottom="@dimen/padding_4"/>
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="张亚男"
+        android:textSize="@dimen/text_size_10"
+        android:textColor="@color/color_666666"
+        android:layout_toEndOf="@+id/img_author"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/img_author"
+        android:layout_alignBottom="@+id/img_author"
+        android:layout_below="@+id/img_one"/>
+
+    <TextView
+        android:id="@+id/tv_play_num"
+        android:text="1.31万播放量"
+        android:textSize="@dimen/text_size_10"
+        android:textColor="@color/color_999999"
+        android:layout_marginEnd="@dimen/padding_10"
+        android:layout_toStartOf="@+id/tv_time"
+        android:layout_alignTop="@+id/img_author"
+        android:layout_alignBottom="@+id/img_author"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_10"
+        android:textColor="@color/color_999999"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/img_author"
+        android:layout_alignBottom="@+id/img_author"
+        android:gravity="center_vertical"
+        android:text="4小时前"/>
+</RelativeLayout>

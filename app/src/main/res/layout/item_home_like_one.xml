@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/padding_4"
+    android:layout_marginEnd="@dimen/padding_4">
+
+    <ImageView
+        android:id="@+id/img_one"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_173"
+        android:src="@drawable/ic_buffer1"/>
+
+    <ImageView
+        android:id="@+id/img_play"
+        android:layout_width="@dimen/padding_38"
+        android:layout_height="@dimen/padding_38"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/padding_73"
+        android:src="@drawable/icon_guanyu"/>
+
+    <ImageView
+        android:id="@+id/img_play_num"
+        android:layout_width="@dimen/padding_14"
+        android:layout_height="@dimen/padding_18"
+        android:layout_marginStart="@dimen/padding_10"
+        android:layout_marginEnd="@dimen/padding_7"
+        android:layout_marginTop="@dimen/padding_10"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.13W次播放"
+        android:layout_toEndOf="@+id/img_play_num"
+        android:layout_marginTop="@dimen/padding_11"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/white"/>
+
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_13"
+        android:text="史黛菲and百利姐"
+        android:layout_alignStart="@+id/img_one"
+        android:layout_alignBottom="@+id/img_one"
+        android:layout_marginStart="@dimen/padding_10"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/tv_play_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_7"
+        android:paddingEnd="@dimen/padding_7"
+        android:textColor="@color/white"
+        android:layout_alignEnd="@+id/img_one"
+        android:layout_alignBottom="@+id/img_one"
+        android:background="@drawable/bg_solide_61000000_8"
+        android:layout_marginEnd="@dimen/padding_10"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:textSize="@dimen/text_size_10"
+        android:gravity="center"
+        android:text="08:15"/>
+
+
+    <ImageView
+        android:id="@+id/img_author"
+        android:layout_width="@dimen/padding_31"
+        android:layout_height="@dimen/padding_31"
+        android:src="@drawable/icon_mine_no_select"
+        android:layout_below="@+id/img_one"
+        android:layout_marginStart="@dimen/padding_6"
+        android:layout_marginTop="@dimen/padding_8"
+        android:layout_marginEnd="@dimen/padding_8"
+        android:layout_marginBottom="@dimen/padding_9"/>
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="张亚男"
+        android:textSize="@dimen/text_size_15"
+        android:textColor="@color/color_333333"
+        android:layout_toEndOf="@+id/img_author"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/img_author"
+        android:layout_alignBottom="@+id/img_author"
+        android:layout_below="@+id/img_one" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_one"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_999999"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/img_author"
+        android:layout_alignBottom="@+id/img_author"
+        android:gravity="center_vertical"
+        android:layout_marginEnd="@dimen/padding_5"
+        android:text="4小时前"/>
+
+</RelativeLayout>
