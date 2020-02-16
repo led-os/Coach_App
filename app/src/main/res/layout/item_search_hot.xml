@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_hot"
+        tools:text="小炒肉"
+        android:layout_marginTop="@dimen/padding_5"
+        android:layout_marginBottom="@dimen/padding_5"
+        android:textSize="@dimen/text_size_13"
+        android:background="@drawable/bg_solid_f5f5f8_15"
+        android:layout_marginEnd="@dimen/padding_5"
+        android:layout_marginStart="@dimen/padding_5"
+        android:paddingStart="@dimen/padding_10"
+        android:paddingEnd="@dimen/padding_10"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:textColor="@color/color_333333"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/padding_27"/>
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:src="@drawable/ic_close_r"
+        android:layout_marginStart="-12dp"
+        android:layout_marginTop="-2dp"
+        android:visibility="gone"
+        android:layout_alignTop="@+id/tv_hot"
+        android:layout_width="@dimen/padding_12"
+        android:layout_toEndOf="@+id/tv_hot"
+        android:layout_height="@dimen/padding_12"/>
+
+</RelativeLayout>

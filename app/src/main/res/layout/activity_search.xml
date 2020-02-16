@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.publicac.SearchActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_38"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:layout_marginStart="@dimen/padding_2"
+        android:layout_marginEnd="@dimen/padding_2"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabPaddingStart="@dimen/padding_2"
+        app:tabPaddingEnd="@dimen/padding_2"
+        app:tabSelectedTextColor="@color/color_4F9BFA"
+        app:tabTextColor="@color/color_999999" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/rel_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/tv_history"
+                android:text="历史搜索"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_size_15"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/padding_17"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_alignTop="@+id/tv_history"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:visibility="gone"
+                android:src="@drawable/ic_search_delete"/>
+
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/tfl_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_7"
+                android:visibility="gone"
+                android:layout_below="@+id/tv_history"
+                android:paddingEnd="@dimen/padding_10"
+                android:paddingStart="@dimen/padding_10"
+                app:max_select="1" />
+            <TextView
+                android:id="@+id/tv_hot"
+                android:text="热门搜索"
+                android:visibility="gone"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_size_15"
+                android:layout_below="@+id/tfl_history"
+                android:layout_marginTop="@dimen/padding_22"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/tfl_hot"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_7"
+                android:layout_below="@+id/tv_hot"
+                android:paddingEnd="@dimen/padding_10"
+                android:paddingStart="@dimen/padding_10"
+                app:max_select="1" />
+
+            <TextView
+                android:id="@+id/tv_dynamic"
+                android:text="热门动态"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_size_15"
+                android:layout_below="@+id/tfl_hot"
+                android:layout_marginTop="@dimen/padding_5"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hot_dynamic"
+                android:layout_marginTop="@dimen/padding_5"
+                android:paddingStart="@dimen/padding_10"
+                android:paddingEnd="@dimen/padding_10"
+                android:layout_below="@+id/tv_dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </RelativeLayout>
+
+        <com.jsjlzj.wayne.widgets.MyViewPager
+            android:id="@+id/view_pager"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rel_all"
+    android:background="@color/white"
+    tools:context=".ui.store.home.study.AnswerActivity">
+
+    <include
+        android:id="@+id/include"
+        android:layout_marginTop="@dimen/padding_24"
+        layout="@layout/title_bar_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/padding_42" />
+
+    <TextView
+        android:text="一、单选题"
+        android:id="@+id/tv_subject"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginTop="@dimen/padding_29"
+        android:layout_marginEnd="@dimen/padding_14"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/text_size_15" />
+    <TextView
+        android:id="@+id/tv_name"
+        android:textSize="@dimen/text_size_15"
+        android:textColor="@color/color_333333"
+        android:layout_below="@+id/tv_subject"
+        android:text="1、接踵练习，运动环节向下运动时，描述正确的是："
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/padding_29"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginEnd="@dimen/padding_14"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/ll_right"
+        android:orientation="vertical"
+        android:background="@drawable/bg_stroke_eeeeee"
+        android:layout_marginEnd="@dimen/padding_7"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/include"
+        android:layout_marginTop="-7dp"
+        android:visibility="gone"
+        android:layout_width="@dimen/padding_96"
+        android:layout_height="@dimen/padding_96">
+
+        <TextView
+            android:id="@+id/tv_error_subject"
+            android:layout_width="match_parent"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_15"
+            android:gravity="center"
+            android:text="错题回顾"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/padding_5"
+            android:layout_marginEnd="@dimen/padding_5"
+            android:background="@color/color_eeeeee"
+            android:layout_height="@dimen/padding_0_33"/>
+
+        <TextView
+            android:id="@+id/tv_again_challenge"
+            android:layout_width="match_parent"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_15"
+            android:gravity="center"
+            android:text="重新挑战"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:text="进度1/5"
+        android:gravity="center"
+        android:layout_below="@+id/include"
+        android:layout_marginTop="@dimen/padding_19"
+        android:textSize="@dimen/text_size_13"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_jd"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_22"
+        android:layout_below="@+id/tv_name" />
+
+
+    <RelativeLayout
+        android:id="@+id/rel_analysis"
+        android:layout_marginTop="@dimen/padding_10"
+        android:layout_below="@+id/rv_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_answer_des"
+            android:text="正确答案："
+            android:paddingStart="@dimen/padding_24"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_444444"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_answer"
+            android:layout_toEndOf="@+id/tv_answer_des"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_4F9BFA"
+            android:layout_marginStart="@dimen/padding_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A"/>
+
+        <TextView
+            android:layout_below="@+id/tv_answer"
+            android:layout_marginTop="@dimen/padding_22"
+            android:id="@+id/tv_analysis_des"
+            android:text="答案解析："
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/text_size_13"
+            android:paddingStart="@dimen/padding_29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_below="@+id/tv_analysis_des"
+            android:layout_marginTop="@dimen/padding_3"
+            android:id="@+id/tv_analysis"
+            android:text="接踵练习，运动环节向下运动时，描述正确的是：足在踝关节处屈"
+            android:textColor="@color/color_444444"
+            android:textSize="@dimen/text_size_13"
+            android:paddingStart="@dimen/padding_24"
+            android:paddingEnd="@dimen/padding_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/padding_43"
+       android:layout_marginStart="@dimen/padding_14"
+       android:layout_marginBottom="@dimen/padding_19"
+       android:layout_marginEnd="@dimen/padding_14"
+       android:layout_alignParentBottom="true">
+
+       <TextView
+           android:id="@+id/tv_previous"
+           android:layout_width="@dimen/padding_101"
+           android:layout_height="@dimen/padding_42"
+           android:text="上一题"
+           android:gravity="center"
+           android:visibility="gone"
+           android:layout_marginEnd="@dimen/padding_12"
+           android:textSize="@dimen/text_size_13"
+           android:textColor="@color/color_4F9BFA"
+           android:background="@drawable/bg_stroke_4a9bfa_21"/>
+
+       <TextView
+           android:id="@+id/tv_next"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:text="下一题"
+           android:textColor="@color/white"
+           android:gravity="center"
+           android:textSize="@dimen/text_size_16"
+           android:background="@drawable/bg_solid_4f9bfa_21"
+           android:layout_height="@dimen/padding_42"/>
+
+   </LinearLayout>
+
+</RelativeLayout>

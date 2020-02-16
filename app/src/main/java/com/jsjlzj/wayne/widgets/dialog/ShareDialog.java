@@ -3,12 +3,13 @@ package com.jsjlzj.wayne.widgets.dialog;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.jsjlzj.wayne.R;
 
@@ -39,6 +40,8 @@ public class ShareDialog extends AlertDialog implements View.OnClickListener {
     private void initViewAndControl() {
         findViewById(R.id.btn1).setOnClickListener(this);
         findViewById(R.id.btn0).setOnClickListener(this);
+        findViewById(R.id.btn2).setOnClickListener(this);
+        findViewById(R.id.tv_cancel).setOnClickListener(this);
     }
 
 
@@ -59,6 +62,14 @@ public class ShareDialog extends AlertDialog implements View.OnClickListener {
                 listener.clickConfirm(1);
                 dismiss();
                 break;
+            case R.id.btn2:
+                listener.clickConfirm(2);
+                dismiss();
+                break;
+            case R.id.tv_cancel:
+                dismiss();
+                break;
+                default:break;
         }
     }
 

@@ -5,9 +5,9 @@
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/login_btn_l</item>
-        <item name="colorPrimaryDark">@color/login_btn_l</item>
-        <item name="colorAccent">@color/login_btn_l</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
 
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>

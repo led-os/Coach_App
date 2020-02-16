@@ -23,17 +23,21 @@
         android:id="@+id/img_play_num"
         android:layout_width="@dimen/padding_14"
         android:layout_height="@dimen/padding_18"
+        android:layout_alignTop="@+id/img_one"
         android:layout_marginStart="@dimen/padding_10"
         android:layout_marginEnd="@dimen/padding_7"
-        android:layout_marginTop="@dimen/padding_10"/>
+        android:layout_marginTop="@dimen/padding_10"
+        android:src="@drawable/ic_hot"/>
 
 
     <TextView
+        android:id="@+id/tv_play_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1.13W次播放"
+        android:layout_marginStart="@dimen/padding_7"
+        android:layout_alignBottom="@+id/img_play_num"
         android:layout_toEndOf="@+id/img_play_num"
-        android:layout_marginTop="@dimen/padding_11"
         android:textSize="@dimen/text_size_12"
         android:textColor="@color/white"/>
 
@@ -71,7 +75,7 @@
         android:textSize="@dimen/text_size_12"
         android:textColor="@color/color_999999"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/padding_3"
+        android:layout_marginTop="@dimen/padding_5"
         android:layout_marginEnd="@dimen/padding_5"
         android:layout_marginBottom="@dimen/padding_9"
         android:text="4小时前"/>

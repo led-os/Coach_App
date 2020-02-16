@@ -20,6 +20,8 @@
     <color name="text_blue">#FF5E9DEF</color>
 
     <color name="white">#ffffff</color>
+    <color name="white_70">#b3ffffff</color>
+    <color name="color_bg_search">#F5F7FB</color>
     <color name="golden">#fdbf01</color>
     <color name="red">#ff0000</color>
     <color name="green">#00ff00</color>
@@ -60,11 +62,13 @@
     <color name="color_green_disable">#a2efe0</color>
     <color name="color_green_00d3a9">#ff00D3A9</color>
     <color name="color_red_ccfa3c55">#ccfa3c55</color>
+    <color name="color_0091ff">#0091ff</color>
     <color name="color_black_b3000000">#b3000000</color>
     <color name="color_white_66ffffff">#66ffffff</color>
     <color name="color_grey_eaeaea">#eaeaea</color>
     <color name="color_yellow_fcf3cd">#fcf3cd</color>
     <color name="color_blue_3a9efb">#3a9efb</color>
+    <color name="color_9e9dde">#9e9dde</color>
     <color name="color_green_89fbff">#89fbff</color>
 
     <!-- main bg color -->

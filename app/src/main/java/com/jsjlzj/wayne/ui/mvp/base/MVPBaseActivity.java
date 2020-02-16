@@ -4,21 +4,25 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.annotation.ColorRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.ui.AppManager;
 import com.jsjlzj.wayne.ui.basis.LoginByPhoneActivity;
+import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
@@ -30,6 +34,7 @@ import com.jsjlzj.wayne.utils.eventbus.EventBusManager;
 import com.jsjlzj.wayne.utils.eventbus.MdlEventBus;
 import com.jsjlzj.wayne.utils.permission.MyPermissionResultListener;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
+import com.jsjlzj.wayne.widgets.SearchBarView;
 import com.jsjlzj.wayne.widgets.dialog.OnLineDialog;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -41,6 +46,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+
+import butterknife.ButterKnife;
 
 
 public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends BasePresenter<MVP_V>> extends AppCompatActivity implements MyPermissionResultListener {
@@ -58,6 +65,9 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
     protected int totalPage;
     protected boolean isResumed;
 
+    protected ImageView mBackBtn, mRightBtn;
+    protected TextView mTitleTv, mRightTv;
+    protected SearchBarView mSearchBar;
 
     @LayoutRes
     protected abstract int getLayoutResId();
@@ -69,16 +79,110 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         super.onCreate(savedInstanceState);
         state = STATE_ACTIVE;
         setContentView(getLayoutResId());
+        ButterKnife.bind(this);
         StatusBarCompatUtil.compat(this, Color.parseColor("#25252A"));
 
 //        StatusBarCompatUtil.compat(this, ResourceUtil.getColor(getStatusColor()));
         presenter = createPresenter();
-        presenter.attachView((MVP_V) this);
+        if(presenter != null){
+            presenter.attachView((MVP_V) this);
+        }
         initViewAndControl();
 
         EventBusManager.register(this);
         AppManager.getAppManager().addActivity(this);
 
+    }
+
+    public MyViewClickListener clickListener = new MyViewClickListener();
+
+
+    private class MyViewClickListener extends OnMultiClickListener {
+        @Override
+        public void OnMultiClick(View view) {
+            onMultiClick(view);
+        }
+    }
+
+    protected void onMultiClick(View view){
+
+    }
+
+
+
+    /**
+     * 初始化普通标题
+     */
+    protected void initTitle(String title) {
+        initTitle(true, title);
+    }
+
+    /**
+     * 初始化普通标题 是否显示左侧标题
+     */
+    protected void initTitle(boolean isShowLeft, String title) {
+        initView();
+        if (mSearchBar != null) {
+            mSearchBar.setVisibility(View.GONE);
+            if (isShowLeft) {
+                mBackBtn.setVisibility(View.VISIBLE);
+            } else {
+                mBackBtn.setVisibility(View.GONE);
+            }
+        }
+        mTitleTv.setText(title);
+    }
+
+    protected void initSearchTitle() {
+        initView();
+        mSearchBar.setVisibility(View.VISIBLE);
+        mRightTv.setVisibility(View.VISIBLE);
+        mBackBtn.setVisibility(View.GONE);
+        mRightBtn.setVisibility(View.GONE);
+        mTitleTv.setVisibility(View.GONE);
+    }
+
+    protected void initRightTitle(String title, String rightContent) {
+        initView();
+        if (mSearchBar != null) {
+            mSearchBar.setVisibility(View.GONE);
+        }
+        mTitleTv.setText(title);
+        mRightBtn.setVisibility(View.GONE);
+        if (!TextUtils.isEmpty(rightContent)) {
+            mRightTv.setText(rightContent);
+            mRightTv.setVisibility(View.VISIBLE);
+        } else {
+            mRightTv.setVisibility(View.GONE);
+        }
+    }
+
+    protected void initRightTitle(String title, int rightContent) {
+        initView();
+        if (mSearchBar != null) {
+            mSearchBar.setVisibility(View.GONE);
+        }
+        mTitleTv.setText(title);
+        mTitleTv.setVisibility(View.VISIBLE);
+        mRightBtn.setVisibility(View.VISIBLE);
+        if (rightContent < 0) {
+            mRightBtn.setImageDrawable(ContextCompat.getDrawable(this,rightContent));
+            mRightBtn.setVisibility(View.VISIBLE);
+        } else {
+            mRightBtn.setVisibility(View.GONE);
+        }
+    }
+
+
+    private void initView() {
+        mBackBtn = findViewById(R.id.btn_back);
+        mTitleTv = findViewById(R.id.tv_title);
+        mRightBtn = findViewById(R.id.btn_title_right);
+        mRightTv = findViewById(R.id.tv_right_btn);
+        mSearchBar = findViewById(R.id.search_bar_title);
+        if (mBackBtn != null) {
+            mBackBtn.setOnClickListener(v -> onBackPressed());
+        }
     }
 
     @Override
@@ -154,7 +258,9 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         state = STATE_DESTORY;
         LogAndToastUtil.clearToast();
         LogAndToastUtil.cancelWait(this);
-        presenter.detachView();
+        if(presenter != null){
+            presenter.detachView();
+        }
         EventBusManager.unregister(this);
         AppManager.getAppManager().finishActivity(this);
         NIMClient.getService(AuthServiceObserver.class).observeOtherClients(clientsObserver, false);

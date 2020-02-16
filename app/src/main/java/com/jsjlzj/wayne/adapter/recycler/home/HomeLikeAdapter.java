@@ -7,15 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,11 +32,13 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int TYPE_OTHER = 2;
 
     private boolean isShowBigOne = false;
+    private boolean isAllOne = false;
+    private boolean isShowTime = true;
 
     private List<String> list = new ArrayList<>();
     private Context context;
 
-    public HomeLikeAdapter(List<String> list, Context context) {
+    public HomeLikeAdapter(Context context,List<String> list) {
         this.list = list;
         this.context = context;
     }
@@ -44,8 +47,20 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         isShowBigOne = showBigOne;
     }
 
+
+    public void setAllOne(boolean allOne) {
+        isAllOne = allOne;
+    }
+
+    public void setShowTime(boolean showTime) {
+        isShowTime = showTime;
+    }
+
     @Override
     public int getItemViewType(int position) {
+        if(isAllOne){
+            return TYPE_ONE;
+        }
         if (position == 0 && isShowBigOne) {
             return TYPE_ONE;
         } else {
@@ -69,10 +84,10 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof CurriculumAdapter.OneViewHolder) {
-            ((CurriculumAdapter.OneViewHolder) holder).bindView(position);
-        } else if (holder instanceof CurriculumAdapter.OtherViewHolder) {
-            ((CurriculumAdapter.OtherViewHolder) holder).bindView(position);
+        if (holder instanceof OneViewHolder) {
+            ((OneViewHolder) holder).bindView(position);
+        } else if (holder instanceof OtherViewHolder) {
+            ((OtherViewHolder) holder).bindView(position);
         }
 
     }
@@ -134,7 +149,11 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bindView(int pos) {
-
+            if(isShowTime){
+                tvPlayTime.setVisibility(View.VISIBLE);
+            }else {
+                tvPlayTime.setVisibility(View.GONE);
+            }
         }
     }
 

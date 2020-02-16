@@ -4,6 +4,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.jsjlzj.wayne.R;
@@ -13,14 +16,14 @@ import com.jsjlzj.wayne.adapter.recycler.home.HomeVideoAdapter;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.ui.store.home.recommend.AllClassicActivity;
+import com.jsjlzj.wayne.ui.store.home.recommend.ClassicDetailActivity;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -29,7 +32,7 @@ import butterknife.OnClick;
  * @date: 2020/01/14
  * @author: 曾海强
  */
-public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView {
+public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, HomeVideoAdapter.OnClassicItemListener {
 
 
     @BindView(R.id.scroll_banner)
@@ -75,21 +78,31 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
     private void initRecycler() {
+        rvVideo.setHasFixedSize(true);
+        rvVideo.setNestedScrollingEnabled(false);
         rvVideo.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        homeVideoAdapter = new HomeVideoAdapter(getActivity());
+        homeVideoAdapter = new HomeVideoAdapter(getActivity(),0);
+        homeVideoAdapter.setListener(this);
         rvVideo.setAdapter(homeVideoAdapter);
 
+        rvCurriculum.setHasFixedSize(true);
+        rvCurriculum.setNestedScrollingEnabled(false);
         curriculumAdapter = new CurriculumAdapter(new ArrayList<>(), getActivity());
         CustomGridLayoutManager curriculumAdapterLayoutManager = curriculumAdapter.getLayoutManager(getActivity());
         rvCurriculum.setLayoutManager(curriculumAdapterLayoutManager);
         rvCurriculum.setAdapter(curriculumAdapter);
 
-        homeLikeAdapter = new HomeLikeAdapter(new ArrayList<>(), getActivity());
+
+        rvLike.setHasFixedSize(true);
+        rvLike.setNestedScrollingEnabled(false);
+        homeLikeAdapter = new HomeLikeAdapter(getActivity(),new ArrayList<>());
         homeLikeAdapter.setShowBigOne(true);
         rvLike.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvLike.setAdapter(homeLikeAdapter);
 
-        informationAdapter = new HomeLikeAdapter(new ArrayList<>(), getActivity());
+        rvHot.setHasFixedSize(true);
+        rvHot.setNestedScrollingEnabled(false);
+        informationAdapter = new HomeLikeAdapter(getActivity(),new ArrayList<>());
         rvHot.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvHot.setAdapter(informationAdapter);
     }
@@ -144,6 +157,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         switch (view.getId()) {
             case R.id.tv_video_right:
             case R.id.img_video_right:
+                AllClassicActivity.go2this(getActivity());
                 break;
             case R.id.tv_like_right:
             case R.id.img_like_right:
@@ -154,5 +168,10 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(String string) {
+        ClassicDetailActivity.go2this(getActivity(),string);
     }
 }

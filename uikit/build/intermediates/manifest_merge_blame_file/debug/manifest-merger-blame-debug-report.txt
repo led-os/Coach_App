@@ -1,0 +1,374 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.netease.nim.uikit"
+4    android:versionCode="1"
+5    android:versionName="1.0.1" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml
+10
+11    <application>
+11-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:5:5-202:19
+12        <meta-data
+12-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:7:9-9:42
+13            android:name="com.netease.nim.uikit.support.glide.NIMGlideModule"
+13-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:8:13-78
+14            android:value="GlideModule" />
+14-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:9:13-40
+15
+16        <!-- 会话窗口 -->
+17        <!--
+18             UI组件中包含了语音选文字功能，该界面是全屏显示，为了视觉上的美观，该界面主题ActionBar使用Overlay模式。
+19             如果开发者不需要该功能或效果，使用普通主题即可。 同时，还需要将message_activity.xml这个layout中的根节点的paddingTop去掉。
+20        -->
+21        <activity
+21-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:14:9-19:70
+22            android:name="com.netease.nim.uikit.business.session.activity.P2PMessageActivity"
+22-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:15:13-94
+23            android:configChanges="keyboardHidden|orientation"
+23-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:16:13-63
+24            android:screenOrientation="portrait"
+24-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:17:13-49
+25            android:theme="@style/AppTheme.NoActionBar"
+25-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:18:13-56
+26            android:windowSoftInputMode="stateHidden|adjustResize" />
+26-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:19:13-67
+27        <activity
+27-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:20:9-25:70
+28            android:name="com.netease.nim.uikit.business.session.activity.TeamMessageActivity"
+28-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:21:13-95
+29            android:configChanges="keyboardHidden|orientation"
+29-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:22:13-63
+30            android:screenOrientation="portrait"
+30-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:23:13-49
+31            android:theme="@style/AppTheme.NoActionBar"
+31-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:24:13-56
+32            android:windowSoftInputMode="stateHidden|adjustResize" />
+32-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:25:13-67
+33
+34        <!-- 群聊 -->
+35        <activity
+35-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:28:9-33:70
+36            android:name="com.netease.nim.uikit.business.team.activity.NormalTeamInfoActivity"
+36-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:29:13-95
+37            android:configChanges="keyboardHidden|orientation"
+37-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:30:13-63
+38            android:screenOrientation="portrait"
+38-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:31:13-49
+39            android:theme="@style/AppTheme.NoActionBar"
+39-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:32:13-56
+40            android:windowSoftInputMode="stateHidden|adjustResize" />
+40-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:33:13-67
+41        <activity
+41-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:34:9-39:70
+42            android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamInfoActivity"
+42-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:35:13-97
+43            android:configChanges="keyboardHidden|orientation"
+43-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:36:13-63
+44            android:screenOrientation="portrait"
+44-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:37:13-49
+45            android:theme="@style/AppTheme.NoActionBar"
+45-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:38:13-56
+46            android:windowSoftInputMode="stateHidden|adjustResize" />
+46-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:39:13-67
+47        <activity
+47-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:40:9-45:70
+48            android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamMemberActivity"
+48-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:41:13-99
+49            android:configChanges="keyboardHidden|orientation"
+49-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:42:13-63
+50            android:screenOrientation="portrait"
+50-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:43:13-49
+51            android:theme="@style/AppTheme.NoActionBar"
+51-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:44:13-56
+52            android:windowSoftInputMode="stateHidden|adjustResize" />
+52-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:45:13-67
+53        <activity
+53-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:46:9-51:70
+54            android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamAnnounceActivity"
+54-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:47:13-101
+55            android:configChanges="keyboardHidden|orientation"
+55-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:48:13-63
+56            android:screenOrientation="portrait"
+56-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:49:13-49
+57            android:theme="@style/AppTheme.NoActionBar"
+57-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:50:13-56
+58            android:windowSoftInputMode="stateHidden|adjustResize" />
+58-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:51:13-67
+59        <activity
+59-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:52:9-57:70
+60            android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamMemberInfoActivity"
+60-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:53:13-103
+61            android:configChanges="keyboardHidden|orientation"
+61-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:54:13-63
+62            android:screenOrientation="portrait"
+62-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:55:13-49
+63            android:theme="@style/AppTheme.NoActionBar"
+63-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:56:13-56
+64            android:windowSoftInputMode="stateHidden|adjustResize" />
+64-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:57:13-67
+65        <activity
+65-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:58:9-63:70
+66            android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamNicknameActivity"
+66-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:59:13-101
+67            android:configChanges="keyboardHidden|orientation"
+67-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:60:13-63
+68            android:screenOrientation="portrait"
+68-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:61:13-49
+69            android:theme="@style/AppTheme.NoActionBar"
+69-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:62:13-56
+70            android:windowSoftInputMode="stateHidden|adjustResize" />
+70-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:63:13-67
+71        <activity
+71-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:64:9-69:70
+72            android:name="com.netease.nim.uikit.business.team.activity.AdvancedTeamCreateAnnounceActivity"
+72-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:65:13-107
+73            android:configChanges="keyboardHidden|orientation"
+73-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:66:13-63
+74            android:screenOrientation="portrait"
+74-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:67:13-49
+75            android:theme="@style/AppTheme.NoActionBar"
+75-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:68:13-56
+76            android:windowSoftInputMode="stateHidden|adjustResize" />
+76-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:69:13-67
+77        <activity
+77-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:70:9-75:70
+78            android:name="com.netease.nim.uikit.business.team.activity.TeamPropertySettingActivity"
+78-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:71:13-100
+79            android:configChanges="keyboardHidden|orientation"
+79-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:72:13-63
+80            android:screenOrientation="portrait"
+80-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:73:13-49
+81            android:theme="@style/AppTheme.NoActionBar"
+81-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:74:13-56
+82            android:windowSoftInputMode="stateHidden|adjustResize" />
+82-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:75:13-67
+83
+84        <!-- 联系人选择器 -->
+85        <activity
+85-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:78:9-84:67
+86            android:name="com.netease.nim.uikit.business.contact.selector.activity.ContactSelectActivity"
+86-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:79:13-106
+87            android:configChanges="keyboardHidden|orientation"
+87-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:80:13-63
+88            android:label="@string/contact_selector"
+88-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:81:13-53
+89            android:screenOrientation="portrait"
+89-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:82:13-49
+90            android:theme="@style/AppTheme.NoActionBar"
+90-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:83:13-56
+91            android:windowSoftInputMode="stateHidden|adjustPan" />
+91-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:84:13-64
+92
+93        <!-- @ 选择器 -->
+94        <activity
+94-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:87:9-89:64
+95            android:name="com.netease.nim.uikit.business.ait.selector.AitContactSelectorActivity"
+95-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:87:19-83
+96            android:screenOrientation="portrait"
+96-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:88:19-55
+97            android:theme="@style/AppTheme.NoActionBar" />
+97-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:89:19-62
+98
+99        <!-- 照片选择 -->
+100        <activity
+100-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:92:9-95:59
+101            android:name="com.netease.nim.uikit.common.media.picker.activity.PickImageActivity"
+101-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:93:13-96
+102            android:screenOrientation="portrait"
+102-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:94:13-49
+103            android:theme="@style/AppTheme.NoActionBar" />
+103-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:95:13-56
+104        <activity
+104-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:96:9-99:58
+105            android:name="com.netease.nim.uikit.common.media.picker.activity.CropImageActivity"
+105-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:97:13-96
+106            android:screenOrientation="portrait"
+106-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:98:13-49
+107            android:theme="@style/AppTheme.NoActionBar" />
+107-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:99:13-56
+108        <activity
+108-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:100:9-103:59
+109            android:name="com.netease.nim.uikit.common.media.picker.activity.PickerAlbumActivity"
+109-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:101:13-98
+110            android:screenOrientation="portrait"
+110-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:102:13-49
+111            android:theme="@style/AppTheme.NoActionBar" />
+111-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:103:13-56
+112        <activity
+112-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:104:9-107:59
+113            android:name="com.netease.nim.uikit.common.media.picker.activity.PickerAlbumPreviewActivity"
+113-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:105:13-105
+114            android:screenOrientation="portrait"
+114-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:106:13-49
+115            android:theme="@style/AppTheme.NoActionBar" />
+115-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:107:13-56
+116        <activity
+116-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:108:9-113:58
+117            android:name="com.netease.nim.uikit.common.media.picker.activity.PreviewImageFromLocalActivity"
+117-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:109:13-108
+118            android:configChanges="keyboardHidden|orientation"
+118-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:110:13-63
+119            android:screenOrientation="portrait"
+119-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:111:13-49
+120            android:theme="@style/AppTheme.NoActionBar"
+120-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:113:13-56
+121            android:windowSoftInputMode="stateHidden|adjustResize" />
+121-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:112:13-67
+122        <activity
+122-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:114:9-120:70
+123            android:name="com.netease.nim.uikit.common.media.picker.activity.PreviewImageFromCameraActivity"
+123-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:115:13-109
+124            android:configChanges="keyboardHidden|orientation"
+124-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:116:13-63
+125            android:label="@string/input_panel_take"
+125-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:117:13-53
+126            android:screenOrientation="portrait"
+126-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:118:13-49
+127            android:theme="@style/AppTheme.NoActionBar"
+127-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:119:13-56
+128            android:windowSoftInputMode="stateHidden|adjustResize" />
+128-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:120:13-67
+129
+130        <!-- 视频 -->
+131        <activity
+131-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:123:9-128:58
+132            android:name="com.netease.nim.uikit.business.session.activity.CaptureVideoActivity"
+132-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:124:13-96
+133            android:configChanges="keyboardHidden|orientation"
+133-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:125:13-63
+134            android:screenOrientation="portrait"
+134-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:126:13-49
+135            android:theme="@style/AppTheme.NoActionBar"
+135-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:128:13-56
+136            android:windowSoftInputMode="stateHidden|adjustResize" />
+136-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:127:13-67
+137        <activity
+137-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:130:9-134:48
+138            android:name="com.netease.nim.uikit.business.session.activity.WatchVideoActivity"
+138-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:131:13-94
+139            android:configChanges="keyboardHidden|orientation|screenSize"
+139-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:132:13-74
+140            android:label="@string/video_play"
+140-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:133:13-47
+141            android:theme="@style/DarkTheme" />
+141-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:134:13-45
+142
+143        <!-- 查看大图 -->
+144        <activity
+144-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:137:9-140:47
+145            android:name="com.netease.nim.uikit.business.session.activity.WatchMessagePictureActivity"
+145-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:138:13-103
+146            android:configChanges="keyboardHidden"
+146-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:139:13-51
+147            android:theme="@style/DarkTheme" />
+147-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:140:13-45
+148        <activity
+148-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:142:9-144:47
+149            android:name="com.netease.nim.uikit.business.session.activity.WatchPicAndVideoMenuActivity"
+149-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:142:19-89
+150            android:configChanges="keyboardHidden"
+150-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:143:13-51
+151            android:theme="@style/DarkTheme" />
+151-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:144:13-45
+152
+153        <provider
+153-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:147:9-155:20
+154            android:name="com.netease.nim.uikit.common.media.model.GenericFileProvider"
+154-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:148:13-88
+155            android:authorities="dollar_openBracket_applicationId_closeBracket.generic.file.provider"
+155-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:149:13-73
+156            android:exported="false"
+156-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:150:13-37
+157            android:grantUriPermissions="true" >
+157-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:151:13-47
+158            <meta-data
+158-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:152:13-154:57
+159                android:name="android.support.FILE_PROVIDER_PATHS"
+159-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:153:17-67
+160                android:resource="@xml/provider_paths" />
+160-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:154:17-55
+161        </provider>
+162
+163        <activity
+163-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:158:9-162:52
+164            android:name="com.netease.nim.uikit.common.media.imagepicker.ui.ImageGridActivity"
+164-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:159:13-74
+165            android:configChanges="orientation|screenSize"
+165-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:160:13-59
+166            android:screenOrientation="portrait"
+166-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:161:13-49
+167            android:theme="@style/LightBaseTheme" />
+167-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:162:13-50
+168        <activity
+168-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:164:9-169:69
+169            android:name="com.netease.nim.uikit.common.media.imagepicker.ui.ImageCropActivity"
+169-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:165:13-74
+170            android:configChanges="orientation|screenSize"
+170-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:166:13-59
+171            android:hardwareAccelerated="false"
+171-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:167:13-48
+172            android:screenOrientation="portrait"
+172-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:168:13-49
+173            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
+173-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:169:13-67
+174        <activity
+174-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:170:9-173:69
+175            android:name="com.netease.nim.uikit.common.media.imagepicker.ui.ImagePreviewActivity"
+175-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:171:13-77
+176            android:configChanges="orientation|screenSize"
+176-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:172:13-59
+177            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
+177-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:173:13-67
+178        <activity
+178-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:175:9-178:69
+179            android:name="com.netease.nim.uikit.common.media.imagepicker.ui.ImagePreviewRetakeActivity"
+179-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:176:13-83
+180            android:configChanges="orientation|screenSize"
+180-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:177:13-59
+181            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
+181-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:178:13-67
+182        <activity
+182-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:179:9-183:69
+183            android:name="com.netease.nim.uikit.common.media.imagepicker.ui.ImageTakeActivity"
+183-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:180:13-74
+184            android:configChanges="orientation|screenSize"
+184-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:181:13-59
+185            android:screenOrientation="portrait"
+185-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:182:13-49
+186            android:theme="@style/ImagePickerTheme.BlackStatusBar" />
+186-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:183:13-67
+187        <activity
+187-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:184:9-188:48
+188            android:name="com.netease.nim.uikit.common.media.imagepicker.video.GLVideoActivity"
+188-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:185:13-75
+189            android:configChanges="orientation|screenSize"
+189-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:186:13-59
+190            android:screenOrientation="portrait"
+190-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:187:13-49
+191            android:theme="@style/VideoTheme" />
+191-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:188:13-46
+192        <activity
+192-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:189:9-193:48
+193            android:name="com.netease.nim.uikit.common.media.imagepicker.video.GLVideoConfirmActivity"
+193-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:190:13-82
+194            android:configChanges="orientation|screenSize"
+194-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:191:13-59
+195            android:screenOrientation="portrait"
+195-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:192:13-49
+196            android:theme="@style/VideoTheme" />
+196-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:193:13-46
+197        <activity
+197-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:195:9-198:71
+198            android:name="com.netease.nim.uikit.common.media.imagepicker.camera.CaptureActivity"
+198-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:196:13-76
+199            android:screenOrientation="portrait"
+199-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:197:13-49
+200            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+200-->K:\project_studio\Coach_App\uikit\AndroidManifest.xml:198:13-69
+201    </application>
+202
+203</manifest>

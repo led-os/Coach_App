@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.publicac.report.ReportTypeActivity">
+
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="内容违规"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_999999"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginTop="@dimen/padding_27"/>
+
+            <RelativeLayout
+                android:id="@+id/rel_1"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:text="色情低俗"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_2"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:text="政治敏感"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_3"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_3"
+                    android:text="违法犯罪"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_4"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_4"
+                    android:text="发布垃圾广告、售卖假币等"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_5"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_5"
+                    android:text="造谣传谣、涉嫌欺诈"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+            <TextView
+                android:text="侵权"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_999999"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginTop="@dimen/padding_27"/>
+
+            <RelativeLayout
+                android:id="@+id/rel_6"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_6"
+                    android:text="盗用TA人作品"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_7"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_7"
+                    android:text="侵犯权益"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+            <TextView
+                android:text="其他"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_999999"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginTop="@dimen/padding_27"/>
+
+            <RelativeLayout
+                android:id="@+id/rel_8"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_8"
+                    android:text="疑似自我伤害"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_9"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_46">
+
+                <TextView
+                    android:id="@+id/tv_9"
+                    android:text="侮辱谩骂"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_444444"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_more"/>
+
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0_33"
+                    android:background="@color/color_dddddd"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>

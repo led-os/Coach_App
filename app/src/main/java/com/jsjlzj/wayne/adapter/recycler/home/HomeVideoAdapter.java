@@ -6,13 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.jsjlzj.wayne.R;
 import com.netease.nim.uikit.common.ToastHelper;
 import com.netease.nim.uikit.common.media.imagepicker.loader.GlideImageLoader;
+
 import java.util.ArrayList;
 import java.util.List;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,8 +30,9 @@ public class HomeVideoAdapter extends RecyclerView.Adapter<HomeVideoAdapter.View
 
     private List<String> list = new ArrayList<>();
     private Context context;
+    private int type = 0;
 
-    public HomeVideoAdapter(Context context) {
+    public HomeVideoAdapter(Context context,int type) {
         this.list.add("增肌饮食");
         this.list.add("减脂饮食");
         this.list.add("增肌训练");
@@ -43,12 +48,18 @@ public class HomeVideoAdapter extends RecyclerView.Adapter<HomeVideoAdapter.View
         this.list.add("热身");
         this.list.add("拉伸");
         this.context = context;
+        this.type = type;
     }
 
     @NonNull
     @Override
     public HomeVideoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_video, parent, false);
+        View view = null;
+        if(type == 0){
+            view = LayoutInflater.from(context).inflate(R.layout.item_home_video, parent, false);
+        }else {
+            view = LayoutInflater.from(context).inflate(R.layout.item_all_classic, parent, false);
+        }
         return new ViewHolder(view);
     }
 
@@ -79,8 +90,22 @@ public class HomeVideoAdapter extends RecyclerView.Adapter<HomeVideoAdapter.View
             String str = list.get(pos);
             tvType.setText(str);
             itemView.setOnClickListener(v -> {
+                if(listener != null){
+                    listener.onItemClick(list.get(pos));
+                }
                 ToastHelper.showToast(context,str);
             });
         }
+    }
+
+    private OnClassicItemListener listener;
+
+    public void setListener(OnClassicItemListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnClassicItemListener{
+
+        void onItemClick(String string);
     }
 }

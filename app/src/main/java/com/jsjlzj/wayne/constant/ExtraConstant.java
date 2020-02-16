@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.constant;
 
 public class ExtraConstant {
+
     public static final String EXTRA_ADDRESS_PROVINCE = "_ADDRESS_PROVINCE";
     public static final String EXTRA_ADDRESS_CITY = "_ADDRESS_CITY";
     public static final String EXTRA_ADDRESS_AREA = "_ADDRESS_AREA";
@@ -42,6 +43,8 @@ public class ExtraConstant {
 
     public static final String EXTRA_UID = "_UID";
     public static final String EXTRA_NAME = "_NAME";
+    public static final String EXTRA_SHOW_TYPE = "_show_type";
+    public static final String EXTRA_ANSWER_BEAN = "_answer_bean";
 
     public static final String EXTRA_REPORTTYPE = "REPORTTYPE";
 }

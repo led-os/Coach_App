@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.store.home.study.AnswerDoneActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_59616a">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_451"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/padding_71"
+            android:layout_marginEnd="@dimen/padding_14"
+            android:layout_marginStart="@dimen/padding_14">
+
+            <TextView
+                android:id="@+id/finish_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_333333"
+                android:layout_centerHorizontal="true"
+                android:text="完成答题，挑战成功！"
+                android:layout_marginTop="@dimen/padding_52"
+                android:textSize="@dimen/text_size_15"/>
+
+            <TextView
+                android:id="@+id/tv_fen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_19"
+                android:text="64分"
+                android:layout_marginTop="@dimen/padding_38"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/finish_answer"
+                android:textColor="@color/color_f1404b"/>
+
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv_fen"
+                android:layout_marginTop="@dimen/padding_14"
+                android:text="恭喜你答对31道题目，请您再接再厉"
+                android:textSize="@dimen/text_size_13"
+                android:textColor="@color/color_999999"/>
+
+            <TextView
+                android:id="@+id/tv_error_subject"
+                android:text="@string/error_again"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/padding_135"
+                android:textSize="@dimen/text_size_16"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_42"
+                android:layout_below="@+id/tv_des"
+                android:layout_marginStart="@dimen/padding_19"
+                android:layout_marginEnd="@dimen/padding_19"
+                android:gravity="center"
+                android:background="@drawable/bg_solid_4f9bfa_21"/>
+
+
+            <TextView
+                android:id="@+id/tv_again"
+                android:text="@string/again_one"
+                android:textColor="@color/color_4F9BFA"
+                android:layout_marginTop="@dimen/padding_19"
+                android:textSize="@dimen/text_size_16"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_42"
+                android:layout_below="@+id/tv_error_subject"
+                android:layout_marginStart="@dimen/padding_19"
+                android:layout_marginEnd="@dimen/padding_19"
+                android:gravity="center"
+                android:background="@drawable/bg_stroke_4a9bfa_21"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/img_head"
+            android:layout_marginTop="@dimen/padding_38"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/padding_65"
+            android:layout_height="@dimen/padding_65"
+            android:src="@drawable/ic_avatars"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -7,30 +7,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.tabs.TabLayout;
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.ui.mvp.base.BaseFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
+import com.jsjlzj.wayne.ui.publicac.SearchActivity;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
-import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 import com.jsjlzj.wayne.widgets.MyViewPager;
-import com.jsjlzj.wayne.widgets.NoScrollViewPager;
-import com.luck.picture.lib.tools.Constant;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 
 /**
@@ -73,13 +67,50 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
     @Override
     protected void initViewAndControl(View view) {
         initViewPager();
+        imgSearch.setOnClickListener(clickListener);
+    }
+
+    @Override
+    protected void onMultiClick(View view) {
+        super.onMultiClick(view);
+        switch (view.getId()) {
+            case R.id.img_search:
+                SearchActivity.go2this(getActivity());
+                break;
+            default:
+                break;
+        }
     }
 
     private void initViewPager() {
         mTitles = getResources().getStringArray(R.array.home_title_list);
         for (int i = 0; i < mTitles.length; i++) {
-            RecommendFragment informationListFragment1 = RecommendFragment.getInstance();
-            fragments.add(informationListFragment1);
+            switch (i) {
+                case 1:
+                    AmoySchoolFragment amoySchoolFragment = AmoySchoolFragment.getInstance();
+                    fragments.add(amoySchoolFragment);
+                    break;
+                case 2:
+                    MatchFragment matchFragment = MatchFragment.getInstance();
+                    fragments.add(matchFragment);
+                    break;
+                case 3:
+                    DriedFoodFragment driedFoodFragment = DriedFoodFragment.getInstance();
+                    fragments.add(driedFoodFragment);
+                    break;
+                case 4:
+                    InformationFragment informationFragment = InformationFragment.getInstance();
+                    fragments.add(informationFragment);
+                    break;
+                case 5:
+                    ProductFragment productFragment = ProductFragment.getInstance();
+                    fragments.add(productFragment);
+                    break;
+                default:
+                    RecommendFragment informationListFragment1 = RecommendFragment.getInstance();
+                    fragments.add(informationListFragment1);
+                    break;
+            }
         }
         myViewPager.setSlide(true);
         myViewPager.setOffscreenPageLimit(mTitles.length - 1);
@@ -104,20 +135,21 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
 
             @Override
             public void onPageSelected(int position) {
-                TabLayoutUtils.setTabStyle(tabLayout,mTitles,position,R.layout.item_tablayout,getActivity());
+                TabLayoutUtils.setTabStyle(tabLayout, mTitles, position, R.layout.item_tablayout, getActivity());
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+            }
         });
         tabLayout.setupWithViewPager(myViewPager);
-        TabLayoutUtils.setTabStyle(tabLayout,mTitles,tabLayout.getSelectedTabPosition(),R.layout.item_tablayout,getActivity());
+        TabLayoutUtils.setTabStyle(tabLayout, mTitles, tabLayout.getSelectedTabPosition(), R.layout.item_tablayout, getActivity());
     }
 
 
-
     @Override
-    protected void fragment2Front() {}
+    protected void fragment2Front() {
+    }
 
 
     @Override

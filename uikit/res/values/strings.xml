@@ -5,6 +5,7 @@
     <string name="empty"></string>
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
+    <string name="public_">发布</string>
     <string name="clear_empty">清空</string>
     <string name="iknow">知道了</string>
     <string name="search">搜索</string>

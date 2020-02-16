@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/padding_14"
+    android:layout_marginEnd="@dimen/padding_14"
+    android:layout_marginTop="@dimen/padding_7"
+    android:layout_marginBottom="@dimen/padding_7"
+    android:background="@drawable/bg_stroke_dddddd_5"
+    android:id="@+id/ll_item"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/et_name"
+        android:paddingTop="@dimen/padding_11"
+        android:paddingBottom="@dimen/padding_11"
+        android:paddingEnd="@dimen/padding_10"
+        android:paddingStart="@dimen/padding_14"
+        android:textSize="@dimen/text_size_13"
+        android:background="@null"
+        android:textCursorDrawable="@null"
+        android:hint="请输入您的答案"
+        android:textColorHint="@color/color_dddddd"
+        android:textColor="@color/color_333333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:id="@+id/img_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding_17"
+        android:src="@drawable/ic_correct"
+        android:visibility="gone"/>
+
+
+</LinearLayout>

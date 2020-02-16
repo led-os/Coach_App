@@ -34,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/pin" />
-
+       />
+<!--    android:src="@drawable/pin"-->
     <LinearLayout
         android:id="@+id/location_info"
         android:layout_width="wrap_content"
@@ -63,7 +63,8 @@
         android:layout_height="@dimen/friend_map_btn_height"
         android:layout_above="@+id/assist_my_location"
         android:layout_marginLeft="12dip"
-        android:background="@drawable/btn_location_selector" />
+        />
+<!--    android:background="@drawable/btn_location_selector"-->
 
     <View
         android:id="@+id/assist_my_location"

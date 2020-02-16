@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/padding_38"
+    android:layout_height="@dimen/padding_38"
+    android:text="5"
+    android:gravity="center"
+    android:id="@+id/tv_subject"
+    android:layout_marginTop="@dimen/padding_7"
+    android:layout_marginStart="@dimen/padding_9"
+    android:layout_marginEnd="@dimen/padding_9"
+    android:layout_marginBottom="@dimen/padding_7"
+    android:background="@drawable/bg_stroke_4a9bfa_21"
+    android:textSize="@dimen/text_size_15"
+    android:textColor="@color/color_4F9BFA">
+
+</TextView>

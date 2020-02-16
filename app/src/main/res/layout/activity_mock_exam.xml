@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.store.home.study.AnswerDoneActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <RelativeLayout
+        android:id="@+id/rel_des"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_59616a">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_451"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/padding_71"
+            android:layout_marginEnd="@dimen/padding_14"
+            android:layout_marginStart="@dimen/padding_14">
+
+            <TextView
+                android:id="@+id/finish_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_333333"
+                android:layout_centerHorizontal="true"
+                android:text="@string/exam_des"
+                android:layout_marginTop="@dimen/padding_29"
+                android:textSize="@dimen/text_size_15"/>
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_13"
+                android:text="1、考试时间为60分钟，共100道题； "
+                android:layout_marginTop="@dimen/padding_29"
+                android:layout_marginEnd="@dimen/padding_20"
+                android:layout_marginStart="@dimen/padding_20"
+                android:layout_below="@+id/finish_answer"
+                android:textColor="@color/color_666666"/>
+
+
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_13"
+                android:text="2、国职考试理论部分60分为及格;"
+                android:layout_marginTop="@dimen/padding_22"
+                android:layout_marginEnd="@dimen/padding_20"
+                android:layout_marginStart="@dimen/padding_20"
+                android:layout_below="@+id/tv_1"
+                android:textColor="@color/color_666666"/>
+            <TextView
+                android:id="@+id/tv_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_13"
+                android:layout_marginEnd="@dimen/padding_20"
+                android:text=" 3、专项理论，公共理论各占分值70%，30%，最终合计60分为及格;"
+                android:layout_marginTop="@dimen/padding_22"
+                android:layout_marginStart="@dimen/padding_20"
+                android:layout_below="@+id/tv_2"
+                android:textColor="@color/color_666666"/>
+            <TextView
+                android:id="@+id/tv_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_13"
+                android:text=" 4、初级专项理论部分包含40道判断题，60道单项选择题，系统随机抽题; "
+                android:layout_marginTop="@dimen/padding_22"
+                android:layout_marginStart="@dimen/padding_20"
+                android:layout_below="@+id/tv_3"
+                android:layout_marginEnd="@dimen/padding_20"
+                android:textColor="@color/color_666666"/>
+            <TextView
+                android:id="@+id/tv_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_13"
+                android:text="5、中级专项理论部分包含30道判断题，55道单项选择题，15道多项选择题（多选题错选、漏选、多选均不得分）。"
+                android:layout_marginTop="@dimen/padding_22"
+                android:layout_marginStart="@dimen/padding_20"
+                android:layout_marginEnd="@dimen/padding_20"
+                android:layout_below="@+id/tv_4"
+                android:textColor="@color/color_666666"/>
+
+
+            <TextView
+                android:id="@+id/tv_know"
+                android:text="我知道了"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16"
+                android:layout_width="@dimen/padding_119"
+                android:layout_height="@dimen/padding_42"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/padding_29"
+                android:gravity="center"
+                android:background="@drawable/bg_solid_4f9bfa_21"/>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_count_time"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_head"
+            android:layout_marginTop="@dimen/padding_38"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/padding_65"
+            android:layout_height="@dimen/padding_65"
+            android:src="@drawable/ic_avatars"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_15"
+            android:textColor="@color/color_333333"
+            android:layout_marginTop="@dimen/padding_14"
+            android:layout_centerHorizontal="true"
+            android:text="@string/nickname"
+            android:layout_below="@+id/img_head"/>
+
+
+        <TextView
+            android:id="@+id/tv_time_des"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginTop="@dimen/padding_77"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_17"
+            android:textColor="@color/color_666666"
+            android:text="答题倒计时"/>
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_46"
+            android:text="3"
+            android:layout_below="@+id/tv_time_des"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/padding_29"
+            android:textColor="@color/color_4F9BFA"/>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.publicac.report.ReportContentActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/padding_20"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_46">
+
+        <TextView
+            android:text="举报理由"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_999999"
+            android:layout_marginStart="@dimen/padding_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/tv_reason"
+            android:text="色情低俗"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_333333"
+            android:layout_marginStart="@dimen/padding_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_height="@dimen/padding_0_33"
+        android:background="@color/color_eeeeee"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_145"
+        android:orientation="vertical">
+        
+        <TextView
+            android:text="举报描述（选填）"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_999999"
+            android:layout_marginTop="@dimen/padding_17"
+            android:layout_marginStart="@dimen/padding_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/et_desc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_dddddd"
+            android:hint="提供更多信息有助于举报被快速处理~"
+            android:gravity="start"
+            android:textSize="@dimen/text_size_13"
+            android:paddingTop="@dimen/padding_14"
+            android:paddingStart="@dimen/padding_14"
+            android:background="@null"/>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/padding_23"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="图片证据（选填）"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/color_999999"
+            android:layout_marginStart="@dimen/padding_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:text="最多3张"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_999999"
+            android:layout_marginStart="@dimen/padding_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_report_img"
+        android:layout_marginTop="@dimen/padding_17"
+        android:layout_marginStart="@dimen/padding_10"
+        android:layout_marginEnd="@dimen/padding_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tv_commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_42"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/white"
+        android:text="提交"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginEnd="@dimen/padding_14"
+        android:background="@drawable/bg_solid_0091ff_21"/>
+
+    <TextView
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginEnd="@dimen/padding_14"
+        android:textSize="@dimen/text_size_11"
+        android:layout_marginBottom="@dimen/padding_24"
+        android:layout_marginTop="@dimen/padding_14"
+        android:text="您的举报将在24小时内被处理，处理结果将第一时间在通知消息中反馈"
+        android:textColor="@color/color_aaaaaa_content_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

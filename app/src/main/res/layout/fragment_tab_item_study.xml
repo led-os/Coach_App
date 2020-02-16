@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:paddingTop="@dimen/padding_24"
     tools:context=".ui.store.home.TabItemStudyFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv_title"
+        android:text="@string/study"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:gravity="center"
-        android:text="study_fragment" />
+        android:textColor="@color/color_232323"
+        android:textSize="@dimen/text_size_16"
+        android:layout_height="@dimen/padding_42"/>
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <com.google.android.material.appbar.AppBarLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <com.bigkoo.convenientbanner.ConvenientBanner
+              android:id="@+id/scroll_banner"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/padding_154"
+              android:layout_marginStart="@dimen/padding_14"
+              android:layout_marginEnd="@dimen/padding_14"
+              android:layout_marginTop="@dimen/padding_19"
+              app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+              app:canLoop="true"
+              app:autoTurningTime="4000"/>
+      </com.google.android.material.appbar.AppBarLayout>
 
-</FrameLayout>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rv_study"
+          android:layout_marginTop="@dimen/padding_10"
+          android:layout_marginStart="@dimen/padding_14"
+          android:layout_marginEnd="@dimen/padding_14"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</LinearLayout>

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 import com.jsjlzj.wayne.utils.permission.MyPermissionResultListener;
@@ -128,6 +129,20 @@ public abstract class MVPBaseFragment<MVP_V extends BaseView, MVP_P extends Base
 
     }
 
+
+    public MyViewClickListener clickListener = new MyViewClickListener();
+
+
+    private class MyViewClickListener extends OnMultiClickListener {
+        @Override
+        public void OnMultiClick(View view) {
+            onMultiClick(view);
+        }
+    }
+
+    protected void onMultiClick(View view){
+
+    }
 
     protected <T extends View> T findView(int viewId) {
         return (T) view.findViewById(viewId);

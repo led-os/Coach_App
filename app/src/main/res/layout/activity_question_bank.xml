@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.store.home.study.QuestionBankActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <RelativeLayout
+        android:id="@+id/rel_chapter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginTop="@dimen/padding_19"
+        android:layout_marginEnd="@dimen/padding_14"
+        android:background="@drawable/bg_zjdt"/>
+    <RelativeLayout
+        android:id="@+id/rel_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginTop="@dimen/padding_19"
+        android:layout_marginEnd="@dimen/padding_14"
+        android:background="@drawable/bg_mnks"/>
+    <RelativeLayout
+        android:id="@+id/rel_record"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginTop="@dimen/padding_19"
+        android:layout_marginEnd="@dimen/padding_14"
+        android:background="@drawable/bg_cjjl"/>
+
+</LinearLayout>

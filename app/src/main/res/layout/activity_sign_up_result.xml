@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ui.store.home.amoy.SignUpResultActivity">
+
+    <include layout="@layout/title_bar_layout" />
+
+
+    <ImageView
+        android:id="@+id/img_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_38"
+        android:src="@drawable/ic_succeed" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_12"
+        android:text="报名成功"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/text_size_15" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_19"
+        android:layout_marginStart="@dimen/padding_29"
+        android:layout_marginEnd="@dimen/padding_29"
+        android:textSize="@dimen/text_size_13"
+        android:textColor="@color/color_666666"
+        android:text="您的报名信息已成功提交，我们的工作人员将会在30分钟内联系您，感谢您的耐心等待！ "/>
+
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:layout_width="@dimen/padding_154"
+        android:layout_height="@dimen/padding_42"
+        android:background="@drawable/bg_solid_0091ff_21"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_16"
+        android:text="返回"
+        android:layout_marginTop="@dimen/padding_96"
+        android:textColor="@color/white"/>
+</LinearLayout>

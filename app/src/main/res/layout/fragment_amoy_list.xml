@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.store.home.AuthenticationFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:text="热门"
+            android:id="@+id/tv_hot"
+            android:paddingTop="@dimen/padding_5"
+            android:paddingBottom="@dimen/padding_4"
+            android:paddingStart="@dimen/padding_14"
+            android:paddingEnd="@dimen/padding_5"
+            android:textColor="@color/color_4F9BFA"
+            android:textSize="@dimen/text_size_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:text="最新"
+            android:id="@+id/tv_news"
+            android:paddingTop="@dimen/padding_5"
+            android:paddingBottom="@dimen/padding_4"
+            android:paddingStart="@dimen/padding_5"
+            android:paddingEnd="@dimen/padding_5"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_amoy_list"
+        android:layout_below="@+id/ll_video"
+        android:layout_marginStart="@dimen/padding_10"
+        android:layout_marginEnd="@dimen/padding_10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

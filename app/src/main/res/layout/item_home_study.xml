@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/padding_9"
+    android:layout_marginBottom="@dimen/padding_9">
+
+    <ImageView
+        android:id="@+id/img_one"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_173"
+        android:src="@drawable/ic_buffer1"/>
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="国职在线学习"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginTop="@dimen/padding_32"
+        android:textSize="@dimen/text_size_17"
+        android:textColor="@color/white"/>
+
+
+</RelativeLayout>

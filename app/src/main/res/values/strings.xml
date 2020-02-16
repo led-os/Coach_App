@@ -242,13 +242,52 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    <string name="please_add_storage_permission">请授予内存空间访问权限</string>
+    <string name="study">学习</string>
+    <string name="question_bank">国智题库</string>
+    <string name="chapter_subject">章节答题</string>
+    <string name="achievement_record">成绩记录</string>
+    <string name="online_subject">在线答题</string>
+    <string name="next_subject">下一题</string>
+    <string name="answer_card">答题卡</string>
+    <string name="error_again">错题回顾</string>
+    <string name="again_one">再来一次</string>
+    <string name="exam_des">考试说明</string>
+    <string name="mock_exam">模拟考试</string>
+    <string name="zero">0</string>
+    <string name="time_over">00:00:00</string>
+
+
     <string-array name="home_title_list">
         <item>推荐</item>
         <item>淘学</item>
         <item>赛事</item>
-        <item>干活</item>
+        <item>干货</item>
         <item>资讯</item>
         <item>产品</item>
     </string-array>
 
+
+    <string-array name="amoy_title_list">
+        <item>认证类</item>
+        <item>技能类</item>
+        <item>管理类</item>
+    </string-array>
+
+
+    <string-array name="match_title_list">
+        <item>全部赛事</item>
+        <item>进行中</item>
+        <item>已结束</item>
+    </string-array>
+
+    <string-array name="search_title_list">
+        <item>全部</item>
+        <item>淘学</item>
+        <item>赛事</item>
+        <item>视频</item>
+        <item>文章</item>
+        <item>产品</item>
+        <item>用户</item>
+    </string-array>
 </resources>
