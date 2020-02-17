@@ -2,9 +2,10 @@ package com.jsjlzj.wayne.ui.trainer.personal.set;
 
 import android.app.Activity;
 import android.content.Intent;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
@@ -27,59 +28,65 @@ import java.util.Map;
 
 import static com.jsjlzj.wayne.constant.HttpConstant.SIZE10;
 
-public class CollectStoresActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView  {
+public class CollectStoresActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView {
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, CollectStoresActivity.class);
         intent.putExtra("isResult", "");
         context.startActivity(intent);
     }
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_collect_stores;
     }
 
     private MyRecyclerView recyclerView;
+    private ImageView btnBack;
     private MyRecyclerAdapter<MdlCV.DataBean.ResultBean> adapter;
     private List<MdlCV.DataBean.ResultBean> list;
-    private Map<Object,Object> map;
-    private int pageNo=1;
+    private Map<Object, Object> map;
+    private int pageNo = 1;
+
     @Override
     protected void initViewAndControl() {
-        recyclerView=findView(R.id.recyclerView);
-        if(null==map)map=new HashMap<>();
-        if(null==list)list=new ArrayList<>();
+        recyclerView = findView(R.id.recyclerView);
+        btnBack = findView(R.id.btnBack);
+        btnBack.setOnClickListener(v -> finish());
+        if (null == map) map = new HashMap<>();
+        if (null == list) list = new ArrayList<>();
         initRecycle();
-       getInfo();
+        getInfo();
     }
-    private void getInfo(){
+
+    private void getInfo() {
         if (pageNo == 1) {
             list.clear();
             adapter.notifyDataSetChanged();
         }
-        map.put("pageNo",pageNo);
-        map.put("pageSize",SIZE10);
+        map.put("pageNo", pageNo);
+        map.put("pageSize", SIZE10);
         presenter.getStoreLikeList(map);
     }
 
     private void initRecycle() {
-        adapter=new MyRecyclerAdapter<MdlCV.DataBean.ResultBean>(this,R.layout.item_collectstore) {
+        adapter = new MyRecyclerAdapter<MdlCV.DataBean.ResultBean>(this, R.layout.item_collectstore) {
             @Override
             public int getItemCount() {
-                return list==null?0:list.size();
+                return list == null ? 0 : list.size();
             }
 
             @Override
             public void onUpdate(BaseAdapterHelper helper, MdlCV.DataBean.ResultBean item, int position) {
-                if(item==null)return;
-                helper.setText(R.id.tvStoreName,item.getCompanyName());
-                helper.setText(R.id.tvStoreAddress,item.getStoreAddress());
-                helper.setText(R.id.tvStoreNum,item.getStaffNum());
-                ImageView iv=helper.getView(R.id.headImg);
-                setImg(item.getBrandLogo(),iv);
+                if (item == null) return;
+                helper.setText(R.id.tvStoreName, item.getCompanyName());
+                helper.setText(R.id.tvStoreAddress, item.getStoreAddress());
+                helper.setText(R.id.tvStoreNum, item.getStaffNum());
+                ImageView iv = helper.getView(R.id.headImg);
+                setImg(item.getBrandLogo(), iv);
                 helper.setOnClickListener(new OnMultiClickListener() {
                     @Override
                     public void OnMultiClick(View view) {
-                        StoreInfoPreviewActivity.go2this(CollectStoresActivity.this,item.getId());
+                        StoreInfoPreviewActivity.go2this(CollectStoresActivity.this, item.getId());
                     }
                 });
             }
@@ -95,10 +102,11 @@ public class CollectStoresActivity extends MVPBaseActivity<TalentTabFragmentView
                 loadMore();
             }
         });
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         adapter.setData(list);
         recyclerView.setAdapter(adapter);
     }
+
     private void loadMore() {
         pageNo++;
         getInfo();
@@ -110,13 +118,14 @@ public class CollectStoresActivity extends MVPBaseActivity<TalentTabFragmentView
         getInfo();
         recyclerView.refreshComplete();
     }
+
     @Override
     protected TalentTabFragmentPresenter createPresenter() {
         return new TalentTabFragmentPresenter(this);
     }
 
     public void showStoreInfoLikePage(MdlBaseHttpResp<MdlCV> resp) {
-        if(resp.getStatus()== HttpConstant.R_HTTP_OK&&null!=resp.getData()&&null!=resp.getData().getData()){
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             list.addAll(resp.getData().getData().getResult());
             adapter.notifyDataSetChanged();
         }

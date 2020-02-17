@@ -93,7 +93,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.trainer.personal.PositionPreviewNewActivity"></activity>
+        <activity android:name=".ui.publicac.mine.InvitationActivity"></activity>
+        <activity android:name=".ui.trainer.personal.PositionPreviewNewActivity" />
         <activity android:name=".ui.trainer.personal.MasterCardActivity" />
         <activity android:name=".ui.store.home.study.AnswerCardActivity" />
         <activity android:name=".ui.store.home.study.MockExamActivity" />

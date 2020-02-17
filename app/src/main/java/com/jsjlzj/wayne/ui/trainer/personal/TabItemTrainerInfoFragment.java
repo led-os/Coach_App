@@ -2,7 +2,9 @@ package com.jsjlzj.wayne.ui.trainer.personal;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -12,24 +14,93 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
-import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.publicac.about.AboutUsActivity;
 import com.jsjlzj.wayne.ui.publicac.help.HelpActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.InvitationActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.CollectStoresActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.ConnectPositionListActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.InterviewPositionListActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.PersonalInfoSetTrainerActivity;
-import com.jsjlzj.wayne.ui.trainer.publicac.JobIntentionActivity;
 import com.jsjlzj.wayne.utils.Utility;
 import com.jsjlzj.wayne.widgets.dialog.CommonDialog;
+import com.jsjlzj.wayne.widgets.img.CimageView;
+
+import butterknife.BindView;
 
 /**
  * 教练端 我的
  */
 public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView {
+
+    @BindView(R.id.img_message)
+    ImageView imgMessage;
+    @BindView(R.id.img_user_right)
+    ImageView imgUserRight;
+    @BindView(R.id.image_head)
+    CimageView imageHead;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_sign)
+    TextView tvSign;
+    @BindView(R.id.tv_dynamic)
+    TextView tvDynamic;
+    @BindView(R.id.ll_dynamic)
+    LinearLayout llDynamic;
+    @BindView(R.id.tv_fen)
+    TextView tvFen;
+    @BindView(R.id.ll_fen)
+    LinearLayout llFen;
+    @BindView(R.id.tv_follow)
+    TextView tvFollow;
+    @BindView(R.id.ll_follow)
+    LinearLayout llFollow;
+    @BindView(R.id.tv_zan)
+    TextView tvZan;
+    @BindView(R.id.ll_zan)
+    LinearLayout llZan;
+    @BindView(R.id.tv_favorite)
+    TextView tvFavorite;
+    @BindView(R.id.ll_favorite)
+    LinearLayout llFavorite;
+    @BindView(R.id.img_recommend)
+    ImageView imgRecommend;
+    @BindView(R.id.ll_communicate)
+    LinearLayout llCommunicate;
+    @BindView(R.id.ll_interview)
+    LinearLayout llInterview;
+    @BindView(R.id.img_card)
+    ImageView imgCard;
+    @BindView(R.id.ll_card)
+    LinearLayout llCard;
+    @BindView(R.id.ll_qzgj)
+    LinearLayout llQzgj;
+    @BindView(R.id.tv_zwsc)
+    ImageView tvZwsc;
+    @BindView(R.id.ll_zwsc)
+    LinearLayout llZwsc;
+    @BindView(R.id.tv_favorite_store)
+    TextView tvFavoriteStore;
+    @BindView(R.id.ll_follow_store)
+    LinearLayout llFollowStore;
+    @BindView(R.id.ll_study)
+    LinearLayout llStudy;
+    @BindView(R.id.ll_sign_up)
+    LinearLayout llSignUp;
+    @BindView(R.id.ll_lljl)
+    LinearLayout llLljl;
+    @BindView(R.id.ll_set)
+    LinearLayout llSet;
+    @BindView(R.id.ll_yqhy)
+    LinearLayout llYqhy;
+    @BindView(R.id.ll_gywm)
+    LinearLayout llGywm;
+    @BindView(R.id.ll_bzyfk)
+    LinearLayout llBzyfk;
+    @BindView(R.id.btnLogout)
+    Button btnLogout;
 
     public static Fragment getInstance() {
         TabItemTrainerInfoFragment fragment = new TabItemTrainerInfoFragment();
@@ -38,9 +109,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
         return fragment;
     }
 
-    private TextView tvName, tvNun1, tvNun2, tvNun3, tvNun4,
-            btnGeren, btnMendian, btnSet, btnAbout, btnHelp;
-    private ImageView image;
+
 
 
     @Override
@@ -49,35 +118,100 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
     }
 
 
-
     @Override
     protected void initViewAndControl(View view) {
-        tvName = findView(R.id.tvName);
-        tvNun1 = findView(R.id.tvNun1);
-        tvNun2 = findView(R.id.tvNun2);
-        tvNun3 = findView(R.id.tvNun3);
-        tvNun4 = findView(R.id.tvNun4);
-        btnGeren = findView(R.id.btnGeren);
-        btnMendian = findView(R.id.btnMendian);
-        btnSet = findView(R.id.btnSet);
-        btnAbout = findView(R.id.btnAbout);
-        btnHelp = findView(R.id.btnHelp);
-        image = findView(R.id.image);
-
-
-        findView(R.id.btnLogout).setOnClickListener(clickListener);
-        findView(R.id.btnCard).setOnClickListener(clickListener);
-        findView(R.id.L1Nun1).setOnClickListener(clickListener);
-        findView(R.id.L1Nun2).setOnClickListener(clickListener);
-        findView(R.id.L1Nun3).setOnClickListener(clickListener);
-        findView(R.id.L1Nun4).setOnClickListener(clickListener);
+        imgMessage.setOnClickListener(clickListener);
+        imageHead.setOnClickListener(clickListener);
         tvName.setOnClickListener(clickListener);
-        btnGeren.setOnClickListener(clickListener);
-        btnMendian.setOnClickListener(clickListener);
-        btnSet.setOnClickListener(clickListener);
-        btnAbout.setOnClickListener(clickListener);
-        btnHelp.setOnClickListener(clickListener);
-        image.setOnClickListener(clickListener);
+        tvSign.setOnClickListener(clickListener);
+        imgUserRight.setOnClickListener(clickListener);
+        llDynamic.setOnClickListener(clickListener);
+        llFen.setOnClickListener(clickListener);
+        llFollow.setOnClickListener(clickListener);
+        llZan.setOnClickListener(clickListener);
+        llFavorite.setOnClickListener(clickListener);
+        llCommunicate.setOnClickListener(clickListener);
+        llInterview.setOnClickListener(clickListener);
+        llCard.setOnClickListener(clickListener);
+        llQzgj.setOnClickListener(clickListener);
+        llZwsc.setOnClickListener(clickListener);
+
+        llFollowStore.setOnClickListener(clickListener);
+        llStudy.setOnClickListener(clickListener);
+        llSignUp.setOnClickListener(clickListener);
+        llLljl.setOnClickListener(clickListener);
+        llSet.setOnClickListener(clickListener);
+        llYqhy.setOnClickListener(clickListener);
+        llGywm.setOnClickListener(clickListener);
+        llBzyfk.setOnClickListener(clickListener);
+        btnLogout.setOnClickListener(clickListener);
+
+    }
+
+    @Override
+    protected void onMultiClick(View view) {
+        super.onMultiClick(view);
+        switch (view.getId()){
+            case R.id.img_message:
+                //我的消息
+                break;
+            case R.id.tv_name:
+            case R.id.img_user_right:
+            case R.id.image_head:
+                PersonalInfoSetTrainerActivity.go2this(getActivity());
+                break;
+            case R.id.ll_dynamic://动态
+                break;
+            case R.id.ll_fen://粉丝
+                break;
+            case R.id.ll_follow://关注
+                break;
+            case R.id.ll_zan://获赞
+                break;
+            case R.id.ll_favorite://收藏
+                ConnectPositionListActivity.go2this2(getActivity());
+                break;
+            case R.id.ll_communicate://沟通过
+                ConnectPositionListActivity.go2this(getActivity());
+                break;
+            case R.id.ll_interview://待面试
+                InterviewPositionListActivity.go2this(getActivity());
+                break;
+            case R.id.ll_card://达人卡
+                MasterCardActivity.go2this(getActivity());
+                break;
+            case R.id.ll_qzgj://求职管理
+                break;
+            case R.id.ll_zwsc://职位收藏
+                ConnectPositionListActivity.go2this2(getActivity());
+                break;
+            case R.id.ll_follow_store://关注的俱乐部
+                CollectStoresActivity.go2this(getActivity());
+                break;
+            case R.id.ll_study://我的学习
+                break;
+            case R.id.ll_sign_up://我的报名
+                break;
+            case R.id.ll_lljl://浏览记录
+                break;
+            case R.id.ll_set://设置
+                SetingActivity.go2this(getActivity());
+                break;
+            case R.id.ll_yqhy://邀请好友
+                InvitationActivity.go2this(getActivity());
+                break;
+            case R.id.ll_gywm://关于我们
+                AboutUsActivity.go2this(getActivity());
+                break;
+            case R.id.ll_bzyfk://帮助
+                HelpActivity.go2this(getActivity());
+                break;
+            case R.id.btnLogout://退出登录
+                clickLogout();
+                break;
+                default:break;
+
+        }
     }
 
     @Override
@@ -98,52 +232,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
     }
 
 
-    private MyViewClickListener clickListener = new MyViewClickListener();
-
-    private class MyViewClickListener extends OnMultiClickListener {
-        @Override
-        public void OnMultiClick(View view) {
-            switch (view.getId()) {
-                case R.id.tvName:
-                case R.id.image:
-                case R.id.btnGeren://个人信息
-                    PersonalInfoSetTrainerActivity.go2this(getActivity());//ok
-                    break;
-                case R.id.L1Nun1://待沟通  (1沟通过的职位)
-                    ConnectPositionListActivity.go2this(getActivity());
-                    break;
-                case R.id.L1Nun2://待面试
-                    InterviewPositionListActivity.go2this(getActivity());
-                    break;
-                case R.id.L1Nun3://收藏 (2感兴趣的职位)
-                    ConnectPositionListActivity.go2this2(getActivity());
-                    break;
-                case R.id.L1Nun4://职位管理
-                    JobIntentionActivity.go2this(getActivity());
-                    break;
-                case R.id.btnCard://达人卡---------------------
-                    MasterCardActivity.go2this(getActivity());
-                    break;
-                case R.id.btnMendian://关注的俱乐部
-                    CollectStoresActivity.go2this(getActivity());
-                    break;
-                case R.id.btnSet://设置
-                    SetingActivity.go2this(getActivity());
-                    break;
-                case R.id.btnAbout://关于我们
-                    AboutUsActivity.go2this(getActivity());
-                    break;
-                case R.id.btnHelp://帮助
-                    HelpActivity.go2this(getActivity());
-                    break;
-                case R.id.btnLogout://退出登录
-                    clickLogout();
-                    break;
-            }
-        }
-    }
-
-    public void clickLogout() {
+    private void clickLogout() {
         CommonDialog dialog = new CommonDialog(getActivity(), "确定退出账号吗？", new CommonDialog.ClickListener() {
             @Override
             public void clickConfirm() {
@@ -161,14 +250,14 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
 
     @Override
     public void myselfT(MdlBaseHttpResp<MdlInfo> resp) {
-        if(resp.getStatus()== HttpConstant.R_HTTP_OK&&null!=resp.getData()&&null!=resp.getData().getData()){
-            MdlInfo.DataBean bean=resp.getData().getData();
-            tvNun1.setText(bean.getCommunicatedCount()+"");
-            tvNun2.setText(bean.getInterviewedCount()+"");
-            tvNun3.setText(bean.getLikeCount()+"");
-            tvNun4.setText(bean.getWorkHopeCount()+"");
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
+            MdlInfo.DataBean bean = resp.getData().getData();
+//            tvNun1.setText(bean.getCommunicatedCount() + "");
+//            tvNun2.setText(bean.getInterviewedCount() + "");
+            tvFavorite.setText(bean.getLikeCount() + "");
+//            tvNun4.setText(bean.getWorkHopeCount() + "");
             tvName.setText(bean.getName());
-            setImg(bean.getHeadImg(), image);
+            setImg(bean.getHeadImg(), imageHead);
         }
     }
 }
