@@ -60,7 +60,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:background="@color/line_color"/>
+        android:background="@color/color_dddddd"/>
         <EditText
             android:id="@+id/edPassword"
             android:layout_width="match_parent"
@@ -78,7 +78,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:background="@color/line_color"/>
+        android:background="@color/color_dddddd"/>
 
         <EditText
             android:id="@+id/edAgain"
@@ -97,7 +97,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:background="@color/line_color"/>
+        android:background="@color/color_dddddd"/>
     <View
         android:layout_width="1dp"
         android:layout_height="0dp"
@@ -106,11 +106,11 @@
     <Button
         android:id="@+id/btnConfirm"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/padding_42"
         android:layout_marginLeft="38dp"
         android:layout_marginRight="38dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/dr_btn_login_y"
+        android:background="@drawable/bg_solid_4f9bfa_21"
         android:text="修改密码"
         android:textColor="@color/white"
         android:textSize="17sp" />

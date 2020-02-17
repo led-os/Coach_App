@@ -52,16 +52,16 @@ public class ExpAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (null == convertView) {
-            convertView = inflater.inflate(R.layout.item_position_exp, parent, false);
+            convertView = inflater.inflate(R.layout.item_position_exp_new, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.tvExpStoreName.setText(list.get(position).getCompanyName());
-        viewHolder.tvExpPosition.setText(list.get(position).getPositionType());
-        viewHolder.tvSalary.setText(list.get(position).getStartDate() + "-" + list.get(position).getEndDate());
-        viewHolder.tvExpContent.setText(list.get(position).getWorkContent());
+//        viewHolder.tvExpPosition.setText(list.get(position).getPositionType());
+//        viewHolder.tvSalary.setText(list.get(position).getStartDate() + "-" + list.get(position).getEndDate());
+//        viewHolder.tvExpContent.setText(list.get(position).getWorkContent());
 
         return convertView;
     }
@@ -71,9 +71,9 @@ public class ExpAdapter extends BaseAdapter {
 
         public ViewHolder(View view) {
             tvExpStoreName = view.findViewById(R.id.tvExpStoreName);
-            tvExpPosition = view.findViewById(R.id.tvExpPosition);
-            tvSalary = view.findViewById(R.id.tvSalary);
-            tvExpContent = view.findViewById(R.id.tvExpContent);
+//            tvExpPosition = view.findViewById(R.id.tvExpPosition);
+//            tvSalary = view.findViewById(R.id.tvSalary);
+//            tvExpContent = view.findViewById(R.id.tvExpContent);
         }
     }
 }

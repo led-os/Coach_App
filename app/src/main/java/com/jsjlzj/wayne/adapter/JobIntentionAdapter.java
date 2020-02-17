@@ -52,7 +52,7 @@ public class JobIntentionAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (null == convertView) {
-            convertView = inflater.inflate(R.layout.item_position_jobintention2, parent, false);
+            convertView = inflater.inflate(R.layout.item_position_jobintention_new, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {

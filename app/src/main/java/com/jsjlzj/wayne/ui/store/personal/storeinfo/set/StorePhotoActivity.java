@@ -4,11 +4,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.jsjlzj.wayne.R;
@@ -28,9 +29,6 @@ import com.jsjlzj.wayne.ui.store.talent.position.RecruitActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 import com.jsjlzj.wayne.widgets.MyRecyclerView;
-import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.config.PictureMimeType;
-import com.luck.picture.lib.entity.LocalMedia;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -273,14 +271,14 @@ public class StorePhotoActivity extends MVPBaseActivity<TalentPersonalView, Tale
         super.permissionSuccess(permissionReqCode);
         switch (permissionReqCode) {
             case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
-                PictureSelector.create(StorePhotoActivity.this)
-                        .openGallery(PictureMimeType.ofImage())
-                        .maxSelectNum(9 - inPathList.size())
-                        .previewImage(true)
-                        .compress(true)
-                        .enableCrop(false)
-                        .forResult(HEAD_PIC);
-                break;
+//                PictureSelector.create(StorePhotoActivity.this)
+//                        .openGallery(PictureMimeType.ofImage())
+//                        .maxSelectNum(9 - inPathList.size())
+//                        .previewImage(true)
+//                        .compress(true)
+//                        .enableCrop(false)
+//                        .forResult(HEAD_PIC);
+//                break;
         }
     }
 
@@ -291,22 +289,22 @@ public class StorePhotoActivity extends MVPBaseActivity<TalentPersonalView, Tale
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
 
-            switch (requestCode) {
-                case HEAD_PIC:
-                    if (data != null) {
-                        List<LocalMedia> list = PictureSelector.obtainMultipleResult(data);
-                        if (list != null && list.size() > 0) {
-                            for (int i = 0; i < list.size(); i++) {
-                                mdlPic = new MdlStoreInfo.DataBean.CompanyImagesBean();
-                                mdlPic.setThumbnail(list.get(i).getCompressPath());
-                                mdlPic.setOriginal(list.get(i).getPath());
-                                inPathList.add(mdlPic);
-                            }
-                            adapter.notifyDataSetChanged();
-                        }
-                    }
-                    break;
-            }
+//            switch (requestCode) {
+//                case HEAD_PIC:
+//                    if (data != null) {
+//                        List<LocalMedia> list = PictureSelector.obtainMultipleResult(data);
+//                        if (list != null && list.size() > 0) {
+//                            for (int i = 0; i < list.size(); i++) {
+//                                mdlPic = new MdlStoreInfo.DataBean.CompanyImagesBean();
+//                                mdlPic.setThumbnail(list.get(i).getCompressPath());
+//                                mdlPic.setOriginal(list.get(i).getPath());
+//                                inPathList.add(mdlPic);
+//                            }
+//                            adapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                    break;
+//            }
         }
 
     }

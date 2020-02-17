@@ -1,10 +1,11 @@
 package com.jsjlzj.wayne.ui.trainer.personal;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
@@ -121,7 +122,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
                     JobIntentionActivity.go2this(getActivity());
                     break;
                 case R.id.btnCard://达人卡---------------------
-                    TrainerInfoSetActivity.go2this(getActivity());
+                    MasterCardActivity.go2this(getActivity());
                     break;
                 case R.id.btnMendian://关注的俱乐部
                     CollectStoresActivity.go2this(getActivity());

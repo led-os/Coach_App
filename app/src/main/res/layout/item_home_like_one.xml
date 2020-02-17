@@ -17,7 +17,7 @@
         android:layout_height="@dimen/padding_38"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/padding_73"
-        android:src="@drawable/icon_guanyu"/>
+        android:src="@drawable/ic_play"/>
 
     <ImageView
         android:id="@+id/img_play_num"

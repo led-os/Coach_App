@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/padding_65"
+    android:id="@+id/llItem"
+    android:layout_marginTop="@dimen/padding_6"
+    android:layout_marginBottom="@dimen/padding_6"
+    android:background="@drawable/bg_solid_f9f9f9_5"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvPositionName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_marginTop="@dimen/padding_12"
+        android:text="健身教练"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/text_size_15"/>
+
+    <TextView
+        android:id="@+id/tvSalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="@dimen/padding_12"
+        android:layout_toEndOf="@+id/tvPositionName"
+        android:text="7-15K"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/text_size_15"/>
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_14"
+        android:layout_below="@+id/tvPositionName"
+        android:layout_marginTop="@dimen/padding_6"
+        android:text="北京 朝阳区"
+        android:textColor="@color/color_666666"
+        android:textSize="@dimen/text_size_13" />
+
+    <View
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="18dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/item_line"
+      />
+
+</RelativeLayout>

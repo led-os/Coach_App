@@ -52,15 +52,15 @@ public class EducationAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (null == convertView) {
-            convertView = inflater.inflate(R.layout.item_position_education, parent, false);
+            convertView = inflater.inflate(R.layout.item_position_exp_new, parent, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.tvEducationSchoolName.setText(list.get(position).getSchoolName());
-        viewHolder.tvEducationTime.setText(list.get(position).getMajor());
-        viewHolder.tvEducationMajor.setText(list.get(position).getStartDate() + "-" + list.get(position).getEndDate());
+//        viewHolder.tvEducationTime.setText(list.get(position).getMajor());
+//        viewHolder.tvEducationMajor.setText(list.get(position).getStartDate() + "-" + list.get(position).getEndDate());
 
         return convertView;
     }
@@ -69,9 +69,9 @@ public class EducationAdapter extends BaseAdapter {
         TextView tvEducationSchoolName, tvEducationMajor, tvEducationTime;
 
         public ViewHolder(View view) {
-            tvEducationSchoolName = view.findViewById(R.id.tvEducationSchoolName);
-            tvEducationMajor = view.findViewById(R.id.tvEducationMajor);
-            tvEducationTime = view.findViewById(R.id.tvEducationTime);
+            tvEducationSchoolName = view.findViewById(R.id.tvExpStoreName);
+//            tvEducationMajor = view.findViewById(R.id.tvEducationMajor);
+//            tvEducationTime = view.findViewById(R.id.tvEducationTime);
         }
     }
 }

@@ -2,13 +2,14 @@ package com.jsjlzj.wayne.ui.trainer.position.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
@@ -193,12 +194,8 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
             @Override
             public void onUpdate(BaseAdapterHelper helper, final MdlPosition.DataBean item, int position) {
                 if (item != null) setUI(helper, item);
-                helper.setOnClickListener(R.id.llItem, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        PositionInfoStoreActivity.go2this(getActivity(), item.getId());
-                    }
-                });
+                helper.setOnClickListener(R.id.llItem, v ->
+                        PositionInfoStoreActivity.go2this(getActivity(), item.getId()));
             }
         };
         recyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {

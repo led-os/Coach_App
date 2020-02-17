@@ -14,6 +14,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 
 import com.jsjlzj.wayne.R;
@@ -123,15 +124,14 @@ public class KimageView extends androidx.appcompat.widget.AppCompatImageView {
         //Paint 的 Xfermode，PorterDuff.Mode.SRC_IN 取两层图像的交集部门, 只显示上层图像。
         PorterDuffXfermode xfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
         // 标志
-        // TODO: 2020/1/10
 //        int saveFlags = Canvas.MATRIX_SAVE_FLAG
 //                | Canvas.CLIP_SAVE_FLAG
 //                | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
 //                | Canvas.FULL_COLOR_LAYER_SAVE_FLAG
 //                | Canvas.CLIP_TO_LAYER_SAVE_FLAG;
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            canvas.saveLayer(0, 0, width, height, null,saveFlags);
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            canvas.saveLayer(0, 0, width, height, null);
+        }
 
         // 当ShapeType == 2 时 图片为圆角矩形 （这里在宽高上 -1 是为了不让图片超出边框）
         RectF rectf = new RectF(1, 1, getWidth() - 1, getHeight() - 1);

@@ -72,7 +72,7 @@ public class TrainerPreExpAdapter extends BaseAdapter {
                 tv.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.dr_bg_tv_g));
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
                 tv.setPadding(20, 10,20,10);
-                tv.setTextColor(mContext.getResources().getColor(R.color.text_gray));
+                tv.setTextColor(mContext.getResources().getColor(R.color.color_999999));
                 tv.setText(bean.getSkillTags().get(i));
                 tv.setLayoutParams(params);
                 viewHolder.tvExpPosition.addView(tv);

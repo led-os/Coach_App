@@ -74,4 +74,7 @@ public interface TalentTabFragmentView extends BaseView {
     default void showResultgetInterViewCancel(MdlBaseHttpResp resp){}
     default void showResultgetInterViewStatus(MdlBaseHttpResp resp){}
     default void showResultSendInterView(MdlBaseHttpResp resp){}
+
+    default void selectPhoto(int pos){}
+    default void onUploadSuccess(String filePath,int currPos){}
 }

@@ -231,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:divider="@null"
                 android:focusable="false"
-                android:layout_margin="20dp"></com.jsjlzj.wayne.widgets.MyListView>
+                android:layout_margin="20dp"/>
 
             <View
                 android:layout_width="match_parent"

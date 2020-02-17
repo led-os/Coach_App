@@ -82,7 +82,7 @@ dependencies {
     implementation rootProject.ext.dependencies["rxandroid"]
     implementation rootProject.ext.dependencies["adapter-rxjava"]
     implementation rootProject.ext.dependencies["greenDao"]
-//    implementation rootProject.ext.dependencies["ucrop"]
+    implementation rootProject.ext.dependencies["ucrop"]
     //图片裁剪
     implementation rootProject.ext.dependencies["imgsel"]
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
@@ -93,7 +93,9 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.0.0'
     api 'com.bm.photoview:library:1.4.1'
 
-    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'
+//    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'
+    implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide_compiler"]
     //魅族推送
     implementation 'com.meizu.flyme.internet:push-internal:3.8.4'
     implementation 'com.danikula:videocache:2.7.0'

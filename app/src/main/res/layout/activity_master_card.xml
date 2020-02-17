@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="#FFE2E2E2" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 照片墙 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_192"
+                    android:background="@drawable/bg_mark"/>
+
+                <ImageView
+                    android:id="@+id/img_add_pic"
+                    android:src="@drawable/ic_addpic2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/padding_60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_nick_name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_15"
+                    android:layout_below="@+id/img_add_pic"
+                    android:layout_centerHorizontal="true"
+                    android:text="请上传真实生活照"
+                    android:layout_marginTop="@dimen/padding_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+            <!-- 个人信息 -->
+            <LinearLayout
+                android:id="@+id/ll_info"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_50"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:layout_marginStart="@dimen/padding_14"
+                    android:textColor="@color/color_f1404b"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="个人信息"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_15" />
+
+                <androidx.legacy.widget.Space
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/img_head"
+                    android:layout_width="@dimen/padding_38"
+                    android:layout_height="@dimen/padding_38"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_avatars"/>
+
+                <TextView
+                    android:id="@+id/tv_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_14"
+                    android:drawableRight="@drawable/icon_home_right"
+                    android:drawablePadding="8dp"
+                    android:visibility="visible"
+                    android:gravity="center|right"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
+
+            <!-- 求职状态 -->
+            <LinearLayout
+                android:id="@+id/ll_position_state"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_50"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:layout_marginStart="@dimen/padding_14"
+                    android:textColor="@color/color_f1404b"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="求职动态"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_position_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_14"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/icon_home_right"
+                    android:drawablePadding="@dimen/padding_8"
+                    android:gravity="center|right"
+                    android:text="在职-考虑机会"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
+
+            <!-- 个人优势 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_50"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_14"
+                    android:gravity="center|left"
+                    android:text="个性签名"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_advantage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/padding_14"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/icon_home_right"
+                    android:drawablePadding="8dp"
+                    android:gravity="center|right"
+                    android:maxLines="2"
+                    android:paddingLeft="10dp"
+                    android:text="个人优势"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
+
+
+            <!-- 求职意向 -->
+            <LinearLayout
+                android:id="@+id/ll_job_intention"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_50"
+                android:gravity="center_vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:layout_marginStart="@dimen/padding_14"
+                    android:textColor="@color/color_f1404b"/>
+
+                <TextView
+                    android:id="@+id/btn_job_intention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="求职意向"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_15" />
+
+
+                <TextView
+                    android:id="@+id/tv_add_intention"
+                    android:text="@string/add"
+                    android:paddingStart="@dimen/padding_14"
+                    android:paddingEnd="@dimen/padding_14"
+                    android:gravity="end|center_vertical"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_4F9BFA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+
+            <com.jsjlzj.wayne.widgets.MyListView
+                android:id="@+id/rv_job_intention"
+                android:divider="@null"
+                android:background="@color/white"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_marginBottom="@dimen/padding_15"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+
+            <!-- 工作经验 -->
+            <LinearLayout
+                android:id="@+id/ll_job_experience"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_50"
+                android:gravity="center_vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_size_14"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:text="工作经验"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_add_experience"
+                    android:text="@string/add"
+                    android:paddingStart="@dimen/padding_14"
+                    android:paddingEnd="@dimen/padding_14"
+                    android:gravity="end|center_vertical"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_4F9BFA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
+            <com.jsjlzj.wayne.widgets.MyListView
+                android:id="@+id/rv_exp"
+                android:divider="@null"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
+
+            <!-- 教育经历 -->
+            <LinearLayout
+                android:id="@+id/ll_job_education"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_50"
+                android:gravity="center_vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/text_size_14"
+                    android:gravity="center|left"
+                    android:text="教育经历"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_15" />
+
+                <TextView
+                    android:id="@+id/tv_add_education"
+                    android:text="@string/add"
+                    android:paddingStart="@dimen/padding_14"
+                    android:paddingEnd="@dimen/padding_14"
+                    android:gravity="end|center_vertical"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_4F9BFA"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
+
+            <com.jsjlzj.wayne.widgets.MyListView
+                android:id="@+id/rv_education"
+                android:divider="@null"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/padding_11"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="认证证书"
+                    android:paddingTop="@dimen/padding_16"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_666666"
+                    android:layout_marginStart="@dimen/padding_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:text="最多3张"
+                    android:visibility="gone"
+                    android:paddingTop="@dimen/padding_16"
+                    android:textSize="@dimen/text_size_13"
+                    android:textColor="@color/color_999999"
+                    android:layout_marginStart="@dimen/padding_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_authentication_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_17"
+                android:layout_marginEnd="@dimen/padding_10" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/padding_1"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="教学场景视频"
+                    android:paddingTop="@dimen/padding_16"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_666666"
+                    android:layout_marginStart="@dimen/padding_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <TextView
+                    android:text="最多3张"
+                    android:visibility="gone"
+                    android:paddingTop="@dimen/padding_16"
+                    android:textSize="@dimen/text_size_13"
+                    android:textColor="@color/color_999999"
+                    android:layout_marginStart="@dimen/padding_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_scene_img"
+                android:layout_marginTop="@dimen/padding_17"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_aaaaaa_content_text"
+                android:textSize="@dimen/text_size_12"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginTop="@dimen/padding_12"
+                android:text="请上传制作精品视频，便于提高您应聘的成功率"/>
+
+            <TextView
+                android:id="@+id/create_elect_card"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_42"
+                android:background="@drawable/bg_solid_4f9bfa_21"
+                android:text="生成电子名片"
+                android:layout_marginBottom="@dimen/padding_14"
+                android:layout_marginStart="@dimen/padding_19"
+                android:layout_marginEnd="@dimen/padding_19"
+                android:layout_marginTop="@dimen/padding_34"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/white"
+                android:gravity="center"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
