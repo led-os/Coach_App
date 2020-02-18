@@ -19,11 +19,15 @@ import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.publicac.about.AboutUsActivity;
 import com.jsjlzj.wayne.ui.publicac.help.HelpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.InvitationActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.MineDynamicActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.MineFansActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.MineFavoriteActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.MineStudyActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.PersonMineActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.CollectStoresActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.ConnectPositionListActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.InterviewPositionListActivity;
-import com.jsjlzj.wayne.ui.trainer.personal.set.PersonalInfoSetTrainerActivity;
 import com.jsjlzj.wayne.utils.Utility;
 import com.jsjlzj.wayne.widgets.dialog.CommonDialog;
 import com.jsjlzj.wayne.widgets.img.CimageView;
@@ -158,18 +162,21 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
             case R.id.tv_name:
             case R.id.img_user_right:
             case R.id.image_head:
-                PersonalInfoSetTrainerActivity.go2this(getActivity());
+                PersonMineActivity.go2this(getActivity());
                 break;
             case R.id.ll_dynamic://动态
+                MineDynamicActivity.go2this(getActivity());
                 break;
             case R.id.ll_fen://粉丝
+                MineFansActivity.go2this(getActivity(),0);
                 break;
             case R.id.ll_follow://关注
+                MineFansActivity.go2this(getActivity(),1);
                 break;
             case R.id.ll_zan://获赞
                 break;
             case R.id.ll_favorite://收藏
-                ConnectPositionListActivity.go2this2(getActivity());
+                MineFavoriteActivity.go2this(getActivity());
                 break;
             case R.id.ll_communicate://沟通过
                 ConnectPositionListActivity.go2this(getActivity());
@@ -189,6 +196,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
                 CollectStoresActivity.go2this(getActivity());
                 break;
             case R.id.ll_study://我的学习
+                MineStudyActivity.go2this(getActivity());
                 break;
             case R.id.ll_sign_up://我的报名
                 break;

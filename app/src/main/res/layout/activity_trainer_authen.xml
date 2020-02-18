@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.publicac.mine.TrainerAuthenActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/tv_condition"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_alignTop="@+id/tv_condition"
+                    android:layout_alignBottom="@+id/tv_condition"
+                    android:src="@drawable/ic_des"/>
+
+                <TextView
+                    android:id="@+id/tv_condition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请条件"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_333333"
+                    android:layout_marginTop="@dimen/padding_36"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/tv_condition"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_alignTop="@+id/tv_condition"
+                    android:layout_alignBottom="@+id/tv_condition"
+                    android:src="@drawable/ic_des"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_14"
+                    android:layout_below="@+id/tv_condition"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:layout_marginStart="@dimen/padding_19"
+                        android:layout_marginEnd="@dimen/padding_19"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="@dimen/padding_50">
+
+
+                        <TextView
+                            android:text="有清晰的头像"
+                            android:textSize="@dimen/text_size_15"
+                            android:textColor="@color/color_232323"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:id="@+id/tv_to_upload"
+                            android:textColor="@color/color_4F9BFA"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="去上传"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/padding_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/padding_0_33"
+                        android:layout_marginStart="@dimen/padding_19"
+                        android:layout_marginEnd="@dimen/padding_19"
+                        android:background="@color/color_dddddd"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:layout_marginStart="@dimen/padding_19"
+                        android:layout_marginEnd="@dimen/padding_19"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="@dimen/padding_50">
+
+
+                        <TextView
+                            android:text="合法的昵称"
+                            android:textSize="@dimen/text_size_15"
+                            android:textColor="@color/color_232323"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:id="@+id/tv_to_modify"
+                            android:textColor="@color/color_4F9BFA"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="去修改"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/padding_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/padding_0_33"
+                        android:layout_marginStart="@dimen/padding_19"
+                        android:layout_marginEnd="@dimen/padding_19"
+                        android:background="@color/color_dddddd"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:layout_marginStart="@dimen/padding_19"
+                        android:layout_marginEnd="@dimen/padding_19"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/padding_5"
+                        android:layout_height="@dimen/padding_50">
+
+
+                        <TextView
+                            android:text="发布过动态"
+                            android:textSize="@dimen/text_size_15"
+                            android:textColor="@color/color_232323"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:id="@+id/tv_to_public"
+                            android:textColor="@color/color_4F9BFA"
+                            android:textSize="@dimen/text_size_15"
+                            android:text="去发布"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/padding_15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/tv_interest"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_alignTop="@+id/tv_interest"
+                    android:layout_alignBottom="@+id/tv_interest"
+                    android:src="@drawable/ic_des"/>
+
+                <TextView
+                    android:id="@+id/tv_interest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="认证特权"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_333333"
+                    android:layout_marginTop="@dimen/padding_36"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/tv_interest"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_alignTop="@+id/tv_interest"
+                    android:layout_alignBottom="@+id/tv_interest"
+                    android:src="@drawable/ic_des"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_24"
+                    android:layout_marginEnd="@dimen/padding_24"
+                    android:layout_marginTop="@dimen/padding_14"
+                    android:layout_below="@+id/tv_interest"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="@dimen/padding_58">
+
+                        <ImageView
+                            android:id="@+id/img_djbs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padding_8"
+                            android:src="@drawable/icon_djbs"/>
+
+                        <TextView
+                            android:id="@+id/tv_tag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="独家标识"
+                            android:layout_alignTop="@+id/img_djbs"
+                            android:layout_marginStart="@dimen/padding_10"
+                            android:textSize="@dimen/text_size_15"
+                            android:layout_toEndOf="@+id/img_djbs"
+                            android:textColor="@color/color_333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_12"
+                            android:textColor="@color/color_666666"
+                            android:text="享受专属标识，彰显独特身份"
+                            android:layout_below="@+id/tv_tag"
+                            android:layout_alignStart="@+id/tv_tag"/>
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/padding_0_33"
+                        android:background="@color/color_eeeeee"/>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/padding_10"
+                        android:layout_height="@dimen/padding_58">
+
+                        <ImageView
+                            android:id="@+id/img_yxzs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padding_8"
+                            android:src="@drawable/icon_yxzs"/>
+
+                        <TextView
+                            android:id="@+id/tv_show"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="优先展示"
+                            android:layout_alignTop="@+id/img_yxzs"
+                            android:layout_marginStart="@dimen/padding_10"
+                            android:textSize="@dimen/text_size_15"
+                            android:layout_toEndOf="@+id/img_yxzs"
+                            android:textColor="@color/color_333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_12"
+                            android:textColor="@color/color_666666"
+                            android:text="内容优先展示，增加曝光快速涨粉"
+                            android:layout_below="@+id/tv_show"
+                            android:layout_alignStart="@+id/tv_show"/>
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/padding_0_33"
+                        android:background="@color/color_eeeeee"/>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/padding_10"
+                        android:layout_height="@dimen/padding_58">
+
+                        <ImageView
+                            android:id="@+id/img_gdtq"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padding_8"
+                            android:src="@drawable/icon_djbs"/>
+
+                        <TextView
+                            android:id="@+id/tv_gdtq"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="更多特权"
+                            android:layout_alignTop="@+id/img_gdtq"
+                            android:layout_marginStart="@dimen/padding_10"
+                            android:textSize="@dimen/text_size_15"
+                            android:layout_toEndOf="@+id/img_gdtq"
+                            android:textColor="@color/color_333333"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_size_12"
+                            android:textColor="@color/color_666666"
+                            android:text="更多认证用户专享功能"
+                            android:layout_below="@+id/tv_gdtq"
+                            android:layout_alignStart="@+id/tv_gdtq"/>
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/padding_0_33"
+                        android:background="@color/color_eeeeee"/>
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/tv_apply"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_42"
+                android:background="@drawable/bg_solid_dddddd_21"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/padding_50"
+                android:textColor="@color/white"
+                android:layout_marginBottom="@dimen/padding_19"
+                android:layout_marginStart="@dimen/padding_19"
+                android:layout_marginEnd="@dimen/padding_19"
+                android:text="申请教练认证"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

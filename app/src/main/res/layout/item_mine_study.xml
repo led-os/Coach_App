@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rel_item"
+    android:layout_marginStart="@dimen/padding_15"
+    android:layout_marginTop="@dimen/padding_10"
+    android:layout_marginBottom="@dimen/padding_10">
+
+    <ImageView
+        android:id="@+id/img_pic"
+        android:layout_width="@dimen/padding_115"
+        android:layout_height="@dimen/padding_82"
+        android:src="@drawable/nim_default_img"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_13"
+        android:textColor="@color/color_333333"
+        android:layout_marginStart="@dimen/padding_12"
+        android:layout_toEndOf="@+id/img_pic"
+        android:maxLines="3"
+        android:layout_marginEnd="@dimen/padding_15"
+        android:ellipsize="end"
+        android:layout_marginTop="@dimen/padding_4"
+        android:text="一周减脂训练"/>
+
+    <TextView
+        android:id="@+id/tv_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_13"
+        android:layout_marginEnd="@dimen/padding_15"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="@color/color_666666"
+        android:layout_marginStart="@dimen/padding_12"
+        android:layout_toEndOf="@+id/img_pic"
+        android:layout_alignBottom="@+id/img_pic"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:text="共10节课"/>
+</RelativeLayout>

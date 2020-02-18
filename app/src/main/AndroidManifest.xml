@@ -93,7 +93,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.publicac.mine.InvitationActivity"></activity>
+        <activity android:name=".ui.publicac.mine.MineStudyActivity"></activity>
+        <activity android:name=".ui.publicac.mine.MineFavoriteActivity" />
+        <activity android:name=".ui.publicac.mine.MineFansActivity" />
+        <activity android:name=".ui.publicac.mine.MineDynamicActivity" />
+        <activity android:name=".ui.publicac.mine.TrainerAuthenActivity" />
+        <activity android:name=".ui.publicac.mine.PersonMineActivity" />
+        <activity android:name=".ui.publicac.mine.MineInvitationActivity" />
+        <activity android:name=".ui.publicac.mine.InvitationActivity" />
         <activity android:name=".ui.trainer.personal.PositionPreviewNewActivity" />
         <activity android:name=".ui.trainer.personal.MasterCardActivity" />
         <activity android:name=".ui.store.home.study.AnswerCardActivity" />

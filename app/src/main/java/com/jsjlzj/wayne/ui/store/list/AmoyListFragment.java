@@ -8,12 +8,14 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.AuthenticationAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.HomeLikeAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.MatchAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.ProductAdapter;
+import com.jsjlzj.wayne.adapter.recycler.search.SearchAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SearchUserAdapter;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -45,7 +47,7 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
     private RecyclerView.Adapter adapter;
 
     /**
-     * 0 全部   1 淘学  2 ： 赛事  3 ：视频   4 ：文章   5 ：产品  6 ：用户
+     * 0 全部   1 淘学  2 ： 赛事  3 ：视频   4 ：文章   5 ：产品  6 ：用户  7 ：动态
      */
     private int type;
 
@@ -107,6 +109,12 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
                 llVideo.setVisibility(View.GONE);
                 adapter = new SearchUserAdapter(getActivity(), new ArrayList<>());
                 rvAmoyList.setLayoutManager(new LinearLayoutManager(getActivity()));
+                rvAmoyList.setAdapter(adapter);
+                break;
+            case 7:
+                llVideo.setVisibility(View.GONE);
+                adapter = new SearchAdapter(getActivity(), new ArrayList<>());
+                rvAmoyList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
                 rvAmoyList.setAdapter(adapter);
                 break;
             default:

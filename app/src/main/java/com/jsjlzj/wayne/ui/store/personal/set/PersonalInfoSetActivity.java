@@ -7,8 +7,8 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
@@ -17,17 +17,18 @@ import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
-import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.utils.ImageUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
+import com.jsjlzj.wayne.widgets.img.CimageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
 import me.iwf.photopicker.PhotoPicker;
 import me.iwf.photopicker.utils.MyFileProviderUtil;
 
@@ -35,6 +36,15 @@ import me.iwf.photopicker.utils.MyFileProviderUtil;
  * 用户个人信息
  */
 public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView {
+    @BindView(R.id.image)
+    CimageView image;
+    @BindView(R.id.edName)
+    EditText edName;
+    @BindView(R.id.edPosition)
+    EditText edPosition;
+    @BindView(R.id.edWechat)
+    EditText edWechat;
+
     @Override
     protected TalentPersonalPresenter createPresenter() {
         return new TalentPersonalPresenter(this);
@@ -51,24 +61,21 @@ public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView,
         return R.layout.activity_store_personl_info_set;
     }
 
-    private ImageView image;
-    private TextView btnKeep;
-    private EditText edName, edPosition, edWechat;
 //    public MdlUser.MdlUserBean user;
 
     @Override
     protected void initViewAndControl() {
-//        user = MyApp.ME.user;
-        image = findView(R.id.image);
-        btnKeep = findView(R.id.btnKeep);
-        edName = findView(R.id.edName);
-        edPosition = findView(R.id.edPosition);
-        edWechat = findView(R.id.edWechat);
+        initTitle("修改资料");
+        mRightTv.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+        mRightTv.setTextSize(15);
+        mRightTv.setText("保存");
 
 
-        findView(R.id.btnBack).setOnClickListener(clickListener);
-        btnKeep.setOnClickListener(clickListener);
         image.setOnClickListener(clickListener);
+        edName.setOnClickListener(clickListener);
+        edPosition.setOnClickListener(clickListener);
+        mRightTv.setOnClickListener(clickListener);
+        edWechat.setOnClickListener(clickListener);
         presenter.selectStoreUserInfo(null);
     }
 
@@ -99,29 +106,25 @@ public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView,
     }
 
 
-    private MyViewClickListener clickListener = new MyViewClickListener();
-
-    private class MyViewClickListener extends OnMultiClickListener {
-        @Override
-        public void OnMultiClick(View view) {
-            switch (view.getId()) {
-                case R.id.btnBack:
-                    finish();
-                    break;
-                case R.id.btnKeep:
-                    btnKeep.setSelected(!btnKeep.isSelected());
-                    btnKeep.setText(btnKeep.isSelected() ? "保存" : "编辑");
-                    setEditAble(btnKeep.isSelected());
-                    if (!btnKeep.isSelected()) {//保存信息
-                        keepInfo();
-                    }
-                    break;
-                case R.id.image:
-                    clickSelectHeadPic();
-                    break;
-            }
+    @Override
+    protected void onMultiClick(View view) {
+        super.onMultiClick(view);
+        switch (view.getId()) {
+            case R.id.tv_right_btn:
+//                btnKeep.setSelected(!btnKeep.isSelected());
+//                btnKeep.setText(btnKeep.isSelected() ? "保存" : "编辑");
+//                setEditAble(btnKeep.isSelected());
+//                if (!btnKeep.isSelected()) {//保存信息
+//                }
+                keepInfo();
+                break;
+            case R.id.image:
+                clickSelectHeadPic();
+                break;
         }
     }
+
+
 
     private Map<Object, Object> map;
     private String imgUrl;

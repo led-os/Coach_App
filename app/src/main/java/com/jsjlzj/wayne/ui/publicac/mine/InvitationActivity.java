@@ -58,6 +58,7 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
         super.onMultiClick(view);
         switch (view.getId()){
             case R.id.tv_right_btn://我的邀请
+                MineInvitationActivity.go2this(this);
                 break;
             case R.id.tv_invitation://分享专属海报
                 break;

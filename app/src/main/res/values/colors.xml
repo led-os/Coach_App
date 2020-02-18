@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="defult_background">#FFF8F8F8</color>
+    <color name="defult_background">#ffffff</color>
 
     <color name="login_btn_m">#cccccc</color>
     <color name="login_btn_l">#FECB0E</color>
