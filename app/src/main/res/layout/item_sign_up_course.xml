@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_28"
+        android:layout_marginBottom="@dimen/padding_13"
+        android:gravity="center_horizontal"
+        android:text="报名时间: 2019-09-12 23:45"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/text_size_12" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_4"
+        android:layout_marginEnd="@dimen/padding_4">
+
+        <ImageView
+            android:id="@+id/img_one"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_173"
+            android:src="@drawable/ic_buffer1" />
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_10"
+            android:layout_marginTop="@dimen/padding_11"
+            android:text="格斗课培训"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_15" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/img_one"
+            android:layout_alignBottom="@+id/img_one"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/padding_11"
+            android:layout_marginBottom="@dimen/padding_12"
+            android:background="@drawable/bg_solid_7d000000_12"
+            android:paddingStart="@dimen/padding_7"
+            android:paddingTop="@dimen/padding_3"
+            android:paddingEnd="@dimen/padding_7"
+            android:paddingBottom="@dimen/padding_3">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="已有"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_10" />
+
+            <TextView
+                android:id="@+id/tv_add_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="12354"
+                android:textColor="#D83535"
+                android:textSize="@dimen/text_size_10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="报名"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_10" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

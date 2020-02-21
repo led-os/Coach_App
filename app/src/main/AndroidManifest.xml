@@ -93,7 +93,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.publicac.mine.MineStudyActivity"></activity>
+        <activity android:name=".ui.store.home.community.AddExpressionActivity"></activity>
+        <activity android:name=".ui.publicac.mine.FillInInfoActivity" />
+        <activity android:name=".ui.publicac.mine.PostureAuthenActivity" />
+        <activity android:name=".ui.publicac.mine.MineSignUpActivity" />
+        <activity android:name=".ui.publicac.mine.MineStudyActivity" />
         <activity android:name=".ui.publicac.mine.MineFavoriteActivity" />
         <activity android:name=".ui.publicac.mine.MineFansActivity" />
         <activity android:name=".ui.publicac.mine.MineDynamicActivity" />

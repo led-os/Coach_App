@@ -22,8 +22,10 @@ import com.jsjlzj.wayne.ui.publicac.mine.InvitationActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineDynamicActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineFansActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineFavoriteActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.MineSignUpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineStudyActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.PersonMineActivity;
+import com.jsjlzj.wayne.ui.store.home.community.AddExpressionActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.CollectStoresActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.ConnectPositionListActivity;
@@ -188,6 +190,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
                 MasterCardActivity.go2this(getActivity());
                 break;
             case R.id.ll_qzgj://求职管理
+                AddExpressionActivity.go2this(getActivity());
                 break;
             case R.id.ll_zwsc://职位收藏
                 ConnectPositionListActivity.go2this2(getActivity());
@@ -199,6 +202,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
                 MineStudyActivity.go2this(getActivity());
                 break;
             case R.id.ll_sign_up://我的报名
+                MineSignUpActivity.go2this(getActivity());
                 break;
             case R.id.ll_lljl://浏览记录
                 break;

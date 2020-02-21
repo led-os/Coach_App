@@ -2,7 +2,6 @@ package com.jsjlzj.wayne.ui.publicac.mine;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,7 +11,6 @@ import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
  /**
   *
   * @ClassName:      TrainerAuthenActivity
@@ -74,10 +72,5 @@ public class TrainerAuthenActivity extends MVPBaseActivity<TalentTabFragmentView
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

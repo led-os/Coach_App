@@ -56,7 +56,10 @@
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginEnd="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_14"
+                    android:paddingTop="@dimen/padding_8"
+                    android:paddingBottom="@dimen/padding_8"
                     android:layout_below="@+id/tv_condition"
+                    android:background="@drawable/bg_shape_condition"
                     android:orientation="vertical">
 
                     <LinearLayout

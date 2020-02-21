@@ -77,7 +77,6 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
     @Override
     protected void initViewAndControl() {
         initTitle("我的昵称");
-
         rvDynamic.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL) );
         SearchAdapter adapter = new SearchAdapter(this,new ArrayList<>());
         rvDynamic.setAdapter(adapter);
@@ -119,7 +118,8 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 PersonalInfoSetTrainerActivity.go2this(this);
                 break;
             case R.id.tv_apply://我的申请
-                TrainerAuthenActivity.go2this(this);
+                PostureAuthenActivity.go2this(this);
+//                TrainerAuthenActivity.go2this(this);
                 break;
         }
     }

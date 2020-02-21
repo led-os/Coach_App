@@ -40,19 +40,21 @@
     <LinearLayout
         android:id="@+id/ll_right"
         android:orientation="vertical"
-        android:background="@drawable/bg_stroke_eeeeee"
-        android:layout_marginEnd="@dimen/padding_7"
+        android:background="@drawable/bg_menu"
+        android:layout_marginEnd="@dimen/padding_3"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/include"
         android:layout_marginTop="-7dp"
+        android:gravity="center_horizontal"
         android:visibility="gone"
-        android:layout_width="@dimen/padding_96"
-        android:layout_height="@dimen/padding_96">
+        android:layout_width="@dimen/padding_100"
+        android:layout_height="@dimen/padding_100">
 
         <TextView
             android:id="@+id/tv_error_subject"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:textColor="@color/color_666666"
+            android:layout_marginTop="@dimen/padding_5"
             android:textSize="@dimen/text_size_15"
             android:gravity="center"
             android:text="错题回顾"
@@ -61,15 +63,16 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_marginStart="@dimen/padding_5"
-            android:layout_marginEnd="@dimen/padding_5"
+            android:layout_marginStart="@dimen/padding_7"
+            android:layout_marginEnd="@dimen/padding_7"
             android:background="@color/color_eeeeee"
             android:layout_height="@dimen/padding_0_33"/>
 
         <TextView
             android:id="@+id/tv_again_challenge"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:textColor="@color/color_666666"
+            android:layout_marginBottom="@dimen/padding_5"
             android:textSize="@dimen/text_size_15"
             android:gravity="center"
             android:text="重新挑战"

@@ -19,6 +19,7 @@ import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.ui.publicac.about.AboutUsActivity;
 import com.jsjlzj.wayne.ui.publicac.help.HelpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.InvitationActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.MineSignUpActivity;
 import com.jsjlzj.wayne.ui.store.personal.manage.ConnectListActivity;
 import com.jsjlzj.wayne.ui.store.personal.manage.InterviewListActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.PersonalInfoSetActivity;
@@ -145,6 +146,7 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
                 PositionSelectActivity.go2this(getActivity());
                 break;
             case R.id.ll_sign_up://我的报名
+                MineSignUpActivity.go2this(getActivity());
                 break;
             case R.id.ll_follow://我的关注
                 break;
