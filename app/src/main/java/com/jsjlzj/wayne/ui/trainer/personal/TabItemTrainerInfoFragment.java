@@ -17,6 +17,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.publicac.about.AboutUsActivity;
+import com.jsjlzj.wayne.ui.publicac.dialog.ZanFragment;
 import com.jsjlzj.wayne.ui.publicac.help.HelpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.InvitationActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineDynamicActivity;
@@ -25,6 +26,7 @@ import com.jsjlzj.wayne.ui.publicac.mine.MineFavoriteActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineSignUpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineStudyActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.PersonMineActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.PublicActivity;
 import com.jsjlzj.wayne.ui.store.home.community.AddExpressionActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.CollectStoresActivity;
@@ -176,6 +178,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
                 MineFansActivity.go2this(getActivity(),1);
                 break;
             case R.id.ll_zan://获赞
+                ZanFragment.showDialog(getChildFragmentManager(),tvName.getText().toString(),"共获得0个赞");
                 break;
             case R.id.ll_favorite://收藏
                 MineFavoriteActivity.go2this(getActivity());
@@ -190,7 +193,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
                 MasterCardActivity.go2this(getActivity());
                 break;
             case R.id.ll_qzgj://求职管理
-                AddExpressionActivity.go2this(getActivity());
+                PublicActivity.go2this(getActivity());
                 break;
             case R.id.ll_zwsc://职位收藏
                 ConnectPositionListActivity.go2this2(getActivity());

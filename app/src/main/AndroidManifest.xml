@@ -93,7 +93,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.home.community.AddExpressionActivity"></activity>
+        <activity android:name=".ui.publicac.mine.PublicActivity"></activity>
+        <activity android:name=".ui.store.home.community.AddExpressionActivity" />
         <activity android:name=".ui.publicac.mine.FillInInfoActivity" />
         <activity android:name=".ui.publicac.mine.PostureAuthenActivity" />
         <activity android:name=".ui.publicac.mine.MineSignUpActivity" />
@@ -134,6 +135,10 @@
             android:name=".ui.store.talent.position.recruit.MapSearchActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

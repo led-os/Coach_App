@@ -15,6 +15,7 @@ import com.jsjlzj.wayne.adapter.recycler.search.SearchAdapter;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.ui.publicac.dialog.ZanFragment;
 import com.jsjlzj.wayne.ui.trainer.personal.set.PersonalInfoSetTrainerActivity;
 
 import java.util.ArrayList;
@@ -110,6 +111,7 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 MineFansActivity.go2this(this,1);
                 break;
             case R.id.ll_zan://获赞
+                ZanFragment.showDialog(getSupportFragmentManager(),"我的昵称","共获得0个赞");
                 break;
             case R.id.ll_favorite://收藏
                 MineFavoriteActivity.go2this(this);

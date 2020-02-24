@@ -298,4 +298,11 @@
         <item>文章</item>
         <item>产品</item>
     </string-array>
+
+    <string-array name="community_title_list">
+        <item>热门</item>
+        <item>关注</item>
+        <item>同城</item>
+        <item>全部</item>
+    </string-array>
 </resources>

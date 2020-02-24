@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
-import com.netease.nim.uikit.common.ToastHelper;
-import com.netease.nim.uikit.common.media.imagepicker.loader.GlideImageLoader;
+import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,27 +28,23 @@ import butterknife.ButterKnife;
  */
 public class HomeVideoAdapter extends RecyclerView.Adapter<HomeVideoAdapter.ViewHolder> {
 
-    private List<String> list = new ArrayList<>();
+    private List<CategoryBean> list = new ArrayList<>();
     private Context context;
     private int type = 0;
 
-    public HomeVideoAdapter(Context context,int type) {
-        this.list.add("增肌饮食");
-        this.list.add("减脂饮食");
-        this.list.add("增肌训练");
-        this.list.add("减脂训练");
-        this.list.add("胸部");
-        this.list.add("肩部");
-        this.list.add("背部");
-        this.list.add("手臂");
-        this.list.add("Vlog");
-        this.list.add("有氧");
-        this.list.add("核心");
-        this.list.add("腿部");
-        this.list.add("热身");
-        this.list.add("拉伸");
+    public HomeVideoAdapter(Context context, List<CategoryBean> list, int type) {
         this.context = context;
+        this.list.addAll(list);
         this.type = type;
+    }
+
+
+    public void setData(List<CategoryBean> list){
+        if(list != null && list.size() > 0){
+            this.list.clear();
+            this.list.addAll(list);
+            notifyDataSetChanged();
+        }
     }
 
     @NonNull
@@ -85,15 +81,15 @@ public class HomeVideoAdapter extends RecyclerView.Adapter<HomeVideoAdapter.View
             ButterKnife.bind(this, itemView);
         }
 
-        void bindView(Context context,List<String> list, int pos) {
-            GlideImageLoader.displayAlbumThumb(imgType,  "", com.netease.nim.uikit.R.drawable.nim_image_default,2);
-            String str = list.get(pos);
-            tvType.setText(str);
+        void bindView(Context context,List<CategoryBean> list, int pos) {
+//            GlideImageLoader.displayAlbumThumb(imgType,  "", com.netease.nim.uikit.R.drawable.nim_image_default,2);
+            CategoryBean data = list.get(pos);
+            GlidUtils.setRoundGrid(context,data.getUrl(),imgType,2);
+            tvType.setText(data.getName());
             itemView.setOnClickListener(v -> {
                 if(listener != null){
-                    listener.onItemClick(list.get(pos));
+                    listener.onItemClick(data);
                 }
-                ToastHelper.showToast(context,str);
             });
         }
     }
@@ -106,6 +102,6 @@ public class HomeVideoAdapter extends RecyclerView.Adapter<HomeVideoAdapter.View
 
     public interface OnClassicItemListener{
 
-        void onItemClick(String string);
+        void onItemClick(CategoryBean data);
     }
 }

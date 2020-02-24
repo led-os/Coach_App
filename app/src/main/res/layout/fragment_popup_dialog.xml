@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/padding_307"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_solid_ffffff_6">
+
+    <RelativeLayout
+        android:layout_width="@dimen/padding_307"
+        android:layout_height="@dimen/padding_298"
+        android:background="@drawable/bg_solid_ffffff_6">
+
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/padding_39"
+            android:text="细节帝"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_15"
+            android:layout_marginBottom="@dimen/padding_21"/>
+
+        <ImageView
+            android:id="@+id/img_zan"
+            android:layout_below="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_home_zan"/>
+
+        <TextView
+            android:id="@+id/tv_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共获得12083个赞"
+            android:layout_below="@+id/img_zan"
+            android:layout_marginTop="@dimen/padding_17"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_15"/>
+
+        <TextView
+            android:id="@+id/tv_close"
+            android:layout_width="@dimen/padding_192"
+            android:layout_height="@dimen/padding_42"
+            android:background="@drawable/bg_solid_4f9bfa_21"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_below="@+id/tv_zan"
+            android:layout_marginTop="@dimen/padding_30"
+            android:layout_centerHorizontal="true"
+            android:text="关闭"/>
+    </RelativeLayout>
+
+</RelativeLayout>

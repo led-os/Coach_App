@@ -1,6 +1,5 @@
 package com.jsjlzj.wayne.ui.store.attestation;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -22,8 +21,8 @@ import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.utils.ImageUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.utils.Utility;
-import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,6 +89,7 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
         public void OnMultiClick(View view) {
             switch (view.getId()) {
                 case R.id.imCamera://照相机
+
                     clickSelectHeadPic();
                     break;
                 case R.id.btnConfirm://
@@ -110,8 +110,17 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
     }
 
     private void clickSelectHeadPic() {
-        PermissionUtil.checkPermission(this, MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        presenter.autoObtainStoragePermission(this, 0);
+//        PermissionUtil.checkPermission(this, MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        presenter.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
 
     @Override
     public void permissionSuccess(int permissionReqCode) {
@@ -131,6 +140,7 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(this, requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case HEAD_PIC:
@@ -159,6 +169,15 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
 
     }
 
+    @Override
+    public void selectPhoto(int position) {
+        SelectImageUtils.selectPhoto(this, getString(R.string.takephoto), false, true, 1);
+    }
+
+    @Override
+    public void onUploadSuccess(String imgUrl, int position) {
+        presenter.upload(imgUrl);
+    }
 
     private String imUrl, cropHeadPicPath;
 

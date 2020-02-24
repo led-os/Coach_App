@@ -2,8 +2,12 @@ package com.jsjlzj.wayne.widgets;
 
 import android.view.View;
 import android.widget.ImageView;
+
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.store.home.BannerBean;
+import com.jsjlzj.wayne.ui.MyApp;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 /**
  *
@@ -11,7 +15,7 @@ import com.jsjlzj.wayne.R;
  * @date 19/09/26
  * 本地图片Holder例子
  */
-public class LocalImageHolderView extends Holder<Integer> {
+public class LocalImageHolderView extends Holder<BannerBean> {
     private ImageView imageView;
 
     public LocalImageHolderView(View itemView) {
@@ -24,7 +28,7 @@ public class LocalImageHolderView extends Holder<Integer> {
     }
 
     @Override
-    public void updateUI(Integer data) {
-        imageView.setImageResource(data);
+    public void updateUI(BannerBean data) {
+        GlidUtils.setCircleGrid(MyApp.ME.getApplicationContext(),data.getUrl(),imageView);
     }
 }

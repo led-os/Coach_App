@@ -9,6 +9,9 @@ package com.jsjlzj.wayne.utils;
 public class DateUtil {
 
     public static String getDownTimer(long remain){
+        if(remain == 0){
+            return "00:00";
+        }
         StringBuilder result = new StringBuilder();
         remain = remain / 1000;
         long house,min,ss;

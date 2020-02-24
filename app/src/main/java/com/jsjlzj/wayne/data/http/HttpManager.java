@@ -99,7 +99,7 @@ public class HttpManager {
                 Request request = original.newBuilder()
                         .header("mode", "ANDROID")
                         .header("device", device)
-                        .header("Token", SPUtil.getTokenFromSP())
+                        .header("Token", "123")
                         .header("version",Version)
                         //.header("Accept", "application/vnd.yourapi.v1.full+json")
                         .method(original.method(), original.body())

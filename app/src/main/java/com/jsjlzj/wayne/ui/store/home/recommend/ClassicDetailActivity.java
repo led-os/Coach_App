@@ -64,7 +64,7 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
     protected void initViewAndControl() {
         String title = getIntent().getStringExtra(ExtraConstant.EXTRA_TITLE);
         initTitle(title);
-        initBanner();
+//        initBanner();
         adapter = new ClassDetailAdapter(this, new ArrayList<>());
         adapter.setListener(this);
         rvClassicDetail.setHasFixedSize(true);
@@ -98,7 +98,7 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
                      }
                  }, images)
                  //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
-                 .setPageIndicator(new int[]{R.drawable.bg_circle_98a1ac_4, R.drawable.bg_circle_ffffff_4})
+                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                  .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                  .setCanLoop(true);
      }

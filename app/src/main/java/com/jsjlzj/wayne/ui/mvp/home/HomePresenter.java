@@ -11,6 +11,9 @@ import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
  */
 public class HomePresenter extends BasePresenter<HomeView> {
 
+    public static final int REQ_CODE_RECOMMEND = 1;
+    public static final int REQ_CODE_AMOY_SCHOOL = 2;
+
     private HomeModel model;
 
     @Override
@@ -24,8 +27,32 @@ public class HomePresenter extends BasePresenter<HomeView> {
         this.model = new HomeModel();
     }
 
+
+    public void getRecommendData(){
+        if (model != null) {
+            view.showLoading();
+            model.getHomeRecommendData(REQ_CODE_RECOMMEND, null, this);
+        }
+    }
+
+
+    public void getAmoySchoolData(){
+        if (model != null) {
+            view.showLoading();
+            model.getAmoySchoolData(REQ_CODE_AMOY_SCHOOL, null, this);
+        }
+    }
+
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
-
+        view.hideLoading();
+        switch (code){
+            case REQ_CODE_RECOMMEND:
+                view.getHomeRecommendSuccess(resp);
+                break;
+            case REQ_CODE_AMOY_SCHOOL:
+                view.getAmoySchoolSuccess(resp);
+                break;
+        }
     }
 }

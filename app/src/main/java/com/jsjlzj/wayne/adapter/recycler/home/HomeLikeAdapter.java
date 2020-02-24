@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.store.home.RecommendBean;
+import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
 
 import java.util.ArrayList;
@@ -35,12 +38,21 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private boolean isAllOne = false;
     private boolean isShowTime = true;
 
-    private List<String> list = new ArrayList<>();
+    private List<RecommendBean.VideoBean> list = new ArrayList<>();
     private Context context;
 
-    public HomeLikeAdapter(Context context,List<String> list) {
-        this.list = list;
+    public HomeLikeAdapter(Context context,List<RecommendBean.VideoBean> list) {
+        this.list.addAll(list);
         this.context = context;
+    }
+
+
+    public void setData(List<RecommendBean.VideoBean> list){
+        if(list != null && list.size() > 0){
+            this.list.clear();
+            this.list.addAll(list);
+            notifyDataSetChanged();
+        }
     }
 
     public void setShowBigOne(boolean showBigOne) {
@@ -94,7 +106,7 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return 5;
+        return list != null ? list.size() :0;
     }
 
     class OneViewHolder extends RecyclerView.ViewHolder {
@@ -104,6 +116,8 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ImageView imgPlay;
         @BindView(R.id.img_play_num)
         ImageView imgPlayNum;
+        @BindView(R.id.tv_play_num)
+        TextView tvPlayNum;
         @BindView(R.id.tv_name)
         TextView tvName;
         @BindView(R.id.tv_play_time)
@@ -114,6 +128,7 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView tvAuthor;
         @BindView(R.id.tv_time)
         TextView tvTime;
+        private RecommendBean.VideoBean bean;
 
         public OneViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -121,7 +136,25 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bindView(int pos) {
+            bean = list.get(pos);
+            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
+            tvName.setText(bean.getName());
+            tvPlayNum.setText(bean.getPlayCount()+ "次播放");
+            tvTime.setText(bean.getCreateTime());
+            if(bean.getVideoDuration() == 0){
+                tvPlayTime.setVisibility(View.GONE);
+            }else {
+                tvPlayTime.setVisibility(View.VISIBLE);
+                tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration() * 1000));
+            }
+            GlidUtils.setRoundGrid(context,bean.getChannelAvatar(),imgAuthor,32);
+            tvAuthor.setText(bean.getChannelName());
 
+            itemView.setOnClickListener(v -> {
+                if(listener != null){
+                    listener.onItemClick(bean);
+                }
+            });
         }
 
 
@@ -142,6 +175,7 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView tvPlayNum;
         @BindView(R.id.tv_time)
         TextView tvTime;
+        private RecommendBean.VideoBean bean;
 
         public OtherViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -154,7 +188,37 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }else {
                 tvPlayTime.setVisibility(View.GONE);
             }
+            bean = list.get(pos);
+            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
+            tvTitle.setText(bean.getName());
+            tvPlayNum.setText(bean.getPlayCount()+ "次播放");
+            tvTime.setText(bean.getCreateTime());
+            if(bean.getVideoDuration() == 0){
+                tvPlayTime.setVisibility(View.GONE);
+            }else {
+                tvPlayTime.setVisibility(View.VISIBLE);
+                tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration() * 1000));
+            }
+            GlidUtils.setRoundGrid(context,bean.getChannelAvatar(),imgAuthor,32);
+            tvAuthor.setText(bean.getChannelName());
+
+            itemView.setOnClickListener(v -> {
+                if(listener != null){
+                    listener.onItemClick(bean);
+                }
+            });
         }
+    }
+
+    private OnItemClickListener listener;
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener{
+
+        void onItemClick(RecommendBean.VideoBean bean);
     }
 
 

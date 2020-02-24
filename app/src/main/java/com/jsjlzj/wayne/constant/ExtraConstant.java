@@ -45,6 +45,7 @@ public class ExtraConstant {
     public static final String EXTRA_NAME = "_NAME";
     public static final String EXTRA_SHOW_TYPE = "_show_type";
     public static final String EXTRA_ANSWER_BEAN = "_answer_bean";
+    public static final String EXTRA_ZAN_NUMBER = "_zan_number";
 
     public static final String EXTRA_REPORTTYPE = "REPORTTYPE";
 }

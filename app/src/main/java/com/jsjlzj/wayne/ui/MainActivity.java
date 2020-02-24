@@ -3,14 +3,15 @@ package com.jsjlzj.wayne.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jsjlzj.wayne.R;
@@ -25,6 +26,7 @@ import com.jsjlzj.wayne.ui.basis.LoginByPhoneActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
+import com.jsjlzj.wayne.ui.store.home.TabItemCommunityFragment;
 import com.jsjlzj.wayne.ui.store.home.TabItemHomeFragment;
 import com.jsjlzj.wayne.ui.store.home.TabItemStudyFragment;
 import com.jsjlzj.wayne.ui.store.personal.TabItemStoreInfoFragment;
@@ -186,7 +188,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             mFragments.add(TabItemHomeFragment.getInstance());
             mFragments.add(TabItemStudyFragment.getInstance());
             mFragments.add(tabItemPositionFragment);
-            mFragments.add(MySessionListFragment.getInstance(true));
+            mFragments.add(TabItemCommunityFragment.getInstance());
             mFragments.add(TabItemTrainerInfoFragment.getInstance());
         }
         initViewPager();

@@ -139,4 +139,10 @@ public interface TalentPersonalView extends BaseView {
     //取消收藏俱乐部
     default void showCancelPositionStoreList(MdlBaseHttpResp resp) {}
 
+
+    default void selectPhoto(int position){}
+
+    default void onUploadSuccess(String imgUrl,int position){}
+
+    default void uploadToServerSuccess(String imgUrl){}
 }

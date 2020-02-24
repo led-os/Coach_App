@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
@@ -17,10 +18,10 @@ import com.jsjlzj.wayne.ui.MainActivity;
 import com.jsjlzj.wayne.utils.SPUtil;
 
 /**
-* @description 欢迎页面
-* @date:   modify 2019/12/23
-* @author: 曾海强
-*/
+ * @description 欢迎页面
+ * @date: modify 2019/12/23
+ * @author: 曾海强
+ */
 public class WelcomeActivity extends AppCompatActivity {
 
     public static void go2this(Context context, String... urls) {
@@ -79,17 +80,17 @@ public class WelcomeActivity extends AppCompatActivity {
                             MainActivity.go2this(WelcomeActivity.this, false);
                             finish();
                             break;
-                            default:
-                                LoginByPhoneActivity.go2This(WelcomeActivity.this,"","","","","");
-                                finish();
-                                break;
+                        default:
+                            LoginByPhoneActivity.go2This(WelcomeActivity.this, "", "", "", "", "");
+                            finish();
+                            break;
                     }
-                }else{
-                    LoginByPhoneActivity.go2This(WelcomeActivity.this,"","","","","");
+                } else {
+                    LoginByPhoneActivity.go2This(WelcomeActivity.this, "", "", "", "", "");
                     finish();
                 }
-            }else{
-                LoginByPhoneActivity.go2This(WelcomeActivity.this,"","","","","");
+            } else {
+                LoginByPhoneActivity.go2This(WelcomeActivity.this, "", "", "", "", "");
                 finish();
             }
         }, 2000);

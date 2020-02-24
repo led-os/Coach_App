@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
+import com.bumptech.glide.Glide;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.PublicConstant;
 import com.jsjlzj.wayne.data.db.DBManager;
@@ -32,6 +33,8 @@ import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.mixpush.MixPushConfig;
 import com.netease.nimlib.sdk.util.NIMUtil;
+import com.yuyh.library.imgsel.ISNav;
+import com.yuyh.library.imgsel.common.ImageLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -77,12 +80,19 @@ public class MyApp extends Application {
             prepareSD();
 
 //            user = SPUtil.getUserFromSP();
-
+            initISNav();
             initDB();
             initRetrofit();
             initZXingDisplayOpinion();
             forGlobalException();
         }
+    }
+
+    /**
+     * 初始化图片选择器
+     */
+    private void initISNav() {
+        ISNav.getInstance().init((ImageLoader) (context, path, imageView) -> Glide.with(context).load(path).into(imageView));
     }
 
     private void initYunxing() {

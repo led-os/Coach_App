@@ -11,8 +11,8 @@ public class HttpConstant {
     public static final String UPDATA_URL = "https://www.pgyer.com/X4kA";
 
     public static boolean isDebug = true;
-//    public static String BASE_URL = "http://47.97.126.0:8090/";
-    public static String BASE_URL = "http://api.gokgm.com:81/";
+    public static String BASE_URL = "http://47.97.126.0:8090/";
+//    public static String BASE_URL = "http://api.gokgm.com:81/";
     public static String WXAPPID = "wx465cfff1c19d069d";
     public static String WXAPPSECET = "8659207754ddedc545fbd86cee2496d1";
     public static final String JCMES_URL = "http://app.lightmes.cn/";
@@ -300,4 +300,12 @@ public class HttpConstant {
 
     //发送面试邀请
     public static final String API_INTERVIEWInvite="interview/sendInterviewInvite";
+
+
+
+    /************************************v2 新接口****************************************************/
+    //首页推荐
+    public static final String API_HOME_RECOMMEND = "trainer/index/recommend";
+    //首页淘学
+    public static final String API_HOME_AMOY_SCHOOL = "trainer/index/taoLearn";
 }

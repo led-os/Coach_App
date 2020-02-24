@@ -15,6 +15,8 @@ import com.jsjlzj.wayne.entity.store.MdlPositionList;
 import com.jsjlzj.wayne.entity.store.MdlPositionType;
 import com.jsjlzj.wayne.entity.store.MdlSkillRequired;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
+import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
+import com.jsjlzj.wayne.entity.store.home.RecommendBean;
 import com.jsjlzj.wayne.entity.trainer.MdlDetailT;
 import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
@@ -236,5 +238,16 @@ public interface StoreService {
     //发送面试邀请
     @POST(HttpConstant.API_INTERVIEWInvite)
     Observable<MdlBaseHttpResp> sendInterView(@Body RequestBody requestBody);
+
+
+
+    /******************************************v2 新接口*****************************************************/
+
+    @POST(HttpConstant.API_HOME_RECOMMEND)
+    Observable<MdlBaseHttpResp<RecommendBean>> requestRecommend(@Body RequestBody requestBody);
+
+
+    @POST(HttpConstant.API_HOME_AMOY_SCHOOL)
+    Observable<MdlBaseHttpResp<AmoySchoolBean>> requestAmoySchool(@Body RequestBody requestBody);
 
 }
