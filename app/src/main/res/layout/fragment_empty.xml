@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f2f2f2"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/padding_80"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/img_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_15"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_seek" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_15"
+                android:text="没有找到相关内容"
+                android:textColor="#878787" />
+
+            <TextView
+                android:id="@+id/tv_add_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="刷新"
+                android:layout_marginStart="@dimen/padding_6"
+                android:clickable="true"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_4F9BFA"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

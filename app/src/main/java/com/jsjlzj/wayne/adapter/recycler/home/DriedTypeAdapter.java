@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.store.home.CategoryBean;
 import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
@@ -28,28 +29,34 @@ import butterknife.ButterKnife;
  */
 public class DriedTypeAdapter extends RecyclerView.Adapter<DriedTypeAdapter.ViewHolder> {
 
-    private List<String> list = new ArrayList<>();
+    private List<CategoryBean> list = new ArrayList<>();
     private Context context;
 
-    public DriedTypeAdapter(Context context,int type) {
-        if(type == 0){
-            this.list.add("增肌");
-            this.list.add("减脂");
-            this.list.add("vlog");
-            this.list.add("励志");
-        }else if(type == 1){
-            this.list.add("训练");
-            this.list.add("营养");
-            this.list.add("资讯");
-            this.list.add("女性");
-        }else {
-            this.list.add("运动器械");
-            this.list.add("运动服务");
-            this.list.add("运动补给");
-            this.list.add("运动食品");
-        }
-
+    public DriedTypeAdapter(Context context,List<CategoryBean> list) {
+        this.list = list;
         this.context = context;
+//        if(type == 0){
+//            this.list.add("增肌");1004
+//            this.list.add("减脂");1005
+//            this.list.add("vlog");1006
+//            this.list.add("励志");
+//        }else if(type == 1){
+//            this.list.add("训练");
+//            this.list.add("营养");
+//            this.list.add("资讯");
+//            this.list.add("女性");
+//        }else {
+//            this.list.add("运动器械");
+//            this.list.add("运动服务");
+//            this.list.add("运动补给");
+//            this.list.add("运动食品");
+//        }
+        this.context = context;
+    }
+
+    public void setData(List<CategoryBean> list){
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -81,13 +88,14 @@ public class DriedTypeAdapter extends RecyclerView.Adapter<DriedTypeAdapter.View
             ButterKnife.bind(this, itemView);
         }
 
-        void bindView(Context context, List<String> list, int pos) {
-            String str = list.get(pos);
+        void bindView(Context context, List<CategoryBean> list, int pos) {
+            CategoryBean bean = list.get(pos);
+            String str = bean.getName();
             if("增肌".equals(str)){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_train_one));
             }else if("减脂".equals(str)){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_delete_zhi));
-            }else if("vlog".equals(str)){
+            }else if("vLog".equals(str)){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_vlog));
             }else if("励志".equals(str)){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_improvement));
@@ -108,9 +116,10 @@ public class DriedTypeAdapter extends RecyclerView.Adapter<DriedTypeAdapter.View
             }else if("运动食品".equals(str)){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydsp));
             }
-            tvType.setText(str);
+//            GlidUtils.setCircleGrid(context,str.getUrl(),imgType);
+            tvType.setText(bean.getName());
             itemView.setOnClickListener(v -> {
-                ToastHelper.showToast(context,str);
+                ToastHelper.showToast(context,bean.getName());
             });
         }
     }

@@ -25,6 +25,7 @@ import com.jsjlzj.wayne.ui.basis.LoginByPhoneActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
+import com.jsjlzj.wayne.ui.publicac.dialog.EmptyFragment;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.utils.StatusBarCompatUtil;
@@ -182,6 +183,35 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         mSearchBar = findViewById(R.id.search_bar_title);
         if (mBackBtn != null) {
             mBackBtn.setOnClickListener(v -> onBackPressed());
+        }
+    }
+
+    private EmptyFragment mEmptyFragment;
+    /**
+     * 显示空页面
+     *
+     * @param contentId 要依附在哪个的id上
+     */
+    protected void showEmpty(int contentId, int type, View.OnClickListener listener) {
+        if (mEmptyFragment == null) {
+            mEmptyFragment = new EmptyFragment();
+            if (type == 0) {
+                mEmptyFragment.showEmpty();
+            } else {
+                mEmptyFragment.showEmpty(type, listener);
+            }
+            getSupportFragmentManager().beginTransaction().add(contentId, mEmptyFragment).commitAllowingStateLoss();
+        } else {
+            getSupportFragmentManager().beginTransaction().show(mEmptyFragment).commitAllowingStateLoss();
+        }
+    }
+
+    /**
+     * 关闭空页面
+     */
+    protected void hideEmpty() {
+        if (mEmptyFragment != null && mEmptyFragment.isAdded()) {
+            getSupportFragmentManager().beginTransaction().hide(mEmptyFragment).commitAllowingStateLoss();
         }
     }
 

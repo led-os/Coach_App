@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/coordinator_layout"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.store.home.RecommendFragment">
 
     <LinearLayout
@@ -17,37 +17,33 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/padding_154"
             android:layout_marginStart="@dimen/padding_14"
-            android:layout_marginEnd="@dimen/padding_14"
             android:layout_marginTop="@dimen/padding_19"
+            android:layout_marginEnd="@dimen/padding_14"
             android:layout_marginBottom="@dimen/padding_2"
-            app:canLoop="true"
-            app:autoTurningTime="4000"/>
+            app:autoTurningTime="4000"
+            app:canLoop="true" />
 
-        <LinearLayout
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:orientation="vertical">
+            android:layout_height="@dimen/padding_39"
+            android:layout_marginTop="@dimen/padding_10"
+            android:layout_marginBottom="@dimen/padding_10"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/color_4F9BFA"
+            app:tabTextColor="@color/color_999999" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/padding_39"
-                android:layout_marginTop="@dimen/padding_10"
-                android:layout_marginBottom="@dimen/padding_10"
-                app:tabIndicatorHeight="0dp"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/color_4F9BFA"
-                app:tabTextColor="@color/color_999999"
-                />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-
-            <com.jsjlzj.wayne.widgets.MyViewPager
-                android:id="@+id/amoy_view_pager"
+            <FrameLayout
+                android:id="@+id/fragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

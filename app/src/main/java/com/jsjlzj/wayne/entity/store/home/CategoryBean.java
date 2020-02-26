@@ -22,6 +22,35 @@ public class CategoryBean {
     private String name;
     private String coverImg;
     private int enrollCount;
+    private String startTime;
+    private String endTime;
+    /**"状态: 1:未开始 2:进行中 3:已结束"*/
+    private int status;
+
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public String getCoverImg() {
         return coverImg;

@@ -2,30 +2,32 @@ package com.jsjlzj.wayne.ui.mvp.base;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import butterknife.ButterKnife;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
-import com.jsjlzj.wayne.utils.permission.MyPermissionResultListener;
-import com.jsjlzj.wayne.utils.permission.PermissionUtil;
+import com.jsjlzj.wayne.ui.publicac.dialog.EmptyFragment;
 import com.jsjlzj.wayne.utils.eventbus.EventBusManager;
 import com.jsjlzj.wayne.utils.eventbus.MdlEventBus;
+import com.jsjlzj.wayne.utils.permission.MyPermissionResultListener;
+import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import butterknife.ButterKnife;
 
 
 /**
@@ -46,6 +48,10 @@ public abstract class MVPBaseFragment<MVP_V extends BaseView, MVP_P extends Base
     protected boolean isFirstLoad = false;
     protected View view = null;
     protected LayoutInflater layoutInflater;
+    /**
+     * 空界面
+     */
+    private EmptyFragment mEmptyFragment;
 
     protected int currentPage = 1;
     protected int totalPage;
@@ -127,6 +133,34 @@ public abstract class MVPBaseFragment<MVP_V extends BaseView, MVP_P extends Base
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBusMessage(MdlEventBus event) {
 
+    }
+
+    /**
+     * 显示空页面
+     *
+     * @param contentId 要依附在哪个的id上
+     */
+    protected void showEmpty(int contentId, int type, View.OnClickListener listener) {
+        if (mEmptyFragment == null) {
+            mEmptyFragment = new EmptyFragment();
+            if (type == 0) {
+                mEmptyFragment.showEmpty();
+            } else {
+                mEmptyFragment.showEmpty(type, listener);
+            }
+            getChildFragmentManager().beginTransaction().add(contentId, mEmptyFragment).commitAllowingStateLoss();
+        } else {
+            getChildFragmentManager().beginTransaction().show(mEmptyFragment).commitAllowingStateLoss();
+        }
+    }
+
+    /**
+     * 关闭空页面
+     */
+    protected void hideEmpty() {
+        if (mEmptyFragment != null && mEmptyFragment.isAdded()) {
+            getChildFragmentManager().beginTransaction().hide(mEmptyFragment).commitAllowingStateLoss();
+        }
     }
 
 

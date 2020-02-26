@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.mvp.home;
 
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
+import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 
@@ -18,4 +19,16 @@ public interface HomeView extends BaseView {
 
 
     default void getAmoySchoolSuccess(MdlBaseHttpResp<AmoySchoolBean> resp){}
+
+    default void getMatchSuccess(MdlBaseHttpResp<AmoySchoolBean> resp){}
+
+
+    default void getAmoyListSuccess(MdlBaseHttpResp<CategoryPageBean> resp){}
+
+
+    default void getMatchListSuccess(MdlBaseHttpResp<CategoryPageBean> resp){}
+
+    default void getDriedFoodSuccess(MdlBaseHttpResp<AmoySchoolBean> resp){}
+
+    default void getDriedFoodListSuccess(MdlBaseHttpResp<CategoryPageBean> resp){}
 }

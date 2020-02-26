@@ -3,43 +3,60 @@ package com.jsjlzj.wayne.ui.store.home;
 
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.AuthenticationAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.home.amoy.HotSchoolActivity;
+import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
+import com.jsjlzj.wayne.widgets.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
 /**
- * A simple {@link Fragment} subclass.
+ * @ClassName: AuthenticationFragment
+ * @Description: 授权类型
+ * @Author: 曾海强
+ * @CreateDate:
  */
-public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, AuthenticationAdapter.OnItemClickListener {
+public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, AuthenticationAdapter.OnItemClickListener, XRecyclerView.LoadingListener {
 
 
     @BindView(R.id.rv_authentication)
-    RecyclerView rvAuthentication;
+    CustomXRecyclerView rvAuthentication;
 
     private AuthenticationAdapter authenticationAdapter;
+    private Map<Object, Object> map = new HashMap<>();
+    private List<CategoryBean> categoryList = new ArrayList<>();
     /**
      * 0 : 认证类   1： 技能类    2 ：管理类
+     * 对应类型的id
      */
-    private int type;
+    private int typeId;
+    private int pageNo;
+    private int pageCount;
+    private boolean isRefresh;
 
 
     public AuthenticationFragment() {
     }
 
-    public AuthenticationFragment(int type) {
+    public AuthenticationFragment(int id) {
         this();
-        this.type = type;
+        this.typeId = id;
     }
 
 
@@ -56,12 +73,27 @@ public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresen
 
     @Override
     protected void initViewAndControl(View view) {
-        rvAuthentication.setHasFixedSize(true);
-        rvAuthentication.setNestedScrollingEnabled(false);
-        authenticationAdapter = new AuthenticationAdapter(getActivity(),new ArrayList<>());
+        rvAuthentication.setPullRefreshEnabled(true);
+        rvAuthentication.setLoadingMoreEnabled(true);
+        authenticationAdapter = new AuthenticationAdapter(getActivity(),categoryList);
         authenticationAdapter.setListener(this);
+        rvAuthentication.setLoadingListener(this);
         rvAuthentication.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAuthentication.setAdapter(authenticationAdapter);
+        loadData(true);
+
+    }
+
+    private void loadData(boolean isRefresh) {
+        this.isRefresh = isRefresh;
+        if(isRefresh) {
+            pageNo = 0;
+        }
+        map.clear();
+        map.put(HttpConstant.PAGE_NO, pageNo);
+        map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+        map.put("parentId", typeId);
+        presenter.getAmoyList(map);
     }
 
     @Override
@@ -78,5 +110,51 @@ public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresen
     @Override
     public void onItemClick(String str) {
         HotSchoolActivity.go2this(getActivity());
+    }
+
+
+    @Override
+    public void getAmoyListSuccess(MdlBaseHttpResp<CategoryPageBean> resp) {
+        rvAuthentication.refreshComplete();
+        rvAuthentication.loadMoreComplete();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp){
+            pageNo = resp.getData().getData().getPageNo();
+            int totalCount = resp.getData().getData().getTotalCount();
+            int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
+            if (a == 0) {
+                pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
+            } else {
+                pageCount =( totalCount / HttpConstant.PAGE_SIZE_NUMBER)+1;
+            }
+            List<CategoryBean> list = resp.getData().getData().getResult();
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    categoryList.clear();
+                }
+                categoryList.addAll(list);
+                authenticationAdapter.setData(categoryList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty,0,null);
+            }
+        }
+
+
+    }
+
+    @Override
+    public void onRefresh() {
+        loadData(true);
+    }
+
+    @Override
+    public void onLoadMore() {
+        if (pageNo < pageCount -1) {
+            pageNo++;
+            loadData(false);
+        } else {
+            ToastUtils.showToast(getContext(), getString(R.string.has_no_more_data));
+        }
     }
 }

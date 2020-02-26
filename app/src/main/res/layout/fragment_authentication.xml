@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rel_empty"
     tools:context=".ui.store.home.AuthenticationFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.jsjlzj.wayne.widgets.CustomXRecyclerView
         android:id="@+id/rv_authentication"
         android:layout_marginStart="@dimen/padding_10"
         android:layout_marginEnd="@dimen/padding_10"

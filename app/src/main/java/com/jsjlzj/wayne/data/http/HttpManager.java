@@ -1,7 +1,8 @@
 package com.jsjlzj.wayne.data.http;
 
 
-
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
@@ -10,6 +11,7 @@ import com.jsjlzj.wayne.utils.Utility;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,6 +117,12 @@ public class HttpManager {
             }
         });
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        GsonBuilder builder = new GsonBuilder();
+
+        // Register an adapter to manage the date types as long values
+        builder.registerTypeAdapter(Date.class,
+                (JsonDeserializer<Date>) (json, typeoft, context) -> new Date(json.getAsJsonPrimitive().getAsLong()));
+
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(20000L, TimeUnit.MILLISECONDS)
@@ -130,7 +138,7 @@ public class HttpManager {
                 retrofit = new Retrofit.Builder()
                 .baseUrl(HttpConstant.BASE_URL)
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(builder.create()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

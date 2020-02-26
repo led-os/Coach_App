@@ -4,15 +4,20 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -23,12 +28,19 @@ import butterknife.ButterKnife;
  */
 public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAdapter.ViewHolder> {
 
-    private Context context;
-    private List<String> list = new ArrayList<>();
 
-    public AuthenticationAdapter(Context context, List<String> list) {
+    private Context context;
+    private List<CategoryBean> list = new ArrayList<>();
+
+    public AuthenticationAdapter(Context context, List<CategoryBean> list) {
         this.context = context;
-        this.list = list;
+        this.list.addAll(list);
+    }
+
+    public void setData(List<CategoryBean> list) {
+        this.list.clear();
+        this.list.addAll(list);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -45,19 +57,30 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.img_one)
+        ImageView imgOne;
+        @BindView(R.id.tv_title)
+        TextView tvTitle;
+        @BindView(R.id.tv_add_number)
+        TextView tvAddNumber;
+         CategoryBean categoryBean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
-        void bindView(int pos){
+        void bindView(int pos) {
+            categoryBean = list.get(pos);
+            GlidUtils.setRoundGrid(context,categoryBean.getCoverImg(),imgOne,2);
+            tvTitle.setText(categoryBean.getName());
+            tvAddNumber.setText(""+categoryBean.getEnrollCount());
             itemView.setOnClickListener(v -> {
-                if(listener != null){
+                if (listener != null) {
                     listener.onItemClick("");
                 }
 
@@ -71,7 +94,7 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
         this.listener = listener;
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
 
         void onItemClick(String str);
     }

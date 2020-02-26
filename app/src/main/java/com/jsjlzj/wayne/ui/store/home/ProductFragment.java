@@ -13,6 +13,11 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.DriedTypeAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.ProductAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
+import com.jsjlzj.wayne.entity.store.home.BannerBean;
+import com.jsjlzj.wayne.entity.store.home.CategoryBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -39,6 +44,8 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
     private List<MVPBaseFragment> fragments = new ArrayList<>();
     private DriedTypeAdapter driedTypeAdapter;
     private ProductAdapter informationAdapter;
+    private List<BannerBean> images = new ArrayList<>();
+    private List<CategoryBean> categoryList = new ArrayList<>();
 
     public ProductFragment() {
     }
@@ -55,8 +62,8 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
 
     @Override
     protected void initViewAndControl(View view) {
-//        initBanner();
         initRecycler();
+        presenter.getProductData();
     }
 
     @Override
@@ -71,7 +78,7 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
     private void initRecycler() {
         rvState.setHasFixedSize(true);
         rvState.setNestedScrollingEnabled(false);
-        driedTypeAdapter = new DriedTypeAdapter(getActivity(),2);
+        driedTypeAdapter = new DriedTypeAdapter(getActivity(),new ArrayList<>());
         rvState.setLayoutManager(new GridLayoutManager(getActivity(),4));
         rvState.setAdapter(driedTypeAdapter);
 
@@ -83,10 +90,6 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
     }
 
     private void initBanner() {
-        List<Integer> images = new ArrayList<>();
-        images.add(R.drawable.ic_avatars);
-        images.add(R.drawable.ic_avatars);
-        images.add(R.drawable.ic_avatars);
         scrollBanner.setPages(
                 new CBViewHolderCreator() {
                     @Override
@@ -102,9 +105,31 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
                 //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+                .setOnItemClickListener(position -> {
+                    // TODO: 2020/2/26
+                })
                 .setCanLoop(true);
     }
 
+    @Override
+    public void getDriedFoodSuccess(MdlBaseHttpResp<AmoySchoolBean> resp) {
+        AmoySchoolBean.DataBean bean = resp.getData().getData();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != bean) {
+            if (null != bean.getBanner() && bean.getBanner().size() > 0) {
+                images = bean.getBanner();
+                if (images != null && images.size() > 0) {
+                    initBanner();
+                }
+            }
+
+            if (null != bean.getCategory() && bean.getCategory().size() > 0) {
+                categoryList = bean.getCategory();
+                if (categoryList != null && categoryList.size() > 0) {
+                    driedTypeAdapter.setData(categoryList);
+                }
+            }
+        }
+    }
 
     @Override
     public void onResume() {

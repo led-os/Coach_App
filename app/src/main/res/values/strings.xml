@@ -256,7 +256,7 @@
     <string name="mock_exam">模拟考试</string>
     <string name="zero">0</string>
     <string name="time_over">00:00:00</string>
-
+    <string name="has_no_more_data">暂无更多信息</string>
 
     <string-array name="home_title_list">
         <item>推荐</item>

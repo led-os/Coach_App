@@ -17,6 +17,8 @@ public class HttpConstant {
     public static String WXAPPSECET = "8659207754ddedc545fbd86cee2496d1";
     public static final String JCMES_URL = "http://app.lightmes.cn/";
     public static final String UPDATA_DATE = "2019-06-13";
+    public static final String PAGE_NO = "pageNo";
+    public static final String PAGE_SIZE = "pageSize";
 
     static {
         if (true)
@@ -38,6 +40,7 @@ public class HttpConstant {
     public static final String SIZE12 = "12";
     public static final String SIZE40 = "40";
 
+    public static final int PAGE_SIZE_NUMBER = 10;
     /**
      * Token过期
      */
@@ -308,4 +311,22 @@ public class HttpConstant {
     public static final String API_HOME_RECOMMEND = "trainer/index/recommend";
     //首页淘学
     public static final String API_HOME_AMOY_SCHOOL = "trainer/index/taoLearn";
+    //首页赛事
+    public static final String API_HOME_MATCH = "trainer/index/sportEvent";
+    //淘学列表
+    public static final String API_HOME_AMOY_LIST = "trainer/index/taoLearn/category/list";
+    //赛事列表
+    public static final String API_HOME_MATCH_LIST = "trainer/index/sportEvent/list";
+    //首页干货
+    public static final String API_HOME_DRIED_FOOD = "trainer/index/ganHuo";
+    //首页干货列表
+    public static final String API_HOME_DRIED_FOOD_LIST = "trainer/index/ganHuo";
+    //首页资讯
+    public static final String API_HOME_INFORMATION = "trainer/index/information";
+    //首页资讯列表
+    public static final String API_HOME_INFORMATION_LIST = "trainer/index/information/list";
+    //首页产品
+    public static final String API_HOME_PRODUCT = "trainer/index/product";
+    //首页产品列表
+    public static final String API_HOME_PRODUCT_LIST = "trainer/index/product/list";
 }

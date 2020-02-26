@@ -39,11 +39,16 @@
             app:tabSelectedTextColor="@color/color_4F9BFA"
             app:tabTextColor="@color/color_999999" />
 
-
-        <com.jsjlzj.wayne.widgets.MyViewPager
-            android:id="@+id/match_view_pager"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/padding_605" />
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:id="@+id/fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
 
 
     </LinearLayout>
