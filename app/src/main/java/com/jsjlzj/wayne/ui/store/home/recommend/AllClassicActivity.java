@@ -9,12 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.HomeVideoAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -30,6 +34,7 @@ public class AllClassicActivity extends MVPBaseActivity<HomeView, HomePresenter>
     RecyclerView rvAllClassic;
 
     private HomeVideoAdapter adapter;
+    private List<CategoryBean> categoryList = new ArrayList<>();
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, AllClassicActivity.class);
@@ -46,10 +51,11 @@ public class AllClassicActivity extends MVPBaseActivity<HomeView, HomePresenter>
     @Override
     protected void initViewAndControl() {
         initTitle("全部分类");
-       adapter = new HomeVideoAdapter(this,new ArrayList<>(),2);
-       adapter.setListener(this);
-       rvAllClassic.setLayoutManager(new GridLayoutManager(this,2));
-       rvAllClassic.setAdapter(adapter);
+        adapter = new HomeVideoAdapter(this, new ArrayList<>(), 2);
+        adapter.setListener(this);
+        rvAllClassic.setLayoutManager(new GridLayoutManager(this, 2));
+        rvAllClassic.setAdapter(adapter);
+        presenter.getAllClassic();
     }
 
     @Override
@@ -60,8 +66,20 @@ public class AllClassicActivity extends MVPBaseActivity<HomeView, HomePresenter>
 
     @Override
     public void onItemClick(CategoryBean data) {
-        ClassicDetailActivity.go2this(this,data.getName());
+        ClassicDetailActivity.go2this(this, data.getName());
     }
 
+
+    @Override
+    public void getAllClassicSuccess(MdlBaseHttpResp<CategoryListBean> resp) {
+        List<CategoryBean>  list = resp.getData().getData();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != list) {
+            if (list.size() > 0) {
+                categoryList.clear();
+                categoryList.addAll(list);
+                adapter.setData(categoryList);
+            }
+        }
+    }
 
 }

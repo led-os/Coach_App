@@ -28,24 +28,31 @@ public class ExtraConstant {
     public static final String EXTRA_TEAM_MANAGER_ID = "teamUid";
 
 
-    public static final String EXTRA_TITLE = "_TITLE";
     public static final String EXTRA_CONTENT = "_CONTENT";
     public static final String EXTRA_DESC = "_DESC";
-    public static final String EXTRA_QR_CODE_TYPE = "_QR_CODE_TYPE";
-    public static final String EXTRA_QR_CODE_CONTENT = "_QR_CODE_CONTENT";
-    public static final String EXTRA_DATE = "_DATE";
     public static final String EXTRA_MESSAGE_ID = "_MESSAGE_ID";
 
     public static final String EXTRA_CHECK_ID = "_CHECK_ID";
     public static final String EXTRA_CHECK_STATUS = "_REPORT_STATUS";
     public static final String EXTRA_WAIT_REASON = "_WAIT_REASON";
     public static final String EXTRA_WORK_TIME = "_WORK_TIME";
+    public static final String EXTRA_TITLE = "_TITLE";
+    public static final String EXTRA_SCHOOL_ID= "_school_id";
+    public static final String EXTRA_QR_CODE_TYPE = "_QR_CODE_TYPE";
+    public static final String EXTRA_QR_CODE_CONTENT = "_QR_CODE_CONTENT";
+    public static final String EXTRA_DATE = "_DATE";
 
     public static final String EXTRA_UID = "_UID";
     public static final String EXTRA_NAME = "_NAME";
     public static final String EXTRA_SHOW_TYPE = "_show_type";
     public static final String EXTRA_ANSWER_BEAN = "_answer_bean";
     public static final String EXTRA_ZAN_NUMBER = "_zan_number";
+    public static final String EXTRA_WEB_URL = "_web_url";
+    public static final String EXTRA_WEB_TYPE = "_web_type";
+    public static final String EXTRA_WEB_DATA = "_web_data";
+    public static final String EXTRA_WEB_TITLE = "_web_title";
+    public static final String EXTRA_JS_ACTION = "_js_action";
+
 
     public static final String EXTRA_REPORTTYPE = "REPORTTYPE";
 }

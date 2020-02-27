@@ -113,6 +113,7 @@
         <activity android:name=".ui.store.home.study.AnswerDoneActivity" />
         <activity android:name=".ui.store.home.study.AnswerActivity" />
         <activity android:name=".ui.store.home.study.AchievementRecordActivity" />
+        <activity android:name=".ui.basis.WebViewContainerActivity"/>
         <activity android:name=".ui.store.home.study.ChapterActivity" />
         <activity android:name=".ui.store.home.study.QuestionBankActivity" />
         <activity android:name=".ui.store.home.amoy.SignUpResultActivity" />

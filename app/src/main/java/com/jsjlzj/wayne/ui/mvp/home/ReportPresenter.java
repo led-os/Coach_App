@@ -16,7 +16,7 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
-import com.jsjlzj.wayne.widgets.ToastUtils;
+import com.netease.nim.uikit.common.ToastHelper;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -101,7 +101,7 @@ public class ReportPresenter extends BasePresenter<ReportView> {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 view.selectPhoto(curIndex);
             } else {
-                ToastUtils.showToast(activity,activity.getResources().getString(R.string.please_add_storage_permission));
+                ToastHelper.showToast(activity,activity.getResources().getString(R.string.please_add_storage_permission));
             }
         }
     }

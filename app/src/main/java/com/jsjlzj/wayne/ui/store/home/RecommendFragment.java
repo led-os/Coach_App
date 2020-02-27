@@ -19,6 +19,9 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -69,7 +72,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     private List<BannerBean> images = new ArrayList<>();
     private List<CategoryBean> videoList = new ArrayList<>();
     private List<RecommendBean.LessonBean> lessonList = new ArrayList<>();
-    private List<RecommendBean.VideoBean> likeList = new ArrayList<>();
+    private List<VideoBean> likeList = new ArrayList<>();
     private List<RecommendBean.InformationBean> informationList = new ArrayList<>();
 
     public RecommendFragment() {
@@ -135,7 +138,6 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
     private void initBanner() {
-
         scrollBanner.setPages(
                 new CBViewHolderCreator() {
                     @Override
@@ -153,7 +155,8 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
-                    // TODO: 2020/2/24 跳转到web打开h5
+                    BannerBean bean = images.get(position);
+                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL,"");
                 })
                 .setCanLoop(true);
     }
@@ -241,8 +244,13 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
     @Override
-    public void onItemClick(RecommendBean.VideoBean bean) {
+    public void onItemClick(VideoBean bean) {
         //点击猜你喜欢条目
+    }
+
+    @Override
+    public void onHeadClick(VideoBean bean) {
+        //点击头像
     }
 
     @Override

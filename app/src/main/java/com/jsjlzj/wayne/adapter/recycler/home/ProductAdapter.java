@@ -4,15 +4,20 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -23,40 +28,76 @@ import butterknife.ButterKnife;
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
-    private Context context;
-    private List<String> list = new ArrayList<>();
 
-    public ProductAdapter(Context context, List<String> list) {
+    private Context context;
+    private List<CategoryBean> list = new ArrayList<>();
+
+    public ProductAdapter(Context context, List<CategoryBean> list) {
         this.context = context;
-        this.list = list;
+        this.list.addAll(list);
+    }
+
+    public void setData(List<CategoryBean> list) {
+        if (list != null) {
+            this.list.clear();
+            this.list.addAll(list);
+            notifyDataSetChanged();
+        }
     }
 
     @NonNull
     @Override
-    public ProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false);
-        return new ProductAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bindView(position);
     }
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.img_one)
+        ImageView imgOne;
+        @BindView(R.id.tv_price)
+        TextView tvPrice;
+        @BindView(R.id.tv_title)
+        TextView tvTitle;
+        @BindView(R.id.tv_location)
+        TextView tvLocation;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
-        void bindView(int pos){
-
+        void bindView(int pos) {
+            CategoryBean bean = list.get(pos);
+            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
+            tvTitle.setText(bean.getName());
+            tvPrice.setText(bean.getPrice());
+            tvLocation.setText(bean.getPlace());
+            itemView.setOnClickListener(v -> {
+                if(listener!= null){
+                    listener.onItemClick(bean);
+                }
+            });
         }
+    }
+
+    private OnItemClickListener listener;
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(CategoryBean bean);
     }
 }

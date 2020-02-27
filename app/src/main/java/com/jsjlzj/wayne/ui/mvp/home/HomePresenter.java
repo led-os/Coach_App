@@ -24,6 +24,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     public static final int REQ_CODE_INFORMATION_LIST = 9;
     public static final int REQ_CODE_PRODUCT = 10;
     public static final int REQ_CODE_PRODUCT_LIST = 11;
+    public static final int REQ_CODE_ALL_CLASSIC = 12;
+    public static final int REQ_CODE_ORIGANIZATION_LIST = 13;
 
     private HomeModel model;
 
@@ -118,6 +120,22 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
+
+    public void getAllClassic(){
+        if (model != null) {
+            view.showLoading();
+            model.getAllClassicList(REQ_CODE_ALL_CLASSIC, null, this);
+        }
+    }
+
+    public void getOrganizationList(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.getOrganizationList(REQ_CODE_ORIGANIZATION_LIST, param, this);
+        }
+    }
+
+
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
         view.hideLoading();
@@ -142,10 +160,16 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_DRIED_FOOD:
                 view.getDriedFoodSuccess(resp);
                 break;
+            case REQ_CODE_ORIGANIZATION_LIST:
             case REQ_CODE_PRODUCT_LIST:
+                view.getCategoryListSuccess(resp);
+                break;
             case REQ_CODE_INFORMATION_LIST:
             case REQ_CODE_DRIED_FOOD_LIST:
                 view.getDriedFoodListSuccess(resp);
+                break;
+            case REQ_CODE_ALL_CLASSIC:
+                view.getAllClassicSuccess(resp);
                 break;
 
         }

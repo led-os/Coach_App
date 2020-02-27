@@ -44,18 +44,17 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rel_empty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.jsjlzj.wayne.widgets.CustomXRecyclerView
                 android:id="@+id/rv_like"
                 android:layout_marginStart="@dimen/padding_10"
                 android:layout_marginEnd="@dimen/padding_10"
                 android:layout_marginBottom="@dimen/padding_19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-
-
 
         </RelativeLayout>
 

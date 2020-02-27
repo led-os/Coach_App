@@ -16,8 +16,10 @@ import com.jsjlzj.wayne.entity.store.MdlPositionType;
 import com.jsjlzj.wayne.entity.store.MdlSkillRequired;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
+import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
+import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
 import com.jsjlzj.wayne.entity.trainer.MdlDetailT;
 import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
@@ -267,18 +269,24 @@ public interface StoreService {
 
 
     @POST(HttpConstant.API_HOME_DRIED_FOOD_LIST)
-    Observable<MdlBaseHttpResp<CategoryPageBean>> requestDriedFoodList(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestDriedFoodList(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_HOME_INFORMATION)
     Observable<MdlBaseHttpResp<AmoySchoolBean>> requestInformation(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_HOME_INFORMATION_LIST)
-    Observable<MdlBaseHttpResp<CategoryPageBean>> requestInformationList(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestInformationList(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_HOME_PRODUCT)
     Observable<MdlBaseHttpResp<AmoySchoolBean>> requestProduce(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_HOME_PRODUCT_LIST)
     Observable<MdlBaseHttpResp<CategoryPageBean>> requestProductList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_HOME_ALL_CLASSIC)
+    Observable<MdlBaseHttpResp<CategoryListBean>> requestAllClassicList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_HOME_ORGANIZATION_LIST)
+    Observable<MdlBaseHttpResp<CategoryPageBean>> requestOrganizationList(@Body RequestBody requestBody);
 
 }

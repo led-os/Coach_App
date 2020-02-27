@@ -28,28 +28,38 @@
             app:canLoop="true"
             app:autoTurningTime="4000"/>
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_state"
-            android:layout_marginStart="@dimen/padding_9"
-            android:layout_marginEnd="@dimen/padding_9"
-            android:layout_marginTop="@dimen/padding_17"
-            android:layout_marginBottom="@dimen/padding_19"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_state"
+                android:layout_marginStart="@dimen/padding_9"
+                android:layout_marginEnd="@dimen/padding_9"
+                android:layout_marginTop="@dimen/padding_17"
+                android:layout_marginBottom="@dimen/padding_19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
 
 
 
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_like"
-            android:layout_marginStart="@dimen/padding_14"
-            android:layout_marginEnd="@dimen/padding_14"
-            android:layout_marginBottom="@dimen/padding_19"
+        <RelativeLayout
+            android:id="@+id/rel_empty"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content">
 
+
+            <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+                android:id="@+id/rv_like"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_marginBottom="@dimen/padding_19"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 

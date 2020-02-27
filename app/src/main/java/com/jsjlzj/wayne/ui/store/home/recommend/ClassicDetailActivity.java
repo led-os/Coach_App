@@ -46,10 +46,11 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
     RecyclerView rvClassicDetail;
 
     private ClassDetailAdapter adapter;
+    private int schoolId;
 
-    public static void go2this(Activity context,String title) {
+    public static void go2this(Activity context,String schoolId) {
         Intent intent = new Intent(context, ClassicDetailActivity.class);
-        intent.putExtra(ExtraConstant.EXTRA_TITLE,title);
+        intent.putExtra(ExtraConstant.EXTRA_SCHOOL_ID,schoolId);
         context.startActivity(intent);
     }
 
@@ -62,7 +63,7 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
 
     @Override
     protected void initViewAndControl() {
-        String title = getIntent().getStringExtra(ExtraConstant.EXTRA_TITLE);
+        String title = getIntent().getStringExtra(ExtraConstant.EXTRA_SCHOOL_ID);
         initTitle(title);
 //        initBanner();
         adapter = new ClassDetailAdapter(this, new ArrayList<>());

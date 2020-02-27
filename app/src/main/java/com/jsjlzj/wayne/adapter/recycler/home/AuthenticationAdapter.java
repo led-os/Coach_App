@@ -81,7 +81,7 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
             tvAddNumber.setText(""+categoryBean.getEnrollCount());
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
-                    listener.onItemClick("");
+                    listener.onItemClick(categoryBean);
                 }
 
             });
@@ -96,6 +96,6 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
 
     public interface OnItemClickListener {
 
-        void onItemClick(String str);
+        void onItemClick(CategoryBean bean);
     }
 }

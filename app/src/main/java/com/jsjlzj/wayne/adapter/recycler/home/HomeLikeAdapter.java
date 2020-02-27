@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.store.home.RecommendBean;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
@@ -38,16 +38,16 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private boolean isAllOne = false;
     private boolean isShowTime = true;
 
-    private List<RecommendBean.VideoBean> list = new ArrayList<>();
+    private List<VideoBean> list = new ArrayList<>();
     private Context context;
 
-    public HomeLikeAdapter(Context context,List<RecommendBean.VideoBean> list) {
+    public HomeLikeAdapter(Context context,List<VideoBean> list) {
         this.list.addAll(list);
         this.context = context;
     }
 
 
-    public void setData(List<RecommendBean.VideoBean> list){
+    public void setData(List<VideoBean> list){
         if(list != null && list.size() > 0){
             this.list.clear();
             this.list.addAll(list);
@@ -128,7 +128,7 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView tvAuthor;
         @BindView(R.id.tv_time)
         TextView tvTime;
-        private RecommendBean.VideoBean bean;
+        private VideoBean bean;
 
         public OneViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -147,7 +147,7 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 tvPlayTime.setVisibility(View.VISIBLE);
                 tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration() * 1000));
             }
-            GlidUtils.setRoundGrid(context,bean.getChannelAvatar(),imgAuthor,32);
+            GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgAuthor);
             tvAuthor.setText(bean.getChannelName());
 
             itemView.setOnClickListener(v -> {
@@ -175,7 +175,7 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView tvPlayNum;
         @BindView(R.id.tv_time)
         TextView tvTime;
-        private RecommendBean.VideoBean bean;
+        private VideoBean bean;
 
         public OtherViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -201,6 +201,8 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             GlidUtils.setRoundGrid(context,bean.getChannelAvatar(),imgAuthor,32);
             tvAuthor.setText(bean.getChannelName());
+            imgAuthor.setOnClickListener(clickListener);
+            tvAuthor.setOnClickListener(clickListener);
 
             itemView.setOnClickListener(v -> {
                 if(listener != null){
@@ -208,6 +210,12 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
         }
+
+        View.OnClickListener clickListener = v -> {
+            if(listener != null){
+                listener.onHeadClick(bean);
+            }
+        };
     }
 
     private OnItemClickListener listener;
@@ -218,7 +226,9 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public interface OnItemClickListener{
 
-        void onItemClick(RecommendBean.VideoBean bean);
+        void onItemClick(VideoBean bean);
+
+        void onHeadClick(VideoBean bean);
     }
 
 

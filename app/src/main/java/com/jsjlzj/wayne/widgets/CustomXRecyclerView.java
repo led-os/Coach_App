@@ -24,7 +24,7 @@ public class CustomXRecyclerView extends XRecyclerView {
     public CustomXRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+        setLoadingMoreProgressStyle(ProgressStyle.BallBeat);
         getDefaultRefreshHeaderView().setRefreshTimeVisible(true);
         getDefaultFootView().setNoMoreHint("自定义加载完毕提示");
     }

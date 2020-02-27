@@ -95,7 +95,7 @@ public class DriedTypeAdapter extends RecyclerView.Adapter<DriedTypeAdapter.View
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_train_one));
             }else if("减脂".equals(str)){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_delete_zhi));
-            }else if("vLog".equals(str)){
+            }else if("VLog".equals(str)){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_vlog));
             }else if("励志".equals(str)){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_improvement));

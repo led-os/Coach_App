@@ -26,6 +26,9 @@ public class CategoryBean {
     private String endTime;
     /**"状态: 1:未开始 2:进行中 3:已结束"*/
     private int status;
+    private String place;
+    private String price;
+    private int hotCount;
 
 
     public String getStartTime() {
@@ -90,5 +93,29 @@ public class CategoryBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public int getHotCount() {
+        return hotCount;
+    }
+
+    public void setHotCount(int hotCount) {
+        this.hotCount = hotCount;
     }
 }

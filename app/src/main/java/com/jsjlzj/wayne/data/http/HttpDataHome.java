@@ -152,4 +152,27 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
+   /**
+     * 获取所有视频类别数据
+     * @param params
+     * @param observer
+     */
+    public void getAllClassicList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestAllClassicList(body);
+        setSubscribe(observable, observer);
+    }
+
+   /**
+     * 获取对应categoryId的热门学校（机构）数据
+     * @param params
+     * @param observer
+     */
+    public void getOrganizationList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestOrganizationList(body);
+        setSubscribe(observable, observer);
+    }
+
+
 }

@@ -320,7 +320,7 @@ public class HttpConstant {
     //首页干货
     public static final String API_HOME_DRIED_FOOD = "trainer/index/ganHuo";
     //首页干货列表
-    public static final String API_HOME_DRIED_FOOD_LIST = "trainer/index/ganHuo";
+    public static final String API_HOME_DRIED_FOOD_LIST = "trainer/index/ganHuo/list";
     //首页资讯
     public static final String API_HOME_INFORMATION = "trainer/index/information";
     //首页资讯列表
@@ -329,4 +329,8 @@ public class HttpConstant {
     public static final String API_HOME_PRODUCT = "trainer/index/product";
     //首页产品列表
     public static final String API_HOME_PRODUCT_LIST = "trainer/index/product/list";
+    //首页视频分类列表
+    public static final String API_HOME_ALL_CLASSIC = "trainer/index/video/category/list";
+    //热门学校列表
+    public static final String API_HOME_ORGANIZATION_LIST = "trainer/index/taoLearn/organization/list";
 }

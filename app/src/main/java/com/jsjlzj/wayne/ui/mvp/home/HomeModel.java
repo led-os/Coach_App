@@ -5,6 +5,7 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
+import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
 
@@ -172,14 +173,14 @@ public class HomeModel extends BaseModel {
 
 
     public void getDriedFoodList(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().getDriedFoodList(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+        HttpDataHome.getInstance().getDriedFoodList(param, new Observer<MdlBaseHttpResp<VideoPageBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<VideoPageBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -197,14 +198,14 @@ public class HomeModel extends BaseModel {
 
 
     public void getInformationList(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().getInformationList(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+        HttpDataHome.getInstance().getInformationList(param, new Observer<MdlBaseHttpResp<VideoPageBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<VideoPageBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -272,6 +273,56 @@ public class HomeModel extends BaseModel {
 
     public void getProductList(int code, Map param, final OnLoadHttpDataListener listener){
         HttpDataHome.getInstance().getProductList(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+
+    public void getAllClassicList(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().getAllClassicList(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+
+    public void getOrganizationList(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().getOrganizationList(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;

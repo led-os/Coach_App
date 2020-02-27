@@ -16,7 +16,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
-import com.jsjlzj.wayne.widgets.ToastUtils;
+import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -143,7 +143,7 @@ public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> 
              pageNo++;
              loadData(false);
          } else {
-             ToastUtils.showToast(getContext(), getString(R.string.has_no_more_data));
+             ToastHelper.showToast(getContext(), getString(R.string.has_no_more_data));
          }
      }
  }

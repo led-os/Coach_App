@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.DriedTypeAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.ProductAdapter;
@@ -18,35 +19,45 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
+import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView {
+public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, ProductAdapter.OnItemClickListener, XRecyclerView.LoadingListener {
 
     @BindView(R.id.scroll_banner)
     ConvenientBanner scrollBanner;
     @BindView(R.id.rv_state)
     RecyclerView rvState;
     @BindView(R.id.rv_like)
-    RecyclerView rvLike;
+    CustomXRecyclerView rvLike;
 
-    private String[] mTitles = new String[3];
-    private List<MVPBaseFragment> fragments = new ArrayList<>();
     private DriedTypeAdapter driedTypeAdapter;
-    private ProductAdapter informationAdapter;
+    private ProductAdapter productAdapter;
     private List<BannerBean> images = new ArrayList<>();
     private List<CategoryBean> categoryList = new ArrayList<>();
-
+    private List<CategoryBean> productList = new ArrayList<>();
+    private Map<Object,Object> map = new HashMap<>();
+    private int typeId;
+    private int pageNo;
+    private int pageCount;
+    private boolean isRefresh;
     public ProductFragment() {
     }
 
@@ -78,15 +89,16 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
     private void initRecycler() {
         rvState.setHasFixedSize(true);
         rvState.setNestedScrollingEnabled(false);
-        driedTypeAdapter = new DriedTypeAdapter(getActivity(),new ArrayList<>());
+        driedTypeAdapter = new DriedTypeAdapter(getActivity(),categoryList);
         rvState.setLayoutManager(new GridLayoutManager(getActivity(),4));
         rvState.setAdapter(driedTypeAdapter);
 
-        rvLike.setHasFixedSize(true);
-        rvLike.setNestedScrollingEnabled(false);
-        informationAdapter = new ProductAdapter(getActivity(),new ArrayList<>());
+
+        rvLike.setLoadingListener(this);
+        productAdapter = new ProductAdapter(getActivity(),productList);
+        productAdapter.setListener(this);
         rvLike.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvLike.setAdapter(informationAdapter);
+        rvLike.setAdapter(productAdapter);
     }
 
     private void initBanner() {
@@ -106,7 +118,8 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
-                    // TODO: 2020/2/26
+                    BannerBean bean = images.get(position);
+                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL,"");
                 })
                 .setCanLoop(true);
     }
@@ -126,9 +139,53 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
                 categoryList = bean.getCategory();
                 if (categoryList != null && categoryList.size() > 0) {
                     driedTypeAdapter.setData(categoryList);
+                    typeId = categoryList.get(0).getId();
+                    loadData(true);
                 }
             }
         }
+    }
+
+
+    @Override
+    public void getCategoryListSuccess(MdlBaseHttpResp<CategoryPageBean> resp) {
+        rvLike.refreshComplete();
+        rvLike.loadMoreComplete();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp){
+            pageNo = resp.getData().getData().getPageNo();
+            int totalCount = resp.getData().getData().getTotalCount();
+            int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
+            if (a == 0) {
+                pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
+            } else {
+                pageCount =( totalCount / HttpConstant.PAGE_SIZE_NUMBER)+1;
+            }
+            List<CategoryBean> list = resp.getData().getData().getResult();
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    productList.clear();
+                }
+                productList.addAll(list);
+                productAdapter.setData(productList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty,0,null);
+            }
+        }
+
+    }
+
+    private void loadData(boolean isRefresh) {
+        this.isRefresh = isRefresh;
+        if(isRefresh) {
+            pageNo = 0;
+        }
+        map.clear();
+        map.put(HttpConstant.PAGE_NO, pageNo);
+        map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+        map.put("categoryId", typeId);
+        presenter.getProductList(map);
     }
 
     @Override
@@ -143,4 +200,23 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
         scrollBanner.stopTurning();
     }
 
+    @Override
+    public void onItemClick(CategoryBean bean) {
+
+    }
+
+    @Override
+    public void onRefresh() {
+        loadData(true);
+    }
+
+    @Override
+    public void onLoadMore() {
+        if (pageNo < pageCount -1) {
+            pageNo++;
+            loadData(false);
+        } else {
+            ToastHelper.showToast(getContext(), getString(R.string.has_no_more_data));
+        }
+    }
 }

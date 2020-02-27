@@ -17,7 +17,7 @@ import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.home.amoy.HotSchoolActivity;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
-import com.jsjlzj.wayne.widgets.ToastUtils;
+import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -108,8 +108,8 @@ public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresen
 
 
     @Override
-    public void onItemClick(String str) {
-        HotSchoolActivity.go2this(getActivity());
+    public void onItemClick(CategoryBean bean) {
+        HotSchoolActivity.go2this(getActivity(),bean.getId());
     }
 
 
@@ -139,8 +139,6 @@ public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresen
                 showEmpty(R.id.rel_empty,0,null);
             }
         }
-
-
     }
 
     @Override
@@ -154,7 +152,7 @@ public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresen
             pageNo++;
             loadData(false);
         } else {
-            ToastUtils.showToast(getContext(), getString(R.string.has_no_more_data));
+            ToastHelper.showToast(getContext(), getString(R.string.has_no_more_data));
         }
     }
 }
