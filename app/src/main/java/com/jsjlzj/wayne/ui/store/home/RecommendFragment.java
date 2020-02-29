@@ -195,7 +195,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     @Override
     public void onItemClick(CategoryBean data) {
         //点击视频分类条目
-        ClassicDetailActivity.go2this(getActivity(), data.getName());
+        ClassicDetailActivity.go2this(getActivity(), data.getName(),data.getUrl(),data.getId());
     }
 
 

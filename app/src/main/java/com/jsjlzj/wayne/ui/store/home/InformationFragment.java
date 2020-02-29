@@ -154,7 +154,7 @@ public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter
     }
 
     @Override
-    public void getDriedFoodListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
+    public void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
         rvLike.refreshComplete();
         rvLike.loadMoreComplete();
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp) {

@@ -32,6 +32,7 @@ public class HttpConstant {
      * 请求成功
      */
     public static final int R_HTTP_OK = 1;//1000
+    public static final int R_HTTP_ERROR_MSG = 0;//1000
 
     /**
      * 每页显示的数量
@@ -333,4 +334,41 @@ public class HttpConstant {
     public static final String API_HOME_ALL_CLASSIC = "trainer/index/video/category/list";
     //热门学校列表
     public static final String API_HOME_ORGANIZATION_LIST = "trainer/index/taoLearn/organization/list";
+    //热门视频列表
+    public static final String API_HOME_VIDEO_LIST = "trainer/index/video/list";
+    //点赞
+    public static final String API_ADD_ZAN = "like/add";
+    //取消点赞
+    public static final String API_CANCEL_ZAN = "like/cancel";
+    //收藏
+    public static final String API_ADD_COLLECT = "collect/add";
+    //取消收藏
+    public static final String API_CANCEL_COLLECT = "collect/cancel";
+    //关注
+    public static final String API_ADD_FOLLOW = "channel/add";
+    //取消关注
+    public static final String API_CANCEL_FOLLOW = "channel/cancel";
+    //学习数据
+    public static final String API_LEARN_DATA = "learn/indexData";
+    //章节列表数据
+    public static final String API_CHAPTER_LIST = "learn/onlineChapterList";
+    //章节题目列表数据
+    public static final String API_CHAPTER_SUBJECT_LIST = "learn/onlineTopicsList";
+    //保存答题记录
+    public static final String API_SAVE_ANSWER_RECORD = "learn/saveAnswerRecord";
+    //章节错误题目列表
+    public static final String API_WRONG_SUBJECT_LIST = "learn/wrongOnlineTopicsList";
+    //模拟考试-获取考试题目
+    public static final String API_EXAM_SUBJECT_LIST = "learn/getTestPaperTopics";
+    //模拟考试-提交答案
+    public static final String API_SUBJECT_EXAM_ANSWER = "learn/submitTestPaper";
+    //章节答题-完成答题
+    public static final String API_DONE_ANSWER = "learn/finishAnswer";
+    //模拟考试-错误回顾
+    public static final String API_ERROR_RESULT = "learn/getTestPaperWrongTopics";
+    //章节答题-获取当前题目id
+    public static final String API_CURRENT_SUBJECT = "learn/getCurrentTopicId";
+
+
+
 }

@@ -41,7 +41,6 @@ import butterknife.BindView;
  */
 public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActivityPresenter> implements LoginActivityView, SearchAdapter.OnSearchItemClickListener {
 
-
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
     @BindView(R.id.tv_history)
@@ -108,6 +107,10 @@ public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActi
                 myViewPager.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    public void loadData(boolean isRefresh){
+
     }
 
     private void initRecycler() {
@@ -230,14 +233,14 @@ public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActi
         super.onMultiClick(view);
         switch (view.getId()){
             case R.id.tv_right_btn:
-                if(isShowResult){
-                    isShowResult = false;
-                    mSearchBar.getSearchEditText().setText("");
-                    relHistory.setVisibility(View.VISIBLE);
-                    myViewPager.setVisibility(View.GONE);
-                }else {
+//                if(isShowResult){
+//                    isShowResult = false;
+//                    mSearchBar.getSearchEditText().setText("");
+//                    relHistory.setVisibility(View.VISIBLE);
+//                    myViewPager.setVisibility(View.GONE);
+//                }else {
                     finish();
-                }
+//                }
                 break;
         }
     }

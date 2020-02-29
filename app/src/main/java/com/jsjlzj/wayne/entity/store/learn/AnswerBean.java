@@ -1,7 +1,6 @@
-package com.jsjlzj.wayne.entity.store;
+package com.jsjlzj.wayne.entity.store.learn;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @ClassName: AnswerBean
@@ -26,10 +25,10 @@ public class AnswerBean implements Serializable {
     /**
      * 选项
      */
-    private List<SelectBean> options;
+    private String options;
 
     /**
-     * 0 单选  1 ： 多选   2 ： 判断   3 填空
+     * 1 单选  2 ： 多选   3 ： 判断   4 填空
      */
     private int type ;
 
@@ -43,6 +42,10 @@ public class AnswerBean implements Serializable {
      */
     private String analysis;
 
+    private String wrongAnswer;
+    /**
+     * 是否已经答题
+     */
     private boolean isAnswer;
 
     private boolean isTitleType;
@@ -66,7 +69,7 @@ public class AnswerBean implements Serializable {
     public AnswerBean() {
     }
 
-    public AnswerBean(long id, int topicNum, String name, List<SelectBean> options, int type, String answer, String analysis) {
+    public AnswerBean(long id, int topicNum, String name, String options, int type, String answer, String analysis) {
         this.id = id;
         this.topicNum = topicNum;
         this.name = name;
@@ -76,7 +79,7 @@ public class AnswerBean implements Serializable {
         this.analysis = analysis;
     }
 
-    public AnswerBean(long id, int topicNum, String name, List<SelectBean> options, int type, String answer, String analysis,boolean isAnswer) {
+    public AnswerBean(long id, int topicNum, String name, String options, int type, String answer, String analysis,boolean isAnswer) {
         this.id = id;
         this.topicNum = topicNum;
         this.name = name;
@@ -112,11 +115,11 @@ public class AnswerBean implements Serializable {
         this.name = name;
     }
 
-    public List<SelectBean> getOptions() {
+    public String getOptions() {
         return options;
     }
 
-    public void setOptions(List<SelectBean> options) {
+    public void setOptions(String options) {
         this.options = options;
     }
 
@@ -142,5 +145,13 @@ public class AnswerBean implements Serializable {
 
     public void setAnalysis(String analysis) {
         this.analysis = analysis;
+    }
+
+    public String getWrongAnswer() {
+        return wrongAnswer;
+    }
+
+    public void setWrongAnswer(String wrongAnswer) {
+        this.wrongAnswer = wrongAnswer;
     }
 }

@@ -1,6 +1,9 @@
 package com.jsjlzj.wayne.adapter.recycler.home;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +17,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.store.SelectBean;
+import com.jsjlzj.wayne.entity.store.learn.SelectBean;
+import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +40,14 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private List<SelectBean> list = new ArrayList<>();
     /**
-     * 0 单选  1 ： 多选   2 ： 判断   3 填空
+     * 1 单选  2 ： 多选   3 ： 判断   4 填空
      */
     private int type;
 
+    private boolean isShowCorrectAnswer = false;
     public AnswerAdapter(Context context, List<SelectBean> list) {
         this.context = context;
-        this.list.addAll(list);
+        this.list = list;
     }
 
     public void setType(int type) {
@@ -52,7 +57,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemViewType(int position) {
-        if(type == 3){
+        if(type == 4){
             return VIEW_TYPE_PACE;
         }else {
             return VIEW_TYPE_SELECT;
@@ -89,7 +94,18 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void setData(List<SelectBean> list){
         if(list != null && list.size() > 0){
             this.list.clear();
-            this.list.addAll(list);
+            this.list = list;
+            notifyDataSetChanged();
+        }
+    }
+
+    private String userAnswer;
+
+    public void setData(List<SelectBean> list,String wrongAnswer){
+        if(list != null && list.size() > 0){
+            this.list.clear();
+            this.list = list;
+            this.userAnswer = wrongAnswer;
             notifyDataSetChanged();
         }
     }
@@ -110,18 +126,62 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         void bindView(int pos) {
             bean = list.get(pos);
-            if(bean.isSelect()){
-                tvName.setTextColor(ContextCompat.getColor(context,R.color.white));
-                llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_696969_5));
+            tvName.setText(bean.getK()+" "+bean.getC());
+            if(isShowCorrectAnswer){
+                if(type == 1 || type == 3){
+                    if(!bean.getAnswer().equals(bean.getK()) && bean.isSelect()){
+                        tvName.setTextColor(ContextCompat.getColor(context,R.color.white));
+                        llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_f06966_5));
+                        imgSelect.setVisibility(View.VISIBLE);
+                        imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_error));
+                    }else if(bean.getAnswer().equals(bean.getK())){
+                        tvName.setTextColor(ContextCompat.getColor(context,R.color.white));
+                        llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_6abe83_5));
+                        imgSelect.setVisibility(View.VISIBLE);
+                        imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_correct));
+                    }else {
+                        tvName.setTextColor(ContextCompat.getColor(context,R.color.color_333333));
+                        llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_5));
+                        imgSelect.setVisibility(View.GONE);
+                    }
+                }else if(type == 2){
+                    if(!bean.getAnswer().contains(bean.getK()) && bean.isSelect()){
+                        tvName.setTextColor(ContextCompat.getColor(context,R.color.white));
+                        llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_f06966_5));
+                        imgSelect.setVisibility(View.VISIBLE);
+                        imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_error));
+                    }else if(bean.getAnswer().contains(bean.getK())){
+                        tvName.setTextColor(ContextCompat.getColor(context,R.color.white));
+                        llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_6abe83_5));
+                        imgSelect.setVisibility(View.VISIBLE);
+                        imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_correct));
+                    }else {
+                        tvName.setTextColor(ContextCompat.getColor(context,R.color.color_333333));
+                        llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_5));
+                        imgSelect.setVisibility(View.GONE);
+                    }                }
             }else {
-                tvName.setTextColor(ContextCompat.getColor(context,R.color.color_333333));
-                llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_5));
-            }
-            tvName.setText(bean.getName());
-
-            itemView.setOnClickListener(v -> {
+                if(bean.isSelect()){
+                    tvName.setTextColor(ContextCompat.getColor(context,R.color.white));
+                    llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_696969_5));
+                    imgSelect.setVisibility(View.GONE);
+                }else {
+                    tvName.setTextColor(ContextCompat.getColor(context,R.color.color_333333));
+                    llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_5));
+                    imgSelect.setVisibility(View.GONE);
+                }
+                if(!TextUtils.isEmpty(userAnswer) && userAnswer.contains(bean.getK())){
+                    tvName.setTextColor(ContextCompat.getColor(context,R.color.white));
+                    llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_696969_5));
+                    bean.setSelect(true);
+                    userAnswer = "";
+                    imgSelect.setVisibility(View.GONE);
+                }
+                itemView.setOnClickListener(v -> {
                     onItemClick(pos);
-            });
+                });
+            }
+
         }
 
         private void onItemClick(int pos) {
@@ -135,7 +195,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
 
-    class PaceViewHolder extends RecyclerView.ViewHolder{
+    class PaceViewHolder extends RecyclerView.ViewHolder implements TextWatcher {
         @BindView(R.id.et_name)
         EditText etName;
         @BindView(R.id.ll_item)
@@ -151,14 +211,54 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public void bindView(int pos){
             bean = list.get(pos);
-            etName.setText(bean.getName());
+            etName.setText(bean.getK()+""+bean.getC());
+            if(isShowCorrectAnswer){
+                etName.setEnabled(false);
+                etName.setFocusable(false);
+                if(!bean.getAnswer().equals(bean.getK()) && bean.isSelect()){
+                    etName.setTextColor(ContextCompat.getColor(context,R.color.white));
+                    llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_f06966_5));
+                    imgSelect.setVisibility(View.VISIBLE);
+                    imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_error));
+                }else if(bean.getAnswer().equals(bean.getK())){
+                    etName.setTextColor(ContextCompat.getColor(context,R.color.white));
+                    llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_6abe83_5));
+                    imgSelect.setVisibility(View.VISIBLE);
+                    imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_correct));
+                }
+            }else {
+                etName.setText(userAnswer);
+                etName.setEnabled(true);
+                etName.setFocusable(true);
+                etName.setTextColor(ContextCompat.getColor(context,R.color.color_333333));
+                llItem.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_5));
+                imgSelect.setVisibility(View.GONE);
+                etName.addTextChangedListener(this);
+            }
+
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if(s.toString().length() > 0){
+                bean.setSelect(true);
+            }else {
+                bean.setSelect(false);
+            }
+            bean.setK(s.toString());
         }
     }
 
 
     private void setSelectPos(int pos){
         //单选
-        if(type == 0 || type == 2){
+        if(type == 1 || type == 3){
             for (int i = 0; i < list.size() ; i++){
                 SelectBean bean = list.get(i);
                 if(i == pos){
@@ -183,7 +283,50 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
 
+    public String getResult(){
+        StringBuilder result = new StringBuilder();
+        if(type == 2){
+            result.append("[");
+        }
+        for (int i = 0; i< list.size() ; i++){
+            SelectBean bean = list.get(i);
+            if(bean.isSelect()){
+                if(type == 1 || type == 3){
+                    result.append(bean.getK());
+                    break;
+                }else if(type == 2){
+                    result.append("\""+bean.getK()+"\",");
+                }else if(type == 4){
+                    result.append(bean.getK());
+                }
+            }
+        }
+        if(type == 2){
+            if(result.length() > 1){
+                result.replace(result.length()-1,result.length(),"]");
+            }else {
+                ToastHelper.showToast(context,"请选择您的答案");
+                return "";
+            }
+        }else if(type == 1 || type == 3){
+            if(result.length() <= 0){
+                ToastHelper.showToast(context,"请选择您的答案");
+                return "";
+            }
+        }else if(type == 4){
+            if(result.length() <= 0){
+                ToastHelper.showToast(context,"请输入您的答案");
+                return "";
+            }
+        }
+        return result.toString();
+    }
 
+
+    public void setCorrectAnswer(boolean  isAnswer){
+        this.isShowCorrectAnswer = isAnswer;
+        notifyDataSetChanged();
+    }
 
     private OnItemClickListener listener;
 

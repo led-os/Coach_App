@@ -13,19 +13,36 @@ import java.util.Map;
  */
 public class HomePresenter extends BasePresenter<HomeView> {
 
-    public static final int REQ_CODE_RECOMMEND = 1;
-    public static final int REQ_CODE_AMOY_SCHOOL = 2;
-    public static final int REQ_CODE_MATCH = 3;
-    public static final int REQ_CODE_AMOY_LIST = 4;
-    public static final int REQ_CODE_MATCH_LIST = 5;
-    public static final int REQ_CODE_DRIED_FOOD= 6;
-    public static final int REQ_CODE_DRIED_FOOD_LIST = 7;
-    public static final int REQ_CODE_INFORMATION= 8;
-    public static final int REQ_CODE_INFORMATION_LIST = 9;
-    public static final int REQ_CODE_PRODUCT = 10;
-    public static final int REQ_CODE_PRODUCT_LIST = 11;
-    public static final int REQ_CODE_ALL_CLASSIC = 12;
-    public static final int REQ_CODE_ORIGANIZATION_LIST = 13;
+    private static final int REQ_CODE_RECOMMEND = 1;
+    private static final int REQ_CODE_AMOY_SCHOOL = 2;
+    private static final int REQ_CODE_MATCH = 3;
+    private static final int REQ_CODE_AMOY_LIST = 4;
+    private static final int REQ_CODE_MATCH_LIST = 5;
+    private static final int REQ_CODE_DRIED_FOOD= 6;
+    private static final int REQ_CODE_DRIED_FOOD_LIST = 7;
+    private static final int REQ_CODE_INFORMATION= 8;
+    private static final int REQ_CODE_INFORMATION_LIST = 9;
+    private static final int REQ_CODE_PRODUCT = 10;
+    private static final int REQ_CODE_PRODUCT_LIST = 11;
+    private static final int REQ_CODE_ALL_CLASSIC = 12;
+    private static final int REQ_CODE_ORIGANIZATION_LIST = 13;
+    private static final int REQ_CODE_VIDEO_LIST = 14;
+    private static final int REQ_CODE_CLICK_ZAN = 15;
+    private static final int REQ_CODE_CANCEL_ZAN = 16;
+    private static final int REQ_CODE_CLICK_COLLECT = 17;
+    private static final int REQ_CODE_CANCEL_COLLECT = 18;
+    private static final int REQ_CODE_CLICK_FOLLOW = 19;
+    private static final int REQ_CODE_CANCEL_FOLLOW = 20;
+    private static final int REQ_CODE_LEARN_DATA = 21;
+    private static final int REQ_CODE_CHAPTER_LIST = 22;
+    private static final int REQ_CODE_CHAPTER_SUBJECT_LIST = 23;
+    private static final int REQ_CODE_SAVE_ANSWER_RECORD = 24;
+    private static final int REQ_CODE_WRONG_SUBJECT_LIST = 25;
+    private static final int REQ_CODE_EXAM_SUBJECT_LIST = 26;
+    private static final int REQ_CODE_SUBMIT_EXAM_ANSWER = 27;
+    private static final int REQ_CODE_DONE_CHAPTER_ANSWER = 28;
+    private static final int REQ_CODE_TEST_RESULT = 29;
+    private static final int REQ_CODE_CURRENT_SUBJECT = 30;
 
     private HomeModel model;
 
@@ -136,6 +153,137 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
+    public void getVideoList(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.getVideoList(REQ_CODE_VIDEO_LIST, param, this);
+        }
+    }
+
+    public void clickZan(Map param){
+        if (model != null) {
+//            view.showLoading();
+            model.clickZan(REQ_CODE_CLICK_ZAN, param, this);
+        }
+    }
+
+    /**
+     * "module": "模块编码:干货 GAN_HUO,视频 VIDEO,社区 COMMUNITY,在线课程 ONLINE_LEARN"
+     * @param param
+     */
+    public void cancelZan(Map param){
+        if (model != null) {
+//            view.showLoading();
+            model.cancelZan(REQ_CODE_CANCEL_ZAN, param, this);
+        }
+    }
+
+    public void clickCollect(Map param){
+        if (model != null) {
+//            view.showLoading();
+            model.clickCollect(REQ_CODE_CLICK_ZAN, param, this);
+        }
+    }
+
+    /**
+     * "module": "模块编码:干货 GAN_HUO,视频 VIDEO,社区 COMMUNITY,在线课程 ONLINE_LEARN"
+     * @param param
+     */
+    public void cancelCollect(Map param){
+        if (model != null) {
+//            view.showLoading();
+            model.cancelCollect(REQ_CODE_CANCEL_ZAN, param, this);
+        }
+    }
+
+
+    public void clickFollow(Map param){
+        if (model != null) {
+//            view.showLoading();
+            model.clickFollow(REQ_CODE_CLICK_FOLLOW, param, this);
+        }
+    }
+
+
+    public void cancelFollow(Map param){
+        if (model != null) {
+            model.cancelFollow(REQ_CODE_CANCEL_FOLLOW, param, this);
+        }
+    }
+
+
+    public void getLearnData(){
+        if (model != null) {
+            view.showLoading();
+            model.getLearnData(REQ_CODE_LEARN_DATA, null, this);
+        }
+    }
+
+
+    public void getChapterList(){
+        if (model != null) {
+            view.showLoading();
+            model.getChapterList(REQ_CODE_CHAPTER_LIST, null, this);
+        }
+    }
+
+    public void getChapterSubjectList(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.getChapterSubjectList(REQ_CODE_CHAPTER_SUBJECT_LIST, param, this);
+        }
+    }
+
+    public void getSaveAnswerRecord(Map param){
+        if (model != null) {
+            model.getSaveAnswerRecord(REQ_CODE_SAVE_ANSWER_RECORD, param, this);
+        }
+    }
+
+    public void submitExamAnswer(Map param){
+        if (model != null) {
+            model.submitExamAnswer(REQ_CODE_SUBMIT_EXAM_ANSWER, param, this);
+        }
+    }
+
+    public void getWrongSubjectList(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.getWrongSubjectList(REQ_CODE_WRONG_SUBJECT_LIST, param, this);
+        }
+    }
+
+
+   public void getExamSubjectList(){
+        if (model != null) {
+            view.showLoading();
+            model.getExamSubjectList(REQ_CODE_EXAM_SUBJECT_LIST, null, this);
+        }
+    }
+
+
+   public void doneChapterAnswer(){
+        if (model != null) {
+            view.showLoading();
+            model.doneChapterAnswer(REQ_CODE_DONE_CHAPTER_ANSWER, null, this);
+        }
+    }
+
+   public void getTestResult(){
+        if (model != null) {
+            view.showLoading();
+            model.getTestResult(REQ_CODE_TEST_RESULT, null, this);
+        }
+    }
+
+   public void getCurrentSubject(){
+        if (model != null) {
+            view.showLoading();
+            model.getCurrentSubject(REQ_CODE_CURRENT_SUBJECT, null, this);
+        }
+    }
+
+
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
         view.hideLoading();
@@ -164,12 +312,55 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_PRODUCT_LIST:
                 view.getCategoryListSuccess(resp);
                 break;
+            case REQ_CODE_VIDEO_LIST:
             case REQ_CODE_INFORMATION_LIST:
             case REQ_CODE_DRIED_FOOD_LIST:
-                view.getDriedFoodListSuccess(resp);
+                view.getVideoListSuccess(resp);
                 break;
             case REQ_CODE_ALL_CLASSIC:
                 view.getAllClassicSuccess(resp);
+                break;
+            case REQ_CODE_CLICK_ZAN:
+                view.getClickZanSuccess(resp);
+                break;
+            case REQ_CODE_CANCEL_ZAN:
+                view.getCancelZanSuccess(resp);
+                break;
+            case REQ_CODE_CLICK_COLLECT:
+                view.getClickCollectSuccess(resp);
+                break;
+            case REQ_CODE_CANCEL_COLLECT:
+                view.getCancelCollectSuccess(resp);
+                break;
+            case REQ_CODE_CLICK_FOLLOW:
+                view.getClickFollowSuccess(resp);
+                break;
+            case REQ_CODE_CANCEL_FOLLOW:
+                view.getCancelFollowSuccess(resp);
+                break;
+            case REQ_CODE_LEARN_DATA:
+                view.getLearnDataSuccess(resp);
+                break;
+            case REQ_CODE_CHAPTER_LIST:
+                view.getChapterListSuccess(resp);
+                break;
+            case REQ_CODE_WRONG_SUBJECT_LIST:
+            case REQ_CODE_CHAPTER_SUBJECT_LIST:
+                view.getChapterSubjectListSuccess(resp);
+                break;
+            case REQ_CODE_SAVE_ANSWER_RECORD:
+                view.saveAnswerSuccess(resp);
+                break;
+            case REQ_CODE_TEST_RESULT:
+            case REQ_CODE_EXAM_SUBJECT_LIST:
+                view.getExamSubjectListSuccess(resp);
+                break;
+            case REQ_CODE_DONE_CHAPTER_ANSWER:
+            case REQ_CODE_SUBMIT_EXAM_ANSWER:
+                view.submitExamAnswerSuccess(resp);
+                break;
+            case REQ_CODE_CURRENT_SUBJECT:
+                view.getChapterListSuccess(resp);
                 break;
 
         }

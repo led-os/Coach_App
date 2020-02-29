@@ -38,13 +38,16 @@ public class ExtraConstant {
     public static final String EXTRA_WORK_TIME = "_WORK_TIME";
     public static final String EXTRA_TITLE = "_TITLE";
     public static final String EXTRA_SCHOOL_ID= "_school_id";
+    public static final String EXTRA_CATEGORY_ID= "_category_id";
     public static final String EXTRA_QR_CODE_TYPE = "_QR_CODE_TYPE";
     public static final String EXTRA_QR_CODE_CONTENT = "_QR_CODE_CONTENT";
     public static final String EXTRA_DATE = "_DATE";
 
     public static final String EXTRA_UID = "_UID";
+    public static final String EXTRA_URL = "_URL";
     public static final String EXTRA_NAME = "_NAME";
     public static final String EXTRA_SHOW_TYPE = "_show_type";
+    public static final String EXTRA_CHAPTER_ID = "_chapter_id";
     public static final String EXTRA_ANSWER_BEAN = "_answer_bean";
     public static final String EXTRA_ZAN_NUMBER = "_zan_number";
     public static final String EXTRA_WEB_URL = "_web_url";
@@ -52,6 +55,7 @@ public class ExtraConstant {
     public static final String EXTRA_WEB_DATA = "_web_data";
     public static final String EXTRA_WEB_TITLE = "_web_title";
     public static final String EXTRA_JS_ACTION = "_js_action";
+    public static final String EXTRA_DATA = "_data";
 
 
     public static final String EXTRA_REPORTTYPE = "REPORTTYPE";

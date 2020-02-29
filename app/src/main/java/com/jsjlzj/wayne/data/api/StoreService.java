@@ -20,6 +20,11 @@ import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.entity.store.learn.ChapterListBean;
+import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
+import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
+import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
+import com.jsjlzj.wayne.entity.store.learn.LearnBean;
 import com.jsjlzj.wayne.entity.trainer.MdlDetailT;
 import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
@@ -288,5 +293,56 @@ public interface StoreService {
 
     @POST(HttpConstant.API_HOME_ORGANIZATION_LIST)
     Observable<MdlBaseHttpResp<CategoryPageBean>> requestOrganizationList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_HOME_VIDEO_LIST)
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestVideoList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_ADD_ZAN)
+    Observable<MdlBaseHttpResp<String>> requestClickZan(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CANCEL_ZAN)
+    Observable<MdlBaseHttpResp<String>> requestCancelZan(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_ADD_COLLECT)
+    Observable<MdlBaseHttpResp<String>> requestClickCollect(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CANCEL_COLLECT)
+    Observable<MdlBaseHttpResp<String>> requestCancelCollect(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_ADD_FOLLOW)
+    Observable<MdlBaseHttpResp<String>> requestClickFollow(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CANCEL_FOLLOW)
+    Observable<MdlBaseHttpResp<String>> requestCancelFollow(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_LEARN_DATA)
+    Observable<MdlBaseHttpResp<LearnBean>> requestLearnData(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CHAPTER_LIST)
+    Observable<MdlBaseHttpResp<ChapterListBean>> requestChapterList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CHAPTER_SUBJECT_LIST)
+    Observable<MdlBaseHttpResp<ChapterSubjectListBean>> requestChapterSubjectList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SAVE_ANSWER_RECORD)
+    Observable<MdlBaseHttpResp<String>> requestSaveAnswerRecord(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_WRONG_SUBJECT_LIST)
+    Observable<MdlBaseHttpResp<ChapterSubjectListBean>> requestWrongSubjectList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_EXAM_SUBJECT_LIST)
+    Observable<MdlBaseHttpResp<ExamSubjectListBean>> requestExamSubjectList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SUBJECT_EXAM_ANSWER)
+    Observable<MdlBaseHttpResp<DoneChapterBean>> requestSubjectExamAnswer(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_DONE_ANSWER)
+    Observable<MdlBaseHttpResp<DoneChapterBean>> requestDoneChapterAnswer(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_ERROR_RESULT)
+    Observable<MdlBaseHttpResp<ExamSubjectListBean>> requestErrorResult(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CURRENT_SUBJECT)
+    Observable<MdlBaseHttpResp<ChapterListBean>> requestCurrentSubject(@Body RequestBody requestBody);
 
 }

@@ -206,7 +206,7 @@
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" /> <!-- ********************************门店选择******************************************* -->
+            android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden" /> <!-- ********************************门店选择******************************************* -->
         <!-- 聊天室 -->
         <activity
             android:name=".ui.yunxin.fragment.P2PMessageActivity2"

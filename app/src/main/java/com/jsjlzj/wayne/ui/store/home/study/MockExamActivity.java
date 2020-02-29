@@ -8,9 +8,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.utils.GlidUtils;
+import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.widgets.TimeCounter;
 
 import butterknife.BindView;
@@ -54,6 +57,11 @@ public class MockExamActivity extends MVPBaseActivity<HomeView, HomePresenter> i
     protected void initViewAndControl() {
         initTitle(getResources().getString(R.string.mock_exam));
         tvKnow.setOnClickListener(clickListener);
+        MdlUser.MdlUserBean bean = SPUtil.getUserFromSP();
+        if(bean != null){
+            GlidUtils.setCircleGrid(this,bean.getHeadImg(),imgHead);
+            tvName.setText(bean.getName());
+        }
     }
 
     @Override

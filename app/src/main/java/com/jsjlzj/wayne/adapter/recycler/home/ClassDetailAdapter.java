@@ -8,9 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
+import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +33,20 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<VideoBean> list = new ArrayList<>();
 
-    public ClassDetailAdapter(Context context, List<String> list) {
+    public ClassDetailAdapter(Context context, List<VideoBean> list) {
         this.context = context;
-        this.list = list;
+        this.list.addAll(list);
+    }
+
+
+    public void setData(List<VideoBean> list){
+        if(list != null) {
+            this.list.clear();
+            this.list.addAll(list);
+            notifyDataSetChanged();
+        }
     }
 
     @NonNull
@@ -50,7 +63,7 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
 
@@ -88,7 +101,7 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
         ImageView imgMark;
         @BindView(R.id.tv_mark_num)
         TextView tvMarkNum;
-        private String bean;
+        private VideoBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,7 +109,31 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
         }
 
         void bindView(int pos) {
-
+            bean = list.get(pos);
+            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
+            GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgHead);
+            tvName.setText(bean.getChannelName());
+            if(bean.isFollower()){
+                tvFavorite.setText("已关注");
+            }else {
+                tvFavorite.setText("关注");
+            }
+            tvPlayNum.setText(bean.getPlayCount()+"次播放量");
+            tvTitle.setText(bean.getName());
+            tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration()*1000));
+            tvZanNum.setText(""+bean.getLikeCount());
+            if(bean.isLike()){
+                imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_pressed));
+            }else {
+                imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_normal));
+            }
+            tvMessageNum.setText(""+bean.getCommentCount());
+            if(bean.isCollect()){
+                imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_pressed));
+            }else {
+                imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_normal));
+            }
+            tvMarkNum.setText(""+bean.getCollectCount());
         }
 
         @OnClick({R.id.img_head, R.id.tv_name, R.id.tv_favorite, R.id.img_play, R.id.img_zan, R.id.tv_zan_num, R.id.img_message, R.id.tv_message_num, R.id.img_mark, R.id.tv_mark_num})
@@ -110,6 +147,13 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                     listener.onClickHead(bean);
                     break;
                 case R.id.tv_favorite:
+                    if(bean.isFollower()){
+                        bean.setFollower(false);
+                        tvFavorite.setText("关注");
+                    }else {
+                        bean.setFollower(true);
+                        tvFavorite.setText("已关注");
+                    }
                     listener.onFavorite(bean);
                     break;
                 case R.id.img_play:
@@ -117,6 +161,15 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                     break;
                 case R.id.img_zan:
                 case R.id.tv_zan_num:
+                    if(bean.isLike()){
+                        bean.setLike(false);
+                        imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_normal));
+                        tvZanNum.setText(bean.getLikeCount() - 1);
+                    }else {
+                        imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_pressed));
+                        tvZanNum.setText(bean.getLikeCount() + 1);
+                        bean.setLike(true);
+                    }
                     listener.onClickZan(bean);
                     break;
                 case R.id.img_message:
@@ -125,6 +178,15 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                     break;
                 case R.id.img_mark:
                 case R.id.tv_mark_num:
+                    if(bean.isCollect()){
+                        bean.setCollect(false);
+                        tvMarkNum.setText(bean.getCollectCount() -1);
+                        imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_normal));
+                    }else {
+                        tvMarkNum.setText(bean.getCollectCount() +1);
+                        imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_pressed));
+                        bean.setCollect(true);
+                    }
                     listener.onClickMark(bean);
                     break;
                     default:break;
@@ -139,16 +201,16 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
 
     public interface OnClassicDetailListener {
 
-        void onClickHead(String str);
+        void onClickHead(VideoBean bean);
 
-        void onFavorite(String str);
+        void onFavorite(VideoBean bean);
 
-        void onPlayVideo(String str);
+        void onPlayVideo(VideoBean bean);
 
-        void onClickZan(String str);
+        void onClickZan(VideoBean bean);
 
-        void onClickMessage(String str);
+        void onClickMessage(VideoBean bean);
 
-        void onClickMark(String str);
+        void onClickMark(VideoBean bean);
     }
 }

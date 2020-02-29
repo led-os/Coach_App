@@ -14,10 +14,16 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.HomeStudyAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.store.home.BannerBean;
+import com.jsjlzj.wayne.entity.store.learn.LearnBean;
+import com.jsjlzj.wayne.entity.store.learn.LibraryBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
-import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
-import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
-import com.jsjlzj.wayne.ui.store.home.amoy.SignUpActivity;
+import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
+import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.home.study.QuestionBankActivity;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 
@@ -31,13 +37,15 @@ import butterknife.BindView;
  * @date: 2019/12/30
  * @author: 曾海强
  */
-public class TabItemStudyFragment extends MVPBaseFragment<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView, HomeStudyAdapter.OnItemClickListener {
+public class TabItemStudyFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, HomeStudyAdapter.OnItemClickListener {
 
     @BindView(R.id.scroll_banner)
     ConvenientBanner scrollBanner;
     @BindView(R.id.rv_study)
     RecyclerView rvStudy;
 
+    private List<BannerBean> images = new ArrayList<>();
+    private List<LibraryBean> libraryBeans = new ArrayList<>();
     private HomeStudyAdapter adapter;
 
     public static void go2this(Activity context) {
@@ -61,11 +69,11 @@ public class TabItemStudyFragment extends MVPBaseFragment<TalentPersonalView, Ta
 
     @Override
     protected void initViewAndControl(View view) {
-//        initBanner();
         rvStudy.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new HomeStudyAdapter(getActivity(), new ArrayList<>());
+        adapter = new HomeStudyAdapter(getActivity(), libraryBeans);
         adapter.setListener(this);
         rvStudy.setAdapter(adapter);
+        presenter.getLearnData();
     }
 
 
@@ -75,24 +83,23 @@ public class TabItemStudyFragment extends MVPBaseFragment<TalentPersonalView, Ta
 
 
     @Override
-    protected TalentPersonalPresenter createPresenter() {
-        return new TalentPersonalPresenter(this);
+    protected HomePresenter createPresenter() {
+        return new HomePresenter(this);
     }
 
     @Override
-    public void onItemClick(String str, int pos) {
+    public void onItemClick(LibraryBean bean, int pos) {
         if (pos == 1) {
-            QuestionBankActivity.go2this(getActivity());
+
         } else if(pos == 0){
 
+        }
+        if(bean.getTitle().contains("国职")){
+            QuestionBankActivity.go2this(getActivity());
         }
     }
 
     private void initBanner() {
-        List<Integer> images = new ArrayList<>();
-        images.add(R.drawable.ic_avatars);
-        images.add(R.drawable.ic_avatars);
-        images.add(R.drawable.ic_avatars);
         scrollBanner.setPages(
                 new CBViewHolderCreator() {
                     @Override
@@ -109,11 +116,31 @@ public class TabItemStudyFragment extends MVPBaseFragment<TalentPersonalView, Ta
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
-                    SignUpActivity.go2this(getActivity());
+                    BannerBean bean = images.get(position);
+                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL,"");
                 })
                 .setCanLoop(true);
     }
 
+    @Override
+    public void getLearnDataSuccess(MdlBaseHttpResp<LearnBean> resp) {
+        LearnBean.DataBean bean = resp.getData().getData();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != bean) {
+            if (null != bean.getBanner() && bean.getBanner().size() > 0) {
+                images = bean.getBanner();
+                if (images != null && images.size() > 0) {
+                    initBanner();
+                }
+            }
+
+            if (null != bean.getLibrary() && bean.getLibrary().size() > 0) {
+                libraryBeans = bean.getLibrary();
+                if (libraryBeans != null && libraryBeans.size() > 0) {
+                    adapter.setData(libraryBeans);
+                }
+            }
+        }
+    }
 
     @Override
     public void onResume() {

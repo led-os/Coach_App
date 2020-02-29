@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.mvp.base.mvp;
 
 
 import android.app.Activity;
+
 import androidx.fragment.app.Fragment;
 
 import com.jsjlzj.wayne.constant.HttpConstant;
@@ -79,6 +80,9 @@ public abstract class BasePresenter<MVP_V extends BaseView> implements OnLoadHtt
                 } else if (view instanceof Activity) {
                     LogAndToastUtil.toast((Activity)view,resp.getMsg());
                 }
+//                if(resp.getStatus() == HttpConstant.R_HTTP_ERROR_MSG){
+//                    ToastHelper.showToast();
+//                }
                 responseSuccess(code, resp);
                 LogAndToastUtil.log(view.getClass().getSimpleName() + "httppostf", resp + "");
             }

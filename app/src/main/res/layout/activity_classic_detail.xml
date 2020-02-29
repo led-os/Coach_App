@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ui.store.home.recommend.ClassicDetailActivity">
 
     <include layout="@layout/title_bar_layout"/>
@@ -20,16 +21,15 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <com.bigkoo.convenientbanner.ConvenientBanner
+            <ImageView
                 android:id="@+id/scroll_banner"
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_marginStart="@dimen/padding_14"
                 android:layout_marginEnd="@dimen/padding_14"
                 android:layout_marginTop="@dimen/padding_19"
                 android:layout_height="@dimen/padding_154"
-                android:layout_marginBottom="@dimen/padding_2"
-                app:canLoop="true"
-                app:autoTurningTime="4000"/>
+                android:layout_marginBottom="@dimen/padding_2" />
 
 
             <LinearLayout
@@ -65,11 +65,16 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_classic_detail"
+            <RelativeLayout
+                android:id="@+id/rel_empty"
                 android:layout_marginTop="@dimen/padding_10"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+                <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+                    android:id="@+id/rv_classic_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </RelativeLayout>
 
         </LinearLayout>
 

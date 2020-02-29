@@ -15,7 +15,6 @@ import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
-import com.jsjlzj.wayne.ui.store.home.recommend.ClassicDetailActivity;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 import com.netease.nim.uikit.common.ToastHelper;
 
@@ -87,7 +86,7 @@ public class HotSchoolActivity extends MVPBaseActivity<HomeView, HomePresenter> 
 
     @Override
     public void onItemClick(CategoryBean bean) {
-        ClassicDetailActivity.go2this(this,bean.getName());
+        // TODO: 2020/2/27 跳转学校详情
     }
 
 

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.store.AnswerBean;
+import com.jsjlzj.wayne.entity.store.learn.AnswerBean;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
 
 import java.util.ArrayList;
@@ -71,13 +71,13 @@ public class AnswerCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private String getTitleByType(int type){
         String titleStr = "";
-        if(type == 0){
+        if(type == 1){
             titleStr = "一、单选题";
-        }else if(type == 1) {
-            titleStr = "二、多选题";
         }else if(type == 2) {
-            titleStr = "三、判断题";
+            titleStr = "二、多选题";
         }else if(type == 3) {
+            titleStr = "三、判断题";
+        }else if(type == 4) {
             titleStr = "四、填空题";
         }
         return titleStr;
@@ -137,9 +137,7 @@ public class AnswerCardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         void bindView(int pos) {
             AnswerBean bean = list.get(pos);
             tvTitle.setText(bean.getName());
-
         }
-
 
     }
 

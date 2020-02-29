@@ -28,11 +28,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
 
         <RelativeLayout
             android:id="@+id/rel_history"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
@@ -114,7 +116,7 @@
 
         <com.jsjlzj.wayne.widgets.MyViewPager
             android:id="@+id/view_pager"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

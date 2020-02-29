@@ -6,6 +6,11 @@ import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.entity.store.learn.ChapterListBean;
+import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
+import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
+import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
+import com.jsjlzj.wayne.entity.store.learn.LearnBean;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 
 /**
@@ -34,8 +39,44 @@ public interface HomeView extends BaseView {
 
     default void getCategoryListSuccess(MdlBaseHttpResp<CategoryPageBean> resp){}
 
-    default void getDriedFoodListSuccess(MdlBaseHttpResp<VideoPageBean> resp){}
+    default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp){}
 
 
     default void getAllClassicSuccess(MdlBaseHttpResp<CategoryListBean> resp){}
+
+
+    default void getClickZanSuccess(MdlBaseHttpResp<String> resp){}
+
+
+    default void getCancelZanSuccess(MdlBaseHttpResp<String> resp){}
+
+
+    default void getClickCollectSuccess(MdlBaseHttpResp<String> resp){}
+
+
+    default void getCancelCollectSuccess(MdlBaseHttpResp<String> resp){}
+
+    default void getClickFollowSuccess(MdlBaseHttpResp<String> resp){}
+
+
+    default void getCancelFollowSuccess(MdlBaseHttpResp<String> resp){}
+
+
+    default void getLearnDataSuccess(MdlBaseHttpResp<LearnBean> resp){}
+
+
+    default void getChapterListSuccess(MdlBaseHttpResp<ChapterListBean> resp){}
+
+
+    default void getChapterSubjectListSuccess(MdlBaseHttpResp<ChapterSubjectListBean> resp){}
+
+
+    default void getExamSubjectListSuccess(MdlBaseHttpResp<ExamSubjectListBean> resp){}
+
+   default void saveAnswerSuccess(MdlBaseHttpResp<String> resp){}
+
+   default void submitExamAnswerSuccess(MdlBaseHttpResp<DoneChapterBean> resp){}
+
+
+
 }

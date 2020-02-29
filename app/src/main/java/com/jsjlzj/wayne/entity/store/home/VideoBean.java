@@ -98,13 +98,6 @@ public class VideoBean {
         this.collectCount = collectCount;
     }
 
-    public boolean isIsCollect() {
-        return isCollect;
-    }
-
-    public void setIsCollect(boolean isCollect) {
-        this.isCollect = isCollect;
-    }
 
     public int getLikeCount() {
         return likeCount;
@@ -114,13 +107,6 @@ public class VideoBean {
         this.likeCount = likeCount;
     }
 
-    public boolean isIsLike() {
-        return isLike;
-    }
-
-    public void setIsLike(boolean isLike) {
-        this.isLike = isLike;
-    }
 
     public String getCreateTime() {
         return createTime;

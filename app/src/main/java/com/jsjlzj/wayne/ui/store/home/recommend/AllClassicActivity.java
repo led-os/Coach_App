@@ -66,7 +66,7 @@ public class AllClassicActivity extends MVPBaseActivity<HomeView, HomePresenter>
 
     @Override
     public void onItemClick(CategoryBean data) {
-        ClassicDetailActivity.go2this(this, data.getName());
+        ClassicDetailActivity.go2this(this, data.getName(),data.getUrl(),data.getId());
     }
 
 

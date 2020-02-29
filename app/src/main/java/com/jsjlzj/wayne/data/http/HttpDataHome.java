@@ -173,6 +173,196 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestOrganizationList(body);
         setSubscribe(observable, observer);
     }
+   /**
+     * 获取视频列表数据
+     * @param params
+     * @param observer
+     */
+    public void getVideoList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestVideoList(body);
+        setSubscribe(observable, observer);
+    }
+   /**
+     * 点赞
+     * @param params
+     * @param observer
+     */
+    public void clickZan(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestClickZan(body);
+        setSubscribe(observable, observer);
+    }   /**
+     * 取消点赞
+     * @param params
+     * @param observer
+     */
+    public void cancelZan(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCancelZan(body);
+        setSubscribe(observable, observer);
+    }
+
+
+    /**
+     * 收藏
+     * @param params
+     * @param observer
+     */
+    public void clickCollect(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestClickCollect(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 取消收藏
+     * @param params
+     * @param observer
+     */
+    public void cancelCollect(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCancelCollect(body);
+        setSubscribe(observable, observer);
+    }
+
+
+    /**
+     * 收藏
+     * @param params
+     * @param observer
+     */
+    public void clickFollow(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestClickFollow(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 取消收藏
+     * @param params
+     * @param observer
+     */
+    public void cancelFollow(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCancelFollow(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 获取学习数据
+     * @param params
+     * @param observer
+     */
+    public void getLearnData(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestLearnData(body);
+        setSubscribe(observable, observer);
+    }
+
+  /**
+     * 获取章节列表数据
+     * @param params
+     * @param observer
+     */
+    public void getChapterList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestChapterList(body);
+        setSubscribe(observable, observer);
+    }
+
+  /**
+     * 获取章节题目列表数据
+     * @param params
+     * @param observer
+     */
+    public void getChapterSubjectList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestChapterSubjectList(body);
+        setSubscribe(observable, observer);
+    }
+
+  /**
+     * 保存答题记录
+     * @param params
+     * @param observer
+     */
+    public void getSaveAnswerRecord(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSaveAnswerRecord(body);
+        setSubscribe(observable, observer);
+    }
+
+  /**
+     * 章节错误题目列表
+     * @param params
+     * @param observer
+     */
+    public void getWrongSubjectList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestWrongSubjectList(body);
+        setSubscribe(observable, observer);
+    }
+
+
+    /**
+     * 章节错误题目列表
+     * @param params
+     * @param observer
+     */
+    public void getExamSubjectList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestExamSubjectList(body);
+        setSubscribe(observable, observer);
+    }
+
+
+    /**
+     * 模拟考试-提交答案
+     * @param params
+     * @param observer
+     */
+    public void submitExamAnswer(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSubjectExamAnswer(body);
+        setSubscribe(observable, observer);
+    }
+
+
+    /**
+     * 模拟考试-提交答案
+     * @param params
+     * @param observer
+     */
+    public void doneChapterAnswer(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestDoneChapterAnswer(body);
+        setSubscribe(observable, observer);
+    }
+
+
+    /**
+     * 模拟考试-错题集
+     * @param params
+     * @param observer
+     */
+    public void getTestResult(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestErrorResult(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 模拟考试-错题集
+     * @param params
+     * @param observer
+     */
+    public void getCurrentSubject(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCurrentSubject(body);
+        setSubscribe(observable, observer);
+    }
+
 
 
 }
