@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.store.AchievementBean;
+import com.jsjlzj.wayne.entity.store.learn.AnswerRecordBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +30,16 @@ public class AchievementRecordAdapter extends RecyclerView.Adapter<AchievementRe
 
 
     private Context context;
-    private List<AchievementBean> list = new ArrayList<>();
+    private List<AnswerRecordBean.DataBean> list = new ArrayList<>();
 
-    public AchievementRecordAdapter(Context context, List<AchievementBean> list) {
+    public AchievementRecordAdapter(Context context, List<AnswerRecordBean.DataBean> list) {
         this.context = context;
         this.list = list;
+    }
+
+    public void setData(List<AnswerRecordBean.DataBean> list){
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -65,7 +70,7 @@ public class AchievementRecordAdapter extends RecyclerView.Adapter<AchievementRe
         @BindView(R.id.rel_achievement)
         RelativeLayout relAchievement;
 
-        private AchievementBean bean;
+        private AnswerRecordBean.DataBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,16 +79,16 @@ public class AchievementRecordAdapter extends RecyclerView.Adapter<AchievementRe
 
         void bindView(int pos) {
             bean = list.get(pos);
-            tvFraction.setText(""+bean.getFraction());
-            tvTime.setText(bean.getTime());
-            tvNumber.setText(bean.getNumber());
-            if(bean.getFraction() > 90){
+            tvFraction.setText(""+bean.getScore()+"分");
+            tvTime.setText(bean.getStartTime());
+            tvNumber.setText("第"+bean.getTimes()+"次");
+            if(bean.getScore() > 90){
                 relAchievement.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_c67879_5));
-            }else if(bean.getFraction() > 80){
+            }else if(bean.getScore() > 80){
                 relAchievement.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_7776cf_5));
-            }else if(bean.getFraction() > 70){
+            }else if(bean.getScore() > 70){
                 relAchievement.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_9e9dde_5));
-            }else if(bean.getFraction() > 60){
+            }else if(bean.getScore() > 60){
                 relAchievement.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_5e9f95_5));
             }else {
                 relAchievement.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_e7c481_5));
@@ -105,6 +110,6 @@ public class AchievementRecordAdapter extends RecyclerView.Adapter<AchievementRe
 
     public interface OnItemClickListener {
 
-        void onItemClick(AchievementBean str);
+        void onItemClick(AnswerRecordBean.DataBean str);
     }
 }

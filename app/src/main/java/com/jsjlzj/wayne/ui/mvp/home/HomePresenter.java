@@ -43,6 +43,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_DONE_CHAPTER_ANSWER = 28;
     private static final int REQ_CODE_TEST_RESULT = 29;
     private static final int REQ_CODE_CURRENT_SUBJECT = 30;
+    private static final int REQ_CODE_ANSWER_RECORD = 31;
 
     private HomeModel model;
 
@@ -283,6 +284,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+   public void getAnswerRecord(){
+        if (model != null) {
+            view.showLoading();
+            model.getAnswerRecord(REQ_CODE_ANSWER_RECORD, null, this);
+        }
+    }
+
 
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
@@ -361,6 +369,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_CURRENT_SUBJECT:
                 view.getChapterListSuccess(resp);
+                break;
+            case REQ_CODE_ANSWER_RECORD:
+                view.getAnswerRecordListSuccess(resp);
                 break;
 
         }

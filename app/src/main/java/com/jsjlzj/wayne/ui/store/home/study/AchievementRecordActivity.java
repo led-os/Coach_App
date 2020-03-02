@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.AchievementRecordAdapter;
-import com.jsjlzj.wayne.entity.store.AchievementBean;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.store.learn.AnswerRecordBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -32,7 +34,7 @@ public class AchievementRecordActivity extends MVPBaseActivity<HomeView, HomePre
 
     private AchievementRecordAdapter adapter;
 
-    private List<AchievementBean> list = new ArrayList<>();
+    private List<AnswerRecordBean.DataBean> list = new ArrayList<>();
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, AchievementRecordActivity.class);
@@ -47,15 +49,11 @@ public class AchievementRecordActivity extends MVPBaseActivity<HomeView, HomePre
     @Override
     protected void initViewAndControl() {
         initTitle(getResources().getString(R.string.achievement_record));
-        list.add(new AchievementBean(89,"第一次","2019年11月17日 14:27"));
-        list.add(new AchievementBean(96,"第二次","2019年11月17日 14:27"));
-        list.add(new AchievementBean(56,"第三次","2019年11月17日 14:27"));
-        list.add(new AchievementBean(62,"第四次","2019年11月17日 14:27"));
-        list.add(new AchievementBean(78,"第五次","2019年11月17日 14:27"));
         rvChapter.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AchievementRecordAdapter(this,list);
         adapter.setListener(this);
         rvChapter.setAdapter(adapter);
+        presenter.getAnswerRecord();
     }
 
 
@@ -65,7 +63,19 @@ public class AchievementRecordActivity extends MVPBaseActivity<HomeView, HomePre
     }
 
     @Override
-    public void onItemClick(AchievementBean str) {
+    public void onItemClick(AnswerRecordBean.DataBean str) {
 
     }
-}
+
+
+     @Override
+     public void getAnswerRecordListSuccess(MdlBaseHttpResp<AnswerRecordBean> resp) {
+         if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null){
+             List<AnswerRecordBean.DataBean> list = resp.getData().getData();
+             if(list != null && list.size() > 0){
+                 this.list = list;
+                 adapter.setData(this.list);
+             }
+         }
+     }
+ }

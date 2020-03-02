@@ -6,6 +6,7 @@ import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.entity.store.learn.AnswerRecordBean;
 import com.jsjlzj.wayne.entity.store.learn.ChapterListBean;
 import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
@@ -76,6 +77,7 @@ public interface HomeView extends BaseView {
    default void saveAnswerSuccess(MdlBaseHttpResp<String> resp){}
 
    default void submitExamAnswerSuccess(MdlBaseHttpResp<DoneChapterBean> resp){}
+   default void getAnswerRecordListSuccess(MdlBaseHttpResp<AnswerRecordBean> resp){}
 
 
 

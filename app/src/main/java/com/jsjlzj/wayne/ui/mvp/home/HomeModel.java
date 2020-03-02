@@ -6,6 +6,7 @@ import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.entity.store.learn.AnswerRecordBean;
 import com.jsjlzj.wayne.entity.store.learn.ChapterListBean;
 import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
@@ -752,6 +753,31 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<ChapterListBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+
+    public void getAnswerRecord(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().getAnswerRecord(param, new Observer<MdlBaseHttpResp<AnswerRecordBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<AnswerRecordBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

@@ -377,11 +377,12 @@ public class AnswerActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                 llRight.setVisibility(View.GONE);
                 isShowMenu = false;
                 if(isCommitAnswer){
-                    String answer = adapter.getResult();
-                    if(TextUtils.isEmpty(answer)){
-                        return;
-                    }
+
                     if(showType == 0 || showType == 2){
+                        String answer = adapter.getResult();
+                        if(TextUtils.isEmpty(answer)){
+                            return;
+                        }
                         isCommitAnswer = true;
                         map.clear();
                         if(showType == 0){
@@ -404,6 +405,10 @@ public class AnswerActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                         getCurrentAnswer(currPos,true);
                         refreshActivity();
                     }else if(showType == 1){
+                        String answer = adapter.getResult();
+                        if(TextUtils.isEmpty(answer)){
+                            return;
+                        }
                         isCommitAnswer = false;
                         adapter.setCorrectAnswer(true);
                         relAnalysis.setVisibility(View.VISIBLE);
@@ -445,6 +450,7 @@ public class AnswerActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                 isShowMenu = false;
                 break;
             case R.id.tv_previous:
+                submitAnswerList.remove(submitAnswerList.size()-1);
                 getCurrentAnswer(currPos,false);
                 adapter.setCorrectAnswer(false);
                 refreshActivity();

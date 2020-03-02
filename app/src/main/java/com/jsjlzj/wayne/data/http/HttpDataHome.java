@@ -363,6 +363,17 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+   /**
+     * 模拟考试-成绩记录
+     * @param params
+     * @param observer
+     */
+    public void getAnswerRecord(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestAnswerRecord(body);
+        setSubscribe(observable, observer);
+    }
+
 
 
 }

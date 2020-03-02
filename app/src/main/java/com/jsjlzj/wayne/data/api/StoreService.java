@@ -20,6 +20,7 @@ import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.entity.store.learn.AnswerRecordBean;
 import com.jsjlzj.wayne.entity.store.learn.ChapterListBean;
 import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
@@ -344,5 +345,8 @@ public interface StoreService {
 
     @POST(HttpConstant.API_CURRENT_SUBJECT)
     Observable<MdlBaseHttpResp<ChapterListBean>> requestCurrentSubject(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_ANSWER_RECORD)
+    Observable<MdlBaseHttpResp<AnswerRecordBean>> requestAnswerRecord(@Body RequestBody requestBody);
 
 }

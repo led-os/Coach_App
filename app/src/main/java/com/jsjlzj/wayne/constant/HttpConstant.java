@@ -368,6 +368,8 @@ public class HttpConstant {
     public static final String API_ERROR_RESULT = "learn/getTestPaperWrongTopics";
     //章节答题-获取当前题目id
     public static final String API_CURRENT_SUBJECT = "learn/getCurrentTopicId";
+    //模拟考试-成绩列表
+    public static final String API_ANSWER_RECORD = "learn/getAchievementList";
 
 
 
