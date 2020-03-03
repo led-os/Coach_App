@@ -26,6 +26,7 @@ import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
 import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.LearnBean;
+import com.jsjlzj.wayne.entity.store.search.SearchBean;
 import com.jsjlzj.wayne.entity.trainer.MdlDetailT;
 import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
@@ -348,5 +349,14 @@ public interface StoreService {
 
     @POST(HttpConstant.API_ANSWER_RECORD)
     Observable<MdlBaseHttpResp<AnswerRecordBean>> requestAnswerRecord(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SEARCH_ALL)
+    Observable<MdlBaseHttpResp<SearchBean>> requestSearchData(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_DYNAMIC_LIST)
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestDynamicList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_DYNAMIC_LIST)
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestMineDynamicList(@Body RequestBody requestBody);
 
 }

@@ -12,6 +12,7 @@ import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
 import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.LearnBean;
+import com.jsjlzj.wayne.entity.store.search.SearchBean;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 
 /**
@@ -77,7 +78,10 @@ public interface HomeView extends BaseView {
    default void saveAnswerSuccess(MdlBaseHttpResp<String> resp){}
 
    default void submitExamAnswerSuccess(MdlBaseHttpResp<DoneChapterBean> resp){}
+
    default void getAnswerRecordListSuccess(MdlBaseHttpResp<AnswerRecordBean> resp){}
+
+   default void getSearchDataSuccess(MdlBaseHttpResp<SearchBean> resp){}
 
 
 

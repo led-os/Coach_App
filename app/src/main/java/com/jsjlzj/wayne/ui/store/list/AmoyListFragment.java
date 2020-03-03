@@ -10,18 +10,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.alibaba.fastjson.JSONArray;
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.adapter.recycler.home.AuthenticationAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.HomeLikeAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.MatchAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.ProductAdapter;
+import com.jsjlzj.wayne.adapter.recycler.search.SeaerchTaoLearnAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SearchAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SearchUserAdapter;
+import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
+import com.jsjlzj.wayne.entity.store.search.ChannelListBean;
+import com.jsjlzj.wayne.entity.store.search.TaoLearnListBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,7 +40,7 @@ import butterknife.OnClick;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView {
+public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, SearchUserAdapter.OnSearchUserClickListener {
 
 
     @BindView(R.id.rv_amoy_list)
@@ -50,20 +58,75 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
      * 0 全部   1 淘学  2 ： 赛事  3 ：视频   4 ：文章   5 ：产品  6 ：用户  7 ：动态
      */
     private int type;
+    private JSONArray array;
 
 
     public AmoyListFragment() {
     }
 
-    public AmoyListFragment(int type) {
+    public AmoyListFragment(int type, JSONArray array) {
         this.type = type;
+        this.array = array;
     }
 
-    public static AmoyListFragment getInstance(int type) {
-        AmoyListFragment fragment = new AmoyListFragment(type);
+    public static AmoyListFragment getInstance(int type, JSONArray array) {
+        AmoyListFragment fragment = new AmoyListFragment(type, array);
         return fragment;
     }
 
+
+    public void setArray(JSONArray array) {
+        this.array = array;
+        if(array == null ){
+            showEmpty(R.id.rel_empty,0,null);
+            return;
+        }
+        hideEmpty();
+        switch (type) {
+            case 0:
+//                List<TaoLearnListBean> taoLearnList = array.toJavaList(TaoLearnListBean.class);
+//                ((SeaerchTaoLearnAdapter)adapter).setData(taoLearnList);
+                break;
+            case 1:
+                List<TaoLearnListBean> taoLearnList = array.toJavaList(TaoLearnListBean.class);
+                ((SeaerchTaoLearnAdapter) adapter).setData(taoLearnList);
+                if(taoLearnList == null || taoLearnList.size() <= 0){
+                    showEmpty(R.id.rel_empty,0,null);
+                }
+                break;
+            case 2:
+                List<CategoryBean> matchList = array.toJavaList(CategoryBean.class);
+                ((MatchAdapter)adapter).setData(matchList);
+                if(matchList == null || matchList.size() <= 0){
+                    showEmpty(R.id.rel_empty,0,null);
+                }
+                break;
+            case 4:
+            case 3:
+                List<VideoBean> videoList = array.toJavaList(VideoBean.class);
+                ((HomeLikeAdapter)adapter).setData(videoList);
+                if(videoList == null || videoList.size() <= 0){
+                    showEmpty(R.id.rel_empty,0,null);
+                }
+                break;
+            case 5:
+                List<CategoryBean> productList = array.toJavaList(CategoryBean.class);
+                ((ProductAdapter)adapter).setData(productList);
+                if(productList == null || productList.size() <= 0){
+                    showEmpty(R.id.rel_empty,0,null);
+                }
+                break;
+            case 6:
+                List<ChannelListBean> userList = array.toJavaList(ChannelListBean.class);
+                ((SearchUserAdapter)adapter).setData(userList);
+                if(userList == null || userList.size() <= 0){
+                    showEmpty(R.id.rel_empty,0,null);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     protected int getLayoutResId() {
@@ -76,7 +139,7 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
             case 0:
             case 1:
                 llVideo.setVisibility(View.GONE);
-                adapter = new AuthenticationAdapter(getActivity(), new ArrayList<>());
+                adapter = new SeaerchTaoLearnAdapter(getActivity(),  new ArrayList<>());
                 rvAmoyList.setLayoutManager(new LinearLayoutManager(getActivity()));
                 rvAmoyList.setAdapter(adapter);
                 break;
@@ -108,6 +171,7 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
             case 6:
                 llVideo.setVisibility(View.GONE);
                 adapter = new SearchUserAdapter(getActivity(), new ArrayList<>());
+                ((SearchUserAdapter)adapter).setListener(this);
                 rvAmoyList.setLayoutManager(new LinearLayoutManager(getActivity()));
                 rvAmoyList.setAdapter(adapter);
                 break;
@@ -120,7 +184,7 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
             default:
                 break;
         }
-
+        setArray(array);
     }
 
     @Override
@@ -138,13 +202,30 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_hot:
-                tvHot.setTextColor(ContextCompat.getColor(getActivity(),R.color.color_4F9BFA));
-                tvNews.setTextColor(ContextCompat.getColor(getActivity(),R.color.color_333333));
+                tvHot.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_4F9BFA));
+                tvNews.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_333333));
                 break;
             case R.id.tv_news:
-                tvHot.setTextColor(ContextCompat.getColor(getActivity(),R.color.color_333333));
-                tvNews.setTextColor(ContextCompat.getColor(getActivity(),R.color.color_4F9BFA));
+                tvHot.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_333333));
+                tvNews.setTextColor(ContextCompat.getColor(getActivity(), R.color.color_4F9BFA));
                 break;
+        }
+    }
+
+    @Override
+    public void onItemClick(ChannelListBean string) {
+
+    }
+
+    @Override
+    public void onFavoriteClick(ChannelListBean bean) {
+//        currBean = bean;
+        Map<Object, Object> map = new HashMap<>();
+        map.put("id", bean.getId());
+        if (!bean.isFollower()) {
+            presenter.cancelFollow(map);
+        } else {
+            presenter.clickFollow(map);
         }
     }
 }

@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/tv_fen"
-        android:text="粉丝·232万"
+        android:text="粉丝1·232万"
         android:layout_below="@+id/tv_name"
         android:layout_alignStart="@+id/tv_name"
         android:textSize="@dimen/text_size_12"

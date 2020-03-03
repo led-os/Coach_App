@@ -64,10 +64,10 @@ public class MineFavoriteActivity extends MVPBaseActivity<TalentTabFragmentView,
 
     private void initViewPager() {
         mTitles = getResources().getStringArray(R.array.favorite_title_list);
-        dynamicFragment = AmoyListFragment.getInstance(7);
-        videoFragment = AmoyListFragment.getInstance(3);
-        contentFragment = AmoyListFragment.getInstance(4);
-        productorFragment = AmoyListFragment.getInstance(5);
+        dynamicFragment = AmoyListFragment.getInstance(7,null);
+        videoFragment = AmoyListFragment.getInstance(3,null);
+        contentFragment = AmoyListFragment.getInstance(4,null);
+        productorFragment = AmoyListFragment.getInstance(5,null);
         fragments.add(dynamicFragment);
         fragments.add(videoFragment);
         fragments.add(contentFragment);

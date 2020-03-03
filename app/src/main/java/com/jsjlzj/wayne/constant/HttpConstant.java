@@ -341,7 +341,7 @@ public class HttpConstant {
     //取消点赞
     public static final String API_CANCEL_ZAN = "like/cancel";
     //收藏
-    public static final String API_ADD_COLLECT = "collect/add";
+    public static final String API_ADD_COLLECT = "collect/follow";
     //取消收藏
     public static final String API_CANCEL_COLLECT = "collect/cancel";
     //关注
@@ -370,6 +370,12 @@ public class HttpConstant {
     public static final String API_CURRENT_SUBJECT = "learn/getCurrentTopicId";
     //模拟考试-成绩列表
     public static final String API_ANSWER_RECORD = "learn/getAchievementList";
+    //搜索全部
+    public static final String API_SEARCH_ALL = "trainer/index/allSearch";
+    //社区动态列表
+    public static final String API_DYNAMIC_LIST = "community/list";
+    //我的动态列表
+    public static final String API_MINE_DYNAMIC_LIST = "community/myList";
 
 
 

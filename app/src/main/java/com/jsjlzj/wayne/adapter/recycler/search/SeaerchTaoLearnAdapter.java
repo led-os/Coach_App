@@ -1,4 +1,4 @@
-package com.jsjlzj.wayne.adapter.recycler.home;
+package com.jsjlzj.wayne.adapter.recycler.search;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.entity.store.search.TaoLearnListBean;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -22,30 +22,25 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @ClassName: AuthenticationAdapter
+ * @ClassName: SeaerchTaoLearnAdapter
  * @Description: java类作用描述
  * @Author: 曾海强
- * @CreateDate: 2020/2/4 22:16
+ * @CreateDate: 2020/3/2 11:16
  */
-public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAdapter.ViewHolder> {
+public class SeaerchTaoLearnAdapter extends RecyclerView.Adapter<SeaerchTaoLearnAdapter.ViewHolder> {
 
 
     private Context context;
-    private List<CategoryBean> list = new ArrayList<>();
+    private List<TaoLearnListBean> list = new ArrayList<>();
     private boolean isSearch;
 
-    public AuthenticationAdapter(Context context, List<CategoryBean> list) {
+    public SeaerchTaoLearnAdapter(Context context, List<TaoLearnListBean> list) {
         this.context = context;
         this.list.addAll(list);
     }
 
-    public AuthenticationAdapter(Context context, List<CategoryBean> list,boolean isSearch) {
-        this.context = context;
-        this.isSearch = isSearch;
-        this.list.addAll(list);
-    }
 
-    public void setData(List<CategoryBean> list) {
+    public void setData(List<TaoLearnListBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -53,13 +48,13 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SeaerchTaoLearnAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_authentication, parent, false);
-        return new ViewHolder(view);
+        return new SeaerchTaoLearnAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SeaerchTaoLearnAdapter.ViewHolder holder, int position) {
         holder.bindView(position);
     }
 
@@ -84,7 +79,7 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
         @BindView(R.id.img_hot_right)
         ImageView imgHotRight;
 
-        CategoryBean categoryBean;
+        TaoLearnListBean categoryBean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,19 +88,14 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
 
         void bindView(int pos) {
             categoryBean = list.get(pos);
-            GlidUtils.setRoundGrid(context,categoryBean.getCoverImg(),imgOne,2);
+            GlidUtils.setRoundGrid(context,categoryBean.getLessonImg(),imgOne,2);
             tvTitle.setText(categoryBean.getName());
-            tvAddNumber.setText(""+categoryBean.getEnrollCount());
             tvAddNumberLeft.setText(""+categoryBean.getEnrollCount());
-            if(isSearch){
-                llLeftWhite.setVisibility(View.VISIBLE);
-                llRightRed.setVisibility(View.GONE);
-                imgHotRight.setVisibility(View.VISIBLE);
-            }else {
-                llLeftWhite.setVisibility(View.GONE);
-                llRightRed.setVisibility(View.VISIBLE);
-                imgHotRight.setVisibility(View.GONE);
-            }
+
+            llLeftWhite.setVisibility(View.VISIBLE);
+            llRightRed.setVisibility(View.GONE);
+            imgHotRight.setVisibility(View.VISIBLE);
+
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(categoryBean);
@@ -123,6 +113,6 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
 
     public interface OnItemClickListener {
 
-        void onItemClick(CategoryBean bean);
+        void onItemClick(TaoLearnListBean bean);
     }
 }

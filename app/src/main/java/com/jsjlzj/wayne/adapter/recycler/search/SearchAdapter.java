@@ -9,10 +9,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +33,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<VideoBean> list = new ArrayList<>();
 
-    public SearchAdapter(Context context, List<String> list) {
+    public SearchAdapter(Context context, List<VideoBean> list) {
         this.context = context;
         this.list = list;
+    }
+
+
+    public void setData(List<VideoBean> list){
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -51,7 +60,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,13 +73,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         ImageView imgHead;
         @BindView(R.id.tv_name)
         TextView tvName;
-        @BindView(R.id.img_favorite)
-        ImageView imgFavorite;
-        @BindView(R.id.tv_favorite)
-        TextView tvFavorite;
+        @BindView(R.id.img_collect)
+        ImageView imgCollect;
+        @BindView(R.id.tv_collect)
+        TextView tvCollect;
         @BindView(R.id.rel_item)
         RelativeLayout relItem;
-        private String bean;
+        private VideoBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,12 +87,22 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         }
 
         void bindView(int pos) {
-//            bean = list.get(pos);
+            bean = list.get(pos);
+            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgDynamic,2);
+            GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgHead);
+            tvTitle.setText(bean.getName());
+            tvName.setText(bean.getChannelName());
+            tvCollect.setText(""+bean.getCollectCount());
+            if(bean.isCollect()){
+                imgCollect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.collected));
+            }else {
+                imgCollect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.uncollected));
+            }
             relItem.setOnClickListener(clickListener);
             imgHead.setOnClickListener(clickListener);
             tvName.setOnClickListener(clickListener);
-            imgFavorite.setOnClickListener(clickListener);
-            tvFavorite.setOnClickListener(clickListener);
+            imgCollect.setOnClickListener(clickListener);
+            tvCollect.setOnClickListener(clickListener);
         }
 
 
@@ -118,11 +137,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
 
     public interface OnSearchItemClickListener {
-        void onItemClick(String string);
+        void onItemClick(VideoBean bean);
 
-        void onHearClick(String string);
+        void onHearClick(VideoBean bean);
 
-        void onFavoriteClick(String string);
+        void onFavoriteClick(VideoBean bean);
 
     }
 

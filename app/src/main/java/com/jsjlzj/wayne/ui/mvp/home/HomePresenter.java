@@ -44,6 +44,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_TEST_RESULT = 29;
     private static final int REQ_CODE_CURRENT_SUBJECT = 30;
     private static final int REQ_CODE_ANSWER_RECORD = 31;
+    private static final int REQ_CODE_SEARCH = 32;
+    private static final int REQ_CODE_DYNAMIC_LIST = 33;
+    private static final int REQ_CODE_MINE_DYNAMIC_LIST = 34;
+
 
     private HomeModel model;
 
@@ -291,6 +295,27 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+   public void getSearchData(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.getSearchData(REQ_CODE_SEARCH, param, this);
+        }
+    }
+
+   public void getDynamicList(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.getDynamicList(REQ_CODE_DYNAMIC_LIST, param, this);
+        }
+    }
+
+   public void getMineDynamicList(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.getMineDynamicList(REQ_CODE_MINE_DYNAMIC_LIST, param, this);
+        }
+    }
+
 
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
@@ -320,6 +345,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_PRODUCT_LIST:
                 view.getCategoryListSuccess(resp);
                 break;
+            case REQ_CODE_MINE_DYNAMIC_LIST:
+            case REQ_CODE_DYNAMIC_LIST:
             case REQ_CODE_VIDEO_LIST:
             case REQ_CODE_INFORMATION_LIST:
             case REQ_CODE_DRIED_FOOD_LIST:
@@ -373,6 +400,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_ANSWER_RECORD:
                 view.getAnswerRecordListSuccess(resp);
                 break;
+            case REQ_CODE_SEARCH:
+                view.getSearchDataSuccess(resp);
+                break;
+
 
         }
     }

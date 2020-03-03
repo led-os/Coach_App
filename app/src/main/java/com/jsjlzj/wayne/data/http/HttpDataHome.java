@@ -374,6 +374,41 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+   /**
+     * 搜索全部
+     * @param params
+     * @param observer
+     */
+    public void getSearchData(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSearchData(body);
+        setSubscribe(observable, observer);
+    }
+
+
+   /**
+     * 社区列表
+     * @param params
+     * @param observer
+     */
+    public void getDynamicList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestDynamicList(body);
+        setSubscribe(observable, observer);
+    }
+
+
+   /**
+     * 我的动态列表
+     * @param params
+     * @param observer
+     */
+    public void getMineDynamicList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestMineDynamicList(body);
+        setSubscribe(observable, observer);
+    }
+
 
 
 }

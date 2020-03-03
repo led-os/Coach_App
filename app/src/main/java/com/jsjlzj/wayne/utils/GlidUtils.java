@@ -71,7 +71,7 @@ public class GlidUtils {
         Glide
                 .with(context)
                 .load(url)
-                .error(R.drawable.ic_default_image)
+                .error(R.drawable.ic_avatars)
                 .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                 .into(view);
     }

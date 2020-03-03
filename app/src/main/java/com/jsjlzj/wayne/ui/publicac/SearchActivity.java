@@ -6,31 +6,42 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.google.android.material.tabs.TabLayout;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.search.SearchAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
-import com.jsjlzj.wayne.entity.address.MalAddressProvince;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
+import com.jsjlzj.wayne.entity.store.search.SearchBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
-import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
-import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
-
+import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
+import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.list.AmoyListFragment;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
+import com.jsjlzj.wayne.utils.keyboard.KeyboardUtil;
 import com.jsjlzj.wayne.widgets.MyViewPager;
 import com.jsjlzj.wayne.widgets.SearchBarView;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
+
 import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import butterknife.BindView;
 
 /**
@@ -39,7 +50,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActivityPresenter> implements LoginActivityView, SearchAdapter.OnSearchItemClickListener {
+public class SearchActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, SearchAdapter.OnSearchItemClickListener {
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -61,11 +72,24 @@ public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActi
     private String[] mTitles = new String[7];
     private List<MVPBaseFragment> fragments = new ArrayList<>();
     private SearchAdapter searchAdapter;
+    private Map<Object,Object> map = new HashMap<>();
     private boolean isShowResult = false;
+
+
+    private SearchAllFragment allTypeFragment;
+    private AmoyListFragment taolearnFragment;
+    private AmoyListFragment matchFragment;
+    private AmoyListFragment videoFragment;
+    private AmoyListFragment informationFragment;
+    private AmoyListFragment productFragment;
+    private AmoyListFragment userFragment;
+    /**
+     * 搜索关键字
+     */
+    private String searchKey;
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, SearchActivity.class);
-        intent.putExtra("isResult", "");
         context.startActivity(intent);
     }
 
@@ -80,10 +104,17 @@ public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActi
     protected void initViewAndControl() {
         initSearchTitle();
         initSearchBar();
-        initFagFlowLayout();
-        initRecycler();
+//        initFagFlowLayout();
+//        initRecycler();
         initViewPager();
+        initResult();
         mRightTv.setOnClickListener(clickListener);
+    }
+
+    private void initResult() {
+        isShowResult = true;
+        relHistory.setVisibility(View.GONE);
+        myViewPager.setVisibility(View.VISIBLE);
     }
 
     private void initSearchBar() {
@@ -105,12 +136,16 @@ public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActi
                 mSearchBar.getSearchEditText().setSelection(str.length());
                 relHistory.setVisibility(View.GONE);
                 myViewPager.setVisibility(View.VISIBLE);
+                KeyboardUtil.closeKeyboard(tvHistory,SearchActivity.this);
+                loadData(str);
             }
         });
     }
 
-    public void loadData(boolean isRefresh){
-
+    public void loadData(String searchKey){
+        map.clear();
+        map.put("name",searchKey);
+        presenter.getSearchData(map);
     }
 
     private void initRecycler() {
@@ -123,8 +158,36 @@ public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActi
     private void initViewPager() {
         mTitles = getResources().getStringArray(R.array.search_title_list);
         for (int i = 0; i < mTitles.length; i++) {
-            AmoyListFragment amoySchoolFragment = AmoyListFragment.getInstance(i);
-            fragments.add(amoySchoolFragment);
+            switch (i){
+                case 0:
+                    allTypeFragment = SearchAllFragment.getInstance();
+                    fragments.add(allTypeFragment);
+                    break;
+                case 1:
+                    taolearnFragment = AmoyListFragment.getInstance(i,null);
+                    fragments.add(taolearnFragment);
+                    break;
+                case 2:
+                    matchFragment = AmoyListFragment.getInstance(i,null);
+                    fragments.add(matchFragment);
+                    break;
+                case 3:
+                    videoFragment = AmoyListFragment.getInstance(i,null);
+                    fragments.add(videoFragment);
+                    break;
+                case 4:
+                    informationFragment = AmoyListFragment.getInstance(i,null);
+                    fragments.add(informationFragment);
+                    break;
+                case 5:
+                    productFragment = AmoyListFragment.getInstance(i,null);
+                    fragments.add(productFragment);
+                    break;
+                case 6:
+                    userFragment = AmoyListFragment.getInstance(i,null);
+                    fragments.add(userFragment);
+                    break;
+            }
         }
         myViewPager.setSlide(true);
         myViewPager.setOffscreenPageLimit(mTitles.length - 1);
@@ -223,8 +286,8 @@ public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActi
     }
 
     @Override
-    protected LoginActivityPresenter createPresenter() {
-        return new LoginActivityPresenter(this);
+    protected HomePresenter createPresenter() {
+        return new HomePresenter(this);
     }
 
 
@@ -245,22 +308,48 @@ public class SearchActivity extends MVPBaseActivity<LoginActivityView, LoginActi
         }
     }
 
-    @Override
-    public void showResultAllArea(MdlBaseHttpResp<MalAddressProvince> resp) {
-    }
 
     @Override
-    public void onItemClick(String string) {
-
-    }
-
-    @Override
-    public void onHearClick(String string) {
+    public void onItemClick(VideoBean bean) {
 
     }
 
     @Override
-    public void onFavoriteClick(String string) {
+    public void onHearClick(VideoBean bean) {
 
+    }
+
+    @Override
+    public void onFavoriteClick(VideoBean bean) {
+
+    }
+
+
+    @Override
+    public void getSearchDataSuccess(MdlBaseHttpResp<SearchBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null){
+            SearchBean.DataBean data = resp.getData().getData();
+            if(data != null){
+                allTypeFragment.setSearchBean(resp.getData());
+
+                JSONArray taoLearnArray = JSONArray.parseArray(JSON.toJSONString(data.getTaoLearnList()));
+                taolearnFragment.setArray(taoLearnArray);
+
+                JSONArray matchArray = JSONArray.parseArray(JSON.toJSONString(data.getSportEventList()));
+                matchFragment.setArray(matchArray);
+
+                JSONArray videoArray = JSONArray.parseArray(JSON.toJSONString(data.getVideoList()));
+                videoFragment.setArray(videoArray);
+
+                JSONArray informationArray = JSONArray.parseArray(JSON.toJSONString(data.getInformationList()));
+                informationFragment.setArray(informationArray);
+
+                JSONArray productArray = JSONArray.parseArray(JSON.toJSONString(data.getProductList()));
+                productFragment.setArray(productArray);
+
+                JSONArray userArray = JSONArray.parseArray(JSON.toJSONString(data.getChannelList()));
+                userFragment.setArray(userArray);
+            }
+        }
     }
 }

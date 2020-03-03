@@ -37,12 +37,19 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_amoy_list"
+    <RelativeLayout
+        android:id="@+id/rel_empty"
         android:layout_below="@+id/ll_video"
-        android:layout_marginStart="@dimen/padding_10"
-        android:layout_marginEnd="@dimen/padding_10"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_amoy_list"
+            android:layout_marginStart="@dimen/padding_10"
+            android:layout_marginEnd="@dimen/padding_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>

@@ -66,13 +66,13 @@
             android:layout_weight="1"/>
 
         <ImageView
-            android:id="@+id/img_favorite"
+            android:id="@+id/img_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_zan"/>
+            android:src="@drawable/uncollected"/>
 
         <TextView
-            android:id="@+id/tv_favorite"
+            android:id="@+id/tv_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_2"

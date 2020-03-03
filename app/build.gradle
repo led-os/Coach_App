@@ -76,6 +76,7 @@ dependencies {
     implementation project(':uikit')
 
     implementation rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["fastjson"]
 
 
     implementation rootProject.ext.dependencies["rxjava2"]

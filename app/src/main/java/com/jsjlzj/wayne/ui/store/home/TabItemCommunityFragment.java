@@ -18,7 +18,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.ui.publicac.SearchActivity;
-import com.jsjlzj.wayne.ui.store.list.AmoyListFragment;
+import com.jsjlzj.wayne.ui.store.home.community.CommunityItemFragment;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
 import com.jsjlzj.wayne.widgets.MyViewPager;
 
@@ -94,7 +94,7 @@ public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView
     private void initViewPager() {
         mTitles = getResources().getStringArray(R.array.community_title_list);
         for (int i = 0; i < mTitles.length; i++) {
-            AmoyListFragment amoyListFragment = AmoyListFragment.getInstance(7);
+            CommunityItemFragment amoyListFragment = CommunityItemFragment.getInstance(i);
             fragments.add(amoyListFragment);
         }
         myViewPager.setSlide(true);

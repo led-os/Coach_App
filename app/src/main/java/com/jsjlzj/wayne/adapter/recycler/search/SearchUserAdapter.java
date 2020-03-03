@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.store.search.ChannelListBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +32,17 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<ChannelListBean> list = new ArrayList<>();
 
-    public SearchUserAdapter(Context context, List<String> list) {
+    public SearchUserAdapter(Context context, List<ChannelListBean> list) {
         this.context = context;
-        this.list = list;
+        this.list.addAll(list);
+    }
+
+    public void setData(List<ChannelListBean> list){
+        this.list.clear();
+        this.list.addAll(list);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -50,7 +59,7 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,7 +74,7 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
         TextView tvFen;
         @BindView(R.id.rel_item)
         RelativeLayout relItem;
-        private String bean;
+        private ChannelListBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,8 +82,16 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
         }
 
         void bindView(int pos) {
-//            bean = list.get(pos);
+            bean = list.get(pos);
+            GlidUtils.setCircleGrid(context,bean.getAvatar(),imgHead);
+            tvName.setText(bean.getName());
+            tvFen.setText("粉丝"+bean.getFansCount()+"万");
             relItem.setOnClickListener(clickListener);
+            if(bean.isFollower()){
+                tvFavorite.setText("已关注");
+            }else {
+                tvFavorite.setText("关注");
+            }
             tvFavorite.setOnClickListener(clickListener);
         }
 
@@ -93,6 +110,13 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
                         listener.onItemClick(bean);
                         break;
                     case R.id.tv_favorite:
+                        if(bean.isFollower()){
+                            bean.setFollower(false);
+                            tvFavorite.setText("关注");
+                        }else {
+                            bean.setFollower(true);
+                            tvFavorite.setText("已关注");
+                        }
                         listener.onFavoriteClick(bean);
                         break;
                     default:
@@ -105,9 +129,9 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
 
     public interface OnSearchUserClickListener {
-        void onItemClick(String string);
+        void onItemClick(ChannelListBean string);
 
-        void onFavoriteClick(String string);
+        void onFavoriteClick(ChannelListBean string);
 
     }
 
