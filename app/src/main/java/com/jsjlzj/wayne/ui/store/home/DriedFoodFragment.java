@@ -36,14 +36,13 @@ import java.util.Map;
 
 import butterknife.BindView;
 
- /**
-  *
-  * @ClassName:      干货
-  * @Description:    java类作用描述
-  * @Author:         曾海强
-  * @CreateDate:
-  */
-public class DriedFoodFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener {
+/**
+ * @ClassName: 干货
+ * @Description: java类作用描述
+ * @Author: 曾海强
+ * @CreateDate:
+ */
+public class DriedFoodFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, HomeLikeAdapter.OnItemClickListener {
 
     @BindView(R.id.scroll_banner)
     ConvenientBanner scrollBanner;
@@ -58,11 +57,11 @@ public class DriedFoodFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
     private List<VideoBean> videoList = new ArrayList<>();
     private List<BannerBean> images = new ArrayList<>();
-     private Map<Object,Object> map = new HashMap<>();
-     private int typeId;
-     private int pageNo;
-     private int pageCount;
-     private boolean isRefresh;
+    private Map<Object, Object> map = new HashMap<>();
+    private int typeId;
+    private int pageNo;
+    private int pageCount;
+    private boolean isRefresh;
 
     public DriedFoodFragment() {
     }
@@ -95,14 +94,15 @@ public class DriedFoodFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     private void initRecycler() {
         rvState.setHasFixedSize(true);
         rvState.setNestedScrollingEnabled(false);
-        driedTypeAdapter = new DriedTypeAdapter(getActivity(),categoryList);
-        rvState.setLayoutManager(new GridLayoutManager(getActivity(),4));
+        driedTypeAdapter = new DriedTypeAdapter(getActivity(), categoryList,1);
+        rvState.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         rvState.setAdapter(driedTypeAdapter);
 
         rvLike.setPullRefreshEnabled(true);
         rvLike.setLoadingMoreEnabled(true);
-        homeLikeAdapter = new HomeLikeAdapter(getActivity(),videoList);
+        homeLikeAdapter = new HomeLikeAdapter(getActivity(), videoList);
         homeLikeAdapter.setAllOne(true);
+        homeLikeAdapter.setListener(this);
         rvLike.setLoadingListener(this);
         rvLike.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvLike.setAdapter(homeLikeAdapter);
@@ -126,77 +126,77 @@ public class DriedFoodFragment extends MVPBaseFragment<HomeView, HomePresenter> 
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
                     BannerBean bean = images.get(position);
-                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL,"");
+                    WebViewContainerActivity.go2this(getActivity(), bean.getTitle(), bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
     }
 
 
-     @Override
-     public void getDriedFoodSuccess(MdlBaseHttpResp<AmoySchoolBean> resp) {
-         AmoySchoolBean.DataBean bean = resp.getData().getData();
-         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != bean) {
-             if (null != bean.getBanner() && bean.getBanner().size() > 0) {
-                 images = bean.getBanner();
-                 if (images != null && images.size() > 0) {
-                     initBanner();
-                 }
-             }
+    @Override
+    public void getDriedFoodSuccess(MdlBaseHttpResp<AmoySchoolBean> resp) {
+        AmoySchoolBean.DataBean bean = resp.getData().getData();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != bean) {
+            if (null != bean.getBanner() && bean.getBanner().size() > 0) {
+                images = bean.getBanner();
+                if (images != null && images.size() > 0) {
+                    initBanner();
+                }
+            }
 
-             if (null != bean.getCategory() && bean.getCategory().size() > 0) {
-                 categoryList = bean.getCategory();
-                 if (categoryList != null && categoryList.size() > 0) {
-                     typeId = categoryList.get(0).getId();
-                     driedTypeAdapter.setData(categoryList);
-                     loadData(true);
-                 }
-             }
-         }
-     }
+            if (null != bean.getCategory() && bean.getCategory().size() > 0) {
+                categoryList = bean.getCategory();
+                if (categoryList != null && categoryList.size() > 0) {
+                    typeId = categoryList.get(0).getId();
+                    driedTypeAdapter.setData(categoryList);
+                    loadData(true);
+                }
+            }
+        }
+    }
 
 
-     private void loadData(boolean isRefresh) {
-         this.isRefresh = isRefresh;
-         if(isRefresh) {
-             pageNo = 0;
-         }
-         map.clear();
-         map.put(HttpConstant.PAGE_NO, pageNo);
-         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
-         map.put("categoryId", typeId);
-         presenter.getDriedFoodList(map);
-     }
+    private void loadData(boolean isRefresh) {
+        this.isRefresh = isRefresh;
+        if (isRefresh) {
+            pageNo = 0;
+        }
+        map.clear();
+        map.put(HttpConstant.PAGE_NO, pageNo);
+        map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+        map.put(HttpConstant.CATEGORY_ID, typeId);
+        presenter.getDriedFoodList(map);
+    }
 
-     @Override
-     public void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
-         rvLike.refreshComplete();
-         rvLike.loadMoreComplete();
-         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp){
-             pageNo = resp.getData().getData().getPageNo();
-             int totalCount = resp.getData().getData().getTotalCount();
-             int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
-             if (a == 0) {
-                 pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
-             } else {
-                 pageCount =( totalCount / HttpConstant.PAGE_SIZE_NUMBER)+1;
-             }
-             List<VideoBean> list = resp.getData().getData().getResult();
-             if (list != null && list.size() > 0) {
-                 if (isRefresh) {
-                     videoList.clear();
-                 }
-                 videoList.addAll(list);
-                 homeLikeAdapter.setData(videoList);
-                 hideEmpty();
-             } else if (isRefresh) {
-                 // 无数据
-                 showEmpty(R.id.rel_empty,0,null);
-             }
-         }
+    @Override
+    public void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
+        rvLike.refreshComplete();
+        rvLike.loadMoreComplete();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp) {
+            pageNo = resp.getData().getData().getPageNo();
+            int totalCount = resp.getData().getData().getTotalCount();
+            int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
+            if (a == 0) {
+                pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
+            } else {
+                pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
+            }
+            List<VideoBean> list = resp.getData().getData().getResult();
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    videoList.clear();
+                }
+                videoList.addAll(list);
+                homeLikeAdapter.setData(videoList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty, 0, null);
+            }
+        }
 
-     }
+    }
 
-     @Override
+    @Override
     public void onResume() {
         super.onResume();
         scrollBanner.startTurning();
@@ -208,18 +208,30 @@ public class DriedFoodFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         scrollBanner.stopTurning();
     }
 
-     @Override
-     public void onRefresh() {
-         loadData(true);
-     }
+    @Override
+    public void onRefresh() {
+        loadData(true);
+    }
 
-     @Override
-     public void onLoadMore() {
-         if (pageNo < pageCount -1) {
-             pageNo++;
-             loadData(false);
-         } else {
-             ToastHelper.showToast(getContext(), getString(R.string.has_no_more_data));
-         }
-     }
- }
+    @Override
+    public void onLoadMore() {
+        if (pageNo < pageCount - 1) {
+            pageNo++;
+            loadData(false);
+        } else {
+            ToastHelper.showToast(getContext(), getString(R.string.has_no_more_data));
+        }
+    }
+
+    @Override
+    public void onItemClick(VideoBean bean) {
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
+    }
+
+    @Override
+    public void onHeadClick(VideoBean bean) {
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+                WebViewContainerFragment.TYPE_USER_INFO);
+    }
+}

@@ -28,6 +28,8 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -138,11 +140,13 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
                 status = 1;
                 tvNews.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
                 tvHot.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
+                loadData(true);
                 break;
             case R.id.tv_hot:
                 status = 2;
                 tvHot.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
                 tvNews.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
+                loadData(true);
                 break;
         }
     }
@@ -178,7 +182,8 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
     @Override
     public void onClickHead(VideoBean bean) {
         currBean = bean;
-        // TODO: 2020/2/27 跳转到个人主页
+        WebViewContainerActivity.go2this(this,bean.getName(),HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+                WebViewContainerFragment.TYPE_USER_INFO);
     }
 
     @Override
@@ -204,6 +209,8 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
     @Override
     public void onPlayVideo(VideoBean bean) {
         currBean = bean;
+        WebViewContainerActivity.go2this(this,bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
     }
 
     @Override
@@ -222,7 +229,7 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
     @Override
     public void onClickMessage(VideoBean bean) {
         currBean = bean;
-        showPopupWindow();
+        showPopupWindow(bean.getChannelName());
     }
 
     @Override
@@ -270,7 +277,7 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
     private PopupWindow mPopWindow;
     private boolean isSend;
 
-    private void showPopupWindow() {
+    private void showPopupWindow(String name) {
         //设置contentView
         View contentView = LayoutInflater.from(this).inflate(R.layout.layout_comment_editext, null);
         mPopWindow = new PopupWindow(contentView,
@@ -286,6 +293,7 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
         final EditText editText = contentView.findViewById(R.id.et_comment);
         final LinearLayout llSend = contentView.findViewById(R.id.ll_send);
         final ImageView imgSend = contentView.findViewById(R.id.img_send);
+        editText.setHint("回复"+name+":");
         editText.setInputType(TYPE_TEXT_FLAG_MULTI_LINE);
         editText.setSingleLine(false);
         llSend.setOnClickListener(v -> {

@@ -17,6 +17,12 @@ public class LibraryBean {
     private int id;
     private String title;
 
+    public LibraryBean(String coverImg, int id, String title) {
+        this.coverImg = coverImg;
+        this.id = id;
+        this.title = title;
+    }
+
     public String getCoverImg() {
         return coverImg;
     }

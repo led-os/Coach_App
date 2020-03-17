@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -84,9 +87,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             tvPrice.setText(bean.getPrice());
             tvLocation.setText(bean.getPlace());
             itemView.setOnClickListener(v -> {
-                if(listener!= null){
-                    listener.onItemClick(bean);
-                }
+                WebViewContainerActivity.go2this(context,bean.getName(), HttpConstant.WEB_URL_PRODUCT_DETAIL+bean.getId(),
+                        WebViewContainerFragment.TYPE_PRODUCT_DETAIL);
+//                if(listener!= null){
+//                    listener.onItemClick(bean);
+//                }
             });
         }
     }

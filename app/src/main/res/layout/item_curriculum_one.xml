@@ -9,6 +9,7 @@
         android:id="@+id/img_one"
         android:layout_width="match_parent"
         android:layout_height="@dimen/padding_173"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_buffer1"/>
 
     <ImageView

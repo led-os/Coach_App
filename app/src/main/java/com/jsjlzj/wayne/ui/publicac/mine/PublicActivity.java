@@ -9,14 +9,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.ImageSelectAdapter;
+import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
-import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
-import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
+import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.home.community.AddExpressionActivity;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 
@@ -31,8 +33,9 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class PublicActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView, ImageSelectAdapter.OnImageClickListener {
+public class PublicActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, ImageSelectAdapter.OnImageClickListener {
 
+    public static final int REQUEST_CODE_SELECT_STATE = 10000;
     public static final int IMG_SIZE = 9;
 
     @BindView(R.id.tv_cancel)
@@ -92,8 +95,8 @@ public class PublicActivity extends MVPBaseActivity<TalentTabFragmentView, Talen
     }
 
     @Override
-    protected TalentTabFragmentPresenter createPresenter() {
-        return new TalentTabFragmentPresenter(this);
+    protected HomePresenter createPresenter() {
+        return new HomePresenter(this);
     }
 
     @Override
@@ -105,7 +108,7 @@ public class PublicActivity extends MVPBaseActivity<TalentTabFragmentView, Talen
             case R.id.ll_dskj://对谁可见
                 break;
             case R.id.ll_add_emji://添加表情
-                AddExpressionActivity.go2this(this);
+                AddExpressionActivity.go2this(this,REQUEST_CODE_SELECT_STATE);
                 break;
             case R.id.tv_public://发布
                 break;
@@ -120,6 +123,10 @@ public class PublicActivity extends MVPBaseActivity<TalentTabFragmentView, Talen
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         presenter.onActivityResult(this, requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_SELECT_STATE && resultCode == RESULT_OK){
+            int imgRes = data.getIntExtra(ExtraConstant.EXTRA_DATA,R.drawable.face_01);
+            imgFace.setImageDrawable(ContextCompat.getDrawable(this,imgRes));
+        }
     }
 
     @Override

@@ -89,14 +89,14 @@ public class TabItemStudyFragment extends MVPBaseFragment<HomeView, HomePresente
 
     @Override
     public void onItemClick(LibraryBean bean, int pos) {
-        if (pos == 1) {
-
-        } else if(pos == 0){
-
-        }
-        if(bean.getTitle().contains("国职")){
+        if(bean.getId() == -1){
             QuestionBankActivity.go2this(getActivity());
+        }else if(bean.getId() == -2){
+        }else {
+            WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),HttpConstant.WEB_URL_COURSE_INTRODUCE + bean.getId(),
+                    WebViewContainerFragment.TYPE_COURSE_INTRODUCE);
         }
+
     }
 
     private void initBanner() {
@@ -117,7 +117,7 @@ public class TabItemStudyFragment extends MVPBaseFragment<HomeView, HomePresente
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
                     BannerBean bean = images.get(position);
-                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL,"");
+                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
     }
@@ -136,6 +136,8 @@ public class TabItemStudyFragment extends MVPBaseFragment<HomeView, HomePresente
             if (null != bean.getLibrary() && bean.getLibrary().size() > 0) {
                 libraryBeans = bean.getLibrary();
                 if (libraryBeans != null && libraryBeans.size() > 0) {
+                    libraryBeans.add(new LibraryBean("",-1,"国职题库"));
+                    libraryBeans.add(new LibraryBean("",-2,"国职考试成绩查询"));
                     adapter.setData(libraryBeans);
                 }
             }

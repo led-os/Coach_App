@@ -136,7 +136,7 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
             tvMarkNum.setText(""+bean.getCollectCount());
         }
 
-        @OnClick({R.id.img_head, R.id.tv_name, R.id.tv_favorite, R.id.img_play, R.id.img_zan, R.id.tv_zan_num, R.id.img_message, R.id.tv_message_num, R.id.img_mark, R.id.tv_mark_num})
+        @OnClick({R.id.img_head,R.id.img_one, R.id.tv_name, R.id.tv_favorite, R.id.img_play, R.id.img_zan, R.id.tv_zan_num, R.id.img_message, R.id.tv_message_num, R.id.img_mark, R.id.tv_mark_num})
         public void onViewClicked(View view) {
             if(listener == null){
                 return;
@@ -156,6 +156,7 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                     }
                     listener.onFavorite(bean);
                     break;
+                case R.id.img_one:
                 case R.id.img_play:
                     listener.onPlayVideo(bean);
                     break;
@@ -164,10 +165,12 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                     if(bean.isLike()){
                         bean.setLike(false);
                         imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_normal));
-                        tvZanNum.setText(bean.getLikeCount() - 1);
+                        bean.setLikeCount(bean.getLikeCount() - 1);
+                        tvZanNum.setText(bean.getLikeCount()+"");
                     }else {
                         imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_pressed));
-                        tvZanNum.setText(bean.getLikeCount() + 1);
+                        bean.setLikeCount(bean.getLikeCount() + 1);
+                        tvZanNum.setText(bean.getLikeCount() + "");
                         bean.setLike(true);
                     }
                     listener.onClickZan(bean);
@@ -180,10 +183,12 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                 case R.id.tv_mark_num:
                     if(bean.isCollect()){
                         bean.setCollect(false);
-                        tvMarkNum.setText(bean.getCollectCount() -1);
+                        bean.setCollectCount(bean.getCollectCount() - 1);
+                        tvMarkNum.setText(bean.getCollectCount()+"");
                         imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_normal));
                     }else {
-                        tvMarkNum.setText(bean.getCollectCount() +1);
+                        bean.setCollectCount(bean.getCollectCount() + 1);
+                        tvMarkNum.setText(bean.getCollectCount() +"");
                         imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_pressed));
                         bean.setCollect(true);
                     }

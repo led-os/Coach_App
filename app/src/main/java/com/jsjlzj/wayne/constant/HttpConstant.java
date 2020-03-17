@@ -19,6 +19,8 @@ public class HttpConstant {
     public static final String UPDATA_DATE = "2019-06-13";
     public static final String PAGE_NO = "pageNo";
     public static final String PAGE_SIZE = "pageSize";
+    public static final String STATUS = "status";
+    public static final String CATEGORY_ID = "categoryId";
 
     static {
         if (true)
@@ -33,6 +35,20 @@ public class HttpConstant {
      */
     public static final int R_HTTP_OK = 1;//1000
     public static final int R_HTTP_ERROR_MSG = 0;//1000
+
+    /********************************* web网页- url****************************************************/
+
+    public static final String WEB_URL_BASE = "http://h5.gokgm.com:81/#";//动态详情页
+    public static final String WEB_URL_DYNAMIC_DETAIL = "http://h5.gokgm.com:81/#/dynamicDetail?id=";//动态详情页
+    public static final String WEB_URL_COURSE_DETAIL = "http://h5.gokgm.com:81/#/courseDetail?id=";//课程详情页
+    public static final String WEB_URL_AETICLE_DETAIL = "http://h5.gokgm.com:81/#/articleDetail?id=";//文章详情页
+    public static final String WEB_URL_SCHOOL_DETAIL = "http://h5.gokgm.com:81/#/schoolDetail?id=";//学校详情页
+    public static final String WEB_URL_PRODUCT_DETAIL = "http://h5.gokgm.com:81/#/productDetail?id=";//产品详情页
+    public static final String WEB_URL_MATCH_DETAIL = "http://h5.gokgm.com:81/#/matchDetail?id=";//赛事详情页
+    public static final String WEB_URL_USER_INFO = "http://h5.gokgm.com:81/#/user?id=";//用户主页
+    public static final String WEB_URL_COURSE_INTRODUCE = "http://h5.gokgm.com:81/#/course?id=";//课程介绍
+
+    /********************************* web网页- url****************************************************/
 
     /**
      * 每页显示的数量
@@ -341,11 +357,11 @@ public class HttpConstant {
     //取消点赞
     public static final String API_CANCEL_ZAN = "like/cancel";
     //收藏
-    public static final String API_ADD_COLLECT = "collect/follow";
+    public static final String API_ADD_COLLECT = "collect/add";
     //取消收藏
     public static final String API_CANCEL_COLLECT = "collect/cancel";
     //关注
-    public static final String API_ADD_FOLLOW = "channel/add";
+    public static final String API_ADD_FOLLOW = "channel/follow";
     //取消关注
     public static final String API_CANCEL_FOLLOW = "channel/cancel";
     //学习数据
@@ -376,6 +392,8 @@ public class HttpConstant {
     public static final String API_DYNAMIC_LIST = "community/list";
     //我的动态列表
     public static final String API_MINE_DYNAMIC_LIST = "community/myList";
+    //淘学课程报名
+    public static final String API_AMOY_SIGN_UP = "enroll/taoLearnEnroll";
 
 
 

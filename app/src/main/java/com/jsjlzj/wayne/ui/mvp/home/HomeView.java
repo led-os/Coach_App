@@ -82,7 +82,9 @@ public interface HomeView extends BaseView {
    default void getAnswerRecordListSuccess(MdlBaseHttpResp<AnswerRecordBean> resp){}
 
    default void getSearchDataSuccess(MdlBaseHttpResp<SearchBean> resp){}
+   default void amoySignUpSuccess(MdlBaseHttpResp<String> resp){}
 
 
-
+    default void selectPhoto(int pos){}
+    default void onUploadSuccess(String filePath,int currPos){}
 }

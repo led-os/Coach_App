@@ -12,6 +12,8 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -32,7 +34,7 @@ import butterknife.BindView;
   * @Author:         曾海强
   * @CreateDate:      
   */
-public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener {
+public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, MatchAdapter.OnItemClickListener {
 
 
     @BindView(R.id.rv_authentication)
@@ -74,6 +76,7 @@ public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         rvAuthentication.setPullRefreshEnabled(true);
         rvAuthentication.setLoadingMoreEnabled(true);
         matchAdapter = new MatchAdapter(getActivity(),categoryBeans);
+        matchAdapter.setListener(this);
         rvAuthentication.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvAuthentication.setLoadingListener(this);
         rvAuthentication.setAdapter(matchAdapter);
@@ -145,5 +148,11 @@ public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> 
          } else {
              ToastHelper.showToast(getContext(), getString(R.string.has_no_more_data));
          }
+     }
+
+     @Override
+     public void onItemClick(CategoryBean bean) {
+         WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_MATCH_DETAIL+bean.getId(),
+                 WebViewContainerFragment.TYPE_MATCH_DETAIL);
      }
  }

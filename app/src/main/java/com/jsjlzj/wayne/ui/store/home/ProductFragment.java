@@ -3,7 +3,6 @@ package com.jsjlzj.wayne.ui.store.home;
 
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +36,11 @@ import java.util.Map;
 import butterknife.BindView;
 
 /**
- * A simple {@link Fragment} subclass.
+ *
+ * @ClassName:      产品列表
+ * @Description:    java类作用描述
+ * @Author:         曾海强
+ * @CreateDate:
  */
 public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, ProductAdapter.OnItemClickListener, XRecyclerView.LoadingListener {
 
@@ -89,7 +92,7 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
     private void initRecycler() {
         rvState.setHasFixedSize(true);
         rvState.setNestedScrollingEnabled(false);
-        driedTypeAdapter = new DriedTypeAdapter(getActivity(),categoryList);
+        driedTypeAdapter = new DriedTypeAdapter(getActivity(),categoryList,3);
         rvState.setLayoutManager(new GridLayoutManager(getActivity(),4));
         rvState.setAdapter(driedTypeAdapter);
 
@@ -119,7 +122,7 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
                     BannerBean bean = images.get(position);
-                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL,"");
+                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
     }
@@ -151,7 +154,7 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
     public void getCategoryListSuccess(MdlBaseHttpResp<CategoryPageBean> resp) {
         rvLike.refreshComplete();
         rvLike.loadMoreComplete();
-        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp){
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK){
             pageNo = resp.getData().getData().getPageNo();
             int totalCount = resp.getData().getData().getTotalCount();
             int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
@@ -184,7 +187,7 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
         map.clear();
         map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
-        map.put("categoryId", typeId);
+        map.put(HttpConstant.CATEGORY_ID, typeId);
         presenter.getProductList(map);
     }
 
@@ -202,7 +205,8 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
 
     @Override
     public void onItemClick(CategoryBean bean) {
-
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_PRODUCT_DETAIL,
+                WebViewContainerFragment.TYPE_PRODUCT_DETAIL);
     }
 
     @Override

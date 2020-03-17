@@ -13,8 +13,16 @@ import com.jsjlzj.wayne.adapter.recycler.home.MatchAdapter;
 import com.jsjlzj.wayne.adapter.recycler.home.ProductAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SeaerchTaoLearnAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SearchUserAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.entity.store.home.RecommendBean;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.entity.store.search.ChannelListBean;
 import com.jsjlzj.wayne.entity.store.search.SearchBean;
+import com.jsjlzj.wayne.entity.store.search.TaoLearnListBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -31,7 +39,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class SearchAllFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, SearchUserAdapter.OnSearchUserClickListener {
+public class SearchAllFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, SearchUserAdapter.OnSearchUserClickListener, SeaerchTaoLearnAdapter.OnItemClickListener, MatchAdapter.OnItemClickListener, HomeLikeAdapter.OnItemClickListener, ProductAdapter.OnItemClickListener {
 
 
     @BindView(R.id.rv_tao_learn)
@@ -141,23 +149,27 @@ public class SearchAllFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         rvTaoLearn.setNestedScrollingEnabled(false);
         seaerchTaoLearnAdapter = new SeaerchTaoLearnAdapter(getActivity(),  new ArrayList<>());
         rvTaoLearn.setLayoutManager(new LinearLayoutManager(getActivity()));
+        seaerchTaoLearnAdapter.setListener(this);
         rvTaoLearn.setAdapter(seaerchTaoLearnAdapter);
 
         rvMatch.setHasFixedSize(true);
         rvMatch.setNestedScrollingEnabled(false);
         matchAdapter = new MatchAdapter(getActivity(), new ArrayList<>());
+        matchAdapter.setListener(this);
         rvMatch.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvMatch.setAdapter(matchAdapter);
 
         rvVideo.setHasFixedSize(true);
         rvVideo.setNestedScrollingEnabled(false);
         videoAdapter = new HomeLikeAdapter(getActivity(), new ArrayList<>());
+        videoAdapter.setListener(this);
         rvVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvVideo.setAdapter(videoAdapter);
 
         rvInformation.setHasFixedSize(true);
         rvInformation.setNestedScrollingEnabled(false);
         informationAdapter = new HomeLikeAdapter(getActivity(), new ArrayList<>());
+        informationAdapter.setListener(this);
         informationAdapter.setShowTime(false);
         rvInformation.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvInformation.setAdapter(informationAdapter);
@@ -165,6 +177,8 @@ public class SearchAllFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         rvProduct.setHasFixedSize(true);
         rvProduct.setNestedScrollingEnabled(false);
         productAdapter = new ProductAdapter(getActivity(), new ArrayList<>());
+        productAdapter.setListener(bean -> WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_PRODUCT_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_PRODUCT_DETAIL));
         rvProduct.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvProduct.setAdapter(productAdapter);
 
@@ -189,8 +203,9 @@ public class SearchAllFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
     @Override
-    public void onItemClick(ChannelListBean string) {
-
+    public void onItemClick(ChannelListBean bean) {
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_USER_INFO+bean.getId(),
+                WebViewContainerFragment.TYPE_USER_INFO);
     }
 
     @Override
@@ -202,5 +217,36 @@ public class SearchAllFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         } else {
             presenter.clickFollow(map);
         }
+    }
+
+    @Override
+    public void onItemClick(TaoLearnListBean bean) {
+        //点击淘学
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_COURSE_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_COURSE_DETAIL);
+    }
+
+    @Override
+    public void onItemClick(CategoryBean bean) {
+        //点击赛事
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_MATCH_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_MATCH_DETAIL);
+    }
+
+    @Override
+    public void onItemClick(VideoBean bean) {
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
+    }
+
+    @Override
+    public void onHeadClick(VideoBean bean) {
+        WebViewContainerActivity.go2this(getActivity(),bean.getChannelName(),HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+                WebViewContainerFragment.TYPE_USER_INFO);
+    }
+
+    @Override
+    public void getHomeRecommendSuccess(MdlBaseHttpResp<RecommendBean> resp) {
+
     }
 }

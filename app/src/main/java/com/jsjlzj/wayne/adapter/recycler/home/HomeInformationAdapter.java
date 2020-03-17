@@ -53,10 +53,8 @@ public class HomeInformationAdapter extends RecyclerView.Adapter<HomeInformation
     @NonNull
     @Override
     public HomeInformationAdapter.OtherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = null;
-        view = LayoutInflater.from(context).inflate(R.layout.item_home_like_other, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_home_like_other, parent, false);
         return new OtherViewHolder(view);
-
     }
 
 
@@ -106,7 +104,7 @@ public class HomeInformationAdapter extends RecyclerView.Adapter<HomeInformation
             tvTime.setText(bean.getCreateTime());
             tvPlayTime.setVisibility(View.GONE);
 
-            GlidUtils.setRoundGrid(context,bean.getChannelAvatar(),imgAuthor,23);
+            GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgAuthor);
             tvAuthor.setText(bean.getChannelName());
 
             itemView.setOnClickListener(v -> {
@@ -114,6 +112,7 @@ public class HomeInformationAdapter extends RecyclerView.Adapter<HomeInformation
                     listener.onItemClick(bean);
                 }
             });
+
         }
     }
 

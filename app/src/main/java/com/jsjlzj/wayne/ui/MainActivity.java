@@ -129,6 +129,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     private MdlUser.MdlUserBean user;
 
     private TabItemPositionFragment tabItemPositionFragment;
+    private TabItemCommunityFragment tabItemCommunityFragment;
 
     @Override
     protected void initViewAndControl() {
@@ -185,15 +186,15 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             nams = trainerNames;
             drawableSelector = trainerDrawableSelector;
             tabItemPositionFragment = (TabItemPositionFragment) TabItemPositionFragment.getInstance();
+            tabItemCommunityFragment = TabItemCommunityFragment.getInstance();
             mFragments.add(TabItemHomeFragment.getInstance());
             mFragments.add(TabItemStudyFragment.getInstance());
             mFragments.add(tabItemPositionFragment);
-            mFragments.add(TabItemCommunityFragment.getInstance());
+            mFragments.add(tabItemCommunityFragment);
             mFragments.add(TabItemTrainerInfoFragment.getInstance());
         }
         initViewPager();
         registerMsgUnreadInfoObserver(true);
-
     }
 
     /**
@@ -334,6 +335,9 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == TabItemCommunityFragment.REQUEST_CODE){
+            tabItemCommunityFragment.onActivityResult(requestCode,resultCode,data);
+        }
         String type = SPUtil.getUserFromSP().getAccountType();
         if ("STORE".equals(type)) {
             isStore = true;

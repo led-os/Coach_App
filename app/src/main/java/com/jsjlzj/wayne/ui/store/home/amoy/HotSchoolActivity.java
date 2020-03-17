@@ -12,6 +12,8 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -86,7 +88,8 @@ public class HotSchoolActivity extends MVPBaseActivity<HomeView, HomePresenter> 
 
     @Override
     public void onItemClick(CategoryBean bean) {
-        // TODO: 2020/2/27 跳转学校详情
+        WebViewContainerActivity.go2this(this,bean.getName(),HttpConstant.WEB_URL_SCHOOL_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_SCHOOL_DETAIL);
     }
 
 

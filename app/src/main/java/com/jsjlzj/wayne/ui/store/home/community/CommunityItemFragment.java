@@ -12,6 +12,8 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -59,6 +61,11 @@ public class CommunityItemFragment extends MVPBaseFragment<HomeView, HomePresent
         this.type = type;
     }
 
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+        loadData(true);
+    }
 
     public static CommunityItemFragment getInstance(int type) {
         CommunityItemFragment fragment = new CommunityItemFragment(type);
@@ -143,12 +150,14 @@ public class CommunityItemFragment extends MVPBaseFragment<HomeView, HomePresent
 
     @Override
     public void onItemClick(VideoBean bean) {
-
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
     }
 
     @Override
     public void onHearClick(VideoBean bean) {
-
+        WebViewContainerActivity.go2this(getActivity(),bean.getChannelName(),HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+                WebViewContainerFragment.TYPE_USER_INFO);
     }
 
     @Override

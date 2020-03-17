@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
@@ -20,13 +19,15 @@ import android.webkit.WebViewClient;
 
 import androidx.annotation.Nullable;
 
-import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.utils.JsInterface;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.jsjlzj.wayne.utils.SPUtil;
 
 import butterknife.BindView;
 
@@ -47,6 +48,18 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
     private String firstUrl;
 
     public static final int TYPE_BANNER_LINK_URL = 0;
+    public static final int TYPE_COURSE_DETAIL = 1;
+    public static final int TYPE_DYNAMIC_DETAIL = 2;
+    public static final int TYPE_USER_INFO = 3;
+    public static final int TYPE_ARTICLE_DETAIL = 4;
+    public static final int TYPE_SCHOOL_DETAIL = 5;
+    public static final int TYPE_MATCH_DETAIL = 6;
+    public static final int TYPE_PRODUCT_DETAIL = 7;
+    public static final int TYPE_COURSE_INTRODUCE = 8;
+     /**
+      * 内部跳转
+      */
+    public static final int TYPE_INNER_TAB = 9;
     private static final int REQUEST_CODE = 998;
 
     public static WebViewContainerFragment getInstance(Bundle bundle) {
@@ -125,7 +138,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
                     mWebView.setVisibility(View.VISIBLE);
                     switch (type) {
                         default:
-                            loadTrend();
+                            setToken();
                             break;
                     }
                 }
@@ -153,7 +166,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
             }
         });
         mWebView.setWebChromeClient(mWebChromeClient);
-        mWebView.addJavascriptInterface(new JsInterface(), "AndroidWebView");
+        mWebView.addJavascriptInterface(new JsInterface(getActivity()), "AndroidWebView");
     }
 
     public void reload() {
@@ -163,22 +176,13 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
     }
 
 
-    private void loadTrend() {
+    private void setToken() {
         Bundle arguments = getArguments();
         if (arguments == null) {
             return;
         }
-//        String categoryCode = arguments.getString(Constant.CATEGORY_CODE);
-//        String timeType = arguments.getString(TIME_TYPE);
-//        String rowkey = arguments.getString(Constant.ROWKEY);
-//        String infoType = arguments.getString(INFO_TYPE);
-
-        JSONObject json = getBaseJSONObject();
-//        json.put("code", rowkey);
-//        json.put("infoType", infoType);
-//        json.put("categoryCode", categoryCode);
-//        json.put("timeType", timeType);
-        mWebView.loadUrl("javascript: setData(" + json.toJSONString() + ")");
+        mWebView.loadUrl("javascript: setToken('" + SPUtil.getTokenFromSP() + "')");
+        LogAndToastUtil.log("====detail_token===="+SPUtil.getTokenFromSP());
     }
 
     public static JSONObject getBaseJSONObject() {
@@ -230,25 +234,6 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
         }
     };
 
-    private class JsInterface {
-        @JavascriptInterface
-        public void handlerJsMessage(String jsonMessage) {
-            try {
-                JSONObject jsonObject = JSONObject.parseObject(jsonMessage);
-                int action = jsonObject.getIntValue(ExtraConstant.EXTRA_JS_ACTION);
-                switch (action) {
-                    //跳转页面
-//                    case Constant.ACTION_JUMP:
-//                        jumpActivity(jsonObject);
-//                        break;
-                    default:
-                        break;
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     private long lastJumpTime;
 

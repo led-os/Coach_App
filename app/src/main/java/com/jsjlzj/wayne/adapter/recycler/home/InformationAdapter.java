@@ -83,6 +83,21 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             tvTitle.setText(bean.getName());
             tvTime.setText(bean.getCreateTime());
             tvNumber.setText(bean.getViewCount()+"次阅读");
+            itemView.setOnClickListener(v -> {
+                if(listener != null){
+                    listener.onItemClick(bean);
+                }
+            });
         }
+    }
+
+    private OnItemClickListener listener;
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(VideoBean bean);
     }
 }

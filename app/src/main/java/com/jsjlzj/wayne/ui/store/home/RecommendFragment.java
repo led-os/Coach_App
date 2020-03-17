@@ -27,6 +27,7 @@ import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.home.recommend.AllClassicActivity;
 import com.jsjlzj.wayne.ui.store.home.recommend.ClassicDetailActivity;
+import com.jsjlzj.wayne.ui.store.list.MoreDataActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
@@ -156,7 +157,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
                     BannerBean bean = images.get(position);
-                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL,"");
+                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
     }
@@ -186,6 +187,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
                 break;
             case R.id.tv_hot_right:
             case R.id.img_hot_right:
+                MoreDataActivity.go2this(getActivity(),"热门资讯",0);
                 break;
             default:
                 break;
@@ -241,20 +243,28 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     @Override
     public void onItemClick(RecommendBean.LessonBean bean) {
         //点击课程条目
+        WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),HttpConstant.WEB_URL_COURSE_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_COURSE_DETAIL);
     }
 
     @Override
     public void onItemClick(VideoBean bean) {
         //点击猜你喜欢条目
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
     }
 
     @Override
     public void onHeadClick(VideoBean bean) {
         //点击头像
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+                WebViewContainerFragment.TYPE_USER_INFO);
     }
 
     @Override
     public void onItemClick(RecommendBean.InformationBean bean) {
         //点击热门资讯条目
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_AETICLE_DETAIL+bean.getChannelId(),
+                WebViewContainerFragment.TYPE_ARTICLE_DETAIL);
     }
 }

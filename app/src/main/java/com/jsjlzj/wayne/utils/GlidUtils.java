@@ -5,7 +5,6 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.jsjlzj.wayne.R;
 
@@ -62,7 +61,7 @@ public class GlidUtils {
                 .with(context)
                 .load(url)
                 .error(R.drawable.ic_default_image)
-                .apply(new RequestOptions().transform(new GlideRoundTransform(round)))
+                .apply(new RequestOptions().transform(new GlideRoundTransform(round,0)))
                 .into(view);
     }
 
@@ -72,7 +71,7 @@ public class GlidUtils {
                 .with(context)
                 .load(url)
                 .error(R.drawable.ic_avatars)
-                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .apply(RequestOptions.bitmapTransform(new GlideRoundTransform(0,1)))
                 .into(view);
     }
 

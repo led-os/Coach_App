@@ -8,12 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
-import com.netease.nim.uikit.common.ToastHelper;
+import com.jsjlzj.wayne.ui.store.list.MoreDataActivity;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,27 +31,15 @@ public class DriedTypeAdapter extends RecyclerView.Adapter<DriedTypeAdapter.View
 
     private List<CategoryBean> list = new ArrayList<>();
     private Context context;
+    /**
+     * 1 : 干货  2 ：资讯   3 ： 产品
+     */
+    private int fromType;
 
-    public DriedTypeAdapter(Context context,List<CategoryBean> list) {
+    public DriedTypeAdapter(Context context,List<CategoryBean> list,int fromType) {
         this.list = list;
         this.context = context;
-//        if(type == 0){
-//            this.list.add("增肌");1004
-//            this.list.add("减脂");1005
-//            this.list.add("vlog");1006
-//            this.list.add("励志");
-//        }else if(type == 1){
-//            this.list.add("训练");
-//            this.list.add("营养");
-//            this.list.add("资讯");
-//            this.list.add("女性");
-//        }else {
-//            this.list.add("运动器械");
-//            this.list.add("运动服务");
-//            this.list.add("运动补给");
-//            this.list.add("运动食品");
-//        }
-        this.context = context;
+        this.fromType = fromType;
     }
 
     public void setData(List<CategoryBean> list){
@@ -91,35 +79,35 @@ public class DriedTypeAdapter extends RecyclerView.Adapter<DriedTypeAdapter.View
         void bindView(Context context, List<CategoryBean> list, int pos) {
             CategoryBean bean = list.get(pos);
             String str = bean.getName();
-            if("增肌".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_train_one));
-            }else if("减脂".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_delete_zhi));
-            }else if("VLog".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_vlog));
-            }else if("励志".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_improvement));
-            }else if("训练".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_train));
-            }else if("营养".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_nutrition));
-            }else if("资讯".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_information));
-            }else if("女性".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_women));
-            }else if("运动器械".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydqc));
-            }else if("运动服务".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydfs));
-            }else if("运动补给".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydbj));
-            }else if("运动食品".equals(str)){
-                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydsp));
-            }
-//            GlidUtils.setCircleGrid(context,str.getUrl(),imgType);
+//            if("增肌".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_train_one));
+//            }else if("减脂".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_delete_zhi));
+//            }else if("VLog".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_vlog));
+//            }else if("励志".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_improvement));
+//            }else if("训练".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_train));
+//            }else if("营养".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_nutrition));
+//            }else if("资讯".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_information));
+//            }else if("女性".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_women));
+//            }else if("运动器械".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydqc));
+//            }else if("运动服务".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydfs));
+//            }else if("运动补给".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydbj));
+//            }else if("运动食品".equals(str)){
+//                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ydsp));
+//            }
+            GlidUtils.setCircleGrid(context,bean.getUrl(),imgType);
             tvType.setText(bean.getName());
             itemView.setOnClickListener(v -> {
-                ToastHelper.showToast(context,bean.getName());
+                MoreDataActivity.go2this(context,bean.getName(),fromType,bean.getId());
             });
         }
     }

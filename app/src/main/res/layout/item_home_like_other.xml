@@ -11,6 +11,7 @@
         android:id="@+id/img_one"
         android:layout_width="@dimen/padding_115"
         android:layout_height="@dimen/padding_82"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_buffer1"/>
     <TextView
         android:id="@+id/tv_play_time"

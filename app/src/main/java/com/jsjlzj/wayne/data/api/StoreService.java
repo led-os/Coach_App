@@ -359,4 +359,7 @@ public interface StoreService {
     @POST(HttpConstant.API_MINE_DYNAMIC_LIST)
     Observable<MdlBaseHttpResp<VideoPageBean>> requestMineDynamicList(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_AMOY_SIGN_UP)
+    Observable<MdlBaseHttpResp<String>> requestAmoySignUp(@Body RequestBody requestBody);
+
 }

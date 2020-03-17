@@ -18,10 +18,13 @@ import com.jsjlzj.wayne.adapter.recycler.home.ProductAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SeaerchTaoLearnAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SearchAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SearchUserAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.entity.store.search.ChannelListBean;
 import com.jsjlzj.wayne.entity.store.search.TaoLearnListBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -40,7 +43,7 @@ import butterknife.OnClick;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, SearchUserAdapter.OnSearchUserClickListener {
+public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, SearchUserAdapter.OnSearchUserClickListener, ProductAdapter.OnItemClickListener {
 
 
     @BindView(R.id.rv_amoy_list)
@@ -165,6 +168,7 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
             case 5:
                 llVideo.setVisibility(View.GONE);
                 adapter = new ProductAdapter(getActivity(), new ArrayList<>());
+                ((ProductAdapter)adapter).setListener(this);
                 rvAmoyList.setLayoutManager(new LinearLayoutManager(getActivity()));
                 rvAmoyList.setAdapter(adapter);
                 break;
@@ -213,8 +217,9 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
     }
 
     @Override
-    public void onItemClick(ChannelListBean string) {
-
+    public void onItemClick(ChannelListBean bean) {
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_USER_INFO+bean.getId(),
+                WebViewContainerFragment.TYPE_USER_INFO);
     }
 
     @Override
@@ -227,5 +232,11 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
         } else {
             presenter.clickFollow(map);
         }
+    }
+
+    @Override
+    public void onItemClick(CategoryBean bean) {
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_PRODUCT_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_PRODUCT_DETAIL);
     }
 }

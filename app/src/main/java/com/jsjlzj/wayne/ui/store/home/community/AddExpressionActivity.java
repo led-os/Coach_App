@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.AddExpressionAdapter;
+import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.entity.trainer.ExpressionBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -29,9 +30,9 @@ public class AddExpressionActivity extends MVPBaseActivity<HomeView, HomePresent
 
     private AddExpressionAdapter adapter;
 
-    public static void go2this(Activity context) {
+    public static void go2this(Activity context,int requestCode) {
         Intent intent = new Intent(context, AddExpressionActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent,requestCode);
     }
 
 
@@ -58,6 +59,9 @@ public class AddExpressionActivity extends MVPBaseActivity<HomeView, HomePresent
 
      @Override
      public void onItemClick(ExpressionBean str) {
-
+        Intent intent = new Intent();
+        intent.putExtra(ExtraConstant.EXTRA_DATA,str.getExpressionRes());
+        setResult(RESULT_OK,intent);
+        finish();
      }
  }

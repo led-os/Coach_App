@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
@@ -149,15 +152,20 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgAuthor);
             tvAuthor.setText(bean.getChannelName());
+            imgAuthor.setOnClickListener(clickListener);
+            tvAuthor.setOnClickListener(clickListener);
+
 
             itemView.setOnClickListener(v -> {
-                if(listener != null){
-                    listener.onItemClick(bean);
-                }
+                WebViewContainerActivity.go2this(context,bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                        WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
             });
         }
 
-
+        View.OnClickListener clickListener = v -> {
+            WebViewContainerActivity.go2this(context,bean.getName(),HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+                    WebViewContainerFragment.TYPE_USER_INFO);
+        };
     }
 
     class OtherViewHolder extends RecyclerView.ViewHolder {
@@ -199,22 +207,20 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 tvPlayTime.setVisibility(View.VISIBLE);
                 tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration() * 1000));
             }
-            GlidUtils.setRoundGrid(context,bean.getChannelAvatar(),imgAuthor,32);
+            GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgAuthor);
             tvAuthor.setText(bean.getChannelName());
             imgAuthor.setOnClickListener(clickListener);
             tvAuthor.setOnClickListener(clickListener);
 
             itemView.setOnClickListener(v -> {
-                if(listener != null){
-                    listener.onItemClick(bean);
-                }
+                WebViewContainerActivity.go2this(context,bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                        WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
             });
         }
 
         View.OnClickListener clickListener = v -> {
-            if(listener != null){
-                listener.onHeadClick(bean);
-            }
+            WebViewContainerActivity.go2this(context,bean.getName(),HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+                    WebViewContainerFragment.TYPE_USER_INFO);
         };
     }
 

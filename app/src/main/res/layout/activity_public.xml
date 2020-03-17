@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/padding_14"
+        android:paddingEnd="@dimen/padding_14"
         android:paddingTop="@dimen/text_size_18"
         android:paddingBottom="@dimen/padding_20"
         android:textColorHint="@color/color_dddddd"

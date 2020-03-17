@@ -257,7 +257,14 @@ public class AnswerActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                 tvPrevious.setVisibility(View.GONE);
                 tvProgress.setVisibility(View.GONE);
                 relAnalysis.setVisibility(View.GONE);
+                tvAnalysis.setText(currentAnswer.getAnalysis());
+                tvAnswer.setText(currentAnswer.getAnswer());
                 adapter.setData(selectList);
+                if(currPos == answerBeans.size() -1){
+                    tvNext.setText(getResources().getString(R.string.done));
+                }else {
+                    tvNext.setText(getResources().getString(R.string.next_subject));
+                }
                 break;
             case 1:
                 mRightTv.setVisibility(View.GONE);
@@ -293,12 +300,6 @@ public class AnswerActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                 relAnalysis.setVisibility(View.GONE);
                 adapter.setData(selectList);
                 break;
-//            case 3:
-//                tvPrevious.setVisibility(View.GONE);
-//                tvProgress.setVisibility(View.GONE);
-//                relAnalysis.setVisibility(View.GONE);
-//                adapter.setData(selectList);
-//                break;
             case 4:
                 if(currPos == 0 || currPos == answerBeans.size() -1){
                     tvPrevious.setVisibility(View.GONE);
@@ -378,7 +379,7 @@ public class AnswerActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                 isShowMenu = false;
                 if(isCommitAnswer){
 
-                    if(showType == 0 || showType == 2){
+                    if(showType == 2){
                         String answer = adapter.getResult();
                         if(TextUtils.isEmpty(answer)){
                             return;
@@ -404,10 +405,16 @@ public class AnswerActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                         }
                         getCurrentAnswer(currPos,true);
                         refreshActivity();
-                    }else if(showType == 1){
+                    }else if(showType == 1 || showType == 0 ){
                         String answer = adapter.getResult();
                         if(TextUtils.isEmpty(answer)){
                             return;
+                        }
+                        if(showType == 0){
+                            map.put("answer",answer);
+                            map.put("result",getResult(answer));
+                            map.put("topicId",currentAnswer.getId());
+                            presenter.getSaveAnswerRecord(map);
                         }
                         isCommitAnswer = false;
                         adapter.setCorrectAnswer(true);
@@ -422,18 +429,18 @@ public class AnswerActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                     }
                 }else {
                     isCommitAnswer = true;
-                    if(showType == 0 || showType == 2){
+                    if((showType == 1 || showType == 0) && tvNext.getText().toString().equals(getResources().getString(R.string.done))){
+                        finish();
+                    }
+                    if(showType == 2){
                         getCurrentAnswer(currPos,true);
                         refreshActivity();
-                    }else if(showType == 1){
+                    }else if(showType == 1 || showType == 0 ){
                         getCurrentAnswer(currPos,true);
                         adapter.setCorrectAnswer(false);
                         refreshActivity();
                     }
 
-                    if(showType == 1 && tvNext.getText().toString().equals(getResources().getString(R.string.done))){
-                        finish();
-                    }
                 }
                 break;
                 //错题回顾

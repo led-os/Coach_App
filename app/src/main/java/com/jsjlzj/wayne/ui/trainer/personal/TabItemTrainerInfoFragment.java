@@ -193,7 +193,6 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
                 MasterCardActivity.go2this(getActivity());
                 break;
             case R.id.ll_qzgj://求职管理
-                PublicActivity.go2this(getActivity());
                 break;
             case R.id.ll_zwsc://职位收藏
                 ConnectPositionListActivity.go2this2(getActivity());

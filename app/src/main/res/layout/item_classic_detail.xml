@@ -4,6 +4,7 @@
     android:layout_marginBottom="@dimen/padding_9"
     android:paddingStart="@dimen/padding_14"
     android:paddingEnd="@dimen/padding_14"
+    android:id="@+id/rel_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 

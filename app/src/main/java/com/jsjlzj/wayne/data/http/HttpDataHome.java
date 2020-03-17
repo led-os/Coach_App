@@ -408,6 +408,16 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestMineDynamicList(body);
         setSubscribe(observable, observer);
     }
+ /**
+     * 淘学我的报名
+     * @param params
+     * @param observer
+     */
+    public void getAmoySignUp(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestAmoySignUp(body);
+        setSubscribe(observable, observer);
+    }
 
 
 

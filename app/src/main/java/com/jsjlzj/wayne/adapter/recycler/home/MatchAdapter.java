@@ -12,7 +12,10 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -86,6 +89,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
             tvAddNumber.setText(""+bean.getEnrollCount());
             tvTime.setText(bean.getStartTime()+" 至 " +bean.getEndTime());
             GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
+            itemView.setOnClickListener(v -> {
+                WebViewContainerActivity.go2this(context,bean.getName(), HttpConstant.WEB_URL_MATCH_DETAIL+bean.getId(),
+                        WebViewContainerFragment.TYPE_MATCH_DETAIL);
+//                if(listener != null){
+//                    listener.onItemClick(bean);
+//                }
+            });
             switch (bean.getStatus()){
                 case 1:
                     tvState.setText("未开始");
@@ -101,5 +111,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
                     break;
             }
         }
+    }
+
+    private OnItemClickListener listener ;
+
+    public void setListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(CategoryBean bean);
     }
 }

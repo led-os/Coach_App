@@ -33,6 +33,14 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         context.startActivity(intent);
     }
 
+    public static void go2this(Context context, String title, String url, int type) {
+        Intent intent = new Intent(context, WebViewContainerActivity.class);
+        intent.putExtra(ExtraConstant.EXTRA_WEB_TITLE, title);
+        intent.putExtra(ExtraConstant.EXTRA_WEB_URL, url);
+        intent.putExtra(ExtraConstant.EXTRA_WEB_TYPE, type);
+        context.startActivity(intent);
+    }
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_webview_container;
@@ -49,7 +57,6 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
             initTitle(title);
         }
         addWebFragment(url, rowkey, type);
-
     }
 
     @Override

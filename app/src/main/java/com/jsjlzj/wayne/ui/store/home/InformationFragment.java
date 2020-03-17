@@ -42,7 +42,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener {
+public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, InformationAdapter.OnItemClickListener {
 
     @BindView(R.id.scroll_banner)
     ConvenientBanner scrollBanner;
@@ -82,8 +82,7 @@ public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter
     }
 
     @Override
-    protected void fragment2Front() {
-    }
+    protected void fragment2Front() {}
 
     @Override
     protected HomePresenter createPresenter() {
@@ -93,7 +92,7 @@ public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter
     private void initRecycler() {
         rvState.setHasFixedSize(true);
         rvState.setNestedScrollingEnabled(false);
-        driedTypeAdapter = new DriedTypeAdapter(getActivity(), categoryList);
+        driedTypeAdapter = new DriedTypeAdapter(getActivity(), categoryList,2);
         rvState.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         rvState.setAdapter(driedTypeAdapter);
 
@@ -103,6 +102,7 @@ public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter
         rvLike.setLoadingMoreEnabled(true);
         rvLike.setLoadingListener(this);
         informationAdapter = new InformationAdapter(getActivity(), videoList);
+        informationAdapter.setListener(this);
         rvLike.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvLike.setAdapter(informationAdapter);
     }
@@ -125,7 +125,7 @@ public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
                     BannerBean bean = images.get(position);
-                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL,"");
+                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
     }
@@ -189,7 +189,7 @@ public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter
         map.clear();
         map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
-        map.put("categoryId", typeId);
+        map.put(HttpConstant.CATEGORY_ID, typeId);
         presenter.getInformationList(map);
     }
 
@@ -219,5 +219,11 @@ public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter
         } else {
             ToastHelper.showToast(getContext(), getString(R.string.has_no_more_data));
         }
+    }
+
+    @Override
+    public void onItemClick(VideoBean bean) {
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(),HttpConstant.WEB_URL_AETICLE_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_ARTICLE_DETAIL);
     }
 }

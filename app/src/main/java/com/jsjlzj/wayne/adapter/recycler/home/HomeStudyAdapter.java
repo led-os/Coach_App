@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
@@ -75,7 +76,13 @@ public class HomeStudyAdapter extends RecyclerView.Adapter<HomeStudyAdapter.View
 
         void bindView(int pos) {
             bean = list.get(pos);
-            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,5);
+            if(bean.getId() == -1){
+                imgOne.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.bg_gztk));
+            }else if(bean.getId() == -2){
+                imgOne.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.bg_gzkscx));
+            }else {
+                GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,5);
+            }
             tvTitle.setText(bean.getTitle());
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
