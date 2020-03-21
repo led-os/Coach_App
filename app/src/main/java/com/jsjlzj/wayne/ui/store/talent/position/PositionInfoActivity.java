@@ -22,6 +22,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
+import com.jsjlzj.wayne.ui.publicac.report.ReportTypeActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.dialog.ShareDialog;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
@@ -143,8 +144,12 @@ public class PositionInfoActivity extends MVPBaseActivity<TalentPersonalView, Ta
         new ShareDialog(this, new ShareDialog.ClickListener() {
             @Override
             public void clickConfirm(int index) {
-                //0:微信好友  1:朋友圈
-                share(index);
+                if(index == 2){
+                    ReportTypeActivity.go2this(PositionInfoActivity.this);
+                }else {
+                    //0:朋友圈  1:微信好友
+                    share(index);
+                }
             }
         }).show();
     }
@@ -165,10 +170,10 @@ public class PositionInfoActivity extends MVPBaseActivity<TalentPersonalView, Ta
             req.message = msg;
             switch (type) {
                 case 0:
-                    req.scene = SendMessageToWX.Req.WXSceneSession;
+                    req.scene = SendMessageToWX.Req.WXSceneTimeline;
                     break;
                 case 1:
-                    req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                    req.scene = SendMessageToWX.Req.WXSceneSession;
                     break;
             }
             iwxapi.sendReq(req);

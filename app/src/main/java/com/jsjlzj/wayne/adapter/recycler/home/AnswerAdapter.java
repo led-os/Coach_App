@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.store.learn.SelectBean;
-import com.netease.nim.uikit.common.ToastHelper;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -305,17 +305,17 @@ public class AnswerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             if(result.length() > 1){
                 result.replace(result.length()-1,result.length(),"]");
             }else {
-                ToastHelper.showToast(context,"请选择您的答案");
+                LogAndToastUtil.toast(context,"请选择您的答案");
                 return "";
             }
         }else if(type == 1 || type == 3){
             if(result.length() <= 0){
-                ToastHelper.showToast(context,"请选择您的答案");
+                LogAndToastUtil.toast(context,"请选择您的答案");
                 return "";
             }
         }else if(type == 4){
             if(result.length() <= 0){
-                ToastHelper.showToast(context,"请输入您的答案");
+                LogAndToastUtil.toast(context,"请输入您的答案");
                 return "";
             }
         }

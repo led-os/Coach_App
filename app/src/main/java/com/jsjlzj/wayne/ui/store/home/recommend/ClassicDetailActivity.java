@@ -196,14 +196,6 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
         } else {
             presenter.clickFollow(map);
         }
-//         new ShareDialog(this, index -> {
-//             if(index == 2){
-//                 ReportTypeActivity.go2this(this);
-//             }else {
-//                 //0:微信好友  1:朋友圈
-//                 LogAndToastUtil.showWait(ClassicDetailActivity.this,""+index);
-//             }
-//         }).show();
     }
 
     @Override

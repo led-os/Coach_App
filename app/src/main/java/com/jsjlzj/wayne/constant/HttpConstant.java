@@ -62,6 +62,10 @@ public class HttpConstant {
      * Token过期
      */
     public static final int R_TOKEN_EXPIRE = 2001;
+    /**
+     * 未登录
+     */
+    public static final int R_TOKEN_UN_LOGIN = 1002;
 
     //基础功能
     public static final String API_GET_CHECK_CODE = "jcmes-user/app/AppUserController/getIdentify";
@@ -394,6 +398,10 @@ public class HttpConstant {
     public static final String API_MINE_DYNAMIC_LIST = "community/myList";
     //淘学课程报名
     public static final String API_AMOY_SIGN_UP = "enroll/taoLearnEnroll";
+    //赛事报名
+    public static final String API_MATCH_SIGN_UP = "enroll/sportEventEnroll";
+    //发布动态
+    public static final String API_PUBLIC_DYNAMIC = "community/publish";
 
 
 

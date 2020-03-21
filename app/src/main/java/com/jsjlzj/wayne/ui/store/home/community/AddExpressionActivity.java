@@ -58,9 +58,10 @@ public class AddExpressionActivity extends MVPBaseActivity<HomeView, HomePresent
 
 
      @Override
-     public void onItemClick(ExpressionBean str) {
+     public void onItemClick(ExpressionBean str,int pos) {
         Intent intent = new Intent();
         intent.putExtra(ExtraConstant.EXTRA_DATA,str.getExpressionRes());
+        intent.putExtra(ExtraConstant.EXTRA_POSITION,pos);
         setResult(RESULT_OK,intent);
         finish();
      }

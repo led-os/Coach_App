@@ -93,7 +93,7 @@ public class AddExpressionAdapter extends RecyclerView.Adapter<AddExpressionAdap
             }
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
-                    listener.onItemClick(bean);
+                    listener.onItemClick(bean,pos);
                 }
 
             });
@@ -108,6 +108,6 @@ public class AddExpressionAdapter extends RecyclerView.Adapter<AddExpressionAdap
 
     public interface OnItemClickListener {
 
-        void onItemClick(ExpressionBean str);
+        void onItemClick(ExpressionBean str,int pos);
     }
 }

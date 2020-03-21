@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.ui.mvp.home;
 
 import com.jsjlzj.wayne.data.http.HttpDataHome;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
@@ -14,6 +15,7 @@ import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
 import com.jsjlzj.wayne.entity.store.search.SearchBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import java.util.Map;
 
@@ -894,5 +896,77 @@ public class HomeModel extends BaseModel {
         });
     }
 
+    public void getMatchSignUp(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().getMatchSignUp(param, new Observer<MdlBaseHttpResp<String>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<String> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    public void publicDynamic(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().publicDynamic(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+
+    public void upload(int code, String path, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().upload( path, new Observer<MdlBaseHttpResp>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
 
 }

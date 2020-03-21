@@ -2,6 +2,8 @@ package com.jsjlzj.wayne.data.api;
 
 
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
+import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
@@ -32,9 +34,12 @@ import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 /**
  * Created by Administrator on 2018/6/11.
@@ -362,4 +367,14 @@ public interface StoreService {
     @POST(HttpConstant.API_AMOY_SIGN_UP)
     Observable<MdlBaseHttpResp<String>> requestAmoySignUp(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_MATCH_SIGN_UP)
+    Observable<MdlBaseHttpResp<String>> requestMatchSignUp(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_PUBLIC_DYNAMIC)
+    Observable<MdlBaseHttpResp<DataBean>> requestPublicDynamic(@Body RequestBody requestBody);
+
+    @Multipart
+    @POST(HttpConstant.API_UPLOAD)//上次文件
+//    Observable<MdlBaseHttpResp<MdlUpload>> upload(@Part("type") RequestBody type, @Part MultipartBody.Part file);
+    Observable<MdlBaseHttpResp<MdlUpload>> upload(@Part MultipartBody.Part file);
 }

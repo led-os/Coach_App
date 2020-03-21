@@ -56,6 +56,10 @@ public class ExtraConstant {
     public static final String EXTRA_WEB_TITLE = "_web_title";
     public static final String EXTRA_JS_ACTION = "_js_action";
     public static final String EXTRA_DATA = "_data";
+    public static final String EXTRA_POSITION = "_position";
+    public static final String EXTRA_LAT = "_lat";
+    public static final String EXTRA_LNG = "_lng";
+    public static final String EXTRA_LOCATION = "_location";
 
 
     public static final String EXTRA_REPORTTYPE = "REPORTTYPE";

@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.publicac.report;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.ReportPresenter;
 import com.jsjlzj.wayne.ui.mvp.home.ReportView;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 
 import java.util.ArrayList;
@@ -87,7 +89,12 @@ public class ReportContentActivity extends MVPBaseActivity<ReportView, ReportPre
     protected void onMultiClick(View view) {
         super.onMultiClick(view);
         if(view.getId() == R.id.tv_commit){
-            // TODO: 2020/2/12 提交投诉 
+            // TODO: 2020/2/12 提交投诉
+            if(TextUtils.isEmpty(etDesc.getText().toString())){
+                LogAndToastUtil.toast("请输入举报内容");
+            }else {
+                LogAndToastUtil.toast("举报成功");
+            }
         }
     }
 

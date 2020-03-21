@@ -43,14 +43,19 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
     @BindView(R.id.tv_commit)
     TextView tvCommit;
 
+    /**
+     * 0 :淘学报名   1： 赛事报名
+     */
+    private int type ;
     private String courseId;
     private Map<Object, Object> map = new HashMap<>();
 
 
-    public static void go2this(Activity context, String schoolId, String courseId) {
+    public static void go2this(Activity context, String schoolId, String courseId,int type) {
         Intent intent = new Intent(context, SignUpActivity.class);
         intent.putExtra(ExtraConstant.EXTRA_TITLE, courseId);
         intent.putExtra(ExtraConstant.EXTRA_SCHOOL_ID, schoolId);
+        intent.putExtra(ExtraConstant.EXTRA_SHOW_TYPE,type);
         context.startActivity(intent);
     }
 
@@ -62,6 +67,7 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
     @Override
     protected void initViewAndControl() {
         courseId = getIntent().getStringExtra(ExtraConstant.EXTRA_TITLE);
+        type = getIntent().getIntExtra(ExtraConstant.EXTRA_SHOW_TYPE,0);
         String schoolId = getIntent().getStringExtra(ExtraConstant.EXTRA_SCHOOL_ID);
         LogAndToastUtil.log(schoolId + "title====courseId" + courseId);
         initTitle("我要报名");
@@ -84,7 +90,11 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
             map.put("name", etName.getText().toString());
             map.put("mobile", etPhone.getText().toString());
             map.put("id", courseId);
-            presenter.getAmoySiguUp(map);
+            if(type == 0){
+                presenter.getAmoySiguUp(map);
+            }else {
+                presenter.getMatchSiguUp(map);
+            }
         }
     }
 

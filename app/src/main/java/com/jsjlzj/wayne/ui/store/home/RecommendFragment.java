@@ -264,7 +264,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     @Override
     public void onItemClick(RecommendBean.InformationBean bean) {
         //点击热门资讯条目
-        WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_AETICLE_DETAIL+bean.getChannelId(),
+        WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_AETICLE_DETAIL+bean.getId(),
                 WebViewContainerFragment.TYPE_ARTICLE_DETAIL);
     }
 }

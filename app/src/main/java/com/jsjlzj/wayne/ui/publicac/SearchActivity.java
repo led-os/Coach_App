@@ -179,11 +179,11 @@ public class SearchActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                     informationFragment = AmoyListFragment.getInstance(i,null);
                     fragments.add(informationFragment);
                     break;
+//                case 5:
+//                    productFragment = AmoyListFragment.getInstance(i,null);
+//                    fragments.add(productFragment);
+//                    break;
                 case 5:
-                    productFragment = AmoyListFragment.getInstance(i,null);
-                    fragments.add(productFragment);
-                    break;
-                case 6:
                     userFragment = AmoyListFragment.getInstance(i,null);
                     fragments.add(userFragment);
                     break;

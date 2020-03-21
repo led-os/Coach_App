@@ -185,6 +185,12 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
         LogAndToastUtil.log("====detail_token===="+SPUtil.getTokenFromSP());
     }
 
+
+    public void toShare() {
+        mWebView.loadUrl("javascript: appBridgeShare()");
+        LogAndToastUtil.log("====detail_token===="+SPUtil.getTokenFromSP());
+    }
+
     public static JSONObject getBaseJSONObject() {
         JSONObject json = new JSONObject();
 //        json.put("token", DataCacheManager.getToken());

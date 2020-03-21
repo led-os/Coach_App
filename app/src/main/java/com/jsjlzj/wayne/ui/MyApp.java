@@ -7,6 +7,9 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
 import com.bumptech.glide.Glide;
@@ -17,6 +20,7 @@ import com.jsjlzj.wayne.data.http.HttpManager;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.address.MalAddressProvince;
 import com.jsjlzj.wayne.entity.store.MdlDict;
+import com.jsjlzj.wayne.ui.mvp.address.BDAbsLocationListener;
 import com.jsjlzj.wayne.ui.yunxin.MyNimSDKOptionConfig;
 import com.jsjlzj.wayne.ui.yunxin.location.NimDemoLocationProvider;
 import com.jsjlzj.wayne.ui.yunxin.preference.DemoCache;
@@ -33,6 +37,8 @@ import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.mixpush.MixPushConfig;
 import com.netease.nimlib.sdk.util.NIMUtil;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.yuyh.library.imgsel.ISNav;
 import com.yuyh.library.imgsel.common.ImageLoader;
 
@@ -43,6 +49,8 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import static com.jsjlzj.wayne.constant.HttpConstant.WXAPPID;
 
 
 public class MyApp extends Application {
@@ -57,17 +65,89 @@ public class MyApp extends Application {
     public static MdlDict.DataBean mdlDict;//数据字典
     public static List<MalAddressProvince.DataBean.MalAddressProvice> provinceList;//地区
     public String dirPhoto;
+    /**
+     * 当前纬度
+     */
+    private float latitude;
+    /**
+     * 当前经度
+     */
+    private float longitude;
+    /**
+     * 当前城市
+     */
+    private String currentProvince;
+    // 当前位置
+    private String curPosition;
+    private IWXAPI iwxapi;
+
     public static List<String> searchList = new ArrayList<>();
     public DisplayMetrics dm;
 
 
-    public static MyApp getApp(){
+    public static MyApp getApp() {
         return ME;
     }
 
-    public static MdlUser.MdlUserBean getUser(){
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public String getCurrentProvince() {
+        return currentProvince;
+    }
+
+    public String getCurPosition() {
+        return curPosition;
+    }
+
+    public IWXAPI getIwxapi() {
+        return iwxapi;
+    }
+
+    // 百度地图定位
+    private LocationClient locationClient;
+    /**
+     * 百度地图定位监听器
+     */
+    private BDAbsLocationListener bdListener = new BDAbsLocationListener() {
+        @Override
+        public void onReceiveLocation(BDLocation bdLocation) {
+            latitude = (float) bdLocation.getLatitude();    //获取纬度信息
+            longitude = (float) bdLocation.getLongitude();
+            currentProvince = bdLocation.getCity();  // 获取当前城市
+            curPosition = bdLocation.getAddrStr();
+            LogAndToastUtil.log("latitude:" + latitude + "longitude:" + longitude + "currentProvince:" + currentProvince + "curPosition:" + curPosition);
+            super.onReceiveLocation(bdLocation);
+        }
+    };
+
+    //初始化百度配置信息
+    public void initBdConfigure() {
+        locationClient = new LocationClient(getApp()); //百度地圖聲明
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        option.setCoorType("gcj02");
+        option.setScanSpan(0);
+        option.setOpenGps(false);
+        option.setLocationNotify(true);
+        option.setIgnoreKillProcess(true);
+        option.setWifiCacheTimeOut(5 * 60 * 1000);
+        option.setEnableSimulateGps(false);
+        option.setIsNeedAddress(true);
+        locationClient.setLocOption(option);
+        locationClient.registerLocationListener(bdListener);//注册百度监听函数
+        locationClient.start();
+    }
+
+    public static MdlUser.MdlUserBean getUser() {
         return user;
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -78,7 +158,8 @@ public class MyApp extends Application {
             ME = this;
             initBaiduMap();
             prepareSD();
-
+            initBdConfigure();
+            initWeixin();
 //            user = SPUtil.getUserFromSP();
             initISNav();
             initDB();
@@ -87,6 +168,14 @@ public class MyApp extends Application {
             forGlobalException();
         }
     }
+
+    private void initWeixin() {
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        iwxapi = WXAPIFactory.createWXAPI(this, WXAPPID, true);
+        // 将应用的appId注册到微信
+        iwxapi.registerApp(WXAPPID);
+    }
+
 
     /**
      * 初始化图片选择器

@@ -1,16 +1,28 @@
 package com.jsjlzj.wayne.utils;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.webkit.JavascriptInterface;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
+import com.jsjlzj.wayne.ui.publicac.report.ReportTypeActivity;
 import com.jsjlzj.wayne.ui.store.home.amoy.SignUpActivity;
+import com.jsjlzj.wayne.widgets.dialog.ShareDialog;
 import com.netease.nim.uikit.common.ToastHelper;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
+
+import static com.jsjlzj.wayne.utils.Utility.bmpToByteArray;
+import static com.jsjlzj.wayne.utils.Utility.buildTransaction;
 
 /**
  * @ClassName: JsInterface
@@ -53,7 +65,7 @@ public class JsInterface {
     @JavascriptInterface
     public void joinSchool(String schoolId,String courseId){
         LogAndToastUtil.log(schoolId+"====JsInterface===="+courseId);
-        SignUpActivity.go2this(mContext,schoolId,courseId);
+        SignUpActivity.go2this(mContext,schoolId,courseId,0);
     }
 
 
@@ -65,8 +77,13 @@ public class JsInterface {
     @JavascriptInterface
     public void toPage(String url,String title){
         LogAndToastUtil.log(url+"====JsInterface===="+title);
-        WebViewContainerActivity.go2this(mContext,title, HttpConstant.WEB_URL_BASE+url, WebViewContainerFragment.TYPE_INNER_TAB);
+        if(!url.contains("http:")){
+            url = HttpConstant.WEB_URL_BASE + url ;
+        }
+        WebViewContainerActivity.go2this(mContext,title, url, WebViewContainerFragment.TYPE_INNER_TAB);
     }
+
+    private Bitmap bitmap;
 
     /**
      * 分享
@@ -77,7 +94,58 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void share(String url,String title,String content,String img){
-        ToastHelper.showToast(mContext,"分享");
+        LogAndToastUtil.log(title+"====JsInterface===="+content+"=========="+img);
+        BitmapUtils.getBitmap(mContext, img, new BitmapUtils.GlideLoadBitmapCallback() {
+            @Override
+            public void getBitmapCallback(Bitmap bitmap) {
+                LogAndToastUtil.log("====bitmap===="+bitmap+"=========="+img);
+                JsInterface.this.bitmap = bitmap;
+            }
+        });
+        new ShareDialog(mContext,index -> {
+            if(index == 2){
+                ReportTypeActivity.go2this(mContext);
+            }else {
+                //0:微信好友  1:朋友圈
+                share(index,url,title,content);
+            }
+        }).show();
+    }
+
+
+    private void share(int type,String url,String title,String content) {
+        if (!MyApp.getApp().getIwxapi().isWXAppInstalled()) {
+            LogAndToastUtil.toast("您的设备未安装微信客户端");
+        } else {
+            WXWebpageObject wxWebpage = new WXWebpageObject();
+            wxWebpage.webpageUrl = url;
+            WXMediaMessage msg = new WXMediaMessage(wxWebpage);
+            msg.title = title;
+            msg.description = content;
+
+            if(bitmap == null){
+                bitmap= BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_launcher);
+            }
+            Bitmap thumbData = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
+            msg.thumbData = bmpToByteArray(thumbData, true);
+            SendMessageToWX.Req req = new SendMessageToWX.Req();
+            req.transaction = buildTransaction("Req");
+            req.message = msg;
+            switch (type) {
+                case 0:
+                    req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                    MyApp.getApp().getIwxapi().sendReq(req);
+                    break;
+                case 1:
+                    req.scene = SendMessageToWX.Req.WXSceneSession;
+                    MyApp.getApp().getIwxapi().sendReq(req);
+                    break;
+                case 2:
+                    break;
+            }
+
+
+        }
     }
 
     /**
@@ -86,17 +154,17 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void joinCourse(String courseId){
-        ToastHelper.showToast(mContext,"课程报名");
+        SignUpActivity.go2this(mContext,"",courseId,0);
     }
 
     @JavascriptInterface
-    public void buyProduct(String productId){
-        ToastHelper.showToast(mContext,"产品购买");
+    public void buyProduct(String productId,String phone){
+        ToastHelper.showToast(mContext,productId+"产品购买"+phone);
     }
 
     @JavascriptInterface
     public void joinMatch(String matchId){
-        ToastHelper.showToast(mContext,"赛事报名");
+        SignUpActivity.go2this(mContext,"",matchId,1);
     }
 
     @JavascriptInterface
@@ -106,6 +174,13 @@ public class JsInterface {
 
     @JavascriptInterface
     public void reLogin(String url){
-        ToastHelper.showToast(mContext,"token过期");
+        Utility.needLogin(mContext);
+    }
+
+
+    @JavascriptInterface
+    public String getToken(){
+        LogAndToastUtil.log("====token===="+SPUtil.getTokenFromSP());
+        return SPUtil.getTokenFromSP();
     }
 }

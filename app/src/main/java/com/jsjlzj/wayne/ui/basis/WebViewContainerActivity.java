@@ -5,12 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MotionEvent;
+import android.view.View;
+
 import androidx.fragment.app.FragmentTransaction;
+
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.widgets.AndroidBug5497Workaround;
+
+import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_ARTICLE_DETAIL;
+import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_BANNER_LINK_URL;
 
 
 /**
@@ -20,6 +27,7 @@ import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
  * 描述：WebView Activity
  */
 public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView  {
+
 
     public static final String TAG_FRAGMENT = "webview";
     private WebViewContainerFragment webFragment;
@@ -49,19 +57,39 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
     @Override
     protected void initViewAndControl() {
         Intent intent = getIntent();
-        int type = intent.getIntExtra(ExtraConstant.EXTRA_WEB_TYPE, WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+        int type = intent.getIntExtra(ExtraConstant.EXTRA_WEB_TYPE, TYPE_BANNER_LINK_URL);
         String title = intent.getStringExtra(ExtraConstant.EXTRA_WEB_TITLE);
         String url = intent.getStringExtra(ExtraConstant.EXTRA_WEB_URL);
         String rowkey = intent.getStringExtra(ExtraConstant.EXTRA_WEB_DATA);
         if (!TextUtils.isEmpty(title)) {
-            initTitle(title);
+            if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL){
+                if(type == TYPE_ARTICLE_DETAIL){
+                    title = "详情";
+                }
+                initTitle(title);
+            }else {
+                initRightTitle(title,R.drawable.ic_share2);
+                mRightBtn.setOnClickListener(clickListener);
+            }
         }
+
         addWebFragment(url, rowkey, type);
+        AndroidBug5497Workaround.assistActivity(this);
     }
 
     @Override
     protected TalentTabFragmentPresenter createPresenter() {
         return new TalentTabFragmentPresenter(this);
+    }
+
+
+    @Override
+    protected void onMultiClick(View view) {
+        if(R.id.btn_title_right == view.getId()){
+            if(webFragment != null){
+                webFragment.toShare();
+            }
+        }
     }
 
     /**

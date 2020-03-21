@@ -4,6 +4,7 @@ package com.jsjlzj.wayne.ui.store.home;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
@@ -86,6 +88,9 @@ public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView
     @Override
     protected void initViewAndControl(View view) {
         initViewPager();
+        if(!TextUtils.isEmpty(MyApp.getApp().getCurrentProvince())){
+            tvLocation.setText(MyApp.getApp().getCurrentProvince().replace("市",""));
+        }
         tvLocation.setOnClickListener(clickListener);
         linSearchBar.setOnClickListener(clickListener);
         imgSend.setOnClickListener(clickListener);

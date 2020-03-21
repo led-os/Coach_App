@@ -77,4 +77,6 @@ public interface TalentTabFragmentView extends BaseView {
 
     default void selectPhoto(int pos){}
     default void onUploadSuccess(String filePath,int currPos){}
+    default void onChangeSucceed(){}
+    default void onChangeFailed(String filePath){}
 }

@@ -33,6 +33,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.ui.publicac.report.ReportTypeActivity;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.set.NavigationActivity;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.set.StoreInfoPreviewActivity;
 import com.jsjlzj.wayne.ui.store.talent.position.RecruitActivity;
@@ -213,8 +214,12 @@ public class PositionInfoStoreActivity extends MVPBaseActivity<TalentTabFragment
         new ShareDialog(this, new ShareDialog.ClickListener() {
             @Override
             public void clickConfirm(int index) {
-                //0:微信好友  1:朋友圈
-                share(index);
+                if(index == 2){
+                    ReportTypeActivity.go2this(PositionInfoStoreActivity.this);
+                }else {
+                    //0:朋友圈  1:微信好友
+                    share(index);
+                }
             }
         }).show();
     }
@@ -235,10 +240,10 @@ public class PositionInfoStoreActivity extends MVPBaseActivity<TalentTabFragment
             req.message=msg;
             switch (type){
                 case 0:
-                    req.scene=SendMessageToWX.Req.WXSceneSession;
+                    req.scene = SendMessageToWX.Req.WXSceneTimeline;
                     break;
                 case 1:
-                    req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                    req.scene=SendMessageToWX.Req.WXSceneSession;
                     break;
             }
             iwxapi.sendReq(req);

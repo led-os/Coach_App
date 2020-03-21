@@ -28,7 +28,7 @@
         android:name="${applicationId}.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" /> <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESFENT" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -93,7 +93,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.publicac.ShopPoiActivity"></activity>
+        <activity android:name=".ui.publicac.MapActivity"/>
+        <activity android:name=".ui.publicac.ShopPoiActivity"/>
         <activity android:name=".ui.publicac.mine.PublicActivity" />
         <activity android:name=".ui.store.home.community.AddExpressionActivity" />
         <activity android:name=".ui.publicac.mine.FillInInfoActivity" />
@@ -114,7 +115,8 @@
         <activity android:name=".ui.store.home.study.AnswerDoneActivity" />
         <activity android:name=".ui.store.home.study.AnswerActivity" />
         <activity android:name=".ui.store.home.study.AchievementRecordActivity" />
-        <activity android:name=".ui.basis.WebViewContainerActivity" />
+        <activity android:name=".ui.basis.WebViewContainerActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".ui.store.home.study.ChapterActivity" />
         <activity android:name=".ui.store.home.study.QuestionBankActivity" />
         <activity android:name=".ui.store.home.amoy.SignUpResultActivity" />
@@ -325,6 +327,10 @@
             android:name=".ui.publicac.help.HelpProblemInfoActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+
+        <activity android:name=".ui.store.personal.set.ChangeUserInfoActivity"
+            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".ui.store.personal.storeinfo.StoreInfoSetActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
@@ -356,7 +362,7 @@
         <activity
             android:name=".ui.trainer.personal.set.PersonalInfoSetTrainerActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".ui.trainer.personal.set.ConnectPositionListActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"

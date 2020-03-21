@@ -9,11 +9,13 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
@@ -26,6 +28,7 @@ import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.ui.store.personal.set.ChangeUserInfoActivity;
 import com.jsjlzj.wayne.utils.ImageUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
@@ -53,7 +56,7 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
     @BindView(R.id.image)
     CimageView image;
     @BindView(R.id.edName)
-    EditText edName;
+    TextView edName;
     @BindView(R.id.tv_english)
     TextView tvEnglish;
     @BindView(R.id.tvSex)
@@ -70,6 +73,10 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
     EditText etSimple;
     @BindView(R.id.tv_num)
     TextView tvNum;
+    @BindView(R.id.ll_name)
+    LinearLayout llName;
+    @BindView(R.id.ll_english_name)
+    LinearLayout llEnglishName;
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, PersonalInfoSetTrainerActivity.class);
@@ -91,7 +98,7 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
         mRightTv.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
         mRightTv.setTextSize(15);
         mRightTv.setText("保存");
-
+        mRightTv.setVisibility(View.VISIBLE);
         mRightTv.setOnClickListener(clickListener);
         image.setOnClickListener(clickListener);
         edName.setOnClickListener(clickListener);
@@ -101,6 +108,8 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
         edWechat.setOnClickListener(clickListener);
         tvEducation.setOnClickListener(clickListener);
         tvJobTime.setOnClickListener(clickListener);
+        llName.setOnClickListener(clickListener);
+        llEnglishName.setOnClickListener(clickListener);
 
         etSimple.addTextChangedListener(this);
 
@@ -118,6 +127,12 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
         switch (view.getId()) {
             case R.id.tvSex://性别
                 showSexDialog();
+                break;
+            case R.id.ll_name:
+                ChangeUserInfoActivity.go2this(this,NAME);
+                break;
+            case R.id.ll_english_name:
+                ChangeUserInfoActivity.go2this(this,ENGLISH_NAME);
                 break;
             case R.id.tvEducation://学历
                 showEducationDialog();
@@ -145,7 +160,7 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
 
     private void setInfo() {
         presenter.getDetailT(null);
-        setEditAble(false);
+//        setEditAble(true);
         if (MyApp.mdlDict != null && MyApp.mdlDict.getEducation_level() != null) {
             MdlDict.DataBean.SalaryRequiredBean bean = MyApp.mdlDict.getEducation_level();
             if (bean != null && bean.getItems() != null) {
@@ -256,6 +271,9 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
 
     private static final int HEAD_PIC = 10000;
     private static final int CROP_HEAD_PIC = 10001;
+    private static final int NAME = 10002;
+    private static final int ENGLISH_NAME = 10003;
+
     private String cropHeadPicPath;
 
     private void clickSelectHeadPic() {
@@ -297,6 +315,14 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
                     if (data != null) {
                         presenter.upload(cropHeadPicPath);
                     }
+                    break;
+                case NAME:
+                    String name = data.getStringExtra(ExtraConstant.EXTRA_NAME);
+                    edName.setText(name);
+                    break;
+                case ENGLISH_NAME:
+                    String engName = data.getStringExtra(ExtraConstant.EXTRA_NAME);
+                    tvEnglish.setText(engName);
                     break;
             }
         }

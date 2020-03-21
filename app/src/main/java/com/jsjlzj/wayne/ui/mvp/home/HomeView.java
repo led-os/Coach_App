@@ -1,5 +1,7 @@
 package com.jsjlzj.wayne.ui.mvp.home;
 
+import com.jsjlzj.wayne.entity.DataBean;
+import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
@@ -22,7 +24,9 @@ import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
  * @CreateDate: 2020/1/14 15:58
  */
 public interface HomeView extends BaseView {
-
+    //上传文件
+    default void showUpload(MdlBaseHttpResp<MdlUpload> resp) {
+    }
 
     default void getHomeRecommendSuccess(MdlBaseHttpResp<RecommendBean> resp){}
 
@@ -83,6 +87,7 @@ public interface HomeView extends BaseView {
 
    default void getSearchDataSuccess(MdlBaseHttpResp<SearchBean> resp){}
    default void amoySignUpSuccess(MdlBaseHttpResp<String> resp){}
+   default void publicDynamicSuccess(MdlBaseHttpResp<DataBean> resp){}
 
 
     default void selectPhoto(int pos){}

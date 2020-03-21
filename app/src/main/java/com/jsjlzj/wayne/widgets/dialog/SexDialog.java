@@ -3,12 +3,14 @@ package com.jsjlzj.wayne.widgets.dialog;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.jsjlzj.wayne.R;
 
@@ -16,10 +18,21 @@ import com.jsjlzj.wayne.R;
 public class SexDialog extends AlertDialog implements View.OnClickListener {
     private Context context;
     private ClickListener listener;
+    private String str1 = "男";
+    private String str2 = "女";
+
 
     public SexDialog(@NonNull Activity context, ClickListener listener) {
         super(context, R.style.dialog);
         this.context = context;
+        this.listener = listener;
+    }
+
+    public SexDialog(@NonNull Activity context,String tv1,String tv2, ClickListener listener) {
+        super(context, R.style.dialog);
+        this.context = context;
+        this.str1 = tv1;
+        this.str2 = tv2;
         this.listener = listener;
     }
 
@@ -37,6 +50,8 @@ public class SexDialog extends AlertDialog implements View.OnClickListener {
 
 
     private void initViewAndControl() {
+        ((TextView)findViewById(R.id.btn1)).setText(str1);
+        ((TextView)findViewById(R.id.btn2)).setText(str2);
         findViewById(R.id.btn1).setOnClickListener(this);
         findViewById(R.id.btn2).setOnClickListener(this);
         findViewById(R.id.btnCancel).setOnClickListener(this);

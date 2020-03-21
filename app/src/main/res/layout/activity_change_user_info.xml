@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/title_bar_layout" />
+
+    <LinearLayout
+        android:layout_marginEnd="@dimen/padding_16"
+        android:layout_marginStart="@dimen/padding_16"
+        android:layout_marginTop="@dimen/padding_20"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/text_size_14"
+            tools:text="姓名"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_40"
+            android:layout_marginStart="@dimen/padding_24"
+            android:background="@drawable/bg_solid_f5f5f5_4"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:inputType="text"
+                android:maxLength="20"
+                android:paddingStart="@dimen/padding_16"
+                android:paddingEnd="@dimen/padding_16"
+                android:singleLine="true"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_size_15"
+                tools:text="赵明明" />
+
+            <ImageView
+                android:id="@+id/iv_closed"
+                android:layout_width="@dimen/padding_15"
+                android:layout_height="@dimen/padding_15"
+                android:visibility="gone"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/padding_16"
+                android:src="@drawable/ic_message_close" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

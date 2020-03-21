@@ -2,10 +2,13 @@ package com.jsjlzj.wayne.data.http;
 
 import com.jsjlzj.wayne.data.api.StoreService;
 
+import java.io.File;
 import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -419,6 +422,34 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    /**
+     * 赛事报名
+     * @param params
+     * @param observer
+     */
+    public void getMatchSignUp(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestMatchSignUp(body);
+        setSubscribe(observable, observer);
+    }
 
+ /**
+     * 发布动态 图片或视频
+     * @param params
+     * @param observer
+     */
+    public void publicDynamic(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestPublicDynamic(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void upload(String picPath, Observer observer) {
+        File file = new File(picPath);
+        RequestBody reqFile = RequestBody.create(MediaType.parse("image/png"), file);
+        MultipartBody.Part photo = MultipartBody.Part.createFormData("file", file.getName(), reqFile);//pic为key
+        Observable observable = service.upload( photo);
+        setSubscribe(observable, observer);
+    }
 
 }

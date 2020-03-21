@@ -67,7 +67,7 @@ public abstract class BasePresenter<MVP_V extends BaseView> implements OnLoadHtt
             if (resp.getStatus() == HttpConstant.R_HTTP_OK) {//成功
                 responseSuccess(code, resp);
                 LogAndToastUtil.log(view.getClass().getSimpleName() + "httpposts", resp + "");
-            } else if (resp.getStatus() == HttpConstant.R_TOKEN_EXPIRE) {//token过期,需要重新登录
+            } else if (resp.getStatus() == HttpConstant.R_TOKEN_EXPIRE || resp.getStatus() == HttpConstant.R_TOKEN_UN_LOGIN) {//token过期,需要重新登录
                 if (view instanceof Fragment) {
                     Utility.needLogin(((Fragment) view).getActivity());
                 } else if (view instanceof Activity) {

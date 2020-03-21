@@ -166,7 +166,7 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         mTitleTv.setText(title);
         mTitleTv.setVisibility(View.VISIBLE);
         mRightBtn.setVisibility(View.VISIBLE);
-        if (rightContent < 0) {
+        if (rightContent > 0) {
             mRightBtn.setImageDrawable(ContextCompat.getDrawable(this,rightContent));
             mRightBtn.setVisibility(View.VISIBLE);
         } else {

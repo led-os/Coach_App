@@ -14,8 +14,8 @@ import androidx.core.content.ContextCompat;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
-import com.netease.nim.uikit.common.ToastHelper;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -67,6 +67,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_DYNAMIC_LIST = 33;
     private static final int REQ_CODE_MINE_DYNAMIC_LIST = 34;
     private static final int REQ_CODE_AMOY_SIGN_UP = 35;
+    private static final int REQ_CODE_PUBLIC_DYNAMIC = 36;
+    private static final int REQ_CODE_UPLOAD_FILE = 37;
+
 
 
     private HomeModel model;
@@ -345,6 +348,29 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
+   public void getMatchSiguUp(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.getMatchSignUp(REQ_CODE_AMOY_SIGN_UP, param, this);
+        }
+    }
+
+   public void publicDynamic(Map param){
+        if (model != null) {
+            view.showLoading();
+            model.publicDynamic(REQ_CODE_PUBLIC_DYNAMIC, param, this);
+        }
+    }
+
+
+    public void upload( String path) {
+        if (model != null) {
+            view.showLoading();
+            model.upload(REQ_CODE_UPLOAD_FILE, path, this);
+        }
+    }
+
+
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
         view.hideLoading();
@@ -434,6 +460,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_AMOY_SIGN_UP:
                 view.amoySignUpSuccess(resp);
                 break;
+            case REQ_CODE_PUBLIC_DYNAMIC:
+                view.publicDynamicSuccess(resp);
+                break;
+            case REQ_CODE_UPLOAD_FILE:
+                view.showUpload(resp);
+                break;
         }
     }
 
@@ -465,7 +497,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 view.selectPhoto(curIndex);
             } else {
-                ToastHelper.showToast(activity,activity.getResources().getString(R.string.please_add_storage_permission));
+                LogAndToastUtil.toast(activity,activity.getResources().getString(R.string.please_add_storage_permission));
             }
         }
     }

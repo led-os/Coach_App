@@ -21,8 +21,17 @@ public class MdlUpload {
     private String path;
     private String sort;
     private String url;
+    private int duration;
 
-    public String getPath() {
+        public int getDuration() {
+            return duration;
+        }
+
+        public void setDuration(int duration) {
+            this.duration = duration;
+        }
+
+        public String getPath() {
         return path;
     }
 
