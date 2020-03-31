@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.mine.PositionVideoAdapter;
+import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -29,9 +32,10 @@ public class PositionVideoFragment extends MVPBaseFragment<TalentTabFragmentView
     RecyclerView rvVideo;
 
     private PositionVideoAdapter adapter;
+    private List<VideoBean> videoBeans = new ArrayList<>();
 
-    public PositionVideoFragment() {
-    }
+
+    public PositionVideoFragment() {}
 
 
     @Override
@@ -41,9 +45,13 @@ public class PositionVideoFragment extends MVPBaseFragment<TalentTabFragmentView
 
     @Override
     protected void initViewAndControl(View view) {
+        videoBeans = (List<VideoBean>) getArguments().getSerializable(ExtraConstant.EXTRA_DATA);
         rvVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new PositionVideoAdapter(getActivity(),new ArrayList<>());
+        adapter = new PositionVideoAdapter(getActivity(),videoBeans);
         rvVideo.setAdapter(adapter);
+        if(videoBeans == null || videoBeans.size() <= 0){
+            showEmpty(R.id.rel_empty,0,null);
+        }
     }
 
     @Override

@@ -27,6 +27,7 @@ public class SPUtil {
 
     private static final String SP_RECRUIT_CONTENT = "SP_RECRUIT_CONTENT";
     private static final String SP_FIRST = "SP_FIRST";
+    private static final String SP_AGREE = "SP_AGREE";
     private static final String SP_CHECKBOX = "SP_CHECKBOX";
 
     private static final SharedPreferences sp;
@@ -39,6 +40,16 @@ public class SPUtil {
     public static void saveFist(){
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean(SP_FIRST, false);
+        editor.apply();
+    }
+
+
+    public static boolean getAgree(){
+        return sp.getBoolean(SP_AGREE, false);
+    }
+    public static void saveAgree(){
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean(SP_AGREE, true);
         editor.apply();
     }
     public static boolean getCheckbox(){

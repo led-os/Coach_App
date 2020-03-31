@@ -115,25 +115,34 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
             tvName.setText(bean.getChannelName());
             if(bean.isFollower()){
                 tvFavorite.setText("已关注");
+                tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_999999));
+                tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_21));
             }else {
                 tvFavorite.setText("关注");
+                tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_4F9BFA));
+                tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_4a9bfa_12));
             }
-            tvPlayNum.setText(bean.getPlayCount()+"次播放量");
+            if(bean.getOfficial() == 1){
+                tvOfficial.setVisibility(View.VISIBLE);
+            }else {
+                tvOfficial.setVisibility(View.GONE);
+            }
+            tvPlayNum.setText(DateUtil.getNumByInteger(bean.getPlayCount()) +"次播放量");
             tvTitle.setText(bean.getName());
             tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration()*1000));
-            tvZanNum.setText(""+bean.getLikeCount());
+            tvZanNum.setText(DateUtil.getNumByInteger(bean.getLikeCount()));
             if(bean.isLike()){
                 imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_pressed));
             }else {
                 imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_normal));
             }
-            tvMessageNum.setText(""+bean.getCommentCount());
+            tvMessageNum.setText(DateUtil.getNumByInteger(bean.getCommentCount()));
             if(bean.isCollect()){
                 imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_pressed));
             }else {
                 imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_normal));
             }
-            tvMarkNum.setText(""+bean.getCollectCount());
+            tvMarkNum.setText(DateUtil.getNumByInteger(bean.getCollectCount()));
         }
 
         @OnClick({R.id.img_head,R.id.img_one, R.id.tv_name, R.id.tv_favorite, R.id.img_play, R.id.img_zan, R.id.tv_zan_num, R.id.img_message, R.id.tv_message_num, R.id.img_mark, R.id.tv_mark_num})
@@ -150,9 +159,13 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                     if(bean.isFollower()){
                         bean.setFollower(false);
                         tvFavorite.setText("关注");
+                        tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_4F9BFA));
+                        tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_4a9bfa_12));
                     }else {
                         bean.setFollower(true);
                         tvFavorite.setText("已关注");
+                        tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_999999));
+                        tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_21));
                     }
                     listener.onFavorite(bean);
                     break;
@@ -166,11 +179,11 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                         bean.setLike(false);
                         imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_normal));
                         bean.setLikeCount(bean.getLikeCount() - 1);
-                        tvZanNum.setText(bean.getLikeCount()+"");
+                        tvZanNum.setText(DateUtil.getNumByInteger(bean.getLikeCount()));
                     }else {
                         imgZan.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_zan_pressed));
                         bean.setLikeCount(bean.getLikeCount() + 1);
-                        tvZanNum.setText(bean.getLikeCount() + "");
+                        tvZanNum.setText(DateUtil.getNumByInteger(bean.getLikeCount()));
                         bean.setLike(true);
                     }
                     listener.onClickZan(bean);
@@ -184,11 +197,11 @@ public class ClassDetailAdapter extends RecyclerView.Adapter<ClassDetailAdapter.
                     if(bean.isCollect()){
                         bean.setCollect(false);
                         bean.setCollectCount(bean.getCollectCount() - 1);
-                        tvMarkNum.setText(bean.getCollectCount()+"");
+                        tvMarkNum.setText(DateUtil.getNumByInteger(bean.getCollectCount()));
                         imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_normal));
                     }else {
                         bean.setCollectCount(bean.getCollectCount() + 1);
-                        tvMarkNum.setText(bean.getCollectCount() +"");
+                        tvMarkNum.setText(DateUtil.getNumByInteger(bean.getCollectCount()));
                         imgMark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_mark_pressed));
                         bean.setCollect(true);
                     }

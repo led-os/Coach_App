@@ -268,6 +268,13 @@ public class HttpDataStroe extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+
+    public void saveTeachVideo(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.saveTeachVideo(body);
+        setSubscribe(observable, observer);
+    }
+
     public void saveWorkExperienceT(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.saveWorkExperienceT(body);
@@ -391,4 +398,115 @@ public class HttpDataStroe extends BaseHttpData {
         Observable observable = service.sendInterView(body);
         setSubscribe(observable, observer);
     }
+    public void getRecommendPic(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestRecommendPic(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getMineDynamicList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestMineDynamicList(body);
+        setSubscribe(observable, observer);
+    }
+    public void getMineFansList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestMineFensList(body);
+        setSubscribe(observable, observer);
+    }
+    public void getMineFollowList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestMineFollowList(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 收藏
+     * @param params
+     * @param observer
+     */
+    public void clickCollect(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestClickCollect(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 取消收藏
+     * @param params
+     * @param observer
+     */
+    public void cancelCollect(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCancelCollect(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 关注
+     * @param params
+     * @param observer
+     */
+    public void clickFollow(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestClickFollow(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 取消关注
+     * @param params
+     * @param observer
+     */
+    public void cancelFollow(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCancelFollow(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 我的学习列表
+     * @param params
+     * @param observer
+     */
+    public void getLearnList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestLearnList(body);
+        setSubscribe(observable, observer);
+    }
+
+
+    /**
+     * 获取邀请码
+     * @param params
+     * @param observer
+     */
+    public void getInvitationCode(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestInvitationCode(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 获取邀请列表
+     * @param params
+     * @param observer
+     */
+    public void getInvitationList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestInvitationList(body);
+        setSubscribe(observable, observer);
+    }
+    /**
+     * 获取邀请列表
+     * @param params
+     * @param observer
+     */
+    public void getSignUpList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSignUpList(body);
+        setSubscribe(observable, observer);
+    }
+
+
 }

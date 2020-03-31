@@ -13,7 +13,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
-import com.jsjlzj.wayne.ui.store.list.AmoyListFragment;
+import com.jsjlzj.wayne.ui.store.list.MoreDataFragment;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
 import com.jsjlzj.wayne.widgets.MyViewPager;
 
@@ -37,11 +37,11 @@ public class MineFavoriteActivity extends MVPBaseActivity<TalentTabFragmentView,
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
     MyViewPager myViewPager;
-    private AmoyListFragment dynamicFragment;
-    private AmoyListFragment videoFragment;
-    private AmoyListFragment contentFragment;
-    private AmoyListFragment productorFragment;
-    private String[] mTitles = new String[4];
+    private MoreDataFragment dynamicFragment;
+    private MoreDataFragment videoFragment;
+    private MoreDataFragment contentFragment;
+//    private MoreDataFragment productorFragment;
+    private String[] mTitles = new String[3];
     private List<MVPBaseFragment> fragments = new ArrayList<>();
 
 
@@ -64,14 +64,14 @@ public class MineFavoriteActivity extends MVPBaseActivity<TalentTabFragmentView,
 
     private void initViewPager() {
         mTitles = getResources().getStringArray(R.array.favorite_title_list);
-        dynamicFragment = AmoyListFragment.getInstance(7,null);
-        videoFragment = AmoyListFragment.getInstance(3,null);
-        contentFragment = AmoyListFragment.getInstance(4,null);
-        productorFragment = AmoyListFragment.getInstance(5,null);
+        dynamicFragment = MoreDataFragment.getInstance(0);
+        videoFragment = MoreDataFragment.getInstance(1);
+        contentFragment = MoreDataFragment.getInstance(2);
+//        productorFragment = AmoyListFragment.getInstance(5,null);
         fragments.add(dynamicFragment);
         fragments.add(videoFragment);
         fragments.add(contentFragment);
-        fragments.add(productorFragment);
+//        fragments.add(productorFragment);
 
         myViewPager.setSlide(true);
         myViewPager.setOffscreenPageLimit(mTitles.length - 1);

@@ -22,9 +22,11 @@ public class AndroidBug5497Workaround {
 
     private View mChildOfContent;
     private int usableHeightPrevious;
+    private Activity activity;
     private FrameLayout.LayoutParams frameLayoutParams;
 
     private AndroidBug5497Workaround(Activity activity) {
+        this.activity = activity;
         FrameLayout content = (FrameLayout) activity.findViewById(android.R.id.content);
         mChildOfContent = content.getChildAt(0);
         mChildOfContent.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -55,6 +57,11 @@ public class AndroidBug5497Workaround {
     private int computeUsableHeight() {
         Rect r = new Rect();
         mChildOfContent.getWindowVisibleDisplayFrame(r);
-        return (r.bottom);// 非全屏模式下： return r.bottom- r.top
+        int v = activity.getWindow().getAttributes().flags;
+//        if(v != 66816){
+            return r.bottom- r.top;
+//        }else {
+//            return (r.bottom);// 非全屏模式下： return r.bottom- r.top
+//        }
     }
 }

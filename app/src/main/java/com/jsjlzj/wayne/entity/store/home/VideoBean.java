@@ -41,6 +41,9 @@ public class VideoBean {
     private int channelId;
     private boolean isFollower;
     private int viewCount;
+    private String moodLabel;
+    private String videoUrl;
+    private int official;
 
     public int getId() {
         return id;
@@ -178,5 +181,29 @@ public class VideoBean {
 
     public void setViewCount(int viewCount) {
         this.viewCount = viewCount;
+    }
+
+    public String getMoodLabel() {
+        return moodLabel;
+    }
+
+    public void setMoodLabel(String moodLabel) {
+        this.moodLabel = moodLabel;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public int getOfficial() {
+        return official;
+    }
+
+    public void setOfficial(int official) {
+        this.official = official;
     }
 }

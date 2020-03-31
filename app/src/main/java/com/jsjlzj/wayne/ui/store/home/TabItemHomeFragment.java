@@ -107,7 +107,7 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
 //                    fragments.add(productFragment);
 //                    break;
                 default:
-                    RecommendFragment informationListFragment1 = RecommendFragment.getInstance();
+                    RecommendFragment informationListFragment1 = RecommendFragment.getInstance(myViewPager);
                     fragments.add(informationListFragment1);
                     break;
             }

@@ -16,6 +16,27 @@
         android:layout_height="@dimen/padding_161"
         android:src="@drawable/ic_buffer1"/>
 
+    <ImageView
+        android:id="@+id/img_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/img_dynamic"
+        android:layout_marginEnd="@dimen/padding_8"
+        android:layout_marginTop="@dimen/padding_8"
+        android:visibility="gone"
+        android:src="@drawable/delete"/>
+
+    <ImageView
+        android:id="@+id/img_face"
+        android:layout_alignEnd="@+id/img_dynamic"
+        android:layout_alignTop="@+id/img_dynamic"
+        android:layout_marginTop="@dimen/padding_6"
+        android:layout_marginEnd="@dimen/padding_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/face_01"/>
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_alignStart="@+id/img_dynamic"

@@ -1,23 +1,22 @@
 package com.jsjlzj.wayne.ui.trainer.personal.set;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.HttpConstant;
-import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.ItemsBean;
@@ -28,24 +27,25 @@ import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
-import com.jsjlzj.wayne.ui.store.personal.set.ChangeUserInfoActivity;
-import com.jsjlzj.wayne.utils.ImageUtil;
+import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
-import com.jsjlzj.wayne.utils.permission.PermissionUtil;
+import com.jsjlzj.wayne.utils.SelectImageUtils;
+import com.jsjlzj.wayne.utils.eventbus.EnumEventBus;
+import com.jsjlzj.wayne.utils.eventbus.MdlEventBus;
 import com.jsjlzj.wayne.widgets.dialog.DateDialog;
+import com.jsjlzj.wayne.widgets.dialog.EditDialog;
 import com.jsjlzj.wayne.widgets.dialog.EducationDialog;
 import com.jsjlzj.wayne.widgets.dialog.SexDialog;
-import com.jsjlzj.wayne.widgets.img.CimageView;
-import com.jsjlzj.wayne.widgets.photo.ImageTool;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
-import java.util.ArrayList;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import me.iwf.photopicker.PhotoPicker;
-import me.iwf.photopicker.utils.MyFileProviderUtil;
 
 /**
  * 编辑个人信息  教练端
@@ -53,8 +53,11 @@ import me.iwf.photopicker.utils.MyFileProviderUtil;
 public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView, TextWatcher {
 
 
+    private static final int NAME = 10002;
+    private static final int ENGLISH_NAME = 10003;
+
     @BindView(R.id.image)
-    CimageView image;
+    ImageView image;
     @BindView(R.id.edName)
     TextView edName;
     @BindView(R.id.tv_english)
@@ -62,7 +65,7 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
     @BindView(R.id.tvSex)
     TextView tvSex;
     @BindView(R.id.edWechat)
-    EditText edWechat;
+    TextView edWechat;
     @BindView(R.id.tvBirthday)
     TextView tvBirthday;
     @BindView(R.id.tvEducation)
@@ -77,6 +80,18 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
     LinearLayout llName;
     @BindView(R.id.ll_english_name)
     LinearLayout llEnglishName;
+    @BindView(R.id.ll_bind_wx)
+    LinearLayout llBindWx;
+
+
+    private String cropHeadPicPath;
+    private String[] datas = new String[7];
+    private List<ItemsBean> itemsBean;
+
+    public static void go2this(Activity context,int requestCode) {
+        Intent intent = new Intent(context, PersonalInfoSetTrainerActivity.class);
+        context.startActivityForResult(intent,requestCode);
+    }
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, PersonalInfoSetTrainerActivity.class);
@@ -89,8 +104,10 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
         return R.layout.activity_trainer_personl_info_set;
     }
 
-    private String[] datas = new String[7];
-    private List<ItemsBean> itemsBean;
+    @Override
+    protected TalentTabFragmentPresenter createPresenter() {
+        return new TalentTabFragmentPresenter(this);
+    }
 
     @Override
     protected void initViewAndControl() {
@@ -101,24 +118,15 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
         mRightTv.setVisibility(View.VISIBLE);
         mRightTv.setOnClickListener(clickListener);
         image.setOnClickListener(clickListener);
-        edName.setOnClickListener(clickListener);
-        tvEnglish.setOnClickListener(clickListener);
-        tvSex.setOnClickListener(clickListener);
-        tvBirthday.setOnClickListener(clickListener);
-        edWechat.setOnClickListener(clickListener);
-        tvEducation.setOnClickListener(clickListener);
-        tvJobTime.setOnClickListener(clickListener);
         llName.setOnClickListener(clickListener);
         llEnglishName.setOnClickListener(clickListener);
-
+        tvSex.setOnClickListener(clickListener);
+        tvBirthday.setOnClickListener(clickListener);
+        tvEducation.setOnClickListener(clickListener);
+        tvJobTime.setOnClickListener(clickListener);
+        llBindWx.setOnClickListener(clickListener);
         etSimple.addTextChangedListener(this);
-
         setInfo();
-    }
-
-    @Override
-    protected TalentTabFragmentPresenter createPresenter() {
-        return new TalentTabFragmentPresenter(this);
     }
 
     @Override
@@ -129,10 +137,30 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
                 showSexDialog();
                 break;
             case R.id.ll_name:
-                ChangeUserInfoActivity.go2this(this,NAME);
+                new EditDialog(this,"", new EditDialog.ClickListener() {
+                    @Override
+                    public void clickConfirm(String s) {
+                        edName.setText(s);
+                    }
+
+                    @Override
+                    public void clickCancel() {}
+                }).show();
+//                ChangeUserInfoActivity.go2this(this,0,edName.getText().toString(),NAME);
                 break;
             case R.id.ll_english_name:
-                ChangeUserInfoActivity.go2this(this,ENGLISH_NAME);
+                new EditDialog(this,"", new EditDialog.ClickListener() {
+                    @Override
+                    public void clickConfirm(String s) {
+                        tvEnglish.setText(s);
+                    }
+
+                    @Override
+                    public void clickCancel() {
+
+                    }
+                }).show();
+//                ChangeUserInfoActivity.go2this(this,1,tvEnglish.getText().toString(),ENGLISH_NAME);
                 break;
             case R.id.tvEducation://学历
                 showEducationDialog();
@@ -143,20 +171,18 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
             case R.id.tvJobTime://参加工作时间
                 showDateDialog(tvJobTime);
                 break;
-
             case R.id.tv_right_btn://保存
-//                btnKeep.setSelected(!btnKeep.isSelected());
-//                btnKeep.setText(btnKeep.isSelected() ? "保存" : "编辑");
-//                setEditAble(btnKeep.isSelected());
-//                if (!btnKeep.isSelected()) {//保存信息
-//                }
                 keepInfo();
                 break;
+            case R.id.ll_bind_wx://绑定微信
+                bindWechat();
+                break;
             case R.id.image:
-                clickSelectHeadPic();
+                presenter.autoObtainStoragePermission(PersonalInfoSetTrainerActivity.this, 0);
                 break;
         }
     }
+
 
     private void setInfo() {
         presenter.getDetailT(null);
@@ -216,6 +242,8 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
 
         String strName = edName.getText().toString();
         String strWechat = edWechat.getText().toString();
+        String content = etSimple.getText().toString();
+        String englishName = tvEnglish.getText().toString();
         birth = tvBirthday.getText().toString();
         joinWorkDate = tvJobTime.getText().toString();
 //        if (TextUtils.isEmpty(headImg)) {
@@ -247,9 +275,13 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
         map.put("wxId", strWechat);
         map.put("birth", birth);
         map.put("educationLevelCode", educationLevelCode);
-        map.put("headImg", headImg);
+        if(!TextUtils.isEmpty(headImg)){
+            map.put("headImg", headImg);
+        }
         map.put("joinWorkDate", joinWorkDate);
+        map.put("englishName",englishName);
         map.put("sexCode", sexCode);
+        map.put("content", content);
 
         presenter.saveCvBaseInfoT(map);
     }
@@ -258,76 +290,36 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
     public void saveCvBaseInfoT(MdlBaseHttpResp<MdlsaveAdvantage> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             LogAndToastUtil.toast("保存成功");
+            Intent intent = new Intent();
+            intent.putExtra("name",edName.getText().toString());
+            intent.putExtra("headImg",headImg);
+            intent.putExtra("content",etSimple.getText().toString());
+            setResult(RESULT_OK,intent);
             finish();
         } else {
             LogAndToastUtil.toast(resp.getMsg());
         }
     }
 
-//    @Override
-//    public void showSaveStoreUserInfo(MdlBaseHttpResp<MdlUser> resp) {
-//
-//    }
-
-    private static final int HEAD_PIC = 10000;
-    private static final int CROP_HEAD_PIC = 10001;
-    private static final int NAME = 10002;
-    private static final int ENGLISH_NAME = 10003;
-
-    private String cropHeadPicPath;
-
-    private void clickSelectHeadPic() {
-        PermissionUtil.checkPermission(this, MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-    }
-
-
-    @Override
-    public void permissionSuccess(int permissionReqCode) {
-        super.permissionSuccess(permissionReqCode);
-        switch (permissionReqCode) {
-            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
-                PhotoPicker.builder()
-                        .setPhotoCount(0)
-                        .setShowCamera(true)
-                        .setShowGif(false)
-                        .setPreviewEnabled(false)
-                        .start(this, HEAD_PIC);
-                break;
+    private void bindWechat() {
+        if (!TextUtils.isEmpty(edWechat.getText().toString())) {
+            return;
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            switch (requestCode) {
-                case HEAD_PIC:
-                    if (data != null) {
-                        ArrayList<String> photos =
-                                data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                        String path = photos.get(0);
-
-                        Uri uri = MyFileProviderUtil.getUriForFile(this, path);
-                        cropHeadPicPath = ImageUtil.cropTeamLogoPic(this, uri, CROP_HEAD_PIC);
-                    }
-                    break;
-                case CROP_HEAD_PIC:
-                    if (data != null) {
-                        presenter.upload(cropHeadPicPath);
-                    }
-                    break;
-                case NAME:
-                    String name = data.getStringExtra(ExtraConstant.EXTRA_NAME);
-                    edName.setText(name);
-                    break;
-                case ENGLISH_NAME:
-                    String engName = data.getStringExtra(ExtraConstant.EXTRA_NAME);
-                    tvEnglish.setText(engName);
-                    break;
+        MyApp.idBindWeChat = 1;
+        try {
+            if (!MyApp.getApp().getIwxapi().isWXAppInstalled()) {
+                LogAndToastUtil.toast("请安装微信");
+                return;
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = "spinbook_hzdc_login";
+        MyApp.getApp().getIwxapi().sendReq(req);
     }
+
 
     //学历
     private void showEducationDialog() {
@@ -367,11 +359,11 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             headImg = resp.getData().getData().getUrl();
             if (!TextUtils.isEmpty(headImg)) {
-                image.setImageBitmap(ImageTool.createImageThumbnail(cropHeadPicPath));
-                String[] imgs = headImg.split("/");
-                if (imgs.length != 0) {
-                    headImg = imgs[imgs.length - 1];
-                }
+                GlidUtils.setCircleGrid(this, cropHeadPicPath,image);
+//                String[] imgs = headImg.split("/");
+//                if (imgs.length != 0) {
+//                    headImg = imgs[imgs.length - 1];
+//                }
             }
         } else {
             LogAndToastUtil.toast(resp.getMsg());
@@ -395,18 +387,23 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
         }
     }
 
+    @Override
     public void getDetailT(MdlBaseHttpResp<MdlDetailT> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             MdlDetailT.DataBean user = resp.getData().getData();
             edName.setText(TextUtils.isEmpty(user.getName()) ? "" : user.getName());
             edWechat.setText(TextUtils.isEmpty(user.getWxId()) ? "" : user.getWxId());
-            setImg(user.getHeadImg(), image);
+            headImg = user.getHeadImg();
+            GlidUtils.setCircleGrid(this,user.getHeadImg(),image);
             tvSex.setText(user.getSex());
             sexCode = user.getSexCode();
             tvBirthday.setText(user.getBirth());
             tvJobTime.setText(user.getJoinWorkDate());
             tvEducation.setText(user.getHighestEducationLevel());
             educationLevelCode = user.getHighestEducationLevelCode();
+            etSimple.setText(user.getContent());
+            edWechat.setText(user.getWxName());
+            tvEnglish.setText(user.getEnglishName());
         }
     }
 
@@ -425,4 +422,51 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
             tvNum.setText("140/140");
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventBusMessage(MdlEventBus event) {
+        String message = (String) event.data;
+        switch (event.eventType) {
+            case EnumEventBus.MESSAGE_BIND_WX:
+                edWechat.setText(message);
+                break;
+        }
+    }
+
+
+    @Override
+    public void selectPhoto(int position) {
+        SelectImageUtils.selectPhoto(this, getString(R.string.takephoto), false, true, 1);
+    }
+
+    @Override
+    public void onUploadSuccess(String imgUrl, int position) {
+        presenter.upload(imgUrl);
+        cropHeadPicPath = imgUrl;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(this,requestCode,resultCode,data);
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case NAME:
+                    String name = data.getStringExtra(ExtraConstant.EXTRA_NAME);
+                    edName.setText(name);
+                    break;
+                case ENGLISH_NAME:
+                    String engName = data.getStringExtra(ExtraConstant.EXTRA_NAME);
+                    tvEnglish.setText(engName);
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        presenter.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
 }

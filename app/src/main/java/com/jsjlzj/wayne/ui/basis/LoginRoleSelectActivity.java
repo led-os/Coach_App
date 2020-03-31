@@ -69,14 +69,16 @@ public class LoginRoleSelectActivity extends MVPBaseActivity<TalentPersonalView,
             switch (view.getId()) {
                 case R.id.btnTrainer://下一步
                     type = "TRAINER";
+                    if(null==params)params=new HashMap<>();
+                    params.put("type",type);
+                    presenter.switchIdentity(params);
                     break;
                 case R.id.btnStore://下一步
+                    LogAndToastUtil.toast(LoginRoleSelectActivity.this,"暂未开放,敬请期待");
                     type = "STORE";
                     break;
             }
-            if(null==params)params=new HashMap<>();
-            params.put("type",type);
-            presenter.switchIdentity(params);
+
         }
     }
 

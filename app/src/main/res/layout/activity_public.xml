@@ -52,10 +52,12 @@
         android:paddingEnd="@dimen/padding_14"
         android:paddingTop="@dimen/text_size_18"
         android:paddingBottom="@dimen/padding_20"
+        android:maxLength="2000"
+        android:maxHeight="@dimen/padding_350"
         android:textColorHint="@color/color_dddddd"
         android:textColor="@color/color_333333"
         android:hint="记录你的感受和经验~"
-        android:textCursorDrawable="@null"
+        android:textCursorDrawable="@drawable/bg_cursor_color"
         android:background="@null"
         android:textSize="@dimen/text_size_15"/>
 

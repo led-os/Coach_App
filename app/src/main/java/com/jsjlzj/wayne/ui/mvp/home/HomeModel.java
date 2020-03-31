@@ -15,7 +15,6 @@ import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
 import com.jsjlzj.wayne.entity.store.search.SearchBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
-import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import java.util.Map;
 
@@ -379,14 +378,14 @@ public class HomeModel extends BaseModel {
     }
 
     public void clickZan(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().clickZan(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+        HttpDataHome.getInstance().clickZan(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -403,14 +402,14 @@ public class HomeModel extends BaseModel {
     }
 
     public void cancelZan(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().cancelZan(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+        HttpDataHome.getInstance().cancelZan(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -428,14 +427,14 @@ public class HomeModel extends BaseModel {
 
 
     public void clickCollect(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().clickCollect(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+        HttpDataHome.getInstance().clickCollect(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -453,14 +452,14 @@ public class HomeModel extends BaseModel {
 
 
     public void cancelCollect(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().cancelCollect(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+        HttpDataHome.getInstance().cancelCollect(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -502,14 +501,39 @@ public class HomeModel extends BaseModel {
 
 
     public void cancelFollow(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().cancelFollow(param, new Observer<MdlBaseHttpResp<CategoryPageBean>>() {
+        HttpDataHome.getInstance().cancelFollow(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<CategoryPageBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+
+    public void deleteDynamic(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().deleteDynamic(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -873,14 +897,14 @@ public class HomeModel extends BaseModel {
 
 
     public void getAmoySignUp(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().getAmoySignUp(param, new Observer<MdlBaseHttpResp<String>>() {
+        HttpDataHome.getInstance().getAmoySignUp(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<String> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -897,14 +921,14 @@ public class HomeModel extends BaseModel {
     }
 
     public void getMatchSignUp(int code, Map param, final OnLoadHttpDataListener listener){
-        HttpDataHome.getInstance().getMatchSignUp(param, new Observer<MdlBaseHttpResp<String>>() {
+        HttpDataHome.getInstance().getMatchSignUp(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<String> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -943,10 +967,106 @@ public class HomeModel extends BaseModel {
         });
     }
 
+    public void getCollectDynamicList(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().getCollectDynamicList(param, new Observer<MdlBaseHttpResp<VideoPageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<VideoPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getCollectVideoList(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().getCollectVideoList(param, new Observer<MdlBaseHttpResp<VideoPageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<VideoPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getCollectInformationList(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().getCollectInformationList(param, new Observer<MdlBaseHttpResp<VideoPageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<VideoPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
 
 
     public void upload(int code, String path, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().upload( path, new Observer<MdlBaseHttpResp>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+
+    public void uploadVideo(int code, String path, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().uploadVideo( path, new Observer<MdlBaseHttpResp>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;

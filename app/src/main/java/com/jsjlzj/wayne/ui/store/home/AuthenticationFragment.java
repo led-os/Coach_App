@@ -87,7 +87,7 @@ public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresen
     private void loadData(boolean isRefresh) {
         this.isRefresh = isRefresh;
         if(isRefresh) {
-            pageNo = 0;
+            pageNo = 1;
         }
         map.clear();
         map.put(HttpConstant.PAGE_NO, pageNo);
@@ -148,7 +148,7 @@ public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresen
 
     @Override
     public void onLoadMore() {
-        if (pageNo < pageCount -1) {
+        if (pageNo < pageCount) {
             pageNo++;
             loadData(false);
         } else {

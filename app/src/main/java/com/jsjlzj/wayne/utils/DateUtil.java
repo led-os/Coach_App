@@ -1,5 +1,8 @@
 package com.jsjlzj.wayne.utils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * @ClassName: DateUtil
  * @Description: java类作用描述
@@ -7,6 +10,24 @@ package com.jsjlzj.wayne.utils;
  * @CreateDate: 2020/2/15 23:36
  */
 public class DateUtil {
+
+
+    public static String getNumByInteger(int integer){
+        String result;
+        if(integer > 1000){
+            float wan = integer *1.0f / 10000;
+            BigDecimal   b   =   new BigDecimal(wan);
+            double   f1   =   b.setScale(2,   RoundingMode.HALF_UP).doubleValue();
+            return f1+"W";
+        }else if(integer > 10000000){
+            float yi = integer*1.0f / 100000000;
+            BigDecimal   b   =   new BigDecimal(yi);
+            double   f2   =   b.setScale(2,   RoundingMode.HALF_UP).doubleValue();
+            return f2+"亿";
+        }else {
+            return String.valueOf(integer);
+        }
+    }
 
     public static String getDownTimer(long remain){
         if(remain == 0){
@@ -45,6 +66,7 @@ public class DateUtil {
             }
             result.append(ss);
         }else if(remain > 1){
+            result.append("00:");
             if(remain < 10){
                 result.append("0");
             }

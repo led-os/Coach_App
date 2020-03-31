@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class HotSchoolAdapter extends RecyclerView.Adapter<HotSchoolAdapter.View
             CategoryBean bean = list.get(pos);
             GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
             tvTitle.setText(bean.getName());
-            tvAddNum.setText("已有"+bean.getEnrollCount()+"报名");
+            tvAddNum.setText("已有"+ DateUtil.getNumByInteger(bean.getEnrollCount())+"报名");
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(bean);

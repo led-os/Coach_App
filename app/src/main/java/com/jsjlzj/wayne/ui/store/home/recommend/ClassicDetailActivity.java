@@ -25,6 +25,7 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.home.ClassDetailAdapter;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
@@ -34,8 +35,8 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.GlidUtils;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
-import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +72,7 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
      * "status": "状态 0:全部,1:最新,2:热门"
      */
     private int status = 1;
-    private int pageNo;
+    private int pageNo=1;
     private int pageCount;
     private boolean isRefresh;
     private VideoBean currBean;
@@ -122,7 +123,7 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
     private void loadData(boolean isRefresh) {
         this.isRefresh = isRefresh;
         if (isRefresh) {
-            pageNo = 0;
+            pageNo = 1;
         }
         map.clear();
         map.put(HttpConstant.PAGE_NO, pageNo);
@@ -221,7 +222,10 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
     @Override
     public void onClickMessage(VideoBean bean) {
         currBean = bean;
-        showPopupWindow(bean.getChannelName());
+        WebViewContainerActivity.go2this(this,bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
+//        currBean = bean;
+//        showPopupWindow(bean.getChannelName());
     }
 
     @Override
@@ -244,25 +248,20 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
 
     @Override
     public void onLoadMore() {
-        if (pageNo < pageCount - 1) {
+        if (pageNo < pageCount ) {
             pageNo++;
             loadData(false);
         } else {
-            ToastHelper.showToast(this, getString(R.string.has_no_more_data));
+            LogAndToastUtil.toast(this, getString(R.string.has_no_more_data));
         }
     }
 
 
     @Override
-    public void getClickZanSuccess(MdlBaseHttpResp<String> resp) {
-        currBean.setLike(true);
-        adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void getCancelZanSuccess(MdlBaseHttpResp<String> resp) {
-        currBean.setLike(false);
-        adapter.notifyDataSetChanged();
+    public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            LogAndToastUtil.toast(resp.getMsg());
+        }
     }
 
 

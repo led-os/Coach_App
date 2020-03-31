@@ -82,7 +82,6 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         setContentView(getLayoutResId());
         ButterKnife.bind(this);
         StatusBarCompatUtil.compat(this, Color.parseColor("#25252A"));
-
 //        StatusBarCompatUtil.compat(this, ResourceUtil.getColor(getStatusColor()));
         presenter = createPresenter();
         if(presenter != null){
@@ -91,8 +90,8 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         initViewAndControl();
 
         EventBusManager.register(this);
-        AppManager.getAppManager().addActivity(this);
 
+        AppManager.getAppManager().addActivity(this);
     }
 
     public MyViewClickListener clickListener = new MyViewClickListener();

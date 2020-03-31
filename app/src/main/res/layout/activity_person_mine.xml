@@ -29,6 +29,15 @@
                     android:layout_width="@dimen/padding_73"
                     android:layout_height="@dimen/padding_73"/>
 
+                <ImageView
+                    android:id="@+id/img_level"
+                    android:src="@drawable/icon_vip"
+                    android:layout_alignEnd="@+id/img_head"
+                    android:layout_alignBottom="@+id/img_head"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
                 <LinearLayout
                     android:id="@+id/ll_type"
                     android:layout_width="match_parent"
@@ -197,6 +206,7 @@
                         android:layout_weight="1"
                         android:layout_height="@dimen/padding_27"
                         android:text="申请认证"
+                        android:visibility="invisible"
                         android:gravity="center"
                         android:textColor="@color/white"
                         android:background="@drawable/bg_solid_4f9bfa_15"
@@ -222,11 +232,10 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_dynamic"
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:paddingTop="@dimen/padding_10"
             android:layout_width="match_parent"
-            android:layout_marginStart="@dimen/padding_10"
-            android:layout_marginEnd="@dimen/padding_10"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 

@@ -2,7 +2,6 @@ package com.jsjlzj.wayne.ui.store.attestation;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
-import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
@@ -19,17 +17,12 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
-import com.jsjlzj.wayne.utils.ImageUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.utils.Utility;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import me.iwf.photopicker.PhotoPicker;
-import me.iwf.photopicker.utils.MyFileProviderUtil;
 
 import static com.jsjlzj.wayne.ui.store.attestation.AttestationInfoActivity.REQUESTCODE;
 
@@ -89,7 +82,6 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
         public void OnMultiClick(View view) {
             switch (view.getId()) {
                 case R.id.imCamera://照相机
-
                     clickSelectHeadPic();
                     break;
                 case R.id.btnConfirm://
@@ -122,20 +114,20 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
     }
 
 
-    @Override
-    public void permissionSuccess(int permissionReqCode) {
-        super.permissionSuccess(permissionReqCode);
-        switch (permissionReqCode) {
-            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
-                PhotoPicker.builder()
-                        .setPhotoCount(0)
-                        .setShowCamera(true)
-                        .setShowGif(false)
-                        .setPreviewEnabled(false)
-                        .start(this, HEAD_PIC);
-                break;
-        }
-    }
+//    @Override
+//    public void permissionSuccess(int permissionReqCode) {
+//        super.permissionSuccess(permissionReqCode);
+//        switch (permissionReqCode) {
+//            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
+//                PhotoPicker.builder()
+//                        .setPhotoCount(0)
+//                        .setShowCamera(true)
+//                        .setShowGif(false)
+//                        .setPreviewEnabled(false)
+//                        .start(this, HEAD_PIC);
+//                break;
+//        }
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -143,21 +135,21 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
         presenter.onActivityResult(this, requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
-                case HEAD_PIC:
-                    if (data != null) {
-                        ArrayList<String> photos =
-                                data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                        String path = photos.get(0);
-
-                        Uri uri = MyFileProviderUtil.getUriForFile(this, path);
-                        cropHeadPicPath = ImageUtil.cropTeamLogoPic(this, uri, CROP_HEAD_PIC);
-                    }
-                    break;
-                case CROP_HEAD_PIC:
-                    if (data != null) {
-                        presenter.upload(cropHeadPicPath);
-                    }
-                    break;
+//                case HEAD_PIC:
+//                    if (data != null) {
+//                        ArrayList<String> photos =
+//                                data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
+//                        String path = photos.get(0);
+//
+//                        Uri uri = MyFileProviderUtil.getUriForFile(this, path);
+//                        cropHeadPicPath = ImageUtil.cropTeamLogoPic(this, uri, CROP_HEAD_PIC);
+//                    }
+//                    break;
+//                case CROP_HEAD_PIC:
+//                    if (data != null) {
+//                        presenter.upload(cropHeadPicPath);
+//                    }
+//                    break;
                 case REQUESTCODE:
                     businessLicense = data.getStringExtra("businessLicense");
                     staffNumCode = data.getStringExtra("staffNumCode");
@@ -176,8 +168,10 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
 
     @Override
     public void onUploadSuccess(String imgUrl, int position) {
+        cropHeadPicPath = imgUrl;
         presenter.upload(imgUrl);
     }
+
 
     private String imUrl, cropHeadPicPath;
 
@@ -231,11 +225,11 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
             LogAndToastUtil.toast(this, "图片 上传成功");
             imUrl = resp.getData().getData().getUrl();
             if (!TextUtils.isEmpty(imUrl)) {
-                String[] pics = imUrl.split("/");
-                if (pics != null) {
-                    setImg(cropHeadPicPath, imCamera);
-                    imUrl = pics[pics.length - 1];
-                }
+                setImg(cropHeadPicPath, imCamera);
+//                String[] pics = imUrl.split("/");
+//                if (pics != null) {
+//                    imUrl = pics[pics.length - 1];
+//                }
             }
         } else {
             LogAndToastUtil.toast(this, resp.getMsg());

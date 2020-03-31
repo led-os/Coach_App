@@ -25,6 +25,7 @@ import com.jsjlzj.wayne.ui.store.personal.manage.InterviewListActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.PersonalInfoSetActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
 import com.jsjlzj.wayne.ui.store.talent.position.PositionSelectActivity;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.Utility;
 import com.jsjlzj.wayne.widgets.dialog.CommonDialog;
 import com.jsjlzj.wayne.widgets.img.CimageView;
@@ -44,8 +45,8 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
     TextView tvName;
     @BindView(R.id.tv_sign)
     TextView tvSign;
-    @BindView(R.id.tv_dynamic)
-    TextView tvDynamic;
+//    @BindView(R.id.tv_dynamic)
+//    TextView tvDynamic;
     @BindView(R.id.ll_communicate)
     LinearLayout llCommunicate;
     @BindView(R.id.tv_interview)
@@ -203,7 +204,7 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
             MdlInfo.DataBean bean = resp.getData().getData();
             tvCommunicate.setText(bean.getCommunicatedCount() + "");
             tvInterview.setText(bean.getInterviewedCount() + "");
-            tvFavorite.setText(bean.getLikeCount() + "");
+            tvFavorite.setText(DateUtil.getNumByInteger(bean.getLikeCount()));
             tvZwgl.setText(bean.getPositionCount() + "");
             tvSign.setText(bean.getStoreUserName() + "·" + bean.getStoreUserPosition());
             tvName.setText(bean.getStoreName());

@@ -2,10 +2,13 @@ package com.jsjlzj.wayne.ui.mvp.relizetalent;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -15,6 +18,7 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
+import com.jsjlzj.wayne.ui.trainer.personal.MasterCardActivity;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.netease.nim.uikit.common.ToastHelper;
 import com.yalantis.ucrop.UCrop;
@@ -27,9 +31,10 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentView> {
-    private static final int REQ_CODE_30= 30;
-    private static final int REQ_ALL_DICT= 4;
-    private static final int REQ_RESET_UNLOAD= 5;
+    private static final int REQ_CODE_30 = 30;
+    private static final int REQ_ALL_DICT = 4;
+    private static final int REQ_RESET_UNLOAD = 5;
+    private static final int REQ_RESET_UNLOAD_VIDEO = 6;
 
     private static final int REQ_FAQ = 1;
     private static final int REQ_CODE_31 = 31;
@@ -66,7 +71,19 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
     private static final int REQ_CODE_128 = 128;
     private static final int REQ_CODE_129 = 129;
     private static final int REQ_CODE_130 = 130;
-
+    private static final int REQ_CODE_131 = 131;
+    private static final int REQ_CODE_132 = 132;
+    private static final int REQ_CODE_133 = 133;
+    private static final int REQ_CODE_134 = 134;
+    private static final int REQ_CODE_CLICK_COLLECT = 1317;
+    private static final int REQ_CODE_CANCEL_COLLECT = 1318;
+    private static final int REQ_CODE_CLICK_FOLLOW = 1319;
+    private static final int REQ_CODE_CANCEL_FOLLOW = 1320;
+    private static final int REQ_CODE_LEARN_LIST = 1321;
+    private static final int REQ_CODE_INVITATION_CODE = 1322;
+    private static final int REQ_CODE_INVITATION_LIST = 1323;
+    private static final int REQ_CODE_SIGNUP_LIST = 1324;
+    private static final int REQ_CODE_CERTIFICATE_PHOTO = 1325;
 
 
     private TalentTabFragmentModel model;
@@ -79,13 +96,21 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
     public void faqList(Map param) {
         if (model != null) {
             view.showLoading();
-            model.faqList(REQ_FAQ,param,this);
+            model.faqList(REQ_FAQ, param, this);
         }
     }
-    public void upload( String path) {
+
+    public void upload(String path) {
         if (model != null) {
             view.showLoading();
             model.upload(REQ_RESET_UNLOAD, path, this);
+        }
+    }
+
+    public void uploadVideo(String path) {
+        if (model != null) {
+            view.showLoading();
+            model.uploadVideo(REQ_RESET_UNLOAD_VIDEO, path, this);
         }
     }
 
@@ -105,6 +130,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             model.cancelCV(REQ_CODE_31, param, this);
         }
     }
+
     //达人简历详情
     public void detailCV(Map param) {
         if (model != null) {
@@ -112,6 +138,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             model.detailCV(REQ_CODE_120, param, this);
         }
     }
+
     /**
      * 教练端-简历模块
      * 接口:创建达人简历,简历详情,职位类型列表,达人-我的
@@ -129,13 +156,13 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             model.getPositionLikeList(REQ_CODE_118, param, this);
         }
     }
+
     public void getPositionCommList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getPositionCommList(REQ_CODE_117, param, this);
         }
     }
-
 
 
     public void deleteWorkExperienceT(Map param) {
@@ -232,19 +259,26 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
         }
     }
 
+    public void saveTeachVideo(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.saveTeachVideo(REQ_CODE_111, param, this);
+        }
+    }
+
     public void saveWorkExperienceT(Map param) {
         if (model != null) {
             view.showLoading();
             model.saveWorkExperienceT(REQ_CODE_112, param, this);
         }
     }
+
     public void getTrainerPositionDetail(Map param) {
         if (model != null) {
             view.showLoading();
             model.getTrainerPositionDetail(REQ_CODE_119, param, this);
         }
     }
-
 
 
     public void saveWorkHopeT(Map param) {
@@ -274,36 +308,42 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             model.getAll(REQ_ALL_DICT, param, this);
         }
     }
+
     public void getStoreLikeList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getStoreLikeList(REQ_CODE_121, param, this);
         }
     }
+
     public void cancelPositionLike(Map param) {
         if (model != null) {
             view.showLoading();
             model.cancelPositionLike(REQ_CODE_123, param, this);
         }
     }
+
     public void getInterViewTrainer(Map param) {
         if (model != null) {
             view.showLoading();
             model.getInterViewTrainer(REQ_CODE_124, param, this);
         }
     }
+
     public void getInterViewStore(Map param) {
         if (model != null) {
             view.showLoading();
             model.getInterViewStore(REQ_CODE_125, param, this);
         }
     }
+
     public void getInterViewDetail(Map param) {
         if (model != null) {
             view.showLoading();
             model.getInterViewDetail(REQ_CODE_126, param, this);
         }
     }
+
     public void getInterViewInfo(Map param) {
         if (model != null) {
             view.showLoading();
@@ -332,6 +372,99 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
         }
     }
 
+
+    public void getRecommendPic() {
+        if (model != null) {
+            view.showLoading();
+            model.getRecommendPic(REQ_CODE_131, null, this);
+        }
+    }
+
+    public void getMineDynamicList() {
+        if (model != null) {
+            view.showLoading();
+            model.getMineDynamicList(REQ_CODE_132, null, this);
+        }
+    }
+
+    public void getMineFansList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getMineFansList(REQ_CODE_133, param, this);
+        }
+    }
+
+    public void getMineFollowList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getMineFollowList(REQ_CODE_134, param, this);
+        }
+    }
+
+    public void clickCollect(Map param) {
+        if (model != null) {
+//            view.showLoading();
+            model.clickCollect(REQ_CODE_CLICK_COLLECT, param, this);
+        }
+    }
+
+    /**
+     * "module": "模块编码:干货 GAN_HUO,视频 VIDEO,社区 COMMUNITY,在线课程 ONLINE_LEARN"
+     *
+     * @param param
+     */
+    public void cancelCollect(Map param) {
+        if (model != null) {
+//            view.showLoading();
+            model.cancelCollect(REQ_CODE_CANCEL_COLLECT, param, this);
+        }
+    }
+
+
+    public void clickFollow(Map param) {
+        if (model != null) {
+//            view.showLoading();
+            model.clickFollow(REQ_CODE_CLICK_FOLLOW, param, this);
+        }
+    }
+
+
+    public void cancelFollow(Map param) {
+        if (model != null) {
+            model.cancelFollow(REQ_CODE_CANCEL_FOLLOW, param, this);
+        }
+    }
+
+    public void getStudyList() {
+        if (model != null) {
+            model.getLearnList(REQ_CODE_LEARN_LIST, null, this);
+        }
+    }
+
+
+    public void getInvitationCode() {
+        if (model != null) {
+            view.showLoading();
+            model.getInvitationCode(REQ_CODE_INVITATION_CODE, null, this);
+        }
+    }
+
+    public void getInvitationList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getInvitationList(REQ_CODE_INVITATION_LIST, param, this);
+        }
+    }
+
+
+    public void getSignUpList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getSignUpList(REQ_CODE_SIGNUP_LIST, param, this);
+        }
+    }
+
+
     @Override
     protected BaseModel getMode() {
         return model;
@@ -344,6 +477,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             case REQ_ALL_DICT:
                 view.showResultgetAll(resp);
                 break;
+            case REQ_RESET_UNLOAD_VIDEO:
             case REQ_RESET_UNLOAD:
                 view.showUpload(resp);
                 break;
@@ -449,9 +583,35 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             case REQ_CODE_130:
                 view.showResultSendInterView(resp);
                 break;
+            case REQ_CODE_131:
+                view.getAllBannerSuccess(resp);
+                break;
+            case REQ_CODE_132:
+                view.getMineDynamicSuccess(resp);
+                break;
+            case REQ_CODE_134:
+            case REQ_CODE_133:
+                view.getFensListSuccess(resp);
+                break;
+            case REQ_CODE_CLICK_COLLECT:
+            case REQ_CODE_CANCEL_COLLECT:
+            case REQ_CODE_CLICK_FOLLOW:
+            case REQ_CODE_CANCEL_FOLLOW:
+                view.getMessageSuccess(resp);
+            case REQ_CODE_LEARN_LIST:
+                view.getStudyListSuccess(resp);
+                break;
+            case REQ_CODE_INVITATION_CODE:
+                view.getInvitationSuccess(resp);
+                break;
+            case REQ_CODE_INVITATION_LIST:
+                view.getInvitationListSuccess(resp);
+                break;
+            case REQ_CODE_SIGNUP_LIST:
+                view.getSignUpListSuccess(resp);
+                break;
         }
     }
-
 
 
     /*****************************************上传照片*************************************************************/
@@ -465,7 +625,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
     /**
      * 获取权限
      */
-    public void autoObtainStoragePermission(Activity activity,int position) {
+    public void autoObtainStoragePermission(Activity activity, int position) {
         curIndex = position;
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSIONS_REQUEST_CODE);
@@ -480,7 +640,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 view.selectPhoto(curIndex);
             } else {
-                ToastHelper.showToast(activity,activity.getResources().getString(R.string.please_add_storage_permission));
+                ToastHelper.showToast(activity, activity.getResources().getString(R.string.please_add_storage_permission));
             }
         }
     }
@@ -510,6 +670,55 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
                             view.onUploadSuccess(file.getAbsolutePath(), curIndex);
                         }
                     }
+                    break;
+                case MasterCardActivity.REQUEST_CODE_SELECT_VIDEO:
+                    Uri uri = data.getData();
+                    ContentResolver cr = activity.getContentResolver();
+                    String[] proj = {MediaStore.Video.Media.DATA};
+                    Cursor cursor = activity.getContentResolver().query(uri, null, null, null, null);
+//                    if(cursor.moveToFirst()){
+                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+                    String path = cursor.getString(column_index);
+                    view.onUploadSuccess(path, curIndex);
+//                    }
+                    cursor.close();
+
+//                        Uri selectedVideo = data.getData();
+//                        String[] filePathColumn = {MediaStore.Video.Media.DATA};
+//                        cursor = activity.getContentResolver().query(selectedVideo,
+//                                filePathColumn, null, null, null);
+//                        cursor.moveToFirst();
+//
+//                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//                        String path = cursor.getString(columnIndex);
+//
+//                        File file = new File(path);
+//                        if (file.exists()) {
+//                            if (file.length() > 100 * 1024 * 1024) {
+//                                LogAndToastUtil.toast(activity, "文件大于100M");
+//                                break;
+//                            }
+//                            view.onUploadSuccess(file.getAbsolutePath(), curIndex);
+//                        }
+
+
+//                        Uri output1 = UCrop.getOutput(data);
+//                        if (output1 != null) {
+//                            File file = new File(output1.getPath());
+//                            if (file.exists()) {
+//                                if (file.length() > 100 * 1024 * 1024) {
+//                                    LogAndToastUtil.toast(activity, "文件大于100M");
+//                                    break;
+//                                }
+//                                view.onUploadSuccess(file.getAbsolutePath(), curIndex);
+//                            }
+//                        }
+//                    } catch (OutOfMemoryError e) {
+//                    } finally {
+//                        if(cursor != null){
+//                            cursor.close();
+//                        }
+//                    }
                     break;
                 default:
                     break;

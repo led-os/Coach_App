@@ -52,6 +52,7 @@ public class MdlUser implements Parcelable {
      * "token": "token",
      * "wxId": "微信ID",
      * "wxName": "微信昵称"
+     * "id":"当前用户id"
      */
     private MdlUserBean data;
 
@@ -65,7 +66,7 @@ public class MdlUser implements Parcelable {
 
     public static class MdlUserBean {
 
-
+        private String id;
         private String accountType;
         private int isStore;
         private int isTrainer;
@@ -88,6 +89,15 @@ public class MdlUser implements Parcelable {
         private int storeStatus;//"门店状态 0:未新增 1:审核中 2:未审核 3:审核通过",
         private String yunXinAccount;
         private String yunXinToken;
+
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
 
         public String getYunXinAccount() {
             return yunXinAccount;

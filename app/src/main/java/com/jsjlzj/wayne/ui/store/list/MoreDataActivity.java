@@ -48,7 +48,7 @@ public class MoreDataActivity extends MVPBaseActivity<HomeView, HomePresenter> i
      * 0:热门资讯  1 :干货  2 ：资讯   3 ：产品
      */
     private int type;
-    private int pageNo;
+    private int pageNo=1;
     private int pageCount;
     private boolean isRefresh;
     private Map<Object, Object> map = new HashMap<>();
@@ -104,7 +104,7 @@ public class MoreDataActivity extends MVPBaseActivity<HomeView, HomePresenter> i
                 break;
             case 1:
             case 2:
-                adapter = new HomeLikeAdapter(this, videoList);
+                adapter = new HomeLikeAdapter(this, videoList,type);
                 ((HomeLikeAdapter)adapter).setAllOne(true);
                 rvMoreData.setLayoutManager(new LinearLayoutManager(this));
                 rvMoreData.setAdapter(adapter);
@@ -134,7 +134,7 @@ public class MoreDataActivity extends MVPBaseActivity<HomeView, HomePresenter> i
     private void loadData(boolean isRefresh) {
         this.isRefresh = isRefresh;
         if (isRefresh) {
-            pageNo = 0;
+            pageNo = 1;
         }
         switch (type) {
             case 0:
@@ -181,7 +181,7 @@ public class MoreDataActivity extends MVPBaseActivity<HomeView, HomePresenter> i
 
     @Override
     public void onLoadMore() {
-        if (pageNo < pageCount - 1) {
+        if (pageNo < pageCount ) {
             pageNo++;
             loadData(false);
         } else {
@@ -191,8 +191,16 @@ public class MoreDataActivity extends MVPBaseActivity<HomeView, HomePresenter> i
 
     @Override
     public void onItemClick(VideoBean bean) {
-        WebViewContainerActivity.go2this(this,bean.getName(),HttpConstant.WEB_URL_AETICLE_DETAIL+bean.getId(),
-                WebViewContainerFragment.TYPE_ARTICLE_DETAIL);
+        if(type == 0){
+            WebViewContainerActivity.go2this(this,bean.getName(), HttpConstant.WEB_URL_AETICLE_DETAIL+bean.getId(),
+                    WebViewContainerFragment.TYPE_ARTICLE_DETAIL);
+        }else if(type == 1){
+            WebViewContainerActivity.go2this(this,bean.getName(),HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                    WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
+        }else if(type == 2) {
+            WebViewContainerActivity.go2this(this,bean.getName(),HttpConstant.WEB_URL_AETICLE_DETAIL+bean.getId(),
+                    WebViewContainerFragment.TYPE_ARTICLE_DETAIL);
+        }
     }
 
 

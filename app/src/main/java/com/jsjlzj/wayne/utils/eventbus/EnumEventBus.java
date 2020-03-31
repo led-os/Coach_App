@@ -37,7 +37,8 @@ public class EnumEventBus {
             MESSAGE_WECHAT_REFUSE,
             MESSAGE_PHONE_AGREE_SEND,
             MESSAGE_PHONE_AGREE_CALL,
-            MESSAGE_SEND_MESSAGE
+            MESSAGE_SEND_MESSAGE,
+            MESSAGE_BIND_WX
     })
     public @interface EventBusCmd {
     }
@@ -74,4 +75,5 @@ public class EnumEventBus {
     public static final int MESSAGE_WECHAT_AGREE = 0XB026;//同意交换微信
     public static final int MESSAGE_WECHAT_REFUSE = 0XB027;//拒绝交换微信
     public static final int MESSAGE_SEND_MESSAGE = 0XB028;//拒绝交换微信
+    public static final int MESSAGE_BIND_WX = 0XB029;//绑定微信
 }

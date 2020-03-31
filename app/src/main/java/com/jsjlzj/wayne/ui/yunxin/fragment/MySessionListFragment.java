@@ -1,21 +1,23 @@
 package com.jsjlzj.wayne.ui.yunxin.fragment;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.yunxin.YunXingUtil;
-import com.netease.nim.uikit.impl.extension.CustomAttachment;
-import com.netease.nim.uikit.impl.extension.CustomAttachmentType;
 import com.jsjlzj.wayne.ui.yunxin.reminder.ReminderManager;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.netease.nim.uikit.business.recent.RecentContactsCallback;
 import com.netease.nim.uikit.business.recent.RecentContactsFragment;
+import com.netease.nim.uikit.impl.extension.CustomAttachment;
+import com.netease.nim.uikit.impl.extension.CustomAttachmentType;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
@@ -142,8 +144,15 @@ public class MySessionListFragment extends RecentContactsFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ImageView imageView = findView(R.id.btn_back);
+        imageView.setVisibility(isTrainer ? View.VISIBLE : View.GONE);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
 
     }
-
 
 }

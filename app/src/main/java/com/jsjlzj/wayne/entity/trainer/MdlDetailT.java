@@ -1,5 +1,7 @@
 package com.jsjlzj.wayne.entity.trainer;
 
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +72,34 @@ public class MdlDetailT {
         private WorkHopeListBean workHope;
         private boolean isLike;
         private String yunXinAccount;
+        private String englishName;
+        private String content;
+        private String wxName;
+        private List<VideoBean> teachVideos;
+
+        public String getWxName() {
+            return wxName;
+        }
+
+        public void setWxName(String wxName) {
+            this.wxName = wxName;
+        }
+
+        public String getEnglishName() {
+            return englishName;
+        }
+
+        public void setEnglishName(String englishName) {
+            this.englishName = englishName;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
 
         public WorkHopeListBean getWorkHope() {
             return workHope;
@@ -247,6 +277,14 @@ public class MdlDetailT {
 
         public void setWorkHopeList(List<WorkHopeListBean> workHopeList) {
             this.workHopeList = workHopeList;
+        }
+
+        public List<VideoBean> getTeachVideos() {
+            return teachVideos;
+        }
+
+        public void setTeachVideos(List<VideoBean> teachVideos) {
+            this.teachVideos = teachVideos;
         }
 
         public static class EducationExperienceListBean implements Serializable{

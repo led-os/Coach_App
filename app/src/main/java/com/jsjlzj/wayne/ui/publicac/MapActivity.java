@@ -3,6 +3,7 @@ package com.jsjlzj.wayne.ui.publicac;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ import com.baidu.mapapi.search.poi.OnGetPoiSearchResultListener;
 import com.baidu.mapapi.search.poi.PoiDetailResult;
 import com.baidu.mapapi.search.poi.PoiDetailSearchResult;
 import com.baidu.mapapi.search.poi.PoiIndoorResult;
+import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -62,11 +64,14 @@ public class MapActivity extends MVPBaseActivity<HomeView, HomePresenter> implem
     TextView tvCurrCity;
     @BindView(R.id.rv_poi_info)
     CustomXRecyclerView rvPoiInfo;
+    @BindView(R.id.tv_cancel)
+    TextView tvCancel;
+    private String searchKey;
 
 
-    public static void go2this(Activity context, int requestCode){
+    public static void go2this(Activity context, String curPos,int requestCode){
         Intent intent = new Intent(context,MapActivity.class);
-//        intent.putExtra(ExtraConstant.EXTRA_LAT,lat);
+        intent.putExtra(ExtraConstant.EXTRA_LOCATION,curPos);
 //        intent.putExtra(ExtraConstant.EXTRA_LNG,lng);
         context.startActivityForResult(intent,requestCode);
 
@@ -81,7 +86,6 @@ public class MapActivity extends MVPBaseActivity<HomeView, HomePresenter> implem
     private List<LocationBean> list = new ArrayList<>();
     private PoiSearch mPoiSearch;
     private int curPage, totalPage;
-    private String searchKey = "住宅";
     private boolean isRefresh = true;
     /**
      * 0 : 反地理编码检索   1 ：POI检索
@@ -102,9 +106,28 @@ public class MapActivity extends MVPBaseActivity<HomeView, HomePresenter> implem
         lng = getIntent().getDoubleExtra(ExtraConstant.EXTRA_LNG, 0);
         searchBarTitle.setSearchEtHint(R.string.search_poi_location);
         searchBarTitle.setOnEditTextChangeListener(this);
+        String city = getIntent().getStringExtra(ExtraConstant.EXTRA_LOCATION);
+        tvCurrCity.setText(city);
+        tvNoShow.setOnClickListener(clickListener);
+        tvCancel.setOnClickListener(clickListener);
         PermissionUtil.checkPermission(this, MyPermissionConstant.READ_EXTERNAL_STORAGE + PERMISSION_TITLE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
+
+    @Override
+    protected void onMultiClick(View view) {
+        switch (view.getId()){
+            case R.id.tv_cancel:
+                finish();
+                break;
+            case R.id.tv_no_show:
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
+                break;
+        }
+
+    }
 
     @Override
     public void permissionSuccess(int permissionReqCode) {
@@ -121,7 +144,7 @@ public class MapActivity extends MVPBaseActivity<HomeView, HomePresenter> implem
     @Override
     public void permissionFail(int permissionReqCode) {
         super.permissionFail(permissionReqCode);
-        finish();
+//        finish();
     }
 
 
@@ -332,6 +355,13 @@ public class MapActivity extends MVPBaseActivity<HomeView, HomePresenter> implem
         if (type == 0) {
             options.location(curLatLng);
             geocode.reverseGeoCode(options);
+        }else {
+            mPoiSearch.searchNearby(new PoiNearbySearchOption()
+                    .location(curLatLng)
+                    .radius(ExtraConstant.LOCATION_RANGE)
+                    .keyword(searchKey)
+                    .pageCapacity(20)
+                    .pageNum(curPage));
         }
     }
 

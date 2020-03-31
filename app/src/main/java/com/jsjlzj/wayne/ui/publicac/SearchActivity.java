@@ -22,6 +22,8 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.entity.store.search.SearchBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -184,7 +186,7 @@ public class SearchActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
 //                    fragments.add(productFragment);
 //                    break;
                 case 5:
-                    userFragment = AmoyListFragment.getInstance(i,null);
+                    userFragment = AmoyListFragment.getInstance(6,null);
                     fragments.add(userFragment);
                     break;
             }
@@ -311,7 +313,8 @@ public class SearchActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
 
     @Override
     public void onItemClick(VideoBean bean) {
-
+        WebViewContainerActivity.go2this(this,bean.getName(),HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
     }
 
     @Override
@@ -321,6 +324,11 @@ public class SearchActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
 
     @Override
     public void onFavoriteClick(VideoBean bean) {
+
+    }
+
+    @Override
+    public void onDeleteClick(VideoBean bean) {
 
     }
 
@@ -344,8 +352,8 @@ public class SearchActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                 JSONArray informationArray = JSONArray.parseArray(JSON.toJSONString(data.getInformationList()));
                 informationFragment.setArray(informationArray);
 
-                JSONArray productArray = JSONArray.parseArray(JSON.toJSONString(data.getProductList()));
-                productFragment.setArray(productArray);
+//                JSONArray productArray = JSONArray.parseArray(JSON.toJSONString(data.getProductList()));
+//                productFragment.setArray(productArray);
 
                 JSONArray userArray = JSONArray.parseArray(JSON.toJSONString(data.getChannelList()));
                 userFragment.setArray(userArray);

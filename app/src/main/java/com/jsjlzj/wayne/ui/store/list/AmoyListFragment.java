@@ -28,6 +28,7 @@ import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.ui.store.home.amoy.HotSchoolActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +44,7 @@ import butterknife.OnClick;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, SearchUserAdapter.OnSearchUserClickListener, ProductAdapter.OnItemClickListener {
+public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, SearchUserAdapter.OnSearchUserClickListener, ProductAdapter.OnItemClickListener, SeaerchTaoLearnAdapter.OnItemClickListener {
 
 
     @BindView(R.id.rv_amoy_list)
@@ -93,6 +94,7 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
             case 1:
                 List<TaoLearnListBean> taoLearnList = array.toJavaList(TaoLearnListBean.class);
                 ((SeaerchTaoLearnAdapter) adapter).setData(taoLearnList);
+                ((SeaerchTaoLearnAdapter) adapter).setListener(this);
                 if(taoLearnList == null || taoLearnList.size() <= 0){
                     showEmpty(R.id.rel_empty,0,null);
                 }
@@ -154,13 +156,13 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
                 break;
             case 3:
                 llVideo.setVisibility(View.VISIBLE);
-                adapter = new HomeLikeAdapter(getActivity(), new ArrayList<>());
+                adapter = new HomeLikeAdapter(getActivity(), new ArrayList<>(),1);
                 rvAmoyList.setLayoutManager(new LinearLayoutManager(getActivity()));
                 rvAmoyList.setAdapter(adapter);
                 break;
             case 4:
                 llVideo.setVisibility(View.VISIBLE);
-                adapter = new HomeLikeAdapter(getActivity(), new ArrayList<>());
+                adapter = new HomeLikeAdapter(getActivity(), new ArrayList<>(),2);
                 ((HomeLikeAdapter) adapter).setShowTime(false);
                 rvAmoyList.setLayoutManager(new LinearLayoutManager(getActivity()));
                 rvAmoyList.setAdapter(adapter);
@@ -238,5 +240,10 @@ public class AmoyListFragment extends MVPBaseFragment<HomeView, HomePresenter> i
     public void onItemClick(CategoryBean bean) {
         WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_PRODUCT_DETAIL+bean.getId(),
                 WebViewContainerFragment.TYPE_PRODUCT_DETAIL);
+    }
+
+    @Override
+    public void onItemClick(TaoLearnListBean bean) {
+        HotSchoolActivity.go2this(getActivity(),bean.getId());
     }
 }

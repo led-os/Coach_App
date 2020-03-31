@@ -7,7 +7,6 @@
     tools:context=".ui.publicac.SearchAllFragment">
 
     <RelativeLayout
-        android:id="@+id/rel_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -162,6 +161,10 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/rel_empty"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_800"/>
     </RelativeLayout>
 
 

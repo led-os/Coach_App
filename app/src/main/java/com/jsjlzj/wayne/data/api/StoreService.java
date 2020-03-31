@@ -28,10 +28,16 @@ import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
 import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.LearnBean;
+import com.jsjlzj.wayne.entity.store.search.ChannelPageBean;
 import com.jsjlzj.wayne.entity.store.search.SearchBean;
+import com.jsjlzj.wayne.entity.trainer.BannerAll;
+import com.jsjlzj.wayne.entity.trainer.InvitationBean;
+import com.jsjlzj.wayne.entity.trainer.InvitationCodeBean;
 import com.jsjlzj.wayne.entity.trainer.MdlDetailT;
 import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
+import com.jsjlzj.wayne.entity.trainer.MineStudyBean;
+import com.jsjlzj.wayne.entity.trainer.SignUpPageBean;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -175,6 +181,9 @@ public interface StoreService {
     @POST(HttpConstant.API_SAVELIFEPHOTOST)//保存生活照片
     Observable<MdlBaseHttpResp> saveLifePhotosT(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_SAVE_VIDEO_TEACH)//保存教学视频
+    Observable<MdlBaseHttpResp> saveTeachVideo(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_SAVEWORKEXPERIENCET)//保存工作经历
     Observable<MdlBaseHttpResp<MdlsaveAdvantage>> saveWorkExperienceT(@Body RequestBody requestBody);
 
@@ -255,6 +264,11 @@ public interface StoreService {
     Observable<MdlBaseHttpResp> sendInterView(@Body RequestBody requestBody);
 
 
+    //获取我的广告图片
+    @POST(HttpConstant.API_GET_ALL_PIC)
+    Observable<MdlBaseHttpResp<BannerAll>> requestRecommendPic(@Body RequestBody requestBody);
+
+
 
     /******************************************v2 新接口*****************************************************/
 
@@ -305,22 +319,37 @@ public interface StoreService {
     Observable<MdlBaseHttpResp<VideoPageBean>> requestVideoList(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_ADD_ZAN)
-    Observable<MdlBaseHttpResp<String>> requestClickZan(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<DataBean>> requestClickZan(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_CANCEL_ZAN)
-    Observable<MdlBaseHttpResp<String>> requestCancelZan(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<DataBean>> requestCancelZan(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_ADD_COLLECT)
-    Observable<MdlBaseHttpResp<String>> requestClickCollect(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<DataBean>> requestClickCollect(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_CANCEL_COLLECT)
-    Observable<MdlBaseHttpResp<String>> requestCancelCollect(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<DataBean>> requestCancelCollect(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_ADD_FOLLOW)
-    Observable<MdlBaseHttpResp<String>> requestClickFollow(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<DataBean>> requestClickFollow(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_CANCEL_FOLLOW)
-    Observable<MdlBaseHttpResp<String>> requestCancelFollow(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<DataBean>> requestCancelFollow(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_DELETE_DYNAMIC)
+    Observable<MdlBaseHttpResp<DataBean>> requestDeleteDynamic(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_LEARN_LIST)
+    Observable<MdlBaseHttpResp<MineStudyBean>> requestLearnList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_INVITATION_CODE)
+    Observable<MdlBaseHttpResp<InvitationCodeBean>> requestInvitationCode(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_INVITATION_LIST)
+    Observable<MdlBaseHttpResp<InvitationBean>> requestInvitationList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SIGN_UP_LIST)
+    Observable<MdlBaseHttpResp<SignUpPageBean>> requestSignUpList(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_LEARN_DATA)
     Observable<MdlBaseHttpResp<LearnBean>> requestLearnData(@Body RequestBody requestBody);
@@ -364,17 +393,36 @@ public interface StoreService {
     @POST(HttpConstant.API_MINE_DYNAMIC_LIST)
     Observable<MdlBaseHttpResp<VideoPageBean>> requestMineDynamicList(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_CHANNEL_FENSLIST)
+    Observable<MdlBaseHttpResp<ChannelPageBean>> requestMineFensList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CHANNEL_FOLLOW_LIST)
+    Observable<MdlBaseHttpResp<ChannelPageBean>> requestMineFollowList(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_AMOY_SIGN_UP)
-    Observable<MdlBaseHttpResp<String>> requestAmoySignUp(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<DataBean>> requestAmoySignUp(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_MATCH_SIGN_UP)
-    Observable<MdlBaseHttpResp<String>> requestMatchSignUp(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<DataBean>> requestMatchSignUp(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_PUBLIC_DYNAMIC)
     Observable<MdlBaseHttpResp<DataBean>> requestPublicDynamic(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_DYNAMIC_COLLECT_LIST)
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestDynamicCollectList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_VIDEO_COLLECT_LIST)
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestVideoCollectList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_INFORMATION_COLLECT_LIST)
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestInformationCollectList(@Body RequestBody requestBody);
 
     @Multipart
     @POST(HttpConstant.API_UPLOAD)//上次文件
 //    Observable<MdlBaseHttpResp<MdlUpload>> upload(@Part("type") RequestBody type, @Part MultipartBody.Part file);
     Observable<MdlBaseHttpResp<MdlUpload>> upload(@Part MultipartBody.Part file);
+
+    @Multipart
+    @POST(HttpConstant.API_UPLOAD_VIDEO)//上次视频文件
+    Observable<MdlBaseHttpResp<MdlUpload>> uploadVideo(@Part MultipartBody.Part file);
 }

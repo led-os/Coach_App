@@ -10,7 +10,6 @@ import com.jsjlzj.wayne.ui.MainActivity;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.basis.LoginByPhoneActivity;
 import com.jsjlzj.wayne.ui.basis.LoginRoleSelectActivity;
-import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseNoLoginActivity;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
@@ -18,6 +17,8 @@ import com.jsjlzj.wayne.ui.store.attestation.AttestationActivity;
 import com.jsjlzj.wayne.ui.store.attestation.AttestationInfoActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SPUtil;
+import com.jsjlzj.wayne.utils.eventbus.EnumEventBus;
+import com.jsjlzj.wayne.utils.eventbus.MdlEventBus;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -25,6 +26,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -123,8 +125,7 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
         initHttp(url);
         call.enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
-            }
+            public void onFailure(Call call, IOException e) {}
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -223,6 +224,7 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
             MyApp.user = resp.getData().getData();
             SPUtil.saveUser2SP(MyApp.user);
             SPUtil.saveToken2SP(MyApp.user.getToken());
+            EventBus.getDefault().post(new MdlEventBus(EnumEventBus.MESSAGE_BIND_WX,resp.getData().getData().getWxName()));
             finish();
         } else {
             LogAndToastUtil.toast(resp.getMsg());

@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/title_bar_layout"/>
+    <include layout="@layout/title_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_42"
+        android:layout_marginTop="@dimen/padding_24"/>
+
 
     <FrameLayout
         android:id="@+id/web_view_container"

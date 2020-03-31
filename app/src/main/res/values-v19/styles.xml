@@ -6,6 +6,7 @@
         <item name="android:windowTranslucentStatus">true</item>
         <!-- Navigation Bar 【false适配某些虚拟按键手机】-->
         <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
 

@@ -2,6 +2,8 @@ package com.jsjlzj.wayne.constant;
 
 public class ExtraConstant {
 
+    public static final int LOCATION_RANGE = 10000;
+
     public static final String EXTRA_ADDRESS_PROVINCE = "_ADDRESS_PROVINCE";
     public static final String EXTRA_ADDRESS_CITY = "_ADDRESS_CITY";
     public static final String EXTRA_ADDRESS_AREA = "_ADDRESS_AREA";
@@ -42,6 +44,8 @@ public class ExtraConstant {
     public static final String EXTRA_QR_CODE_TYPE = "_QR_CODE_TYPE";
     public static final String EXTRA_QR_CODE_CONTENT = "_QR_CODE_CONTENT";
     public static final String EXTRA_DATE = "_DATE";
+    public static final String DIALOG_RIGHT = "_DIALOG_RIGHT";
+    public static final String DIALOG_LEFT = "_DIALOG_LEFT";
 
     public static final String EXTRA_UID = "_UID";
     public static final String EXTRA_URL = "_URL";

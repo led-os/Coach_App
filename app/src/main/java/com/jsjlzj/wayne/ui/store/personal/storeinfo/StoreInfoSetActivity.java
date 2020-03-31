@@ -27,6 +27,7 @@ import com.jsjlzj.wayne.ui.store.personal.storeinfo.set.StoreWelfareActivity;
 import com.jsjlzj.wayne.ui.store.talent.position.recruit.RecruitCoordinateSelectActivity;
 import com.jsjlzj.wayne.utils.ImageUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 import com.jsjlzj.wayne.widgets.dialog.EditDialog;
 
@@ -141,7 +142,8 @@ public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, Ta
                     RecruitCoordinateSelectActivity.go2this2(StoreInfoSetActivity.this);
                     break;
                 case R.id.image:
-                    clickSelectHeadPic();
+                    presenter.autoObtainStoragePermission(StoreInfoSetActivity.this,0);
+//                    clickSelectHeadPic();
                     break;
             }
         }
@@ -155,25 +157,43 @@ public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, Ta
         PermissionUtil.checkPermission(this, MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
+    @Override
+    public void selectPhoto(int position) {
+        SelectImageUtils.selectPhoto(this, getString(R.string.takephoto), false, true, 1);
+    }
 
     @Override
-    public void permissionSuccess(int permissionReqCode) {
-        super.permissionSuccess(permissionReqCode);
-        switch (permissionReqCode) {
-            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
-                PhotoPicker.builder()
-                        .setPhotoCount(0)
-                        .setShowCamera(true)
-                        .setShowGif(false)
-                        .setPreviewEnabled(false)
-                        .start(this, HEAD_PIC);
-                break;
-        }
+    public void onUploadSuccess(String imgUrl, int position) {
+        cropHeadPicPath = imgUrl;
+        presenter.upload(imgUrl);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        presenter.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
+
+//    @Override
+//    public void permissionSuccess(int permissionReqCode) {
+//        super.permissionSuccess(permissionReqCode);
+//        switch (permissionReqCode) {
+//            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
+//                PhotoPicker.builder()
+//                        .setPhotoCount(0)
+//                        .setShowCamera(true)
+//                        .setShowGif(false)
+//                        .setPreviewEnabled(false)
+//                        .start(this, HEAD_PIC);
+//                break;
+//        }
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(this,requestCode,resultCode,data);
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case HEAD_PIC:
@@ -225,11 +245,12 @@ public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, Ta
             if(null==map)map=new HashMap();
             if(!TextUtils.isEmpty(imgUrl)){
                 setImg(cropHeadPicPath, image);
-                String[] pics = imgUrl.split("/");
-                if (pics != null) {
-                    map.put("brandLogo", pics[pics.length - 1]);
-                    presenter.saveBrandLogo(map);
-                }
+                map.put("brandLogo", imgUrl);
+                presenter.saveBrandLogo(map);
+//                String[] pics = imgUrl.split("/");
+//                if (pics != null) {
+//
+//                }
             }
         }else{
             LogAndToastUtil.toast(resp.getMsg());

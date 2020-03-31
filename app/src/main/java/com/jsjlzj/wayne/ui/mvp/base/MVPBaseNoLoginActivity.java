@@ -4,15 +4,16 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.annotation.ColorRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -60,7 +61,6 @@ public abstract class MVPBaseNoLoginActivity<MVP_V extends BaseView, MVP_P exten
         state = STATE_ACTIVE;
         setContentView(getLayoutResId());
         StatusBarCompatUtil.compat(this, Color.parseColor("#25252A"));
-
 //        StatusBarCompatUtil.compat(this, ResourceUtil.getColor(getStatusColor()));
         presenter = createPresenter();
         presenter.attachView((MVP_V) this);

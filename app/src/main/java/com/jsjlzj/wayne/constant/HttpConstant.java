@@ -11,8 +11,8 @@ public class HttpConstant {
     public static final String UPDATA_URL = "https://www.pgyer.com/X4kA";
 
     public static boolean isDebug = true;
-    public static String BASE_URL = "http://47.97.126.0:8090/";
-//    public static String BASE_URL = "http://api.gokgm.com:81/";
+//    public static String BASE_URL = "http://47.97.126.0:8090/";
+    public static String BASE_URL = "http://47.97.126.0:8092/";
     public static String WXAPPID = "wx465cfff1c19d069d";
     public static String WXAPPSECET = "8659207754ddedc545fbd86cee2496d1";
     public static final String JCMES_URL = "http://app.lightmes.cn/";
@@ -47,6 +47,8 @@ public class HttpConstant {
     public static final String WEB_URL_MATCH_DETAIL = "http://h5.gokgm.com:81/#/matchDetail?id=";//赛事详情页
     public static final String WEB_URL_USER_INFO = "http://h5.gokgm.com:81/#/user?id=";//用户主页
     public static final String WEB_URL_COURSE_INTRODUCE = "http://h5.gokgm.com:81/#/course?id=";//课程介绍
+    public static final String WEB_URL_INVITATION_FRIEND = "http://h5.gokgm.com:81/#/share?inviteId=";//邀请好友页
+    public static final String WEB_URL_PRIVATE_POLICY = "http://h5.gokgm.com:81/agreement/regist_privacy.html";//隐私政策
 
     /********************************* web网页- url****************************************************/
 
@@ -112,6 +114,9 @@ public class HttpConstant {
 
     //上传文件
     public static final String API_UPLOAD = "upload";
+
+    //上传视频文件
+    public static final String API_UPLOAD_VIDEO = "uploadVideo";
 
     //获取所有地区信息
     public static final String API_GETAREAALL = "area/getAll";
@@ -255,6 +260,8 @@ public class HttpConstant {
     public static final String API_SAVEEDUCATIONEXPERIENCET = "trainer/cv/saveEducationExperience";
     //保存生活照片
     public static final String API_SAVELIFEPHOTOST = "trainer/cv/saveLifePhotos";
+    //保存视频教学
+    public static final String API_SAVE_VIDEO_TEACH = "trainer/cv/saveTeachVideo";
     //保存工作经历
     public static final String API_SAVEWORKEXPERIENCET = "trainer/cv/saveWorkExperience";
     //保存求职期望
@@ -325,6 +332,8 @@ public class HttpConstant {
     //发送面试邀请
     public static final String API_INTERVIEWInvite="interview/sendInterviewInvite";
 
+    //获取所有广告图
+    public static final String API_GET_ALL_PIC ="trainer/index/banners";
 
 
     /************************************v2 新接口****************************************************/
@@ -368,6 +377,16 @@ public class HttpConstant {
     public static final String API_ADD_FOLLOW = "channel/follow";
     //取消关注
     public static final String API_CANCEL_FOLLOW = "channel/cancel";
+    //删除动态
+    public static final String API_DELETE_DYNAMIC = "community/del";
+    //我的学习列表
+    public static final String API_LEARN_LIST = "learn/myLearnList";
+    //获取邀请码
+    public static final String API_INVITATION_CODE = "invite/qrCode";
+    //获取邀请好友列表
+    public static final String API_INVITATION_LIST = "inviteList";
+    //获取我的报名列表
+    public static final String API_SIGN_UP_LIST = "enroll/list";
     //学习数据
     public static final String API_LEARN_DATA = "learn/indexData";
     //章节列表数据
@@ -402,6 +421,16 @@ public class HttpConstant {
     public static final String API_MATCH_SIGN_UP = "enroll/sportEventEnroll";
     //发布动态
     public static final String API_PUBLIC_DYNAMIC = "community/publish";
+    //我的粉丝列表
+    public static final String API_CHANNEL_FENSLIST = "channel/fansList";
+    //我的关注列表
+    public static final String API_CHANNEL_FOLLOW_LIST = "channel/followerList";
+    //我的收藏 动态列表
+    public static final String API_DYNAMIC_COLLECT_LIST = "collect/community/list";
+    //我的收藏 视频列表
+    public static final String API_VIDEO_COLLECT_LIST = "collect/video/list";
+    //我的收藏 文章列表
+    public static final String API_INFORMATION_COLLECT_LIST = "collect/information/list";
 
 
 

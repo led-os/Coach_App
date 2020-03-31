@@ -20,6 +20,7 @@ public class ChannelListBean {
     private int id;
     private boolean isFollower;
     private String name;
+    private String headImg;
 
     public String getAvatar() {
         return avatar;
@@ -59,5 +60,13 @@ public class ChannelListBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
     }
 }

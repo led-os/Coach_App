@@ -15,6 +15,7 @@ import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.publicac.report.ReportTypeActivity;
 import com.jsjlzj.wayne.ui.store.home.amoy.SignUpActivity;
+import com.jsjlzj.wayne.ui.store.list.MoreMatchActivity;
 import com.jsjlzj.wayne.widgets.dialog.ShareDialog;
 import com.netease.nim.uikit.common.ToastHelper;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
@@ -83,6 +84,13 @@ public class JsInterface {
         WebViewContainerActivity.go2this(mContext,title, url, WebViewContainerFragment.TYPE_INNER_TAB);
     }
 
+    @JavascriptInterface
+    public void lookMoreActivity(){
+        // TODO: 2020/3/24 跳转到更多赛事
+        LogAndToastUtil.toast("全部赛事");
+        MoreMatchActivity.go2this(mContext);
+    }
+
     private Bitmap bitmap;
 
     /**
@@ -127,6 +135,7 @@ public class JsInterface {
                 bitmap= BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.ic_launcher);
             }
             Bitmap thumbData = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
+
             msg.thumbData = bmpToByteArray(thumbData, true);
             SendMessageToWX.Req req = new SendMessageToWX.Req();
             req.transaction = buildTransaction("Req");

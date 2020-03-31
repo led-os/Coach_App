@@ -9,11 +9,18 @@
 
     <include layout="@layout/layout_divide_line" />
 
-    <com.jsjlzj.wayne.widgets.CustomXRecyclerView
-        android:id="@+id/rv_more_data"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingStart="@dimen/padding_10"
-        android:paddingEnd="@dimen/padding_10" />
+        android:id="@+id/rel_empty">
+        <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+            android:id="@+id/rv_more_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/padding_10"
+            android:paddingEnd="@dimen/padding_10" />
+
+
+    </RelativeLayout>
 
 </LinearLayout>

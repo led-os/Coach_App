@@ -16,6 +16,7 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -86,7 +87,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
         void bindView(int pos) {
             bean = list.get(pos);
             tvTitle.setText(bean.getName());
-            tvAddNumber.setText(""+bean.getEnrollCount());
+            tvAddNumber.setText(DateUtil.getNumByInteger(bean.getEnrollCount()));
             tvTime.setText(bean.getStartTime()+" 至 " +bean.getEndTime());
             GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
             itemView.setOnClickListener(v -> {

@@ -26,6 +26,7 @@ import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.ui.store.home.amoy.HotSchoolActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -161,14 +162,14 @@ public class SearchAllFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
         rvVideo.setHasFixedSize(true);
         rvVideo.setNestedScrollingEnabled(false);
-        videoAdapter = new HomeLikeAdapter(getActivity(), new ArrayList<>());
+        videoAdapter = new HomeLikeAdapter(getActivity(), new ArrayList<>(),1);
         videoAdapter.setListener(this);
         rvVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvVideo.setAdapter(videoAdapter);
 
         rvInformation.setHasFixedSize(true);
         rvInformation.setNestedScrollingEnabled(false);
-        informationAdapter = new HomeLikeAdapter(getActivity(), new ArrayList<>());
+        informationAdapter = new HomeLikeAdapter(getActivity(), new ArrayList<>(),2);
         informationAdapter.setListener(this);
         informationAdapter.setShowTime(false);
         rvInformation.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -222,8 +223,7 @@ public class SearchAllFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     @Override
     public void onItemClick(TaoLearnListBean bean) {
         //点击淘学
-        WebViewContainerActivity.go2this(getActivity(),bean.getName(), HttpConstant.WEB_URL_COURSE_DETAIL+bean.getId(),
-                WebViewContainerFragment.TYPE_COURSE_DETAIL);
+        HotSchoolActivity.go2this(getActivity(),bean.getId());
     }
 
     @Override

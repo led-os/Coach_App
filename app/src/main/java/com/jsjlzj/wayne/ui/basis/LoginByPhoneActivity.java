@@ -8,9 +8,11 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
@@ -34,11 +36,12 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import static com.jsjlzj.wayne.constant.HttpConstant.WXAPPID;
+
 /**
-* @description 手机号登陆
-* @date: 2019/12/23
-* @author: 曾海强
-*/
+ * @description 手机号登陆
+ * @date: 2019/12/23
+ * @author: 曾海强
+ */
 public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityView, LoginActivityPresenter> implements LoginActivityView {
     public static final String LOGIN_OPENID = "openid";
     public static final String LOGIN_HEADIMG = "headImg";
@@ -49,7 +52,8 @@ public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityVi
     private String headImg;
     private String gender;
     private String wxName;
-    private CheckBox checkBox;
+    private ImageView checkBox;
+    private boolean isSelect = false;
 
     public static void go2This(Activity context, String phone, String openid, String headImg, String gender, String wxName) {
         Intent intent = new Intent(context, LoginByPhoneActivity.class);
@@ -96,7 +100,13 @@ public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityVi
         gender = getIntent().getStringExtra(LOGIN_GENDER);
         wxName = getIntent().getStringExtra(LOGIN_WXNAME);
         checkBox = findView(R.id.box2);
-        checkBox.setChecked(SPUtil.getCheckbox());
+        if (!SPUtil.getCheckbox()) {
+            isSelect = false;
+            checkBox.setImageDrawable(ContextCompat.getDrawable(LoginByPhoneActivity.this, R.drawable.all_noselectm));
+        }else {
+            isSelect = true;
+            checkBox.setImageDrawable(ContextCompat.getDrawable(LoginByPhoneActivity.this,R.drawable.all_selectm));
+        }
         initView();
     }
 
@@ -140,6 +150,7 @@ public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityVi
         btnNext.setOnClickListener(onClickListner);
         btnWechat.setOnClickListener(onClickListner);
         btnNode.setOnClickListener(onClickListner);
+        checkBox.setOnClickListener(onClickListner);
 
         btnPwdLogin.setOnClickListener(onClickListner);
         edPhone.addTextChangedListener(watcherEdPhone);
@@ -168,7 +179,7 @@ public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityVi
                     checkInstalledWX();
                     break;
                 case R.id.btnNext://下一步
-                    if (!checkBox.isChecked()) {
+                    if (!isSelect) {
                         LogAndToastUtil.toast(view.getContext(), "请先阅读下方《用户隐私声明》");
                         return;
                     }
@@ -177,6 +188,15 @@ public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityVi
                     break;
                 case R.id.btnPwdLogin://转到 账号密码登录
                     LoginByPwdActivity.go2This(LoginByPhoneActivity.this, edPhone.getText() + "");
+                    break;
+                case R.id.box2:
+                    if (isSelect) {
+                        isSelect = false;
+                        checkBox.setImageDrawable(ContextCompat.getDrawable(LoginByPhoneActivity.this, R.drawable.all_noselectm));
+                    } else {
+                        isSelect = true;
+                        checkBox.setImageDrawable(ContextCompat.getDrawable(LoginByPhoneActivity.this, R.drawable.all_selectm));
+                    }
                     break;
                 case R.id.btnNode:
                     JsjlAgreementActivity.go2this2(LoginByPhoneActivity.this);

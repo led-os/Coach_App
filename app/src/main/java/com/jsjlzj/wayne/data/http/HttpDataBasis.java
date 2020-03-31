@@ -68,4 +68,13 @@ public class HttpDataBasis extends BaseHttpData {
         Observable observable = service.upload( photo);
         setSubscribe(observable, observer);
     }
+
+
+    public void uploadVideo(String picPath, Observer observer) {
+        File file = new File(picPath);
+        RequestBody reqFile = RequestBody.create(MediaType.parse("video/mp4"), file);
+        MultipartBody.Part photo = MultipartBody.Part.createFormData("file", file.getName(), reqFile);//pic为key
+        Observable observable = service.uploadVideo( photo);
+        setSubscribe(observable, observer);
+    }
 }

@@ -2,29 +2,32 @@ package com.jsjlzj.wayne.ui.publicac.mine;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.adapter.recycler.search.SearchAdapter;
+import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.entity.store.MdlInfo;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.publicac.dialog.ZanFragment;
+import com.jsjlzj.wayne.ui.store.home.community.CommunityItemFragment;
 import com.jsjlzj.wayne.ui.trainer.personal.set.PersonalInfoSetTrainerActivity;
-
-import java.util.ArrayList;
+import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import butterknife.BindView;
 
 /**
  * @ClassName: PersonMineActivity
- * @Description: 我的个人中心
+ * @Description: 教练端我的个人中心
  * @Author: 曾海强
  * @CreateDate:
  */
@@ -33,6 +36,8 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
 
     @BindView(R.id.img_head)
     ImageView imgHead;
+    @BindView(R.id.img_level)
+    ImageView imgLevel;
     @BindView(R.id.tv_dynamic)
     TextView tvDynamic;
     @BindView(R.id.ll_dynamic)
@@ -61,11 +66,12 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
     TextView tvApply;
     @BindView(R.id.tv_simple)
     TextView tvSimple;
-    @BindView(R.id.rv_dynamic)
-    RecyclerView rvDynamic;
 
-    public static void go2this(Activity context) {
+    private MdlInfo.DataBean mdlInfo;
+
+    public static void go2this(Activity context, MdlInfo.DataBean mdlInfo) {
         Intent intent = new Intent(context, PersonMineActivity.class);
+        intent.putExtra(ExtraConstant.EXTRA_DATA, mdlInfo);
         context.startActivity(intent);
     }
 
@@ -77,10 +83,13 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
 
     @Override
     protected void initViewAndControl() {
-        initTitle("我的昵称");
-        rvDynamic.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL) );
-        SearchAdapter adapter = new SearchAdapter(this,new ArrayList<>());
-        rvDynamic.setAdapter(adapter);
+        mdlInfo = (MdlInfo.DataBean) getIntent().getSerializableExtra(ExtraConstant.EXTRA_DATA);
+        if (mdlInfo == null) {
+            finish();
+            return;
+        }
+        initTitle(mdlInfo.getName());
+        initInfo(mdlInfo);
 
         llDynamic.setOnClickListener(clickListener);
         llFen.setOnClickListener(clickListener);
@@ -90,6 +99,27 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
         tvModifyInfo.setOnClickListener(clickListener);
         tvApply.setOnClickListener(clickListener);
 
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        CommunityItemFragment fragment = CommunityItemFragment.getInstance(4, "");
+        fragmentTransaction.add(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+
+    }
+
+    private void initInfo(MdlInfo.DataBean mdlInfo) {
+        GlidUtils.setCircleGrid(this, mdlInfo.getHeadImg(), imgHead);
+        imgLevel.setVisibility(mdlInfo.getLevel() == 2 ? View.VISIBLE : View.GONE);
+        tvDynamic.setText(DateUtil.getNumByInteger(mdlInfo.getPublishCount()));
+        tvFen.setText(DateUtil.getNumByInteger(mdlInfo.getFensCount()));
+        tvFollow.setText(DateUtil.getNumByInteger(mdlInfo.getFollowerCount()));
+        tvZan.setText(DateUtil.getNumByInteger(mdlInfo.getLikeCount()));
+        tvFavorite.setText(DateUtil.getNumByInteger(mdlInfo.getCollectCount()));
+        if (TextUtils.isEmpty(mdlInfo.getContent())) {
+            tvSimple.setVisibility(View.GONE);
+        } else {
+            tvSimple.setVisibility(View.VISIBLE);
+            tvSimple.setText("简介："+mdlInfo.getContent());
+        }
     }
 
     @Override
@@ -105,19 +135,19 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 MineDynamicActivity.go2this(this);
                 break;
             case R.id.ll_fen://粉丝
-                MineFansActivity.go2this(this,0);
+                MineFansActivity.go2this(this, 0);
                 break;
             case R.id.ll_follow://关注
-                MineFansActivity.go2this(this,1);
+                MineFansActivity.go2this(this, 1);
                 break;
             case R.id.ll_zan://获赞
-                ZanFragment.showDialog(getSupportFragmentManager(),"我的昵称","共获得0个赞");
+                ZanFragment.showDialog(getSupportFragmentManager(), mTitleTv.getText().toString(), "共获得" + tvZan.getText().toString() + "个赞");
                 break;
             case R.id.ll_favorite://收藏
                 MineFavoriteActivity.go2this(this);
                 break;
             case R.id.tv_modify_info://修改资料
-                PersonalInfoSetTrainerActivity.go2this(this);
+                PersonalInfoSetTrainerActivity.go2this(this,999);
                 break;
             case R.id.tv_apply://我的申请
                 PostureAuthenActivity.go2this(this);
@@ -127,4 +157,25 @@ public class PersonMineActivity extends MVPBaseActivity<TalentTabFragmentView, T
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            if(requestCode == 999){
+                String name = data.getStringExtra("name");
+                String imgUrl = data.getStringExtra("headImg");
+                String content = data.getStringExtra("content");
+                if(!TextUtils.isEmpty(imgUrl)){
+                    GlidUtils.setCircleGrid(this,imgUrl,imgHead);
+                }
+                mTitleTv.setText(name);
+                if(TextUtils.isEmpty(content)){
+                    tvSimple.setVisibility(View.GONE);
+                }else {
+                    tvSimple.setVisibility(View.VISIBLE);
+                    tvSimple.setText("简介："+content);
+                }
+            }
+        }
+    }
 }

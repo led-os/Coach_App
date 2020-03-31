@@ -1,20 +1,27 @@
 package com.jsjlzj.wayne.ui.trainer.personal;
 
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.EducationPreAdapter;
 import com.jsjlzj.wayne.adapter.JobIntentionAdapter;
 import com.jsjlzj.wayne.adapter.TrainerPreExpAdapter;
+import com.jsjlzj.wayne.adapter.recycler.ImageSelectAdapter;
 import com.jsjlzj.wayne.entity.trainer.MdlDetailT;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.widgets.MyListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -36,6 +43,8 @@ public class OnlineResumeFragment extends MVPBaseFragment<TalentTabFragmentView,
     MyListView rvEducation;
     @BindView(R.id.rv_authentication_img)
     RecyclerView rvAuthenticationImg;
+    @BindView(R.id.tv_certification)
+    TextView tvCertification;
     /**
      * 数据
      */
@@ -46,6 +55,10 @@ public class OnlineResumeFragment extends MVPBaseFragment<TalentTabFragmentView,
     private JobIntentionAdapter jobIntentionAdapter;
     private TrainerPreExpAdapter expAdapter;
     private EducationPreAdapter educationAdapter;
+
+    private ImageSelectAdapter imageSelectAdapter;
+
+    private List<String> certificationList = new ArrayList<>();
 
     public OnlineResumeFragment() {
     }
@@ -58,7 +71,6 @@ public class OnlineResumeFragment extends MVPBaseFragment<TalentTabFragmentView,
 
     @Override
     protected void initViewAndControl(View view) {
-
     }
 
 
@@ -85,6 +97,19 @@ public class OnlineResumeFragment extends MVPBaseFragment<TalentTabFragmentView,
         educationAdapter = new EducationPreAdapter(getActivity());
         rvEducation.setAdapter(educationAdapter);
         educationAdapter.setData(data.getEducationExperienceList());
+
+        if(data != null && !TextUtils.isEmpty(data.getCertificatePhotos())){
+            String[] array = data.getCertificatePhotos().split(",");
+            certificationList = Arrays.asList(array);
+            tvCertification.setVisibility(View.VISIBLE);
+            rvAuthenticationImg.setVisibility(View.VISIBLE);
+            imageSelectAdapter = new ImageSelectAdapter(getActivity(),certificationList);
+            rvAuthenticationImg.setLayoutManager(new GridLayoutManager(getActivity(),3));
+            rvAuthenticationImg.setAdapter(imageSelectAdapter);
+        }else {
+            tvCertification.setVisibility(View.GONE);
+            rvAuthenticationImg.setVisibility(View.GONE);
+        }
     }
 
     @Override

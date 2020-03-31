@@ -12,10 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.store.search.TaoLearnListBean;
-import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
-import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -101,11 +98,9 @@ public class SeaerchTaoLearnAdapter extends RecyclerView.Adapter<SeaerchTaoLearn
 
             itemView.setOnClickListener(v -> {
                 //点击淘学
-                WebViewContainerActivity.go2this(context, categoryBean.getName(), HttpConstant.WEB_URL_COURSE_DETAIL + categoryBean.getId(),
-                        WebViewContainerFragment.TYPE_COURSE_DETAIL);
-//                if (listener != null) {
-//                    listener.onItemClick(categoryBean);
-//                }
+                if(listener!= null){
+                    listener.onItemClick(categoryBean);
+                }
 
             });
         }

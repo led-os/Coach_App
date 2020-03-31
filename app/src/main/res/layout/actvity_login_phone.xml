@@ -75,11 +75,11 @@
 
         android:orientation="horizontal">
 
-        <CheckBox
+        <ImageView
             android:id="@+id/box2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="" />
+            android:layout_width="@dimen/padding_16"
+            android:layout_height="@dimen/padding_16"
+            android:src="@drawable/all_noselectm"/>
 
         <TextView
             android:id="@+id/btnNode"

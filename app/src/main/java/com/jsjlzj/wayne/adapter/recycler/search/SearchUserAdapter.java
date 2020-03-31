@@ -9,10 +9,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.store.search.ChannelListBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -83,15 +87,21 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
         void bindView(int pos) {
             bean = list.get(pos);
-            GlidUtils.setCircleGrid(context,bean.getAvatar(),imgHead);
+            GlidUtils.setCircleGrid(context,bean.getHeadImg(),imgHead);
             tvName.setText(bean.getName());
-            tvFen.setText("粉丝"+bean.getFansCount()+"万");
+            tvFen.setText("粉丝"+bean.getFansCount());
             relItem.setOnClickListener(clickListener);
-            if(bean.isFollower()){
-                tvFavorite.setText("已关注");
-            }else {
+            if(!bean.isFollower()){
                 tvFavorite.setText("关注");
+                tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_4F9BFA));
+                tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_4a9bfa_12));
+            }else {
+                tvFavorite.setText("已关注");
+                tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_999999));
+                tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_21));
             }
+            tvName.setOnClickListener(clickListener);
+            imgHead.setOnClickListener(clickListener);
             tvFavorite.setOnClickListener(clickListener);
         }
 
@@ -106,6 +116,11 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
                     return;
                 }
                 switch (view.getId()) {
+                    case R.id.tv_name:
+                    case R.id.img_head:
+                        WebViewContainerActivity.go2this(context,bean.getName(), HttpConstant.WEB_URL_USER_INFO+bean.getId(),
+                                WebViewContainerFragment.TYPE_USER_INFO);
+                        break;
                     case R.id.rel_item:
                         listener.onItemClick(bean);
                         break;
@@ -113,9 +128,13 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
                         if(bean.isFollower()){
                             bean.setFollower(false);
                             tvFavorite.setText("关注");
+                            tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_4F9BFA));
+                            tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_4a9bfa_12));
                         }else {
                             bean.setFollower(true);
                             tvFavorite.setText("已关注");
+                            tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_999999));
+                            tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_21));
                         }
                         listener.onFavoriteClick(bean);
                         break;

@@ -80,6 +80,7 @@
 
         <TextView
             android:text="认证证书"
+            android:id="@+id/tv_certification"
             android:textSize="@dimen/text_size_17"
             android:textColor="@color/color_333333"
             android:layout_marginTop="@dimen/padding_20"
@@ -93,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_10"
+            android:layout_marginBottom="@dimen/padding_20"
             android:layout_marginTop="@dimen/padding_17"
             android:layout_marginEnd="@dimen/padding_10" />
 

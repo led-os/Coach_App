@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
             tvTitle.setText(bean.getName());
             tvTime.setText(bean.getCreateTime());
-            tvNumber.setText(bean.getViewCount()+"次阅读");
+            tvNumber.setText(DateUtil.getNumByInteger(bean.getViewCount()) +"次阅读");
             itemView.setOnClickListener(v -> {
                 if(listener != null){
                     listener.onItemClick(bean);

@@ -4,80 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.store.home.recommend.ClassicDetailActivity">
 
-    <include layout="@layout/title_bar_layout"/>
+    <include layout="@layout/title_bar_layout" />
 
-
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
 
             <ImageView
                 android:id="@+id/scroll_banner"
-                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_marginStart="@dimen/padding_14"
-                android:layout_marginEnd="@dimen/padding_14"
-                android:layout_marginTop="@dimen/padding_19"
                 android:layout_height="@dimen/padding_154"
-                android:layout_marginBottom="@dimen/padding_2" />
-
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginTop="@dimen/padding_19"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_marginBottom="@dimen/padding_2"
+                android:scaleType="fitXY"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
 
             <LinearLayout
                 android:id="@+id/ll_video"
-                android:layout_marginTop="@dimen/padding_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/padding_15"
                 android:visibility="visible">
 
                 <TextView
-                    android:text="最新"
                     android:id="@+id/tv_news"
-                    android:paddingTop="@dimen/padding_5"
-                    android:paddingBottom="@dimen/padding_4"
-                    android:paddingStart="@dimen/padding_19"
-                    android:paddingEnd="@dimen/padding_19"
-                    android:textColor="@color/color_4F9BFA"
-                    android:textSize="@dimen/text_size_13"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/padding_19"
+                    android:paddingTop="@dimen/padding_5"
+                    android:paddingEnd="@dimen/padding_19"
+                    android:paddingBottom="@dimen/padding_4"
+                    android:text="最新"
+                    android:textColor="@color/color_4F9BFA"
+                    android:textSize="@dimen/text_size_13" />
 
                 <TextView
-                    android:text="热门"
                     android:id="@+id/tv_hot"
-                    android:paddingTop="@dimen/padding_5"
-                    android:paddingBottom="@dimen/padding_4"
-                    android:paddingStart="@dimen/padding_20"
-                    android:paddingEnd="@dimen/padding_20"
-                    android:textColor="@color/color_666666"
-                    android:textSize="@dimen/text_size_13"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/padding_20"
+                    android:paddingTop="@dimen/padding_5"
+                    android:paddingEnd="@dimen/padding_20"
+                    android:paddingBottom="@dimen/padding_4"
+                    android:text="热门"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_13" />
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/rel_empty"
-                android:layout_marginTop="@dimen/padding_10"
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:id="@+id/rel_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/padding_10"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+                android:id="@+id/rv_classic_detail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <com.jsjlzj.wayne.widgets.CustomXRecyclerView
-                    android:id="@+id/rv_classic_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </RelativeLayout>
+                android:layout_height="match_parent" />
+        </RelativeLayout>
 
-        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    </ScrollView>
 
 </LinearLayout>

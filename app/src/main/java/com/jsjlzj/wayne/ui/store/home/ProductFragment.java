@@ -58,7 +58,7 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
     private List<CategoryBean> productList = new ArrayList<>();
     private Map<Object,Object> map = new HashMap<>();
     private int typeId;
-    private int pageNo;
+    private int pageNo=1;
     private int pageCount;
     private boolean isRefresh;
     public ProductFragment() {
@@ -121,8 +121,8 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
-                    BannerBean bean = images.get(position);
-                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+//                    BannerBean bean = images.get(position);
+//                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
     }
@@ -182,7 +182,7 @@ public class ProductFragment extends MVPBaseFragment<HomeView, HomePresenter> im
     private void loadData(boolean isRefresh) {
         this.isRefresh = isRefresh;
         if(isRefresh) {
-            pageNo = 0;
+            pageNo = 1;
         }
         map.clear();
         map.put(HttpConstant.PAGE_NO, pageNo);

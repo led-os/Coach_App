@@ -9,10 +9,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.trainer.InvitationBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +33,16 @@ public class MineInvitationAdapter extends RecyclerView.Adapter<MineInvitationAd
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<InvitationBean.DataBean.ResultBean> list = new ArrayList<>();
 
-    public MineInvitationAdapter(Context context, List<String> list) {
+    public MineInvitationAdapter(Context context, List<InvitationBean.DataBean.ResultBean> list) {
         this.context = context;
         this.list = list;
+    }
+
+    public void setData(List<InvitationBean.DataBean.ResultBean> list){
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -51,7 +59,7 @@ public class MineInvitationAdapter extends RecyclerView.Adapter<MineInvitationAd
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0 ;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -68,7 +76,7 @@ public class MineInvitationAdapter extends RecyclerView.Adapter<MineInvitationAd
         TextView tvFavorite;
         @BindView(R.id.rel_item)
         RelativeLayout relItem;
-        private String bean;
+        private InvitationBean.DataBean.ResultBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,7 +84,18 @@ public class MineInvitationAdapter extends RecyclerView.Adapter<MineInvitationAd
         }
 
         void bindView(int pos) {
-//            bean = list.get(pos);
+            bean = list.get(pos);
+            GlidUtils.setCircleGrid(context,bean.getHeadImg(),imgHead);
+            tvName.setText(bean.getName());
+            tvPhone.setText(bean.getMobile());
+            tvTime.setText(bean.getCreateTime());
+            if(bean.getType() == 2){
+                tvFavorite.setText("俱乐部");
+                tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_invitation_7695cf));
+            }else {
+                tvFavorite.setText("教练");
+                tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_invitation_c67879));
+            }
             relItem.setOnClickListener(clickListener);
             tvFavorite.setOnClickListener(clickListener);
         }
@@ -105,7 +124,7 @@ public class MineInvitationAdapter extends RecyclerView.Adapter<MineInvitationAd
 
 
     public interface OnItemClickListener {
-        void onItemClick(String string);
+        void onItemClick(InvitationBean.DataBean.ResultBean bean);
 
 
     }

@@ -32,7 +32,12 @@
                     android:id="@+id/img_back"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/padding_192"
-                    android:background="@drawable/bg_mark"/>
+                    android:background="@drawable/bg_mark_train"/>
+
+                <ImageView
+                    android:background="@drawable/bg_mark_alpha"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_192"/>
 
                 <ImageView
                     android:id="@+id/img_add_pic"
@@ -97,7 +102,7 @@
                     android:drawablePadding="8dp"
                     android:visibility="visible"
                     android:gravity="center|right"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/color_666666"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -225,23 +230,55 @@
                     android:paddingEnd="@dimen/padding_14"
                     android:gravity="end|center_vertical"
                     android:textSize="@dimen/text_size_15"
+                    android:visibility="gone"
                     android:textColor="@color/color_4F9BFA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </LinearLayout>
-
-
-            <com.jsjlzj.wayne.widgets.MyListView
-                android:id="@+id/rv_job_intention"
-                android:divider="@null"
-                android:background="@color/white"
-                android:layout_marginStart="@dimen/padding_14"
-                android:layout_marginEnd="@dimen/padding_14"
-                android:layout_marginBottom="@dimen/padding_15"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_add_intention_two"
+                    android:layout_width="@dimen/padding_145"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/padding_11"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_333333"
+                    android:layout_marginBottom="@dimen/padding_15"
+                    android:layout_height="@dimen/padding_42"
+                    android:background="@drawable/bg_stroke_dddddd_21"
+                    android:gravity="center"
+                    android:text="添加求职意向"/>
 
 
+                <com.jsjlzj.wayne.widgets.MyListView
+                    android:id="@+id/rv_job_intention"
+                    android:divider="@null"
+                    android:background="@color/white"
+                    android:layout_marginStart="@dimen/padding_14"
+                    android:layout_marginEnd="@dimen/padding_14"
+                    android:layout_marginBottom="@dimen/padding_15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
 
             <!-- 工作经验 -->
             <LinearLayout
@@ -268,6 +305,7 @@
                     android:paddingEnd="@dimen/padding_14"
                     android:gravity="end|center_vertical"
                     android:textSize="@dimen/text_size_15"
+                    android:visibility="gone"
                     android:textColor="@color/color_4F9BFA"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
@@ -279,11 +317,33 @@
                 android:layout_marginLeft="@dimen/padding_14"
                 android:layout_marginRight="@dimen/padding_14"
                 android:background="@color/item_line" />
-            <com.jsjlzj.wayne.widgets.MyListView
-                android:id="@+id/rv_exp"
-                android:divider="@null"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_add_experience_two"
+                    android:layout_width="@dimen/padding_145"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/padding_11"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_333333"
+                    android:layout_marginBottom="@dimen/padding_15"
+                    android:layout_height="@dimen/padding_42"
+                    android:background="@drawable/bg_stroke_dddddd_21"
+                    android:gravity="center"
+                    android:text="添加工作经验"/>
+
+
+                <com.jsjlzj.wayne.widgets.MyListView
+                    android:id="@+id/rv_exp"
+                    android:divider="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -312,6 +372,7 @@
                 <TextView
                     android:id="@+id/tv_add_education"
                     android:text="@string/add"
+                    android:visibility="gone"
                     android:paddingStart="@dimen/padding_14"
                     android:paddingEnd="@dimen/padding_14"
                     android:gravity="end|center_vertical"
@@ -328,11 +389,38 @@
                 android:layout_marginRight="@dimen/padding_14"
                 android:background="@color/item_line" />
 
-            <com.jsjlzj.wayne.widgets.MyListView
-                android:id="@+id/rv_education"
-                android:divider="@null"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_add_education_two"
+                    android:layout_width="@dimen/padding_145"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/padding_11"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_333333"
+                    android:layout_marginBottom="@dimen/padding_15"
+                    android:layout_height="@dimen/padding_42"
+                    android:background="@drawable/bg_stroke_dddddd_21"
+                    android:gravity="center"
+                    android:text="添加教育经历"/>
+
+
+                <com.jsjlzj.wayne.widgets.MyListView
+                    android:id="@+id/rv_education"
+                    android:divider="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
 
             <LinearLayout
                 android:layout_marginTop="@dimen/padding_11"
@@ -360,7 +448,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_authentication_img"
@@ -369,7 +462,13 @@
                 android:layout_marginStart="@dimen/padding_10"
                 android:layout_marginTop="@dimen/padding_17"
                 android:layout_marginEnd="@dimen/padding_10" />
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/padding_18"
+                android:layout_height="@dimen/padding_1"
+                android:layout_marginLeft="@dimen/padding_14"
+                android:layout_marginRight="@dimen/padding_14"
+                android:background="@color/item_line" />
             <LinearLayout
                 android:layout_marginTop="@dimen/padding_1"
                 android:gravity="center_vertical"

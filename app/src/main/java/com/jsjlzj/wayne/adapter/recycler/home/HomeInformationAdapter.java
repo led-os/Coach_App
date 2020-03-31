@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
 import java.util.ArrayList;
@@ -100,9 +101,12 @@ public class HomeInformationAdapter extends RecyclerView.Adapter<HomeInformation
             bean = list.get(pos);
             GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
             tvTitle.setText(bean.getName());
-            tvPlayNum.setText(bean.getViewCount()+ "次阅读");
-            tvTime.setText(bean.getCreateTime());
-            tvPlayTime.setVisibility(View.GONE);
+            tvPlayNum.setText(DateUtil.getNumByInteger(bean.getViewCount()) + "次阅读");
+            if(bean.getCreateTime().length() > 15){
+                tvTime.setText(bean.getCreateTime().substring(0,10));
+            }else {
+                tvPlayTime.setVisibility(View.GONE);
+            }
 
             GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgAuthor);
             tvAuthor.setText(bean.getChannelName());

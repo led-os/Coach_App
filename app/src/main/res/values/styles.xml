@@ -8,17 +8,21 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/white</item>
-
+        <!-- Status Bar 透明，多用于解决图片作为整体背景时，沉浸式状态栏的问题-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowNoTitle">true</item>
-    </style>
+
+        <item name="android:navigationBarColor">@android:color/black</item>
+ </style>
 
 
-    <style name="StartAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/transparent</item>
-        <!--@drawable/layout_list_start_pic  colorPrimary-->
+ <style name="StartAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+     <item name="android:windowNoTitle">true</item>
+     <item name="android:windowBackground">@color/transparent</item>
+     <!--@drawable/layout_list_start_pic  colorPrimary-->
         <item name="android:windowFullscreen">true</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>

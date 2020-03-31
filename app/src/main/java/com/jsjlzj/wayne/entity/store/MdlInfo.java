@@ -1,6 +1,8 @@
 package com.jsjlzj.wayne.entity.store;
 
-public class MdlInfo {
+import java.io.Serializable;
+
+public class MdlInfo implements Serializable {
     private DataBean data;
 
     public DataBean getData() {
@@ -11,18 +13,37 @@ public class MdlInfo {
         this.data = data;
     }
 
-    public static class DataBean{
+    public static class DataBean implements Serializable{
+        //已沟通数
         private int communicatedCount;
+        //待面试数
         private int interviewedCount;
+        //获赞数
         private int likeCount;
+        //发布次数
         private int positionCount;
+        //关注数
+        private int followerCount;
+        //粉丝
+        private int fansCount;
+        //收藏数
+        private int collectCount;
+        //发布次数
+        private int publishCount;
+        //求职意向
+
         private String storeName;
         private String storeUserHeadImg;
         private String storeUserName;
         private String storeUserPosition;
         private String name;
+        //头像
         private String headImg;
         private int workHopeCount;
+        //简介
+        private String content;
+        //1:普通 2:加V
+        private int level;
 
         public int getWorkHopeCount() {
             return workHopeCount;
@@ -110,6 +131,54 @@ public class MdlInfo {
 
         public void setStoreUserPosition(String storeUserPosition) {
             this.storeUserPosition = storeUserPosition;
+        }
+
+        public int getFollowerCount() {
+            return followerCount;
+        }
+
+        public void setFollowerCount(int followerCount) {
+            this.followerCount = followerCount;
+        }
+
+        public int getFensCount() {
+            return fansCount;
+        }
+
+        public void setFensCount(int fensCount) {
+            this.fansCount = fensCount;
+        }
+
+        public int getCollectCount() {
+            return collectCount;
+        }
+
+        public void setCollectCount(int collectCount) {
+            this.collectCount = collectCount;
+        }
+
+        public int getPublishCount() {
+            return publishCount;
+        }
+
+        public void setPublishCount(int publishCount) {
+            this.publishCount = publishCount;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+
+        public void setLevel(int level) {
+            this.level = level;
         }
     }
 }

@@ -249,6 +249,7 @@
     <dimen name="padding_108">108.0dip</dimen>
     <dimen name="padding_98">98.0dip</dimen>
     <dimen name="padding_110">110.0dip</dimen>
+    <dimen name="padding_112">112.0dip</dimen>
     <dimen name="padding_120">120.0dip</dimen>
     <dimen name="padding_121">121.0dip</dimen>
     <dimen name="padding_123">123.0dip</dimen>
@@ -362,4 +363,5 @@
     <dimen name="padding_505">505dp</dimen>
     <dimen name="padding_518">518dp</dimen>
     <dimen name="padding_605">605dp</dimen>
+    <dimen name="padding_800">800dp</dimen>
 </resources>

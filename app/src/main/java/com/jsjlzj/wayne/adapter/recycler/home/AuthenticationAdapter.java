@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -95,8 +96,8 @@ public class AuthenticationAdapter extends RecyclerView.Adapter<AuthenticationAd
             categoryBean = list.get(pos);
             GlidUtils.setRoundGrid(context,categoryBean.getCoverImg(),imgOne,2);
             tvTitle.setText(categoryBean.getName());
-            tvAddNumber.setText(""+categoryBean.getEnrollCount());
-            tvAddNumberLeft.setText(""+categoryBean.getEnrollCount());
+            tvAddNumber.setText(DateUtil.getNumByInteger(categoryBean.getEnrollCount()));
+            tvAddNumberLeft.setText(DateUtil.getNumByInteger(categoryBean.getEnrollCount()));
             if(isSearch){
                 llLeftWhite.setVisibility(View.VISIBLE);
                 llRightRed.setVisibility(View.GONE);

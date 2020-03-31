@@ -231,7 +231,7 @@ public class HttpDataHome extends BaseHttpData {
 
 
     /**
-     * 收藏
+     * 关注
      * @param params
      * @param observer
      */
@@ -242,13 +242,23 @@ public class HttpDataHome extends BaseHttpData {
     }
 
     /**
-     * 取消收藏
+     * 取消关注
      * @param params
      * @param observer
      */
     public void cancelFollow(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestCancelFollow(body);
+        setSubscribe(observable, observer);
+    }
+    /**
+     * 删除动态
+     * @param params
+     * @param observer
+     */
+    public void deleteDynamic(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestDeleteDynamic(body);
         setSubscribe(observable, observer);
     }
 
@@ -443,12 +453,50 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestPublicDynamic(body);
         setSubscribe(observable, observer);
     }
+ /**
+     * 我的收藏 动态列表
+     * @param params
+     * @param observer
+     */
+    public void getCollectDynamicList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestDynamicCollectList(body);
+        setSubscribe(observable, observer);
+    }
+ /**
+     * 我的收藏 视频列表
+     * @param params
+     * @param observer
+     */
+    public void getCollectVideoList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestVideoCollectList(body);
+        setSubscribe(observable, observer);
+    }
+ /**
+     * 我的收藏 文章列表
+     * @param params
+     * @param observer
+     */
+    public void getCollectInformationList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestInformationCollectList(body);
+        setSubscribe(observable, observer);
+    }
 
     public void upload(String picPath, Observer observer) {
         File file = new File(picPath);
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/png"), file);
         MultipartBody.Part photo = MultipartBody.Part.createFormData("file", file.getName(), reqFile);//pic为key
         Observable observable = service.upload( photo);
+        setSubscribe(observable, observer);
+    }
+
+    public void uploadVideo(String videoPath, Observer observer) {
+        File file = new File(videoPath);
+        RequestBody reqFile = RequestBody.create(MediaType.parse("video/mp4"), file);
+        MultipartBody.Part photo = MultipartBody.Part.createFormData("file", file.getName(), reqFile);//pic为key
+        Observable observable = service.uploadVideo( photo);
         setSubscribe(observable, observer);
     }
 

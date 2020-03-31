@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -14,10 +15,11 @@ import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
-import com.jsjlzj.wayne.widgets.AndroidBug5497Workaround;
 
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_ARTICLE_DETAIL;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_BANNER_LINK_URL;
+import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_DYNAMIC_DETAIL;
+import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_PRIVATE_POLICY;
 
 
 /**
@@ -27,7 +29,6 @@ import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_BANNER_LIN
  * 描述：WebView Activity
  */
 public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView  {
-
 
     public static final String TAG_FRAGMENT = "webview";
     private WebViewContainerFragment webFragment;
@@ -58,11 +59,15 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
     protected void initViewAndControl() {
         Intent intent = getIntent();
         int type = intent.getIntExtra(ExtraConstant.EXTRA_WEB_TYPE, TYPE_BANNER_LINK_URL);
+        if(type == TYPE_BANNER_LINK_URL){
+            finish();
+            return;
+        }
         String title = intent.getStringExtra(ExtraConstant.EXTRA_WEB_TITLE);
         String url = intent.getStringExtra(ExtraConstant.EXTRA_WEB_URL);
         String rowkey = intent.getStringExtra(ExtraConstant.EXTRA_WEB_DATA);
         if (!TextUtils.isEmpty(title)) {
-            if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL){
+            if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL || type == TYPE_PRIVATE_POLICY){
                 if(type == TYPE_ARTICLE_DETAIL){
                     title = "详情";
                 }
@@ -71,10 +76,15 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
                 initRightTitle(title,R.drawable.ic_share2);
                 mRightBtn.setOnClickListener(clickListener);
             }
+        }else {
+            initTitle("");
         }
 
         addWebFragment(url, rowkey, type);
-        AndroidBug5497Workaround.assistActivity(this);
+        if(type == TYPE_DYNAMIC_DETAIL){
+//            AndroidBug5497Workaround.assistActivity(this);
+        }
+
     }
 
     @Override
@@ -128,6 +138,25 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         }
         return false;
     }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                /** 回退键 事件处理 优先级:视频播放全屏-网页回退-关闭页面 */
+                if (webFragment.customView != null) {
+                    webFragment.hideCustomView();
+                } else if (webFragment.mWebView.canGoBack()) {
+                    webFragment.mWebView.goBack();
+                } else {
+//                    finish();
+                }
+                return true;
+            default:
+                return super.onKeyUp(keyCode, event);
+        }
+    }
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

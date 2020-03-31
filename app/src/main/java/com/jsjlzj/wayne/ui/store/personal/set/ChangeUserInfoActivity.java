@@ -41,8 +41,10 @@ public class ChangeUserInfoActivity extends MVPBaseActivity<TalentTabFragmentVie
     @BindView(R.id.iv_closed)
     ImageView ivClosed;//修改值清空
 
-    public static void go2this(Activity context,int requestCode) {
+    public static void go2this(Activity context,int type,String name,int requestCode) {
         Intent intent = new Intent(context, ChangeUserInfoActivity.class);
+        intent.putExtra(ExtraConstant.EXTRA_SHOW_TYPE,type);
+        intent.putExtra(ExtraConstant.EXTRA_NAME,name);
         context.startActivityForResult(intent,requestCode);
     }
 
@@ -140,7 +142,7 @@ public class ChangeUserInfoActivity extends MVPBaseActivity<TalentTabFragmentVie
         }
         Intent intent = new Intent();
         intent.putExtra(ExtraConstant.EXTRA_NAME,etValue.getText().toString());
-        setResult(RESULT_OK);
+        setResult(RESULT_OK,intent);
         finish();
 
     }

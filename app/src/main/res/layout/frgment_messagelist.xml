@@ -13,6 +13,15 @@
         android:paddingTop="@dimen/dp_24">
 
 
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_20"
+            android:adjustViewBounds="true"
+            android:src="@drawable/icon_title_back"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/toolbarTitle"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"

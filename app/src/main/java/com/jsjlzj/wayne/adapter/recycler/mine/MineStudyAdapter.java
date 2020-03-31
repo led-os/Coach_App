@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.trainer.MineStudyBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +31,19 @@ import butterknife.ButterKnife;
 public class MineStudyAdapter extends RecyclerView.Adapter<MineStudyAdapter.ViewHolder> {
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<MineStudyBean.DataBean> list = new ArrayList<>();
 
-    public MineStudyAdapter(Context context, List<String> list) {
+    public MineStudyAdapter(Context context, List<MineStudyBean.DataBean> list) {
         this.context = context;
         this.list = list;
     }
+
+
+    public void setData(List<MineStudyBean.DataBean> list){
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
@@ -50,7 +59,7 @@ public class MineStudyAdapter extends RecyclerView.Adapter<MineStudyAdapter.View
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,15 +71,18 @@ public class MineStudyAdapter extends RecyclerView.Adapter<MineStudyAdapter.View
         TextView tvCourse;
         @BindView(R.id.rel_item)
         RelativeLayout relItem;
-        private String bean;
+        private MineStudyBean.DataBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgPic,4);
+            tvTitle.setText(bean.getTitle());
+            tvCourse.setText("共"+bean.getLessonCount()+"节课");
             ButterKnife.bind(this, itemView);
         }
 
         void bindView(int pos) {
-//            bean = list.get(pos);
+            bean = list.get(pos);
             relItem.setOnClickListener(clickListener);
         }
 
@@ -98,7 +110,7 @@ public class MineStudyAdapter extends RecyclerView.Adapter<MineStudyAdapter.View
 
 
     public interface OnItemClickListener {
-        void onItemClick(String string);
+        void onItemClick(MineStudyBean.DataBean bean);
 
 
     }

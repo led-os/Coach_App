@@ -39,19 +39,25 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private boolean isShowBigOne = false;
     private boolean isAllOne = false;
+    private boolean isAllTwo = false;
     private boolean isShowTime = true;
+    /**
+     * 1 : 视频  2 文章
+     */
+    private int type = 1;
 
     private List<VideoBean> list = new ArrayList<>();
     private Context context;
 
-    public HomeLikeAdapter(Context context,List<VideoBean> list) {
+    public HomeLikeAdapter(Context context, List<VideoBean> list, int type) {
         this.list.addAll(list);
         this.context = context;
+        this.type = type;
     }
 
 
-    public void setData(List<VideoBean> list){
-        if(list != null && list.size() > 0){
+    public void setData(List<VideoBean> list) {
+        if (list != null && list.size() > 0) {
             this.list.clear();
             this.list.addAll(list);
             notifyDataSetChanged();
@@ -67,14 +73,21 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         isAllOne = allOne;
     }
 
+    public void setAllTwo(boolean allTwo) {
+        isAllTwo = allTwo;
+    }
+
     public void setShowTime(boolean showTime) {
         isShowTime = showTime;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(isAllOne){
+        if (isAllOne) {
             return TYPE_ONE;
+        }
+        if (isAllTwo) {
+            return TYPE_OTHER;
         }
         if (position == 0 && isShowBigOne) {
             return TYPE_ONE;
@@ -109,7 +122,7 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return list != null ? list.size() :0;
+        return list != null ? list.size() : 0;
     }
 
     class OneViewHolder extends RecyclerView.ViewHolder {
@@ -140,30 +153,38 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         void bindView(int pos) {
             bean = list.get(pos);
-            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
+            if(type == 2){
+                imgPlay.setVisibility(View.GONE);
+            }
+            GlidUtils.setRoundGrid(context, bean.getCoverImg(), imgOne, 2);
             tvName.setText(bean.getName());
-            tvPlayNum.setText(bean.getPlayCount()+ "次播放");
+            tvPlayNum.setText(DateUtil.getNumByInteger(bean.getPlayCount())  + "次播放");
             tvTime.setText(bean.getCreateTime());
-            if(bean.getVideoDuration() == 0){
+            if (bean.getVideoDuration() == 0) {
                 tvPlayTime.setVisibility(View.GONE);
-            }else {
+            } else {
                 tvPlayTime.setVisibility(View.VISIBLE);
                 tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration() * 1000));
             }
-            GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgAuthor);
+            GlidUtils.setCircleGrid(context, bean.getChannelAvatar(), imgAuthor);
             tvAuthor.setText(bean.getChannelName());
             imgAuthor.setOnClickListener(clickListener);
             tvAuthor.setOnClickListener(clickListener);
 
 
             itemView.setOnClickListener(v -> {
-                WebViewContainerActivity.go2this(context,bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
-                        WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
+                if (type == 1) {
+                    WebViewContainerActivity.go2this(context, bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL + bean.getId(),
+                            WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
+                } else {
+                    WebViewContainerActivity.go2this(context, bean.getName(), HttpConstant.WEB_URL_AETICLE_DETAIL + bean.getId(),
+                            WebViewContainerFragment.TYPE_ARTICLE_DETAIL);
+                }
             });
         }
 
         View.OnClickListener clickListener = v -> {
-            WebViewContainerActivity.go2this(context,bean.getName(),HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+            WebViewContainerActivity.go2this(context, bean.getName(), HttpConstant.WEB_URL_USER_INFO + bean.getChannelId(),
                     WebViewContainerFragment.TYPE_USER_INFO);
         };
     }
@@ -191,35 +212,41 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
 
         void bindView(int pos) {
-            if(isShowTime){
+            if (isShowTime) {
                 tvPlayTime.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 tvPlayTime.setVisibility(View.GONE);
             }
             bean = list.get(pos);
-            GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
+            GlidUtils.setRoundGrid(context, bean.getCoverImg(), imgOne, 2);
             tvTitle.setText(bean.getName());
-            tvPlayNum.setText(bean.getPlayCount()+ "次播放");
+            tvPlayNum.setText(DateUtil.getNumByInteger(bean.getPlayCount()) + "次播放");
             tvTime.setText(bean.getCreateTime());
-            if(bean.getVideoDuration() == 0){
+            if (bean.getVideoDuration() == 0) {
                 tvPlayTime.setVisibility(View.GONE);
-            }else {
+            } else {
                 tvPlayTime.setVisibility(View.VISIBLE);
                 tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration() * 1000));
             }
-            GlidUtils.setCircleGrid(context,bean.getChannelAvatar(),imgAuthor);
+            GlidUtils.setCircleGrid(context, bean.getChannelAvatar(), imgAuthor);
             tvAuthor.setText(bean.getChannelName());
             imgAuthor.setOnClickListener(clickListener);
             tvAuthor.setOnClickListener(clickListener);
 
             itemView.setOnClickListener(v -> {
-                WebViewContainerActivity.go2this(context,bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL+bean.getId(),
-                        WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
+                if (type == 1) {
+                    WebViewContainerActivity.go2this(context, bean.getName(), HttpConstant.WEB_URL_DYNAMIC_DETAIL + bean.getId(),
+                            WebViewContainerFragment.TYPE_DYNAMIC_DETAIL);
+                } else {
+                    WebViewContainerActivity.go2this(context, bean.getName(), HttpConstant.WEB_URL_AETICLE_DETAIL + bean.getId(),
+                            WebViewContainerFragment.TYPE_ARTICLE_DETAIL);
+                }
+
             });
         }
 
         View.OnClickListener clickListener = v -> {
-            WebViewContainerActivity.go2this(context,bean.getName(),HttpConstant.WEB_URL_USER_INFO+bean.getChannelId(),
+            WebViewContainerActivity.go2this(context, bean.getName(), HttpConstant.WEB_URL_USER_INFO + bean.getChannelId(),
                     WebViewContainerFragment.TYPE_USER_INFO);
         };
     }
@@ -230,7 +257,7 @@ public class HomeLikeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.listener = listener;
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
 
         void onItemClick(VideoBean bean);
 

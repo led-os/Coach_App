@@ -61,7 +61,8 @@ public class TrainerPreExpAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         MdlDetailT.DataBean.WorkExperienceListBean bean=list.get(position);
-        viewHolder.tvExpStoreName.setText(bean.getCompanyName()+bean.getPositionType());
+        viewHolder.tvExpCompany.setText(bean.getCompanyName());
+        viewHolder.tvExpStoreName.setText(bean.getPositionType());
         viewHolder.tvExpPosition.removeAllViews();
 
         if(null!=bean.getSkillTags()&&bean.getSkillTags().size()>0){
@@ -85,7 +86,7 @@ public class TrainerPreExpAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        TextView tvExpStoreName, tvSalary, tvExpContent;
+        TextView tvExpStoreName, tvSalary, tvExpContent,tvExpCompany;
         FlexboxLayout tvExpPosition;
 
         public ViewHolder(View view) {
@@ -93,6 +94,7 @@ public class TrainerPreExpAdapter extends BaseAdapter {
             tvExpPosition = view.findViewById(R.id.tvExpPosition);
             tvSalary = view.findViewById(R.id.tvSalary);
             tvExpContent = view.findViewById(R.id.tvExpContent);
+            tvExpCompany = view.findViewById(R.id.tvExpCompany);
         }
     }
 }

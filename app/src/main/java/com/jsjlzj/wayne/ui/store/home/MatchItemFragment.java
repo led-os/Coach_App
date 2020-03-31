@@ -45,7 +45,7 @@ public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> 
      * 0 : 全体赛事   1： 进行中    2 ：已结束
      */
      private int typeId;
-     private int pageNo;
+     private int pageNo = 1;
      private int pageCount;
      private boolean isRefresh;
      private Map<Object, Object> map = new HashMap<>();
@@ -73,6 +73,8 @@ public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
     @Override
     protected void initViewAndControl(View view) {
+        rvAuthentication.setHasFixedSize(true);
+        rvAuthentication.setNestedScrollingEnabled(false);
         rvAuthentication.setPullRefreshEnabled(true);
         rvAuthentication.setLoadingMoreEnabled(true);
         matchAdapter = new MatchAdapter(getActivity(),categoryBeans);
@@ -97,7 +99,7 @@ public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> 
      private void loadData(boolean isRefresh) {
          this.isRefresh = isRefresh;
          if(isRefresh) {
-             pageNo = 0;
+             pageNo = 1;
          }
          map.clear();
          map.put(HttpConstant.PAGE_NO, pageNo);
@@ -142,7 +144,7 @@ public class MatchItemFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
      @Override
      public void onLoadMore() {
-         if (pageNo < pageCount -1) {
+         if (pageNo < pageCount) {
              pageNo++;
              loadData(false);
          } else {

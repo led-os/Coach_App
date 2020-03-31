@@ -51,4 +51,9 @@ public interface BasisService {
     @POST(HttpConstant.API_UPLOAD)//上次文件
 //    Observable<MdlBaseHttpResp<MdlUpload>> upload(@Part("type") RequestBody type, @Part MultipartBody.Part file);
     Observable<MdlBaseHttpResp<MdlUpload>> upload( @Part MultipartBody.Part file);
+
+    @Multipart
+    @POST(HttpConstant.API_UPLOAD_VIDEO)//上次视频文件
+//    Observable<MdlBaseHttpResp<MdlUpload>> upload(@Part("type") RequestBody type, @Part MultipartBody.Part file);
+    Observable<MdlBaseHttpResp<MdlUpload>> uploadVideo( @Part MultipartBody.Part file);
 }

@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.trainer.personal;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -9,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.ItemsBean;
@@ -24,10 +25,12 @@ import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.store.talent.position.RecruitActivity;
 import com.jsjlzj.wayne.ui.yunxin.YunXingUtil;
+import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.dialog.CommonDialog;
 import com.jsjlzj.wayne.widgets.dialog.ReportDialog;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,10 +72,10 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
     TextView tvTitle;
     @BindView(R.id.ll_item)
     LinearLayout llItem;
-    @BindView(R.id.coordinator_layout)
-    CoordinatorLayout coordinatorLayout;
     @BindView(R.id.tv_to_communicate)
     TextView tvToCommunicate;
+    @BindView(R.id.img_title)
+    ImageView imgTitle;
 
     private FragmentTransaction fragmentTransition;
     private OnlineResumeFragment onlineResumeFragment;
@@ -120,7 +123,7 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
             imgFavorite.setVisibility(View.VISIBLE);
             presenter.detailCV(map);
         }
-        if(MyApp.mdlDict!=null&&MyApp.mdlDict.getPosition_tipoff()!=null){
+        if (MyApp.mdlDict != null && MyApp.mdlDict.getPosition_tipoff() != null) {
             list.addAll(MyApp.mdlDict.getPosition_tipoff().getItems());
         }
     }
@@ -140,13 +143,13 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
                 }
                 break;
             case R.id.img_jubao:
-                ReportDialog dialog1 =new ReportDialog(PositionPreviewNewActivity.this, code ->
-                        LogAndToastUtil.toast("举报成功"),list);
+                ReportDialog dialog1 = new ReportDialog(PositionPreviewNewActivity.this, code ->
+                        LogAndToastUtil.toast("举报成功"), list);
                 dialog1.show();
                 break;
             case R.id.tv_to_communicate:
-                if(TextUtils.isEmpty(MyApp.positionId)){
-                    dialog=new CommonDialog(PositionPreviewNewActivity.this, "您还没有发布招聘职位,快去发布吧", new CommonDialog.ClickListener() {
+                if (TextUtils.isEmpty(MyApp.positionId)) {
+                    dialog = new CommonDialog(PositionPreviewNewActivity.this, "您还没有发布招聘职位,快去发布吧", new CommonDialog.ClickListener() {
                         @Override
                         public void clickConfirm() {
                             dialog.dismiss();
@@ -154,14 +157,14 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
 
                         @Override
                         public void clickCancel() {
-                            RecruitActivity.go2this(PositionPreviewNewActivity.this,"");
+                            RecruitActivity.go2this(PositionPreviewNewActivity.this, "");
 
                         }
                     });
                     dialog.show();
                     dialog.setCancel("确定");
                     dialog.setConfirm("下次再说");
-                }else {
+                } else {
                     if (workHopeList != null && workHopeList.size() > 0) {
                         YunXingUtil.toChatRoom(view.getContext(), data.getYunXinAccount(),
                                 workHopeList.get(0).getId(),
@@ -212,6 +215,11 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
         }
         if (positionVideoFragment == null) {
             positionVideoFragment = new PositionVideoFragment();
+            if(data.getTeachVideos() != null){
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(ExtraConstant.EXTRA_DATA, (Serializable) data.getTeachVideos());
+                positionVideoFragment.setArguments(bundle);
+            }
             fragmentTransition.add(R.id.fragment, positionVideoFragment);
         } else {
             fragmentTransition.show(positionVideoFragment);
@@ -227,29 +235,30 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
 
     public void setUi(MdlBaseHttpResp<MdlDetailT> resp) {
         data = resp.getData().getData();
-//        tvTrainerName.setText(TextUtils.isEmpty(data.getName()) ? "" : data.getName());
-//        tvPosition.setText(TextUtils.isEmpty(data.getHighestEducationLevel()) ? "学历" : data.getHighestEducationLevel());
-//        setImg(data.getHeadImg(), image);
-//        tvStatus.setText(data.getWorkStatus());
-//        tvInfo.setText(data.getAge() + "岁  " + data.getHighestEducationLevel());
-//        trainer_content.setText(data.getAdvantage());
-//        if (!TextUtils.isEmpty(data.getLifePhotos())) {
-//            List<String> list = Arrays.asList(data.getLifePhotos().split(","));
-//            picAdapter.setData(list);
-//            picAdapter.notifyDataSetChanged();
-//        }
-        if(data.isLike()){
+        if(!TextUtils.isEmpty(data.getLifePhotos())){
+            String[] list = data.getLifePhotos().split(",");
+            GlidUtils.setGrid(this,list[0],imgTitle);
+        }
+        GlidUtils.setCircleGrid(this,data.getHeadImg(),imgAddPic);
+        if(TextUtils.isEmpty(data.getEnglishName())){
+            tvNickName.setText(data.getName());
+        }else {
+            tvNickName.setText(data.getName()+"("+data.getEnglishName()+")");
+        }
+        tvState.setText(data.getWorkStatus());
+        tvDes.setText(data.getContent());
+        if (data.isLike()) {
             imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.collected));
-            isLikeFlag=true;
-        }else{
+            isLikeFlag = true;
+        } else {
             imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.uncollected));
         }
-        if(TextUtils.isEmpty(id)) {
+        if (TextUtils.isEmpty(id)) {
             workHopeList = data.getWorkHopeList();
-        }else{
+        } else {
             workHopeList.add(data.getWorkHope());
         }
-        if(onlineResumeFragment != null){
+        if (onlineResumeFragment != null) {
             onlineResumeFragment.setData(data);
         }
     }
@@ -258,7 +267,7 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
     public void getDetailT(MdlBaseHttpResp<MdlDetailT> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             setUi(resp);
-        }else{
+        } else {
             LogAndToastUtil.toast(this, resp.getMsg());
         }
     }
@@ -267,9 +276,9 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
     public void showCVSaveLike(MdlBaseHttpResp resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData()) {
             LogAndToastUtil.toast("收藏成功");
-            isLikeFlag=true;
+            isLikeFlag = true;
             imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.collected));
-        }else{
+        } else {
             LogAndToastUtil.toast(resp.getMsg());
         }
     }
@@ -278,9 +287,9 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
     public void showCVCancelLike(MdlBaseHttpResp resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData()) {
             imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.uncollected));
-            isLikeFlag=false;
+            isLikeFlag = false;
             LogAndToastUtil.toast("取消成功");
-        }else{
+        } else {
             LogAndToastUtil.toast(resp.getMsg());
         }
     }

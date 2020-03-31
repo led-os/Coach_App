@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                     android:textColor="@color/color_333333"
                     android:textSize="@dimen/text_size_15" />
 
-                <com.jsjlzj.wayne.widgets.img.CimageView
+                <ImageView
                     android:id="@+id/image"
                     android:layout_width="@dimen/padding_38"
                     android:layout_height="@dimen/padding_38"
@@ -97,6 +97,7 @@
                 android:id="@+id/ll_english_name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_50"
+                android:visibility="visible"
                 android:layout_marginLeft="@dimen/padding_14"
                 android:layout_marginRight="@dimen/padding_14"
                 android:gravity="center_vertical"
@@ -131,6 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_0_33"
                 android:layout_marginLeft="@dimen/padding_14"
+                android:visibility="visible"
                 android:background="#FFEEEEEE" />
 
             <LinearLayout
@@ -173,6 +175,7 @@
                 android:background="#FFEEEEEE" />
 
             <LinearLayout
+                android:id="@+id/ll_bind_wx"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_50"
                 android:layout_marginLeft="@dimen/padding_14"
@@ -188,7 +191,7 @@
                     android:textColor="@color/color_333333"
                     android:textSize="@dimen/text_size_15" />
 
-                <EditText
+                <TextView
                     android:id="@+id/edWechat"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -355,6 +358,9 @@
                     android:layout_below="@+id/tv_simple"
                     android:background="@null"
                     android:maxLength="140"
+                    android:gravity="start"
+                    android:paddingTop="@dimen/padding_8"
+                    android:paddingBottom="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_10"
                     android:layout_marginBottom="@dimen/padding_10"
                     android:textSize="@dimen/text_size_15"

@@ -13,6 +13,9 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
+import com.jsjlzj.wayne.entity.trainer.BannerAll;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
@@ -26,15 +29,16 @@ import com.jsjlzj.wayne.ui.publicac.mine.MineFavoriteActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineSignUpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineStudyActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.PersonMineActivity;
-import com.jsjlzj.wayne.ui.publicac.mine.PublicActivity;
-import com.jsjlzj.wayne.ui.store.home.community.AddExpressionActivity;
+import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.CollectStoresActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.ConnectPositionListActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.InterviewPositionListActivity;
+import com.jsjlzj.wayne.ui.trainer.publicac.JobIntentionActivity;
+import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.Utility;
 import com.jsjlzj.wayne.widgets.dialog.CommonDialog;
-import com.jsjlzj.wayne.widgets.img.CimageView;
 
 import butterknife.BindView;
 
@@ -48,7 +52,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
     @BindView(R.id.img_user_right)
     ImageView imgUserRight;
     @BindView(R.id.image_head)
-    CimageView imageHead;
+    ImageView imageHead;
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.tv_sign)
@@ -107,8 +111,14 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
     LinearLayout llGywm;
     @BindView(R.id.ll_bzyfk)
     LinearLayout llBzyfk;
+    @BindView(R.id.ll_yhxy)
+    LinearLayout llyhxy;
     @BindView(R.id.btnLogout)
     Button btnLogout;
+    @BindView(R.id.view_mine)
+    View viewMine;
+    private MdlInfo.DataBean bean;
+
 
     public static Fragment getInstance() {
         TabItemTrainerInfoFragment fragment = new TabItemTrainerInfoFragment();
@@ -116,8 +126,6 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
         fragment.setArguments(bundle);
         return fragment;
     }
-
-
 
 
     @Override
@@ -153,32 +161,37 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
         llGywm.setOnClickListener(clickListener);
         llBzyfk.setOnClickListener(clickListener);
         btnLogout.setOnClickListener(clickListener);
+        viewMine.setOnClickListener(clickListener);
+        llyhxy.setOnClickListener(clickListener);
 
+        presenter.getRecommendPic();
     }
 
     @Override
     protected void onMultiClick(View view) {
         super.onMultiClick(view);
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.img_message:
                 //我的消息
+                MessageConnectActivity.go2this(getActivity());
                 break;
             case R.id.tv_name:
             case R.id.img_user_right:
             case R.id.image_head:
-                PersonMineActivity.go2this(getActivity());
+            case R.id.view_mine:
+                PersonMineActivity.go2this(getActivity(), bean);
                 break;
             case R.id.ll_dynamic://动态
                 MineDynamicActivity.go2this(getActivity());
                 break;
             case R.id.ll_fen://粉丝
-                MineFansActivity.go2this(getActivity(),0);
+                MineFansActivity.go2this(getActivity(), 0);
                 break;
             case R.id.ll_follow://关注
-                MineFansActivity.go2this(getActivity(),1);
+                MineFansActivity.go2this(getActivity(), 1);
                 break;
             case R.id.ll_zan://获赞
-                ZanFragment.showDialog(getChildFragmentManager(),tvName.getText().toString(),"共获得0个赞");
+                ZanFragment.showDialog(getChildFragmentManager(), tvName.getText().toString(), "共获得" + tvZan.getText().toString() + "个赞");
                 break;
             case R.id.ll_favorite://收藏
                 MineFavoriteActivity.go2this(getActivity());
@@ -193,6 +206,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
                 MasterCardActivity.go2this(getActivity());
                 break;
             case R.id.ll_qzgj://求职管理
+                JobIntentionActivity.go2this(getActivity());
                 break;
             case R.id.ll_zwsc://职位收藏
                 ConnectPositionListActivity.go2this2(getActivity());
@@ -217,13 +231,18 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
             case R.id.ll_gywm://关于我们
                 AboutUsActivity.go2this(getActivity());
                 break;
+            case R.id.ll_yhxy://用户协议
+                WebViewContainerActivity.go2this(getActivity(), getString(R.string.user_argument),
+                        HttpConstant.WEB_URL_PRIVATE_POLICY, WebViewContainerFragment.TYPE_PRIVATE_POLICY);
+                break;
             case R.id.ll_bzyfk://帮助
                 HelpActivity.go2this(getActivity());
                 break;
             case R.id.btnLogout://退出登录
                 clickLogout();
                 break;
-                default:break;
+            default:
+                break;
 
         }
     }
@@ -254,9 +273,7 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
             }
 
             @Override
-            public void clickCancel() {
-
-            }
+            public void clickCancel() {}
         });
         dialog.show();
 
@@ -265,13 +282,26 @@ public class TabItemTrainerInfoFragment extends MVPBaseFragment<TalentTabFragmen
     @Override
     public void myselfT(MdlBaseHttpResp<MdlInfo> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
-            MdlInfo.DataBean bean = resp.getData().getData();
-//            tvNun1.setText(bean.getCommunicatedCount() + "");
-//            tvNun2.setText(bean.getInterviewedCount() + "");
-            tvFavorite.setText(bean.getLikeCount() + "");
-//            tvNun4.setText(bean.getWorkHopeCount() + "");
+            bean = resp.getData().getData();
+            tvFavorite.setText(DateUtil.getNumByInteger(bean.getCollectCount()));
             tvName.setText(bean.getName());
-            setImg(bean.getHeadImg(), imageHead);
+            tvDynamic.setText(DateUtil.getNumByInteger(bean.getPublishCount()));
+            tvFen.setText(DateUtil.getNumByInteger(bean.getFensCount()));
+            tvFollow.setText(DateUtil.getNumByInteger(bean.getFollowerCount()));
+            tvZan.setText(DateUtil.getNumByInteger(bean.getLikeCount()));
+            tvSign.setText(bean.getContent());
+            GlidUtils.setCircleGrid(getActivity(), bean.getHeadImg(), imageHead);
+        }
+    }
+
+
+    @Override
+    public void getAllBannerSuccess(MdlBaseHttpResp<BannerAll> resp) {
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
+            if (resp.getData() != null && resp.getData().getData() != null &&
+                    resp.getData().getData().getIndex() != null && resp.getData().getData().getIndex().size() > 0) {
+                GlidUtils.setRoundGrid(getActivity(), resp.getData().getData().getIndex().get(0).getUrl(), imgRecommend, 2);
+            }
         }
     }
 }

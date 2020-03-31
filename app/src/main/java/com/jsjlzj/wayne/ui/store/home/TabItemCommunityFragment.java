@@ -118,16 +118,16 @@ public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView
         mTitles = getResources().getStringArray(R.array.community_title_list);
         for (int i = 0; i < mTitles.length; i++) {
             if(i == 0){
-                hotCommunityItemFragment = CommunityItemFragment.getInstance(i);
+                hotCommunityItemFragment = CommunityItemFragment.getInstance(i,tvLocation.getText().toString());
                 fragments.add(hotCommunityItemFragment);
             }else if(i == 1){
-                followCommunityItemFragment = CommunityItemFragment.getInstance(i);
+                followCommunityItemFragment = CommunityItemFragment.getInstance(i,tvLocation.getText().toString());
                 fragments.add(followCommunityItemFragment);
             }else if(i == 2){
-                cityCommunityItemFragment = CommunityItemFragment.getInstance(i);
+                cityCommunityItemFragment = CommunityItemFragment.getInstance(i,tvLocation.getText().toString());
                 fragments.add(cityCommunityItemFragment);
             }else if(i == 3){
-                allCommunityItemFragment = CommunityItemFragment.getInstance(i);
+                allCommunityItemFragment = CommunityItemFragment.getInstance(i,tvLocation.getText().toString());
                 fragments.add(allCommunityItemFragment);
             }
 

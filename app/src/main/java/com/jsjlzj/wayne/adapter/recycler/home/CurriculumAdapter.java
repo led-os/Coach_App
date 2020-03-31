@@ -117,7 +117,7 @@ public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             bean = list.get(pos);
             GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
             tvTitle.setText(bean.getTitle());
-            tvPlayNum.setText(bean.getPlayCount()+ "次播放");
+            tvPlayNum.setText(DateUtil.getNumByInteger(bean.getPlayCount())+ "次播放");
             tvTime.setText(bean.getCreateTime());
             tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration()*1000));
             itemView.setOnClickListener(v -> {
@@ -152,7 +152,7 @@ public class CurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             bean = list.get(pos);
             GlidUtils.setRoundGrid(context,bean.getCoverImg(),imgOne,2);
             tvTitle.setText(bean.getTitle());
-            tvPlayNum.setText(bean.getPlayCount()+ "次播放");
+            tvPlayNum.setText(DateUtil.getNumByInteger(bean.getPlayCount())+ "次播放");
             tvTime.setText(bean.getCreateTime());
             tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration()*1000));
             itemView.setOnClickListener(v -> {

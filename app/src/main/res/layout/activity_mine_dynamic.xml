@@ -10,8 +10,8 @@
 
     <include layout="@layout/title_bar_layout"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_dynamic"
+    <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

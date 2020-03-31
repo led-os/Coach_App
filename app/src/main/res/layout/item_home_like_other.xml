@@ -63,6 +63,10 @@
         android:textColor="@color/color_666666"
         android:layout_toEndOf="@+id/img_author"
         android:gravity="center_vertical"
+        android:layout_toStartOf="@+id/tv_play_num"
+        android:layout_marginEnd="@dimen/padding_2"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:layout_alignTop="@+id/img_author"
         android:layout_alignBottom="@+id/img_author"
         android:layout_below="@+id/img_one"/>

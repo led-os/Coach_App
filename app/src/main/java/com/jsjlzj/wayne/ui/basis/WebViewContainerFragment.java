@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
@@ -16,8 +18,10 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
@@ -43,9 +47,15 @@ import static android.app.Activity.RESULT_OK;
 public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView {
 
     @BindView(R.id.fragment_webview)
-    WebView mWebView;
+    public WebView mWebView;
     private int type;
     private String firstUrl;
+
+     /** 视频全屏参数 */
+     protected static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+     public View customView;
+     private FrameLayout fullscreenContainer;
+     private WebChromeClient.CustomViewCallback customViewCallback;
 
     public static final int TYPE_BANNER_LINK_URL = 0;
     public static final int TYPE_COURSE_DETAIL = 1;
@@ -56,6 +66,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
     public static final int TYPE_MATCH_DETAIL = 6;
     public static final int TYPE_PRODUCT_DETAIL = 7;
     public static final int TYPE_COURSE_INTRODUCE = 8;
+    public static final int TYPE_PRIVATE_POLICY = 9;
      /**
       * 内部跳转
       */
@@ -96,7 +107,11 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
          return new TalentTabFragmentPresenter(this);
      }
 
-
+     @Override
+     public void onStop() {
+         super.onStop();
+         mWebView.reload();
+     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private void initWebView() {
@@ -206,6 +221,27 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
 
     // 发送通用字段
     private WebChromeClient mWebChromeClient = new WebChromeClient() {
+
+        /*** 视频播放相关的方法 **/
+
+        @Override
+        public View getVideoLoadingProgressView() {
+            FrameLayout frameLayout = new FrameLayout(getActivity());
+            frameLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            return frameLayout;
+        }
+
+        @Override
+        public void onShowCustomView(View view, CustomViewCallback callback) {
+            showCustomView(view, callback);
+        }
+
+        @Override
+        public void onHideCustomView() {
+            hideCustomView();
+        }
+
+
         // 处理javascript中的alert
         @Override
         public boolean onJsAlert(WebView webView, String s, String s1, JsResult jsResult) {
@@ -239,6 +275,61 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
             super.onReceivedTitle(view, title);
         }
     };
+
+
+
+     /** 视频播放全屏 **/
+     private void showCustomView(View view, WebChromeClient.CustomViewCallback callback) {
+         // if a view already exists then immediately terminate the new one
+         if (customView != null) {
+             callback.onCustomViewHidden();
+             return;
+         }
+
+         getActivity().getWindow().getDecorView();
+
+         FrameLayout decor = (FrameLayout) getActivity().getWindow().getDecorView();
+         fullscreenContainer = new FullscreenHolder(getActivity());
+         fullscreenContainer.addView(view, COVER_SCREEN_PARAMS);
+         decor.addView(fullscreenContainer, COVER_SCREEN_PARAMS);
+         customView = view;
+         setStatusBarVisibility(false);
+         customViewCallback = callback;
+     }
+
+     /** 隐藏视频全屏 */
+     public void hideCustomView() {
+         if (customView == null) {
+             return;
+         }
+
+         setStatusBarVisibility(true);
+         FrameLayout decor = (FrameLayout)getActivity().getWindow().getDecorView();
+         decor.removeView(fullscreenContainer);
+         fullscreenContainer = null;
+         customView = null;
+         customViewCallback.onCustomViewHidden();
+         mWebView.setVisibility(View.VISIBLE);
+     }
+
+     /** 全屏容器界面 */
+     static class FullscreenHolder extends FrameLayout {
+
+         public FullscreenHolder(FragmentActivity ctx) {
+             super(ctx);
+             setBackgroundColor(ctx.getResources().getColor(android.R.color.black));
+         }
+
+         @Override
+         public boolean onTouchEvent(MotionEvent evt) {
+             return true;
+         }
+     }
+
+     private void setStatusBarVisibility(boolean visible) {
+         int flag = visible ? 0 : WindowManager.LayoutParams.FLAG_FULLSCREEN;
+         getActivity().getWindow().setFlags(flag, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+     }
 
 
     private long lastJumpTime;

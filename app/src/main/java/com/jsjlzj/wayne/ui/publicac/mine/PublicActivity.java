@@ -128,7 +128,7 @@ public class PublicActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
         super.onMultiClick(view);
         switch (view.getId()) {
             case R.id.ll_location://所在地址
-                MapActivity.go2this(this,REQUEST_CODE_SELECT_LOCATION);
+                MapActivity.go2this(this,tvLocation.getText().toString(),REQUEST_CODE_SELECT_LOCATION);
                 break;
             case R.id.ll_dskj://对谁可见
                 new SexDialog(this,"公开","仅自己可见", isMan -> {
@@ -194,6 +194,10 @@ public class PublicActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
                 locationAddress = bean.getCity();
                 locationCoordinate = bean.getLongitude()+","+bean.getLatitude();
                 tvLocation.setText(locationAddress);
+            }else {
+                locationAddress = "";
+                locationCoordinate = "";
+                tvLocation.setText(locationAddress);
             }
         }
     }
@@ -230,8 +234,13 @@ public class PublicActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
 
     @Override
     public void publicDynamicSuccess(MdlBaseHttpResp<DataBean> resp) {
-        LogAndToastUtil.toast(this,"发布成功");
-        finish();
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            LogAndToastUtil.toast(this,"发布成功");
+            finish();
+        }else {
+            LogAndToastUtil.toast(this,resp.getMsg());
+        }
+
     }
 
     @Override

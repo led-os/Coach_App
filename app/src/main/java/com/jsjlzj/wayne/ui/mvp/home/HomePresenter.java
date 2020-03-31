@@ -37,9 +37,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_MATCH = 3;
     private static final int REQ_CODE_AMOY_LIST = 4;
     private static final int REQ_CODE_MATCH_LIST = 5;
-    private static final int REQ_CODE_DRIED_FOOD= 6;
+    private static final int REQ_CODE_DRIED_FOOD = 6;
     private static final int REQ_CODE_DRIED_FOOD_LIST = 7;
-    private static final int REQ_CODE_INFORMATION= 8;
+    private static final int REQ_CODE_INFORMATION = 8;
     private static final int REQ_CODE_INFORMATION_LIST = 9;
     private static final int REQ_CODE_PRODUCT = 10;
     private static final int REQ_CODE_PRODUCT_LIST = 11;
@@ -69,7 +69,11 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_AMOY_SIGN_UP = 35;
     private static final int REQ_CODE_PUBLIC_DYNAMIC = 36;
     private static final int REQ_CODE_UPLOAD_FILE = 37;
-
+    private static final int REQ_CODE_UPLOAD_VIDEO_FILE = 41;
+    private static final int REQ_CODE_DYNAMIC_COLLECT = 38;
+    private static final int REQ_CODE_VIDEO_COLLECT = 39;
+    private static final int REQ_CODE_INFORMATION_COLLECT = 40;
+    private static final int REQ_CODE_DELETE_DYNAMIC = 42;
 
 
     private HomeModel model;
@@ -86,7 +90,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void getRecommendData(){
+    public void getRecommendData() {
         if (model != null) {
             view.showLoading();
             model.getHomeRecommendData(REQ_CODE_RECOMMEND, null, this);
@@ -94,14 +98,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void getAmoySchoolData(){
+    public void getAmoySchoolData() {
         if (model != null) {
             view.showLoading();
             model.getAmoySchoolData(REQ_CODE_AMOY_SCHOOL, null, this);
         }
     }
 
-    public void getMatchData(){
+    public void getMatchData() {
         if (model != null) {
             view.showLoading();
             model.getMatchData(REQ_CODE_MATCH, null, this);
@@ -109,7 +113,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void getAmoyList(Map param){
+    public void getAmoyList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getAmoyList(REQ_CODE_AMOY_LIST, param, this);
@@ -117,33 +121,35 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void getMatchList(Map param){
+    public void getMatchList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getMatchList(REQ_CODE_MATCH_LIST, param, this);
         }
     }
 
-    public void getDriedFoodData(){
+    public void getDriedFoodData() {
         if (model != null) {
             view.showLoading();
             model.getDriedFoodData(REQ_CODE_DRIED_FOOD, null, this);
         }
     }
-    public void getDriedFoodList(Map param){
+
+    public void getDriedFoodList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getDriedFoodList(REQ_CODE_DRIED_FOOD_LIST, param, this);
         }
     }
 
-    public void getInformationData(){
+    public void getInformationData() {
         if (model != null) {
             view.showLoading();
             model.getInformationData(REQ_CODE_INFORMATION, null, this);
         }
     }
-    public void getInformationList(Map param){
+
+    public void getInformationList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getInformationList(REQ_CODE_INFORMATION_LIST, param, this);
@@ -151,13 +157,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void getProductData(){
+    public void getProductData() {
         if (model != null) {
             view.showLoading();
             model.getProductData(REQ_CODE_PRODUCT, null, this);
         }
     }
-    public void getProductList(Map param){
+
+    public void getProductList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getProductList(REQ_CODE_PRODUCT_LIST, param, this);
@@ -165,15 +172,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-
-    public void getAllClassic(){
+    public void getAllClassic() {
         if (model != null) {
             view.showLoading();
             model.getAllClassicList(REQ_CODE_ALL_CLASSIC, null, this);
         }
     }
 
-    public void getOrganizationList(Map param){
+    public void getOrganizationList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getOrganizationList(REQ_CODE_ORIGANIZATION_LIST, param, this);
@@ -181,14 +187,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void getVideoList(Map param){
+    public void getVideoList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getVideoList(REQ_CODE_VIDEO_LIST, param, this);
         }
     }
 
-    public void clickZan(Map param){
+    public void clickZan(Map param) {
         if (model != null) {
 //            view.showLoading();
             model.clickZan(REQ_CODE_CLICK_ZAN, param, this);
@@ -197,35 +203,37 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
     /**
      * "module": "模块编码:干货 GAN_HUO,视频 VIDEO,社区 COMMUNITY,在线课程 ONLINE_LEARN"
+     *
      * @param param
      */
-    public void cancelZan(Map param){
+    public void cancelZan(Map param) {
         if (model != null) {
 //            view.showLoading();
             model.cancelZan(REQ_CODE_CANCEL_ZAN, param, this);
         }
     }
 
-    public void clickCollect(Map param){
+    public void clickCollect(Map param) {
         if (model != null) {
 //            view.showLoading();
-            model.clickCollect(REQ_CODE_CLICK_ZAN, param, this);
+            model.clickCollect(REQ_CODE_CLICK_COLLECT, param, this);
         }
     }
 
     /**
      * "module": "模块编码:干货 GAN_HUO,视频 VIDEO,社区 COMMUNITY,在线课程 ONLINE_LEARN"
+     *
      * @param param
      */
-    public void cancelCollect(Map param){
+    public void cancelCollect(Map param) {
         if (model != null) {
 //            view.showLoading();
-            model.cancelCollect(REQ_CODE_CANCEL_ZAN, param, this);
+            model.cancelCollect(REQ_CODE_CANCEL_COLLECT, param, this);
         }
     }
 
 
-    public void clickFollow(Map param){
+    public void clickFollow(Map param) {
         if (model != null) {
 //            view.showLoading();
             model.clickFollow(REQ_CODE_CLICK_FOLLOW, param, this);
@@ -233,14 +241,20 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void cancelFollow(Map param){
+    public void cancelFollow(Map param) {
         if (model != null) {
             model.cancelFollow(REQ_CODE_CANCEL_FOLLOW, param, this);
         }
     }
 
+    public void deleteDynamic(Map param) {
+        if (model != null) {
+            model.deleteDynamic(REQ_CODE_DELETE_DYNAMIC, param, this);
+        }
+    }
 
-    public void getLearnData(){
+
+    public void getLearnData() {
         if (model != null) {
             view.showLoading();
             model.getLearnData(REQ_CODE_LEARN_DATA, null, this);
@@ -248,33 +262,33 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void getChapterList(){
+    public void getChapterList() {
         if (model != null) {
             view.showLoading();
             model.getChapterList(REQ_CODE_CHAPTER_LIST, null, this);
         }
     }
 
-    public void getChapterSubjectList(Map param){
+    public void getChapterSubjectList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getChapterSubjectList(REQ_CODE_CHAPTER_SUBJECT_LIST, param, this);
         }
     }
 
-    public void getSaveAnswerRecord(Map param){
+    public void getSaveAnswerRecord(Map param) {
         if (model != null) {
             model.getSaveAnswerRecord(REQ_CODE_SAVE_ANSWER_RECORD, param, this);
         }
     }
 
-    public void submitExamAnswer(Map param){
+    public void submitExamAnswer(Map param) {
         if (model != null) {
             model.submitExamAnswer(REQ_CODE_SUBMIT_EXAM_ANSWER, param, this);
         }
     }
 
-    public void getWrongSubjectList(Map param){
+    public void getWrongSubjectList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getWrongSubjectList(REQ_CODE_WRONG_SUBJECT_LIST, param, this);
@@ -282,7 +296,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-   public void getExamSubjectList(){
+    public void getExamSubjectList() {
         if (model != null) {
             view.showLoading();
             model.getExamSubjectList(REQ_CODE_EXAM_SUBJECT_LIST, null, this);
@@ -290,49 +304,49 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-   public void doneChapterAnswer(){
+    public void doneChapterAnswer() {
         if (model != null) {
             view.showLoading();
             model.doneChapterAnswer(REQ_CODE_DONE_CHAPTER_ANSWER, null, this);
         }
     }
 
-   public void getTestResult(){
+    public void getTestResult() {
         if (model != null) {
             view.showLoading();
             model.getTestResult(REQ_CODE_TEST_RESULT, null, this);
         }
     }
 
-   public void getCurrentSubject(){
+    public void getCurrentSubject() {
         if (model != null) {
             view.showLoading();
             model.getCurrentSubject(REQ_CODE_CURRENT_SUBJECT, null, this);
         }
     }
 
-   public void getAnswerRecord(){
+    public void getAnswerRecord() {
         if (model != null) {
             view.showLoading();
             model.getAnswerRecord(REQ_CODE_ANSWER_RECORD, null, this);
         }
     }
 
-   public void getSearchData(Map param){
+    public void getSearchData(Map param) {
         if (model != null) {
             view.showLoading();
             model.getSearchData(REQ_CODE_SEARCH, param, this);
         }
     }
 
-   public void getDynamicList(Map param){
+    public void getDynamicList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getDynamicList(REQ_CODE_DYNAMIC_LIST, param, this);
         }
     }
 
-   public void getMineDynamicList(Map param){
+    public void getMineDynamicList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getMineDynamicList(REQ_CODE_MINE_DYNAMIC_LIST, param, this);
@@ -340,7 +354,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-   public void getAmoySiguUp(Map param){
+    public void getAmoySiguUp(Map param) {
         if (model != null) {
             view.showLoading();
             model.getAmoySignUp(REQ_CODE_AMOY_SIGN_UP, param, this);
@@ -348,14 +362,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-   public void getMatchSiguUp(Map param){
+    public void getMatchSiguUp(Map param) {
         if (model != null) {
             view.showLoading();
             model.getMatchSignUp(REQ_CODE_AMOY_SIGN_UP, param, this);
         }
     }
 
-   public void publicDynamic(Map param){
+    public void publicDynamic(Map param) {
         if (model != null) {
             view.showLoading();
             model.publicDynamic(REQ_CODE_PUBLIC_DYNAMIC, param, this);
@@ -363,10 +377,39 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-    public void upload( String path) {
+    public void upload(String path) {
         if (model != null) {
             view.showLoading();
             model.upload(REQ_CODE_UPLOAD_FILE, path, this);
+        }
+    }
+
+    public void uploadVideo(String path) {
+        if (model != null) {
+            view.showLoading();
+            model.uploadVideo(REQ_CODE_UPLOAD_VIDEO_FILE, path, this);
+        }
+    }
+
+    public void getCollectDynamicList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getCollectDynamicList(REQ_CODE_DYNAMIC_COLLECT, param, this);
+        }
+    }
+
+    public void getCollectVideoList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getCollectVideoList(REQ_CODE_VIDEO_COLLECT, param, this);
+        }
+    }
+
+
+    public void getCollectInformationList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getCollectInformationList(REQ_CODE_INFORMATION_COLLECT, param, this);
         }
     }
 
@@ -374,7 +417,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
         view.hideLoading();
-        switch (code){
+        switch (code) {
             case REQ_CODE_RECOMMEND:
                 view.getHomeRecommendSuccess(resp);
                 break;
@@ -404,28 +447,24 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_VIDEO_LIST:
             case REQ_CODE_INFORMATION_LIST:
             case REQ_CODE_DRIED_FOOD_LIST:
+            case REQ_CODE_DYNAMIC_COLLECT:
+            case REQ_CODE_INFORMATION_COLLECT:
+            case REQ_CODE_VIDEO_COLLECT:
                 view.getVideoListSuccess(resp);
                 break;
             case REQ_CODE_ALL_CLASSIC:
                 view.getAllClassicSuccess(resp);
                 break;
-            case REQ_CODE_CLICK_ZAN:
-                view.getClickZanSuccess(resp);
-                break;
             case REQ_CODE_CANCEL_ZAN:
-                view.getCancelZanSuccess(resp);
-                break;
+            case REQ_CODE_CLICK_ZAN:
             case REQ_CODE_CLICK_COLLECT:
-                view.getClickCollectSuccess(resp);
-                break;
             case REQ_CODE_CANCEL_COLLECT:
-                view.getCancelCollectSuccess(resp);
-                break;
             case REQ_CODE_CLICK_FOLLOW:
-                view.getClickFollowSuccess(resp);
-                break;
             case REQ_CODE_CANCEL_FOLLOW:
-                view.getCancelFollowSuccess(resp);
+                view.getMessageSuccess(resp);
+                break;
+            case REQ_CODE_DELETE_DYNAMIC:
+                view.deleteDynamicSuccess(resp);
                 break;
             case REQ_CODE_LEARN_DATA:
                 view.getLearnDataSuccess(resp);
@@ -463,14 +502,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_PUBLIC_DYNAMIC:
                 view.publicDynamicSuccess(resp);
                 break;
+            case REQ_CODE_UPLOAD_VIDEO_FILE:
             case REQ_CODE_UPLOAD_FILE:
                 view.showUpload(resp);
                 break;
         }
     }
-
-
-
 
 
     /**
@@ -482,7 +519,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     /**
      * 获取权限
      */
-    public void autoObtainStoragePermission(Activity activity,int position) {
+    public void autoObtainStoragePermission(Activity activity, int position) {
         curIndex = position;
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSIONS_REQUEST_CODE);
@@ -497,7 +534,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 view.selectPhoto(curIndex);
             } else {
-                LogAndToastUtil.toast(activity,activity.getResources().getString(R.string.please_add_storage_permission));
+                LogAndToastUtil.toast(activity, activity.getResources().getString(R.string.please_add_storage_permission));
             }
         }
     }

@@ -93,8 +93,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.publicac.MapActivity"/>
-        <activity android:name=".ui.publicac.ShopPoiActivity"/>
+        <activity android:name=".ui.store.list.MoreMatchActivity"></activity>
+        <activity android:name=".ui.store.home.mine.MessageConnectActivity" />
+        <activity android:name=".ui.publicac.MapActivity" />
+        <activity android:name=".ui.publicac.ShopPoiActivity" />
         <activity android:name=".ui.publicac.mine.PublicActivity" />
         <activity android:name=".ui.store.home.community.AddExpressionActivity" />
         <activity android:name=".ui.publicac.mine.FillInInfoActivity" />
@@ -115,8 +117,10 @@
         <activity android:name=".ui.store.home.study.AnswerDoneActivity" />
         <activity android:name=".ui.store.home.study.AnswerActivity" />
         <activity android:name=".ui.store.home.study.AchievementRecordActivity" />
-        <activity android:name=".ui.basis.WebViewContainerActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".ui.basis.WebViewContainerActivity"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".ui.store.home.study.ChapterActivity" />
         <activity android:name=".ui.store.home.study.QuestionBankActivity" />
         <activity android:name=".ui.store.home.amoy.SignUpResultActivity" />
@@ -131,7 +135,7 @@
         <activity android:name=".ui.store.personal.storeinfo.set.NavigationActivity" />
         <activity android:name=".ui.store.personal.storeinfo.InterviewDetailActivity" />
         <activity android:name=".ui.store.personal.storeinfo.InterviewActivity" />
-        <activity android:name=".ui.store.list.MoreDataActivity"/>
+        <activity android:name=".ui.store.list.MoreDataActivity" />
         <activity
             android:name=".ui.trainer.publicac.ScreenPositionResultActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
@@ -175,6 +179,18 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- 下面所设置的data值需要和html端对应 -->
+                <!-- 在data里设置了 scheme和host，则该Activity可以接收和处理类似于 "ibitview://ibitimage/user/detail"的链接 -->
+                <data
+                    android:host="welcome"
+                    android:scheme="coachapp" />
             </intent-filter>
         </activity>
         <activity
@@ -327,8 +343,8 @@
             android:name=".ui.publicac.help.HelpProblemInfoActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
-
-        <activity android:name=".ui.store.personal.set.ChangeUserInfoActivity"
+        <activity
+            android:name=".ui.store.personal.set.ChangeUserInfoActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity

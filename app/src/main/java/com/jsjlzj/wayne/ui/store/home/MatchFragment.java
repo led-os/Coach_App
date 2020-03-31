@@ -18,8 +18,6 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryBean;
-import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
-import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -118,7 +116,7 @@ public class MatchFragment extends MVPBaseFragment<HomeView, HomePresenter> impl
         hideFragment();
         if (matchItemFragment2 == null) {
             if(categoryBeans != null && categoryBeans.size() >=2 ){
-                matchItemFragment2 =  MatchItemFragment.getInstance(categoryBeans.get(0).getId());
+                matchItemFragment2 =  MatchItemFragment.getInstance(categoryBeans.get(1).getId());
             }
             fragmentTransaction.add(R.id.fragment, matchItemFragment2);
         } else {
@@ -158,8 +156,8 @@ public class MatchFragment extends MVPBaseFragment<HomeView, HomePresenter> impl
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
-                    BannerBean bean = images.get(position);
-                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+//                    BannerBean bean = images.get(position);
+//                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
     }

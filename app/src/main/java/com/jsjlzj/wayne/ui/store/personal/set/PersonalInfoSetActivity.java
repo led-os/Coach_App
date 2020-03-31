@@ -3,7 +3,6 @@ package com.jsjlzj.wayne.ui.store.personal.set;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -19,18 +18,15 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
-import com.jsjlzj.wayne.utils.ImageUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 import com.jsjlzj.wayne.widgets.img.CimageView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.BindView;
-import me.iwf.photopicker.PhotoPicker;
-import me.iwf.photopicker.utils.MyFileProviderUtil;
 
 /**
  * 用户个人信息
@@ -119,11 +115,28 @@ public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView,
                 keepInfo();
                 break;
             case R.id.image:
-                clickSelectHeadPic();
+                presenter.autoObtainStoragePermission(this,0);
+//                clickSelectHeadPic();
                 break;
         }
     }
 
+    @Override
+    public void selectPhoto(int position) {
+        SelectImageUtils.selectPhoto(this, getString(R.string.takephoto), false, true, 1);
+    }
+
+    @Override
+    public void onUploadSuccess(String imgUrl, int position) {
+        cropHeadPicPath = imgUrl;
+        presenter.upload(imgUrl);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        presenter.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
 
 
     private Map<Object, Object> map;
@@ -181,44 +194,45 @@ public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView,
     }
 
 
-    @Override
-    public void permissionSuccess(int permissionReqCode) {
-        super.permissionSuccess(permissionReqCode);
-        switch (permissionReqCode) {
-            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
-                PhotoPicker.builder()
-                        .setPhotoCount(0)
-                        .setShowCamera(true)
-                        .setShowGif(false)
-                        .setPreviewEnabled(false)
-                        .start(this, HEAD_PIC);
-                break;
-        }
-    }
+//    @Override
+//    public void permissionSuccess(int permissionReqCode) {
+//        super.permissionSuccess(permissionReqCode);
+//        switch (permissionReqCode) {
+//            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
+//                PhotoPicker.builder()
+//                        .setPhotoCount(0)
+//                        .setShowCamera(true)
+//                        .setShowGif(false)
+//                        .setPreviewEnabled(false)
+//                        .start(this, HEAD_PIC);
+//                break;
+//        }
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            switch (requestCode) {
-                case HEAD_PIC:
-                    if (data != null) {
-                        ArrayList<String> photos =
-                                data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-                        String path = photos.get(0);
-
-                        Uri uri = MyFileProviderUtil.getUriForFile(this, path);
-                        cropHeadPicPath = ImageUtil.cropTeamLogoPic(this, uri, CROP_HEAD_PIC);
-                    }
-                    break;
-                case CROP_HEAD_PIC:
-                    if (data != null) {
-//                        image.setImageBitmap(ImageTool.createImageThumbnail(cropHeadPicPath));
-                        presenter.upload(cropHeadPicPath);
-                    }
-                    break;
-            }
-        }
+        presenter.onActivityResult(this,requestCode,resultCode,data);
+//        if (resultCode == Activity.RESULT_OK) {
+//            switch (requestCode) {
+//                case HEAD_PIC:
+//                    if (data != null) {
+//                        ArrayList<String> photos =
+//                                data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
+//                        String path = photos.get(0);
+//
+//                        Uri uri = MyFileProviderUtil.getUriForFile(this, path);
+//                        cropHeadPicPath = ImageUtil.cropTeamLogoPic(this, uri, CROP_HEAD_PIC);
+//                    }
+//                    break;
+//                case CROP_HEAD_PIC:
+//                    if (data != null) {
+////                        image.setImageBitmap(ImageTool.createImageThumbnail(cropHeadPicPath));
+//                        presenter.upload(cropHeadPicPath);
+//                    }
+//                    break;
+//            }
+//        }
 
     }
 

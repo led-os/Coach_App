@@ -51,21 +51,29 @@ public interface HomeView extends BaseView {
     default void getAllClassicSuccess(MdlBaseHttpResp<CategoryListBean> resp){}
 
 
-    default void getClickZanSuccess(MdlBaseHttpResp<String> resp){}
+    default void getClickZanSuccess(MdlBaseHttpResp<DataBean> resp){}
 
 
-    default void getCancelZanSuccess(MdlBaseHttpResp<String> resp){}
+    default void getMessageSuccess(MdlBaseHttpResp<DataBean> resp){}
+
+    default void deleteDynamicSuccess(MdlBaseHttpResp<DataBean> resp){}
 
 
-    default void getClickCollectSuccess(MdlBaseHttpResp<String> resp){}
+    default void getCancelZanSuccess(MdlBaseHttpResp<DataBean> resp){}
 
 
-    default void getCancelCollectSuccess(MdlBaseHttpResp<String> resp){}
-
-    default void getClickFollowSuccess(MdlBaseHttpResp<String> resp){}
+    default void requestSuccess(MdlBaseHttpResp<DataBean> resp){}
 
 
-    default void getCancelFollowSuccess(MdlBaseHttpResp<String> resp){}
+    default void getClickCollectSuccess(MdlBaseHttpResp<DataBean> resp){}
+
+
+    default void getCancelCollectSuccess(MdlBaseHttpResp<DataBean> resp){}
+
+    default void getClickFollowSuccess(MdlBaseHttpResp<DataBean> resp){}
+
+
+    default void getCancelFollowSuccess(MdlBaseHttpResp<DataBean> resp){}
 
 
     default void getLearnDataSuccess(MdlBaseHttpResp<LearnBean> resp){}
@@ -86,7 +94,7 @@ public interface HomeView extends BaseView {
    default void getAnswerRecordListSuccess(MdlBaseHttpResp<AnswerRecordBean> resp){}
 
    default void getSearchDataSuccess(MdlBaseHttpResp<SearchBean> resp){}
-   default void amoySignUpSuccess(MdlBaseHttpResp<String> resp){}
+   default void amoySignUpSuccess(MdlBaseHttpResp<DataBean> resp){}
    default void publicDynamicSuccess(MdlBaseHttpResp<DataBean> resp){}
 
 

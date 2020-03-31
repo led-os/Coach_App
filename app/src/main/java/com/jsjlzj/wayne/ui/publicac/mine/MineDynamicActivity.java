@@ -3,18 +3,13 @@ package com.jsjlzj.wayne.ui.publicac.mine;
 import android.app.Activity;
 import android.content.Intent;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.adapter.recycler.search.SearchAdapter;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
-
-import java.util.ArrayList;
-
-import butterknife.BindView;
+import com.jsjlzj.wayne.ui.store.home.community.CommunityItemFragment;
  /**
   *
   * @ClassName:      MineDynamicActivity
@@ -25,8 +20,6 @@ import butterknife.BindView;
 public class MineDynamicActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView {
 
 
-    @BindView(R.id.rv_dynamic)
-    RecyclerView rvDynamic;
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, MineDynamicActivity.class);
@@ -42,18 +35,18 @@ public class MineDynamicActivity extends MVPBaseActivity<TalentTabFragmentView, 
     @Override
     protected void initViewAndControl() {
         initTitle("我的动态");
-
-        rvDynamic.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        SearchAdapter adapter = new SearchAdapter(this, new ArrayList<>());
-        rvDynamic.setAdapter(adapter);
-
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        CommunityItemFragment fragment = CommunityItemFragment.getInstance(4,"");
+        fragmentTransaction.add(R.id.frame_layout,fragment);
+        fragmentTransaction.commit();
 
     }
 
-    @Override
+
+     @Override
     protected TalentTabFragmentPresenter createPresenter() {
         return new TalentTabFragmentPresenter(this);
     }
 
 
-}
+ }

@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.ui.mvp.relizetalent;
 
 
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlQuestion;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
@@ -9,13 +10,19 @@ import com.jsjlzj.wayne.entity.store.MdlDict;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
 import com.jsjlzj.wayne.entity.store.MdlInterView;
 import com.jsjlzj.wayne.entity.store.MdlInterViewDetail;
-
 import com.jsjlzj.wayne.entity.store.MdlPositionDetail;
 import com.jsjlzj.wayne.entity.store.MdlPositionList;
 import com.jsjlzj.wayne.entity.store.MdlPositionType;
+import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.entity.store.search.ChannelPageBean;
+import com.jsjlzj.wayne.entity.trainer.BannerAll;
+import com.jsjlzj.wayne.entity.trainer.InvitationBean;
+import com.jsjlzj.wayne.entity.trainer.InvitationCodeBean;
 import com.jsjlzj.wayne.entity.trainer.MdlDetailT;
 import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
+import com.jsjlzj.wayne.entity.trainer.MineStudyBean;
+import com.jsjlzj.wayne.entity.trainer.SignUpPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 
 
@@ -74,9 +81,20 @@ public interface TalentTabFragmentView extends BaseView {
     default void showResultgetInterViewCancel(MdlBaseHttpResp resp){}
     default void showResultgetInterViewStatus(MdlBaseHttpResp resp){}
     default void showResultSendInterView(MdlBaseHttpResp resp){}
+    default void getAllBannerSuccess(MdlBaseHttpResp<BannerAll> resp){}
+    default void getMineDynamicSuccess(MdlBaseHttpResp<VideoPageBean> resp){}
+
+    default void getFensListSuccess(MdlBaseHttpResp<ChannelPageBean> resp){}
+    default void getMessageSuccess(MdlBaseHttpResp<DataBean> resp){}
+    default void getStudyListSuccess(MdlBaseHttpResp<MineStudyBean> resp){}
 
     default void selectPhoto(int pos){}
     default void onUploadSuccess(String filePath,int currPos){}
     default void onChangeSucceed(){}
     default void onChangeFailed(String filePath){}
+    default void getInvitationSuccess(MdlBaseHttpResp<InvitationCodeBean> resp){}
+
+    default void getInvitationListSuccess(MdlBaseHttpResp<InvitationBean> resp){}
+
+    default void getSignUpListSuccess(MdlBaseHttpResp<SignUpPageBean> resp){}
 }

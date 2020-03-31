@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rel_empty"
+    tools:context=".ui.store.list.MoreDataFragment">
+
+    <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+        android:id="@+id/rv_more_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/padding_10"
+        android:paddingEnd="@dimen/padding_10" />
+
+</RelativeLayout>

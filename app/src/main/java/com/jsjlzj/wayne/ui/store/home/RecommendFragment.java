@@ -31,6 +31,8 @@ import com.jsjlzj.wayne.ui.store.list.MoreDataActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomGridLayoutManager;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
+import com.jsjlzj.wayne.widgets.MyViewPager;
+import com.jsjlzj.wayne.widgets.NestedRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +53,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     @BindView(R.id.tv_video_right)
     TextView tvVideoRight;
     @BindView(R.id.rv_video)
-    RecyclerView rvVideo;
+    NestedRecyclerView rvVideo;
     @BindView(R.id.rel_video)
     RelativeLayout relVideo;
     @BindView(R.id.rv_curriculum)
@@ -75,12 +77,17 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     private List<RecommendBean.LessonBean> lessonList = new ArrayList<>();
     private List<VideoBean> likeList = new ArrayList<>();
     private List<RecommendBean.InformationBean> informationList = new ArrayList<>();
+    private MyViewPager myViewPager;
 
     public RecommendFragment() {
     }
 
-    public static RecommendFragment getInstance() {
-        RecommendFragment fragment = new RecommendFragment();
+    public RecommendFragment(MyViewPager myViewPager) {
+        this.myViewPager = myViewPager;
+    }
+
+    public static RecommendFragment getInstance(MyViewPager myViewPager) {
+        RecommendFragment fragment = new RecommendFragment(myViewPager);
         return fragment;
     }
 
@@ -97,6 +104,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     private void initRecycler() {
         rvVideo.setHasFixedSize(true);
         rvVideo.setNestedScrollingEnabled(false);
+        rvVideo.setNestedpParent(myViewPager);
         rvVideo.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         homeVideoAdapter = new HomeVideoAdapter(getActivity(), videoList,0);
         homeVideoAdapter.setListener(this);
@@ -113,7 +121,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
         rvLike.setHasFixedSize(true);
         rvLike.setNestedScrollingEnabled(false);
-        homeLikeAdapter = new HomeLikeAdapter(getActivity(), likeList);
+        homeLikeAdapter = new HomeLikeAdapter(getActivity(), likeList,1);
         homeLikeAdapter.setShowBigOne(true);
         rvLike.setLayoutManager(new LinearLayoutManager(getActivity()));
         homeLikeAdapter.setListener(this);
@@ -128,6 +136,7 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
         presenter.getRecommendData();
     }
+
 
     @Override
     protected void fragment2Front() {
@@ -156,8 +165,8 @@ public class RecommendFragment extends MVPBaseFragment<HomeView, HomePresenter> 
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
-                    BannerBean bean = images.get(position);
-                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+//                    BannerBean bean = images.get(position);
+//                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
     }

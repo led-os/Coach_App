@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/padding_300"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_solid_d7d7d7_8">
+
+    <RelativeLayout
+        android:layout_width="@dimen/padding_300"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_solid_d7d7d7_8">
+
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/user_argument"
+            android:textColor="#131720"
+            android:textSize="16sp"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_below="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#131720"
+            android:lineSpacingExtra="@dimen/padding_6"
+            android:paddingStart="@dimen/padding_26"
+            android:paddingEnd="@dimen/padding_26"
+            android:textSize="@dimen/text_size_14"
+            android:text="@string/private_user_read"/>
+
+        <View
+            android:layout_below="@+id/tv_desc"
+            android:layout_marginTop="@dimen/padding_26"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#3F444B"/>
+
+        <LinearLayout
+            android:id="@+id/lin_cancel_complete"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_40"
+            android:layout_marginTop="26.5dp"
+            android:layout_below="@+id/tv_desc"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/padding_40"
+                android:gravity="center"
+                android:text="取消"
+                android:visibility="visible"
+                android:textColor="#1890FF"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/v_divider"
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="#3F444B"/>
+
+            <TextView
+                android:id="@+id/tv_commit"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/padding_40"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="#1890FF"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
