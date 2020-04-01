@@ -23,6 +23,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
+import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.utils.Utility;
@@ -40,6 +41,7 @@ import me.iwf.photopicker.PhotoPicker;
  */
 public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView {
     private String staffNumCode;
+
     private int isFlag;
     private String[] datas=new String[6];
 
@@ -106,6 +108,14 @@ public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView,
 //            btnService.setVisibility(View.VISIBLE);
             bgView.setVisibility(View.VISIBLE);
             btnConfirm.setVisibility(View.GONE);
+        }else if(isFlag == 2){
+            presenter.getStoreInfo(null);
+            edName.setEnabled(false);
+            tvNumber.setClickable(false);
+            bgView.setVisibility(View.VISIBLE);
+            btnTips.setVisibility(View.GONE);
+            btnConfirm.setVisibility(View.GONE);
+
         }
     }
 
@@ -130,7 +140,6 @@ public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView,
                     break;
                 case R.id.btnIcAdd://
                     presenter.autoObtainStoragePermission(AttestationInfoActivity.this,0);
-//                    clickSelectHeadPic();
                     break;
                 case R.id.btnIcClose://
                     image.setVisibility(View.GONE);
@@ -284,7 +293,7 @@ public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView,
             tvNumber.setText(bean.getStaffNum());
             image.setVisibility(View.VISIBLE);
             btnIcAdd.setVisibility(View.GONE);
-            setImg(bean.getBusinessLicense(), image);
+            GlidUtils.setRoundGrid(this,bean.getBusinessLicense(),image,2);
         }
     }
 
@@ -293,10 +302,9 @@ public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView,
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             if(!TextUtils.isEmpty(resp.getData().getData().getUrl())) {
                 imUrl = resp.getData().getData().getUrl();
-                setImg(cropHeadPicPath, image);
-//                if (imgs.length != 0)
-//                    imUrl = imgs[imgs.length - 1];
-//                }
+                image.setVisibility(View.VISIBLE);
+                btnIcAdd.setVisibility(View.GONE);
+                GlidUtils.setRoundGrid(this,imUrl,image,2);
             }
         } else {
             LogAndToastUtil.toast(this, resp.getMsg());

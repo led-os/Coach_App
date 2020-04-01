@@ -8,6 +8,7 @@ import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
+import com.jsjlzj.wayne.entity.trainer.BannerAll;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
 
@@ -801,6 +802,31 @@ public class TalentPersonalModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+
+    public void getRecommendPic(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataStroe.getInstance().getRecommendPic(param, new Observer<MdlBaseHttpResp<BannerAll>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                TalentPersonalModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<BannerAll> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

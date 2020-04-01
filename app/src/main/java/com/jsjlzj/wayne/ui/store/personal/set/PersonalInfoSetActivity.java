@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
 
@@ -18,10 +19,10 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
+import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
-import com.jsjlzj.wayne.widgets.img.CimageView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +34,7 @@ import butterknife.BindView;
  */
 public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView {
     @BindView(R.id.image)
-    CimageView image;
+    ImageView image;
     @BindView(R.id.edName)
     EditText edName;
     @BindView(R.id.edPosition)
@@ -65,6 +66,7 @@ public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView,
         mRightTv.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
         mRightTv.setTextSize(15);
         mRightTv.setText("保存");
+        mRightTv.setVisibility(View.VISIBLE);
 
 
         image.setOnClickListener(clickListener);
@@ -162,10 +164,7 @@ public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView,
         map.put("position", strPosition);
         map.put("wxid", strWechat);
         if (!TextUtils.isEmpty(imgUrl)) {
-            String[] pics = imgUrl.split("/");
-            if (pics != null) {
-                map.put("headImg", pics[pics.length - 1]);
-            }
+            map.put("headImg", imgUrl);
         }
         presenter.saveStoreUserInfo(map);
     }
@@ -174,7 +173,7 @@ public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView,
     public void showUpload(MdlBaseHttpResp<MdlUpload> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             imgUrl = resp.getData().getData().getUrl();
-            setImg(cropHeadPicPath, image);
+            GlidUtils.setCircleGrid(this,cropHeadPicPath,image);
         }
     }
 
@@ -244,8 +243,8 @@ public class PersonalInfoSetActivity extends MVPBaseActivity<TalentPersonalView,
             edPosition.setText(TextUtils.isEmpty(user.getPosition()) ? "" : user.getPosition());
             edWechat.setText(TextUtils.isEmpty(user.getWxId()) ? "" : user.getWxId());
             imgUrl = user.getHeadImg();
-            setImg(user.getHeadImg(), image);
-            setEditAble(false);
+            GlidUtils.setCircleGrid(this,imgUrl,image);
+//            setEditAble(false);
         } else {
             LogAndToastUtil.toast(this, resp.getMsg());
         }

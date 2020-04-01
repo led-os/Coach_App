@@ -62,6 +62,7 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
     private static final int REQ_CODE_33= 33;
     private static final int REQ_CODE_34= 34;
     private static final int REQ_CODE_35= 35;
+    private static final int REQ_CODE_131= 131;
 
 
 
@@ -343,7 +344,12 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
 
 
 
-
+    public void getRecommendPic() {
+        if (model != null) {
+            view.showLoading();
+            model.getRecommendPic(REQ_CODE_131, null, this);
+        }
+    }
 
 
     @Override
@@ -451,6 +457,9 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
                 break;
             case REQ_CODE_35:
                 view.showCancelPositionStoreList(resp);
+                break;
+            case REQ_CODE_131:
+                view.getAllBannerSuccess(resp);
                 break;
         }
     }

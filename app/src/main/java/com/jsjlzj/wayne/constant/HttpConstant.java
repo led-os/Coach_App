@@ -11,8 +11,8 @@ public class HttpConstant {
     public static final String UPDATA_URL = "https://www.pgyer.com/X4kA";
 
     public static boolean isDebug = true;
-//    public static String BASE_URL = "http://47.97.126.0:8090/";
-    public static String BASE_URL = "http://47.97.126.0:8092/";
+    public static String BASE_URL = "http://47.97.126.0:8090/";
+//    public static String BASE_URL = "http://47.97.126.0:8092/";
     public static String WXAPPID = "wx465cfff1c19d069d";
     public static String WXAPPSECET = "8659207754ddedc545fbd86cee2496d1";
     public static final String JCMES_URL = "http://app.lightmes.cn/";

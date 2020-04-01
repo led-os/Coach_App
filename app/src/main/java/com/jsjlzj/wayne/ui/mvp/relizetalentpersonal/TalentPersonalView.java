@@ -13,6 +13,7 @@ import com.jsjlzj.wayne.entity.store.MdlPositionDetail;
 import com.jsjlzj.wayne.entity.store.MdlPositionType;
 import com.jsjlzj.wayne.entity.store.MdlSkillRequired;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
+import com.jsjlzj.wayne.entity.trainer.BannerAll;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 
 
@@ -119,6 +120,7 @@ public interface TalentPersonalView extends BaseView {
     default void showCVSaveCommunit(MdlBaseHttpResp<MdlCV> resp) {
     }
 
+    default void getAllBannerSuccess(MdlBaseHttpResp<BannerAll> resp){}
 
 
     //获取数据字典

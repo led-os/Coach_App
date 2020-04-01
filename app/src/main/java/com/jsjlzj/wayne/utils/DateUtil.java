@@ -14,17 +14,17 @@ public class DateUtil {
 
     public static String getNumByInteger(int integer){
         String result;
-        if(integer > 1000){
-            float wan = integer *1.0f / 10000;
-            BigDecimal   b   =   new BigDecimal(wan);
-            double   f1   =   b.setScale(2,   RoundingMode.HALF_UP).doubleValue();
-            return f1+"W";
-        }else if(integer > 10000000){
+        if(integer > 10000000){
             float yi = integer*1.0f / 100000000;
             BigDecimal   b   =   new BigDecimal(yi);
             double   f2   =   b.setScale(2,   RoundingMode.HALF_UP).doubleValue();
             return f2+"亿";
-        }else {
+        }else if(integer > 1000){
+            float wan = integer *1.0f / 10000;
+            BigDecimal   b   =   new BigDecimal(wan);
+            double   f1   =   b.setScale(2,   RoundingMode.HALF_UP).doubleValue();
+            return f1+"W";
+        } else {
             return String.valueOf(integer);
         }
     }

@@ -17,6 +17,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
+import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.utils.Utility;
@@ -103,7 +104,6 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
 
     private void clickSelectHeadPic() {
         presenter.autoObtainStoragePermission(this, 0);
-//        PermissionUtil.checkPermission(this, MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
 
@@ -114,20 +114,6 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
     }
 
 
-//    @Override
-//    public void permissionSuccess(int permissionReqCode) {
-//        super.permissionSuccess(permissionReqCode);
-//        switch (permissionReqCode) {
-//            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
-//                PhotoPicker.builder()
-//                        .setPhotoCount(0)
-//                        .setShowCamera(true)
-//                        .setShowGif(false)
-//                        .setPreviewEnabled(false)
-//                        .start(this, HEAD_PIC);
-//                break;
-//        }
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -135,21 +121,6 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
         presenter.onActivityResult(this, requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
-//                case HEAD_PIC:
-//                    if (data != null) {
-//                        ArrayList<String> photos =
-//                                data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-//                        String path = photos.get(0);
-//
-//                        Uri uri = MyFileProviderUtil.getUriForFile(this, path);
-//                        cropHeadPicPath = ImageUtil.cropTeamLogoPic(this, uri, CROP_HEAD_PIC);
-//                    }
-//                    break;
-//                case CROP_HEAD_PIC:
-//                    if (data != null) {
-//                        presenter.upload(cropHeadPicPath);
-//                    }
-//                    break;
                 case REQUESTCODE:
                     businessLicense = data.getStringExtra("businessLicense");
                     staffNumCode = data.getStringExtra("staffNumCode");
@@ -216,20 +187,14 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
         param.put("storeName", storeName);
         param.put("wxid", edWxIdStr);
         presenter.saveStoreAuth(param);
-//        finish();
     }
 
     @Override
     public void showUpload(MdlBaseHttpResp<MdlUpload> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
-            LogAndToastUtil.toast(this, "图片 上传成功");
             imUrl = resp.getData().getData().getUrl();
             if (!TextUtils.isEmpty(imUrl)) {
-                setImg(cropHeadPicPath, imCamera);
-//                String[] pics = imUrl.split("/");
-//                if (pics != null) {
-//                    imUrl = pics[pics.length - 1];
-//                }
+                GlidUtils.setCircleGrid(this,imUrl,imCamera);
             }
         } else {
             LogAndToastUtil.toast(this, resp.getMsg());

@@ -40,7 +40,7 @@
                 android:src="@drawable/ic_more_write"
                 android:visibility="gone"/>
 
-            <com.jsjlzj.wayne.widgets.img.CimageView
+            <ImageView
                 android:id="@+id/image_head"
                 android:layout_width="@dimen/padding_46"
                 android:layout_height="@dimen/padding_46"

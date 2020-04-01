@@ -13,22 +13,25 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
+import com.jsjlzj.wayne.entity.trainer.BannerAll;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.ui.publicac.about.AboutUsActivity;
 import com.jsjlzj.wayne.ui.publicac.help.HelpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.InvitationActivity;
+import com.jsjlzj.wayne.ui.publicac.mine.MineFansActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineSignUpActivity;
+import com.jsjlzj.wayne.ui.store.attestation.AttestationInfoActivity;
 import com.jsjlzj.wayne.ui.store.personal.manage.ConnectListActivity;
 import com.jsjlzj.wayne.ui.store.personal.manage.InterviewListActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.PersonalInfoSetActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
 import com.jsjlzj.wayne.ui.store.talent.position.PositionSelectActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.Utility;
 import com.jsjlzj.wayne.widgets.dialog.CommonDialog;
-import com.jsjlzj.wayne.widgets.img.CimageView;
 
 import butterknife.BindView;
 
@@ -40,7 +43,7 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
     @BindView(R.id.img_message)
     ImageView imgMessage;
     @BindView(R.id.image_head)
-    CimageView imageHead;
+    ImageView imageHead;
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.tv_sign)
@@ -103,6 +106,7 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
     @Override
     protected void initViewAndControl(View view) {
         imgMessage.setOnClickListener(clickListener);
+        imgMessage.setVisibility(View.INVISIBLE);
         imageHead.setOnClickListener(clickListener);
         tvName.setOnClickListener(clickListener);
         tvSign.setOnClickListener(clickListener);
@@ -119,7 +123,7 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
         llGywm.setOnClickListener(clickListener);
         llBzyfk.setOnClickListener(clickListener);
         btnLogout.setOnClickListener(clickListener);
-
+        presenter.getRecommendPic();
     }
 
     @Override
@@ -150,6 +154,7 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
                 MineSignUpActivity.go2this(getActivity());
                 break;
             case R.id.ll_follow://我的关注
+                MineFansActivity.go2this(getActivity(), 1);
                 break;
             case R.id.ll_yqhy://邀请好友
                 InvitationActivity.go2this(getActivity());
@@ -166,14 +171,15 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
             case R.id.btnLogout:
                 clickLogout();
                 break;
+            case R.id.ll_store://俱乐部信息
+                AttestationInfoActivity.go2this(getActivity(),2);
+                break;
             default:break;
         }
     }
 
     @Override
-    protected void fragment2Front() {
-
-    }
+    protected void fragment2Front() {}
 
     @Override
     public void onResume() {
@@ -182,6 +188,16 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
 
     }
 
+
+    @Override
+    public void getAllBannerSuccess(MdlBaseHttpResp<BannerAll> resp) {
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
+            if (resp.getData() != null && resp.getData().getData() != null &&
+                    resp.getData().getData().getIndex() != null && resp.getData().getData().getIndex().size() > 0) {
+                GlidUtils.setRoundGrid(getActivity(), resp.getData().getData().getIndex().get(0).getUrl(), imgRecommend, 2);
+            }
+        }
+    }
 
     private void clickLogout() {
         CommonDialog dialog = new CommonDialog(getActivity(), "确定退出账号吗？", new CommonDialog.ClickListener() {
@@ -202,13 +218,13 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
     public void showGetMyInfo(MdlBaseHttpResp<MdlInfo> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             MdlInfo.DataBean bean = resp.getData().getData();
-            tvCommunicate.setText(bean.getCommunicatedCount() + "");
-            tvInterview.setText(bean.getInterviewedCount() + "");
+            tvCommunicate.setText(DateUtil.getNumByInteger(bean.getCommunicatedCount()));
+            tvInterview.setText(DateUtil.getNumByInteger(bean.getInterviewedCount()));
             tvFavorite.setText(DateUtil.getNumByInteger(bean.getLikeCount()));
-            tvZwgl.setText(bean.getPositionCount() + "");
+            tvZwgl.setText(DateUtil.getNumByInteger(bean.getPositionCount() ));
             tvSign.setText(bean.getStoreUserName() + "·" + bean.getStoreUserPosition());
             tvName.setText(bean.getStoreName());
-            setImg(bean.getStoreUserHeadImg(), imageHead);
+            GlidUtils.setCircleGrid(getActivity(),bean.getStoreUserHeadImg(),imageHead);
         }
     }
 }
