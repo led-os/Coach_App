@@ -21,6 +21,9 @@ import com.jsjlzj.wayne.adapter.recycler.shopping.ProductAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.SecondSkillAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShopClassAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppTypeAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
@@ -211,6 +214,18 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 //                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 })
                 .setCanLoop(true);
+    }
+
+
+
+    @Override
+    public void getHomeShoppingDataSuccess(MdlBaseHttpResp<HomeShoppingDataBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
+            if(resp.getData().getData().getBannerList() != null){
+                images = resp.getData().getData().getBannerList();
+                initBanner();
+            }
+        }
     }
 
     @Override
