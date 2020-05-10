@@ -101,6 +101,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
 
     private List<BannerBean> images = new ArrayList<>();
+    private ShoppTypeAdapter shoppTypeAdapter;
 
     public TabItemShoppingFragment() {
     }
@@ -128,7 +129,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     }
 
     private void initRecycler() {
-        ShoppTypeAdapter  shoppTypeAdapter = new ShoppTypeAdapter(getActivity(),new ArrayList<>());
+        shoppTypeAdapter = new ShoppTypeAdapter(getActivity(),new ArrayList<>());
         rvShopType.setLayoutManager(new GridLayoutManager(getActivity(),5));
         rvShopType.setAdapter(shoppTypeAdapter);
 
@@ -225,6 +226,10 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
                 images = resp.getData().getData().getBannerList();
                 initBanner();
             }
+            if(resp.getData().getData().getCategoryList() != null){
+                shoppTypeAdapter.setData(resp.getData().getData().getCategoryList());
+            }
+//            if(resp.getData().getData().get)
         }
     }
 
