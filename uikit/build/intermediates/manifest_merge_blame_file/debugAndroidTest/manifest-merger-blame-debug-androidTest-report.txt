@@ -3,24 +3,24 @@
 3    package="com.netease.nim.uikit.test" >
 4
 5    <uses-sdk
-5-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:5:5-74
+5-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:5:5-74
 6        android:minSdkVersion="21"
-6-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:5:15-41
+6-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:5:15-41
 7        android:targetSdkVersion="28" />
-7-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:5:42-71
+7-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:5:42-71
 8
 9    <instrumentation
-9-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:11:5-15:76
+9-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:11:5-15:76
 10        android:name="android.test.InstrumentationTestRunner"
-10-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:11:22-75
+10-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:11:22-75
 11        android:functionalTest="false"
-11-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:14:22-52
+11-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:14:22-52
 12        android:handleProfiling="false"
-12-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:13:22-53
+12-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:13:22-53
 13        android:label="Tests for com.netease.nim.uikit.test"
-13-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:15:22-74
+13-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:15:22-74
 14        android:targetPackage="com.netease.nim.uikit.test" />
-14-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:12:22-72
+14-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:12:22-72
 15    <!-- for android -->
 16    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
 17    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
@@ -77,14 +77,14 @@
 36-->[me.leolin:ShortcutBadger:1.1.17] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\4babeae2679fd1b3d74c211739694811\ShortcutBadger-1.1.17\AndroidManifest.xml:50:22-86
 37
 38    <application
-38-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:7:5-9:19
+38-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:7:5-9:19
 39        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 39-->[androidx.core:core:1.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\25f2703f457deec0e485d60ee3ee8e64\core-1.1.0\AndroidManifest.xml:24:18-86
 40        android:debuggable="true" >
-40-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:7:18-43
+40-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:7:18-43
 41        <uses-library android:name="android.test.runner" />
-41-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:8:9-60
-41-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger5370603321262898073.xml:8:23-57
+41-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:8:9-60
+41-->K:\project_studio\Coach_App\uikit\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7672465647134241132.xml:8:23-57
 42
 43        <meta-data
 43-->[__tested_artifact__::uikit] K:\project_studio\Coach_App\uikit\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-14:43

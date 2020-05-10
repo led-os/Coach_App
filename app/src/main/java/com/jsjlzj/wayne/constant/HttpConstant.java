@@ -11,8 +11,8 @@ public class HttpConstant {
     public static final String UPDATA_URL = "https://www.pgyer.com/X4kA";
 
     public static boolean isDebug = true;
-    public static String BASE_URL = "http://47.97.126.0:8090/";
-//    public static String BASE_URL = "http://47.97.126.0:8092/";
+    public static String BASE_URL = "https://api-dev.jsjlhome.com/";//测试环境
+//    public static String BASE_URL = "https://api.jsjlhome.com/";//线上环境
     public static String WXAPPID = "wx465cfff1c19d069d";
     public static String WXAPPSECET = "8659207754ddedc545fbd86cee2496d1";
     public static final String JCMES_URL = "http://app.lightmes.cn/";
@@ -21,6 +21,8 @@ public class HttpConstant {
     public static final String PAGE_SIZE = "pageSize";
     public static final String STATUS = "status";
     public static final String CATEGORY_ID = "categoryId";
+    public static final String SORT_LABEL = "sortLabel";
+    public static final String SORT_TYPE = "sortType";
 
     static {
         if (true)
@@ -334,6 +336,8 @@ public class HttpConstant {
 
     //获取所有广告图
     public static final String API_GET_ALL_PIC ="trainer/index/banners";
+    //获取首页分类列表（优选为第一个）
+    public static final String API_GET_CATEGORY_LIST ="lms/categoryList";
 
 
     /************************************v2 新接口****************************************************/
@@ -431,6 +435,41 @@ public class HttpConstant {
     public static final String API_VIDEO_COLLECT_LIST = "collect/video/list";
     //我的收藏 文章列表
     public static final String API_INFORMATION_COLLECT_LIST = "collect/information/list";
+    //优选数据1
+    public static final String API_FIND_OPTIMIZATION_DATA1 = "lms/index/data1";
+    //优选数据2
+    public static final String API_FIND_OPTIMIZATION_DATA2 = "lms/index/data2";
+    //获取提现记录
+    public static final String API_MINE_CASH_OUT_RECORD = "getCashWithdrawalPage";
+    //我的收益
+    public static final String API_MINE_PROFIT = "myProfit";
+    //分类推荐列表更多
+    public static final String API_RECOMMEND_CATEGORY_MORE = "lms/categoryRcmdLessonList";
+    //免费体验更多
+    public static final String API_FREE_EXPER_CATEGORY_MORE = "lms/freeExperienceList";
+    //热门课程更多
+    public static final String API_HOT_CATEGORY_MORE = "lms/hotLessonList";
+    //热门听课更多
+    public static final String API_HOT_LISTENING_CATEGORY_MORE = "lms/hotListeningLessonList";
+    //减脂更多
+    public static final String API_JIANZHI_CATEGORY_MORE = "lms/jianzhiLessonList";
+    //运动更多
+    public static final String API_MOTION_CATEGORY_MORE = "lms/yundongLessonList";
+    //4们课程更多
+    public static final String API_FOUR_LESSON_CATEGORY_MORE = "lms/fourLessonList";
+    //搜索课程列表
+    public static final String API_SEARCH_CATEGORY_MORE = "lms/searchLessonList";
+    //积分明细列表
+    public static final String API_JIFEN_DETAIL_LIST = "jifen/integralList";
+    //获取收货地址列表
+    public static final String API_LOCATION_MANAGER_LIST = "order/userAddress/getUserAddressList";
+
+    //获取收货地址列表
+    public static final String API_SAVE_LOCATION = "order/userAddress/addUserAddress";
+    //获取蜂隐币列表
+    public static final String API_CURRENCY_LIST = "fycoin/fyCoinAppleList";
+    //获取蜂隐币明细列表
+    public static final String API_CURRENCY_DETAIL = "fycoin/tradeDetailList";
 
 
 

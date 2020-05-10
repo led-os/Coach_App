@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_fafafa"
+    android:orientation="vertical"
+    tools:context=".ui.store.find.PlayHistoryActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_week"
+                android:layout_marginStart="@dimen/padding_15"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginBottom="@dimen/padding_10"
+                android:text="最近一周"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/text_size_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_week"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:background="@drawable/bg_solid_shape_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/tv_last"
+                android:layout_marginStart="@dimen/padding_15"
+                android:layout_marginTop="@dimen/padding_60"
+                android:layout_marginBottom="@dimen/padding_15"
+                android:text="更早之前"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/text_size_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_last"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:background="@drawable/bg_solid_shape_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

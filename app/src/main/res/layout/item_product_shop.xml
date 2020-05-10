@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_margin="@dimen/padding_5"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:background="@drawable/bg_solid_shape_6"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_product"
+        android:layout_width="@dimen/padding_165"
+        android:layout_height="@dimen/padding_165"
+        android:src="@drawable/ic_homepage_ydqc"/>
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_below="@+id/img_product"
+        android:layout_width="@dimen/padding_165"
+        android:layout_height="wrap_content"
+        android:text="汤臣倍健蛋白粉+增肌粉套餐"
+        android:layout_marginTop="@dimen/padding_6"
+        android:layout_marginStart="@dimen/padding_10"
+        android:layout_marginEnd="@dimen/padding_10"
+        android:maxLines="2"
+        android:textSize="@dimen/text_size_13"
+        android:textColor="@color/color_333333"/>
+    <TextView
+        android:id="@+id/tv_money"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginTop="@dimen/padding_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_15"
+        android:layout_marginStart="@dimen/padding_10"
+        android:text="¥68.9"
+        android:textColor="@color/color_f1404b"/>
+
+    <ImageView
+        android:id="@+id/img_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_2"
+        android:layout_marginTop="@dimen/padding_4"
+        android:layout_alignTop="@+id/tv_money"
+        android:layout_toEndOf="@+id/tv_money"
+        android:src="@drawable/bq_plus"/>
+
+    <TextView
+        android:id="@+id/tv_old_money"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/text_size_10"
+        android:textColor="@color/color_999999"
+        android:layout_marginStart="@dimen/padding_10"
+        android:layout_marginTop="@dimen/padding_2"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:layout_below="@+id/tv_money"
+        android:layout_height="wrap_content"
+        android:text="非会员：¥70"/>
+</RelativeLayout>

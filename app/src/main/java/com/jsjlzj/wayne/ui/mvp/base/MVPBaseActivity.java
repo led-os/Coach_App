@@ -73,6 +73,8 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
     @LayoutRes
     protected abstract int getLayoutResId();
 
+    protected abstract MVP_P createPresenter();
+
     protected abstract void initViewAndControl();
 
     @Override
@@ -313,7 +315,6 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         handleBackKey();
     }
 
-    protected abstract MVP_P createPresenter();
 
 
     @Override

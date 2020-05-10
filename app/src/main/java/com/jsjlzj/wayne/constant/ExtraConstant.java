@@ -64,6 +64,7 @@ public class ExtraConstant {
     public static final String EXTRA_LAT = "_lat";
     public static final String EXTRA_LNG = "_lng";
     public static final String EXTRA_LOCATION = "_location";
+    public static final String EXTRA_PRICE = "_price";
 
 
     public static final String EXTRA_REPORTTYPE = "REPORTTYPE";

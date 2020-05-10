@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.store.home.mine.CurrencyActivity">
+
+    <RelativeLayout
+        android:id="@+id/rel_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_200"
+        android:paddingTop="@dimen/padding_24"
+        android:background="@drawable/bg_currency_title">
+
+        <RelativeLayout
+            android:id="@+id/rel_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_42"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_20"
+                android:paddingEnd="@dimen/padding_20"
+                android:src="@drawable/ic_back"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16"
+                android:text="蜂隐币"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tv_detail"
+                android:layout_alignParentEnd="true"
+                android:paddingEnd="@dimen/padding_14"
+                android:paddingStart="@dimen/padding_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="明细"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_13"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_money_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/white"
+            android:text="余额："
+            android:layout_marginStart="@dimen/padding_14"
+            android:layout_marginTop="@dimen/padding_40"
+            android:layout_below="@+id/rel_title"/>
+
+        <TextView
+            android:layout_below="@+id/tv_money_des"
+            android:id="@+id/tv_money"
+            android:text="0.00币"
+            android:textColor="@color/white"
+            android:layout_alignStart="@+id/tv_money_des"
+            android:layout_marginTop="@dimen/padding_15"
+            android:textSize="@dimen/text_size_25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@+id/rel_head"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_currency"
+                android:layout_marginStart="@dimen/padding_7"
+                android:layout_marginEnd="@dimen/padding_7"
+                android:layout_marginTop="@dimen/padding_20"
+                android:layout_marginBottom="@dimen/padding_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/padding_18"
+                android:layout_marginStart="@dimen/padding_14"
+                android:paddingBottom="@dimen/padding_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="说明"
+                android:textSize="@dimen/text_size_13"
+                android:textColor="@color/color_222222"/>
+
+
+            <TextView
+                android:id="@+id/tv_des"
+                android:paddingBottom="@dimen/padding_20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:lineSpacingExtra="@dimen/padding_6"
+                android:text="1、充值后可在蜂隐运动APP内购买课程使用，不支持发票申请。;\n2、充值后没有使用期限，但无法提现、退款或转赠他人；\n3、如遇到无法充值、或充值失败等情况，请提交意见反馈，或联系客服；\n4、请在网络条件好的情况下充值，耐心等待充值结果，不要关闭等待界面。"/>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/tv_recharge"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_42"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/white"
+        android:text="立即充值"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/padding_46"
+        android:layout_marginEnd="@dimen/padding_46"
+        android:layout_marginBottom="@dimen/padding_52"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_solid_ff7c84_22"/>
+</RelativeLayout>

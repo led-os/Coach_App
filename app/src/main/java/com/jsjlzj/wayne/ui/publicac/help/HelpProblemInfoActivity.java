@@ -48,7 +48,6 @@ public class HelpProblemInfoActivity extends MVPBaseActivity<TalentTabFragmentVi
             tvTop.setText(TextUtils.isEmpty(bean.getTitle())?"问: ":bean.getTitle());
             tvButtom.setText(TextUtils.isEmpty(bean.getContent())?"答:":bean.getContent());
         }
-
     }
 
 

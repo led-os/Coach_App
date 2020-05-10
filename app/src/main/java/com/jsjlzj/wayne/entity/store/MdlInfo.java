@@ -44,6 +44,13 @@ public class MdlInfo implements Serializable {
         private String content;
         //1:普通 2:加V
         private int level;
+        // 团长级别 1:一级, 0|null无
+        private int regimentalLevel;
+        //邀请码
+        private String userId;
+        //可提现金额
+        private String withdrawableAmount;
+
 
         public int getWorkHopeCount() {
             return workHopeCount;
@@ -179,6 +186,38 @@ public class MdlInfo implements Serializable {
 
         public void setLevel(int level) {
             this.level = level;
+        }
+
+        public int getFansCount() {
+            return fansCount;
+        }
+
+        public void setFansCount(int fansCount) {
+            this.fansCount = fansCount;
+        }
+
+        public int getRegimentalLevel() {
+            return regimentalLevel;
+        }
+
+        public void setRegimentalLevel(int regimentalLevel) {
+            this.regimentalLevel = regimentalLevel;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
+        public String getWithdrawableAmount() {
+            return withdrawableAmount;
+        }
+
+        public void setWithdrawableAmount(String withdrawableAmount) {
+            this.withdrawableAmount = withdrawableAmount;
         }
     }
 }

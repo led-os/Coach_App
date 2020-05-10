@@ -93,7 +93,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.list.MoreMatchActivity"></activity>
+        <activity android:name=".ui.store.home.mine.CurrencyActivity"></activity>
+        <activity android:name=".ui.store.find.MoreLessonActivity" />
+        <activity android:name=".ui.store.home.mine.CouponActivity" />
+        <activity android:name=".ui.store.home.mine.MinePrizeActivity" />
+        <activity android:name=".ui.store.home.mine.IntegralDetailActivity" />
+        <activity android:name=".ui.store.home.mine.ProfitOrderActivity" />
+        <activity android:name=".ui.store.home.mine.CashOutRecordActivity" />
+        <activity android:name=".ui.store.home.mine.AddBandCardActivity" />
+        <activity android:name=".ui.store.home.mine.CashOutActivity" />
+        <activity android:name=".ui.store.home.mine.MineProfitActivity" />
+        <activity android:name=".ui.store.find.ConfirmCourserOrderActivity" />
+        <activity android:name=".ui.store.shopping.LocationManagerActivity" />
+        <activity android:name=".ui.store.shopping.EditLocationActivity" />
+        <activity android:name=".ui.store.shopping.PayResultActivity" />
+        <activity android:name=".ui.store.shopping.PaymentActivity" />
+        <activity android:name=".ui.store.shopping.ConfirmOrderActivity" />
+        <activity android:name=".ui.store.shopping.ShoppingCartActivity" />
+        <activity android:name=".ui.store.search.SearchShopActivity" />
+        <activity android:name=".ui.store.shopping.TimeSecondActivity" />
+        <activity android:name=".ui.store.find.PlayHistoryActivity" />
+        <activity android:name=".ui.store.home.ContentFragmentTitleActivity" />
+        <activity android:name=".ui.store.list.MoreMatchActivity" />
         <activity android:name=".ui.store.home.mine.MessageConnectActivity" />
         <activity android:name=".ui.publicac.MapActivity" />
         <activity android:name=".ui.publicac.ShopPoiActivity" />
@@ -180,18 +201,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- 下面所设置的data值需要和html端对应 -->
-                <!-- 在data里设置了 scheme和host，则该Activity可以接收和处理类似于 "ibitview://ibitimage/user/detail"的链接 -->
-                <data
-                    android:host="welcome"
-                    android:scheme="coachapp" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.basis.JsjlAgreementActivity"
@@ -227,8 +236,20 @@
             android:name=".ui.MainActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden" /> <!-- ********************************门店选择******************************************* -->
-        <!-- 聊天室 -->
+            android:windowSoftInputMode="adjustUnspecified|stateAlwaysHidden"> <!-- ********************************门店选择******************************************* -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- 下面所设置的data值需要和html端对应 -->
+                <!-- 在data里设置了 scheme和host，则该Activity可以接收和处理类似于 "ibitview://ibitimage/user/detail"的链接 -->
+                <data
+                    android:host="welcome"
+                    android:scheme="coachapp" />
+            </intent-filter>
+        </activity> <!-- 聊天室 -->
         <activity
             android:name=".ui.yunxin.fragment.P2PMessageActivity2"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize"

@@ -74,6 +74,17 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_VIDEO_COLLECT = 39;
     private static final int REQ_CODE_INFORMATION_COLLECT = 40;
     private static final int REQ_CODE_DELETE_DYNAMIC = 42;
+    private static final int REQ_CODE_OPTIMIZATION_DATA1 = 43;
+    private static final int REQ_CODE_OPTIMIZATION_DATA2 = 44;
+    private static final int REQ_CODE_CASH_OUT_LIST = 45;
+    private static final int REQ_CODE_MINE_PROFIT = 46;
+    private static final int REQ_CODE_RECOMMEND_CATEGORY_LIST = 47;
+    private static final int REQ_CODE_SEARCH_CATEGORY_LIST = 48;
+    private static final int REQ_CODE_JIFEN_LIST = 49;
+    private static final int REQ_CODE_LOCATION_LIST = 50;
+    private static final int REQ_CODE_SAVE_LOCATION = 51;
+    private static final int REQ_CODE_CURRENCY_LIST = 52;
+    private static final int REQ_CODE_CURRENCY_DETAIL_LIST = 53;
 
 
     private HomeModel model;
@@ -413,6 +424,120 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void getOptimizationData1() {
+        if (model != null) {
+            view.showLoading();
+            model.getOptimizationData1(REQ_CODE_OPTIMIZATION_DATA1, null, this);
+        }
+    }
+
+    public void getOptimizationData2() {
+        if (model != null) {
+            view.showLoading();
+            model.getOptimizationData2(REQ_CODE_OPTIMIZATION_DATA2, null, this);
+        }
+    }
+
+    public void getCashOutList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getCashOutList(REQ_CODE_CASH_OUT_LIST, param, this);
+        }
+    }
+
+    public void getMineProfit() {
+        if (model != null) {
+            view.showLoading();
+            model.getMineProfit(REQ_CODE_MINE_PROFIT, null, this);
+        }
+    }
+   public void getRecommendCategoryList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getRecommendCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
+        }
+    }
+
+    public void getFreeExperCategoryList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getFreeExperCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
+        }
+    }
+    public void getHotCategoryList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getHotCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
+        }
+    }
+    public void getHotListeningCategoryList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getHotListeningCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
+        }
+    }
+    public void getJianzhiCategoryList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getJianzhiCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
+        }
+    }
+
+    public void getMotionCategoryList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getMotionCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
+        }
+    }
+    public void getFourLessonCategoryList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getFourLessonCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
+        }
+    }
+
+
+    public void getJifenList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getJifenList(REQ_CODE_JIFEN_LIST, param, this);
+        }
+    }
+
+   public void getSearchCategoryList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getSearchCategoryList(REQ_CODE_SEARCH_CATEGORY_LIST, param, this);
+        }
+    }
+
+   public void getLocationList() {
+        if (model != null) {
+            view.showLoading();
+            model.getLocationList(REQ_CODE_LOCATION_LIST, null, this);
+        }
+    }
+
+   public void saveLocation(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.saveLocation(REQ_CODE_SAVE_LOCATION, param, this);
+        }
+    }
+  public void getCurrencyList() {
+        if (model != null) {
+            view.showLoading();
+            model.getCurrencyList(REQ_CODE_CURRENCY_LIST, null, this);
+        }
+    }
+
+  public void getCurrencyDetailList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getCurrencyDetailList(REQ_CODE_CURRENCY_DETAIL_LIST, param, this);
+        }
+    }
+
 
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
@@ -505,6 +630,37 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_UPLOAD_VIDEO_FILE:
             case REQ_CODE_UPLOAD_FILE:
                 view.showUpload(resp);
+                break;
+            case REQ_CODE_OPTIMIZATION_DATA1:
+                view.getOptimizationData1Success(resp);
+                break;
+            case REQ_CODE_OPTIMIZATION_DATA2:
+                view.getOptimizationData2Success(resp);
+                break;
+            case REQ_CODE_CASH_OUT_LIST:
+                view.getCashOutListSuccess(resp);
+                break;
+            case REQ_CODE_MINE_PROFIT:
+                view.getMineProfitSuccess(resp);
+                break;
+            case REQ_CODE_SEARCH_CATEGORY_LIST:
+            case REQ_CODE_RECOMMEND_CATEGORY_LIST:
+                view.getRecommendCategoryListSuccess(resp);
+                break;
+            case REQ_CODE_JIFEN_LIST:
+                view.getJifenListSuccess(resp);
+                break;
+            case REQ_CODE_LOCATION_LIST:
+                view.getLocationListSuccess(resp);
+                break;
+            case REQ_CODE_SAVE_LOCATION:
+                view.saveLocationSuccess(resp);
+                break;
+            case REQ_CODE_CURRENCY_LIST:
+                view.getCurrencyListSuccess(resp);
+                break;
+            case REQ_CODE_CURRENCY_DETAIL_LIST:
+                view.getCurrencyDetailListSuccess(resp);
                 break;
         }
     }

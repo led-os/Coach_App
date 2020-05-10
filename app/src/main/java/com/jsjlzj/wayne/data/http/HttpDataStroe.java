@@ -403,6 +403,11 @@ public class HttpDataStroe extends BaseHttpData {
         Observable observable = service.requestRecommendPic(body);
         setSubscribe(observable, observer);
     }
+    public void getCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCategoryList(body);
+        setSubscribe(observable, observer);
+    }
 
     public void getMineDynamicList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);

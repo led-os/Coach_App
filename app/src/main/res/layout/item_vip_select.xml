@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/padding_90"
+    android:layout_height="@dimen/padding_140"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="@dimen/padding_11"
+    android:layout_marginEnd="@dimen/padding_11"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_url"
+        android:layout_width="@dimen/padding_90"
+        android:layout_height="@dimen/padding_110"
+        />
+
+    <ImageView
+        android:id="@+id/img_play"
+        android:layout_width="@dimen/padding_30"
+        android:layout_height="@dimen/padding_30"
+        android:src="@drawable/ic_play"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_222222"
+        android:layout_marginTop="@dimen/padding_8"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="减脂三十讲精讲"/>
+
+</LinearLayout>

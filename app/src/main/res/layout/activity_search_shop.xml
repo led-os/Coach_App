@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/color_fafafa"
+    tools:context=".ui.publicac.SearchActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_38">
+
+        <TextView
+            android:id="@+id/tv_comprehensive"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_f1404b"
+            android:text="综合排序"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/tv_volume"
+            android:text="销量"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_13"/>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/tv_new"
+            android:text="上新"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/text_size_13"/>
+
+
+        <RelativeLayout
+            android:id="@+id/rel_price"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:id="@+id/tv_price"
+                android:text="价格"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/padding_56"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_size_13"/>
+
+            <ImageView
+                android:id="@+id/img_time_top"
+                android:layout_toEndOf="@+id/tv_price"
+                android:layout_alignTop="@+id/tv_price"
+                android:layout_marginTop="@dimen/padding_14"
+                android:layout_marginStart="@dimen/padding_8"
+                android:src="@drawable/triangle_up_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/img_time_bottom"
+                android:layout_toEndOf="@+id/tv_price"
+                android:layout_alignBottom="@+id/tv_price"
+                android:layout_marginTop="@dimen/padding_14"
+                android:layout_marginStart="@dimen/padding_8"
+                android:src="@drawable/triangle_down_pressed"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/padding_14"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+        android:id="@+id/rv_search_shop"
+        android:layout_marginStart="@dimen/padding_5"
+        android:layout_marginEnd="@dimen/padding_5"
+        android:layout_marginTop="@dimen/padding_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

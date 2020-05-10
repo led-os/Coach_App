@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/padding_88"
+    android:layout_marginStart="@dimen/padding_10"
+    android:layout_marginEnd="@dimen/padding_10"
+    android:layout_marginTop="@dimen/padding_10"
+    android:layout_marginBottom="@dimen/padding_10"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_yhq_use_bg"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_zhe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/img_type"
+        android:layout_alignBottom="@+id/img_type"
+        android:gravity="center"
+        android:layout_alignEnd="@+id/img_type"
+        android:layout_alignTop="@+id/img_type">
+
+        <TextView
+            android:id="@+id/tv_zhe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9.0"
+            android:textSize="@dimen/text_size_27"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="折"
+            android:layout_marginTop="@dimen/padding_3"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_19"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="课程优惠券"
+        android:layout_marginTop="@dimen/padding_10"
+        android:layout_toEndOf="@+id/img_type"
+        android:layout_marginStart="@dimen/padding_10"
+        android:textSize="@dimen/text_size_15"
+        android:textColor="@color/color_232323"/>
+
+
+    <TextView
+        android:id="@+id/tv_des"
+        android:layout_below="@+id/tv_type"
+        android:layout_marginTop="@dimen/padding_6"
+        android:layout_alignStart="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="不限课程"
+        android:textSize="@dimen/text_size_13"
+        android:textColor="@color/color_666666"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:layout_alignStart="@+id/tv_type"
+        android:layout_alignBottom="@+id/img_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="有效期至 2020.03.12"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/text_size_12"/>
+
+
+    <TextView
+        android:layout_width="@dimen/padding_69"
+        android:layout_height="@dimen/padding_23"
+        android:text="去使用"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/padding_19"
+        android:background="@drawable/bg_solid_coupon"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/padding_13"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/img_bg"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/padding_3"
+        android:layout_marginBottom="@dimen/padding_8"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_coupon_used"/>
+</RelativeLayout>

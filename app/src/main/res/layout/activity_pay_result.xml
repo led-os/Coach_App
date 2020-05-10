@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ui.store.home.amoy.SignUpResultActivity">
+
+    <include layout="@layout/title_bar_layout" />
+
+
+    <ImageView
+        android:id="@+id/img_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_38"
+        android:src="@drawable/ic_payment_succeed" />
+
+    <TextView
+        android:id="@+id/tv_success_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_12"
+        android:text="支付成功"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/text_size_15" />
+
+    <TextView
+        android:id="@+id/tv_success_des"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_19"
+        android:layout_marginStart="@dimen/padding_29"
+        android:layout_marginEnd="@dimen/padding_29"
+        android:textSize="@dimen/text_size_13"
+        android:textColor="@color/color_666666"
+        android:text="订单编号：e283109872"/>
+
+
+    <TextView
+        android:id="@+id/tv_detail"
+        android:layout_width="@dimen/padding_160"
+        android:layout_height="@dimen/padding_44"
+        android:background="@drawable/bg_solid_52595d_22"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_17"
+        android:text="查看详情"
+        android:layout_marginTop="@dimen/padding_96"
+        android:textColor="@color/white"/>
+</LinearLayout>

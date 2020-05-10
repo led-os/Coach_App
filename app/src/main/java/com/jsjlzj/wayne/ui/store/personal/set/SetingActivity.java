@@ -14,6 +14,8 @@ import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.utils.SPUtil;
+import com.jsjlzj.wayne.utils.Utility;
+import com.jsjlzj.wayne.widgets.dialog.CommonDialog;
 
 /**
  * 设置页面
@@ -51,6 +53,7 @@ public class SetingActivity extends MVPBaseActivity<TalentPersonalView, TalentPe
 
         findView(R.id.btnBack).setOnClickListener(clickListener);
         findView(R.id.tvSwitch).setOnClickListener(clickListener);
+        findView(R.id.btnLogout).setOnClickListener(clickListener);
         tvPhone.setOnClickListener(clickListener);
         tvPassword.setOnClickListener(clickListener);
         tvWechat.setOnClickListener(clickListener);
@@ -98,6 +101,9 @@ public class SetingActivity extends MVPBaseActivity<TalentPersonalView, TalentPe
                 case R.id.tvSwitch:
                     LoginRoleSelectActivity.go2This(SetingActivity.this, false);
                     break;
+                case R.id.btnLogout:
+                    clickLogout();
+                    break;
             }
         }
     }
@@ -122,5 +128,19 @@ public class SetingActivity extends MVPBaseActivity<TalentPersonalView, TalentPe
                 else tvWechat.setText("未绑定");
                 break;
         }
+    }
+
+    private void clickLogout() {
+        CommonDialog dialog = new CommonDialog(this, "确定退出账号吗？", new CommonDialog.ClickListener() {
+            @Override
+            public void clickConfirm() {
+                Utility.needLogin(SetingActivity.this);
+            }
+
+            @Override
+            public void clickCancel() {}
+        });
+        dialog.show();
+
     }
 }

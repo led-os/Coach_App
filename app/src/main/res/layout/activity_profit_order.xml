@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.store.home.mine.ProfitOrderActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rel_title_bar"
+        android:layout_marginTop="@dimen/padding_24"
+        android:layout_height="@dimen/padding_42"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="收益订单"
+            android:textColor="@color/color_232323"
+            android:textSize="@dimen/text_size_16" />
+
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:paddingStart="@dimen/padding_14"
+            android:paddingEnd="@dimen/padding_14"
+            android:adjustViewBounds="true"
+            android:src="@drawable/icon_title_back"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/btn_title_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:paddingStart="@dimen/padding_10"
+            android:paddingTop="@dimen/padding_10"
+            android:paddingEnd="@dimen/padding_10"
+            android:paddingBottom="@dimen/padding_10"
+            android:src="@drawable/ic_profit_order_right"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/img_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/padding_2"
+            android:layout_centerVertical="true"
+            android:paddingStart="@dimen/padding_10"
+            android:layout_toStartOf="@+id/btn_title_right"
+            android:src="@drawable/ic_profit_order_info"/>
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_38"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabPaddingStart="@dimen/padding_2"
+        app:tabPaddingEnd="@dimen/padding_2"
+        app:tabSelectedTextColor="@color/color_222222"
+        app:tabTextColor="@color/color_777777" />
+
+    <com.jsjlzj.wayne.widgets.MyViewPager
+        android:id="@+id/my_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

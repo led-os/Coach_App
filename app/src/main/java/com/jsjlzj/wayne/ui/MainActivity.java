@@ -21,20 +21,20 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.address.MalAddressProvince;
 import com.jsjlzj.wayne.entity.store.MdlDict;
 import com.jsjlzj.wayne.entity.trainer.MdlInterviewMessage;
-import com.jsjlzj.wayne.ui.basis.JsjlAgreementActivity;
 import com.jsjlzj.wayne.ui.basis.LoginByPhoneActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
 import com.jsjlzj.wayne.ui.store.home.TabItemCommunityFragment;
-import com.jsjlzj.wayne.ui.store.home.TabItemHomeFragment;
-import com.jsjlzj.wayne.ui.store.home.TabItemStudyFragment;
+import com.jsjlzj.wayne.ui.store.home.TabItemFindFragment;
+import com.jsjlzj.wayne.ui.store.home.TabItemShoppingFragment;
 import com.jsjlzj.wayne.ui.store.personal.TabItemStoreInfoFragment;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.InterviewDetailActivity;
 import com.jsjlzj.wayne.ui.store.talent.menu.TabItemTrainerFragment;
-import com.jsjlzj.wayne.ui.trainer.personal.TabItemTrainerInfoFragment;
+import com.jsjlzj.wayne.ui.trainer.personal.TabItemTrainerMineFragment;
 import com.jsjlzj.wayne.ui.trainer.position.menu.TabItemPositionFragment;
-import com.jsjlzj.wayne.ui.yunxin.YunXingUtil;
 import com.jsjlzj.wayne.ui.yunxin.fragment.MySessionListFragment;
 import com.jsjlzj.wayne.ui.yunxin.reminder.ReminderItem;
 import com.jsjlzj.wayne.ui.yunxin.reminder.ReminderManager;
@@ -65,7 +65,8 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     public static void go2this(Activity context, boolean isStore) {
         //SPUtil.getFist()
         if (SPUtil.getFist() && isFlyme()) {
-            JsjlAgreementActivity.go2this(context, isStore);
+            WebViewContainerActivity.go2this(context, "用户协议和隐私政策",
+                    HttpConstant.WEB_URL_PRIVATE_POLICY, WebViewContainerFragment.TYPE_PRIVATE_POLICY);
             SPUtil.saveFist();
         } else {
             Intent intent = new Intent(context, MainActivity.class);
@@ -118,7 +119,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             "首页", "招聘", "消息", "我的"
     };
     private String[] trainerNames = {
-            "首页", "学习", "求职", "社区", "我的"
+            "首页", "商城", "求职", "社区", "我的"
     };
     private MyViewPager viewPager;
     private List<Fragment> mFragments = new ArrayList<>();
@@ -138,7 +139,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
         //登不上去的话 在AndroidManifest 有appkey
         user = MyApp.getUser();
         if (user != null) {
-            YunXingUtil.LoginYunxing(new LoginInfo(user.getYunXinAccount(), user.getYunXinToken()), this);
+//            YunXingUtil.LoginYunxing(new LoginInfo(user.getYunXinAccount(), user.getYunXinToken()), this);
         }
 
         NIMClient.getService(MsgServiceObserve.class).observeCustomNotification((Observer<CustomNotification>) message -> {
@@ -178,7 +179,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             nams = stroeNames;
             drawableSelector = stroeDrawableSelector;
             tabItemTrainerFragment = (TabItemTrainerFragment) TabItemTrainerFragment.getInstance();
-            mFragments.add(TabItemHomeFragment.getInstance());
+            mFragments.add(TabItemFindFragment.getInstance());
             mFragments.add(tabItemTrainerFragment);
             mFragments.add(MySessionListFragment.getInstance(false));
             mFragments.add(TabItemStoreInfoFragment.getInstance());
@@ -187,11 +188,11 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             drawableSelector = trainerDrawableSelector;
             tabItemPositionFragment = (TabItemPositionFragment) TabItemPositionFragment.getInstance();
             tabItemCommunityFragment = TabItemCommunityFragment.getInstance();
-            mFragments.add(TabItemHomeFragment.getInstance());
-            mFragments.add(TabItemStudyFragment.getInstance());
+            mFragments.add(TabItemFindFragment.getInstance());
+            mFragments.add(TabItemShoppingFragment.getInstance());
             mFragments.add(tabItemPositionFragment);
             mFragments.add(tabItemCommunityFragment);
-            mFragments.add(TabItemTrainerInfoFragment.getInstance());
+            mFragments.add(TabItemTrainerMineFragment.getInstance());
         }
         initViewPager();
         registerMsgUnreadInfoObserver(true);
@@ -354,7 +355,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
 
     @Override
     public void onSuccess(LoginInfo param) {
-        LogAndToastUtil.log("云信登录成功" + param.getAccount());
+        LogAndToastUtil.log("云信登录成功111" + param.getAccount());
         NimUIKit.loginSuccess(user.getYunXinAccount());//必要
         SPUtil.saveYXTokenSP(param.getToken());
         SPUtil.saveYXAccountSP(param.getAccount());
@@ -371,13 +372,13 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     public void onFailed(int code) {
         LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(), "", "", "", "", "");
         finish();
-        LogAndToastUtil.log("云信登录成功" + code);
+        LogAndToastUtil.log("云信登录失败" + code);
     }
 
     @Override
     public void onException(Throwable exception) {
         LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(), "", "", "", "", "");
         finish();
-        LogAndToastUtil.log("云信登录成功" + exception);
+        LogAndToastUtil.log("云信登录异常" + exception);
     }
 }

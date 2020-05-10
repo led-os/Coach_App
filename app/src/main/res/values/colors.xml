@@ -11,6 +11,7 @@
     <color name="login_btn_smes">#52BFE9</color>
     <color name="login_title">#666666</color>
     <color name="item_line">#FFF4F4F4</color>
+    <color name="color_FF5763">#FF5763</color>
 
     <color name="text_black">#FF333333</color>
     <color name="text_unselected">#70333333</color>
@@ -69,6 +70,7 @@
     <color name="color_grey_eaeaea">#eaeaea</color>
     <color name="color_yellow_fcf3cd">#fcf3cd</color>
     <color name="color_blue_3a9efb">#3a9efb</color>
+    <color name="color_fa9900">#fa9900</color>
     <color name="color_9e9dde">#9e9dde</color>
     <color name="color_green_89fbff">#89fbff</color>
 

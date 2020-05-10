@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.store.shopping.PaymentActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/padding_30"
+        android:text="订单金额(元)"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/color_999999"/>
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_11"
+        android:text="2,799.00"
+        android:textSize="@dimen/text_size_30"
+        android:textColor="@color/color_f1404b"
+        android:layout_gravity="center_horizontal"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择支付方式"
+        android:textSize="@dimen/text_size_15"
+        android:textColor="@color/color_232323"
+        android:layout_marginStart="@dimen/padding_10"
+        android:layout_marginTop="@dimen/padding_95"/>
+
+    <LinearLayout
+        android:id="@+id/ll_zfb"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_52">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_20"
+            android:src="@drawable/ic_payment_zfb"/>
+        <TextView
+            android:layout_marginStart="@dimen/padding_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝支付"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/color_666666"/>
+
+        <Space
+            android:layout_width="@dimen/padding_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/img_zfb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_19"
+            android:src="@drawable/cbx_shopping_cart"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_0.5"
+        android:layout_marginStart="@dimen/padding_10"
+        android:background="@color/color_eeeeee"/>
+    <LinearLayout
+        android:id="@+id/ll_wx"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_52">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_20"
+            android:src="@drawable/ic_payment_wx"/>
+        <TextView
+            android:layout_marginStart="@dimen/padding_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信支付"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/color_666666"/>
+
+        <Space
+            android:layout_width="@dimen/padding_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/img_wx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_19"
+            android:src="@drawable/cbx_shopping_cart"/>
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/padding_0"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tv_to_pay"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/padding_48"
+        android:layout_marginEnd="@dimen/padding_48"
+        android:layout_marginBottom="@dimen/padding_54"
+        android:layout_height="@dimen/padding_44"
+        android:text="立即支付"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_17"
+        android:gravity="center"
+        android:background="@drawable/bg_solid_ff7c84_22"/>
+
+</LinearLayout>

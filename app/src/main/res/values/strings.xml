@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">健身教练之家</string>
+    <string name="app_name" translatable="false">蜂隐运动</string>
     <string name="loading" translatable="false">正在加载中</string>
 
 
@@ -27,6 +27,12 @@
     <string name="login_has_account" translatable="false">已有帐号？直接登录</string>
     <string name="done">完成</string>
     <string name="prepare_data">正在准备数据...</string>
+    <string name="amoy">淘学</string>
+    <string name="state_duty">国职</string>
+    <string name="shopping">商城</string>
+    <string name="match">赛事</string>
+    <string name="information">资讯</string>
+    <string name="chinese_money">¥</string>
 
     <string name="readed">已读</string>
     <string name="unread">未读</string>
@@ -172,6 +178,7 @@
     <string name="setting_private_config">私有化配置</string>
     <string name="private_config_note"> \n 1.私有化配置的将在app重启后生效，请注销登陆并杀掉进程。
         \n 2.如果要切换到环境，关闭或打开开关退出登陆杀掉进程即可。\n </string>
+    <string name="top_50">1.孕产恢复\n2.如何高效减脂\n3.陈宇舟·减脂精讲\n4.王大大 肌肉精讲 </string>
     <string name="local_db_migration">本地消息迁移</string>
     <string name="delete_friend_is_delete_alias">删除好友是否同步删除备注</string>
 
@@ -268,6 +275,7 @@
     <string name="private_policy">隐私策略</string>
     <string name="user_argument">用户协议和隐私政策</string>
     <string name="hint">提示</string>
+    <string name="optimization">优选</string>
 
     <string-array name="home_title_list">
         <item>推荐</item>
@@ -275,6 +283,21 @@
         <item>赛事</item>
         <item>干货</item>
         <item>资讯</item>
+    </string-array>
+
+    <string-array name="coupon_title_list">
+        <item>未使用</item>
+        <item>已使用</item>
+        <item>已过期</item>
+    </string-array>
+
+    <string-array name="find_title_list">
+        <item>优选</item>
+        <item>增肌</item>
+        <item>减脂</item>
+        <item>孕产</item>
+        <item>普拉提</item>
+        <item>康复</item>
     </string-array>
 
 

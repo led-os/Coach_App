@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/padding_56"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/img_head"
+        android:layout_marginStart="@dimen/padding_20"
+        android:layout_width="@dimen/padding_32"
+        android:layout_height="@dimen/padding_32"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_avatars"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="高杰：正确理解减脂"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/img_head"
+        android:layout_marginStart="@dimen/padding_10"
+        android:layout_marginEnd="@dimen/padding_18"
+        android:ellipsize="end"
+        android:textColor="@color/color_222222"
+        android:textSize="@dimen/text_size_16"
+        android:singleLine="true"/>
+
+    <View
+        android:layout_alignStart="@+id/tv_name"
+        android:layout_alignEnd="@+id/tv_name"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/padding_0.5"
+        android:background="@color/color_dddddd"/>
+
+</RelativeLayout>

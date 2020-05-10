@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_f9f9f9"
+    tools:context=".ui.store.shopping.EditLocationActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/padding_46">
+
+        <TextView
+            android:layout_marginStart="@dimen/padding_10"
+            android:text="联系人："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/text_size_13"/>
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_marginStart="@dimen/padding_10"
+            tools:text="张文书"
+            android:hint="请输入联系人姓名"
+            android:background="@null"
+            android:textCursorDrawable="@null"
+            android:paddingEnd="@dimen/padding_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_666666"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_0.5"
+        android:background="@color/color_eeeeee"
+        android:layout_marginStart="@dimen/padding_10"/>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/padding_46">
+
+        <TextView
+            android:layout_marginStart="@dimen/padding_10"
+            android:text="手机号："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/text_size_13"/>
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_marginStart="@dimen/padding_10"
+            tools:text="15356445789"
+            android:hint="请输入手机号"
+            android:paddingEnd="@dimen/padding_10"
+            android:maxLength="11"
+            android:textCursorDrawable="@null"
+            android:inputType="number"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_666666"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_0.5"
+        android:background="@color/color_eeeeee"
+        android:layout_marginStart="@dimen/padding_10"/>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:id="@+id/ll_location"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="@dimen/padding_46">
+
+        <TextView
+            android:layout_marginStart="@dimen/padding_10"
+            android:text="所在地区："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/text_size_13"/>
+
+        <Space
+            android:layout_width="@dimen/padding_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_marginStart="@dimen/padding_10"
+            tools:text="浙江省杭州市余杭区"
+            android:paddingEnd="@dimen/padding_10"
+            android:maxLength="11"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_666666"/>
+        <ImageView
+            android:layout_width="@dimen/padding_15"
+            android:layout_height="@dimen/padding_15"
+            android:layout_marginEnd="@dimen/padding_10"
+            android:src="@drawable/icon_shop_right"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_0.5"
+        android:background="@color/color_eeeeee"
+        android:layout_marginStart="@dimen/padding_10"/>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_85">
+
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_marginTop="@dimen/padding_13"
+            android:layout_marginStart="@dimen/padding_10"
+            android:text="详细地址："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/text_size_13"/>
+
+        <EditText
+            android:hint="请输入详细地址"
+            android:id="@+id/et_location_detail"
+            android:layout_toEndOf="@+id/tv_detail"
+            android:layout_alignTop="@+id/tv_detail"
+            android:layout_marginStart="@dimen/padding_10"
+            android:layout_marginEnd="@dimen/padding_10"
+            tools:text="保利椰风半岛1栋1单元1fadsffafadsfa问佛奥集的福非叫我二纺机-03-02fasdfasdfasdfasdf"
+            android:textCursorDrawable="@null"
+            android:background="@null"
+            android:maxLines="2"
+            android:layout_width="match_parent"
+            android:gravity="start"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_666666"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_0.5"
+        android:background="@color/color_eeeeee"
+        android:layout_marginStart="@dimen/padding_10"/>
+
+    <LinearLayout
+        android:id="@+id/ll_set_default"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_height="@dimen/padding_46">
+
+        <TextView
+            android:layout_marginStart="@dimen/padding_10"
+            android:text="设为默认地址"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_222222"
+            android:textSize="@dimen/text_size_13"/>
+
+        <Space
+            android:layout_width="@dimen/padding_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/img_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/padding_10"
+            android:src="@drawable/component_off"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_delete"
+        android:textSize="@dimen/text_size_13"
+        android:background="@color/white"
+        android:gravity="center"
+        android:textColor="@color/color_f1404b"
+        android:layout_marginTop="@dimen/padding_19"
+        android:text="删除地址"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_46"/>
+
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/padding_0"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tv_save"
+        android:text="保存"
+        android:background="@drawable/bg_solid_52595d_22"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_42"
+        android:layout_marginStart="@dimen/padding_46"
+        android:layout_marginEnd="@dimen/padding_46"
+        android:layout_marginBottom="@dimen/padding_52"/>
+
+</LinearLayout>

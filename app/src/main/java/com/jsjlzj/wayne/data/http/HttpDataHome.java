@@ -484,6 +484,124 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+
+ /**
+     * 优选数据1 (分类导航列表+banner列表+免费体验+每日一学)
+     * @param params
+     * @param observer
+     */
+    public void getOptimizationData1(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestOptimizationData1(body);
+        setSubscribe(observable, observer);
+    }
+
+ /**
+     * 首页优选数据2(减脂,会员精选,了解运动,4门课+分类推荐)
+     * @param params
+     * @param observer
+     */
+    public void getOptimizationData2(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestOptimizationData2(body);
+        setSubscribe(observable, observer);
+    }
+    /**
+     * 提现记录
+     * @param params
+     * @param observer
+     */
+    public void getCashOutList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCashOutList(body);
+        setSubscribe(observable, observer);
+    }
+
+    /**
+     * 我的收益
+     * @param params
+     * @param observer
+     */
+    public void getMineProfit(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestMineProfit(body);
+        setSubscribe(observable, observer);
+    }
+
+
+    public void getRecommendCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestRecommendCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getFreeExperCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestFreeExperCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getHotCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestHotCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+    public void getHotListeningCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestHotListeningCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+    public void getJianzhiCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestJianzhiCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+    public void getMotionCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestMotionCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+    public void getFourLessonCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestFourLessonCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getJifenList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestJifenList(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getSearchCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSearchCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+
+   public void getLocationList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestLocationList(body);
+        setSubscribe(observable, observer);
+    }
+   public void saveLocation(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSaveLocation(body);
+        setSubscribe(observable, observer);
+    }
+
+   public void getCurrencyList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCurrencyList(body);
+        setSubscribe(observable, observer);
+    }
+
+   public void getCurrencyDetailList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCurrencyDetailList(body);
+        setSubscribe(observable, observer);
+    }
+
     public void upload(String picPath, Observer observer) {
         File file = new File(picPath);
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/png"), file);

@@ -6,6 +6,7 @@ import com.jsjlzj.wayne.data.http.HttpDataLogin;
 import com.jsjlzj.wayne.data.http.HttpDataStroe;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.FindCategoryBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
 import com.jsjlzj.wayne.entity.trainer.BannerAll;
@@ -827,6 +828,29 @@ public class TalentPersonalModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<BannerAll> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+    public void getCategoryList(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataStroe.getInstance().getCategoryList(param, new Observer<MdlBaseHttpResp<FindCategoryBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                TalentPersonalModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<FindCategoryBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

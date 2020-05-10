@@ -55,4 +55,5 @@ dependencies {
     implementation files('libs/MiPush_SDK_Client_3_6_2.jar')
     implementation files('libs/com.coloros.mcssdk.jar')
     implementation files('libs/AMap2DMap_3.0.0_AMapSearch_3.6.1_AMapLocation_3.2.1_20161228.jar')
+    implementation rootProject.ext.dependencies["fastjson"]
 }

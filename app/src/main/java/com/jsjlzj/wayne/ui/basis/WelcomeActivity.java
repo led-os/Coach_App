@@ -55,7 +55,6 @@ public class WelcomeActivity extends AppCompatActivity implements PrivateAgreeme
         if (!isAgree) {
             fragment = PrivateAgreementFragment.showDialog(getSupportFragmentManager(), getResources().getString(R.string.user_argument), "不同意", "同意", 0, this);
         } else {
-            SPUtil.saveAgree();
             doTab();
         }
     }
@@ -101,8 +100,9 @@ public class WelcomeActivity extends AppCompatActivity implements PrivateAgreeme
     private void doTab() {
         SPUtil.saveAgree();
         mainHandler.postDelayed(() -> {
-            if (!TextUtils.isEmpty(SPUtil.getTokenFromSP()) && null != SPUtil.getUserFromSP() && !TextUtils.isEmpty(SPUtil.getYXAccountSP())
-                    && !TextUtils.isEmpty(SPUtil.getYXTokenSP())) {
+            if (!TextUtils.isEmpty(SPUtil.getTokenFromSP()) && null != SPUtil.getUserFromSP() ) {
+                //&& !TextUtils.isEmpty(SPUtil.getYXAccountSP())
+                //                    && !TextUtils.isEmpty(SPUtil.getYXTokenSP())
 //            presenter.selectStoreUserInfo(null);
                 MdlUser.MdlUserBean bean = SPUtil.getUserFromSP();
                 if (!TextUtils.isEmpty(bean.getAccountType())) {

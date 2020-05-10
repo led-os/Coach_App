@@ -73,6 +73,8 @@ public class AuthenticationFragment extends MVPBaseFragment<HomeView, HomePresen
 
     @Override
     protected void initViewAndControl(View view) {
+        rvAuthentication.setHasFixedSize(true);
+        rvAuthentication.setNestedScrollingEnabled(false);
         rvAuthentication.setPullRefreshEnabled(true);
         rvAuthentication.setLoadingMoreEnabled(true);
         authenticationAdapter = new AuthenticationAdapter(getActivity(),categoryList);

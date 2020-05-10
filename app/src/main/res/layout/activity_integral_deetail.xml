@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.store.home.mine.IntegralDetailActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <RelativeLayout
+        android:id="@+id/rel_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+            android:id="@+id/rv_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.store.find.CourserListFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/padding_12"
+        android:layout_height="@dimen/padding_38">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/color_222222"
+            android:paddingStart="@dimen/padding_15"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="按时间"/>
+
+        <ImageView
+            android:id="@+id/img_time_top"
+            android:layout_toEndOf="@+id/tv_time"
+            android:layout_alignTop="@+id/tv_time"
+            android:layout_marginTop="@dimen/padding_14"
+            android:layout_marginStart="@dimen/padding_6"
+            android:src="@drawable/triangle_up_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/img_time_bottom"
+            android:layout_toEndOf="@+id/tv_time"
+            android:layout_alignBottom="@+id/tv_time"
+            android:layout_marginTop="@dimen/padding_14"
+            android:layout_marginStart="@dimen/padding_6"
+            android:src="@drawable/triangle_down_pressed"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="@dimen/padding_14"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/tv_hot"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/color_222222"
+            android:layout_marginStart="@dimen/padding_5"
+            android:paddingStart="@dimen/padding_15"
+            android:layout_toEndOf="@+id/img_time_top"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="按热度"/>
+
+        <ImageView
+            android:id="@+id/img_hot_top"
+            android:layout_toEndOf="@+id/tv_hot"
+            android:layout_alignTop="@+id/tv_hot"
+            android:layout_marginTop="@dimen/padding_14"
+            android:layout_marginStart="@dimen/padding_6"
+            android:src="@drawable/triangle_up_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/img_hot_bottom"
+            android:layout_toEndOf="@+id/tv_hot"
+            android:layout_alignBottom="@+id/tv_hot"
+            android:layout_marginTop="@dimen/padding_14"
+            android:layout_marginStart="@dimen/padding_6"
+            android:src="@drawable/triangle_down_pressed"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="@dimen/padding_14"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rel_empty">
+
+        <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

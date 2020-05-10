@@ -3,6 +3,15 @@ package com.jsjlzj.wayne.ui.mvp.home;
 import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.CashOutPageBean;
+import com.jsjlzj.wayne.entity.find.CurrencyBean;
+import com.jsjlzj.wayne.entity.find.CurrencyDetailPageBean;
+import com.jsjlzj.wayne.entity.find.FindLessonPageBean;
+import com.jsjlzj.wayne.entity.find.JiFenPageBean;
+import com.jsjlzj.wayne.entity.find.MineProfitBean;
+import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
+import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
@@ -28,76 +37,142 @@ public interface HomeView extends BaseView {
     default void showUpload(MdlBaseHttpResp<MdlUpload> resp) {
     }
 
-    default void getHomeRecommendSuccess(MdlBaseHttpResp<RecommendBean> resp){}
+    default void getHomeRecommendSuccess(MdlBaseHttpResp<RecommendBean> resp) {
+    }
 
 
-    default void getAmoySchoolSuccess(MdlBaseHttpResp<AmoySchoolBean> resp){}
+    default void getAmoySchoolSuccess(MdlBaseHttpResp<AmoySchoolBean> resp) {
+    }
 
-    default void getMatchSuccess(MdlBaseHttpResp<AmoySchoolBean> resp){}
-
-
-    default void getAmoyListSuccess(MdlBaseHttpResp<CategoryPageBean> resp){}
-
-
-    default void getMatchListSuccess(MdlBaseHttpResp<CategoryPageBean> resp){}
-
-    default void getDriedFoodSuccess(MdlBaseHttpResp<AmoySchoolBean> resp){}
-
-    default void getCategoryListSuccess(MdlBaseHttpResp<CategoryPageBean> resp){}
-
-    default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp){}
+    default void getMatchSuccess(MdlBaseHttpResp<AmoySchoolBean> resp) {
+    }
 
 
-    default void getAllClassicSuccess(MdlBaseHttpResp<CategoryListBean> resp){}
+    default void getAmoyListSuccess(MdlBaseHttpResp<CategoryPageBean> resp) {
+    }
 
 
-    default void getClickZanSuccess(MdlBaseHttpResp<DataBean> resp){}
+    default void getMatchListSuccess(MdlBaseHttpResp<CategoryPageBean> resp) {
+    }
+
+    default void getDriedFoodSuccess(MdlBaseHttpResp<AmoySchoolBean> resp) {
+    }
+
+    default void getCategoryListSuccess(MdlBaseHttpResp<CategoryPageBean> resp) {
+    }
+
+    default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
+    }
 
 
-    default void getMessageSuccess(MdlBaseHttpResp<DataBean> resp){}
-
-    default void deleteDynamicSuccess(MdlBaseHttpResp<DataBean> resp){}
-
-
-    default void getCancelZanSuccess(MdlBaseHttpResp<DataBean> resp){}
+    default void getAllClassicSuccess(MdlBaseHttpResp<CategoryListBean> resp) {
+    }
 
 
-    default void requestSuccess(MdlBaseHttpResp<DataBean> resp){}
+    default void getClickZanSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
 
 
-    default void getClickCollectSuccess(MdlBaseHttpResp<DataBean> resp){}
+    default void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
+
+    default void deleteDynamicSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
 
 
-    default void getCancelCollectSuccess(MdlBaseHttpResp<DataBean> resp){}
-
-    default void getClickFollowSuccess(MdlBaseHttpResp<DataBean> resp){}
-
-
-    default void getCancelFollowSuccess(MdlBaseHttpResp<DataBean> resp){}
+    default void getCancelZanSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
 
 
-    default void getLearnDataSuccess(MdlBaseHttpResp<LearnBean> resp){}
+    default void requestSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
 
 
-    default void getChapterListSuccess(MdlBaseHttpResp<ChapterListBean> resp){}
+    default void getClickCollectSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
 
 
-    default void getChapterSubjectListSuccess(MdlBaseHttpResp<ChapterSubjectListBean> resp){}
+    default void getCancelCollectSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
+
+    default void getClickFollowSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
 
 
-    default void getExamSubjectListSuccess(MdlBaseHttpResp<ExamSubjectListBean> resp){}
-
-   default void saveAnswerSuccess(MdlBaseHttpResp<String> resp){}
-
-   default void submitExamAnswerSuccess(MdlBaseHttpResp<DoneChapterBean> resp){}
-
-   default void getAnswerRecordListSuccess(MdlBaseHttpResp<AnswerRecordBean> resp){}
-
-   default void getSearchDataSuccess(MdlBaseHttpResp<SearchBean> resp){}
-   default void amoySignUpSuccess(MdlBaseHttpResp<DataBean> resp){}
-   default void publicDynamicSuccess(MdlBaseHttpResp<DataBean> resp){}
+    default void getCancelFollowSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
 
 
-    default void selectPhoto(int pos){}
-    default void onUploadSuccess(String filePath,int currPos){}
+    default void getLearnDataSuccess(MdlBaseHttpResp<LearnBean> resp) {
+    }
+
+
+    default void getChapterListSuccess(MdlBaseHttpResp<ChapterListBean> resp) {
+    }
+
+
+    default void getChapterSubjectListSuccess(MdlBaseHttpResp<ChapterSubjectListBean> resp) {
+    }
+
+
+    default void getExamSubjectListSuccess(MdlBaseHttpResp<ExamSubjectListBean> resp) {
+    }
+
+    default void saveAnswerSuccess(MdlBaseHttpResp<String> resp) {
+    }
+
+    default void submitExamAnswerSuccess(MdlBaseHttpResp<DoneChapterBean> resp) {
+    }
+
+    default void getAnswerRecordListSuccess(MdlBaseHttpResp<AnswerRecordBean> resp) {
+    }
+
+    default void getSearchDataSuccess(MdlBaseHttpResp<SearchBean> resp) {
+    }
+
+    default void amoySignUpSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
+
+    default void publicDynamicSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
+
+
+    default void selectPhoto(int pos) {
+    }
+
+    default void onUploadSuccess(String filePath, int currPos) {
+    }
+
+
+    default void getOptimizationData1Success(MdlBaseHttpResp<OptimizationData1Bean> resp) {
+    }
+
+    default void getOptimizationData2Success(MdlBaseHttpResp<OptimizationData2Bean> resp) {
+    }
+
+    default void getCashOutListSuccess(MdlBaseHttpResp<CashOutPageBean> resp) {
+    }
+
+    default void getMineProfitSuccess(MdlBaseHttpResp<MineProfitBean> resp) {
+    }
+
+    default void getRecommendCategoryListSuccess(MdlBaseHttpResp<FindLessonPageBean> resp) {
+    }
+
+
+    default void getJifenListSuccess(MdlBaseHttpResp<JiFenPageBean> resp) {
+    }
+
+    default void getLocationListSuccess(MdlBaseHttpResp<LocationListBean> resp) {
+    }
+
+    default void saveLocationSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
+
+    default void getCurrencyListSuccess(MdlBaseHttpResp<CurrencyBean> resp) {
+    }
+  default void getCurrencyDetailListSuccess(MdlBaseHttpResp<CurrencyDetailPageBean> resp) {
+    }
+
+
 }

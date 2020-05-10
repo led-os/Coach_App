@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/padding_210"
+    android:layout_marginStart="@dimen/padding_7"
+    android:layout_marginEnd="@dimen/padding_7"
+    android:layout_height="@dimen/padding_280"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/img_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_90"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_default_image"/>
+
+    <View
+        android:id="@+id/view_cover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/img_top"
+        android:layout_alignBottom="@+id/img_top"
+        android:background="@drawable/bg_solid_807a9aaf_5"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_90">
+
+        <TextView
+            android:id="@+id/tv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_17"
+            android:layout_marginStart="@dimen/padding_15"
+            android:text="TOP 50"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_2"
+            android:layout_below="@+id/tv_top"
+            android:layout_alignStart="@+id/tv_top"
+            android:text="热门课程榜"
+            android:layout_toStartOf="@+id/img_url"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_2"
+            android:layout_below="@+id/tv_type"
+            android:layout_toStartOf="@+id/img_url"
+            android:layout_alignStart="@+id/tv_top"
+            android:text="共50门 丨每日更新"
+            android:textSize="@dimen/text_size_10"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/img_url"
+            android:layout_width="@dimen/padding_52"
+            android:layout_height="@dimen/padding_64"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/padding_27"
+            android:src="@drawable/ic_default_image"/>
+
+        <ImageView
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/padding_41"
+            android:layout_marginBottom="@dimen/padding_22"
+            android:layout_width="@dimen/padding_20"
+            android:layout_height="@dimen/padding_20"
+            android:src="@drawable/ic_play"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rel_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_top"
+        android:layout_marginTop="-5dp"
+        android:layout_above="@+id/rel_bottom"
+        android:background="@color/color_9FACB2">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10"
+            android:layout_marginStart="@dimen/padding_15"
+            android:textColor="@color/white"
+            android:lineSpacingExtra="@dimen/padding_15"
+            android:text="@string/top_50"
+            android:textSize="@dimen/text_size_14"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_40"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_solid_6f8a97_6">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="查看全部 →"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_height="@dimen/padding_40"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

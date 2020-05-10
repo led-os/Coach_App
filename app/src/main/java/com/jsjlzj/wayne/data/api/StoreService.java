@@ -6,6 +6,16 @@ import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.CashOutPageBean;
+import com.jsjlzj.wayne.entity.find.CurrencyBean;
+import com.jsjlzj.wayne.entity.find.CurrencyDetailPageBean;
+import com.jsjlzj.wayne.entity.find.FindCategoryBean;
+import com.jsjlzj.wayne.entity.find.FindLessonPageBean;
+import com.jsjlzj.wayne.entity.find.JiFenPageBean;
+import com.jsjlzj.wayne.entity.find.MineProfitBean;
+import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
+import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlCV;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
@@ -43,6 +53,7 @@ import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -269,6 +280,11 @@ public interface StoreService {
     Observable<MdlBaseHttpResp<BannerAll>> requestRecommendPic(@Body RequestBody requestBody);
 
 
+    //获取我的广告图片
+    @POST(HttpConstant.API_GET_CATEGORY_LIST)
+    Observable<MdlBaseHttpResp<FindCategoryBean>> requestCategoryList(@Body RequestBody requestBody);
+
+
 
     /******************************************v2 新接口*****************************************************/
 
@@ -416,6 +432,57 @@ public interface StoreService {
 
     @POST(HttpConstant.API_INFORMATION_COLLECT_LIST)
     Observable<MdlBaseHttpResp<VideoPageBean>> requestInformationCollectList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_FIND_OPTIMIZATION_DATA1)
+    Observable<MdlBaseHttpResp<OptimizationData1Bean>> requestOptimizationData1(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_FIND_OPTIMIZATION_DATA2)
+    Observable<MdlBaseHttpResp<OptimizationData2Bean>> requestOptimizationData2(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_CASH_OUT_RECORD)
+    Observable<MdlBaseHttpResp<CashOutPageBean>> requestCashOutList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_PROFIT)
+    Observable<MdlBaseHttpResp<MineProfitBean>> requestMineProfit(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_RECOMMEND_CATEGORY_MORE)
+    Observable<MdlBaseHttpResp<FindLessonPageBean>> requestRecommendCategoryList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_FREE_EXPER_CATEGORY_MORE)
+    Observable<MdlBaseHttpResp<FindLessonPageBean>> requestFreeExperCategoryList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_HOT_CATEGORY_MORE)
+    Observable<MdlBaseHttpResp<FindLessonPageBean>> requestHotCategoryList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_HOT_LISTENING_CATEGORY_MORE)
+    Observable<MdlBaseHttpResp<FindLessonPageBean>> requestHotListeningCategoryList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_JIANZHI_CATEGORY_MORE)
+    Observable<MdlBaseHttpResp<FindLessonPageBean>> requestJianzhiCategoryList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MOTION_CATEGORY_MORE)
+    Observable<MdlBaseHttpResp<FindLessonPageBean>> requestMotionCategoryList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_FOUR_LESSON_CATEGORY_MORE)
+    Observable<MdlBaseHttpResp<FindLessonPageBean>> requestFourLessonCategoryList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_JIFEN_DETAIL_LIST)
+    Observable<MdlBaseHttpResp<JiFenPageBean>> requestJifenList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SEARCH_CATEGORY_MORE)
+    Observable<MdlBaseHttpResp<FindLessonPageBean>> requestSearchCategoryList(@Body RequestBody requestBody);
+
+    @GET(HttpConstant.API_LOCATION_MANAGER_LIST)
+    Observable<MdlBaseHttpResp<LocationListBean>> requestLocationList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SAVE_LOCATION)
+    Observable<MdlBaseHttpResp<DataBean>> requestSaveLocation(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CURRENCY_LIST)
+    Observable<MdlBaseHttpResp<CurrencyBean>> requestCurrencyList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_CURRENCY_DETAIL)
+    Observable<MdlBaseHttpResp<CurrencyDetailPageBean>> requestCurrencyDetailList(@Body RequestBody requestBody);
 
     @Multipart
     @POST(HttpConstant.API_UPLOAD)//上次文件

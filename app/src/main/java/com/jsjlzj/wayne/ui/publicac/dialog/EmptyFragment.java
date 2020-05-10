@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.jsjlzj.wayne.R;
@@ -33,7 +34,7 @@ public class EmptyFragment extends DialogFragment {
     @BindView(R.id.ll_empty)
     LinearLayout llEmpty;
     /**
-     * 0:快速搜索的空界面  1：首页自选列表的空界面  2: 首页自选列表的企业空界面
+     * 0:快速搜索的空界面   1：购物车空界面
      */
     private int type;
     private View.OnClickListener listener;
@@ -55,6 +56,9 @@ public class EmptyFragment extends DialogFragment {
         showEmpty(0, null);
     }
 
+    public void showEmpty(int type) {
+        showEmpty(type, null);
+    }
 
     public void showEmpty(int type, View.OnClickListener clickListener) {
         this.type = type;
@@ -68,13 +72,24 @@ public class EmptyFragment extends DialogFragment {
      * 改变UI
      */
     private void changeUI() {
+        if(listener != null){
+            tvAddLink.setVisibility(View.VISIBLE);
+        }else {
+            tvAddLink.setVisibility(View.GONE);
+        }
         switch (type) {
             case 0:
-                tvAddLink.setVisibility(View.GONE);
+                imgDefault.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.icon_seek));
+                tvNoData.setText("没有找到相关内容");
                 break;
             case 1:
-                tvAddLink.setVisibility(View.VISIBLE);
+                imgDefault.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.ic_blank_gwc));
+                tvNoData.setText("您的购物车还没有商品哦~");
                 break;
+            case 2:
+
+                break;
+
 
             default:
                 break;
