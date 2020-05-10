@@ -338,6 +338,8 @@ public class HttpConstant {
     public static final String API_GET_ALL_PIC ="trainer/index/banners";
     //获取首页分类列表（优选为第一个）
     public static final String API_GET_CATEGORY_LIST ="lms/categoryList";
+    //获取商城首页数据
+    public static final String API_GET_HOME_SHOPPING ="product/index";
 
 
     /************************************v2 新接口****************************************************/

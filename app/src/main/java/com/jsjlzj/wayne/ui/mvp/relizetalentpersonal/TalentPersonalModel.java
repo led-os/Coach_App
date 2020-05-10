@@ -7,6 +7,7 @@ import com.jsjlzj.wayne.data.http.HttpDataStroe;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.FindCategoryBean;
+import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
 import com.jsjlzj.wayne.entity.trainer.BannerAll;
@@ -865,6 +866,31 @@ public class TalentPersonalModel extends BaseModel {
             }
         });
     }
+
+    public void getHomeShoppingData(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataStroe.getInstance().getHomeShoppingData(param, new Observer<MdlBaseHttpResp<HomeShoppingDataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                TalentPersonalModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<HomeShoppingDataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
     public void tipOff(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataStroe.getInstance().tipOff(param, new Observer<MdlBaseHttpResp>() {
             @Override

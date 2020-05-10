@@ -121,6 +121,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         tvSSkill.setOnClickListener(clickListener);
         relShoppingCart.setOnClickListener(clickListener);
         initRecycler();
+        presenter.getHomeShoppingData();
     }
 
     private void initRecycler() {

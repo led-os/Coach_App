@@ -408,6 +408,11 @@ public class HttpDataStroe extends BaseHttpData {
         Observable observable = service.requestCategoryList(body);
         setSubscribe(observable, observer);
     }
+    public void getHomeShoppingData(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestHomeShoppingData(body);
+        setSubscribe(observable, observer);
+    }
 
     public void getMineDynamicList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);

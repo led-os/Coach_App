@@ -64,6 +64,7 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
     private static final int REQ_CODE_35= 35;
     private static final int REQ_CODE_131= 131;
     private static final int REQ_CODE_132= 132;
+    private static final int REQ_CODE_133= 133;
 
 
 
@@ -359,6 +360,14 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
         }
     }
 
+    public void getHomeShoppingData() {
+        if (model != null) {
+            view.showLoading();
+            model.getHomeShoppingData(REQ_CODE_133, null, this);
+        }
+    }
+
+
 
     @Override
     protected BaseModel getMode() {
@@ -471,6 +480,9 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
                 break;
             case REQ_CODE_132:
                 view.getCategoryListSuccess(resp);
+                break;
+            case REQ_CODE_133:
+                view.getHomeShoppingDataSuccess(resp);
                 break;
         }
     }
