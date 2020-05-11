@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,16 +32,16 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
-    private boolean isSearch;
+    private List<ShoppingBean> list = new ArrayList<>();
 
-    public SecondSkillAdapter(Context context, List<String> list) {
+
+    public SecondSkillAdapter(Context context, List<ShoppingBean> list) {
         this.context = context;
         this.list.addAll(list);
     }
 
 
-    public void setData(List<String> list) {
+    public void setData(List<ShoppingBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -59,7 +61,7 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
 
     @Override
     public int getItemCount() {
-        return 4;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -69,7 +71,7 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
         TextView tvMoney;
         @BindView(R.id.tv_old_money)
         TextView tvOldMoney;
-        String categoryBean;
+        ShoppingBean shoppingBean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,12 +79,15 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
         }
 
         void bindView(int pos) {
-//            categoryBean = list.get(pos);
+            shoppingBean = list.get(pos);
             tvOldMoney.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
             tvOldMoney.getPaint().setAntiAlias(true); //去掉锯齿
+            GlidUtils.setGrid(context,shoppingBean.getPic(),imgShopType);
+            tvMoney.setText(shoppingBean.getPic());
+            tvOldMoney.setText(shoppingBean.getOriginalPrice());
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
-                    listener.onItemClick(categoryBean);
+                    listener.onItemClick(shoppingBean);
                 }
 
             });
@@ -97,6 +102,6 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
 
     public interface OnItemClickListener {
 
-        void onItemClick(String bean);
+        void onItemClick(ShoppingBean bean);
     }
 }

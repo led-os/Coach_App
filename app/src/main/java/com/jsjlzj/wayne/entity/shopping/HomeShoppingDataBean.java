@@ -27,18 +27,18 @@ public class HomeShoppingDataBean {
     }
 
     public static class DataBean {
-        private List<ActivityListBean> activityList;
-        private List<BannerBean> bannerList;
-        private List<CategoryListBean> categoryList;
-        private List<DiscountsProductListBean> discountsProductList;
-        private List<HotProductListBean> hotProductList;
-        private List<NewProductListBean> newProductList;
+        private List<ShoppingBean> activityList;//显示秒杀列表
+        private List<BannerBean> bannerList;//轮播图
+        private List<CategoryListBean> categoryList;//类型分类
+        private List<ShoppingBean> discountsProductList;//组合套餐产品列表
+        private List<ShoppingBean> hotProductList;//最新产品列表
+        private List<ShoppingBean> newProductList;//热门产品列表
 
-        public List<ActivityListBean> getActivityList() {
+        public List<ShoppingBean> getActivityList() {
             return activityList;
         }
 
-        public void setActivityList(List<ActivityListBean> activityList) {
+        public void setActivityList(List<ShoppingBean> activityList) {
             this.activityList = activityList;
         }
 
@@ -58,106 +58,29 @@ public class HomeShoppingDataBean {
             this.categoryList = categoryList;
         }
 
-        public List<DiscountsProductListBean> getDiscountsProductList() {
+        public List<ShoppingBean> getDiscountsProductList() {
             return discountsProductList;
         }
 
-        public void setDiscountsProductList(List<DiscountsProductListBean> discountsProductList) {
+        public void setDiscountsProductList(List<ShoppingBean> discountsProductList) {
             this.discountsProductList = discountsProductList;
         }
 
-        public List<HotProductListBean> getHotProductList() {
+        public List<ShoppingBean> getHotProductList() {
             return hotProductList;
         }
 
-        public void setHotProductList(List<HotProductListBean> hotProductList) {
+        public void setHotProductList(List<ShoppingBean> hotProductList) {
             this.hotProductList = hotProductList;
         }
 
-        public List<NewProductListBean> getNewProductList() {
+        public List<ShoppingBean> getNewProductList() {
             return newProductList;
         }
 
-        public void setNewProductList(List<NewProductListBean> newProductList) {
+        public void setNewProductList(List<ShoppingBean> newProductList) {
             this.newProductList = newProductList;
         }
-
-        public static class ActivityListBean {
-            /**
-             * flashPromotionPrice : 商品活动价格
-             * id : 商品ID
-             * name : 商品名
-             * pic : 主图片地址
-             * price : 商品价格
-             * sdate : string
-             * stimeDown : string
-             */
-
-            private String flashPromotionPrice;
-            private String id;
-            private String name;
-            private String pic;
-            private String price;
-            private String sdate;
-            private String stimeDown;
-
-            public String getFlashPromotionPrice() {
-                return flashPromotionPrice;
-            }
-
-            public void setFlashPromotionPrice(String flashPromotionPrice) {
-                this.flashPromotionPrice = flashPromotionPrice;
-            }
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getPic() {
-                return pic;
-            }
-
-            public void setPic(String pic) {
-                this.pic = pic;
-            }
-
-            public String getPrice() {
-                return price;
-            }
-
-            public void setPrice(String price) {
-                this.price = price;
-            }
-
-            public String getSdate() {
-                return sdate;
-            }
-
-            public void setSdate(String sdate) {
-                this.sdate = sdate;
-            }
-
-            public String getStimeDown() {
-                return stimeDown;
-            }
-
-            public void setStimeDown(String stimeDown) {
-                this.stimeDown = stimeDown;
-            }
-        }
-
 
         public static class CategoryListBean {
             /**
@@ -195,232 +118,5 @@ public class HomeShoppingDataBean {
             }
         }
 
-        public static class DiscountsProductListBean {
-            /**
-             * id : spuId
-             * name : 产品名称
-             * originalPrice : 市场价
-             * pic : 产品图片
-             * price : 产品价格
-             * promotionPrice : 促销价格
-             * sale : 销量
-             */
-
-            private String id;
-            private String name;
-            private String originalPrice;
-            private String pic;
-            private String price;
-            private String promotionPrice;
-            private String sale;
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getOriginalPrice() {
-                return originalPrice;
-            }
-
-            public void setOriginalPrice(String originalPrice) {
-                this.originalPrice = originalPrice;
-            }
-
-            public String getPic() {
-                return pic;
-            }
-
-            public void setPic(String pic) {
-                this.pic = pic;
-            }
-
-            public String getPrice() {
-                return price;
-            }
-
-            public void setPrice(String price) {
-                this.price = price;
-            }
-
-            public String getPromotionPrice() {
-                return promotionPrice;
-            }
-
-            public void setPromotionPrice(String promotionPrice) {
-                this.promotionPrice = promotionPrice;
-            }
-
-            public String getSale() {
-                return sale;
-            }
-
-            public void setSale(String sale) {
-                this.sale = sale;
-            }
-        }
-
-        public static class HotProductListBean {
-            /**
-             * id : spuId
-             * name : 产品名称
-             * originalPrice : 市场价
-             * pic : 产品图片
-             * price : 产品价格
-             * promotionPrice : 促销价格
-             * sale : 销量
-             */
-
-            private String id;
-            private String name;
-            private String originalPrice;
-            private String pic;
-            private String price;
-            private String promotionPrice;
-            private String sale;
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getOriginalPrice() {
-                return originalPrice;
-            }
-
-            public void setOriginalPrice(String originalPrice) {
-                this.originalPrice = originalPrice;
-            }
-
-            public String getPic() {
-                return pic;
-            }
-
-            public void setPic(String pic) {
-                this.pic = pic;
-            }
-
-            public String getPrice() {
-                return price;
-            }
-
-            public void setPrice(String price) {
-                this.price = price;
-            }
-
-            public String getPromotionPrice() {
-                return promotionPrice;
-            }
-
-            public void setPromotionPrice(String promotionPrice) {
-                this.promotionPrice = promotionPrice;
-            }
-
-            public String getSale() {
-                return sale;
-            }
-
-            public void setSale(String sale) {
-                this.sale = sale;
-            }
-        }
-
-        public static class NewProductListBean {
-            /**
-             * id : spuId
-             * name : 产品名称
-             * originalPrice : 市场价
-             * pic : 产品图片
-             * price : 产品价格
-             * promotionPrice : 促销价格
-             * sale : 销量
-             */
-
-            private String id;
-            private String name;
-            private String originalPrice;
-            private String pic;
-            private String price;
-            private String promotionPrice;
-            private String sale;
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public String getOriginalPrice() {
-                return originalPrice;
-            }
-
-            public void setOriginalPrice(String originalPrice) {
-                this.originalPrice = originalPrice;
-            }
-
-            public String getPic() {
-                return pic;
-            }
-
-            public void setPic(String pic) {
-                this.pic = pic;
-            }
-
-            public String getPrice() {
-                return price;
-            }
-
-            public void setPrice(String price) {
-                this.price = price;
-            }
-
-            public String getPromotionPrice() {
-                return promotionPrice;
-            }
-
-            public void setPromotionPrice(String promotionPrice) {
-                this.promotionPrice = promotionPrice;
-            }
-
-            public String getSale() {
-                return sale;
-            }
-
-            public void setSale(String sale) {
-                this.sale = sale;
-            }
-        }
     }
 }

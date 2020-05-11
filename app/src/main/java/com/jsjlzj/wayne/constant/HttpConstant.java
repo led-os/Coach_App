@@ -472,6 +472,8 @@ public class HttpConstant {
     public static final String API_CURRENCY_LIST = "fycoin/fyCoinAppleList";
     //获取蜂隐币明细列表
     public static final String API_CURRENCY_DETAIL = "fycoin/tradeDetailList";
+    //组合优惠分页接口
+    public static final String API_GROUP_PRODUCT = "product/getDiscountsProductList";
 
 
 

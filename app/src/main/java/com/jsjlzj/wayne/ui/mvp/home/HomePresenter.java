@@ -85,6 +85,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_SAVE_LOCATION = 51;
     private static final int REQ_CODE_CURRENCY_LIST = 52;
     private static final int REQ_CODE_CURRENCY_DETAIL_LIST = 53;
+    private static final int REQ_CODE_GROUP_PRODUCT_LIST = 54;
 
 
     private HomeModel model;
@@ -538,6 +539,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+  public void getGroupProductList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getGroupProductList(REQ_CODE_GROUP_PRODUCT_LIST, param, this);
+        }
+    }
+
 
     @Override
     protected void responseSuccess(int code, MdlBaseHttpResp resp) {
@@ -661,6 +669,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_CURRENCY_DETAIL_LIST:
                 view.getCurrencyDetailListSuccess(resp);
+                break;
+            case REQ_CODE_GROUP_PRODUCT_LIST:
+                view.getShoppingListSuccess(resp);
+            default :
                 break;
         }
     }

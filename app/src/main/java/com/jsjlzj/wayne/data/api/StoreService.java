@@ -15,7 +15,9 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlCV;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
@@ -486,6 +488,9 @@ public interface StoreService {
 
     @POST(HttpConstant.API_CURRENCY_DETAIL)
     Observable<MdlBaseHttpResp<CurrencyDetailPageBean>> requestCurrencyDetailList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_GROUP_PRODUCT)
+    Observable<MdlBaseHttpResp<ShoppingPageBean>> requestGroupProductList(@Body RequestBody requestBody);
 
     @Multipart
     @POST(HttpConstant.API_UPLOAD)//上次文件

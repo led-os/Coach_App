@@ -269,6 +269,8 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
             case R.id.tv_scan_all://查看更多课程
                 MoreLessonActivity.go2this(getActivity(),"4门课程",5,0);
                 break;
+            default:
+                break;
         }
     }
 

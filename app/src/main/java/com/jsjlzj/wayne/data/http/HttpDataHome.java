@@ -601,6 +601,11 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestCurrencyDetailList(body);
         setSubscribe(observable, observer);
     }
+   public void getGroupProductList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestGroupProductList(body);
+        setSubscribe(observable, observer);
+    }
 
     public void upload(String picPath, Observer observer) {
         File file = new File(picPath);

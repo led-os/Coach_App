@@ -28,6 +28,7 @@ import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
+import com.jsjlzj.wayne.ui.store.find.MoreLessonActivity;
 import com.jsjlzj.wayne.ui.store.search.SearchShopActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
 import com.jsjlzj.wayne.ui.store.shopping.TimeSecondActivity;
@@ -101,7 +102,11 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
 
     private List<BannerBean> images = new ArrayList<>();
-    private ShoppTypeAdapter shoppTypeAdapter;
+    private ShoppTypeAdapter shoppTypeAdapter;//商品类型适配器
+    private SecondSkillAdapter secondSkillAdapter;//限时秒杀适配器
+    private NewHotProductAdapter newProductAdapter;//最新产品适配器
+    private NewHotProductAdapter hotProductAdapter;//热门产品适配器
+    private GroupProductAdapter groupProductAdapter;//组合优惠适配器
 
     public TabItemShoppingFragment() {
     }
@@ -126,7 +131,6 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         relShoppingCart.setOnClickListener(clickListener);
         initRecycler();
         presenter.getHomeShoppingData();
-
     }
 
     private void initRecycler() {
@@ -134,11 +138,11 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvShopType.setLayoutManager(new GridLayoutManager(getActivity(),5));
         rvShopType.setAdapter(shoppTypeAdapter);
 
-        SecondSkillAdapter secondSkillAdapter = new SecondSkillAdapter(getActivity(),new ArrayList<>());
+        secondSkillAdapter = new SecondSkillAdapter(getActivity(),new ArrayList<>());
         rvSShop.setLayoutManager(new GridLayoutManager(getActivity(),4));
         rvSShop.setAdapter(secondSkillAdapter);
 
-        NewHotProductAdapter newProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
+        newProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
         rvNewProduct.setLayoutManager(new GridLayoutManager(getActivity(),2));
         rvNewProduct.setAdapter(newProductAdapter);
 
@@ -146,11 +150,11 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvShopClass.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvShopClass.setAdapter(shopClassAdapter);
 
-        NewHotProductAdapter hotProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
+        hotProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
         rvHotProduct.setLayoutManager(new GridLayoutManager(getActivity(),2));
         rvHotProduct.setAdapter(hotProductAdapter);
 
-        GroupProductAdapter groupProductAdapter = new GroupProductAdapter(getActivity(),new ArrayList<>());
+         groupProductAdapter = new GroupProductAdapter(getActivity(),new ArrayList<>());
         rvCompose.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvCompose.setAdapter(groupProductAdapter);
 
@@ -171,6 +175,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
             case R.id.img_info:
                 break;
             case R.id.tv_compose_more:
+                MoreLessonActivity.go2this(getActivity(),"组合优惠",7,0);
                 break;
             case R.id.tv_s_skill:
                 TimeSecondActivity.go2this(getActivity());
@@ -230,7 +235,18 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
             if(resp.getData().getData().getCategoryList() != null){
                 shoppTypeAdapter.setData(resp.getData().getData().getCategoryList());
             }
-//            if(resp.getData().getData().get)
+            if(resp.getData().getData().getActivityList() != null){
+                secondSkillAdapter.setData(resp.getData().getData().getActivityList());
+            }
+            if(resp.getData().getData().getNewProductList() != null){
+                newProductAdapter.setData(resp.getData().getData().getNewProductList());
+            }
+            if(resp.getData().getData().getHotProductList() != null){
+                hotProductAdapter.setData(resp.getData().getData().getHotProductList());
+            }
+            if(resp.getData().getData().getDiscountsProductList() != null){
+                groupProductAdapter.setData(resp.getData().getData().getDiscountsProductList());
+            }
         }
     }
 
