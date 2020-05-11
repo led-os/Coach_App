@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ProductAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppingCarAdapter;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -24,6 +26,13 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+ /**
+  *
+  * @ClassName:      ShoppingCartActivity
+  * @Description:    购物车界面
+  * @Author:         曾海强
+  * @CreateDate:     2020/05/12
+  */
 public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
 
     @BindView(R.id.img_empty)
@@ -69,7 +78,7 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
         ShoppingCarAdapter carAdapter = new ShoppingCarAdapter(this, new ArrayList<>());
         rvCart.setLayoutManager(new LinearLayoutManager(this));
         rvCart.setAdapter(carAdapter);
-
+        presenter.getShoppingCarList();
     }
 
 
@@ -90,4 +99,9 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
                 break;
         }
     }
-}
+
+     @Override
+     public void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
+
+     }
+ }

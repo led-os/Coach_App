@@ -607,6 +607,12 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void getShoppingCarList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestShoppingCarList(body);
+        setSubscribe(observable, observer);
+    }
+
     public void upload(String picPath, Observer observer) {
         File file = new File(picPath);
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/png"), file);

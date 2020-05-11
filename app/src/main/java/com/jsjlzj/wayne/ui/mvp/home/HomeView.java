@@ -12,6 +12,7 @@ import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
@@ -176,6 +177,9 @@ public interface HomeView extends BaseView {
     }
 
   default void getShoppingListSuccess(MdlBaseHttpResp<ShoppingPageBean> resp) {
+    }
+
+  default void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
     }
 
 

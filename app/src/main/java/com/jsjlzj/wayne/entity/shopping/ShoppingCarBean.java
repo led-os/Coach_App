@@ -12,103 +12,159 @@ public class ShoppingCarBean {
 
 
     /**
-     * productId : 152
-     * productName : 烤鸡翅
-     * attributeId : 31845
-     * attributeName : 晚餐
-     * tasteId : null
-     * tasteName : null
-     * count : 2
+     * data : {"couponId":"领取的优惠卷ID","listResults":[{"buyNum":0,"id":0,"price":0,"productId":0,"productName":"string","productType":0,"productUrl":"string","status":0,"stock":0}],"price":"合计"}
      */
 
-    private String productId;
-    private String productName;
-    private int attributeId;
-    private String attributeName;
-    private List<Long> tasteIds;
-    private String tasteName;
-    private int count;
-    private String productPic;
-    private String prdAttPrice;
-    private boolean isSelect;
+    private DataBean data;
 
-    public String getProductId() {
-        return productId;
+
+
+    public DataBean getData() {
+        return data;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setData(DataBean data) {
+        this.data = data;
     }
 
-    public String getProductName() {
-        return productName;
-    }
+    public static class DataBean {
+        /**
+         * couponId : 领取的优惠卷ID
+         * listResults : [{"buyNum":0,"id":0,"price":0,"productId":0,"productName":"string","productType":0,"productUrl":"string","status":0,"stock":0}]
+         * price : 合计
+         */
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+        private String couponId;
+        private String price;
+        private List<ListResultsBean> listResults;
 
-    public int getAttributeId() {
-        return attributeId;
-    }
+        public String getCouponId() {
+            return couponId;
+        }
 
-    public void setAttributeId(int attributeId) {
-        this.attributeId = attributeId;
-    }
+        public void setCouponId(String couponId) {
+            this.couponId = couponId;
+        }
 
-    public String getAttributeName() {
-        return attributeName;
-    }
+        public String getPrice() {
+            return price;
+        }
 
-    public void setAttributeName(String attributeName) {
-        this.attributeName = attributeName;
-    }
+        public void setPrice(String price) {
+            this.price = price;
+        }
 
-    public List<Long> getTasteIds() {
-        return tasteIds;
-    }
+        public List<ListResultsBean> getListResults() {
+            return listResults;
+        }
 
-    public void setTasteIds(List<Long> tasteIds) {
-        this.tasteIds = tasteIds;
-    }
+        public void setListResults(List<ListResultsBean> listResults) {
+            this.listResults = listResults;
+        }
 
-    public String getProductPic() {
-        return productPic;
-    }
+        public static class ListResultsBean {
+            /**
+             * buyNum : 0
+             * id : 0
+             * price : 0
+             * productId : 0
+             * productName : string
+             * productType : 0
+             * productUrl : string
+             * status : 0
+             * stock : 0
+             */
 
-    public void setProductPic(String productPic) {
-        this.productPic = productPic;
-    }
+            private int buyNum;
+            private int id;
+            private int price;
+            private int productId;
+            private String productName;
+            private int productType;
+            private String productUrl;
+            private int status;
+            private int stock;
+            private boolean isSelect;
 
-    public String getPrdAttPrice() {
-        return prdAttPrice;
-    }
+            public int getBuyNum() {
+                return buyNum;
+            }
 
-    public void setPrdAttPrice(String prdAttPrice) {
-        this.prdAttPrice = prdAttPrice;
-    }
+            public void setBuyNum(int buyNum) {
+                this.buyNum = buyNum;
+            }
 
-    public String getTasteName() {
-        return tasteName;
-    }
+            public int getId() {
+                return id;
+            }
 
-    public void setTasteName(String tasteName) {
-        this.tasteName = tasteName;
-    }
+            public void setId(int id) {
+                this.id = id;
+            }
 
-    public int getCount() {
-        return count;
-    }
+            public int getPrice() {
+                return price;
+            }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
+            public void setPrice(int price) {
+                this.price = price;
+            }
 
-    public boolean isSelect() {
-        return isSelect;
-    }
+            public int getProductId() {
+                return productId;
+            }
 
-    public void setSelect(boolean select) {
-        isSelect = select;
+            public void setProductId(int productId) {
+                this.productId = productId;
+            }
+
+            public String getProductName() {
+                return productName;
+            }
+
+            public void setProductName(String productName) {
+                this.productName = productName;
+            }
+
+            public int getProductType() {
+                return productType;
+            }
+
+            public void setProductType(int productType) {
+                this.productType = productType;
+            }
+
+            public String getProductUrl() {
+                return productUrl;
+            }
+
+            public void setProductUrl(String productUrl) {
+                this.productUrl = productUrl;
+            }
+
+            public int getStatus() {
+                return status;
+            }
+
+            public void setStatus(int status) {
+                this.status = status;
+            }
+
+            public int getStock() {
+                return stock;
+            }
+
+            public void setStock(int stock) {
+                this.stock = stock;
+            }
+
+            public boolean isSelect() {
+                return isSelect;
+            }
+
+            public void setSelect(boolean select) {
+                isSelect = select;
+            }
+        }
     }
 }

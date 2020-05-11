@@ -17,6 +17,7 @@ import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlCV;
@@ -491,6 +492,9 @@ public interface StoreService {
 
     @POST(HttpConstant.API_GROUP_PRODUCT)
     Observable<MdlBaseHttpResp<ShoppingPageBean>> requestGroupProductList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SHOPPING_CAR_LIST)
+    Observable<MdlBaseHttpResp<ShoppingCarBean>> requestShoppingCarList(@Body RequestBody requestBody);
 
     @Multipart
     @POST(HttpConstant.API_UPLOAD)//上次文件

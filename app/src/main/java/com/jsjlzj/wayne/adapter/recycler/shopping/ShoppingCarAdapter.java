@@ -31,10 +31,10 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
 
 
     private Context context;
-    private List<ShoppingCarBean> list;
+    private List<ShoppingCarBean.DataBean.ListResultsBean> list;
 
 
-    public ShoppingCarAdapter(Context context, List<ShoppingCarBean> list) {
+    public ShoppingCarAdapter(Context context, List<ShoppingCarBean.DataBean.ListResultsBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -82,7 +82,7 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
         TextView tvM;
         @BindView(R.id.tv_s)
         TextView tvS;
-        ShoppingCarBean bean;
+        ShoppingCarBean.DataBean.ListResultsBean bean;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -153,14 +153,14 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
         }
     }
 
-    public void setData(List<ShoppingCarBean> list) {
+    public void setData(List<ShoppingCarBean.DataBean.ListResultsBean> list) {
         this.list = list;
         notifyDataSetChanged();
     }
 
 
     public void setSelectData(boolean isAllSelect) {
-        for (ShoppingCarBean bean : list) {
+        for (ShoppingCarBean.DataBean.ListResultsBean bean : list) {
             bean.setSelect(isAllSelect);
         }
         notifyDataSetChanged();
@@ -171,11 +171,11 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
      *
      * @param selectData 需要购买的商品列表
      */
-    public void setSelectData(List<ShoppingCarBean> selectData) {
-        for (ShoppingCarBean bean : list) {
-            for (ShoppingCarBean selectBean : selectData) {
-                if (selectBean.getProductId().equals(bean.getProductId())) {
-                    bean.setCount(selectBean.getCount());
+    public void setSelectData(List<ShoppingCarBean.DataBean.ListResultsBean> selectData) {
+        for (ShoppingCarBean.DataBean.ListResultsBean bean : list) {
+            for (ShoppingCarBean.DataBean.ListResultsBean selectBean : selectData) {
+                if (selectBean.getProductId()==(bean.getProductId())) {
+                    bean.setBuyNum(selectBean.getBuyNum());
                 }
             }
         }
@@ -183,10 +183,10 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
     }
 
 
-    public List<ShoppingCarBean> getSelectList() {
-        List<ShoppingCarBean> selectList = new ArrayList<>();
+    public List<ShoppingCarBean.DataBean.ListResultsBean> getSelectList() {
+        List<ShoppingCarBean.DataBean.ListResultsBean> selectList = new ArrayList<>();
         if (list != null && list.size() > 0) {
-            for (ShoppingCarBean bean : list) {
+            for (ShoppingCarBean.DataBean.ListResultsBean bean : list) {
                 if (bean.isSelect()) {
                     selectList.add(bean);
                 }
@@ -200,11 +200,11 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
      *
      * @return 需要购买的商品列表
      */
-    public List<ShoppingCarBean> getShoppingList() {
-        List<ShoppingCarBean> shoppingList = new ArrayList<>();
+    public List<ShoppingCarBean.DataBean.ListResultsBean> getShoppingList() {
+        List<ShoppingCarBean.DataBean.ListResultsBean> shoppingList = new ArrayList<>();
         if (list != null && list.size() > 0) {
-            for (ShoppingCarBean bean : list) {
-                if (bean.getCount() > 0) {
+            for (ShoppingCarBean.DataBean.ListResultsBean bean : list) {
+                if (bean.getBuyNum() > 0) {
                     shoppingList.add(bean);
                 }
             }
@@ -216,9 +216,9 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
      * 情况选择的商品
      */
     public void clearSelect() {
-        for (ShoppingCarBean bean : list) {
-            if (bean.getCount() > 0) {
-                bean.setCount(0);
+        for (ShoppingCarBean.DataBean.ListResultsBean bean : list) {
+            if (bean.getBuyNum() > 0) {
+                bean.setBuyNum(0);
             }
         }
         notifyDataSetChanged();
@@ -236,14 +236,14 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
          *
          * @param bean 实体类
          */
-        void onAddClick(ShoppingCarBean bean);
+        void onAddClick(ShoppingCarBean.DataBean.ListResultsBean bean);
 
         /**
          * 商品数减1
          *
          * @param bean 实体类
          */
-        void onDeleteClick(ShoppingCarBean bean);
+        void onDeleteClick(ShoppingCarBean.DataBean.ListResultsBean bean);
 
         /**
          * 条目点击
@@ -257,7 +257,7 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
          *
          * @param bean 实体类
          */
-        void onTypeClick(ShoppingCarBean bean);
+        void onTypeClick(ShoppingCarBean.DataBean.ListResultsBean bean);
 
         /**
          * 点击选择
@@ -267,6 +267,6 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
         /**
          * 删除
          */
-        void onDeleteItem(ShoppingCarBean bean, int pos);
+        void onDeleteItem(ShoppingCarBean.DataBean.ListResultsBean bean, int pos);
     }
 }

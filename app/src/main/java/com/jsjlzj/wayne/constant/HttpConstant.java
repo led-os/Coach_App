@@ -474,6 +474,8 @@ public class HttpConstant {
     public static final String API_CURRENCY_DETAIL = "fycoin/tradeDetailList";
     //组合优惠分页接口
     public static final String API_GROUP_PRODUCT = "product/getDiscountsProductList";
+    //购物车列表
+    public static final String API_SHOPPING_CAR_LIST = "order/car/getShoppingCarList";
 
 
 

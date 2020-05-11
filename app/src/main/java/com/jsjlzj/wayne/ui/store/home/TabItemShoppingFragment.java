@@ -135,15 +135,15 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
     private void initRecycler() {
         shoppTypeAdapter = new ShoppTypeAdapter(getActivity(),new ArrayList<>());
-        rvShopType.setLayoutManager(new GridLayoutManager(getActivity(),5));
+        rvShopType.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvShopType.setAdapter(shoppTypeAdapter);
 
         secondSkillAdapter = new SecondSkillAdapter(getActivity(),new ArrayList<>());
-        rvSShop.setLayoutManager(new GridLayoutManager(getActivity(),4));
+        rvSShop.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvSShop.setAdapter(secondSkillAdapter);
 
         newProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
-        rvNewProduct.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        rvNewProduct.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvNewProduct.setAdapter(newProductAdapter);
 
         ShopClassAdapter shopClassAdapter = new ShopClassAdapter(getActivity(),new ArrayList<>());
@@ -151,10 +151,10 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvShopClass.setAdapter(shopClassAdapter);
 
         hotProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
-        rvHotProduct.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        rvHotProduct.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvHotProduct.setAdapter(hotProductAdapter);
 
-         groupProductAdapter = new GroupProductAdapter(getActivity(),new ArrayList<>());
+        groupProductAdapter = new GroupProductAdapter(getActivity(),new ArrayList<>());
         rvCompose.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvCompose.setAdapter(groupProductAdapter);
 
