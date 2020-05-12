@@ -41,7 +41,7 @@
     <TextView
         android:id="@+id/tv_name"
         android:text="烤风爪"
-        android:singleLine="true"
+        android:maxLines="2"
         android:ellipsize="end"
         android:layout_toEndOf="@+id/img_shopping"
         android:layout_marginStart="@dimen/padding_12"
@@ -121,9 +121,11 @@
         android:layout_height="wrap_content"/>
 
     <LinearLayout
+        android:id="@+id/ll_skill_second"
         android:layout_below="@+id/img_shopping"
         android:layout_marginBottom="@dimen/padding_10"
         android:layout_alignStart="@+id/img_shopping"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

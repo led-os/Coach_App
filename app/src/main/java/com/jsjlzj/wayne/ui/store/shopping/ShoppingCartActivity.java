@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ProductAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppingCarAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 
 import java.util.ArrayList;
@@ -79,7 +81,7 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
         rvEmpty.setLayoutManager(new GridLayoutManager(this, 2));
         rvEmpty.setAdapter(emptyAdapter);
 
-         carAdapter = new ShoppingCarAdapter(this, new ArrayList<>());
+        carAdapter = new ShoppingCarAdapter(this, new ArrayList<>());
         rvCart.setLayoutManager(new LinearLayoutManager(this));
         rvCart.setAdapter(carAdapter);
         carAdapter.setListener(this);
@@ -109,16 +111,22 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
 
      @Override
      public void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
-
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            if(resp.getData().getData() != null && resp.getData().getData().getListResults() != null){
+                carAdapter.setData(resp.getData().getData().getListResults());
+            }else {
+                showEmpty(R.id.rel_empty,0,null);
+            }
+        }
      }
 
      @Override
      public void onAddClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
          map.clear();
          map.put("buyNum",1);
-         map.put("id",1000);
-         map.put("productId",123);
-         map.put("userId",456);
+         map.put("id",bean.getId());
+         map.put("productId",bean.getProductId());
+         map.put("userId", SPUtil.getUserFromSP().getId());
          presenter.addShoppingCar(map);
      }
 
@@ -126,9 +134,9 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
      public void onDeleteClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
          map.clear();
          map.put("buyNum",1);
-         map.put("id",1000);
-         map.put("productId",123);
-         map.put("userId",456);
+         map.put("id",bean.getId());
+         map.put("productId",bean.getProductId());
+         map.put("userId",SPUtil.getUserFromSP().getId());
          presenter.updateShoppingBynum(map);
      }
 

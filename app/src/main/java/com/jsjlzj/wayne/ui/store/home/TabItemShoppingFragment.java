@@ -107,6 +107,8 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     private NewHotProductAdapter newProductAdapter;//最新产品适配器
     private NewHotProductAdapter hotProductAdapter;//热门产品适配器
     private GroupProductAdapter groupProductAdapter;//组合优惠适配器
+    private ShopClassAdapter shopClassAdapter;//底部分类适配器
+    private List<HomeShoppingDataBean.DataBean.CategoryListBean> shopClassList = new ArrayList<>();
 
     public TabItemShoppingFragment() {
     }
@@ -146,7 +148,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvNewProduct.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvNewProduct.setAdapter(newProductAdapter);
 
-        ShopClassAdapter shopClassAdapter = new ShopClassAdapter(getActivity(),new ArrayList<>());
+        shopClassAdapter = new ShopClassAdapter(getActivity(),shopClassList);
         rvShopClass.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvShopClass.setAdapter(shopClassAdapter);
 
@@ -234,6 +236,10 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
             }
             if(resp.getData().getData().getCategoryList() != null){
                 shoppTypeAdapter.setData(resp.getData().getData().getCategoryList());
+                shopClassList.clear();
+                shopClassList.add(new HomeShoppingDataBean.DataBean.CategoryListBean("0","全部","优选好货"));
+                shopClassList.addAll(resp.getData().getData().getCategoryList());
+                shopClassAdapter.setData(shopClassList);
             }
             if(resp.getData().getData().getActivityList() != null){
                 secondSkillAdapter.setData(resp.getData().getData().getActivityList());

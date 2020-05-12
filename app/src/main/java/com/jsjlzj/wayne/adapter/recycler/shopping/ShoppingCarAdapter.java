@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,7 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
 
     @Override
     public int getItemCount() {
-        return 8;//list != null ? list.size() : 0;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -82,6 +83,8 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
         TextView tvM;
         @BindView(R.id.tv_s)
         TextView tvS;
+        @BindView(R.id.ll_skill_second)
+        LinearLayout llSkillSecond;
         ShoppingCarBean.DataBean.ListResultsBean bean;
 
         ViewHolder(@NonNull View itemView) {
@@ -90,25 +93,25 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
         }
 
         void bindView(int pos) {
-//            bean = list.get(pos);
-//            tvName.setText(bean.getProductName());
-//            tvPrice.setText("" + bean.getPrdAttPrice());
-//            if (bean.getCount() > 0) {
-//                imgDelete.setVisibility(View.VISIBLE);
-//                tvNum.setVisibility(View.VISIBLE);
-//                tvNum.setText("" + bean.getCount());
-//            } else {
-//                imgDelete.setVisibility(View.GONE);
-//                tvNum.setVisibility(View.GONE);
-//            }
-//            GlidUtils.setGrid(context, bean.getProductPic(), imgShopping);
-//            llSelect.setVisibility(View.VISIBLE);
-//            if (bean.isSelect()) {
-//                imgSelect.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cbx_select));
-//            } else {
-//                imgSelect.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cbx_unselect));
-//            }
-//            imgAdd.setVisibility(View.VISIBLE);
+            bean = list.get(pos);
+            tvName.setText(bean.getProductName());
+            tvPrice.setText("¥ " + bean.getPrice());
+            if (bean.getBuyNum() > 0) {
+                imgDelete.setVisibility(View.VISIBLE);
+                tvNum.setVisibility(View.VISIBLE);
+                tvNum.setText("" + bean.getBuyNum());
+            } else {
+                imgDelete.setVisibility(View.GONE);
+                tvNum.setVisibility(View.GONE);
+            }
+            GlidUtils.setGrid(context, bean.getProductUrl(), imgShopping);
+            llSelect.setVisibility(View.VISIBLE);
+            if (bean.isSelect()) {
+                imgSelect.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cbx_select));
+            } else {
+                imgSelect.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cbx_unselect));
+            }
+            imgAdd.setVisibility(View.VISIBLE);
             imgAdd.setOnClickListener(this);
             imgDelete.setOnClickListener(this);
             itemView.setOnClickListener(this);
@@ -141,6 +144,9 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
                     listener.onTypeClick(bean);
                     break;
                 case R.id.img_add:
+                    if(bean.getBuyNum() > 0){
+
+                    }
                     listener.onAddClick(bean);
                     break;
                 case R.id.img_delete:

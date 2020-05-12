@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +29,16 @@ public class ShopClassAdapter extends RecyclerView.Adapter<ShopClassAdapter.View
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<HomeShoppingDataBean.DataBean.CategoryListBean> list = new ArrayList<>();
     private int selectIndex = 0;
 
-    public ShopClassAdapter(Context context, List<String> list) {
+    public ShopClassAdapter(Context context, List<HomeShoppingDataBean.DataBean.CategoryListBean> list) {
         this.context = context;
         this.list.addAll(list);
     }
 
 
-    public void setData(List<String> list) {
+    public void setData(List<HomeShoppingDataBean.DataBean.CategoryListBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -57,7 +58,7 @@ public class ShopClassAdapter extends RecyclerView.Adapter<ShopClassAdapter.View
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,7 +66,7 @@ public class ShopClassAdapter extends RecyclerView.Adapter<ShopClassAdapter.View
         TextView tvTitle;
         @BindView(R.id.tv_des)
         TextView tvDes;
-        String categoryBean;
+        HomeShoppingDataBean.DataBean.CategoryListBean categoryBean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,7 +74,9 @@ public class ShopClassAdapter extends RecyclerView.Adapter<ShopClassAdapter.View
         }
 
         void bindView(int pos) {
-//            categoryBean = list.get(pos);
+            categoryBean = list.get(pos);
+            tvTitle.setText(categoryBean.getName());
+            tvDes.setText(categoryBean.getKeywords());
             if (pos == selectIndex) {
                 tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color_f1404b));
                 tvDes.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_class_shop));
@@ -102,6 +105,6 @@ public class ShopClassAdapter extends RecyclerView.Adapter<ShopClassAdapter.View
 
     public interface OnItemClickListener {
 
-        void onItemClick(String bean);
+        void onItemClick(HomeShoppingDataBean.DataBean.CategoryListBean bean);
     }
 }
