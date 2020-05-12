@@ -30,9 +30,11 @@ import java.util.List;
 public class AddressActivity extends MVPBaseActivity<LoginActivityView, LoginActivityPresenter> implements LoginActivityView {
     public static int FLAG = 7;
     private String province;
+    private String provinceId;
     private String city;
     private String cityId;
     private String area;
+    private String areaId;
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, AddressActivity.class);
@@ -115,6 +117,7 @@ public class AddressActivity extends MVPBaseActivity<LoginActivityView, LoginAct
 //                            view.setSelected(true);
 //                            view.setBackgroundColor(R.color.colorPrimary);
                             province=item.getShortName();
+                            provinceId = String.valueOf(item.getId());
 //                            currentIndexCity=0;
 //                            currentIndexProvince=0;
                             refreachProvince(position);
@@ -176,7 +179,8 @@ public class AddressActivity extends MVPBaseActivity<LoginActivityView, LoginAct
                             currentIndexCounty = position;
 //                            refreachCounty(position);
 //                            view.setBackgroundColor(R.color.colorPrimary);
-                            area=item.getShortName();
+                            area = item.getShortName();
+                            areaId = String.valueOf(item.getId());
                             recyclerViewAdapter3.notifyDataSetChanged();
                         }
                     });
@@ -226,18 +230,21 @@ public class AddressActivity extends MVPBaseActivity<LoginActivityView, LoginAct
                         LogAndToastUtil.toast("请选择市");
                         return;
                     }
-//                    if(TextUtils.isEmpty(area)){
-//                        LogAndToastUtil.toast("请选择区");
-//                        return;
-//                    }
+                    if(TextUtils.isEmpty(area)){
+                        LogAndToastUtil.toast("请选择区");
+                        return;
+                    }
                     Intent intent=new Intent();
                     intent.putExtra("province",province);
+                    intent.putExtra("provinceId",provinceId);
                     intent.putExtra("city",city);
                     intent.putExtra("cityId",cityId);
                     intent.putExtra("area",area);
+                    intent.putExtra("areaId",areaId);
                     setResult(RESULT_OK,intent);
                     finish();
                     break;
+                default:break;
             }
         }
     }

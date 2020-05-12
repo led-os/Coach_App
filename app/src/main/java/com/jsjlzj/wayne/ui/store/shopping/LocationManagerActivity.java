@@ -66,7 +66,7 @@ public class LocationManagerActivity extends MVPBaseActivity<HomeView, HomePrese
         adapter = new LocationAdapter(this,locationList,fromType);
         adapter.setListener(this);
         rvLocation.setAdapter(adapter);
-//        presenter.getLocationList();
+        presenter.getLocationList();
     }
 
 

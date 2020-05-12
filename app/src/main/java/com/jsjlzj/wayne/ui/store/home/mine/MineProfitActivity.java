@@ -96,6 +96,7 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
             case R.id.ll_record:
                 CashOutRecordActivity.go2this(this);
                 break;
+            default:break;
         }
     }
 

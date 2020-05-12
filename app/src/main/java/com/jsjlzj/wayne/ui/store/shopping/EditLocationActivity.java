@@ -27,6 +27,11 @@ import java.util.Map;
 
 import butterknife.BindView;
 
+/**
+* @description 编辑地址页面
+* @date: 2020/05/12
+* @author: 曾海强
+*/
 public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
 
     @BindView(R.id.et_name)
@@ -47,6 +52,8 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
     private boolean isOpen;
     private LocationListBean.DataBean bean;
     private Map<Object,Object> map = new HashMap<>();
+    private String province,provinceCode,city,cityCode,area,areaCode;
+
 
     public static void go2this(Activity activity, int requestCode, LocationListBean.DataBean bean){
         activity.startActivityForResult(new Intent(activity,EditLocationActivity.class).putExtra("location",bean),requestCode);
@@ -133,13 +140,13 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
         map.clear();
         map.put("isDefault",isOpen ? 1 : 0 );
         map.put("city",city);
-        map.put("cityCode","");
+        map.put("cityCode",cityCode);
         map.put("detail",etLocationDetail.getText().toString());
-        map.put("district","");
-        map.put("districtCode","");
+        map.put("district",area);
+        map.put("districtCode",areaCode);
         map.put("phone",etPhone.getText().toString());
         map.put("province",province);
-        map.put("provinceCode","");
+        map.put("provinceCode",provinceCode);
         map.put("userName",etName.getText().toString());
         presenter.saveLocation(map);
     }
@@ -153,15 +160,18 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
         }
     }
 
-    private String province,city;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             if(requestCode == 7){
                  province = data.getStringExtra("province");
+                 provinceCode = data.getStringExtra("provinceId");
                  city = data.getStringExtra("city");
-                tvLocation.setText(province+" "+city+" ");
+                 cityCode = data.getStringExtra("cityId");
+                 area = data.getStringExtra("area");
+                 areaCode = data.getStringExtra("areaId");
+                tvLocation.setText(province+" "+city+" "+area);
             }
         }
     }

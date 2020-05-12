@@ -22,6 +22,8 @@ import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,7 +35,7 @@ import butterknife.OnClick;
   * @Author:         曾海强
   * @CreateDate:     2020/05/12
   */
-public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
+public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, ShoppingCarAdapter.OnItemClickListener {
 
     @BindView(R.id.img_empty)
     ImageView imgEmpty;
@@ -49,6 +51,8 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     CustomXRecyclerView rvCart;
 
     private ProductAdapter emptyAdapter;
+    private ShoppingCarAdapter carAdapter;
+    private Map<Object,Object> map =new HashMap();
 
 
     public static void go2this(Activity activity) {
@@ -75,9 +79,10 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
         rvEmpty.setLayoutManager(new GridLayoutManager(this, 2));
         rvEmpty.setAdapter(emptyAdapter);
 
-        ShoppingCarAdapter carAdapter = new ShoppingCarAdapter(this, new ArrayList<>());
+         carAdapter = new ShoppingCarAdapter(this, new ArrayList<>());
         rvCart.setLayoutManager(new LinearLayoutManager(this));
         rvCart.setAdapter(carAdapter);
+        carAdapter.setListener(this);
         presenter.getShoppingCarList();
     }
 
@@ -97,11 +102,53 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
             case R.id.tv_discount_detail:
                 DiscountDetailFragment.showDialog(getSupportFragmentManager(),"");
                 break;
+            default:
+                break;
         }
     }
 
      @Override
      public void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
+
+     }
+
+     @Override
+     public void onAddClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
+         map.clear();
+         map.put("buyNum",1);
+         map.put("id",1000);
+         map.put("productId",123);
+         map.put("userId",456);
+         presenter.addShoppingCar(map);
+     }
+
+     @Override
+     public void onDeleteClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
+         map.clear();
+         map.put("buyNum",1);
+         map.put("id",1000);
+         map.put("productId",123);
+         map.put("userId",456);
+         presenter.updateShoppingBynum(map);
+     }
+
+     @Override
+     public void onItemClick(ShoppingCarBean bean) {
+
+     }
+
+     @Override
+     public void onTypeClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
+
+     }
+
+     @Override
+     public void onSelectClick() {
+
+     }
+
+     @Override
+     public void onDeleteItem(ShoppingCarBean.DataBean.ListResultsBean bean, int pos) {
 
      }
  }

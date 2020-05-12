@@ -476,6 +476,10 @@ public class HttpConstant {
     public static final String API_GROUP_PRODUCT = "product/getDiscountsProductList";
     //购物车列表
     public static final String API_SHOPPING_CAR_LIST = "order/car/getShoppingCarList";
+    //添加购物车
+    public static final String API_SHOPPING_ADD_CAR = "order/car/addShoppingCar";
+    //修改商品购物车数量
+    public static final String API_SHOPPING_UPDATE_BY_NUM = "order/car/upCarByNum";
 
 
 

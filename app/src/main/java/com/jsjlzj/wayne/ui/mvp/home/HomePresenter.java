@@ -87,6 +87,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_CURRENCY_DETAIL_LIST = 53;
     private static final int REQ_CODE_GROUP_PRODUCT_LIST = 54;
     private static final int REQ_CODE_SHOPPING_CAR_LIST = 55;
+    private static final int REQ_CODE_ADD_SHOPPING_CAR = 56;
 
 
     private HomeModel model;
@@ -551,7 +552,22 @@ public class HomePresenter extends BasePresenter<HomeView> {
   public void getShoppingCarList() {
         if (model != null) {
             view.showLoading();
-            model.getShoppingCarList(REQ_CODE_SHOPPING_CAR_LIST, null, this);
+            model.getShoppingCarList(REQ_CODE_SHOPPING_CAR_LIST, this);
+        }
+    }
+
+
+  public void addShoppingCar(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.addShoppingCar(REQ_CODE_ADD_SHOPPING_CAR, params,this);
+        }
+    }
+
+  public void updateShoppingBynum(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.updateBynum(REQ_CODE_ADD_SHOPPING_CAR, params,this);
         }
     }
 
@@ -603,6 +619,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_CANCEL_COLLECT:
             case REQ_CODE_CLICK_FOLLOW:
             case REQ_CODE_CANCEL_FOLLOW:
+            case REQ_CODE_ADD_SHOPPING_CAR:
                 view.getMessageSuccess(resp);
                 break;
             case REQ_CODE_DELETE_DYNAMIC:
@@ -685,7 +702,6 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_SHOPPING_CAR_LIST:
                 view.getShoppingCarListSuccess(resp);
                 break;
-
             default :
                 break;
         }
