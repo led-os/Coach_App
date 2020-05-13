@@ -511,6 +511,9 @@ public interface StoreService {
     @POST(HttpConstant.API_SHOPPING_UPDATE_BY_NUM)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestUpdateBynum(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_SHOPPING_ORDER_DELETE)
+    Observable<MdlBaseHttpResp<ShoppingCarBean>> requestDeleteCar(@Body RequestBody requestBody);
+
     @Multipart
     @POST(HttpConstant.API_UPLOAD)//上次文件
 //    Observable<MdlBaseHttpResp<MdlUpload>> upload(@Part("type") RequestBody type, @Part MultipartBody.Part file);

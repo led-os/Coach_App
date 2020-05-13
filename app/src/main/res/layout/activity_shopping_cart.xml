@@ -131,6 +131,7 @@
                 android:layout_below="@+id/tv_money"
                 android:layout_marginTop="@dimen/padding_12"
                 android:layout_marginEnd="@dimen/padding_10"
+                android:visibility="gone"
                 android:src="@drawable/triangle_up_normal"/>
 
             <TextView
@@ -143,6 +144,7 @@
                 android:layout_below="@+id/tv_money"
                 android:paddingTop="@dimen/padding_8"
                 android:layout_toStartOf="@+id/img_open"
+                android:visibility="gone"
                 android:textSize="@dimen/text_size_10"
                 android:textColor="@color/color_f1404b"/>
 
@@ -154,6 +156,7 @@
                 android:layout_height="wrap_content"
                 tools:text="已优惠 ¥ 100.00"
                 android:textSize="@dimen/text_size_10"
+                android:visibility="gone"
                 android:textColor="@color/color_999999"/>
         </RelativeLayout>
 

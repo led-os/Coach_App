@@ -29,12 +29,13 @@ public class HttpDataHome extends BaseHttpData {
     private StoreService service = create(StoreService.class);
 
     public void refreshUrl() {
-        service=null;
+        service = null;
         service = create(StoreService.class);
     }
 
     /**
      * 获取首页推荐数据
+     *
      * @param params
      * @param observer
      */
@@ -46,6 +47,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 获取首页淘学数据
+     *
      * @param params
      * @param observer
      */
@@ -56,8 +58,9 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
-   /**
+    /**
      * 获取首页赛事数据
+     *
      * @param params
      * @param observer
      */
@@ -68,8 +71,9 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
-   /**
+    /**
      * 获取首页淘学列表数据
+     *
      * @param params
      * @param observer
      */
@@ -80,8 +84,9 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
-   /**
+    /**
      * 获取首页赛事列表数据
+     *
      * @param params
      * @param observer
      */
@@ -92,8 +97,9 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
-   /**
+    /**
      * 获取首页干货数据
+     *
      * @param params
      * @param observer
      */
@@ -103,8 +109,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-   /**
+    /**
      * 获取首页干货列表数据
+     *
      * @param params
      * @param observer
      */
@@ -113,8 +120,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestDriedFoodList(body);
         setSubscribe(observable, observer);
     }
-   /**
+
+    /**
      * 获取首页资讯数据
+     *
      * @param params
      * @param observer
      */
@@ -123,8 +132,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestInformation(body);
         setSubscribe(observable, observer);
     }
-   /**
+
+    /**
      * 获取首页资讯列表数据
+     *
      * @param params
      * @param observer
      */
@@ -133,8 +144,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestInformationList(body);
         setSubscribe(observable, observer);
     }
-   /**
+
+    /**
      * 获取首页产品数据
+     *
      * @param params
      * @param observer
      */
@@ -143,8 +156,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestProduce(body);
         setSubscribe(observable, observer);
     }
-   /**
+
+    /**
      * 获取首页产品列表数据
+     *
      * @param params
      * @param observer
      */
@@ -155,8 +170,9 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
-   /**
+    /**
      * 获取所有视频类别数据
+     *
      * @param params
      * @param observer
      */
@@ -166,8 +182,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-   /**
+    /**
      * 获取对应categoryId的热门学校（机构）数据
+     *
      * @param params
      * @param observer
      */
@@ -176,8 +193,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestOrganizationList(body);
         setSubscribe(observable, observer);
     }
-   /**
+
+    /**
      * 获取视频列表数据
+     *
      * @param params
      * @param observer
      */
@@ -186,8 +205,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestVideoList(body);
         setSubscribe(observable, observer);
     }
-   /**
+
+    /**
      * 点赞
+     *
      * @param params
      * @param observer
      */
@@ -195,8 +216,11 @@ public class HttpDataHome extends BaseHttpData {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestClickZan(body);
         setSubscribe(observable, observer);
-    }   /**
+    }
+
+    /**
      * 取消点赞
+     *
      * @param params
      * @param observer
      */
@@ -209,6 +233,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 收藏
+     *
      * @param params
      * @param observer
      */
@@ -220,6 +245,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 取消收藏
+     *
      * @param params
      * @param observer
      */
@@ -232,6 +258,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 关注
+     *
      * @param params
      * @param observer
      */
@@ -243,6 +270,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 取消关注
+     *
      * @param params
      * @param observer
      */
@@ -251,8 +279,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestCancelFollow(body);
         setSubscribe(observable, observer);
     }
+
     /**
      * 删除动态
+     *
      * @param params
      * @param observer
      */
@@ -264,6 +294,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 获取学习数据
+     *
      * @param params
      * @param observer
      */
@@ -273,8 +304,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-  /**
+    /**
      * 获取章节列表数据
+     *
      * @param params
      * @param observer
      */
@@ -284,8 +316,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-  /**
+    /**
      * 获取章节题目列表数据
+     *
      * @param params
      * @param observer
      */
@@ -295,8 +328,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-  /**
+    /**
      * 保存答题记录
+     *
      * @param params
      * @param observer
      */
@@ -306,8 +340,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-  /**
+    /**
      * 章节错误题目列表
+     *
      * @param params
      * @param observer
      */
@@ -320,6 +355,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 章节错误题目列表
+     *
      * @param params
      * @param observer
      */
@@ -332,6 +368,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 模拟考试-提交答案
+     *
      * @param params
      * @param observer
      */
@@ -344,6 +381,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 模拟考试-提交答案
+     *
      * @param params
      * @param observer
      */
@@ -356,6 +394,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 模拟考试-错题集
+     *
      * @param params
      * @param observer
      */
@@ -367,6 +406,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 模拟考试-错题集
+     *
      * @param params
      * @param observer
      */
@@ -376,8 +416,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-   /**
+    /**
      * 模拟考试-成绩记录
+     *
      * @param params
      * @param observer
      */
@@ -387,8 +428,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-   /**
+    /**
      * 搜索全部
+     *
      * @param params
      * @param observer
      */
@@ -399,8 +441,9 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
-   /**
+    /**
      * 社区列表
+     *
      * @param params
      * @param observer
      */
@@ -411,8 +454,9 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
-   /**
+    /**
      * 我的动态列表
+     *
      * @param params
      * @param observer
      */
@@ -421,8 +465,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestMineDynamicList(body);
         setSubscribe(observable, observer);
     }
- /**
+
+    /**
      * 淘学我的报名
+     *
      * @param params
      * @param observer
      */
@@ -434,6 +480,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 赛事报名
+     *
      * @param params
      * @param observer
      */
@@ -443,8 +490,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
- /**
+    /**
      * 发布动态 图片或视频
+     *
      * @param params
      * @param observer
      */
@@ -453,8 +501,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestPublicDynamic(body);
         setSubscribe(observable, observer);
     }
- /**
+
+    /**
      * 我的收藏 动态列表
+     *
      * @param params
      * @param observer
      */
@@ -463,8 +513,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestDynamicCollectList(body);
         setSubscribe(observable, observer);
     }
- /**
+
+    /**
      * 我的收藏 视频列表
+     *
      * @param params
      * @param observer
      */
@@ -473,8 +525,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestVideoCollectList(body);
         setSubscribe(observable, observer);
     }
- /**
+
+    /**
      * 我的收藏 文章列表
+     *
      * @param params
      * @param observer
      */
@@ -485,8 +539,9 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
- /**
+    /**
      * 优选数据1 (分类导航列表+banner列表+免费体验+每日一学)
+     *
      * @param params
      * @param observer
      */
@@ -496,8 +551,9 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
- /**
+    /**
      * 首页优选数据2(减脂,会员精选,了解运动,4门课+分类推荐)
+     *
      * @param params
      * @param observer
      */
@@ -506,8 +562,10 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestOptimizationData2(body);
         setSubscribe(observable, observer);
     }
+
     /**
      * 提现记录
+     *
      * @param params
      * @param observer
      */
@@ -519,6 +577,7 @@ public class HttpDataHome extends BaseHttpData {
 
     /**
      * 我的收益
+     *
      * @param params
      * @param observer
      */
@@ -546,21 +605,25 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestHotCategoryList(body);
         setSubscribe(observable, observer);
     }
+
     public void getHotListeningCategoryList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestHotListeningCategoryList(body);
         setSubscribe(observable, observer);
     }
+
     public void getJianzhiCategoryList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestJianzhiCategoryList(body);
         setSubscribe(observable, observer);
     }
+
     public void getMotionCategoryList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestMotionCategoryList(body);
         setSubscribe(observable, observer);
     }
+
     public void getFourLessonCategoryList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestFourLessonCategoryList(body);
@@ -579,29 +642,31 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
-   public void getLocationList(Map params, Observer observer) {
+    public void getLocationList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestLocationList(body);
         setSubscribe(observable, observer);
     }
-   public void saveLocation(Map params, Observer observer) {
+
+    public void saveLocation(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestSaveLocation(body);
         setSubscribe(observable, observer);
     }
 
-   public void getCurrencyList(Map params, Observer observer) {
+    public void getCurrencyList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestCurrencyList(body);
         setSubscribe(observable, observer);
     }
 
-   public void getCurrencyDetailList(Map params, Observer observer) {
+    public void getCurrencyDetailList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestCurrencyDetailList(body);
         setSubscribe(observable, observer);
     }
-   public void getGroupProductList(Map params, Observer observer) {
+
+    public void getGroupProductList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestGroupProductList(body);
         setSubscribe(observable, observer);
@@ -623,12 +688,20 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestEnableCouponList(body);
         setSubscribe(observable, observer);
     }
-   public void addShoppingCar(Map params,Observer observer) {
+
+    public void addShoppingCar(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestAddShoppingCar(body);
         setSubscribe(observable, observer);
     }
- public void updateBynum(Map params,Observer observer) {
+
+    public void deleteCar(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestDeleteCar(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void updateBynum(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestUpdateBynum(body);
         setSubscribe(observable, observer);
@@ -638,7 +711,7 @@ public class HttpDataHome extends BaseHttpData {
         File file = new File(picPath);
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/png"), file);
         MultipartBody.Part photo = MultipartBody.Part.createFormData("file", file.getName(), reqFile);//pic为key
-        Observable observable = service.upload( photo);
+        Observable observable = service.upload(photo);
         setSubscribe(observable, observer);
     }
 
@@ -646,7 +719,7 @@ public class HttpDataHome extends BaseHttpData {
         File file = new File(videoPath);
         RequestBody reqFile = RequestBody.create(MediaType.parse("video/mp4"), file);
         MultipartBody.Part photo = MultipartBody.Part.createFormData("file", file.getName(), reqFile);//pic为key
-        Observable observable = service.uploadVideo( photo);
+        Observable observable = service.uploadVideo(photo);
         setSubscribe(observable, observer);
     }
 

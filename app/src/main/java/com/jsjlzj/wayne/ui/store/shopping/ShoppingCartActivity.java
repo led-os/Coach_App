@@ -8,23 +8,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ProductAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppingCarAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
-import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
-import com.jsjlzj.wayne.utils.SPUtil;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 
 import java.util.ArrayList;
@@ -61,6 +58,10 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     TextView tvMoney;
     @BindView(R.id.tv_coupon)
     TextView tvCoupon;
+    @BindView(R.id.img_open)
+    ImageView imgOpen;
+    @BindView(R.id.tv_discount_detail)
+    TextView tvDiscountDetail;
     @BindView(R.id.rv_cart)
     CustomXRecyclerView rvCart;
 
@@ -128,6 +129,10 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
                 break;
             case R.id.tv_buy:
                 List<ShoppingCarBean.DataBean.ListResultsBean> selectList = carAdapter.getSelectList();
+                if(selectList == null || selectList.size() <= 0){
+                    LogAndToastUtil.toast("请选择想要购买的商品");
+                    return;
+                }
                 ConfirmOrderActivity.go2this(this, selectList);
                 break;
             case R.id.tv_discount_detail:
@@ -164,10 +169,16 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     @Override
     public void onDeleteClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
         map.clear();
-        map.put("buyNum", bean.getBuyNum());
-        map.put("id", bean.getId());
-        map.put("productId", bean.getProductId());
-        presenter.updateShoppingBynum(map);
+        if(bean.getBuyNum() == 0){
+            map.put("id", bean.getProductId());
+            presenter.deleteCar(map);
+        }else {
+            map.put("id", bean.getId());
+            map.put("buyNum", bean.getBuyNum());
+            map.put("productId", bean.getProductId());
+            presenter.updateShoppingBynum(map);
+        }
+
     }
 
     private void calculateMoney(List<ShoppingCarBean.DataBean.ListResultsBean> selectList) {
@@ -210,6 +221,9 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
                 if (bean.getId() == couponId) {
                     curConponBean = bean;
                     tvCoupon.setText("已优惠 ¥ " + bean.getAmount());
+                    tvCoupon.setVisibility(View.VISIBLE);
+                    imgOpen.setVisibility(View.VISIBLE);
+                    tvDiscountDetail.setVisibility(View.VISIBLE);
                 }
             }
         }

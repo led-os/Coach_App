@@ -484,6 +484,8 @@ public class HttpConstant {
     public static final String API_SHOPPING_ADD_CAR = "order/car/addShoppingCar";
     //修改商品购物车数量
     public static final String API_SHOPPING_UPDATE_BY_NUM = "order/car/upCarByNum";
+    //将商品从购物车删除
+    public static final String API_SHOPPING_ORDER_DELETE = "order/car/delCar";
 
 
 

@@ -582,14 +582,18 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
     public void addShoppingCar(Map params) {
         if (model != null) {
-            view.showLoading();
             model.addShoppingCar(REQ_CODE_ADD_SHOPPING_CAR, params, this);
+        }
+    }
+
+    public void deleteCar(Map params) {
+        if (model != null) {
+            model.deleteCar(REQ_CODE_ADD_SHOPPING_CAR, params, this);
         }
     }
 
     public void updateShoppingBynum(Map params) {
         if (model != null) {
-            view.showLoading();
             model.updateBynum(REQ_CODE_UPDATE_SHOPPING_CAR, params, this);
         }
     }

@@ -22,7 +22,13 @@ import com.jsjlzj.wayne.widgets.SearchBarView;
 import java.util.ArrayList;
 
 import butterknife.BindView;
-
+ /**
+  *
+  * @ClassName:      SearchShopActivity
+  * @Description:    商城搜索界面
+  * @Author:         曾海强
+  * @CreateDate:
+  */
 public class SearchShopActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
 
     @BindView(R.id.tv_comprehensive)
@@ -111,12 +117,11 @@ public class SearchShopActivity extends MVPBaseActivity<HomeView, HomePresenter>
                 tvComprehensive.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
                 tvNew.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
                 if(searchType == 4){
-
                     imgTimeTop.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.triangle_up_normal));
                     imgTimeBottom.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.triangle_down_pressed));
                 }else {
-                    imgTimeBottom.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.triangle_up_normal));
-                    imgTimeTop.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.triangle_down_pressed));
+                    imgTimeTop.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.triangle_up_pressed));
+                    imgTimeBottom.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.triangle_down_normal));
                 }
                 break;
         }

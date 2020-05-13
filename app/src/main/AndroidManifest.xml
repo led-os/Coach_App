@@ -93,7 +93,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.home.mine.CurrencyActivity"/>
+        <activity android:name=".ui.store.home.mine.ApplyLeaderActivity"></activity>
+        <activity android:name=".ui.store.home.mine.CurrencyActivity" />
         <activity android:name=".ui.store.find.MoreLessonActivity" />
         <activity android:name=".ui.store.home.mine.CouponActivity" />
         <activity android:name=".ui.store.home.mine.MinePrizeActivity" />
