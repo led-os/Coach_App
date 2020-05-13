@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppingCarAdapter;
+import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -59,9 +62,10 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
     @BindView(R.id.tv_commit_order)
     TextView tvCommitOrder;
 
+    private List<ShoppingCarBean.DataBean.ListResultsBean> selectList;
 
-    public static void go2this(Activity activity) {
-        activity.startActivity(new Intent(activity, ConfirmOrderActivity.class));
+    public static void go2this(Activity activity, List<ShoppingCarBean.DataBean.ListResultsBean> selectList) {
+        activity.startActivity(new Intent(activity, ConfirmOrderActivity.class).putExtra("selectList", (Serializable) selectList));
     }
 
     @Override
@@ -77,10 +81,11 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
     @Override
     protected void initViewAndControl() {
         initTitle("确定订单");
+        selectList = (List<ShoppingCarBean.DataBean.ListResultsBean>) getIntent().getSerializableExtra("selectList");
         relLocationSelect.setVisibility(View.VISIBLE);
         relLocation.setVisibility(View.GONE);
         rvOrder.setLayoutManager(new LinearLayoutManager(this));
-        ShoppingCarAdapter adapter = new ShoppingCarAdapter(this,new ArrayList<>());
+        ShoppingCarAdapter adapter = new ShoppingCarAdapter(this,selectList,1);
         rvOrder.setAdapter(adapter);
         rvOrder.setNestedScrollingEnabled(false);
         rvOrder.setHasFixedSize(true);

@@ -11,7 +11,9 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
@@ -1491,14 +1493,14 @@ public class HomeModel extends BaseModel {
 
 
  public void updateBynum(int code, Map param, final OnLoadHttpDataListener listener) {
-        HttpDataHome.getInstance().updateBynum(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+        HttpDataHome.getInstance().updateBynum(param, new Observer<MdlBaseHttpResp<ShoppingCarBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<ShoppingCarBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -1522,6 +1524,52 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<ShoppingCarBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getMineCouponList(int code, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getMineCouponList(new Observer<MdlBaseHttpResp<MineCouponBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<MineCouponBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getEnableCouponList(int code, Map param,final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getEnableCouponList(param,new Observer<MdlBaseHttpResp<EnableCouponBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<EnableCouponBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

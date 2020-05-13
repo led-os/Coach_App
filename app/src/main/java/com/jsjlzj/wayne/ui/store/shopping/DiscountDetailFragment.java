@@ -21,7 +21,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -50,7 +53,7 @@ public class DiscountDetailFragment extends DialogFragment {
     TextView tvFreight;
     @BindView(R.id.tv_total_money)
     TextView tvTotalMoney;
-    private String bean;
+    private List<EnableCouponBean.DataBean> couponList;
 
 
     @NonNull
@@ -61,7 +64,7 @@ public class DiscountDetailFragment extends DialogFragment {
         View rootView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_discount_detail, null);
         ButterKnife.bind(getContext(), rootView);
         dialog.setContentView(rootView);
-        bean = getArguments().getString(DATA);
+        couponList = (List<EnableCouponBean.DataBean>) getArguments().getSerializable(DATA);
         Window window = dialog.getWindow();
         if (window != null) {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -75,11 +78,11 @@ public class DiscountDetailFragment extends DialogFragment {
     }
 
 
-    public static void showDialog(FragmentManager fm, String bean) {
+    public static void showDialog(FragmentManager fm, List<EnableCouponBean.DataBean> couponList) {
         DiscountDetailFragment fragment = ((DiscountDetailFragment) fm.findFragmentByTag(TAG));
         if (fragment == null) {
             Bundle bundle = new Bundle();
-            bundle.putString(DATA, bean);
+            bundle.putSerializable(DATA, (Serializable) couponList);
             fragment = new DiscountDetailFragment();
             fragment.setArguments(bundle);
         }

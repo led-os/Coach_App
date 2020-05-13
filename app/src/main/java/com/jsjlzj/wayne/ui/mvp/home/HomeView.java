@@ -11,7 +11,9 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
@@ -180,6 +182,11 @@ public interface HomeView extends BaseView {
     }
 
   default void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
+    }
+
+  default void getMineCouponListSuccess(MdlBaseHttpResp<MineCouponBean> resp) {
+    }
+  default void getEnableCouponListSuccess(MdlBaseHttpResp<EnableCouponBean> resp) {
     }
 
 

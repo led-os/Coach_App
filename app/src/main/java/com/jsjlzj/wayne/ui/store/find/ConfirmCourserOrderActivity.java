@@ -49,7 +49,7 @@ public class ConfirmCourserOrderActivity extends MVPBaseActivity<HomeView, HomeP
     protected void initViewAndControl() {
         initTitle("确认订单");
         rvOrder.setLayoutManager(new LinearLayoutManager(this));
-        ShoppingCarAdapter adapter = new ShoppingCarAdapter(this,new ArrayList<>());
+        ShoppingCarAdapter adapter = new ShoppingCarAdapter(this,new ArrayList<>(),1);
         rvOrder.setAdapter(adapter);
         rvOrder.setNestedScrollingEnabled(false);
         rvOrder.setHasFixedSize(true);

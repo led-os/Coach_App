@@ -1,5 +1,6 @@
 package com.jsjlzj.wayne.entity.shopping;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -62,7 +63,7 @@ public class ShoppingCarBean {
             this.listResults = listResults;
         }
 
-        public static class ListResultsBean {
+        public static class ListResultsBean implements Serializable {
             /**
              * buyNum : 0
              * id : 0

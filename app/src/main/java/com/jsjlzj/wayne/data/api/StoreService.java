@@ -15,8 +15,10 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
@@ -497,11 +499,17 @@ public interface StoreService {
     @GET(HttpConstant.API_SHOPPING_CAR_LIST)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestShoppingCarList();
 
+    @GET(HttpConstant.API_SHOPPING_MINE_COUPON)
+    Observable<MdlBaseHttpResp<MineCouponBean>> requestMineCouponList();
+
+    @POST(HttpConstant.API_SHOPPING_ENABLE_COUPON_LIST)
+    Observable<MdlBaseHttpResp<EnableCouponBean>> requestEnableCouponList(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_SHOPPING_ADD_CAR)
     Observable<MdlBaseHttpResp<DataBean>> requestAddShoppingCar(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_SHOPPING_UPDATE_BY_NUM)
-    Observable<MdlBaseHttpResp<DataBean>> requestUpdateBynum(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<ShoppingCarBean>> requestUpdateBynum(@Body RequestBody requestBody);
 
     @Multipart
     @POST(HttpConstant.API_UPLOAD)//上次文件

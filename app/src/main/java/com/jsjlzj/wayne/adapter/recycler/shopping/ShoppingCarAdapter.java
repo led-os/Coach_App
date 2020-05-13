@@ -33,11 +33,15 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
 
     private Context context;
     private List<ShoppingCarBean.DataBean.ListResultsBean> list;
+    /**
+     * 0:购物车界面  1 ：确认订单界面
+     */
+    private int type;
 
-
-    public ShoppingCarAdapter(Context context, List<ShoppingCarBean.DataBean.ListResultsBean> list) {
+    public ShoppingCarAdapter(Context context, List<ShoppingCarBean.DataBean.ListResultsBean> list,int type) {
         this.context = context;
         this.list = list;
+        this.type = type;
     }
 
     @NonNull
@@ -83,9 +87,10 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
         TextView tvM;
         @BindView(R.id.tv_s)
         TextView tvS;
-        @BindView(R.id.ll_skill_second)
-        LinearLayout llSkillSecond;
+//        @BindView(R.id.ll_skill_second)
+//        LinearLayout llSkillSecond;
         ShoppingCarBean.DataBean.ListResultsBean bean;
+        int position;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -94,6 +99,7 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
 
         void bindView(int pos) {
             bean = list.get(pos);
+            this.position = pos;
             tvName.setText(bean.getProductName());
             tvPrice.setText("¥ " + bean.getPrice());
             if (bean.getBuyNum() > 0) {
@@ -105,7 +111,11 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
                 tvNum.setVisibility(View.GONE);
             }
             GlidUtils.setGrid(context, bean.getProductUrl(), imgShopping);
-            llSelect.setVisibility(View.VISIBLE);
+            if(type == 1){
+                llSelect.setVisibility(View.GONE);
+            }else {
+                llSelect.setVisibility(View.VISIBLE);
+            }
             if (bean.isSelect()) {
                 imgSelect.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cbx_select));
             } else {
@@ -144,16 +154,26 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
                     listener.onTypeClick(bean);
                     break;
                 case R.id.img_add:
-                    if(bean.getBuyNum() > 0){
-
+                    if(bean.getBuyNum() >= 0){
+                        imgDelete.setVisibility(View.VISIBLE);
+                        tvNum.setVisibility(View.VISIBLE);
+                        bean.setBuyNum(bean.getBuyNum() +1);
+                        notifyDataSetChanged();
                     }
                     listener.onAddClick(bean);
                     break;
                 case R.id.img_delete:
+                    if(bean.getBuyNum() >= 1){
+                        if(bean.getBuyNum() == 1){
+                            imgDelete.setVisibility(View.GONE);
+                            tvNum.setVisibility(View.GONE);
+                        }
+                        bean.setBuyNum(bean.getBuyNum() -1);
+                        notifyDataSetChanged();
+                    }
                     listener.onDeleteClick(bean);
                     break;
                 default:
-
                     break;
             }
         }
@@ -203,7 +223,6 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
 
     /**
      * 获取需要购买的商品列表
-     *
      * @return 需要购买的商品列表
      */
     public List<ShoppingCarBean.DataBean.ListResultsBean> getShoppingList() {
@@ -219,7 +238,7 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
     }
 
     /**
-     * 情况选择的商品
+     * 清空选择的商品
      */
     public void clearSelect() {
         for (ShoppingCarBean.DataBean.ListResultsBean bean : list) {

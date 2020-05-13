@@ -4,15 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -22,6 +24,7 @@ import butterknife.ButterKnife;
  * @CreateDate: 2020/4/25 0:18
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+
 
     private Context context;
     private List<String> list = new ArrayList<>();
@@ -56,6 +59,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.img_product)
+        ImageView imgProduct;
+        @BindView(R.id.tv_title)
+        TextView tvTitle;
+        @BindView(R.id.tv_money)
+        TextView tvMoney;
+        @BindView(R.id.img_plus)
+        ImageView imgPlus;
+        @BindView(R.id.tv_old_money)
+        TextView tvOldMoney;
 
         String categoryBean;
 

@@ -88,6 +88,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_GROUP_PRODUCT_LIST = 54;
     private static final int REQ_CODE_SHOPPING_CAR_LIST = 55;
     private static final int REQ_CODE_ADD_SHOPPING_CAR = 56;
+    private static final int REQ_CODE_UPDATE_SHOPPING_CAR = 57;
+    private static final int REQ_CODE_MINE_COUPON_LIST = 58;
+    private static final int REQ_CODE_ENABLE_COUPON_LIST = 59;
 
 
     private HomeModel model;
@@ -454,7 +457,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getMineProfit(REQ_CODE_MINE_PROFIT, null, this);
         }
     }
-   public void getRecommendCategoryList(Map param) {
+
+    public void getRecommendCategoryList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getRecommendCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
@@ -467,18 +471,21 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getFreeExperCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
         }
     }
+
     public void getHotCategoryList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getHotCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
         }
     }
+
     public void getHotListeningCategoryList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getHotListeningCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
         }
     }
+
     public void getJianzhiCategoryList(Map param) {
         if (model != null) {
             view.showLoading();
@@ -492,6 +499,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getMotionCategoryList(REQ_CODE_RECOMMEND_CATEGORY_LIST, param, this);
         }
     }
+
     public void getFourLessonCategoryList(Map param) {
         if (model != null) {
             view.showLoading();
@@ -507,41 +515,42 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
-   public void getSearchCategoryList(Map param) {
+    public void getSearchCategoryList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getSearchCategoryList(REQ_CODE_SEARCH_CATEGORY_LIST, param, this);
         }
     }
 
-   public void getLocationList() {
+    public void getLocationList() {
         if (model != null) {
             view.showLoading();
             model.getLocationList(REQ_CODE_LOCATION_LIST, null, this);
         }
     }
 
-   public void saveLocation(Map param) {
+    public void saveLocation(Map param) {
         if (model != null) {
             view.showLoading();
             model.saveLocation(REQ_CODE_SAVE_LOCATION, param, this);
         }
     }
-  public void getCurrencyList() {
+
+    public void getCurrencyList() {
         if (model != null) {
             view.showLoading();
             model.getCurrencyList(REQ_CODE_CURRENCY_LIST, null, this);
         }
     }
 
-  public void getCurrencyDetailList(Map param) {
+    public void getCurrencyDetailList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getCurrencyDetailList(REQ_CODE_CURRENCY_DETAIL_LIST, param, this);
         }
     }
 
-  public void getGroupProductList(Map param) {
+    public void getGroupProductList(Map param) {
         if (model != null) {
             view.showLoading();
             model.getGroupProductList(REQ_CODE_GROUP_PRODUCT_LIST, param, this);
@@ -549,25 +558,39 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
-  public void getShoppingCarList() {
+    public void getShoppingCarList() {
         if (model != null) {
             view.showLoading();
             model.getShoppingCarList(REQ_CODE_SHOPPING_CAR_LIST, this);
         }
     }
 
-
-  public void addShoppingCar(Map params) {
+    public void getMineCouponList() {
         if (model != null) {
             view.showLoading();
-            model.addShoppingCar(REQ_CODE_ADD_SHOPPING_CAR, params,this);
+            model.getMineCouponList(REQ_CODE_MINE_COUPON_LIST, this);
         }
     }
 
-  public void updateShoppingBynum(Map params) {
+    public void getEnableCouponList() {
         if (model != null) {
             view.showLoading();
-            model.updateBynum(REQ_CODE_ADD_SHOPPING_CAR, params,this);
+            model.getEnableCouponList(REQ_CODE_ENABLE_COUPON_LIST, null,this);
+        }
+    }
+
+
+    public void addShoppingCar(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.addShoppingCar(REQ_CODE_ADD_SHOPPING_CAR, params, this);
+        }
+    }
+
+    public void updateShoppingBynum(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.updateBynum(REQ_CODE_UPDATE_SHOPPING_CAR, params, this);
         }
     }
 
@@ -699,10 +722,17 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_GROUP_PRODUCT_LIST:
                 view.getShoppingListSuccess(resp);
                 break;
+            case REQ_CODE_UPDATE_SHOPPING_CAR:
             case REQ_CODE_SHOPPING_CAR_LIST:
                 view.getShoppingCarListSuccess(resp);
                 break;
-            default :
+            case REQ_CODE_MINE_COUPON_LIST:
+                view.getMineCouponListSuccess(resp);
+                break;
+            case REQ_CODE_ENABLE_COUPON_LIST:
+                view.getEnableCouponListSuccess(resp);
+                break;
+            default:
                 break;
         }
     }
