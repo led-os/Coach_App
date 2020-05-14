@@ -11,6 +11,9 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.BankCardBean;
+import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
+import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
@@ -187,6 +190,12 @@ public interface HomeView extends BaseView {
   default void getMineCouponListSuccess(MdlBaseHttpResp<MineCouponBean> resp) {
     }
   default void getEnableCouponListSuccess(MdlBaseHttpResp<EnableCouponBean> resp) {
+    }
+
+  default void getBankCardListSuccess(MdlBaseHttpResp<BankCardListBean> resp) {
+    }
+
+  default void getBankCardItemSuccess(MdlBaseHttpResp<BankCardItemBean> resp) {
     }
 
 

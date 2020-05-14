@@ -83,7 +83,7 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         map.clear();
         map.put("amount",tvMoney.getText().toString());
         map.put("bankCardId",tvMoney.getText().toString());
-        presenter.applyLeader(map);
+        presenter.applyCashout(map);
     }
 
 

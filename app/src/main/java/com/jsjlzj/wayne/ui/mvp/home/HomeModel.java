@@ -11,6 +11,8 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.BankCardBean;
+import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
@@ -1490,7 +1492,8 @@ public class HomeModel extends BaseModel {
             }
         });
     }
-  public void getTimeSkillProductList(int code, Map param, final OnLoadHttpDataListener listener) {
+
+    public void getTimeSkillProductList(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().getTimeSkillProductList(param, new Observer<MdlBaseHttpResp<ShoppingPageBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -1535,7 +1538,8 @@ public class HomeModel extends BaseModel {
             }
         });
     }
- public void deleteCar(int code, Map param, final OnLoadHttpDataListener listener) {
+
+    public void deleteCar(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().deleteCar(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -1559,7 +1563,7 @@ public class HomeModel extends BaseModel {
     }
 
 
- public void updateBynum(int code, Map param, final OnLoadHttpDataListener listener) {
+    public void updateBynum(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().updateBynum(param, new Observer<MdlBaseHttpResp<ShoppingCarBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -1582,7 +1586,7 @@ public class HomeModel extends BaseModel {
         });
     }
 
- public void applyLeader(int code, Map param, final OnLoadHttpDataListener listener) {
+    public void applyLeader(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().applyLeader(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -1605,7 +1609,76 @@ public class HomeModel extends BaseModel {
         });
     }
 
- public void applyCashout(int code, Map param, final OnLoadHttpDataListener listener) {
+    public void getBankCardList(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getBankCardList(param, new Observer<MdlBaseHttpResp<BankCardBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<BankCardBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void deleteBankCard(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().deleteBankCard(param, new Observer<MdlBaseHttpResp<BankCardBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<BankCardBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getBankCardInfo(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getBankCardInfo(param, new Observer<MdlBaseHttpResp<BankCardItemBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<BankCardItemBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void applyCashout(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().applyCashout(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -1651,8 +1724,8 @@ public class HomeModel extends BaseModel {
         });
     }
 
-    public void getMineCouponList(int useStatus,int code, final OnLoadHttpDataListener listener) {
-        HttpDataHome.getInstance().getMineCouponList(useStatus,new Observer<MdlBaseHttpResp<MineCouponBean>>() {
+    public void getMineCouponList(int useStatus, int code, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getMineCouponList(useStatus, new Observer<MdlBaseHttpResp<MineCouponBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
@@ -1674,8 +1747,8 @@ public class HomeModel extends BaseModel {
         });
     }
 
-    public void getEnableCouponList(int code, Map param,final OnLoadHttpDataListener listener) {
-        HttpDataHome.getInstance().getEnableCouponList(param,new Observer<MdlBaseHttpResp<EnableCouponBean>>() {
+    public void getEnableCouponList(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getEnableCouponList(param, new Observer<MdlBaseHttpResp<EnableCouponBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;

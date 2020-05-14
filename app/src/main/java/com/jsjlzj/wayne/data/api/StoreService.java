@@ -15,6 +15,9 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.BankCardBean;
+import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
+import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
@@ -520,6 +523,15 @@ public interface StoreService {
 
     @POST(HttpConstant.API_MINE_APPLY_LEADER)
     Observable<MdlBaseHttpResp<DataBean>> requestApplyLeader(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_BANKCARD_LIST)
+    Observable<MdlBaseHttpResp<BankCardListBean>> requestBankCardList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_DELETE_BANKCARD)
+    Observable<MdlBaseHttpResp<BankCardListBean>> requestDeleteBankCard(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_GET_BANKCARD)
+    Observable<MdlBaseHttpResp<BankCardItemBean>> requestBankCardInfo(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_MINE_APPLY_CASHOUT)
     Observable<MdlBaseHttpResp<DataBean>> requestApplyCashout(@Body RequestBody requestBody);

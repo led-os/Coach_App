@@ -490,6 +490,12 @@ public class HttpConstant {
     public static final String API_SHOPPING_UPDATE_BY_NUM = "order/car/upCarByNum";
     //申请成为团长
     public static final String API_MINE_APPLY_LEADER = "addApplyRegimental";
+    //获取银行卡列表信息
+    public static final String API_MINE_BANKCARD_LIST = "getBankCardList";
+    //删除银行卡信息
+    public static final String API_MINE_DELETE_BANKCARD = "delBankCardInfo";
+    //根据id获取银行卡信息
+    public static final String API_MINE_GET_BANKCARD = "getBankCardInfo";
     //申请提现
     public static final String API_MINE_APPLY_CASHOUT = "applyCashWithdrawal";
     //将商品从购物车删除

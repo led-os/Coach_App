@@ -92,6 +92,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_MINE_COUPON_LIST = 58;
     private static final int REQ_CODE_ENABLE_COUPON_LIST = 59;
     private static final int REQ_CODE_APPLY_LEADER = 60;
+    private static final int REQ_CODE_BANKCARD_LIST = 61;
+    private static final int REQ_CODE_BANKCARD_ITEM = 62;
 
 
     private HomeModel model;
@@ -619,6 +621,23 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void getBankCardList() {
+        if (model != null) {
+            model.getBankCardList(REQ_CODE_BANKCARD_LIST, null, this);
+        }
+    }
+    public void deleteBankCard(Map params) {
+        if (model != null) {
+            model.deleteBankCard(REQ_CODE_BANKCARD_LIST, params, this);
+        }
+    }
+
+    public void getBankCardInfo(Map params) {
+        if (model != null) {
+            model.getBankCardInfo(REQ_CODE_BANKCARD_ITEM, params, this);
+        }
+    }
+
     public void applyCashout(Map params) {
         if (model != null) {
             model.applyCashout(REQ_CODE_APPLY_LEADER, params, this);
@@ -764,8 +783,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_ENABLE_COUPON_LIST:
                 view.getEnableCouponListSuccess(resp);
                 break;
-
-
+            case REQ_CODE_BANKCARD_LIST:
+                view.getBankCardListSuccess(resp);
+                break;
+            case REQ_CODE_BANKCARD_ITEM:
+                view.getBankCardItemSuccess(resp);
+                break;
             default:
                 break;
         }

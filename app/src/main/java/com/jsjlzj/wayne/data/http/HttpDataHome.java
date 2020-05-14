@@ -723,6 +723,26 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestApplyLeader(body);
         setSubscribe(observable, observer);
     }
+
+    public void getBankCardList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestBankCardList(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void deleteBankCard(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestDeleteBankCard(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getBankCardInfo(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestBankCardInfo(body);
+        setSubscribe(observable, observer);
+    }
+
+
     public void applyCashout(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestApplyCashout(body);
