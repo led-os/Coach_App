@@ -17,7 +17,7 @@ import butterknife.BindView;
 
 /**
  * @ClassName: TimeSecondActivity
- * @Description: 显示秒杀界面
+ * @Description: 限时秒杀界面
  * @Author: 曾海强
  * @CreateDate: 2020/04/25
  */

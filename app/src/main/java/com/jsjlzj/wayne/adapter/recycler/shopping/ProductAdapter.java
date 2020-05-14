@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +29,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<ShoppingBean> list = new ArrayList<>();
 
-    public ProductAdapter(Context context, List<String> list) {
+    public ProductAdapter(Context context, List<ShoppingBean> list) {
         this.context = context;
         this.list.addAll(list);
     }
 
 
-    public void setData(List<String> list) {
+    public void setData(List<ShoppingBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -55,7 +57,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,7 +72,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         @BindView(R.id.tv_old_money)
         TextView tvOldMoney;
 
-        String categoryBean;
+        ShoppingBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,11 +80,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
 
         void bindView(int pos) {
-//            categoryBean = list.get(pos);
-
+            bean = list.get(pos);
+            GlidUtils.setGrid(context,bean.getPic(),imgProduct);
+            tvTitle.setText(bean.getName());
+            tvMoney.setText(context.getResources().getString(R.string.chinese_money)+bean.getPrice());
+            tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+bean.getOriginalPrice());
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
-                    listener.onItemClick(categoryBean);
+                    listener.onItemClick(bean);
                 }
 
             });
@@ -97,6 +102,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     public interface OnItemClickListener {
 
-        void onItemClick(String bean);
+        void onItemClick(ShoppingBean bean);
     }
 }

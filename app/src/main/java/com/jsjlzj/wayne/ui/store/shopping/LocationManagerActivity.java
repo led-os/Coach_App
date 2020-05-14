@@ -77,6 +77,7 @@ public class LocationManagerActivity extends MVPBaseActivity<HomeView, HomePrese
             case R.id.tv_right_btn:
                 EditLocationActivity.go2this(this, REQUEST_CODE,null);
                 break;
+            default:break;
         }
     }
 

@@ -672,14 +672,26 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void getSearchProductList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSearchProductList(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getTimeSkillProductList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestTimeSkillProductList(body);
+        setSubscribe(observable, observer);
+    }
+
     public void getShoppingCarList(Observer observer) {
         Observable observable = service.requestShoppingCarList();
         setSubscribe(observable, observer);
     }
 
 
-    public void getMineCouponList(Observer observer) {
-        Observable observable = service.requestMineCouponList();
+    public void getMineCouponList(int useStatus,Observer observer) {
+        Observable observable = service.requestMineCouponList(useStatus);
         setSubscribe(observable, observer);
     }
 
@@ -704,6 +716,16 @@ public class HttpDataHome extends BaseHttpData {
     public void updateBynum(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestUpdateBynum(body);
+        setSubscribe(observable, observer);
+    }
+    public void applyLeader(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestApplyLeader(body);
+        setSubscribe(observable, observer);
+    }
+    public void applyCashout(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestApplyCashout(body);
         setSubscribe(observable, observer);
     }
 

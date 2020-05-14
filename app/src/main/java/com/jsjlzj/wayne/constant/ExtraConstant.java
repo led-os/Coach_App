@@ -65,7 +65,10 @@ public class ExtraConstant {
     public static final String EXTRA_LNG = "_lng";
     public static final String EXTRA_LOCATION = "_location";
     public static final String EXTRA_PRICE = "_price";
-
+    public static final String DATE_FORMAT_0 = "yyyy-MM-dd";
+    public static final String DATE_FORMAT_1 = "yyyy-MM-dd HH:mm";
+    public static final String DATE_FORMAT_2 = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_FORMAT_3 = "yyyy";
 
     public static final String EXTRA_REPORTTYPE = "REPORTTYPE";
 }

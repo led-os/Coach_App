@@ -10,11 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.shopping.PayResultActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -40,6 +46,8 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     TextView tvAddModify;
     @BindView(R.id.tv_one_cash_out)
     TextView tvOneCashOut;
+    private Map<Object,Object> map = new HashMap<>();
+    private int bankCardId;
 
     public static void go2this(Activity activity){
         activity.startActivity(new Intent(activity,CashOutActivity.class));
@@ -63,6 +71,21 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         tvOneCashOut.setOnClickListener(clickListener);
     }
 
+    private void commitCashout() {
+        if(TextUtils.isEmpty(tvMoney.getText().toString())){
+            LogAndToastUtil.toast("请输入要申请的提现额度");
+            return;
+        }
+        if(bankCardId == 0){
+            LogAndToastUtil.toast("请选择收款银行卡");
+            return;
+        }
+        map.clear();
+        map.put("amount",tvMoney.getText().toString());
+        map.put("bankCardId",tvMoney.getText().toString());
+        presenter.applyLeader(map);
+    }
+
 
     @Override
     protected void onMultiClick(View view) {
@@ -80,13 +103,12 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 break;
             case R.id.tv_one_cash_out://一键提现
                 if(!TextUtils.isEmpty(tvBandCard.getText().toString()) && tvBandCard.getVisibility() == View.VISIBLE){
-                    PayResultActivity.go2this(this,1);
-                    LogAndToastUtil.toast("提现成功");
-                    finish();
+                    commitCashout();
                 }else {
-                    LogAndToastUtil.toast("请添加银行卡");
+                    LogAndToastUtil.toast("请选择收款银行卡");
                 }
                 break;
+            default:break;
         }
     }
 
@@ -98,8 +120,18 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
             tvBandCard.setVisibility(View.VISIBLE);
             String openName = data.getStringExtra("open_name");
             String bankCard = data.getStringExtra("bank_card");
+            bankCardId = data.getIntExtra("bankCardId",0);
             tvBandCard.setText(openName+" ("+bankCard.substring(bankCard.length()-4)+")");
             tvAddModify.setText("更换");
+        }
+    }
+
+    @Override
+    public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            LogAndToastUtil.toast("提现成功");
+            PayResultActivity.go2this(this,1);
+            finish();
         }
     }
 }

@@ -24,11 +24,13 @@ import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppTypeAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.ui.store.find.MoreLessonActivity;
+import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
 import com.jsjlzj.wayne.ui.store.search.SearchShopActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
 import com.jsjlzj.wayne.ui.store.shopping.TimeSecondActivity;
@@ -36,7 +38,9 @@ import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 import com.jsjlzj.wayne.widgets.NestedRecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -46,7 +50,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate: 2020/04/20
  */
-public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView {
+public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView, ShopClassAdapter.OnItemClickListener {
 
 
     @BindView(R.id.ll_search)
@@ -108,6 +112,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     private NewHotProductAdapter hotProductAdapter;//热门产品适配器
     private GroupProductAdapter groupProductAdapter;//组合优惠适配器
     private ShopClassAdapter shopClassAdapter;//底部分类适配器
+    private ProductAdapter productAdapter;//底部商品列表
     private List<HomeShoppingDataBean.DataBean.CategoryListBean> shopClassList = new ArrayList<>();
 
     public TabItemShoppingFragment() {
@@ -133,11 +138,19 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         relShoppingCart.setOnClickListener(clickListener);
         initRecycler();
         presenter.getHomeShoppingData();
+        Map<Object,Object> map = new HashMap<>();
+        map.put("keywords","首页全部好货");
+        map.put(HttpConstant.PAGE_NO, 1);
+        map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+        presenter.getSearchProductList(map);
     }
 
     private void initRecycler() {
         shoppTypeAdapter = new ShoppTypeAdapter(getActivity(),new ArrayList<>());
         rvShopType.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        shoppTypeAdapter.setListener(bean -> {
+            MoreLessonActivity.go2this(getActivity(),bean.getName(),8,bean.getCategoryId());
+        });
         rvShopType.setAdapter(shoppTypeAdapter);
 
         secondSkillAdapter = new SecondSkillAdapter(getActivity(),new ArrayList<>());
@@ -150,6 +163,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
         shopClassAdapter = new ShopClassAdapter(getActivity(),shopClassList);
         rvShopClass.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        shopClassAdapter.setListener(this);
         rvShopClass.setAdapter(shopClassAdapter);
 
         hotProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
@@ -162,7 +176,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
         rvShop.setHasFixedSize(true);
         rvShop.setNestedScrollingEnabled(false);
-        ProductAdapter productAdapter = new ProductAdapter(getActivity(),new ArrayList<>());
+        productAdapter = new ProductAdapter(getActivity(),new ArrayList<>());
         rvShop.setLayoutManager(new GridLayoutManager(getActivity(),2));
         rvShop.setAdapter(productAdapter);
     }
@@ -175,6 +189,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
                 SearchShopActivity.go2this(getActivity());
                 break;
             case R.id.img_info:
+                MessageConnectActivity.go2this(getActivity());
                 break;
             case R.id.tv_compose_more:
                 MoreLessonActivity.go2this(getActivity(),"组合优惠",7,0);
@@ -237,7 +252,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
             if(resp.getData().getData().getCategoryList() != null){
                 shoppTypeAdapter.setData(resp.getData().getData().getCategoryList());
                 shopClassList.clear();
-                shopClassList.add(new HomeShoppingDataBean.DataBean.CategoryListBean("0","全部","优选好货"));
+                shopClassList.add(new HomeShoppingDataBean.DataBean.CategoryListBean(0,"全部","优选好货"));
                 shopClassList.addAll(resp.getData().getData().getCategoryList());
                 shopClassAdapter.setData(shopClassList);
             }
@@ -256,6 +271,16 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         }
     }
 
+
+    @Override
+    public void getCategoryTypeListSuccess(MdlBaseHttpResp<ShoppingPageBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            if(resp.getData().getData() != null && resp.getData().getData().getResult() != null){
+                productAdapter.setData(resp.getData().getData().getResult());
+            }
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -268,4 +293,12 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         scrollBanner.stopTurning();
     }
 
+    @Override
+    public void onItemClick(HomeShoppingDataBean.DataBean.CategoryListBean bean) {
+        Map<Object,Object> map = new HashMap<>();
+        map.put("productCategoryId",bean.getCategoryId());
+        map.put(HttpConstant.PAGE_NO, 1);
+        map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+        presenter.getSearchProductList(map);
+    }
 }

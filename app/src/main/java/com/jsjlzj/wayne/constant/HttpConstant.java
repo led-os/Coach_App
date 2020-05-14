@@ -474,6 +474,10 @@ public class HttpConstant {
     public static final String API_CURRENCY_DETAIL = "fycoin/tradeDetailList";
     //组合优惠分页接口
     public static final String API_GROUP_PRODUCT = "product/getDiscountsProductList";
+    //搜索商品列表
+    public static final String API_SEARCH_PRODUCT = "product/getProductList";
+    //限时秒杀列表页
+    public static final String API_TIME_SKILL_SHOPPING_LIST = "product/getActivityList";
     //购物车列表
     public static final String API_SHOPPING_CAR_LIST = "order/car/getShoppingCarList";
     //我的优惠劵列表
@@ -484,6 +488,10 @@ public class HttpConstant {
     public static final String API_SHOPPING_ADD_CAR = "order/car/addShoppingCar";
     //修改商品购物车数量
     public static final String API_SHOPPING_UPDATE_BY_NUM = "order/car/upCarByNum";
+    //申请成为团长
+    public static final String API_MINE_APPLY_LEADER = "addApplyRegimental";
+    //申请提现
+    public static final String API_MINE_APPLY_CASHOUT = "applyCashWithdrawal";
     //将商品从购物车删除
     public static final String API_SHOPPING_ORDER_DELETE = "order/car/delCar";
 

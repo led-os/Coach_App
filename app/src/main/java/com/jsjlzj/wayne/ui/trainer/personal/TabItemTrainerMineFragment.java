@@ -32,6 +32,7 @@ import com.jsjlzj.wayne.ui.publicac.mine.MineFavoriteActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineSignUpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineStudyActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.PersonMineActivity;
+import com.jsjlzj.wayne.ui.store.home.mine.ApplyLeaderActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.CouponActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.CurrencyActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
@@ -257,14 +258,16 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
             case R.id.rel_user_info:
                 PersonMineActivity.go2this(getActivity(), bean);
                 break;
-            case R.id.tv_copy://复制邀请码到剪切板
+            //复制邀请码到剪切板
+            case R.id.tv_copy:
                 copyInfo(tvInvitationCode.getText().toString());
                 break;
-
-            case R.id.tv_commit_money:// TODO: 2020/5/6  是团长 提现   如果用户不是团长 ，这里是成为团长， 余额为0
+            /**  是团长 提现   如果用户不是团长 ，这里是成为团长， 余额为0*/
+            case R.id.tv_commit_money:
             case R.id.img_right_money:
-                if(bean.getRegimentalLevel() != 0){//不是团长
-
+                //不是团长
+                if(bean.getRegimentalLevel() == 0){
+                    ApplyLeaderActivity.go2this(getActivity());
                 }else {
                     MineProfitActivity.go2this(getActivity());
                 }
@@ -315,6 +318,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 MineSignUpActivity.go2this(getActivity());
                 break;
             case R.id.ll_cwtz://成为团长
+                ApplyLeaderActivity.go2this(getActivity());
                 break;
             case R.id.ll_cjrz://厂家入驻
                 break;
@@ -389,6 +393,11 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 imgLevel.setVisibility(View.VISIBLE);
             }else {
                 imgLevel.setVisibility(View.GONE);
+            }
+            if(bean.getRegimentalLevel() == 0){
+                tvCommitMoney.setText("成为团长");
+            }else {
+                tvCommitMoney.setText("提现");
             }
             tvInvitationCode.setText(bean.getUserId());
             tvMoney.setText(bean.getWithdrawableAmount());

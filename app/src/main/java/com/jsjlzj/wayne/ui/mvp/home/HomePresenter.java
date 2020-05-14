@@ -91,6 +91,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_UPDATE_SHOPPING_CAR = 57;
     private static final int REQ_CODE_MINE_COUPON_LIST = 58;
     private static final int REQ_CODE_ENABLE_COUPON_LIST = 59;
+    private static final int REQ_CODE_APPLY_LEADER = 60;
 
 
     private HomeModel model;
@@ -557,6 +558,20 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void getSearchProductList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getSearchProductList(REQ_CODE_GROUP_PRODUCT_LIST, param, this);
+        }
+    }
+
+    public void getTimeSkillProductList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getTimeSkillProductList(REQ_CODE_GROUP_PRODUCT_LIST, param, this);
+        }
+    }
+
 
     public void getShoppingCarList() {
         if (model != null) {
@@ -565,10 +580,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
-    public void getMineCouponList() {
+    public void getMineCouponList(int useStatus) {
         if (model != null) {
             view.showLoading();
-            model.getMineCouponList(REQ_CODE_MINE_COUPON_LIST, this);
+            model.getMineCouponList(useStatus,REQ_CODE_MINE_COUPON_LIST, this);
         }
     }
 
@@ -595,6 +610,18 @@ public class HomePresenter extends BasePresenter<HomeView> {
     public void updateShoppingBynum(Map params) {
         if (model != null) {
             model.updateBynum(REQ_CODE_UPDATE_SHOPPING_CAR, params, this);
+        }
+    }
+
+    public void applyLeader(Map params) {
+        if (model != null) {
+            model.applyLeader(REQ_CODE_APPLY_LEADER, params, this);
+        }
+    }
+
+    public void applyCashout(Map params) {
+        if (model != null) {
+            model.applyCashout(REQ_CODE_APPLY_LEADER, params, this);
         }
     }
 
@@ -647,6 +674,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_CLICK_FOLLOW:
             case REQ_CODE_CANCEL_FOLLOW:
             case REQ_CODE_ADD_SHOPPING_CAR:
+            case REQ_CODE_APPLY_LEADER:
                 view.getMessageSuccess(resp);
                 break;
             case REQ_CODE_DELETE_DYNAMIC:
@@ -736,6 +764,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_ENABLE_COUPON_LIST:
                 view.getEnableCouponListSuccess(resp);
                 break;
+
+
             default:
                 break;
         }

@@ -35,6 +35,7 @@
             android:singleLine="true"
             android:maxLength="20"
             android:ellipsize="end"
+            android:gravity="end|center_vertical"
             android:layout_marginStart="@dimen/padding_16"
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_dddddd"
@@ -73,6 +74,7 @@
             android:singleLine="true"
             android:maxLength="20"
             android:ellipsize="end"
+            android:gravity="end|center_vertical"
             android:layout_marginStart="@dimen/padding_16"
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_dddddd"
@@ -152,6 +154,7 @@
             android:singleLine="true"
             android:maxLength="20"
             android:ellipsize="end"
+            android:gravity="end|center_vertical"
             android:layout_marginStart="@dimen/padding_16"
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_dddddd"
@@ -167,6 +170,7 @@
         android:background="@color/color_eeeeee"/>
     <LinearLayout
         android:layout_width="match_parent"
+        android:gravity="center_vertical"
         android:layout_height="@dimen/padding_50">
 
         <TextView
@@ -190,6 +194,7 @@
             android:singleLine="true"
             android:maxLength="20"
             android:ellipsize="end"
+            android:gravity="end|center_vertical"
             android:layout_marginStart="@dimen/padding_16"
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_dddddd"

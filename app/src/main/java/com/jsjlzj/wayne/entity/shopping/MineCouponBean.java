@@ -31,8 +31,8 @@ public class MineCouponBean {
          */
 
         private String amount;
-        private String endTime;
-        private String minPoint;
+        private long endTime;
+        private int minPoint;
         private String name;
         private int type;
         private int useType;
@@ -45,19 +45,19 @@ public class MineCouponBean {
             this.amount = amount;
         }
 
-        public String getEndTime() {
+        public long getEndTime() {
             return endTime;
         }
 
-        public void setEndTime(String endTime) {
+        public void setEndTime(long endTime) {
             this.endTime = endTime;
         }
 
-        public String getMinPoint() {
+        public int getMinPoint() {
             return minPoint;
         }
 
-        public void setMinPoint(String minPoint) {
+        public void setMinPoint(int minPoint) {
             this.minPoint = minPoint;
         }
 

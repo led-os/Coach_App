@@ -2,6 +2,8 @@ package com.jsjlzj.wayne.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @ClassName: DateUtil
@@ -27,6 +29,17 @@ public class DateUtil {
         } else {
             return String.valueOf(integer);
         }
+    }
+
+    /**
+     * 时间毫秒值转换指定格式时间
+     *
+     * @param timeInMillis
+     * @param dateFormat
+     * @return
+     */
+    public static String getTime(long timeInMillis, SimpleDateFormat dateFormat) {
+        return dateFormat.format(new Date(timeInMillis));
     }
 
     public static String getDownTimer(long remain){

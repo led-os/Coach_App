@@ -44,6 +44,7 @@
         android:src="@drawable/bq_plus"
         android:layout_below="@+id/tv_des"
         android:layout_marginTop="@dimen/padding_7"
+        android:visibility="gone"
         android:layout_alignStart="@+id/tv_title"/>
 
     <TextView

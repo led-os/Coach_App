@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.mine.CouponAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -31,6 +34,7 @@ public class CouponFragment extends MVPBaseFragment<HomeView, HomePresenter> imp
      * 0 未使用  1 ：已使用   2：已过期
      */
     private int type;
+    private CouponAdapter adapter;
 
 
     public static CouponFragment getInstance(int type){
@@ -61,9 +65,20 @@ public class CouponFragment extends MVPBaseFragment<HomeView, HomePresenter> imp
     @Override
     protected void initViewAndControl(View view) {
         rvCoupon.setLayoutManager(new LinearLayoutManager(getActivity()));
-        CouponAdapter adapter = new CouponAdapter(getActivity(),new ArrayList<>());
+        adapter = new CouponAdapter(getActivity(),new ArrayList<>());
         rvCoupon.setAdapter(adapter);
+        presenter.getMineCouponList(type);
     }
 
 
+    @Override
+    public void getMineCouponListSuccess(MdlBaseHttpResp<MineCouponBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            if(resp.getData().getData() != null && resp.getData().getData().size() > 0){
+                adapter.setData(resp.getData().getData());
+            }else {
+                showEmpty(R.id.rel_empty,0,null);
+            }
+        }
+    }
 }

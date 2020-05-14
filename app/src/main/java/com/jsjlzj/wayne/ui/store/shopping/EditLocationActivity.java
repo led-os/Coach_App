@@ -102,6 +102,7 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
                 AddressActivity.go2this(this);
                 break;
             case R.id.tv_save:
+
                 saveLocation();
                 break;
             case R.id.img_default:
@@ -120,6 +121,9 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
         }
     }
 
+    /**
+     * 保存地址或修改地址
+     */
     private void saveLocation() {
         if(TextUtils.isEmpty(etName.getText().toString())){
             LogAndToastUtil.toast("请输入联系人姓名");

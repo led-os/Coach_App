@@ -6,6 +6,7 @@ import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.FindCategoryBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlCV;
 import com.jsjlzj.wayne.entity.store.MdlDict;
@@ -129,6 +130,10 @@ public interface TalentPersonalView extends BaseView {
 
     //获取首页商城列表成功
     default void getHomeShoppingDataSuccess(MdlBaseHttpResp<HomeShoppingDataBean> resp){}
+
+
+    //获取首页商城分类列表成功
+    default void getCategoryTypeListSuccess(MdlBaseHttpResp<ShoppingPageBean> resp){}
 
 
     //获取数据字典

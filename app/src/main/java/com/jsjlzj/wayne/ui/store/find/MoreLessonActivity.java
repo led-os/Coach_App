@@ -3,12 +3,14 @@ package com.jsjlzj.wayne.ui.store.find;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.find.CourserNewAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.GroupProductAdapter;
+import com.jsjlzj.wayne.adapter.recycler.shopping.ProductAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
@@ -45,7 +47,7 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
     private int pageNo = 1;
     private int pageCount;
     /**
-     * 0 : 免费体验   1 ： 每日一学热门课程  2 ：热门听课   3 ：减脂  4 ： 更多运动   5 ： 4们课程   6 ： 分类推荐列表  7 :更多组合优惠
+     * 0 : 免费体验   1 ： 每日一学热门课程  2 ：热门听课   3 ：减脂  4 ： 更多运动   5 ： 4们课程   6 ： 分类推荐列表  7 :更多组合优惠  8 :更多指定类型商品
      */
     private int type;
 
@@ -54,7 +56,7 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
     private CourserNewAdapter courserNewAdapter;
     private List<FindLessonBean> list = new ArrayList<>();
     private List<ShoppingBean> shoppingList = new ArrayList<>();
-    private GroupProductAdapter groupProductAdapter;
+    private ProductAdapter groupProductAdapter;
 
 
     public static void go2this(Context activity, String title, int type, int categoryId) {
@@ -82,12 +84,14 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
         type = getIntent().getIntExtra("type", 0);
         categoryId = getIntent().getIntExtra("categoryId", 0);
         rvData.setLoadingListener(this);
-        rvData.setLayoutManager(new LinearLayoutManager(this));
-        if(type != 7){
+
+        if(type != 7 && type != 8){
+            rvData.setLayoutManager(new LinearLayoutManager(this));
             courserNewAdapter = new CourserNewAdapter(this, list);
             rvData.setAdapter(courserNewAdapter);
         }else {
-            groupProductAdapter = new GroupProductAdapter(this,shoppingList);
+            rvData.setLayoutManager(new GridLayoutManager(this,2));
+            groupProductAdapter = new ProductAdapter(this,shoppingList);
             rvData.setAdapter(groupProductAdapter);
         }
         loadData(true);
@@ -127,6 +131,10 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
                 break;
             case 7:
                 presenter.getGroupProductList(map);
+                break;
+            case 8:
+                map.put("productCategoryId",categoryId);
+                presenter.getSearchProductList(map);
                 break;
             default:
                 break;

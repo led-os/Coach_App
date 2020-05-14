@@ -62,6 +62,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 /**
  * Created by Administrator on 2018/6/11.
@@ -496,11 +497,17 @@ public interface StoreService {
     @POST(HttpConstant.API_GROUP_PRODUCT)
     Observable<MdlBaseHttpResp<ShoppingPageBean>> requestGroupProductList(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_SEARCH_PRODUCT)
+    Observable<MdlBaseHttpResp<ShoppingPageBean>> requestSearchProductList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_TIME_SKILL_SHOPPING_LIST)
+    Observable<MdlBaseHttpResp<ShoppingPageBean>> requestTimeSkillProductList(@Body RequestBody requestBody);
+
     @GET(HttpConstant.API_SHOPPING_CAR_LIST)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestShoppingCarList();
 
     @GET(HttpConstant.API_SHOPPING_MINE_COUPON)
-    Observable<MdlBaseHttpResp<MineCouponBean>> requestMineCouponList();
+    Observable<MdlBaseHttpResp<MineCouponBean>> requestMineCouponList(@Query("useStatus") int useStatus);
 
     @POST(HttpConstant.API_SHOPPING_ENABLE_COUPON_LIST)
     Observable<MdlBaseHttpResp<EnableCouponBean>> requestEnableCouponList(@Body RequestBody requestBody);
@@ -510,6 +517,12 @@ public interface StoreService {
 
     @POST(HttpConstant.API_SHOPPING_UPDATE_BY_NUM)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestUpdateBynum(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_APPLY_LEADER)
+    Observable<MdlBaseHttpResp<DataBean>> requestApplyLeader(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_APPLY_CASHOUT)
+    Observable<MdlBaseHttpResp<DataBean>> requestApplyCashout(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_SHOPPING_ORDER_DELETE)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestDeleteCar(@Body RequestBody requestBody);

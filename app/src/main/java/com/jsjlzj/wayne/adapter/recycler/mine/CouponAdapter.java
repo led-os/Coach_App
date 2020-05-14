@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.adapter.recycler.mine;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.trainer.InvitationBean;
+import com.jsjlzj.wayne.utils.DateUtil;
+import com.yuyh.library.imgsel.common.Constant;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,14 +39,18 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<MineCouponBean.DataBean> list = new ArrayList<>();
+    /**
+     * 0 未使用  1  已使用   2 已过期
+     */
+    private int type;
 
-    public CouponAdapter(Context context, List<String> list) {
+    public CouponAdapter(Context context, List<MineCouponBean.DataBean> list) {
         this.context = context;
         this.list = list;
     }
 
-    public void setData(List<String> list) {
+    public void setData(List<MineCouponBean.DataBean> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -57,7 +69,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,7 +88,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
         TextView tvTime;
         @BindView(R.id.img_bg)
         ImageView imgBg;
-        private String bean;
+        private MineCouponBean.DataBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -84,16 +96,33 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
         }
 
         void bindView(int pos) {
-//            bean = list.get(pos);
-        }
+            bean = list.get(pos);
+            if(type == 0){
+                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_yhq_use_bg));
+            }else {
+                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_yhq_nouse_bg));
+            }
+            tvZhe.setText(context.getResources().getString(R.string.chinese_money) + bean.getAmount());
 
+            tvDes.setText(bean.getName());
+            tvTime.setText("有效期至"+DateUtil.getTime(bean.getEndTime(), new SimpleDateFormat(ExtraConstant.DATE_FORMAT_0, Locale.getDefault())));
+            if(bean.getType() == 0){
+                tvType.setText("全场赠券");
+            }else if(bean.getType() == 1){
+                tvType.setText("会员赠券");
+            }else if(bean.getType() == 2){
+                tvType.setText("购物赠券");
+            }else if(bean.getType() == 3){
+                tvType.setText("注册增劵");
+            }else {
+                tvType.setText("购物赠券");
+            }
+        }
     }
 
 
     public interface OnItemClickListener {
         void onItemClick(InvitationBean.DataBean.ResultBean bean);
-
-
     }
 
     private OnItemClickListener listener;

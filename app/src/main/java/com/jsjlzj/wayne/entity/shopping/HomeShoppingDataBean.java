@@ -89,23 +89,23 @@ public class HomeShoppingDataBean {
              * name : 商品分类名称
              */
 
-            private String categoryId;
+            private int categoryId;
             private String icon;
             private String name;
             private String keywords;
             private String description;
 
-            public CategoryListBean(String categoryId, String name, String keywords) {
+            public CategoryListBean(int categoryId, String name, String keywords) {
                 this.categoryId = categoryId;
                 this.name = name;
                 this.keywords = keywords;
             }
 
-            public String getCategoryId() {
+            public int getCategoryId() {
                 return categoryId;
             }
 
-            public void setCategoryId(String categoryId) {
+            public void setCategoryId(int categoryId) {
                 this.categoryId = categoryId;
             }
 

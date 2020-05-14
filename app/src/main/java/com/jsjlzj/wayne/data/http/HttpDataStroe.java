@@ -328,6 +328,12 @@ public class HttpDataStroe extends BaseHttpData {
         Observable observable = service.getStoreDetail(body);
         setSubscribe(observable, observer);
     }
+
+    public void getSearchProductList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSearchProductList(body);
+        setSubscribe(observable, observer);
+    }
     public void getStorePositionList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.getStorePositionList(body);

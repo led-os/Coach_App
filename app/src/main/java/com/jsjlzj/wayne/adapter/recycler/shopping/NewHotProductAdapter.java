@@ -79,8 +79,8 @@ public class NewHotProductAdapter extends RecyclerView.Adapter<NewHotProductAdap
         void bindView(int pos) {
             shoppingBean = list.get(pos);
             GlidUtils.setGrid(context,shoppingBean.getPic(),imgProduct);
-            tvMoney.setText(shoppingBean.getPrice());
-            tvOldMoney.setText(shoppingBean.getOriginalPrice());
+            tvMoney.setText(context.getResources().getString(R.string.chinese_money)+shoppingBean.getPrice());
+            tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+shoppingBean.getOriginalPrice());
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(shoppingBean);

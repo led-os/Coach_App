@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ProductAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -20,6 +21,8 @@ import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 import com.jsjlzj.wayne.widgets.SearchBarView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
  /**
@@ -52,6 +55,8 @@ public class SearchShopActivity extends MVPBaseActivity<HomeView, HomePresenter>
     private int searchType;
 
     private ProductAdapter productAdapter;
+    private Map<Object,Object> map = new HashMap<>();
+    private int pageNo = 1;
 
     @Override
     protected int getLayoutResId() {
@@ -78,9 +83,22 @@ public class SearchShopActivity extends MVPBaseActivity<HomeView, HomePresenter>
         tvNew.setOnClickListener(clickListener);
         relPrice.setOnClickListener(clickListener);
         mRightTv.setOnClickListener(clickListener);
+        loadData(true);
     }
 
-    @Override
+     private void loadData(boolean b) {
+         map.clear();
+         map.put("productCategoryId","");
+         map.put(HttpConstant.PAGE_NO, pageNo);
+         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+         map.put("name","");
+         map.put("keywords","首页全部好货");
+         map.put("type",0);//0,正在疯抢；1,即将开始
+
+         presenter.getSearchProductList(map);
+     }
+
+     @Override
     protected void onMultiClick(View view) {
         super.onMultiClick(view);
         switch (view.getId()){
@@ -124,6 +142,7 @@ public class SearchShopActivity extends MVPBaseActivity<HomeView, HomePresenter>
                     imgTimeBottom.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.triangle_down_normal));
                 }
                 break;
+            default:break;
         }
     }
 

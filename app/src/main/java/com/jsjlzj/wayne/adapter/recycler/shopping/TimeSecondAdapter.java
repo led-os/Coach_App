@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +29,17 @@ import butterknife.ButterKnife;
 public class TimeSecondAdapter extends RecyclerView.Adapter<TimeSecondAdapter.ViewHolder> {
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<ShoppingBean> list = new ArrayList<>();
     private int type;
 
-    public TimeSecondAdapter(Context context, int type, List<String> list) {
+    public TimeSecondAdapter(Context context, int type, List<ShoppingBean> list) {
         this.context = context;
         this.type = type;
         this.list.addAll(list);
     }
 
 
-    public void setData(List<String> list) {
+    public void setData(List<ShoppingBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -58,7 +59,7 @@ public class TimeSecondAdapter extends RecyclerView.Adapter<TimeSecondAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -95,7 +96,6 @@ public class TimeSecondAdapter extends RecyclerView.Adapter<TimeSecondAdapter.Vi
                 if (listener != null) {
                     listener.onItemClick(categoryBean);
                 }
-
             });
         }
     }

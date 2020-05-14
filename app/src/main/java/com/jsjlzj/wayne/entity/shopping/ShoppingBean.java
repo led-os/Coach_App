@@ -25,6 +25,9 @@ public class ShoppingBean {
     private String price;
     private String promotionPrice;
     private String sale;
+    private String flashPromotionPrice;
+    private String sdate;
+    private String stimeDown;
 
     public String getId() {
         return id;
@@ -80,5 +83,29 @@ public class ShoppingBean {
 
     public void setSale(String sale) {
         this.sale = sale;
+    }
+
+    public String getFlashPromotionPrice() {
+        return flashPromotionPrice;
+    }
+
+    public void setFlashPromotionPrice(String flashPromotionPrice) {
+        this.flashPromotionPrice = flashPromotionPrice;
+    }
+
+    public String getSdate() {
+        return sdate;
+    }
+
+    public void setSdate(String sdate) {
+        this.sdate = sdate;
+    }
+
+    public String getStimeDown() {
+        return stimeDown;
+    }
+
+    public void setStimeDown(String stimeDown) {
+        this.stimeDown = stimeDown;
     }
 }

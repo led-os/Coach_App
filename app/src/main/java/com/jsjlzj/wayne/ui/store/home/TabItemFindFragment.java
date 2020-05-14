@@ -23,6 +23,7 @@ import com.jsjlzj.wayne.ui.publicac.SearchActivity;
 import com.jsjlzj.wayne.ui.store.find.CourserListFragment;
 import com.jsjlzj.wayne.ui.store.find.OptimizationFragment;
 import com.jsjlzj.wayne.ui.store.find.PlayHistoryActivity;
+import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
 import com.jsjlzj.wayne.widgets.MyViewPager;
 
@@ -93,7 +94,7 @@ public class TabItemFindFragment extends MVPBaseFragment<TalentPersonalView, Tal
                 PlayHistoryActivity.go2this(getActivity());
                 break;
             case R.id.img_info://我的消息
-
+                MessageConnectActivity.go2this(getActivity());
                 break;
             default:
                 break;

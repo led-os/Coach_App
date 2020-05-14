@@ -193,8 +193,7 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     }
 
     @Override
-    public void onItemClick(ShoppingCarBean bean) {
-    }
+    public void onItemClick(ShoppingCarBean bean) {}
 
     @Override
     public void onTypeClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
