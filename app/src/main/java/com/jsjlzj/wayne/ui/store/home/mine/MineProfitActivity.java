@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.store.home.mine;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,6 +15,7 @@ import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import butterknife.BindView;
 
@@ -88,7 +90,11 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
                 // TODO: 2020/5/7 收益说明 
                 break;
             case R.id.tv_commit_money:
-                CashOutActivity.go2this(this);
+                if(Float.valueOf(tvMoney.getText().toString()) <= 0){
+                    LogAndToastUtil.toast("暂无提现额度");
+                }else {
+                    CashOutActivity.go2this(this,tvMoney.getText().toString());
+                }
                 break;
             case R.id.ll_profit_detail:
                 ProfitOrderActivity.go2this(this);

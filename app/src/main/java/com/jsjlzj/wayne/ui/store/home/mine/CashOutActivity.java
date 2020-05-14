@@ -48,9 +48,10 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     TextView tvOneCashOut;
     private Map<Object,Object> map = new HashMap<>();
     private int bankCardId;
+    private String money;
 
-    public static void go2this(Activity activity){
-        activity.startActivity(new Intent(activity,CashOutActivity.class));
+    public static void go2this(Activity activity,String money){
+        activity.startActivity(new Intent(activity,CashOutActivity.class).putExtra("money",money));
     }
 
     @Override
@@ -66,6 +67,8 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     @Override
     protected void initViewAndControl() {
         initTitle("提现");
+        money = getIntent().getStringExtra("money");
+        tvCashOutNum.setText("可提现总余额"+money+"(元)");
         tvAllCashOut.setOnClickListener(clickListener);
         tvAddModify.setOnClickListener(clickListener);
         tvOneCashOut.setOnClickListener(clickListener);
@@ -82,7 +85,7 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         }
         map.clear();
         map.put("amount",tvMoney.getText().toString());
-        map.put("bankCardId",tvMoney.getText().toString());
+        map.put("bankCardId",bankCardId);
         presenter.applyCashout(map);
     }
 
@@ -102,11 +105,11 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 }
                 break;
             case R.id.tv_one_cash_out://一键提现
-                if(!TextUtils.isEmpty(tvBandCard.getText().toString()) && tvBandCard.getVisibility() == View.VISIBLE){
-                    commitCashout();
-                }else {
-                    LogAndToastUtil.toast("请选择收款银行卡");
-                }
+                commitCashout();
+//                if(!TextUtils.isEmpty(tvBandCard.getText().toString()) && tvBandCard.getVisibility() == View.VISIBLE){
+//                }else {
+//                    LogAndToastUtil.toast("请选择收款银行卡");
+//                }
                 break;
             default:break;
         }
