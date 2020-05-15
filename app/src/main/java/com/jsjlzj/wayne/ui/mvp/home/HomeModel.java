@@ -13,6 +13,7 @@ import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.shopping.BankCardBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
+import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
@@ -1400,6 +1401,51 @@ public class HomeModel extends BaseModel {
             }
         });
     }
+    public void modifyLocation(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().modifyLocation(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void deleteLocation(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().deleteLocation(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
 
     public void getCurrencyList(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().getCurrencyList(param, new Observer<MdlBaseHttpResp<CurrencyBean>>() {
@@ -1701,6 +1747,30 @@ public class HomeModel extends BaseModel {
         });
     }
 
+
+    public void saveBankCard(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().saveBankCard(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
     public void getShoppingCarList(int code, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().getShoppingCarList(new Observer<MdlBaseHttpResp<ShoppingCarBean>>() {
             @Override
@@ -1710,6 +1780,52 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<ShoppingCarBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void commitOrder(Map params,int code, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().commitOrder(params,new Observer<MdlBaseHttpResp<ShoppingCarBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<ShoppingCarBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void commitOrder2(Map params,int code, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().commitOrder2(params,new Observer<MdlBaseHttpResp<CommitOrderBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<CommitOrderBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

@@ -53,6 +53,7 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
     private LocationListBean.DataBean bean;
     private Map<Object,Object> map = new HashMap<>();
     private String province,provinceCode,city,cityCode,area,areaCode;
+    private boolean isDelete;
 
 
     public static void go2this(Activity activity, int requestCode, LocationListBean.DataBean bean){
@@ -102,7 +103,6 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
                 AddressActivity.go2this(this);
                 break;
             case R.id.tv_save:
-
                 saveLocation();
                 break;
             case R.id.img_default:
@@ -115,6 +115,10 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
                 }
                 break;
             case R.id.tv_delete:
+                isDelete = true;
+                map.clear();
+                map.put("id",bean.getId());
+                presenter.deleteLocation(map);
                 break;
             default:
                 break;
@@ -142,6 +146,7 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
             return;
         }
         map.clear();
+        isDelete = false;
         map.put("isDefault",isOpen ? 1 : 0 );
         map.put("city",city);
         map.put("cityCode",cityCode);
@@ -152,13 +157,22 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
         map.put("province",province);
         map.put("provinceCode",provinceCode);
         map.put("userName",etName.getText().toString());
-        presenter.saveLocation(map);
+        if(bean != null){
+            map.put("id",bean.getId());
+            presenter.modifyLocation(map);
+        }else {
+            presenter.saveLocation(map);
+        }
     }
 
     @Override
     public void saveLocationSuccess(MdlBaseHttpResp<DataBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-            LogAndToastUtil.toast("保存成功");
+            if(isDelete){
+                LogAndToastUtil.toast("删除成功");
+            }else {
+                LogAndToastUtil.toast("保存成功");
+            }
             setResult(RESULT_OK);
             finish();
         }
@@ -175,7 +189,7 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
                  cityCode = data.getStringExtra("cityId");
                  area = data.getStringExtra("area");
                  areaCode = data.getStringExtra("areaId");
-                tvLocation.setText(province+" "+city+" "+area);
+                 tvLocation.setText(province+" "+city+" "+area);
             }
         }
     }

@@ -9,10 +9,18 @@ import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.BankCardBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -36,12 +44,13 @@ public class AddBandCardActivity extends MVPBaseActivity<HomeView, HomePresenter
     /**
      * 0 : 添加   1 :修改
      */
-    private int type;
+    private BankCardBean bean;
+    private Map<Object,Object> map = new HashMap<>();
 
 
-    public static void go2this(Activity activity, int type, int requestCode) {
+    public static void go2this(Activity activity, BankCardBean bankCardBean, int requestCode) {
         Intent intent = new Intent(activity, AddBandCardActivity.class);
-        intent.putExtra(ExtraConstant.EXTRA_SHOW_TYPE, type);
+        intent.putExtra("bankCardBean",bankCardBean);
         activity.startActivityForResult(intent,requestCode);
     }
 
@@ -57,11 +66,21 @@ public class AddBandCardActivity extends MVPBaseActivity<HomeView, HomePresenter
 
     @Override
     protected void initViewAndControl() {
-        type = getIntent().getIntExtra(ExtraConstant.EXTRA_SHOW_TYPE, 0);
-        if (type == 0) {
+        bean = (BankCardBean) getIntent().getSerializableExtra("bankCardBean");
+        if (bean == null) {
             initTitle("添加银行卡");
         } else {
             initTitle("修改银行卡");
+            if(!TextUtils.isEmpty(bean.getUserName())){
+                etPerson.setText(bean.getUserName());
+                etPerson.setSelection(bean.getUserName().length());
+            }
+            if(!TextUtils.isEmpty(bean.getCardNo())){
+                etBankCard.setText(bean.getCardNo());
+            }
+            if(!TextUtils.isEmpty(bean.getBankName())){
+                etOpen.setText(bean.getBankName());
+            }
         }
         tvSave.setOnClickListener(clickListener);
     }
@@ -76,7 +95,7 @@ public class AddBandCardActivity extends MVPBaseActivity<HomeView, HomePresenter
             }else if(TextUtils.isEmpty(etBankCard.getText().toString())){
                 LogAndToastUtil.toast("请输入银行卡号");
                 return;
-            }else if(etBankCard.getText().length() < 4){
+            }else if(etBankCard.getText().length() <= 11){
                 LogAndToastUtil.toast("请输入正确的银行卡号");
                 return;
             }else if(TextUtils.isEmpty(etOpen.getText().toString())){
@@ -84,6 +103,20 @@ public class AddBandCardActivity extends MVPBaseActivity<HomeView, HomePresenter
                 return;
             }
 
+            map.clear();
+            if(bean != null){
+                map.put("id",bean.getId());
+            }
+            map.put("userName",etPerson.getText().toString());
+            map.put("cardNo",etBankCard.getText().toString());
+            map.put("bankName",etOpen.getText().toString());
+            presenter.saveBankCard(map);
+        }
+    }
+
+    @Override
+    public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             LogAndToastUtil.toast("保存成功");
             Intent intent = new Intent();
             intent.putExtra("open_name",etOpen.getText().toString());
@@ -92,6 +125,4 @@ public class AddBandCardActivity extends MVPBaseActivity<HomeView, HomePresenter
             finish();
         }
     }
-
-
 }

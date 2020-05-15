@@ -1,5 +1,6 @@
 package com.jsjlzj.wayne.ui.store.home.mine;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.jsjlzj.wayne.R;
@@ -23,6 +24,10 @@ public class ManagerBandCardActivity extends MVPBaseActivity<HomeView, HomePrese
 
     @BindView(R.id.rv_data)
     RecyclerView rvData;
+
+    public static void go2this(Activity activity){
+
+    }
 
     @Override
     protected int getLayoutResId() {

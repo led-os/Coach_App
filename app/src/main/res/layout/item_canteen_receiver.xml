@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <ImageView
         android:id="@+id/img_shopping"
         android:layout_toEndOf="@+id/ll_select"
@@ -75,6 +74,16 @@
         android:textColor="@color/color_f1404b"
         />
 
+    <TextView
+        android:id="@+id/tv_shop_car_num"
+        android:text="x2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/padding_19"
+        android:layout_alignBottom="@+id/img_shopping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_13"
+        android:textColor="@color/color_666666"/>
 
     <ImageView
         android:id="@+id/img_add"

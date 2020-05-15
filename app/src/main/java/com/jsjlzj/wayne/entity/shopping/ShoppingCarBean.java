@@ -35,15 +35,15 @@ public class ShoppingCarBean {
          * price : 合计
          */
 
-        private String couponId;
+        private int couponId;
         private String price;
         private List<ListResultsBean> listResults;
 
-        public String getCouponId() {
+        public int getCouponId() {
             return couponId;
         }
 
-        public void setCouponId(String couponId) {
+        public void setCouponId(int couponId) {
             this.couponId = couponId;
         }
 
@@ -78,7 +78,7 @@ public class ShoppingCarBean {
 
             private int buyNum;
             private int id;
-            private int price;
+            private float price;
             private int productId;
             private String productName;
             private int productType;
@@ -103,11 +103,11 @@ public class ShoppingCarBean {
                 this.id = id;
             }
 
-            public int getPrice() {
+            public float getPrice() {
                 return price;
             }
 
-            public void setPrice(int price) {
+            public void setPrice(float price) {
                 this.price = price;
             }
 

@@ -18,6 +18,7 @@ import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.shopping.BankCardBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
+import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
@@ -491,6 +492,12 @@ public interface StoreService {
     @POST(HttpConstant.API_SAVE_LOCATION)
     Observable<MdlBaseHttpResp<DataBean>> requestSaveLocation(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_MODIFY_LOCATION)
+    Observable<MdlBaseHttpResp<DataBean>> requestModifyLocation(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_DELETE_LOCATION)
+    Observable<MdlBaseHttpResp<DataBean>> requestDeleteLocation(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_CURRENCY_LIST)
     Observable<MdlBaseHttpResp<CurrencyBean>> requestCurrencyList(@Body RequestBody requestBody);
 
@@ -508,6 +515,14 @@ public interface StoreService {
 
     @GET(HttpConstant.API_SHOPPING_CAR_LIST)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestShoppingCarList();
+
+
+    @POST(HttpConstant.API_ORDER_COMMIT)
+    Observable<MdlBaseHttpResp<ShoppingCarBean>> requestCommitOrder(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_ORDER_COMMIT_2)
+    Observable<MdlBaseHttpResp<CommitOrderBean>> requestCommitOrder2(@Body RequestBody requestBody);
+
 
     @GET(HttpConstant.API_SHOPPING_MINE_COUPON)
     Observable<MdlBaseHttpResp<MineCouponBean>> requestMineCouponList(@Query("useStatus") int useStatus);
@@ -535,6 +550,9 @@ public interface StoreService {
 
     @POST(HttpConstant.API_MINE_APPLY_CASHOUT)
     Observable<MdlBaseHttpResp<DataBean>> requestApplyCashout(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_MINE_SAVE_BANKCARD)
+    Observable<MdlBaseHttpResp<DataBean>> requestSaveBankCard(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_SHOPPING_ORDER_DELETE)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestDeleteCar(@Body RequestBody requestBody);

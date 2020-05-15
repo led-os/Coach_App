@@ -3,23 +3,39 @@ package com.jsjlzj.wayne.ui.store.shopping;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppingCarAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
+import com.jsjlzj.wayne.entity.shopping.CommitOrderBody;
+import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
+import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.SPUtil;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.json.JSONArray;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -61,11 +77,16 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
     TextView tvDiscounted;
     @BindView(R.id.tv_commit_order)
     TextView tvCommitOrder;
+    @BindView(R.id.ll_select_discount)
+    LinearLayout llSelectDiscount;
 
     private List<ShoppingCarBean.DataBean.ListResultsBean> selectList;
+    private EnableCouponBean.DataBean couponBean;
+    private LocationListBean.DataBean locationBean;
 
-    public static void go2this(Activity activity, List<ShoppingCarBean.DataBean.ListResultsBean> selectList) {
-        activity.startActivity(new Intent(activity, ConfirmOrderActivity.class).putExtra("selectList", (Serializable) selectList));
+    public static void go2this(Activity activity, List<ShoppingCarBean.DataBean.ListResultsBean> selectList, EnableCouponBean.DataBean bean) {
+        activity.startActivity(new Intent(activity, ConfirmOrderActivity.class).putExtra("selectList", (Serializable) selectList)
+                .putExtra("couponBean",bean));
     }
 
     @Override
@@ -82,16 +103,40 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
     protected void initViewAndControl() {
         initTitle("确定订单");
         selectList = (List<ShoppingCarBean.DataBean.ListResultsBean>) getIntent().getSerializableExtra("selectList");
-        relLocationSelect.setVisibility(View.VISIBLE);
-        relLocation.setVisibility(View.GONE);
-        rvOrder.setLayoutManager(new LinearLayoutManager(this));
-        ShoppingCarAdapter adapter = new ShoppingCarAdapter(this,selectList,1);
-        rvOrder.setAdapter(adapter);
-        rvOrder.setNestedScrollingEnabled(false);
-        rvOrder.setHasFixedSize(true);
+        couponBean = (EnableCouponBean.DataBean) getIntent().getSerializableExtra("couponBean");
+        initShowView();
         relLocationSelect.setOnClickListener(clickListener);
         relLocation.setOnClickListener(clickListener);
         tvCommitOrder.setOnClickListener(clickListener);
+    }
+
+    private void initShowView() {
+
+        float totalMontey = 0;
+        for (int i = 0; i < selectList.size(); i++) {
+            ShoppingCarBean.DataBean.ListResultsBean bean = selectList.get(i);
+            if (bean.getBuyNum() > 0) {
+                totalMontey += bean.getPrice() * bean.getBuyNum();
+            }
+        }
+        tvPrice.setText(getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(totalMontey));
+        if(couponBean != null){
+            llSelectDiscount.setVisibility(View.VISIBLE);
+            tvSelectDiscount.setText(couponBean.getName());
+            tvDiscounted.setText("已优惠¥"+DateUtil.getTwoDotByFloat(couponBean.getAmount()));
+            totalMontey = totalMontey - couponBean.getAmount();
+        }else {
+            llSelectDiscount.setVisibility(View.GONE);
+        }
+        tvAllMoney.setText(getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(totalMontey));
+
+        relLocationSelect.setVisibility(View.VISIBLE);
+        relLocation.setVisibility(View.GONE);
+        rvOrder.setLayoutManager(new LinearLayoutManager(this));
+        ShoppingCarAdapter adapter = new ShoppingCarAdapter(this, selectList, 1);
+        rvOrder.setAdapter(adapter);
+        rvOrder.setNestedScrollingEnabled(false);
+        rvOrder.setHasFixedSize(true);
     }
 
     @Override
@@ -100,23 +145,85 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         switch (view.getId()) {
             case R.id.rel_location:
             case R.id.rel_location_select:
-                LocationManagerActivity.go2this(this,REQUEST_CODE_SELECT_LOCATION,1);
-
+                LocationManagerActivity.go2this(this, REQUEST_CODE_SELECT_LOCATION, 1);
                 break;
             case R.id.ll_select_discount:
                 break;
             case R.id.tv_commit_order:
-                PaymentActivity.go2this(this);
+                commitOrder();
+                break;
+            default:
                 break;
         }
+    }
+
+    /**
+     * 提交订单
+     */
+    private void commitOrder() {
+
+        Map<Object,Object> map = new HashMap<>();
+        List<CommitOrderBody> list = new ArrayList<>();
+        for (int i = 0; i< selectList.size(); i++){
+            ShoppingCarBean.DataBean.ListResultsBean bean = selectList.get(i);
+            CommitOrderBody commitOrderBody = new CommitOrderBody();
+            commitOrderBody.setUserId(Integer.valueOf(SPUtil.getUserFromSP().getId()));
+            commitOrderBody.setBuyNum(bean.getBuyNum());
+            commitOrderBody.setId(bean.getId());
+            commitOrderBody.setProductId(bean.getProductId());
+            list.add(commitOrderBody);
+        }
+        map.put("products", StringEscapeUtils.unescapeJson(JSONObject.toJSONString(list)));
+        System.out.println("=====products"+JSONObject.toJSONString(list));
+//        JSONObject.parseObject(entry.getValue().toString());
+//        String str = js.toString().substring(1, js.toString().length() - 1);
+        presenter.commitOrder(map);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_SELECT_LOCATION && resultCode == RESULT_OK){
-            relLocationSelect.setVisibility(View.GONE);
-            relLocation.setVisibility(View.VISIBLE);
+        if (requestCode == REQUEST_CODE_SELECT_LOCATION && resultCode == RESULT_OK) {
+            locationBean = (LocationListBean.DataBean) data.getSerializableExtra("location");
+            if(locationBean != null){
+                relLocationSelect.setVisibility(View.GONE);
+                relLocation.setVisibility(View.VISIBLE);
+                tvName.setText(locationBean.getUserName());
+                tvPhone.setText(locationBean.getPhone());
+                tvLocation.setText(locationBean.getProvince()+" "+locationBean.getCity()+" "+locationBean.getDistrict());
+                tvLocationDetail.setText(locationBean.getDetail());
+            }
         }
+    }
+
+    @Override
+    public void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+//            {
+//                "couponReceiveId": "优惠券ID",
+//                    "payType": "0,支付宝，；1，微信",
+//                    "products": "待结算信息商品集合",
+//                    "type": "0,商城，；1，课程",
+//                    "userAddressId": "收货地址对象ID"
+//            }
+//            HashMap<Object,Object> map = new HashMap<>();
+//            if(couponBean != null){
+//                map.put("couponReceiveId",couponBean.getId());
+//            }
+//            if(locationBean != null){
+//                map.put("userAddressId",locationBean.getId());
+//            }
+//            map.put("type",1);
+//
+//            presenter.commitOrder2();
+        }
+    }
+
+    @Override
+    public void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            PaymentActivity.go2this(this);
+        }
+
     }
 }

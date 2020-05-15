@@ -94,7 +94,9 @@ public class LocationManagerActivity extends MVPBaseActivity<HomeView, HomePrese
 
     @Override
     public void onItemClick(LocationListBean.DataBean bean) {
-        setResult(RESULT_OK);
+        Intent intent = new Intent();
+        intent.putExtra("location",bean);
+        setResult(RESULT_OK,intent);
         finish();
     }
 

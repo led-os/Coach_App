@@ -94,6 +94,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_APPLY_LEADER = 60;
     private static final int REQ_CODE_BANKCARD_LIST = 61;
     private static final int REQ_CODE_BANKCARD_ITEM = 62;
+    private static final int REQ_CODE_COMMIT_ORDER_2 = 63;
 
 
     private HomeModel model;
@@ -539,6 +540,20 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void modifyLocation(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.modifyLocation(REQ_CODE_SAVE_LOCATION, param, this);
+        }
+    }
+
+    public void deleteLocation(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.deleteLocation(REQ_CODE_SAVE_LOCATION, param, this);
+        }
+    }
+
     public void getCurrencyList() {
         if (model != null) {
             view.showLoading();
@@ -581,6 +596,18 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getShoppingCarList(REQ_CODE_SHOPPING_CAR_LIST, this);
         }
     }
+    public void commitOrder(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.commitOrder(params,REQ_CODE_SHOPPING_CAR_LIST, this);
+        }
+    }
+    public void commitOrder2(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.commitOrder2(params,REQ_CODE_COMMIT_ORDER_2, this);
+        }
+    }
 
     public void getMineCouponList(int useStatus) {
         if (model != null) {
@@ -591,7 +618,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
     public void getEnableCouponList() {
         if (model != null) {
-            view.showLoading();
+//            view.showLoading();
             model.getEnableCouponList(REQ_CODE_ENABLE_COUPON_LIST, null,this);
         }
     }
@@ -641,6 +668,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
     public void applyCashout(Map params) {
         if (model != null) {
             model.applyCashout(REQ_CODE_APPLY_LEADER, params, this);
+        }
+    }
+
+    public void saveBankCard(Map params) {
+        if (model != null) {
+            model.saveBankCard(REQ_CODE_APPLY_LEADER, params, this);
         }
     }
 
@@ -788,6 +821,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_BANKCARD_ITEM:
                 view.getBankCardItemSuccess(resp);
+                break;
+            case REQ_CODE_COMMIT_ORDER_2:
+                view.commitOrder2Success(resp);
                 break;
             default:
                 break;

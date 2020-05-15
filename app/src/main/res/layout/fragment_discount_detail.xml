@@ -69,9 +69,11 @@
         android:layout_marginStart="@dimen/padding_10"
         android:background="@color/color_eeeeee"/>
     <LinearLayout
+        android:id="@+id/ll_discount"
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="@dimen/padding_52"
+        android:visibility="gone"
         android:gravity="center_vertical">
 
         <TextView
@@ -97,6 +99,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_coupon"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/padding_10"
         android:layout_width="match_parent"
         android:background="@color/white"
@@ -134,7 +138,6 @@
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="@dimen/padding_52"
-        android:layout_marginBottom="@dimen/padding_56"
         android:gravity="center_vertical">
 
         <TextView
@@ -164,4 +167,93 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_bottom"
+        android:layout_marginTop="@dimen/padding_10"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_52">
+
+        <ImageView
+            android:id="@+id/img_all_select"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/padding_12"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cbx_unselect"/>
+
+        <TextView
+            android:id="@+id/tv_all_select"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingStart="@dimen/padding_10"
+            android:gravity="center_vertical"
+            android:layout_toEndOf="@+id/img_all_select"
+            android:textSize="@dimen/text_size_15"
+            android:textColor="@color/color_222222"
+            android:text="全选"/>
+
+        <TextView
+            android:id="@+id/tv_buy"
+            android:layout_width="@dimen/padding_115"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:layout_alignParentEnd="true"
+            android:text="结算"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_15"
+            android:background="@color/color_FF7C84"/>
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_marginTop="@dimen/padding_5"
+            android:text="¥ 2,799.00"
+            android:layout_toStartOf="@+id/tv_buy"
+            android:layout_marginEnd="@dimen/padding_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_f1404b"/>
+
+        <ImageView
+            android:id="@+id/img_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/color_f1404b"
+            android:layout_toStartOf="@+id/tv_buy"
+            android:layout_below="@+id/tv_money"
+            android:layout_marginTop="@dimen/padding_12"
+            android:layout_marginEnd="@dimen/padding_10"
+            android:visibility="gone"
+            android:src="@drawable/triangle_up_normal"/>
+
+        <TextView
+            android:id="@+id/tv_discount_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingEnd="@dimen/padding_4"
+            android:paddingStart="@dimen/padding_4"
+            android:text="优惠明细"
+            android:layout_below="@+id/tv_money"
+            android:paddingTop="@dimen/padding_8"
+            android:layout_toStartOf="@+id/img_open"
+            android:visibility="gone"
+            android:textSize="@dimen/text_size_10"
+            android:textColor="@color/color_f1404b"/>
+
+        <TextView
+            android:id="@+id/tv_coupon"
+            android:layout_toStartOf="@+id/tv_discount_detail"
+            android:layout_alignTop="@+id/tv_discount_detail"
+            android:layout_marginTop="@dimen/padding_8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="已优惠 ¥ 100.00"
+            android:textSize="@dimen/text_size_10"
+            android:visibility="gone"
+            android:textColor="@color/color_999999"/>
+    </RelativeLayout>
+
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -86,5 +87,17 @@ public class DateUtil {
             result.append(remain);
         }
         return result.toString();
+    }
+
+
+    public static String getTwoDotByFloat(float f){
+        //构造方法的字符格式这里如果小数不足2位,会以0补足.
+        DecimalFormat decimalFormat =new DecimalFormat("0.00");
+        //format 返回的是字符串
+        String distanceString = decimalFormat.format(f);
+        return distanceString;
+//        BigDecimal bg = new BigDecimal(f);
+//        double f1 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//        return String.valueOf(f1);
     }
 }

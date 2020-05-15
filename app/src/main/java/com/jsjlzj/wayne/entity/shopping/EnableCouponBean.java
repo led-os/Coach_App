@@ -48,7 +48,7 @@ public class EnableCouponBean {
          * useType : 0
          */
 
-        private int amount;
+        private float amount;
         private String code;
         private int count;
         private int createBy;
@@ -72,11 +72,11 @@ public class EnableCouponBean {
         private int useCount;
         private int useType;
 
-        public int getAmount() {
+        public float getAmount() {
             return amount;
         }
 
-        public void setAmount(int amount) {
+        public void setAmount(float amount) {
             this.amount = amount;
         }
 

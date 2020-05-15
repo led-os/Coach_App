@@ -232,12 +232,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
 
-                              <TextView
+                <TextView
                     android:id="@+id/tv_freight"
                     android:layout_marginEnd="@dimen/padding_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_222222"
+                    android:visibility="gone"
                     android:textSize="@dimen/text_size_14"
                     android:text="¥ 12.00"/>
 

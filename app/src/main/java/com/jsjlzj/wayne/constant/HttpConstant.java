@@ -466,8 +466,16 @@ public class HttpConstant {
     //获取收货地址列表
     public static final String API_LOCATION_MANAGER_LIST = "order/userAddress/getUserAddressList";
 
-    //获取收货地址列表
+    //保存地址
     public static final String API_SAVE_LOCATION = "order/userAddress/addUserAddress";
+    //修改地址
+    public static final String API_MODIFY_LOCATION = "order/userAddress/upUserAddress";
+    //删除地址
+    public static final String API_DELETE_LOCATION = "order/userAddress/delUserAddress";
+    //结算
+    public static final String API_ORDER_COMMIT = "order/settle/getSettleList";
+    //提交订单
+    public static final String API_ORDER_COMMIT_2 = "order/pay/orderSubmit";
     //获取蜂隐币列表
     public static final String API_CURRENCY_LIST = "fycoin/fyCoinAppleList";
     //获取蜂隐币明细列表
@@ -498,6 +506,8 @@ public class HttpConstant {
     public static final String API_MINE_GET_BANKCARD = "getBankCardInfo";
     //申请提现
     public static final String API_MINE_APPLY_CASHOUT = "applyCashWithdrawal";
+    //保存（修改）银行卡信息
+    public static final String API_MINE_SAVE_BANKCARD = "saveBankCard";
     //将商品从购物车删除
     public static final String API_SHOPPING_ORDER_DELETE = "order/car/delCar";
 

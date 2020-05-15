@@ -137,7 +137,7 @@
             <TextView
                 android:id="@+id/tv_discount_detail"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:paddingEnd="@dimen/padding_4"
                 android:paddingStart="@dimen/padding_4"
                 android:text="优惠明细"
@@ -151,16 +151,15 @@
             <TextView
                 android:id="@+id/tv_coupon"
                 android:layout_toStartOf="@+id/tv_discount_detail"
-                android:layout_alignBottom="@+id/tv_discount_detail"
+                android:layout_alignTop="@+id/tv_discount_detail"
+                android:layout_marginTop="@dimen/padding_8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 tools:text="已优惠 ¥ 100.00"
                 android:textSize="@dimen/text_size_10"
                 android:visibility="gone"
                 android:textColor="@color/color_999999"/>
         </RelativeLayout>
-
-
     </RelativeLayout>
 
 

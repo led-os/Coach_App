@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
@@ -97,6 +98,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
                 imgSelect.setVisibility(View.VISIBLE);
                 itemView.setOnClickListener(v -> {
                     if (listener != null) {
+                        imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.cbx_select));
                         listener.onItemClick(locationBean);
                     }
 

@@ -13,6 +13,8 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.BankCardBean;
+import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -47,7 +49,7 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     @BindView(R.id.tv_one_cash_out)
     TextView tvOneCashOut;
     private Map<Object,Object> map = new HashMap<>();
-    private int bankCardId;
+    private BankCardBean bankCardBean;
     private String money;
 
     public static void go2this(Activity activity,String money){
@@ -72,6 +74,7 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         tvAllCashOut.setOnClickListener(clickListener);
         tvAddModify.setOnClickListener(clickListener);
         tvOneCashOut.setOnClickListener(clickListener);
+        presenter.getBankCardList();
     }
 
     private void commitCashout() {
@@ -79,13 +82,13 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
             LogAndToastUtil.toast("请输入要申请的提现额度");
             return;
         }
-        if(bankCardId == 0){
+        if(bankCardBean == null){
             LogAndToastUtil.toast("请选择收款银行卡");
             return;
         }
         map.clear();
         map.put("amount",tvMoney.getText().toString());
-        map.put("bankCardId",bankCardId);
+        map.put("bankCardId",bankCardBean.getId());
         presenter.applyCashout(map);
     }
 
@@ -95,21 +98,21 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         super.onMultiClick(view);
         switch (view.getId()){
             case R.id.tv_all_cash_out://全部提现
-                tvMoney.setText("4000.00");
+                tvMoney.setText(money);
                 break;
             case R.id.tv_add_modify://添加或更换银行卡
                 if(tvAddModify.getText().toString().equals("添加")){
-                    AddBandCardActivity.go2this(this,0,REQUEST_CODE_ADD_BANK);
+                    AddBandCardActivity.go2this(this,null,REQUEST_CODE_ADD_BANK);
                 }else {
-                    AddBandCardActivity.go2this(this,1,REQUEST_CODE_ADD_BANK);
+                    AddBandCardActivity.go2this(this,bankCardBean,REQUEST_CODE_ADD_BANK);
                 }
                 break;
             case R.id.tv_one_cash_out://一键提现
-                commitCashout();
-//                if(!TextUtils.isEmpty(tvBandCard.getText().toString()) && tvBandCard.getVisibility() == View.VISIBLE){
-//                }else {
-//                    LogAndToastUtil.toast("请选择收款银行卡");
-//                }
+                if(!TextUtils.isEmpty(tvBandCard.getText().toString())){
+                    commitCashout();
+                }else {
+                    LogAndToastUtil.toast("请选择收款银行卡");
+                }
                 break;
             default:break;
         }
@@ -123,8 +126,8 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
             tvBandCard.setVisibility(View.VISIBLE);
             String openName = data.getStringExtra("open_name");
             String bankCard = data.getStringExtra("bank_card");
-            bankCardId = data.getIntExtra("bankCardId",0);
-            tvBandCard.setText(openName+" ("+bankCard.substring(bankCard.length()-4)+")");
+            tvBandCard.setText(openName+" ("+bankCard.substring(bankCard.length()-4)+") ");
+            presenter.getBankCardList();
             tvAddModify.setText("更换");
         }
     }
@@ -135,6 +138,18 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
             LogAndToastUtil.toast("提现成功");
             PayResultActivity.go2this(this,1);
             finish();
+        }
+    }
+
+
+    @Override
+    public void getBankCardListSuccess(MdlBaseHttpResp<BankCardListBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            if(resp.getData().getData() != null && resp.getData().getData().size() > 0){
+                bankCardBean = resp.getData().getData().get(0);
+                tvBandCard.setText((bankCardBean.getBranchName()+" ("+bankCardBean.getCardNo().substring(bankCardBean.getCardNo().length()-4)+") "));
+                tvAddModify.setText("更换");
+            }
         }
     }
 }

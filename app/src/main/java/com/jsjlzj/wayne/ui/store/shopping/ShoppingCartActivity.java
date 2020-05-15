@@ -15,12 +15,15 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ProductAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppingCarAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 
@@ -38,7 +41,7 @@ import butterknife.OnClick;
  * @Author: 曾海强
  * @CreateDate: 2020/05/12
  */
-public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, ShoppingCarAdapter.OnItemClickListener {
+public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, ShoppingCarAdapter.OnItemClickListener, DiscountDetailFragment.OnClickDialogListener {
 
     @BindView(R.id.img_empty)
     ImageView imgEmpty;
@@ -71,7 +74,9 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     private boolean isAllSelect = false;
     private EnableCouponBean.DataBean curConponBean;
     private List<EnableCouponBean.DataBean> conponList = new ArrayList<>();
+    private List<ShoppingCarBean.DataBean.ListResultsBean> resultList = new ArrayList<>();
     private int couponId;
+    private boolean isUpdate = false;
 
 
     public static void go2this(Activity activity) {
@@ -99,7 +104,7 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
 //        rvEmpty.setAdapter(emptyAdapter);
         rvCart.setPullRefreshEnabled(false);
         rvCart.setLoadingMoreEnabled(false);
-        carAdapter = new ShoppingCarAdapter(ShoppingCartActivity.this, new ArrayList<>(), 0);
+        carAdapter = new ShoppingCarAdapter(ShoppingCartActivity.this, resultList, 0);
         rvCart.setLayoutManager(new LinearLayoutManager(this));
         rvCart.setAdapter(carAdapter);
         carAdapter.setListener(this);
@@ -114,48 +119,43 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
                 break;
             case R.id.img_all_select:
             case R.id.tv_all_select:
-                if (isAllSelect) {
-                    isAllSelect = false;
-                    carAdapter.setSelectData(false);
-                    imgAllSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cbx_unselect));
-                    tvAllSelect.setText("全选");
-                } else {
-                    isAllSelect = true;
-                    carAdapter.setSelectData(true);
-                    imgAllSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cbx_select));
-                    tvAllSelect.setText("取消全选");
-                }
-                calculateMoney(carAdapter.getSelectList());
+                selectAllClick();
                 break;
             case R.id.tv_buy:
-                List<ShoppingCarBean.DataBean.ListResultsBean> selectList = carAdapter.getSelectList();
-                if(selectList == null || selectList.size() <= 0){
-                    LogAndToastUtil.toast("请选择想要购买的商品");
-                    return;
-                }
-                ConfirmOrderActivity.go2this(this, selectList);
+                toBuyClick();
                 break;
             case R.id.tv_discount_detail:
-                DiscountDetailFragment.showDialog(getSupportFragmentManager(), conponList);
+                DiscountDetailFragment.showDialog(getSupportFragmentManager(), curConponBean,carAdapter.getSelectList(),isAllSelect,this);
                 break;
             default:
                 break;
         }
     }
 
-    @Override
-    public void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
-        if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
-            if (resp.getData().getData() != null && resp.getData().getData().getListResults() != null) {
-                tvMoney.setText(resp.getData().getData().getPrice());
-                carAdapter.setData(resp.getData().getData().getListResults());
-                calculateMoney(carAdapter.getSelectList());
-            } else {
-                showEmpty(R.id.rel_empty, 0, null);
-            }
-            presenter.getEnableCouponList();
+    private void toBuyClick() {
+        List<ShoppingCarBean.DataBean.ListResultsBean> selectList = carAdapter.getSelectList();
+        if(selectList == null || selectList.size() <= 0){
+            LogAndToastUtil.toast("请选择想要购买的商品");
+            return;
         }
+        ConfirmOrderActivity.go2this(this, selectList,curConponBean);
     }
+
+    private void selectAllClick() {
+        if(!isAllSelect){
+            isAllSelect = true;
+            carAdapter.setSelectData(true);
+            imgAllSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cbx_select));
+            tvAllSelect.setText("取消全选");
+        }else {
+            isAllSelect = false;
+            carAdapter.setSelectData(false);
+            imgAllSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cbx_unselect));
+            tvAllSelect.setText("全选");
+        }
+        calculateMoney(carAdapter.getSelectList());
+    }
+
 
     @Override
     public void onAddClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
@@ -170,12 +170,14 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     public void onDeleteClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
         map.clear();
         if(bean.getBuyNum() == 0){
-            map.put("id", bean.getProductId());
+            map.put("id", bean.getId());
             presenter.deleteCar(map);
         }else {
             map.put("id", bean.getId());
             map.put("buyNum", bean.getBuyNum());
             map.put("productId", bean.getProductId());
+            isUpdate = true;
+            calculateMoney(carAdapter.getSelectList());
             presenter.updateShoppingBynum(map);
         }
 
@@ -183,13 +185,34 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
 
     private void calculateMoney(List<ShoppingCarBean.DataBean.ListResultsBean> selectList) {
         float totalMontey = 0;
+        if(carAdapter.getSelectList().size() == resultList.size()){
+            isAllSelect = true;
+            imgAllSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cbx_select));
+            tvAllSelect.setText("取消全选");
+        }else {
+            isAllSelect = false;
+            imgAllSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cbx_unselect));
+            tvAllSelect.setText("全选");
+        }
+        if(selectList != null && selectList.size() > 0){
+            tvCoupon.setVisibility(View.VISIBLE);
+            imgOpen.setVisibility(View.VISIBLE);
+            tvDiscountDetail.setVisibility(View.VISIBLE);
+        }else {
+            tvCoupon.setVisibility(View.GONE);
+            imgOpen.setVisibility(View.GONE);
+            tvDiscountDetail.setVisibility(View.GONE);
+        }
         for (int i = 0; i < selectList.size(); i++) {
             ShoppingCarBean.DataBean.ListResultsBean bean = selectList.get(i);
             if (bean.getBuyNum() > 0) {
                 totalMontey += Float.valueOf(bean.getPrice()) * bean.getBuyNum();
             }
         }
-        tvMoney.setText(getResources().getString(R.string.chinese_money) + totalMontey);
+        if(curConponBean != null && tvCoupon.getVisibility() == View.VISIBLE){
+            totalMontey = totalMontey - curConponBean.getAmount();
+        }
+        tvMoney.setText(getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(totalMontey));
     }
 
     @Override
@@ -206,10 +229,33 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     }
 
     @Override
-    public void onDeleteItem(ShoppingCarBean.DataBean.ListResultsBean bean, int pos) {
-
+    public void onSelectClickDialog() {
+        selectAllClick();
     }
 
+    @Override
+    public void onToBuyClick() {
+        toBuyClick();
+    }
+
+    @Override
+    public void onDeleteItem(ShoppingCarBean.DataBean.ListResultsBean bean, int pos) {}
+
+    @Override
+    public void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && !isUpdate) {
+            if (resp.getData().getData() != null && resp.getData().getData().getListResults() != null) {
+                couponId = resp.getData().getData().getCouponId();
+                tvMoney.setText(resp.getData().getData().getPrice());
+                resultList.clear();
+                resultList.addAll(resp.getData().getData().getListResults());
+                carAdapter.setData(resultList);
+                presenter.getEnableCouponList();
+            } else {
+                showEmpty(R.id.rel_empty, 0, null);
+            }
+        }
+    }
 
     @Override
     public void getEnableCouponListSuccess(MdlBaseHttpResp<EnableCouponBean> resp) {
@@ -219,12 +265,17 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
                 EnableCouponBean.DataBean bean = resp.getData().getData().get(i);
                 if (bean.getId() == couponId) {
                     curConponBean = bean;
-                    tvCoupon.setText("已优惠 ¥ " + bean.getAmount());
-                    tvCoupon.setVisibility(View.VISIBLE);
-                    imgOpen.setVisibility(View.VISIBLE);
-                    tvDiscountDetail.setVisibility(View.VISIBLE);
+                    tvCoupon.setText("已优惠 ¥ " + DateUtil.getTwoDotByFloat(bean.getAmount()));
+                    calculateMoney(carAdapter.getSelectList());
                 }
             }
+        }
+    }
+
+    @Override
+    public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            calculateMoney(carAdapter.getSelectList());
         }
     }
 }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -87,6 +88,8 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
         TextView tvM;
         @BindView(R.id.tv_s)
         TextView tvS;
+        @BindView(R.id.tv_shop_car_num)
+        TextView tvShopCarNum;
 //        @BindView(R.id.ll_skill_second)
 //        LinearLayout llSkillSecond;
         ShoppingCarBean.DataBean.ListResultsBean bean;
@@ -101,7 +104,7 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
             bean = list.get(pos);
             this.position = pos;
             tvName.setText(bean.getProductName());
-            tvPrice.setText("¥ " + bean.getPrice());
+            tvPrice.setText("¥ " + DateUtil.getTwoDotByFloat(bean.getPrice()));
             if (bean.getBuyNum() > 0) {
                 imgDelete.setVisibility(View.VISIBLE);
                 tvNum.setVisibility(View.VISIBLE);
@@ -113,15 +116,23 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
             GlidUtils.setGrid(context, bean.getProductUrl(), imgShopping);
             if(type == 1){
                 llSelect.setVisibility(View.GONE);
+                imgAdd.setVisibility(View.GONE);
+                imgDelete.setVisibility(View.GONE);
+                tvNum.setVisibility(View.GONE);
+                tvShopCarNum.setVisibility(View.VISIBLE);
+                tvShopCarNum.setText("x"+bean.getBuyNum());
             }else {
                 llSelect.setVisibility(View.VISIBLE);
+                imgAdd.setVisibility(View.VISIBLE);
+                imgDelete.setVisibility(View.VISIBLE);
+                tvNum.setVisibility(View.VISIBLE);
+                tvShopCarNum.setVisibility(View.GONE);
             }
             if (bean.isSelect()) {
                 imgSelect.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cbx_select));
             } else {
                 imgSelect.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.cbx_unselect));
             }
-            imgAdd.setVisibility(View.VISIBLE);
             imgAdd.setOnClickListener(this);
             imgDelete.setOnClickListener(this);
             itemView.setOnClickListener(this);

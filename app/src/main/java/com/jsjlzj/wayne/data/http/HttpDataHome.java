@@ -653,6 +653,16 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestSaveLocation(body);
         setSubscribe(observable, observer);
     }
+    public void modifyLocation(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestModifyLocation(body);
+        setSubscribe(observable, observer);
+    }
+    public void deleteLocation(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestDeleteLocation(body);
+        setSubscribe(observable, observer);
+    }
 
     public void getCurrencyList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
@@ -686,6 +696,19 @@ public class HttpDataHome extends BaseHttpData {
 
     public void getShoppingCarList(Observer observer) {
         Observable observable = service.requestShoppingCarList();
+        setSubscribe(observable, observer);
+    }
+
+
+    public void commitOrder(Map params,Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCommitOrder(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void commitOrder2(Map params,Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCommitOrder2(body);
         setSubscribe(observable, observer);
     }
 
@@ -746,6 +769,12 @@ public class HttpDataHome extends BaseHttpData {
     public void applyCashout(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestApplyCashout(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void saveBankCard(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSaveBankCard(body);
         setSubscribe(observable, observer);
     }
 

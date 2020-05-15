@@ -105,8 +105,8 @@
             android:textSize="@dimen/text_size_12"
             android:textColor="@color/color_666666"
             android:layout_marginEnd="@dimen/padding_2"
-            android:visibility="gone"
-            android:text="招商银行（尾号4123）"/>
+            android:visibility="visible"
+            tools:text="招商银行（尾号4123）"/>
         <TextView
             android:text="添加"
             android:id="@+id/tv_add_modify"

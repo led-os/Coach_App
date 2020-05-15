@@ -26,16 +26,47 @@
             android:textColor="@color/color_f1404b"
             android:text="综合排序"/>
 
-        <TextView
+
+        <RelativeLayout
+            android:id="@+id/rel_volume"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/tv_volume"
-            android:text="销量"
-            android:textColor="@color/color_666666"
-            android:textSize="@dimen/text_size_13"/>
+            android:layout_height="match_parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:id="@+id/tv_volume"
+                android:text="销量"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/padding_56"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_size_13"/>
+
+            <ImageView
+                android:id="@+id/img_volume_top"
+                android:layout_toEndOf="@+id/tv_volume"
+                android:layout_alignTop="@+id/tv_volume"
+                android:layout_marginTop="@dimen/padding_14"
+                android:layout_marginStart="@dimen/padding_8"
+                android:src="@drawable/triangle_up_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/img_volume_bottom"
+                android:layout_toEndOf="@+id/tv_volume"
+                android:layout_alignBottom="@+id/tv_volume"
+                android:layout_marginTop="@dimen/padding_14"
+                android:layout_marginStart="@dimen/padding_8"
+                android:src="@drawable/triangle_down_pressed"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/padding_14"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="0dp"
@@ -90,13 +121,20 @@
         </RelativeLayout>
     </LinearLayout>
 
-
-    <com.jsjlzj.wayne.widgets.CustomXRecyclerView
-        android:id="@+id/rv_search_shop"
-        android:layout_marginStart="@dimen/padding_5"
-        android:layout_marginEnd="@dimen/padding_5"
-        android:layout_marginTop="@dimen/padding_2"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:id="@+id/rel_empty">
+
+        <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+            android:id="@+id/rv_search_shop"
+            android:layout_marginStart="@dimen/padding_5"
+            android:layout_marginEnd="@dimen/padding_5"
+            android:layout_marginTop="@dimen/padding_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
 
 </LinearLayout>

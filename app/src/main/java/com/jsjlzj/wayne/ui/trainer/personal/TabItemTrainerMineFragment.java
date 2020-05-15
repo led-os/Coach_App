@@ -266,11 +266,11 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
             case R.id.tv_commit_money:
             case R.id.img_right_money:
                 //不是团长
-//                if(bean.getRegimentalLevel() == 0){
-//                    ApplyLeaderActivity.go2this(getActivity());
-//                }else {
+                if(bean.getRegimentalLevel() == 0){
+                    ApplyLeaderActivity.go2this(getActivity());
+                }else {
                     MineProfitActivity.go2this(getActivity());
-//                }
+                }
                 break;
             case R.id.rel_vip://会员中心
                 break;

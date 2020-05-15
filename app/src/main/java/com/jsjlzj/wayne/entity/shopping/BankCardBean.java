@@ -1,12 +1,14 @@
 package com.jsjlzj.wayne.entity.shopping;
 
+import java.io.Serializable;
+
 /**
  * @ClassName: BankCardBean
  * @Description: java类作用描述
  * @Author: 曾海强
  * @CreateDate: 2020/5/14 15:57
  */
-public class BankCardBean {
+public class BankCardBean implements Serializable {
 
     /**
      * bankName : 银行名称
@@ -19,7 +21,7 @@ public class BankCardBean {
     private String bankName;
     private String branchName;
     private String cardNo;
-    private String id;
+    private int id;
     private String userName;
 
     public String getBankName() {
@@ -46,11 +48,11 @@ public class BankCardBean {
         this.cardNo = cardNo;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
