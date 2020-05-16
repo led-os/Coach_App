@@ -1,7 +1,6 @@
 package com.jsjlzj.wayne.adapter.recycler.mine;
 
 import android.content.Context;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.trainer.InvitationBean;
 import com.jsjlzj.wayne.utils.DateUtil;
-import com.yuyh.library.imgsel.common.Constant;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -86,6 +84,8 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
         TextView tvDes;
         @BindView(R.id.tv_time)
         TextView tvTime;
+        @BindView(R.id.tv_use)
+        TextView tvUse;
         @BindView(R.id.img_bg)
         ImageView imgBg;
         private MineCouponBean.DataBean bean;
@@ -99,8 +99,18 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
             bean = list.get(pos);
             if(type == 0){
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_yhq_use_bg));
+                tvUse.setVisibility(View.VISIBLE);
+                imgBg.setVisibility(View.GONE);
+            }else if(type == 1){
+                imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_yhq_use_bg));
+                tvUse.setVisibility(View.GONE);
+                imgBg.setVisibility(View.VISIBLE);
+                imgBg.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_coupon_used));
             }else {
                 imgType.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_yhq_nouse_bg));
+                tvUse.setVisibility(View.GONE);
+                imgBg.setVisibility(View.VISIBLE);
+                imgBg.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_coupon_ygq));
             }
             tvZhe.setText(context.getResources().getString(R.string.chinese_money) + bean.getAmount());
 

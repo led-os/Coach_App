@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/padding_19"
-            android:src="@drawable/cbx_shopping_cart"/>
+            android:src="@drawable/cbx_select"/>
     </LinearLayout>
 
     <View

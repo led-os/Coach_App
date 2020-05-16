@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,10 +25,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.DateUtil;
-import com.jsjlzj.wayne.utils.SPUtil;
-
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.json.JSONArray;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -108,6 +104,7 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         relLocationSelect.setOnClickListener(clickListener);
         relLocation.setOnClickListener(clickListener);
         tvCommitOrder.setOnClickListener(clickListener);
+        presenter.getLocationList();
     }
 
     private void initShowView() {
@@ -123,9 +120,11 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         if(couponBean != null){
             llSelectDiscount.setVisibility(View.VISIBLE);
             tvSelectDiscount.setText(couponBean.getName());
+            tvDiscounted.setVisibility(View.VISIBLE);
             tvDiscounted.setText("已优惠¥"+DateUtil.getTwoDotByFloat(couponBean.getAmount()));
             totalMontey = totalMontey - couponBean.getAmount();
         }else {
+            tvDiscounted.setVisibility(View.GONE);
             llSelectDiscount.setVisibility(View.GONE);
         }
         tvAllMoney.setText(getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(totalMontey));
@@ -167,17 +166,23 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         for (int i = 0; i< selectList.size(); i++){
             ShoppingCarBean.DataBean.ListResultsBean bean = selectList.get(i);
             CommitOrderBody commitOrderBody = new CommitOrderBody();
-            commitOrderBody.setUserId(Integer.valueOf(SPUtil.getUserFromSP().getId()));
-            commitOrderBody.setBuyNum(bean.getBuyNum());
-            commitOrderBody.setId(bean.getId());
+            commitOrderBody.setBuyCount(bean.getBuyNum());
+            commitOrderBody.setShoppingCarId(bean.getId());
             commitOrderBody.setProductId(bean.getProductId());
             list.add(commitOrderBody);
         }
-        map.put("products", StringEscapeUtils.unescapeJson(JSONObject.toJSONString(list)));
+        map.put("products", list);
+        if(couponBean != null){
+            map.put("couponReceiveId",couponBean.getId());
+        }
+        if(locationBean != null){
+            map.put("userAddressId",locationBean.getId());
+        }
+        map.put("type",0);
+
         System.out.println("=====products"+JSONObject.toJSONString(list));
-//        JSONObject.parseObject(entry.getValue().toString());
-//        String str = js.toString().substring(1, js.toString().length() - 1);
-        presenter.commitOrder(map);
+
+        presenter.commitOrder2(map);
     }
 
     @Override
@@ -192,6 +197,27 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
                 tvPhone.setText(locationBean.getPhone());
                 tvLocation.setText(locationBean.getProvince()+" "+locationBean.getCity()+" "+locationBean.getDistrict());
                 tvLocationDetail.setText(locationBean.getDetail());
+            }
+        }
+    }
+
+
+    @Override
+    public void getLocationListSuccess(MdlBaseHttpResp<LocationListBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            if(resp.getData().getData() != null && resp.getData().getData().size() > 0){
+                for (LocationListBean.DataBean location : resp.getData().getData()) {
+                    if(location.getIsDefault() == 1){
+                        locationBean = location;
+                        relLocationSelect.setVisibility(View.GONE);
+                        relLocation.setVisibility(View.VISIBLE);
+                        tvName.setText(locationBean.getUserName());
+                        tvPhone.setText(locationBean.getPhone());
+                        tvLocation.setText(locationBean.getProvince()+" "+locationBean.getCity()+" "+locationBean.getDistrict());
+                        tvLocationDetail.setText(locationBean.getDetail());
+                        break;
+                    }
+                }
             }
         }
     }
@@ -221,8 +247,11 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
 
     @Override
     public void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
-        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-            PaymentActivity.go2this(this);
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
+            LogAndToastUtil.toast("提交成功");
+            PaymentActivity.go2this(this,resp.getData().getData().getOrderCode(),
+                    resp.getData().getData().getPayAmount());
+            finish();
         }
 
     }

@@ -110,7 +110,7 @@
         android:layout_marginLeft="38dp"
         android:layout_marginRight="38dp"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/bg_solid_4f9bfa_21"
+        android:background="@drawable/bg_solid_222222_21"
         android:text="修改密码"
         android:textColor="@color/white"
         android:textSize="17sp" />

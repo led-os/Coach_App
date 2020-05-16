@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
@@ -23,7 +24,6 @@ import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 
 /**

@@ -931,6 +931,7 @@
                         android:id="@+id/ll_rwzx"
                         android:layout_width="0dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:layout_height="wrap_content">
@@ -1045,15 +1046,6 @@
                             android:textColor="@color/color_666666"/>
 
                     </LinearLayout>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/ll_service_three"
-                    android:layout_below="@+id/ll_service_two"
-                    android:layout_marginTop="@dimen/padding_12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
 
                     <LinearLayout
@@ -1079,6 +1071,18 @@
                             android:textColor="@color/color_666666"/>
 
                     </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_service_three"
+                    android:layout_below="@+id/ll_service_two"
+                    android:layout_marginTop="@dimen/padding_12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
 
 
                     <LinearLayout
@@ -1123,6 +1127,30 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="用户协议"
+                            android:textSize="@dimen/text_size_12"
+                            android:layout_marginTop="@dimen/padding_6"
+                            android:textColor="@color/color_666666"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_gywm_invisible"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:visibility="invisible"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_train_me_gywm"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关于我们"
+                            android:paddingBottom="@dimen/padding_14"
                             android:textSize="@dimen/text_size_12"
                             android:layout_marginTop="@dimen/padding_6"
                             android:textColor="@color/color_666666"/>

@@ -33,6 +33,13 @@ public class HttpDataHome extends BaseHttpData {
         service = create(StoreService.class);
     }
 
+    public void getSmes(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.getSmes(body);
+        setSubscribe(observable, observer);
+    }
+
+
     /**
      * 获取首页推荐数据
      *
@@ -733,6 +740,17 @@ public class HttpDataHome extends BaseHttpData {
     public void deleteCar(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestDeleteCar(body);
+        setSubscribe(observable, observer);
+    }
+    public void toPayOrder(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestPayOrder(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void setPayPassword(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestPayPassword(body);
         setSubscribe(observable, observer);
     }
 

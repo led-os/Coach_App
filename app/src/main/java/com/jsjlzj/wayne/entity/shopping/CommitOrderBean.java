@@ -26,10 +26,12 @@ public class CommitOrderBean {
         /**
          * orderCode : 订单号
          * payAmount : 支付金额
+         * outTradeNo: 第三方支付的流水号
          */
 
         private String orderCode;
         private String payAmount;
+        private String outTradeNo;
 
         public String getOrderCode() {
             return orderCode;
@@ -45,6 +47,14 @@ public class CommitOrderBean {
 
         public void setPayAmount(String payAmount) {
             this.payAmount = payAmount;
+        }
+
+        public String getOutTradeNo() {
+            return outTradeNo;
+        }
+
+        public void setOutTradeNo(String outTradeNo) {
+            this.outTradeNo = outTradeNo;
         }
     }
 }

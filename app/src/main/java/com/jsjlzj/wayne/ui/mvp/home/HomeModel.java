@@ -1,7 +1,9 @@
 package com.jsjlzj.wayne.ui.mvp.home;
 
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.data.http.HttpDataHome;
 import com.jsjlzj.wayne.entity.DataBean;
+import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.CashOutPageBean;
 import com.jsjlzj.wayne.entity.find.CurrencyBean;
@@ -31,6 +33,7 @@ import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
 import com.jsjlzj.wayne.entity.store.search.SearchBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import java.util.Map;
 
@@ -45,6 +48,29 @@ import io.reactivex.disposables.Disposable;
  */
 public class HomeModel extends BaseModel {
 
+    public void getSmes( Map param, final OnLoadHttpDataListener listener){
+        HttpDataHome.getInstance().getSmes(param, new Observer<MdlBaseHttpResp>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp mdlBaseHttpResp) {
+                if(mdlBaseHttpResp.status!= HttpConstant.R_HTTP_OK)  LogAndToastUtil.log("获取验证码失败："+mdlBaseHttpResp.getMsg());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                LogAndToastUtil.log("获取验证码失败："+e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
 
     public void getHomeRecommendData(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().getRecommendData(param, new Observer<MdlBaseHttpResp<RecommendBean>>() {
@@ -1594,6 +1620,53 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void toPayOrder(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().toPayOrder(param, new Observer<MdlBaseHttpResp<CommitOrderBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<CommitOrderBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void setPayPassword(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().setPayPassword(param, new Observer<MdlBaseHttpResp<MdlUser>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<MdlUser> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

@@ -15,7 +15,6 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
-import com.jsjlzj.wayne.entity.shopping.BankCardBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
@@ -73,6 +72,9 @@ import retrofit2.http.Query;
  */
 
 public interface StoreService {
+
+    @POST(HttpConstant.API_GET_SMES)
+    Observable<MdlBaseHttpResp> getSmes(@Body RequestBody requestBody);
     /**
      * 门店  门店模块
      */
@@ -556,6 +558,14 @@ public interface StoreService {
 
     @POST(HttpConstant.API_SHOPPING_ORDER_DELETE)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestDeleteCar(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SHOPPING_PAY_ORDER)
+    Observable<MdlBaseHttpResp<CommitOrderBean>> requestPayOrder(@Body RequestBody requestBody);
+
+
+    @POST(HttpConstant.API_SET_PAY_PASSWARD)   //设置支付密码
+    Observable<MdlBaseHttpResp<MdlUser>> requestPayPassword(@Body RequestBody requestBody);
+
 
     @Multipart
     @POST(HttpConstant.API_UPLOAD)//上次文件

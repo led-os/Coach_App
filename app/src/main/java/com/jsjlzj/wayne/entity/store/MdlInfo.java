@@ -46,6 +46,8 @@ public class MdlInfo implements Serializable {
         private int level;
         // 团长级别 1:一级, 0|null无
         private int regimentalLevel;
+        // 审核状态
+        private int regimentalAuditStatus;
         //邀请码
         private String userId;
         //可提现金额
@@ -218,6 +220,14 @@ public class MdlInfo implements Serializable {
 
         public void setWithdrawableAmount(String withdrawableAmount) {
             this.withdrawableAmount = withdrawableAmount;
+        }
+
+        public int getRegimentalAuditStatus() {
+            return regimentalAuditStatus;
+        }
+
+        public void setRegimentalAuditStatus(int regimentalAuditStatus) {
+            this.regimentalAuditStatus = regimentalAuditStatus;
         }
     }
 }

@@ -135,7 +135,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="38dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/dr_btn_login_y"
+        android:background="@drawable/bg_solid_222222_21"
         android:text="确定修改手机号"
         android:textColor="@color/white"
         android:textSize="17sp" />

@@ -15,26 +15,10 @@ public class CommitOrderBody {
      * userId : 0
      */
 
-    private int buyNum;
-    private int id;
+    private int buyCount;
     private int productId;
-    private int userId;
+    private int shoppingCarId;
 
-    public int getBuyNum() {
-        return buyNum;
-    }
-
-    public void setBuyNum(int buyNum) {
-        this.buyNum = buyNum;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getProductId() {
         return productId;
@@ -44,11 +28,19 @@ public class CommitOrderBody {
         this.productId = productId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getBuyCount() {
+        return buyCount;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setBuyCount(int buyCount) {
+        this.buyCount = buyCount;
+    }
+
+    public int getShoppingCarId() {
+        return shoppingCarId;
+    }
+
+    public void setShoppingCarId(int shoppingCarId) {
+        this.shoppingCarId = shoppingCarId;
     }
 }

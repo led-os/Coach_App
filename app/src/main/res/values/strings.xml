@@ -291,6 +291,11 @@
         <item>已过期</item>
     </string-array>
 
+    <string-array name="profit_title_list">
+        <item>商城收益</item>
+        <item>课程收益</item>
+    </string-array>
+
     <string-array name="find_title_list">
         <item>优选</item>
         <item>增肌</item>

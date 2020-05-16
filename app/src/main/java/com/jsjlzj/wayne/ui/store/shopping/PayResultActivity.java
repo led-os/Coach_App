@@ -10,6 +10,7 @@ import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import butterknife.BindView;
 
@@ -31,10 +32,18 @@ public class PayResultActivity extends MVPBaseActivity<HomeView, HomePresenter> 
     TextView tvSuccessDes;
     @BindView(R.id.tv_detail)
     TextView tvDetail;
+    private String orderCode;
 
     public static void go2this(Activity activity, int type) {
         activity.startActivity(new Intent(activity, PayResultActivity.class).putExtra(ExtraConstant.EXTRA_SHOW_TYPE, type));
     }
+
+    public static void go2this(Activity activity, int type, String orderCode) {
+        activity.startActivity(new Intent(activity, PayResultActivity.class)
+                .putExtra(ExtraConstant.EXTRA_SHOW_TYPE, type)
+                .putExtra("orderCode",orderCode));
+    }
+
 
     @Override
     protected int getLayoutResId() {
@@ -50,9 +59,10 @@ public class PayResultActivity extends MVPBaseActivity<HomeView, HomePresenter> 
     protected void initViewAndControl() {
         type = getIntent().getIntExtra(ExtraConstant.EXTRA_SHOW_TYPE, 0);
         if (type == 0) {
+            orderCode = getIntent().getStringExtra("orderCode");
             initTitle("支付结果");
             tvSuccessHint.setText("支付成功");
-            tvSuccessDes.setText("订单编号：e283109872");
+            tvSuccessDes.setText("订单编号："+orderCode);
             tvDetail.setText("查看详情");
 
         } else {
@@ -70,7 +80,7 @@ public class PayResultActivity extends MVPBaseActivity<HomeView, HomePresenter> 
         super.onMultiClick(view);
         if(view.getId() == R.id.tv_detail){
             if(type == 0){
-
+                LogAndToastUtil.toast("查看详情");
             }else {
                 finish();
             }

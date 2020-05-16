@@ -95,6 +95,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_BANKCARD_LIST = 61;
     private static final int REQ_CODE_BANKCARD_ITEM = 62;
     private static final int REQ_CODE_COMMIT_ORDER_2 = 63;
+    private static final int REQ_CODE_SET_PAY_PASSWORD = 64;
 
 
     private HomeModel model;
@@ -102,6 +103,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
     @Override
     protected HomeModel getMode() {
         return model;
+    }
+
+
+    public void getSmes(Map param) {
+        if (model != null) {
+            model.getSmes(param, this);
+        }
     }
 
 
@@ -636,6 +644,20 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void toPayOrder(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.toPayOrder(REQ_CODE_COMMIT_ORDER_2, params, this);
+        }
+    }
+
+    public void setPayPassword(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.setPayPassword(REQ_CODE_SET_PAY_PASSWORD, params, this);
+        }
+    }
+
     public void updateShoppingBynum(Map params) {
         if (model != null) {
             model.updateBynum(REQ_CODE_UPDATE_SHOPPING_CAR, params, this);
@@ -825,6 +847,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_COMMIT_ORDER_2:
                 view.commitOrder2Success(resp);
                 break;
+            case REQ_CODE_SET_PAY_PASSWORD:
+                view.setPayPasswordSuccess(resp);
             default:
                 break;
         }

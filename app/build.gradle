@@ -113,5 +113,5 @@ dependencies {
     implementation rootProject.ext.dependencies["multidex"]
 
     implementation 'org.apache.commons:commons-lang3:3.7'
-    compile (name: 'alipaySdk-15.7.5-20200422171619', ext: 'aar')
+    compile(name: 'alipaySdk-15.7.5-20200422171619', ext: 'aar')
 }

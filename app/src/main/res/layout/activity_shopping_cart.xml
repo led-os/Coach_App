@@ -11,7 +11,7 @@
     <include layout="@layout/title_bar_layout"/>
 
     <RelativeLayout
-        android:id="@+id/rel_empty"
+        android:id="@+id/rel_empty_1"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -38,7 +38,7 @@ public class SetingActivity extends MVPBaseActivity<TalentPersonalView, TalentPe
     }
 
 
-    private TextView tvPhone, tvPassword, tvWechat;
+    private TextView tvPhone, tvPassword, tvWechat,tvPayPassword;
     public MdlUser.MdlUserBean user;
     private String strPhone, strWx;
 
@@ -49,11 +49,13 @@ public class SetingActivity extends MVPBaseActivity<TalentPersonalView, TalentPe
         tvPhone = findView(R.id.tvPhone);
         tvPassword = findView(R.id.tvPassword);
         tvWechat = findView(R.id.tvWechat);
+        tvPayPassword = findView(R.id.tv_pay_password);
 
 
         findView(R.id.btnBack).setOnClickListener(clickListener);
         findView(R.id.tvSwitch).setOnClickListener(clickListener);
         findView(R.id.btnLogout).setOnClickListener(clickListener);
+        tvPayPassword.setOnClickListener(clickListener);
         tvPhone.setOnClickListener(clickListener);
         tvPassword.setOnClickListener(clickListener);
         tvWechat.setOnClickListener(clickListener);
@@ -94,6 +96,9 @@ public class SetingActivity extends MVPBaseActivity<TalentPersonalView, TalentPe
                     }else{
                         SetingUpdatePsdActivity.go2this(SetingActivity.this);
                     }
+                    break;
+                case R.id.tv_pay_password://设置支付密码
+                    PayForgetPasswordActivity.go2this(SetingActivity.this,0);
                     break;
                 case R.id.tvWechat:
                     SetingWeChatActivity.go2this(SetingActivity.this, RESULT_WECHAT, user.getWxName(),user.getIsBindWeChat());

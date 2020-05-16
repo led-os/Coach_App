@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.ui.store.personal.set.PayForgetPasswordActivity;
 import com.jsjlzj.wayne.utils.keyboard.KeyboardUtil;
 import com.jsjlzj.wayne.widgets.PayPsdInputView;
 
@@ -88,12 +89,20 @@ public class PayPasswordFragment extends DialogFragment {
     }
 
 
-    @OnClick(R.id.img_close)
-    public void onViewClicked() {
-        payPsd.setFocusable(false);
-        payPsd.setFocusableInTouchMode(false);
-        KeyboardUtil.closeKeyboard(payPsd, getActivity());
-        dismissAllowingStateLoss();
+    @OnClick({R.id.img_close,R.id.tv_forget})
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+            case R.id.img_close:
+                payPsd.setFocusable(false);
+                payPsd.setFocusableInTouchMode(false);
+                KeyboardUtil.closeKeyboard(payPsd, getActivity());
+                dismissAllowingStateLoss();
+                break;
+            case R.id.tv_forget:
+                PayForgetPasswordActivity.go2this(getActivity(),1);
+                break;
+        }
+
     }
 
     @Override

@@ -78,7 +78,11 @@ public class EditLocationActivity extends MVPBaseActivity<HomeView, HomePresente
         if(bean != null){
             etName.setText(bean.getUserName());
             etPhone.setText(bean.getPhone());
-            tvLocation.setText(bean.getProvince()+" "+bean.getCity()+" "+bean.getDistrict());
+            if(TextUtils.isEmpty(bean.getProvince())){
+                tvLocation.setText("请选择所在地区");
+            }else {
+                tvLocation.setText(bean.getProvince()+" "+bean.getCity()+" "+bean.getDistrict());
+            }
             etLocationDetail.setText(bean.getDetail());
             if(bean.getIsDefault() == 1){
                 imgDefault.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.component_on));

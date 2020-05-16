@@ -169,6 +169,8 @@ public class HttpConstant {
      */
     //获取俱乐部信息
     public static final String API_GETSTOREINFO = "store/getStoreInfo";
+    //设置支付密码
+    public static final String API_SET_PAY_PASSWARD = "setPayPwd";
     //俱乐部/我的数据
     public static final String API_GETMYINFO = "store/myself";
 
@@ -510,6 +512,8 @@ public class HttpConstant {
     public static final String API_MINE_SAVE_BANKCARD = "saveBankCard";
     //将商品从购物车删除
     public static final String API_SHOPPING_ORDER_DELETE = "order/car/delCar";
+    //调起支付
+    public static final String API_SHOPPING_PAY_ORDER = "order/pay/orderPay";
 
 
 

@@ -19,7 +19,6 @@ import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
-import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -55,7 +54,7 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     TextView tvRecommend;
     @BindView(R.id.rv_empty)
     RecyclerView rvEmpty;
-    @BindView(R.id.rel_empty)
+    @BindView(R.id.rel_empty_1)
     RelativeLayout relEmpty;
     @BindView(R.id.tv_money)
     TextView tvMoney;
@@ -194,7 +193,7 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
             imgAllSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cbx_unselect));
             tvAllSelect.setText("全选");
         }
-        if(selectList != null && selectList.size() > 0){
+        if(selectList != null && selectList.size() > 0 && curConponBean != null){
             tvCoupon.setVisibility(View.VISIBLE);
             imgOpen.setVisibility(View.VISIBLE);
             tvDiscountDetail.setVisibility(View.VISIBLE);
@@ -252,7 +251,7 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
                 carAdapter.setData(resultList);
                 presenter.getEnableCouponList();
             } else {
-                showEmpty(R.id.rel_empty, 0, null);
+                showEmpty(R.id.rel_shopping_cart, 0, null);
             }
         }
     }

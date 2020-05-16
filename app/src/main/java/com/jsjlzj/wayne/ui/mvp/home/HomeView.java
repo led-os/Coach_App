@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.mvp.home;
 
 import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
+import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.CashOutPageBean;
 import com.jsjlzj.wayne.entity.find.CurrencyBean;
@@ -11,7 +12,6 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
-import com.jsjlzj.wayne.entity.shopping.BankCardBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
@@ -200,6 +200,9 @@ public interface HomeView extends BaseView {
     }
 
   default void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
+    }
+
+  default void setPayPasswordSuccess(MdlBaseHttpResp<MdlUser> resp) {
     }
 
 
