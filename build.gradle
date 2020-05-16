@@ -31,24 +31,24 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-def SUPPORT_CODE = "28.0.3"
+def SUPPORT_CODE = "29.0.3"
 def VERSION_CODE = 300
 def VERSION_NAME = "3.0.0"
 
 ext {
 
     // App dependencies
-    supportLibraryVersion = '28.0.3'
+    supportLibraryVersion = '29.0.3'
     junitVersion = '4.12'
     runnerVersion = '1.0.1'
     espressoVersion = '3.0.1'
     constraintLayoutVersion = '1.1.0'
 
     android = [
-            compileSdkVersion        : 28,
+            compileSdkVersion        : 29,
             buildToolsVersion        : SUPPORT_CODE,
             minSdkVersion            : 21,
-            targetSdkVersion         : 28,
+            targetSdkVersion         : 29,
             versionCode              : VERSION_CODE,
             versionName              : VERSION_NAME,
             flavorDimensions         : "version",
