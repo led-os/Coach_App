@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
@@ -62,7 +63,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
 
     @Override
     protected int getLayoutResId() {
-//        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+       EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         return R.layout.activity_payment;
     }
 
