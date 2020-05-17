@@ -33,9 +33,9 @@ import com.jsjlzj.wayne.ui.publicac.mine.MineFavoriteActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineSignUpActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.MineStudyActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.PersonMineActivity;
-import com.jsjlzj.wayne.ui.store.home.mine.ApplyLeaderActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.CouponActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.CurrencyActivity;
+import com.jsjlzj.wayne.ui.store.home.mine.LeaderDesActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MineOrderActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MineProfitActivity;
@@ -271,7 +271,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 //不是团长
                 if(bean.getRegimentalLevel() == 0){
                     if(bean.getRegimentalAuditStatus() == 0 || bean.getRegimentalAuditStatus() == 2){
-                        ApplyLeaderActivity.go2this(getActivity());
+                        LeaderDesActivity.go2this(getActivity());
                     }else if(bean.getRegimentalAuditStatus() == 1){
                         LogAndToastUtil.toast("审核中。。。");
                     }else if(bean.getRegimentalAuditStatus() == 3){
@@ -334,7 +334,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 break;
             case R.id.ll_cwtz://成为团长
                 if(bean.getRegimentalAuditStatus() == 0 || bean.getRegimentalAuditStatus() == 2){
-                    ApplyLeaderActivity.go2this(getActivity());
+                    LeaderDesActivity.go2this(getActivity());
                 }else if(bean.getRegimentalAuditStatus() == 1){
                     LogAndToastUtil.toast("审核中。。。");
                 }else if(bean.getRegimentalAuditStatus() == 3){

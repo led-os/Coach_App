@@ -90,8 +90,11 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        LogAndToastUtil.toast("同步结果：支付成功");
-//                        mPresenter.modifyOrderStatus(orderId);
+                        Map<Object,Object> map = new HashMap<>();
+                        map.put("orderCode",orderCode);
+                        map.put("payType",payType);
+//                        map.put("tradeNo",);
+                        presenter.searchPayResult(map);
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         LogAndToastUtil.toast("支付失败");
@@ -198,12 +201,18 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 // 必须异步调用
                 Thread payThread = new Thread(payRunnable);
                 payThread.start();
-
             }
-//            PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
         }
     }
 
 
-
-}
+     @Override
+     public void searchPayResultSuccess(MdlBaseHttpResp<CommitOrderBean> resp) {
+         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            if(TextUtils.isEmpty(resp.getData().getData().getOutTradeNo())){
+                LogAndToastUtil.toast("支付成功");
+                PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
+            }
+         }
+     }
+ }

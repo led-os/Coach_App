@@ -81,9 +81,15 @@ public class CashOutActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         if(TextUtils.isEmpty(tvMoney.getText().toString())){
             LogAndToastUtil.toast("请输入要申请的提现额度");
             return;
+        }else if(Integer.valueOf(tvMoney.getText().toString()) < 100){
+            LogAndToastUtil.toast("提现金额不能小于100");
+            return;
+        }else if(Integer.valueOf(tvMoney.getText().toString()) > Integer.valueOf(money)){
+            LogAndToastUtil.toast("可提现金额不足");
+            return;
         }
         if(bankCardBean == null){
-            LogAndToastUtil.toast("请选择收款银行卡");
+            LogAndToastUtil.toast("请添加提现银行卡");
             return;
         }
         map.clear();

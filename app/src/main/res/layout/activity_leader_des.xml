@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.store.home.mine.LeaderDesActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_200">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_mark_train"/>
+
+                <ImageView
+                    android:background="@drawable/bg_mark_alpha"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <ImageView
+                    android:id="@+id/img_add_pic"
+                    android:src="@drawable/ic_addpic2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/padding_38"
+                    android:layout_width="@dimen/padding_73"
+                    android:layout_height="@dimen/padding_73"/>
+
+                <TextView
+                    android:id="@+id/tv_nick_name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_17"
+                    android:layout_below="@+id/img_add_pic"
+                    android:layout_centerHorizontal="true"
+                    tools:text="姓名"
+                    android:layout_marginTop="@dimen/padding_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_normal_vip"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_12"
+                    android:layout_below="@+id/tv_nick_name"
+                    android:layout_centerHorizontal="true"
+                    tools:text="普通会员"
+                    android:layout_marginTop="@dimen/padding_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:text="零门槛成为团长"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/padding_35"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_18"
+                android:textColor="@color/color_222222"/>
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+             <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/tv_leader"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_alignTop="@+id/tv_leader"
+                    android:layout_alignBottom="@+id/tv_leader"
+                    android:src="@drawable/ic_des"/>
+
+                <TextView
+                    android:id="@+id/tv_leader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="团长权益"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/padding_26"
+                    android:textSize="@dimen/text_size_15"
+                    android:textColor="@color/color_333333"/>
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/tv_leader"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_alignTop="@+id/tv_leader"
+                    android:layout_alignBottom="@+id/tv_leader"
+                    android:src="@drawable/ic_des"/>
+
+
+            </RelativeLayout>
+            <LinearLayout
+                android:paddingTop="@dimen/padding_28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/padding_40"
+                        android:layout_height="@dimen/padding_40"
+                        android:src="@drawable/icon_leader_syjb"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_666666"
+                        android:text="收益加倍"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textSize="@dimen/text_size_14"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="自购收益提升42%"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/padding_40"
+                        android:layout_height="@dimen/padding_40"
+                        android:src="@drawable/icon_leader_lyqm"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_666666"
+                        android:text="靓邀请码"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textSize="@dimen/text_size_14"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="可获得特殊邀请码"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/padding_40"
+                        android:layout_height="@dimen/padding_40"
+                        android:src="@drawable/icon_leader_lwf"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_666666"
+                        android:text="劳务费"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textSize="@dimen/text_size_14"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="每月推广奖励"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="@dimen/padding_18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/padding_40"
+                        android:layout_height="@dimen/padding_40"
+                        android:src="@drawable/icon_leader_tdsy"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_666666"
+                        android:text="团队收益"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textSize="@dimen/text_size_14"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="额外收益翻10"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/padding_40"
+                        android:layout_height="@dimen/padding_40"
+                        android:src="@drawable/icon_leader_sjyy"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_666666"
+                        android:text="数据运营"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textSize="@dimen/text_size_14"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="独立数据运营系"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/padding_40"
+                        android:layout_height="@dimen/padding_40"
+                        android:src="@drawable/icon_leader_xxhd"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_666666"
+                        android:text="线下活动"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textSize="@dimen/text_size_14"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="线下培训拓展游戏"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="申请条件"
+                android:layout_marginTop="@dimen/padding_36"
+                android:layout_marginStart="@dimen/padding_14"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_333333"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/padding_5"
+                android:text="V1团长：凡是平台注册的普通用户、学习包会员、超级PLUS会员\nV2团长：V1团长销售额达到4万以上，即可申请\nV3团长:V2团长销售额达到8万以上\nV4团长:V3团长销售额达到16万以上"
+                android:layout_marginTop="@dimen/padding_17"
+                android:layout_marginStart="@dimen/padding_14"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_size_13"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收益说明"
+                android:layout_marginTop="@dimen/padding_36"
+                android:layout_marginStart="@dimen/padding_14"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="@color/color_333333"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/padding_5"
+                android:text="V1团长：凡是平台注册的普通用户、学习包会员、超级PLUS会员\nV2团长：V1团长销售额达到4万以上，即可申请\nV3团长:V2团长销售额达到8万以上\nV4团长:V3团长销售额达到16万以上"
+                android:layout_marginTop="@dimen/padding_17"
+                android:layout_marginStart="@dimen/padding_14"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_size_13"/>
+
+
+            <TextView
+                android:id="@+id/tv_commit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_42"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_19"
+                android:layout_marginEnd="@dimen/padding_19"
+                android:layout_marginBottom="@dimen/padding_48"
+                android:text="提交申请"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="#6c4304"
+                android:background="@drawable/bg_solid_f7d16c_21"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

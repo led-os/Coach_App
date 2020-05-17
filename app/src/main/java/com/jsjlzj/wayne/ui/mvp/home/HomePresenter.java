@@ -21,6 +21,10 @@ import com.yalantis.ucrop.UCrop;
 import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -97,6 +101,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_COMMIT_ORDER_2 = 63;
     private static final int REQ_CODE_SET_PAY_PASSWORD = 64;
     private static final int REQ_CODE_GET_ORDER_LIST = 65;
+    private static final int REQ_CODE_SEARCH_PAY_RESULT = 66;
 
 
     private HomeModel model;
@@ -659,6 +664,30 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void searchPayResult(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.searchPayResult(REQ_CODE_SEARCH_PAY_RESULT, params, this);
+        }
+    }
+
+
+    Disposable subscribe;
+
+    public Disposable getSubscribe() {
+        return subscribe;
+    }
+
+    /**
+     * 检查后台支付是否成功
+     * @param map
+     */
+    public void checkPaySuccess(Map map) {
+        subscribe = Observable.interval(1, TimeUnit.SECONDS)
+                .subscribe(aLong -> searchPayResult(map));
+//        addDisposable(subscribe);
+    }
+
     public void setPayPassword(Map params) {
         if (model != null) {
             view.showLoading();
@@ -862,6 +891,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_GET_ORDER_LIST:
                 view.getOrderListSuccess(resp);
                 break;
+            case REQ_CODE_SEARCH_PAY_RESULT:
+                view.searchPayResultSuccess(resp);
             default:
                 break;
         }

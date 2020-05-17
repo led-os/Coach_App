@@ -1682,6 +1682,29 @@ public class HomeModel extends BaseModel {
         });
     }
 
+    public void searchPayResult(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().searchPayResult(param, new Observer<MdlBaseHttpResp<CommitOrderBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<CommitOrderBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
     public void setPayPassword(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().setPayPassword(param, new Observer<MdlBaseHttpResp<MdlUser>>() {
             @Override

@@ -87,7 +87,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.home.mine.MineOrderActivity"></activity>
+        <activity android:name=".ui.store.home.mine.LeaderDesActivity"></activity>
+        <activity android:name=".ui.store.home.mine.MineOrderActivity" />
         <activity android:name=".ui.store.personal.set.ModifyPayPasswordActivity" />
         <activity android:name=".ui.store.personal.set.PayForgetPasswordActivity" />
         <activity android:name=".ui.store.home.mine.ManagerBandCardActivity" />

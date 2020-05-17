@@ -571,6 +571,10 @@ public interface StoreService {
     Observable<MdlBaseHttpResp<MineOrderPageBean>> requestOrderList(@Body RequestBody requestBody);
 
 
+    @POST(HttpConstant.API_SHOPPING_SEARCH_PAY_STATE)
+    Observable<MdlBaseHttpResp<CommitOrderBean>> requestSearchPayResult(@Body RequestBody requestBody);
+
+
     @POST(HttpConstant.API_SET_PAY_PASSWARD)   //设置支付密码
     Observable<MdlBaseHttpResp<MdlUser>> requestPayPassword(@Body RequestBody requestBody);
 

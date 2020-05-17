@@ -203,6 +203,9 @@ public interface HomeView extends BaseView {
   default void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
     }
 
+  default void searchPayResultSuccess(MdlBaseHttpResp<CommitOrderBean> resp) {
+    }
+
   default void setPayPasswordSuccess(MdlBaseHttpResp<MdlUser> resp) {
     }
 
