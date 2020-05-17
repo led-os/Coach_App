@@ -66,6 +66,7 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
     private static final int REQ_CODE_132 = 132;
     private static final int REQ_CODE_133 = 133;
     private static final int REQ_CODE_134 = 134;
+    private static final int REQ_CODE_135 = 135;
 
 
     private TalentPersonalModel model;
@@ -394,6 +395,14 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
         }
     }
 
+    public void getShoppingNum() {
+        if (model != null) {
+            view.showLoading();
+            model.getShoppingNum(REQ_CODE_135, null, this);
+        }
+    }
+
+
     @Override
     protected BaseModel getMode() {
         return model;
@@ -511,6 +520,8 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
                 break;
             case REQ_CODE_134:
                 view.getCategoryTypeListSuccess(resp);
+            case REQ_CODE_135:
+                view.getShoppingNumSuccess(resp);
             default:
                 break;
 

@@ -1,0 +1,146 @@
+package com.jsjlzj.wayne.ui.store.home.mine;
+
+
+import android.view.View;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.adapter.recycler.shopping.MineOrderAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.MineOrderBean;
+import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
+import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
+import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
+import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
+import com.netease.nim.uikit.common.ToastHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.BindView;
+
+/**
+ * @ClassName: MineOrderFragment
+ * @Description: 我的订单fragmetn
+ * @Author: 曾海强
+ * @CreateDate:
+ */
+public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener {
+
+    @BindView(R.id.rv_data)
+    CustomXRecyclerView rvData;
+    /**
+     * -1 :全部  0,待支付；1,待发货；2，待收货；3，待评价；4，售后
+     */
+    private int type;
+    private Map<Object,Object> map = new HashMap<>();
+    private int pageNo = 1;
+    private int pageCount;
+    private boolean isRefresh;
+    private List<MineOrderBean> orderList = new ArrayList<>();
+    private MineOrderAdapter adapter;
+
+    public static MineOrderFragment getInstance(int type){
+        MineOrderFragment fragment = new MineOrderFragment(type);
+        return fragment;
+    }
+
+    public MineOrderFragment(int type) {
+        this.type = type;
+    }
+
+    public MineOrderFragment() {}
+
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.fragment_mine_order;
+    }
+
+    @Override
+    protected void initViewAndControl(View view) {
+        rvData.setLoadingListener(this);
+        rvData.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new MineOrderAdapter(getActivity(),new ArrayList<>(),type);
+        rvData.setAdapter(adapter);
+        loadData(true);
+    }
+
+
+
+    @Override
+    protected void fragment2Front() {
+    }
+
+    @Override
+    protected HomePresenter createPresenter() {
+        return new HomePresenter(this);
+    }
+
+
+    private void loadData(boolean isRefresh) {
+        this.isRefresh = isRefresh;
+        if (isRefresh) {
+            pageNo = 1;
+        }
+        map.clear();
+        map.put(HttpConstant.PAGE_NO, pageNo);
+        map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+        if(type != -1){
+            map.put("type", type);
+        }
+        presenter.getOrderList(map);
+    }
+
+
+    @Override
+    public void onRefresh() {
+        loadData(true);
+    }
+
+    @Override
+    public void onLoadMore() {
+        if (pageNo < pageCount - 1) {
+            pageNo++;
+            loadData(false);
+        } else {
+            ToastHelper.showToast(getContext(), getString(R.string.has_no_more_data));
+        }
+    }
+
+    @Override
+    public void getOrderListSuccess(MdlBaseHttpResp<MineOrderPageBean> resp) {
+        rvData.refreshComplete();
+        rvData.loadMoreComplete();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
+            pageNo = resp.getData().getData().getPageNo();
+            int totalCount = resp.getData().getData().getTotalCount();
+            int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
+            if (a == 0) {
+                pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
+            } else {
+                pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
+            }
+            List<MineOrderBean> list = resp.getData().getData().getResult();
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    orderList.clear();
+                }
+                orderList.addAll(list);
+                adapter.setData(orderList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty, 0, null);
+            }
+        }
+    }
+
+
+}

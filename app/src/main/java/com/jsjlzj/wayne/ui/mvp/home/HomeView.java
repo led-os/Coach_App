@@ -18,6 +18,7 @@ import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
+import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
@@ -203,6 +204,9 @@ public interface HomeView extends BaseView {
     }
 
   default void setPayPasswordSuccess(MdlBaseHttpResp<MdlUser> resp) {
+    }
+
+  default void getOrderListSuccess(MdlBaseHttpResp<MineOrderPageBean> resp) {
     }
 
 

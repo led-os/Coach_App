@@ -5,6 +5,7 @@ import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlQuestion;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.store.MdlCV;
 import com.jsjlzj.wayne.entity.store.MdlDict;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
@@ -97,4 +98,6 @@ public interface TalentTabFragmentView extends BaseView {
     default void getInvitationListSuccess(MdlBaseHttpResp<InvitationBean> resp){}
 
     default void getSignUpListSuccess(MdlBaseHttpResp<SignUpPageBean> resp){}
+
+    default void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp){}
 }

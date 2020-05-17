@@ -24,6 +24,7 @@ import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppTypeAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
@@ -143,6 +144,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         map.put(HttpConstant.PAGE_NO, 1);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         presenter.getSearchProductList(map);
+        presenter.getShoppingNum();
     }
 
     private void initRecycler() {
@@ -278,6 +280,13 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
             if(resp.getData().getData() != null && resp.getData().getData().getResult() != null){
                 productAdapter.setData(resp.getData().getData().getResult());
             }
+        }
+    }
+
+    @Override
+    public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            tvNumber.setText(resp.getData().getData()+"");
         }
     }
 

@@ -84,6 +84,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
     private static final int REQ_CODE_INVITATION_LIST = 1323;
     private static final int REQ_CODE_SIGNUP_LIST = 1324;
     private static final int REQ_CODE_CERTIFICATE_PHOTO = 1325;
+    private static final int REQ_CODE_SHOPPING_NUM = 1326;
 
 
     private TalentTabFragmentModel model;
@@ -464,6 +465,13 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
         }
     }
 
+    public void getShoppingNum() {
+        if (model != null) {
+            view.showLoading();
+            model.getShoppingNum(REQ_CODE_SHOPPING_NUM, null, this);
+        }
+    }
+
 
     @Override
     protected BaseModel getMode() {
@@ -609,6 +617,9 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
                 break;
             case REQ_CODE_SIGNUP_LIST:
                 view.getSignUpListSuccess(resp);
+                break;
+            case REQ_CODE_SHOPPING_NUM:
+                view.getShoppingNumSuccess(resp);
                 break;
         }
     }

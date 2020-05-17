@@ -129,6 +129,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <TextView
+        android:id="@+id/tv_evaluate"
+        android:gravity="center"
+        android:text="去评价"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_f1404b"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/img_shopping"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/padding_10"
+        android:layout_marginEnd="@dimen/padding_10"
+        android:layout_width="@dimen/padding_77"
+        android:layout_height="@dimen/padding_27"
+        android:background="@drawable/bg_stroke_f1404b_solid_fff8f8_14"/>
+
+
+
     <LinearLayout
         android:id="@+id/ll_skill_second"
         android:layout_below="@+id/img_shopping"

@@ -22,7 +22,9 @@ import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
+import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlCV;
@@ -383,6 +385,9 @@ public interface StoreService {
     @POST(HttpConstant.API_SIGN_UP_LIST)
     Observable<MdlBaseHttpResp<SignUpPageBean>> requestSignUpList(@Body RequestBody requestBody);
 
+    @GET(HttpConstant.API_HOME_GET_SHOPPING_NUM)
+    Observable<MdlBaseHttpResp<ShoppingNumBean>> requestShoppingNum();
+
     @POST(HttpConstant.API_LEARN_DATA)
     Observable<MdlBaseHttpResp<LearnBean>> requestLearnData(@Body RequestBody requestBody);
 
@@ -561,6 +566,9 @@ public interface StoreService {
 
     @POST(HttpConstant.API_SHOPPING_PAY_ORDER)
     Observable<MdlBaseHttpResp<CommitOrderBean>> requestPayOrder(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SHOPPING_ORDER_LIST)
+    Observable<MdlBaseHttpResp<MineOrderPageBean>> requestOrderList(@Body RequestBody requestBody);
 
 
     @POST(HttpConstant.API_SET_PAY_PASSWARD)   //设置支付密码

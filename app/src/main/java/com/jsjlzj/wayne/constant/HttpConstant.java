@@ -395,6 +395,8 @@ public class HttpConstant {
     public static final String API_INVITATION_LIST = "inviteList";
     //获取我的报名列表
     public static final String API_SIGN_UP_LIST = "enroll/list";
+    //获取购物车数量
+    public static final String API_HOME_GET_SHOPPING_NUM = "order/car/getCarNum";
     //学习数据
     public static final String API_LEARN_DATA = "learn/indexData";
     //章节列表数据
@@ -514,6 +516,8 @@ public class HttpConstant {
     public static final String API_SHOPPING_ORDER_DELETE = "order/car/delCar";
     //调起支付
     public static final String API_SHOPPING_PAY_ORDER = "order/pay/orderPay";
+    //获取订单列表
+    public static final String API_SHOPPING_ORDER_LIST = "myOrder/getMyOrderList";
 
 
 

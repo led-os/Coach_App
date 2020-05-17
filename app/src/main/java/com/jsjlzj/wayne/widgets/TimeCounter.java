@@ -11,9 +11,9 @@ import com.jsjlzj.wayne.utils.DateUtil;
 public class TimeCounter extends CountDownTimer {
 
     /**
-     * 0 ： 模拟考试倒计时3s    1 ：考试时间倒计时02:00:00
+     * 0 ： 模拟考试倒计时3s    1 ：考试时间倒计时02:00:00  2 : 支付订单倒计时
      */
-    private final int showType;
+    private int showType;
     private TextView button;
     private int mStringId;
     private CountTimeListener listener;
@@ -37,12 +37,25 @@ public class TimeCounter extends CountDownTimer {
             button.setText(""+ DateUtil.getDownTimer(millisUntilFinished));
         }
     }
+    public void setJoinTime(long joinTime,int type) {
+        this.joinTime = joinTime;
+        this.showType = type;
+    }
 
     @Override
     public void onFinish() {
-        listener.onCountTimeFinish();
-        button.setText(mStringId);
-        button.setEnabled(true);
+
+        if(showType == 0 || showType == 1){
+            listener.onCountTimeFinish();
+            button.setText(mStringId);
+            button.setEnabled(true);
+        }else {
+            if(listener != null){
+                listener.onCountTimeFinish();
+            }
+        }
+
+
     }
 
 

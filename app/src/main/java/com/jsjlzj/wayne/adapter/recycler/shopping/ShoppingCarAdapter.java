@@ -35,7 +35,7 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
     private Context context;
     private List<ShoppingCarBean.DataBean.ListResultsBean> list;
     /**
-     * 0:购物车界面  1 ：确认订单界面
+     * 0:购物车界面  1 ：确认订单界面  2 :我的订单
      */
     private int type;
 
@@ -72,6 +72,8 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
         LinearLayout llSelect;
         @BindView(R.id.tv_name)
         TextView tvName;
+        @BindView(R.id.tv_evaluate)
+        TextView tvEvaluate;
         @BindView(R.id.tv_attribute)
         TextView tvAttribute;
         @BindView(R.id.tv_price)
@@ -121,6 +123,13 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
                 tvNum.setVisibility(View.GONE);
                 tvShopCarNum.setVisibility(View.VISIBLE);
                 tvShopCarNum.setText("x"+bean.getBuyNum());
+            }else if(type == 2){
+                llSelect.setVisibility(View.GONE);
+                imgAdd.setVisibility(View.GONE);
+                imgDelete.setVisibility(View.GONE);
+                tvNum.setVisibility(View.GONE);
+                tvShopCarNum.setVisibility(View.GONE);
+                tvEvaluate.setVisibility(View.VISIBLE);
             }else {
                 llSelect.setVisibility(View.VISIBLE);
                 imgAdd.setVisibility(View.VISIBLE);
@@ -137,6 +146,9 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
             imgDelete.setOnClickListener(this);
             itemView.setOnClickListener(this);
             llSelect.setOnClickListener(this);
+            tvEvaluate.setOnClickListener(v -> {
+                // TODO: 2020/5/17 去评论 
+            });
             itemView.setOnLongClickListener(v -> {
                 if (listener != null) {
                     listener.onDeleteItem(bean, pos);
@@ -304,5 +316,7 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
          * 删除
          */
         void onDeleteItem(ShoppingCarBean.DataBean.ListResultsBean bean, int pos);
+
+        
     }
 }

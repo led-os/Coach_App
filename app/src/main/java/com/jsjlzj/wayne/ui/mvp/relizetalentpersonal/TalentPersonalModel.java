@@ -2,7 +2,6 @@ package com.jsjlzj.wayne.ui.mvp.relizetalentpersonal;
 
 
 import com.jsjlzj.wayne.data.http.HttpDataBasis;
-import com.jsjlzj.wayne.data.http.HttpDataHome;
 import com.jsjlzj.wayne.data.http.HttpDataLogin;
 import com.jsjlzj.wayne.data.http.HttpDataStroe;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
@@ -15,7 +14,6 @@ import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
 import com.jsjlzj.wayne.entity.trainer.BannerAll;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
-import com.jsjlzj.wayne.ui.mvp.home.HomeModel;
 
 import java.util.Map;
 
@@ -74,6 +72,31 @@ public class TalentPersonalModel extends BaseModel {
 
     public void getSearchProductList(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataStroe.getInstance().getSearchProductList(param, new Observer<MdlBaseHttpResp<ShoppingPageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                TalentPersonalModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<ShoppingPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+
+    public void getShoppingNum(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataStroe.getInstance().getShoppingNum(param, new Observer<MdlBaseHttpResp<ShoppingPageBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 TalentPersonalModel.this.disposable = d;

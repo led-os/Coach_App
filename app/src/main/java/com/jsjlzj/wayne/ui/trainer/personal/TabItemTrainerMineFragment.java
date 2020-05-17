@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
@@ -36,6 +37,7 @@ import com.jsjlzj.wayne.ui.store.home.mine.ApplyLeaderActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.CouponActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.CurrencyActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
+import com.jsjlzj.wayne.ui.store.home.mine.MineOrderActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MineProfitActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
 import com.jsjlzj.wayne.ui.store.shopping.LocationManagerActivity;
@@ -237,6 +239,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
         llGywm.setOnClickListener(clickListener);
         llBzyfk.setOnClickListener(clickListener);
         llYhxy.setOnClickListener(clickListener);
+        presenter.getShoppingNum();
     }
 
     @Override
@@ -289,16 +292,22 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 break;
             case R.id.tv_all_order://全部订单
             case R.id.img_all_order://全部订单
+                MineOrderActivity.go2this(getActivity(),0);
                 break;
             case R.id.ll_dzf://待支付
+                MineOrderActivity.go2this(getActivity(),1);
                 break;
             case R.id.ll_dfh://待发货
+                MineOrderActivity.go2this(getActivity(),2);
                 break;
             case R.id.ll_dsh://待收货
+                MineOrderActivity.go2this(getActivity(),3);
                 break;
             case R.id.ll_dpj://待评价
+                MineOrderActivity.go2this(getActivity(),4);
                 break;
             case R.id.ll_thsh://退货售后
+                MineOrderActivity.go2this(getActivity(),5);
                 break;
             case R.id.ll_gtg://沟通过
                 ConnectPositionListActivity.go2this(getActivity());
@@ -369,8 +378,6 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
             case R.id.ll_favorite://收藏
                 MineFavoriteActivity.go2this(getActivity());
                 break;
-
-
             case R.id.ll_gywm://关于我们
                 AboutUsActivity.go2this(getActivity());
                 break;
@@ -419,8 +426,15 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
             tvFen.setText(DateUtil.getNumByInteger(bean.getFensCount()));
             tvFollow.setText(DateUtil.getNumByInteger(bean.getFollowerCount()));
             tvZan.setText(DateUtil.getNumByInteger(bean.getLikeCount()));
-//            tvSign.setText(bean.getContent());
             GlidUtils.setCircleGrid(getActivity(), bean.getHeadImg(), imgHead);
+        }
+    }
+
+
+    @Override
+    public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            tvNumber.setText(resp.getData().getData()+"");
         }
     }
 

@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
@@ -63,7 +62,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
 
     @Override
     protected int getLayoutResId() {
-        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+//        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         return R.layout.activity_payment;
     }
 
@@ -161,7 +160,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     @Override
     public void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
-            if (payType == 1) {
+            if (payType == 0) {
 //                PayResultBean.PayResponseBean orderBean = order.getPayResponse();
 //                if (orderBean == null) {
 //                    return;
@@ -183,9 +182,9 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
 //                // 必须异步调用
 //                Thread payThread = new Thread(payRunnable);
 //                payThread.start();
-            } else if (payType == 2) {
+            } else if (payType == 1) {
                 // 订单信息
-                final String outTradeNo = resp.getData().getData().getOutTradeNo();
+                final String outTradeNo = resp.getData().getData().getUrl();
                 Runnable payRunnable = () -> {
                     PayTask alipay = new PayTask(PaymentActivity.this);
                     Map<String, String> result = alipay.payV2(outTradeNo, true);
@@ -198,7 +197,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 // 必须异步调用
                 Thread payThread = new Thread(payRunnable);
                 payThread.start();
-//            authV2(order);
+
             }
 //            PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
         }

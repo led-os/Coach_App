@@ -32,6 +32,7 @@ public class CommitOrderBean {
         private String orderCode;
         private String payAmount;
         private String outTradeNo;
+        private String url;
 
         public String getOrderCode() {
             return orderCode;
@@ -55,6 +56,14 @@ public class CommitOrderBean {
 
         public void setOutTradeNo(String outTradeNo) {
             this.outTradeNo = outTradeNo;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
         }
     }
 }

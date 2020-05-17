@@ -243,7 +243,8 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     @Override
     public void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && !isUpdate) {
-            if (resp.getData().getData() != null && resp.getData().getData().getListResults() != null) {
+            if (resp.getData().getData() != null && resp.getData().getData().getListResults() != null
+            && resp.getData().getData().getListResults().size() > 0) {
                 couponId = resp.getData().getData().getCouponId();
                 tvMoney.setText(resp.getData().getData().getPrice());
                 resultList.clear();

@@ -525,4 +525,11 @@ public class HttpDataStroe extends BaseHttpData {
     }
 
 
+  public void getShoppingNum(Map params, Observer observer) {
+//        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestShoppingNum();
+        setSubscribe(observable, observer);
+    }
+
+
 }

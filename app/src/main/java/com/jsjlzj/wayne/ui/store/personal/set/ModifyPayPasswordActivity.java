@@ -17,6 +17,7 @@ import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SPUtil;
+import com.jsjlzj.wayne.utils.keyboard.KeyboardUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -85,6 +86,7 @@ public class ModifyPayPasswordActivity extends MVPBaseActivity<HomeView, HomePre
      @Override
      public void setPayPasswordSuccess(MdlBaseHttpResp<MdlUser> resp) {
          if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+             KeyboardUtil.closeKeyboard(edPwd,this);
              MdlUser data = resp.getData();
              MyApp.ME.user = data.getData();
              SPUtil.saveToken2SP(data.getData().getToken());

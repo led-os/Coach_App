@@ -96,6 +96,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_BANKCARD_ITEM = 62;
     private static final int REQ_CODE_COMMIT_ORDER_2 = 63;
     private static final int REQ_CODE_SET_PAY_PASSWORD = 64;
+    private static final int REQ_CODE_GET_ORDER_LIST = 65;
 
 
     private HomeModel model;
@@ -651,6 +652,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void getOrderList(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getOrderList(REQ_CODE_GET_ORDER_LIST, params, this);
+        }
+    }
+
     public void setPayPassword(Map params) {
         if (model != null) {
             view.showLoading();
@@ -698,6 +706,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.saveBankCard(REQ_CODE_APPLY_LEADER, params, this);
         }
     }
+
 
 
     @Override
@@ -849,6 +858,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_SET_PAY_PASSWORD:
                 view.setPayPasswordSuccess(resp);
+                break;
+            case REQ_CODE_GET_ORDER_LIST:
+                view.getOrderListSuccess(resp);
+                break;
             default:
                 break;
         }

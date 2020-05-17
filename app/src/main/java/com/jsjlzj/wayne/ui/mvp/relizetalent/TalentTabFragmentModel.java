@@ -7,6 +7,7 @@ import com.jsjlzj.wayne.data.http.HttpDataStroe;
 import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
 import com.jsjlzj.wayne.entity.store.search.ChannelPageBean;
@@ -1309,6 +1310,30 @@ public class TalentTabFragmentModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<SignUpPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+   public void getShoppingNum(int code, Map param, final OnLoadHttpDataListener listener){
+        HttpDataStroe.getInstance().getShoppingNum(param, new Observer<MdlBaseHttpResp<ShoppingNumBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                TalentTabFragmentModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<ShoppingNumBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

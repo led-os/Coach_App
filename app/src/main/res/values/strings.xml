@@ -276,6 +276,7 @@
     <string name="user_argument">用户协议和隐私政策</string>
     <string name="hint">提示</string>
     <string name="optimization">优选</string>
+    <string name="again_buy">再次购买</string>
 
     <string-array name="home_title_list">
         <item>推荐</item>
@@ -289,6 +290,15 @@
         <item>未使用</item>
         <item>已使用</item>
         <item>已过期</item>
+    </string-array>
+
+    <string-array name="order_title_list">
+        <item>全部</item>
+        <item>待支付</item>
+        <item>待发货</item>
+        <item>待收货</item>
+        <item>待评论</item>
+        <item>退货/售后</item>
     </string-array>
 
     <string-array name="profit_title_list">
