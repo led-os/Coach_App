@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.jsjlzj.wayne.R;
@@ -17,6 +18,7 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.PayResult;
+import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -87,13 +89,17 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                      */
                     String resultInfo = payResult.getResult();// 同步返回需要验证的信息
                     String resultStatus = payResult.getResultStatus();
+                    JSONObject jsonObject = JSONObject.parseObject(resultInfo);
                     // 判断resultStatus 为9000则代表支付成功
+                    JSONObject bean = JSONObject.parseObject(jsonObject.getString("alipay_trade_app_pay_response"));
+                    String tradeNo = bean.getString("trade_no");
+                    System.out.println(resultStatus+"resultInfo====="+tradeNo);
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         Map<Object,Object> map = new HashMap<>();
                         map.put("orderCode",orderCode);
                         map.put("payType",payType);
-//                        map.put("tradeNo",);
+                        map.put("tradeNo",tradeNo);
                         presenter.searchPayResult(map);
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
@@ -207,9 +213,9 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
 
 
      @Override
-     public void searchPayResultSuccess(MdlBaseHttpResp<CommitOrderBean> resp) {
+     public void searchPayResultSuccess(MdlBaseHttpResp<PayResultBean> resp) {
          if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-            if(TextUtils.isEmpty(resp.getData().getData().getOutTradeNo())){
+            if(!TextUtils.isEmpty(resp.getData().getData().getOrderCode())){
                 LogAndToastUtil.toast("支付成功");
                 PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
             }

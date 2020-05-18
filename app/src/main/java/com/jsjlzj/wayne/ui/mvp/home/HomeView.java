@@ -19,6 +19,7 @@ import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
+import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
@@ -203,7 +204,7 @@ public interface HomeView extends BaseView {
   default void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
     }
 
-  default void searchPayResultSuccess(MdlBaseHttpResp<CommitOrderBean> resp) {
+  default void searchPayResultSuccess(MdlBaseHttpResp<PayResultBean> resp) {
     }
 
   default void setPayPasswordSuccess(MdlBaseHttpResp<MdlUser> resp) {

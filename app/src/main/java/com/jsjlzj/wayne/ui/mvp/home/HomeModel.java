@@ -20,6 +20,7 @@ import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
+import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
@@ -1683,14 +1684,14 @@ public class HomeModel extends BaseModel {
     }
 
     public void searchPayResult(int code, Map param, final OnLoadHttpDataListener listener) {
-        HttpDataHome.getInstance().searchPayResult(param, new Observer<MdlBaseHttpResp<CommitOrderBean>>() {
+        HttpDataHome.getInstance().searchPayResult(param, new Observer<MdlBaseHttpResp<PayResultBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<CommitOrderBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<PayResultBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
@@ -1700,8 +1701,7 @@ public class HomeModel extends BaseModel {
             }
 
             @Override
-            public void onComplete() {
-            }
+            public void onComplete() {}
         });
     }
 

@@ -23,6 +23,7 @@ import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
+import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
@@ -572,7 +573,7 @@ public interface StoreService {
 
 
     @POST(HttpConstant.API_SHOPPING_SEARCH_PAY_STATE)
-    Observable<MdlBaseHttpResp<CommitOrderBean>> requestSearchPayResult(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<PayResultBean>> requestSearchPayResult(@Body RequestBody requestBody);
 
 
     @POST(HttpConstant.API_SET_PAY_PASSWARD)   //设置支付密码
