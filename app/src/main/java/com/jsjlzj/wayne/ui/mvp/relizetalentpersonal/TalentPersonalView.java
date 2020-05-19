@@ -137,7 +137,7 @@ public interface TalentPersonalView extends BaseView {
     default void getCategoryTypeListSuccess(MdlBaseHttpResp<ShoppingPageBean> resp){}
 
 
-    //获取首页商城分类列表成功
+    //获取首页商城数量成功
     default void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp){}
 
 

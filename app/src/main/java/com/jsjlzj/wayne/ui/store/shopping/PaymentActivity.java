@@ -65,7 +65,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
 
     @Override
     protected int getLayoutResId() {
-       EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+//       EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         return R.layout.activity_payment;
     }
 
