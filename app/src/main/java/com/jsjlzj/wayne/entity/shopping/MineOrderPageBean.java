@@ -10,8 +10,9 @@ import java.util.List;
  */
 public class MineOrderPageBean {
 
+
     /**
-     * data : {"pageNo":"当前页","pageSize":"每页大小","result":[{"aftersaleType":"售后使用字段（维权类型 0，退货；1换货）","createTime":"下单时间","discountAmount":"单个商品优惠金额","isEva":"是否评价#0,未评价|NO;1,已评价|YES","name":"名称","orderCode":"订单号","payAmount":"实付总额","payCode":"支付交易号","productCount":"数量","productPic":"图片地址","productPrice":"单价（分单位需要转换下元 /100）","productSpec":"规格","receiverAddress":"收货地址","receiverName":"收货人","receiverPhone":"收货电话","sendTime":"发货时间","showStatus":"状态（看数字）：0,待支付|WAITPAY;1,已取消|CANCLEED;2,待发货|WAITSEND;3,待收货|WAITRECEIVED;4,待评价|RECEIVED;5,已完成|FINISH;6,交易关闭|CLOSE8","skuId":"商品ID","totalDiscountAmount":"总订单优惠金额（分单位需要转换下元 /100）"}],"totalCount":"总记录数"}
+     * data : {"pageNo":1,"pageSize":10,"totalCount":10,"result":[{"orderCode":200519222965039,"showStatus":2,"productCount":1,"payAmount":100,"list":[{"orderCode":200519222965039,"showStatus":null,"name":null,"productPic":"https://jh-tiyun-test.oss-cn-hangzhou.aliyuncs.com/file/20200519211654802_88GC853K.png","productSpec":"[{\"key\":\"容量\",\"value\":\"128G\"},{\"key\":\"颜色\",\"value\":\"玫瑰金\"}]","productPrice":100,"discountAmount":0,"productCount":1,"payAmount":null,"isEva":0,"sendTime":null,"totalDiscountAmount":null,"skuId":null,"payCode":null,"createTime":1589898559000,"receiverName":null,"receiverPhone":null,"receiverAddress":null,"aftersaleType":null,"orderProductId":1041}]}]}
      */
 
     private DataBean data;
@@ -26,16 +27,16 @@ public class MineOrderPageBean {
 
     public static class DataBean {
         /**
-         * pageNo : 当前页
-         * pageSize : 每页大小
-         * result : [{"aftersaleType":"售后使用字段（维权类型 0，退货；1换货）","createTime":"下单时间","discountAmount":"单个商品优惠金额","isEva":"是否评价#0,未评价|NO;1,已评价|YES","name":"名称","orderCode":"订单号","payAmount":"实付总额","payCode":"支付交易号","productCount":"数量","productPic":"图片地址","productPrice":"单价（分单位需要转换下元 /100）","productSpec":"规格","receiverAddress":"收货地址","receiverName":"收货人","receiverPhone":"收货电话","sendTime":"发货时间","showStatus":"状态（看数字）：0,待支付|WAITPAY;1,已取消|CANCLEED;2,待发货|WAITSEND;3,待收货|WAITRECEIVED;4,待评价|RECEIVED;5,已完成|FINISH;6,交易关闭|CLOSE8","skuId":"商品ID","totalDiscountAmount":"总订单优惠金额（分单位需要转换下元 /100）"}]
-         * totalCount : 总记录数
+         * pageNo : 1
+         * pageSize : 10
+         * totalCount : 10
+         * result : [{"orderCode":200519222965039,"showStatus":2,"productCount":1,"payAmount":100,"list":[{"orderCode":200519222965039,"showStatus":null,"name":null,"productPic":"https://jh-tiyun-test.oss-cn-hangzhou.aliyuncs.com/file/20200519211654802_88GC853K.png","productSpec":"[{\"key\":\"容量\",\"value\":\"128G\"},{\"key\":\"颜色\",\"value\":\"玫瑰金\"}]","productPrice":100,"discountAmount":0,"productCount":1,"payAmount":null,"isEva":0,"sendTime":null,"totalDiscountAmount":null,"skuId":null,"payCode":null,"createTime":1589898559000,"receiverName":null,"receiverPhone":null,"receiverAddress":null,"aftersaleType":null,"orderProductId":1041}]}]
          */
 
         private int pageNo;
         private int pageSize;
         private int totalCount;
-        private List<MineOrderBean> result;
+        private List<ResultBean> result;
 
         public int getPageNo() {
             return pageNo;
@@ -61,14 +62,274 @@ public class MineOrderPageBean {
             this.totalCount = totalCount;
         }
 
-        public List<MineOrderBean> getResult() {
+        public List<ResultBean> getResult() {
             return result;
         }
 
-        public void setResult(List<MineOrderBean> result) {
+        public void setResult(List<ResultBean> result) {
             this.result = result;
         }
 
+        public static class ResultBean {
+            /**
+             * orderCode : 200519222965039
+             * showStatus : 2
+             * productCount : 1
+             * payAmount : 100
+             * list : [{"orderCode":200519222965039,"showStatus":null,"name":null,"productPic":"https://jh-tiyun-test.oss-cn-hangzhou.aliyuncs.com/file/20200519211654802_88GC853K.png","productSpec":"[{\"key\":\"容量\",\"value\":\"128G\"},{\"key\":\"颜色\",\"value\":\"玫瑰金\"}]","productPrice":100,"discountAmount":0,"productCount":1,"payAmount":null,"isEva":0,"sendTime":null,"totalDiscountAmount":null,"skuId":null,"payCode":null,"createTime":1589898559000,"receiverName":null,"receiverPhone":null,"receiverAddress":null,"aftersaleType":null,"orderProductId":1041}]
+             */
 
+            private long orderCode;
+            private int showStatus;
+            private int productCount;
+            private int payAmount;
+            private List<ListBean> list;
+
+            public long getOrderCode() {
+                return orderCode;
+            }
+
+            public void setOrderCode(long orderCode) {
+                this.orderCode = orderCode;
+            }
+
+            public int getShowStatus() {
+                return showStatus;
+            }
+
+            public void setShowStatus(int showStatus) {
+                this.showStatus = showStatus;
+            }
+
+            public int getProductCount() {
+                return productCount;
+            }
+
+            public void setProductCount(int productCount) {
+                this.productCount = productCount;
+            }
+
+            public int getPayAmount() {
+                return payAmount;
+            }
+
+            public void setPayAmount(int payAmount) {
+                this.payAmount = payAmount;
+            }
+
+            public List<ListBean> getList() {
+                return list;
+            }
+
+            public void setList(List<ListBean> list) {
+                this.list = list;
+            }
+
+            public static class ListBean {
+                /**
+                 * orderCode : 200519222965039
+                 * showStatus : null
+                 * name : null
+                 * productPic : https://jh-tiyun-test.oss-cn-hangzhou.aliyuncs.com/file/20200519211654802_88GC853K.png
+                 * productSpec : [{"key":"容量","value":"128G"},{"key":"颜色","value":"玫瑰金"}]
+                 * productPrice : 100
+                 * discountAmount : 0
+                 * productCount : 1
+                 * payAmount : null
+                 * isEva : 0
+                 * sendTime : null
+                 * totalDiscountAmount : null
+                 * skuId : null
+                 * payCode : null
+                 * createTime : 1589898559000
+                 * receiverName : null
+                 * receiverPhone : null
+                 * receiverAddress : null
+                 * aftersaleType : null
+                 * orderProductId : 1041
+                 */
+
+                private long orderCode;
+                private Object showStatus;
+                private Object name;
+                private String productPic;
+                private String productSpec;
+                private int productPrice;
+                private int discountAmount;
+                private int productCount;
+                private Object payAmount;
+                private int isEva;
+                private Object sendTime;
+                private Object totalDiscountAmount;
+                private Object skuId;
+                private Object payCode;
+                private long createTime;
+                private Object receiverName;
+                private Object receiverPhone;
+                private Object receiverAddress;
+                private Object aftersaleType;
+                private int orderProductId;
+
+                public long getOrderCode() {
+                    return orderCode;
+                }
+
+                public void setOrderCode(long orderCode) {
+                    this.orderCode = orderCode;
+                }
+
+                public Object getShowStatus() {
+                    return showStatus;
+                }
+
+                public void setShowStatus(Object showStatus) {
+                    this.showStatus = showStatus;
+                }
+
+                public Object getName() {
+                    return name;
+                }
+
+                public void setName(Object name) {
+                    this.name = name;
+                }
+
+                public String getProductPic() {
+                    return productPic;
+                }
+
+                public void setProductPic(String productPic) {
+                    this.productPic = productPic;
+                }
+
+                public String getProductSpec() {
+                    return productSpec;
+                }
+
+                public void setProductSpec(String productSpec) {
+                    this.productSpec = productSpec;
+                }
+
+                public int getProductPrice() {
+                    return productPrice;
+                }
+
+                public void setProductPrice(int productPrice) {
+                    this.productPrice = productPrice;
+                }
+
+                public int getDiscountAmount() {
+                    return discountAmount;
+                }
+
+                public void setDiscountAmount(int discountAmount) {
+                    this.discountAmount = discountAmount;
+                }
+
+                public int getProductCount() {
+                    return productCount;
+                }
+
+                public void setProductCount(int productCount) {
+                    this.productCount = productCount;
+                }
+
+                public Object getPayAmount() {
+                    return payAmount;
+                }
+
+                public void setPayAmount(Object payAmount) {
+                    this.payAmount = payAmount;
+                }
+
+                public int getIsEva() {
+                    return isEva;
+                }
+
+                public void setIsEva(int isEva) {
+                    this.isEva = isEva;
+                }
+
+                public Object getSendTime() {
+                    return sendTime;
+                }
+
+                public void setSendTime(Object sendTime) {
+                    this.sendTime = sendTime;
+                }
+
+                public Object getTotalDiscountAmount() {
+                    return totalDiscountAmount;
+                }
+
+                public void setTotalDiscountAmount(Object totalDiscountAmount) {
+                    this.totalDiscountAmount = totalDiscountAmount;
+                }
+
+                public Object getSkuId() {
+                    return skuId;
+                }
+
+                public void setSkuId(Object skuId) {
+                    this.skuId = skuId;
+                }
+
+                public Object getPayCode() {
+                    return payCode;
+                }
+
+                public void setPayCode(Object payCode) {
+                    this.payCode = payCode;
+                }
+
+                public long getCreateTime() {
+                    return createTime;
+                }
+
+                public void setCreateTime(long createTime) {
+                    this.createTime = createTime;
+                }
+
+                public Object getReceiverName() {
+                    return receiverName;
+                }
+
+                public void setReceiverName(Object receiverName) {
+                    this.receiverName = receiverName;
+                }
+
+                public Object getReceiverPhone() {
+                    return receiverPhone;
+                }
+
+                public void setReceiverPhone(Object receiverPhone) {
+                    this.receiverPhone = receiverPhone;
+                }
+
+                public Object getReceiverAddress() {
+                    return receiverAddress;
+                }
+
+                public void setReceiverAddress(Object receiverAddress) {
+                    this.receiverAddress = receiverAddress;
+                }
+
+                public Object getAftersaleType() {
+                    return aftersaleType;
+                }
+
+                public void setAftersaleType(Object aftersaleType) {
+                    this.aftersaleType = aftersaleType;
+                }
+
+                public int getOrderProductId() {
+                    return orderProductId;
+                }
+
+                public void setOrderProductId(int orderProductId) {
+                    this.orderProductId = orderProductId;
+                }
+            }
+        }
     }
 }

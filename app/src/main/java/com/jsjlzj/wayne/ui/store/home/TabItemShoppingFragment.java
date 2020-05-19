@@ -285,7 +285,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
     @Override
     public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
-        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null){
             tvNumber.setText(resp.getData().getData()+"");
         }
     }

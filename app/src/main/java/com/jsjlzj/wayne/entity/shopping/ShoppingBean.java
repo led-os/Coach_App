@@ -20,9 +20,9 @@ public class ShoppingBean {
 
     private String id;
     private String name;
-    private String originalPrice;
+    private float originalPrice;
     private String pic;
-    private String price;
+    private float price;
     private String promotionPrice;
     private String sale;
     private String flashPromotionPrice;
@@ -45,11 +45,11 @@ public class ShoppingBean {
         this.name = name;
     }
 
-    public String getOriginalPrice() {
+    public float getOriginalPrice() {
         return originalPrice;
     }
 
-    public void setOriginalPrice(String originalPrice) {
+    public void setOriginalPrice(float originalPrice) {
         this.originalPrice = originalPrice;
     }
 
@@ -61,11 +61,11 @@ public class ShoppingBean {
         this.pic = pic;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

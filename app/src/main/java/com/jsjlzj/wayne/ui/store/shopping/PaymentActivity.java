@@ -19,10 +19,13 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.PayResult;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
+import com.jsjlzj.wayne.ui.AppManager;
+import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -186,7 +189,8 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
 //                        request.nonceStr = orderBean.getNonceStr();
 //                        request.timeStamp = orderBean.getTimeStamp();
 //                        request.sign = orderBean.getPaySign();
-//                        App.getWeiXinAPI().sendReq(request);
+
+//                        MyApp.getApp().getIwxapi().sendReq(request);
 //                    }
 //                };
 //                // 必须异步调用
@@ -218,6 +222,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
             if(!TextUtils.isEmpty(resp.getData().getData().getOrderCode())){
                 LogAndToastUtil.toast("支付成功");
                 PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
+                finish();
             }
          }
      }

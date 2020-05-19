@@ -173,7 +173,7 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         }
         map.put("products", list);
         if(couponBean != null){
-            map.put("couponReceiveId",couponBean.getId());
+//            map.put("couponReceiveId",couponBean.getId());
         }
         if(locationBean != null){
             map.put("userAddressId",locationBean.getId());

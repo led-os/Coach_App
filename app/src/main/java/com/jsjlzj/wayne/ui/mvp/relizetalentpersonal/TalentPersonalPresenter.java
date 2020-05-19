@@ -520,8 +520,10 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
                 break;
             case REQ_CODE_134:
                 view.getCategoryTypeListSuccess(resp);
+                break;
             case REQ_CODE_135:
                 view.getShoppingNumSuccess(resp);
+                break;
             default:
                 break;
 
