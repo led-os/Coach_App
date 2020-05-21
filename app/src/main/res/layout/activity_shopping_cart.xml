@@ -113,7 +113,7 @@
 
             <TextView
                 android:id="@+id/tv_money"
-                android:layout_marginTop="@dimen/padding_5"
+                android:layout_centerVertical="true"
                 android:text="¥ 2,799.00"
                 android:layout_toStartOf="@+id/tv_buy"
                 android:layout_marginEnd="@dimen/padding_10"

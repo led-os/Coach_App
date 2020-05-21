@@ -10,7 +10,6 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.MineOrderAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
-import com.jsjlzj.wayne.entity.shopping.MineOrderBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -43,7 +42,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     private int pageNo = 1;
     private int pageCount;
     private boolean isRefresh;
-    private List<MineOrderBean> orderList = new ArrayList<>();
+    private List<MineOrderPageBean.DataBean.ResultBean> orderList = new ArrayList<>();
     private MineOrderAdapter adapter;
 
     public static MineOrderFragment getInstance(int type){
@@ -127,7 +126,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
             } else {
                 pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
             }
-            List<MineOrderBean> list = resp.getData().getData().getResult();
+            List<MineOrderPageBean.DataBean.ResultBean> list = resp.getData().getData().getResult();
             if (list != null && list.size() > 0) {
                 if (isRefresh) {
                     orderList.clear();

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
             tvOldMoney.getPaint().setAntiAlias(true); //去掉锯齿
             GlidUtils.setGrid(context,shoppingBean.getPic(),imgShopType);
             tvMoney.setText(shoppingBean.getPic());
-            tvOldMoney.setText(shoppingBean.getOriginalPrice());
+            tvOldMoney.setText(DateUtil.getTwoDotByFloat(shoppingBean.getOriginalPrice()));
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(shoppingBean);

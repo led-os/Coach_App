@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,6 +57,8 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     RecyclerView rvEmpty;
     @BindView(R.id.rel_empty_1)
     RelativeLayout relEmpty;
+    @BindView(R.id.rel_shopping_cart)
+    RelativeLayout relShoppingCart;
     @BindView(R.id.tv_money)
     TextView tvMoney;
     @BindView(R.id.tv_coupon)
@@ -98,9 +101,9 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     protected void initViewAndControl() {
         initRightTitle("购物车", "管理");
         mRightTv.setVisibility(View.GONE);
-//        emptyAdapter = new ProductAdapter(this, new ArrayList<>());
-//        rvEmpty.setLayoutManager(new GridLayoutManager(this, 2));
-//        rvEmpty.setAdapter(emptyAdapter);
+        emptyAdapter = new ProductAdapter(this, new ArrayList<>());
+        rvEmpty.setLayoutManager(new GridLayoutManager(this, 2));
+        rvEmpty.setAdapter(emptyAdapter);
         rvCart.setPullRefreshEnabled(false);
         rvCart.setLoadingMoreEnabled(false);
         carAdapter = new ShoppingCarAdapter(ShoppingCartActivity.this, resultList, 0);
@@ -193,10 +196,11 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
             imgAllSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.cbx_unselect));
             tvAllSelect.setText("全选");
         }
+        //不显示优惠明细了
         if(selectList != null && selectList.size() > 0 && curConponBean != null){
-            tvCoupon.setVisibility(View.VISIBLE);
-            imgOpen.setVisibility(View.VISIBLE);
-            tvDiscountDetail.setVisibility(View.VISIBLE);
+            tvCoupon.setVisibility(View.GONE);
+            imgOpen.setVisibility(View.GONE);
+            tvDiscountDetail.setVisibility(View.GONE);
         }else {
             tvCoupon.setVisibility(View.GONE);
             imgOpen.setVisibility(View.GONE);
@@ -245,6 +249,8 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && !isUpdate) {
             if (resp.getData().getData() != null && resp.getData().getData().getListResults() != null
             && resp.getData().getData().getListResults().size() > 0) {
+                relEmpty.setVisibility(View.GONE);
+                relShoppingCart.setVisibility(View.VISIBLE);
                 couponId = resp.getData().getData().getCouponId();
                 tvMoney.setText(resp.getData().getData().getPrice());
                 resultList.clear();

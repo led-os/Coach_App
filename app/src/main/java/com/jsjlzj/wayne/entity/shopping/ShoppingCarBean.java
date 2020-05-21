@@ -74,6 +74,8 @@ public class ShoppingCarBean {
              * productUrl : string
              * status : 0
              * stock : 0
+             *
+             *
              */
 
             private int buyNum;

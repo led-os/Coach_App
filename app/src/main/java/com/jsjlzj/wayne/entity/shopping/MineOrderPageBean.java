@@ -82,7 +82,7 @@ public class MineOrderPageBean {
             private long orderCode;
             private int showStatus;
             private int productCount;
-            private int payAmount;
+            private float payAmount;
             private List<ListBean> list;
 
             public long getOrderCode() {
@@ -109,11 +109,11 @@ public class MineOrderPageBean {
                 this.productCount = productCount;
             }
 
-            public int getPayAmount() {
+            public float getPayAmount() {
                 return payAmount;
             }
 
-            public void setPayAmount(int payAmount) {
+            public void setPayAmount(float payAmount) {
                 this.payAmount = payAmount;
             }
 

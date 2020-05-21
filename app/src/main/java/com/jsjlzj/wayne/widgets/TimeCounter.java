@@ -33,8 +33,10 @@ public class TimeCounter extends CountDownTimer {
     public void onTick(long millisUntilFinished) {
         if(showType == 0){
             button.setText(millisUntilFinished / 1000 +"");
-        }else {
+        }else if(showType == 1){
             button.setText(""+ DateUtil.getDownTimer(millisUntilFinished));
+        }else {
+            button.setText("付款 "+DateUtil.getPayDownTimer(millisUntilFinished));
         }
     }
     public void setJoinTime(long joinTime,int type) {

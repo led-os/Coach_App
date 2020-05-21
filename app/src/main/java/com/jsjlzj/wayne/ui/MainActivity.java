@@ -35,6 +35,7 @@ import com.jsjlzj.wayne.ui.store.personal.storeinfo.InterviewDetailActivity;
 import com.jsjlzj.wayne.ui.store.talent.menu.TabItemTrainerFragment;
 import com.jsjlzj.wayne.ui.trainer.personal.TabItemTrainerMineFragment;
 import com.jsjlzj.wayne.ui.trainer.position.menu.TabItemPositionFragment;
+import com.jsjlzj.wayne.ui.yunxin.YunXingUtil;
 import com.jsjlzj.wayne.ui.yunxin.fragment.MySessionListFragment;
 import com.jsjlzj.wayne.ui.yunxin.reminder.ReminderItem;
 import com.jsjlzj.wayne.ui.yunxin.reminder.ReminderManager;
@@ -139,7 +140,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
         //登不上去的话 在AndroidManifest 有appkey
         user = MyApp.getUser();
         if (user != null) {
-//            YunXingUtil.LoginYunxing(new LoginInfo(user.getYunXinAccount(), user.getYunXinToken()), this);
+            YunXingUtil.LoginYunxing(new LoginInfo(user.getYunXinAccount(), user.getYunXinToken()), this);
         }
 
         NIMClient.getService(MsgServiceObserve.class).observeCustomNotification((Observer<CustomNotification>) message -> {
@@ -355,7 +356,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
 
     @Override
     public void onSuccess(LoginInfo param) {
-        LogAndToastUtil.log("云信登录成功111" + param.getAccount());
+        LogAndToastUtil.log("云信登录成功" + param.getAccount());
         NimUIKit.loginSuccess(user.getYunXinAccount());//必要
         SPUtil.saveYXTokenSP(param.getToken());
         SPUtil.saveYXAccountSP(param.getAccount());

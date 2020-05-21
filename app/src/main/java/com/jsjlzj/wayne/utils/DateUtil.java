@@ -43,6 +43,11 @@ public class DateUtil {
         return dateFormat.format(new Date(timeInMillis));
     }
 
+    /**
+     * 考试时间倒计时
+     * @param remain
+     * @return
+     */
     public static String getDownTimer(long remain){
         if(remain == 0){
             return "00:00";
@@ -68,6 +73,41 @@ public class DateUtil {
             }
             result.append(ss);
         }else if(remain > 60){
+            min = remain / 60;
+            ss = remain % 60;
+            if(min < 10){
+                result.append("0");
+            }
+            result.append(min);
+            result.append(":");
+            if(ss < 10){
+                result.append("0");
+            }
+            result.append(ss);
+        }else if(remain > 1){
+            result.append("00:");
+            if(remain < 10){
+                result.append("0");
+            }
+            result.append(remain);
+        }
+        return result.toString();
+    }
+
+
+    /**
+     * 支付倒计时
+     * @param remain 付款 14:59
+     * @return
+     */
+    public static String getPayDownTimer(long remain){
+        if(remain == 0){
+            return "00:00";
+        }
+        StringBuilder result = new StringBuilder();
+        remain = remain / 1000;
+        long house,min,ss;
+        if(remain > 60){
             min = remain / 60;
             ss = remain % 60;
             if(min < 10){

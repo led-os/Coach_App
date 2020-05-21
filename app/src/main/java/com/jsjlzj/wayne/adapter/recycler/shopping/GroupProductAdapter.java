@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -82,8 +83,8 @@ public class GroupProductAdapter extends RecyclerView.Adapter<GroupProductAdapte
             shoppingBean = list.get(pos);
             GlidUtils.setGrid(context, shoppingBean.getPic(),imgProduct);
             tvTitle.setText(shoppingBean.getName());
-            tvMoney.setText(shoppingBean.getPrice());
-            tvOldMoney.setText(shoppingBean.getOriginalPrice());
+            tvMoney.setText(DateUtil.getTwoDotByFloat(shoppingBean.getPrice()));
+            tvOldMoney.setText(DateUtil.getTwoDotByFloat(shoppingBean.getOriginalPrice()));
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(shoppingBean);
