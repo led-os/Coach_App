@@ -18,8 +18,9 @@ import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppingCarAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
-import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -74,8 +75,8 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     private ShoppingCarAdapter carAdapter;
     private Map<Object, Object> map = new HashMap();
     private boolean isAllSelect = false;
-    private EnableCouponBean.DataBean curConponBean;
-    private List<EnableCouponBean.DataBean> conponList = new ArrayList<>();
+    private MineCouponBean.DataBean curConponBean;
+    private List<MineCouponBean.DataBean> conponList = new ArrayList<>();
     private List<ShoppingCarBean.DataBean.ListResultsBean> resultList = new ArrayList<>();
     private int couponId;
     private boolean isUpdate = false;
@@ -256,24 +257,25 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
                 resultList.clear();
                 resultList.addAll(resp.getData().getData().getListResults());
                 carAdapter.setData(resultList);
-                presenter.getEnableCouponList();
             } else {
-                showEmpty(R.id.rel_shopping_cart, 0, null);
+                relEmpty.setVisibility(View.VISIBLE);
+                relShoppingCart.setVisibility(View.GONE);
+                map.clear();
+                map.put(HttpConstant.PAGE_NO, 1);
+                map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+                map.put("isRecommandStatus",0);
+                presenter.getSearchProductList(map);
             }
         }
     }
 
+
+
     @Override
-    public void getEnableCouponListSuccess(MdlBaseHttpResp<EnableCouponBean> resp) {
-        if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null) {
-            conponList = resp.getData().getData();
-            for (int i = 0; i < resp.getData().getData().size(); i++) {
-                EnableCouponBean.DataBean bean = resp.getData().getData().get(i);
-                if (bean.getId() == couponId) {
-                    curConponBean = bean;
-                    tvCoupon.setText("已优惠 ¥ " + DateUtil.getTwoDotByFloat(bean.getAmount()));
-                    calculateMoney(carAdapter.getSelectList());
-                }
+    public void getShoppingListSuccess(MdlBaseHttpResp<ShoppingPageBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            if(resp.getData().getData() != null && resp.getData().getData().getResult() != null){
+                emptyAdapter.setData(resp.getData().getData().getResult());
             }
         }
     }

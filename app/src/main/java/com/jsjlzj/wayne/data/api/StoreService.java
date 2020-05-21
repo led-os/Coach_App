@@ -18,10 +18,9 @@ import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
-import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
-import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
@@ -536,7 +535,7 @@ public interface StoreService {
     Observable<MdlBaseHttpResp<MineCouponBean>> requestMineCouponList(@Query("useStatus") int useStatus);
 
     @POST(HttpConstant.API_SHOPPING_ENABLE_COUPON_LIST)
-    Observable<MdlBaseHttpResp<EnableCouponBean>> requestEnableCouponList(@Body RequestBody requestBody);
+    Observable<MdlBaseHttpResp<MineCouponBean>> requestEnableCouponList(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_SHOPPING_ADD_CAR)
     Observable<MdlBaseHttpResp<DataBean>> requestAddShoppingCar(@Body RequestBody requestBody);

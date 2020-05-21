@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.utils.DateUtil;
 
@@ -74,7 +74,7 @@ public class DiscountDetailFragment extends DialogFragment {
     TextView tvDiscountDetail;
     @BindView(R.id.tv_money)
     TextView tvMoney;
-    private EnableCouponBean.DataBean couponBean;
+    private MineCouponBean.DataBean couponBean;
     private List<ShoppingCarBean.DataBean.ListResultsBean> resultList;
     private boolean isAllSelect;
 
@@ -87,7 +87,7 @@ public class DiscountDetailFragment extends DialogFragment {
         View rootView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_discount_detail, null);
         dialog.setContentView(rootView);
         ButterKnife.bind(this, rootView);
-        couponBean = (EnableCouponBean.DataBean) getArguments().getSerializable(COUPON_DATA);
+        couponBean = (MineCouponBean.DataBean) getArguments().getSerializable(COUPON_DATA);
         resultList = (List<ShoppingCarBean.DataBean.ListResultsBean>) getArguments().getSerializable(SHOPPING_LIST);
         isAllSelect = getArguments().getBoolean(ALL_SELECT);
         initView();
@@ -142,7 +142,7 @@ public class DiscountDetailFragment extends DialogFragment {
     }
 
 
-    public static void showDialog(FragmentManager fm, EnableCouponBean.DataBean couponList,
+    public static void showDialog(FragmentManager fm, MineCouponBean.DataBean couponList,
                                   List<ShoppingCarBean.DataBean.ListResultsBean> resultList,boolean isAllSelect, OnClickDialogListener listener) {
         DiscountDetailFragment fragment = ((DiscountDetailFragment) fm.findFragmentByTag(TAG));
         if (fragment == null) {

@@ -112,7 +112,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
                 imgBg.setVisibility(View.VISIBLE);
                 imgBg.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_coupon_ygq));
             }
-            tvZhe.setText(context.getResources().getString(R.string.chinese_money) + bean.getAmount());
+            tvZhe.setText(context.getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(bean.getAmount()));
 
             tvDes.setText(bean.getName());
             tvTime.setText("有效期至"+DateUtil.getTime(bean.getEndTime(), new SimpleDateFormat(ExtraConstant.DATE_FORMAT_0, Locale.getDefault())));
@@ -127,12 +127,17 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder
             }else {
                 tvType.setText("购物赠券");
             }
+            tvUse.setOnClickListener(v -> {
+                if(listener != null){
+                    listener.onItemClick(bean);
+                }
+            });
         }
     }
 
 
     public interface OnItemClickListener {
-        void onItemClick(InvitationBean.DataBean.ResultBean bean);
+        void onItemClick(MineCouponBean.DataBean bean);
     }
 
     private OnItemClickListener listener;

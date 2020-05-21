@@ -119,7 +119,7 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
             switch (bean.getShowStatus()){
                 case 0://待支付
                     tvScan.setVisibility(View.GONE);
-                    tvOrderState.setText("付款 14:59");
+                    tvOrderState.setText("待支付");
                     long overTime = bean.getList().get(0).getCreateTime();
                     if (overTime > 0) {
                         long payOverTime = overTime + 15*60*1000;
@@ -177,7 +177,7 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
             }
 
             rvShopping.setLayoutManager(new LinearLayoutManager(context));
-            ShoppingCarAdapter shoppingCarAdapter = new ShoppingCarAdapter(context,new ArrayList<>(),2);
+            OrderDetailAdapter shoppingCarAdapter = new OrderDetailAdapter(context,bean.getList());
             rvShopping.setAdapter(shoppingCarAdapter);
             tvRightClick.setOnClickListener(v -> {
                 if(listener != null){

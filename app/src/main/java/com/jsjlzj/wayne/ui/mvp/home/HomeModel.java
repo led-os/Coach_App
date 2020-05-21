@@ -16,7 +16,6 @@ import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.shopping.BankCardBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
-import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
@@ -1984,14 +1983,14 @@ public class HomeModel extends BaseModel {
     }
 
     public void getEnableCouponList(int code, Map param, final OnLoadHttpDataListener listener) {
-        HttpDataHome.getInstance().getEnableCouponList(param, new Observer<MdlBaseHttpResp<EnableCouponBean>>() {
+        HttpDataHome.getInstance().getEnableCouponList(param, new Observer<MdlBaseHttpResp<MineCouponBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;
             }
 
             @Override
-            public void onNext(MdlBaseHttpResp<EnableCouponBean> mdlBaseHttpResp) {
+            public void onNext(MdlBaseHttpResp<MineCouponBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

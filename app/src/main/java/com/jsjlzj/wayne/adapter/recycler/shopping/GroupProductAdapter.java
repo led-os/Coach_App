@@ -80,6 +80,7 @@ public class GroupProductAdapter extends RecyclerView.Adapter<GroupProductAdapte
         }
 
         void bindView(int pos) {
+
             shoppingBean = list.get(pos);
             GlidUtils.setGrid(context, shoppingBean.getPic(),imgProduct);
             tvTitle.setText(shoppingBean.getName());

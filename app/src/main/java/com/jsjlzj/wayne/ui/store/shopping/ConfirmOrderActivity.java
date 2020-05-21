@@ -8,18 +8,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppingCarAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBody;
-import com.jsjlzj.wayne.entity.shopping.EnableCouponBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -77,10 +77,12 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
     LinearLayout llSelectDiscount;
 
     private List<ShoppingCarBean.DataBean.ListResultsBean> selectList;
-    private EnableCouponBean.DataBean couponBean;
+    private MineCouponBean.DataBean couponBean;
     private LocationListBean.DataBean locationBean;
+    private float totalMontey;
+    private List<MineCouponBean.DataBean> conponList = new ArrayList<>();
 
-    public static void go2this(Activity activity, List<ShoppingCarBean.DataBean.ListResultsBean> selectList, EnableCouponBean.DataBean bean) {
+    public static void go2this(Activity activity, List<ShoppingCarBean.DataBean.ListResultsBean> selectList, MineCouponBean.DataBean bean) {
         activity.startActivity(new Intent(activity, ConfirmOrderActivity.class).putExtra("selectList", (Serializable) selectList)
                 .putExtra("couponBean",bean));
     }
@@ -99,17 +101,17 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
     protected void initViewAndControl() {
         initTitle("确定订单");
         selectList = (List<ShoppingCarBean.DataBean.ListResultsBean>) getIntent().getSerializableExtra("selectList");
-        couponBean = (EnableCouponBean.DataBean) getIntent().getSerializableExtra("couponBean");
+//        couponBean = (EnableCouponBean.DataBean) getIntent().getSerializableExtra("couponBean");
         initShowView();
         relLocationSelect.setOnClickListener(clickListener);
         relLocation.setOnClickListener(clickListener);
+        llSelectDiscount.setOnClickListener(clickListener);
         tvCommitOrder.setOnClickListener(clickListener);
         presenter.getLocationList();
     }
 
     private void initShowView() {
-
-        float totalMontey = 0;
+        totalMontey = 0;
         for (int i = 0; i < selectList.size(); i++) {
             ShoppingCarBean.DataBean.ListResultsBean bean = selectList.get(i);
             if (bean.getBuyNum() > 0) {
@@ -117,17 +119,6 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
             }
         }
         tvPrice.setText(getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(totalMontey));
-        if(couponBean != null){
-            llSelectDiscount.setVisibility(View.VISIBLE);
-            tvSelectDiscount.setText(couponBean.getName());
-            tvDiscounted.setVisibility(View.VISIBLE);
-            tvDiscounted.setText("已优惠¥"+DateUtil.getTwoDotByFloat(couponBean.getAmount()));
-            totalMontey = totalMontey - couponBean.getAmount();
-        }else {
-            tvDiscounted.setVisibility(View.GONE);
-            llSelectDiscount.setVisibility(View.GONE);
-        }
-        tvAllMoney.setText(getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(totalMontey));
 
         relLocationSelect.setVisibility(View.VISIBLE);
         relLocation.setVisibility(View.GONE);
@@ -136,6 +127,7 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         rvOrder.setAdapter(adapter);
         rvOrder.setNestedScrollingEnabled(false);
         rvOrder.setHasFixedSize(true);
+        presenter.getEnableCouponList();
     }
 
     @Override
@@ -147,6 +139,22 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
                 LocationManagerActivity.go2this(this, REQUEST_CODE_SELECT_LOCATION, 1);
                 break;
             case R.id.ll_select_discount:
+                LogAndToastUtil.log("logand日志"+conponList.size());
+                if(conponList.size() > 0){
+                    CouponListFragment.showDialog(getSupportFragmentManager(),conponList,bean -> {
+                        if(totalMontey > bean.getMinPoint()){
+                            couponBean = bean;
+                            tvSelectDiscount.setText(couponBean.getName());
+                            tvSelectDiscount.setTextColor(ContextCompat.getColor(this,R.color.color_f1404b));
+                            tvDiscounted.setVisibility(View.VISIBLE);
+                            tvDiscounted.setText("已优惠¥" + DateUtil.getTwoDotByFloat(couponBean.getAmount()));
+                            tvAllMoney.setText(getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(totalMontey - couponBean.getAmount()));
+                        }else {
+                            LogAndToastUtil.toast("不符合使用条件，请重新选择");
+                        }
+
+                    });
+                }
                 break;
             case R.id.tv_commit_order:
                 commitOrder();
@@ -160,7 +168,6 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
      * 提交订单
      */
     private void commitOrder() {
-
         Map<Object,Object> map = new HashMap<>();
         List<CommitOrderBody> list = new ArrayList<>();
         for (int i = 0; i< selectList.size(); i++){
@@ -173,15 +180,12 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         }
         map.put("products", list);
         if(couponBean != null){
-//            map.put("couponReceiveId",couponBean.getId());
+            map.put("couponReceiveId",couponBean.getId());
         }
         if(locationBean != null){
             map.put("userAddressId",locationBean.getId());
         }
         map.put("type",0);
-
-        System.out.println("=====products"+JSONObject.toJSONString(list));
-
         presenter.commitOrder2(map);
     }
 
@@ -222,37 +226,31 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         }
     }
 
-    @Override
-    public void getShoppingCarListSuccess(MdlBaseHttpResp<ShoppingCarBean> resp) {
-        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-//            {
-//                "couponReceiveId": "优惠券ID",
-//                    "payType": "0,支付宝，；1，微信",
-//                    "products": "待结算信息商品集合",
-//                    "type": "0,商城，；1，课程",
-//                    "userAddressId": "收货地址对象ID"
-//            }
-//            HashMap<Object,Object> map = new HashMap<>();
-//            if(couponBean != null){
-//                map.put("couponReceiveId",couponBean.getId());
-//            }
-//            if(locationBean != null){
-//                map.put("userAddressId",locationBean.getId());
-//            }
-//            map.put("type",1);
-//
-//            presenter.commitOrder2();
-        }
-    }
 
     @Override
     public void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
-            LogAndToastUtil.toast("提交成功");
             PaymentActivity.go2this(this,resp.getData().getData().getOrderCode(),
                     resp.getData().getData().getPayAmount());
             finish();
         }
 
+    }
+
+    @Override
+    public void getEnableCouponListSuccess(MdlBaseHttpResp<MineCouponBean> resp) {
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null) {
+            conponList = resp.getData().getData();
+            LogAndToastUtil.log("logand日志"+conponList.size());
+            if(conponList != null && conponList.size() > 0){
+                llSelectDiscount.setVisibility(View.VISIBLE);
+                tvDiscounted.setVisibility(View.VISIBLE);
+            }else {
+                llSelectDiscount.setVisibility(View.GONE);
+                tvDiscounted.setVisibility(View.GONE);
+                tvAllMoney.setText(getResources().getString(R.string.chinese_money) + DateUtil.getTwoDotByFloat(totalMontey));
+            }
+
+        }
     }
 }

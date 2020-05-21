@@ -1,5 +1,6 @@
 package com.jsjlzj.wayne.entity.shopping;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class MineCouponBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * amount : 优惠金额
          * endTime : 截止时间
@@ -29,19 +30,27 @@ public class MineCouponBean {
          * type : 优惠卷类型；0->全场赠券；1->会员赠券；2->购物赠券；3->注册赠券 * 暂时只有: 2->购物赠券
          * useType : 使用类型：0->全场通用；1->指定分类；2->指定商品
          */
-
-        private String amount;
+        private float amount;
         private long endTime;
-        private int minPoint;
+        private float minPoint;
         private String name;
         private int type;
         private int useType;
+        private int id;
 
-        public String getAmount() {
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public float getAmount() {
             return amount;
         }
 
-        public void setAmount(String amount) {
+        public void setAmount(float amount) {
             this.amount = amount;
         }
 
@@ -53,11 +62,11 @@ public class MineCouponBean {
             this.endTime = endTime;
         }
 
-        public int getMinPoint() {
+        public float getMinPoint() {
             return minPoint;
         }
 
-        public void setMinPoint(int minPoint) {
+        public void setMinPoint(float minPoint) {
             this.minPoint = minPoint;
         }
 

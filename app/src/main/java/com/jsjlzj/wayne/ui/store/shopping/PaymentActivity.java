@@ -24,6 +24,7 @@ import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 
@@ -94,10 +95,10 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                     String resultStatus = payResult.getResultStatus();
                     JSONObject jsonObject = JSONObject.parseObject(resultInfo);
                     // 判断resultStatus 为9000则代表支付成功
-                    JSONObject bean = JSONObject.parseObject(jsonObject.getString("alipay_trade_app_pay_response"));
-                    String tradeNo = bean.getString("trade_no");
-                    System.out.println(resultStatus+"resultInfo====="+tradeNo);
+
                     if (TextUtils.equals(resultStatus, "9000")) {
+                        JSONObject bean = JSONObject.parseObject(jsonObject.getString("alipay_trade_app_pay_response"));
+                        String tradeNo = bean.getString("trade_no");
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         Map<Object,Object> map = new HashMap<>();
                         map.put("orderCode",orderCode);
@@ -110,23 +111,6 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                     }
                     break;
                 }
-//                case SDK_AUTH_FLAG: {
-//                    @SuppressWarnings("unchecked")
-//                    AuthResult authResult = new AuthResult((Map<String, String>) msg.obj, true);
-//                    String resultStatus = authResult.getResultStatus();
-//
-//                    // 判断resultStatus 为“9000”且result_code
-//                    // 为“200”则代表授权成功，具体状态码代表含义可参考授权接口文档
-//                    if (TextUtils.equals(resultStatus, "9000")) {
-//                        // 获取alipay_open_id，调支付时作为参数extern_token 的value
-//                        // 传入，则支付账户为该授权账户
-//                        mPresenter.modifyOrderStatus(orderId);
-//                    } else {
-//                        // 其他状态值则为授权失败
-//                        toastMessage(R.string.pay_fail);
-//                    }
-//                    break;
-//                }
                 default:
                     break;
             }
@@ -138,7 +122,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         initTitle("确认支付");
         amount = getIntent().getStringExtra("amount");
         orderCode = getIntent().getStringExtra("orderCode");
-        tvPrice.setText(amount);
+        tvPrice.setText(DateUtil.getTwoDotByFloat(Float.valueOf(amount)));
         imgZfb.setSelected(true);
         imgWx.setSelected(false);
     }

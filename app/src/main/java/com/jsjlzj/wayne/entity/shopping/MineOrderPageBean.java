@@ -150,18 +150,18 @@ public class MineOrderPageBean {
                  */
 
                 private long orderCode;
-                private Object showStatus;
-                private Object name;
+                private int showStatus;
+                private String name;
                 private String productPic;
                 private String productSpec;
-                private int productPrice;
+                private float productPrice;
                 private int discountAmount;
                 private int productCount;
-                private Object payAmount;
+                private float payAmount;
                 private int isEva;
-                private Object sendTime;
+                private long sendTime;
                 private Object totalDiscountAmount;
-                private Object skuId;
+                private long skuId;
                 private Object payCode;
                 private long createTime;
                 private Object receiverName;
@@ -178,19 +178,19 @@ public class MineOrderPageBean {
                     this.orderCode = orderCode;
                 }
 
-                public Object getShowStatus() {
+                public int getShowStatus() {
                     return showStatus;
                 }
 
-                public void setShowStatus(Object showStatus) {
+                public void setShowStatus(int showStatus) {
                     this.showStatus = showStatus;
                 }
 
-                public Object getName() {
+                public String getName() {
                     return name;
                 }
 
-                public void setName(Object name) {
+                public void setName(String name) {
                     this.name = name;
                 }
 
@@ -210,11 +210,11 @@ public class MineOrderPageBean {
                     this.productSpec = productSpec;
                 }
 
-                public int getProductPrice() {
+                public float getProductPrice() {
                     return productPrice;
                 }
 
-                public void setProductPrice(int productPrice) {
+                public void setProductPrice(float productPrice) {
                     this.productPrice = productPrice;
                 }
 
@@ -234,11 +234,11 @@ public class MineOrderPageBean {
                     this.productCount = productCount;
                 }
 
-                public Object getPayAmount() {
+                public float getPayAmount() {
                     return payAmount;
                 }
 
-                public void setPayAmount(Object payAmount) {
+                public void setPayAmount(float payAmount) {
                     this.payAmount = payAmount;
                 }
 
@@ -250,11 +250,11 @@ public class MineOrderPageBean {
                     this.isEva = isEva;
                 }
 
-                public Object getSendTime() {
+                public long getSendTime() {
                     return sendTime;
                 }
 
-                public void setSendTime(Object sendTime) {
+                public void setSendTime(long sendTime) {
                     this.sendTime = sendTime;
                 }
 
@@ -266,11 +266,11 @@ public class MineOrderPageBean {
                     this.totalDiscountAmount = totalDiscountAmount;
                 }
 
-                public Object getSkuId() {
+                public long getSkuId() {
                     return skuId;
                 }
 
-                public void setSkuId(Object skuId) {
+                public void setSkuId(long skuId) {
                     this.skuId = skuId;
                 }
 

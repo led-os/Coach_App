@@ -177,6 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_52"
                 android:background="@color/white"
+                android:visibility="visible"
                 android:gravity="center_vertical">
                 <TextView
                     android:layout_width="wrap_content"
@@ -196,9 +197,9 @@
                     android:layout_marginEnd="@dimen/padding_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_f1404b"
+                    android:textColor="@color/color_999999"
                     android:textSize="@dimen/text_size_14"
-                    android:text="满1699减100"/>
+                    android:text="请选择"/>
 
 
                 <ImageView
