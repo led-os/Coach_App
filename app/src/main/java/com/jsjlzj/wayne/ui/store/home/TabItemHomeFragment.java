@@ -86,19 +86,19 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
         mTitles = getResources().getStringArray(R.array.home_title_list);
         for (int i = 0; i < mTitles.length; i++) {
             switch (i) {
-                case 1:
+                case 0:
                     AmoySchoolFragment amoySchoolFragment = AmoySchoolFragment.getInstance();
                     fragments.add(amoySchoolFragment);
                     break;
-                case 2:
+                case 1:
                     MatchFragment matchFragment = MatchFragment.getInstance();
                     fragments.add(matchFragment);
                     break;
-                case 3:
+                case 2:
                     DriedFoodFragment driedFoodFragment = DriedFoodFragment.getInstance();
                     fragments.add(driedFoodFragment);
                     break;
-                case 4:
+                case 3:
                     InformationFragment informationFragment = InformationFragment.getInstance();
                     fragments.add(informationFragment);
                     break;
@@ -106,10 +106,10 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
 //                    ProductFragment productFragment = ProductFragment.getInstance();
 //                    fragments.add(productFragment);
 //                    break;
-                default:
-                    RecommendFragment informationListFragment1 = RecommendFragment.getInstance(myViewPager);
-                    fragments.add(informationListFragment1);
-                    break;
+//                default:
+//                    RecommendFragment informationListFragment1 = RecommendFragment.getInstance(myViewPager);
+//                    fragments.add(informationListFragment1);
+//                    break;
             }
         }
         myViewPager.setSlide(true);

@@ -12,9 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.ui.store.shopping.ShoppingEvaluateActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -108,10 +112,23 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             imgDelete.setVisibility(View.GONE);
             tvNum.setVisibility(View.GONE);
             tvShopCarNum.setVisibility(View.VISIBLE);
-            tvAttribute.setText(bean.getProductSpec());
+            JSONArray array = JSON.parseArray(bean.getProductSpec());
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < array.size(); i++) {
+                JSONObject jsonObject = JSONObject.parseObject(array.get(i).toString());
+                String value = jsonObject.getString("value");
+                stringBuilder.append(value);
+                stringBuilder.append(" ");
+            }
+            if(bean.getIsEva() == 0 && bean.getShowStatus() == 4){//待评价
+                tvEvaluate.setVisibility(View.VISIBLE);
+            }else {
+                tvEvaluate.setVisibility(View.GONE);
+            }
+            tvAttribute.setText(stringBuilder.toString());
             tvShopCarNum.setText("x"+bean.getProductCount());
             tvEvaluate.setOnClickListener(v -> {
-                // TODO: 2020/5/17 去评论
+                ShoppingEvaluateActivity.go2this(context,bean);
             });
             itemView.setOnLongClickListener(v -> {
                 if (listener != null) {
@@ -143,7 +160,5 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
          * @param bean 实体类
          */
         void onItemClick(MineOrderPageBean.DataBean.ResultBean.ListBean bean);
-
-
     }
 }

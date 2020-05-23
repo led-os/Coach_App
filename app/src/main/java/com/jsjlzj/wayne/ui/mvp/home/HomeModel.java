@@ -1704,6 +1704,51 @@ public class HomeModel extends BaseModel {
         });
     }
 
+
+    public void confirmOrder(int code, String orderCode, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().confirmOrder(orderCode, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {}
+        });
+    }
+
+    public void commitEvaluateOrder(int code, Map params, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().commitEvaluateOrder(params, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {}
+        });
+    }
+
     public void setPayPassword(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().setPayPassword(param, new Observer<MdlBaseHttpResp<MdlUser>>() {
             @Override
@@ -1984,6 +2029,30 @@ public class HomeModel extends BaseModel {
 
     public void getEnableCouponList(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().getEnableCouponList(param, new Observer<MdlBaseHttpResp<MineCouponBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<MineCouponBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getEnableCoupon(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getEnableCoupon(param, new Observer<MdlBaseHttpResp<MineCouponBean>>() {
             @Override
             public void onSubscribe(Disposable d) {
                 HomeModel.this.disposable = d;

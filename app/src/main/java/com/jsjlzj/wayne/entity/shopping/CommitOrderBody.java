@@ -17,7 +17,7 @@ public class CommitOrderBody {
 
     private int buyCount;
     private int productId;
-    private int shoppingCarId;
+    private long shoppingCarId;
 
 
     public int getProductId() {
@@ -36,11 +36,11 @@ public class CommitOrderBody {
         this.buyCount = buyCount;
     }
 
-    public int getShoppingCarId() {
+    public long getShoppingCarId() {
         return shoppingCarId;
     }
 
-    public void setShoppingCarId(int shoppingCarId) {
+    public void setShoppingCarId(long shoppingCarId) {
         this.shoppingCarId = shoppingCarId;
     }
 }

@@ -1,5 +1,6 @@
 package com.jsjlzj.wayne.entity.shopping;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -79,17 +80,17 @@ public class MineOrderPageBean {
              * list : [{"orderCode":200519222965039,"showStatus":null,"name":null,"productPic":"https://jh-tiyun-test.oss-cn-hangzhou.aliyuncs.com/file/20200519211654802_88GC853K.png","productSpec":"[{\"key\":\"容量\",\"value\":\"128G\"},{\"key\":\"颜色\",\"value\":\"玫瑰金\"}]","productPrice":100,"discountAmount":0,"productCount":1,"payAmount":null,"isEva":0,"sendTime":null,"totalDiscountAmount":null,"skuId":null,"payCode":null,"createTime":1589898559000,"receiverName":null,"receiverPhone":null,"receiverAddress":null,"aftersaleType":null,"orderProductId":1041}]
              */
 
-            private long orderCode;
+            private String orderCode;
             private int showStatus;
             private int productCount;
             private float payAmount;
             private List<ListBean> list;
 
-            public long getOrderCode() {
+            public String getOrderCode() {
                 return orderCode;
             }
 
-            public void setOrderCode(long orderCode) {
+            public void setOrderCode(String orderCode) {
                 this.orderCode = orderCode;
             }
 
@@ -125,10 +126,10 @@ public class MineOrderPageBean {
                 this.list = list;
             }
 
-            public static class ListBean {
+            public static class ListBean implements Serializable {
                 /**
                  * orderCode : 200519222965039
-                 * showStatus : null
+                 * showStatus : 状态（看数字）：0,待支付|WAITPAY;1,已取消|CANCLEED;2,待发货|WAITSEND;3,待收货|WAITRECEIVED;4,待评价|RECEIVED;5,已完成|FINISH;6,交易关闭|CLOSE8
                  * name : null
                  * productPic : https://jh-tiyun-test.oss-cn-hangzhou.aliyuncs.com/file/20200519211654802_88GC853K.png
                  * productSpec : [{"key":"容量","value":"128G"},{"key":"颜色","value":"玫瑰金"}]

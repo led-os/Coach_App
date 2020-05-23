@@ -29,6 +29,7 @@ import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
 import com.jsjlzj.wayne.ui.store.home.TabItemCommunityFragment;
 import com.jsjlzj.wayne.ui.store.home.TabItemFindFragment;
+import com.jsjlzj.wayne.ui.store.home.TabItemHomeFragment;
 import com.jsjlzj.wayne.ui.store.home.TabItemShoppingFragment;
 import com.jsjlzj.wayne.ui.store.personal.TabItemStoreInfoFragment;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.InterviewDetailActivity;
@@ -180,7 +181,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
             nams = stroeNames;
             drawableSelector = stroeDrawableSelector;
             tabItemTrainerFragment = (TabItemTrainerFragment) TabItemTrainerFragment.getInstance();
-            mFragments.add(TabItemFindFragment.getInstance());
+            mFragments.add(TabItemHomeFragment.getInstance());
             mFragments.add(tabItemTrainerFragment);
             mFragments.add(MySessionListFragment.getInstance(false));
             mFragments.add(TabItemStoreInfoFragment.getInstance());

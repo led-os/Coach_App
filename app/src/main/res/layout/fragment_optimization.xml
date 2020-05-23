@@ -143,6 +143,7 @@
             android:layout_marginEnd="@dimen/padding_10"
             android:layout_marginBottom="@dimen/padding_10"
             android:scaleType="fitXY"
+            android:visibility="gone"
             android:src="@drawable/ic_default_image" />
 
         <RelativeLayout

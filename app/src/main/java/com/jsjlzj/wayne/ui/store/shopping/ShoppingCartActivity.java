@@ -68,6 +68,8 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     ImageView imgOpen;
     @BindView(R.id.tv_discount_detail)
     TextView tvDiscountDetail;
+    @BindView(R.id.tv_buy)
+    TextView tvBuy;
     @BindView(R.id.rv_cart)
     CustomXRecyclerView rvCart;
 
@@ -80,6 +82,7 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     private List<ShoppingCarBean.DataBean.ListResultsBean> resultList = new ArrayList<>();
     private int couponId;
     private boolean isUpdate = false;
+    private boolean isManager = false;
 
 
     public static void go2this(Activity activity) {
@@ -101,7 +104,6 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     @Override
     protected void initViewAndControl() {
         initRightTitle("购物车", "管理");
-        mRightTv.setVisibility(View.GONE);
         emptyAdapter = new ProductAdapter(this, new ArrayList<>());
         rvEmpty.setLayoutManager(new GridLayoutManager(this, 2));
         rvEmpty.setAdapter(emptyAdapter);
@@ -119,13 +121,26 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_right_btn:
+                if(isManager){
+                    isManager = false;
+                    tvBuy.setText("结算");
+                    mRightTv.setText("管理");
+                }else {
+                    tvBuy.setText("删除");
+                    mRightTv.setText("完成");
+                    isManager = true;
+                }
                 break;
             case R.id.img_all_select:
             case R.id.tv_all_select:
                 selectAllClick();
                 break;
             case R.id.tv_buy:
-                toBuyClick();
+                if(isManager){
+                    deleteArrayCar();
+                }else {
+                    toBuyClick();
+                }
                 break;
             case R.id.tv_discount_detail:
                 DiscountDetailFragment.showDialog(getSupportFragmentManager(), curConponBean,carAdapter.getSelectList(),isAllSelect,this);
@@ -133,6 +148,21 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
             default:
                 break;
         }
+    }
+
+    private void deleteArrayCar() {
+        List<ShoppingCarBean.DataBean.ListResultsBean> selectList = carAdapter.getSelectList();
+        if(selectList != null && selectList.size() > 0){
+            List<Integer> listId = new ArrayList<>();
+            for (int i = 0; i < selectList.size(); i++) {
+                listId.add(selectList.get(i).getId());
+            }
+            map.put("id", listId);
+            presenter.deleteCar(map);
+        }else {
+            LogAndToastUtil.toast("请选择想要删除的商品");
+        }
+
     }
 
     private void toBuyClick() {
@@ -173,7 +203,10 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
     public void onDeleteClick(ShoppingCarBean.DataBean.ListResultsBean bean) {
         map.clear();
         if(bean.getBuyNum() == 0){
-            map.put("id", bean.getId());
+            List<Integer> listId = new ArrayList<>();
+            listId.add(bean.getId());
+            map.put("id", listId);
+            isUpdate = false;
             presenter.deleteCar(map);
         }else {
             map.put("id", bean.getId());
@@ -252,14 +285,15 @@ public class ShoppingCartActivity extends MVPBaseActivity<HomeView, HomePresente
             && resp.getData().getData().getListResults().size() > 0) {
                 relEmpty.setVisibility(View.GONE);
                 relShoppingCart.setVisibility(View.VISIBLE);
+                mRightTv.setVisibility(View.VISIBLE);
                 couponId = resp.getData().getData().getCouponId();
-                tvMoney.setText(resp.getData().getData().getPrice());
                 resultList.clear();
                 resultList.addAll(resp.getData().getData().getListResults());
                 carAdapter.setData(resultList);
             } else {
                 relEmpty.setVisibility(View.VISIBLE);
                 relShoppingCart.setVisibility(View.GONE);
+                mRightTv.setVisibility(View.GONE);
                 map.clear();
                 map.put(HttpConstant.PAGE_NO, 1);
                 map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);

@@ -81,6 +81,7 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
     private LocationListBean.DataBean locationBean;
     private float totalMontey;
     private List<MineCouponBean.DataBean> conponList = new ArrayList<>();
+    private Map<Object,Object> map = new HashMap<>();
 
     public static void go2this(Activity activity, List<ShoppingCarBean.DataBean.ListResultsBean> selectList, MineCouponBean.DataBean bean) {
         activity.startActivity(new Intent(activity, ConfirmOrderActivity.class).putExtra("selectList", (Serializable) selectList)
@@ -107,6 +108,13 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         relLocation.setOnClickListener(clickListener);
         llSelectDiscount.setOnClickListener(clickListener);
         tvCommitOrder.setOnClickListener(clickListener);
+        map.clear();
+        for (int i = 0; i < selectList.size(); i++) {
+            ShoppingCarBean.DataBean.ListResultsBean bean = selectList.get(i);
+            bean.setSkuId(bean.getId());
+        }
+        map.put("products",selectList);
+        presenter.getEnableCoupon(map);
         presenter.getLocationList();
     }
 
@@ -127,7 +135,6 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
         rvOrder.setAdapter(adapter);
         rvOrder.setNestedScrollingEnabled(false);
         rvOrder.setHasFixedSize(true);
-        presenter.getEnableCouponList();
     }
 
     @Override

@@ -575,6 +575,17 @@ public interface StoreService {
     Observable<MdlBaseHttpResp<PayResultBean>> requestSearchPayResult(@Body RequestBody requestBody);
 
 
+    @POST(HttpConstant.API_SHOPPING_CONFIRM_ORDER)
+    Observable<MdlBaseHttpResp<DataBean>> requestConfirmOrder(@Query("orderCode") String orderCode);
+
+    @POST(HttpConstant.API_SHOPPING_EVALUATE_ORDER)
+    Observable<MdlBaseHttpResp<DataBean>> requestEvaluateOrder(@Body RequestBody requestBody);
+
+
+    @POST(HttpConstant.API_SHOPPING_ENABLE_COUPON)
+    Observable<MdlBaseHttpResp<MineCouponBean>> requestEnableCoupon(@Body RequestBody requestBody);
+
+
     @POST(HttpConstant.API_SET_PAY_PASSWARD)   //设置支付密码
     Observable<MdlBaseHttpResp<MdlUser>> requestPayPassword(@Body RequestBody requestBody);
 

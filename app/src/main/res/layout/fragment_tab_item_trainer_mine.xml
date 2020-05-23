@@ -829,6 +829,7 @@
                         android:id="@+id/ll_lljl"
                         android:layout_width="0dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:layout_height="wrap_content">
@@ -916,6 +917,32 @@
                             android:textColor="@color/color_666666"/>
 
                     </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_shdz"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_train_me_shdz"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="收货地址"
+                            android:textSize="@dimen/text_size_12"
+                            android:layout_marginTop="@dimen/padding_6"
+                            android:textColor="@color/color_666666"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
 
@@ -953,30 +980,6 @@
                     </LinearLayout>
 
 
-
-
-                    <LinearLayout
-                        android:id="@+id/ll_shdz"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_train_me_shdz"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="收货地址"
-                            android:textSize="@dimen/text_size_12"
-                            android:layout_marginTop="@dimen/padding_6"
-                            android:textColor="@color/color_666666"/>
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_gzjlb"
@@ -1072,17 +1075,6 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/ll_service_three"
-                    android:layout_below="@+id/ll_service_two"
-                    android:layout_marginTop="@dimen/padding_12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
 
 
                     <LinearLayout
@@ -1109,6 +1101,19 @@
 
                     </LinearLayout>
 
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_service_three"
+                    android:layout_below="@+id/ll_service_two"
+                    android:layout_marginTop="@dimen/padding_12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+
                     <LinearLayout
                         android:id="@+id/ll_yhxy"
                         android:layout_width="0dp"
@@ -1127,6 +1132,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="用户协议"
+                            android:textSize="@dimen/text_size_12"
+                            android:layout_marginTop="@dimen/padding_6"
+                            android:textColor="@color/color_666666"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_aaaa"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:visibility="invisible"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_train_me_bzyfk"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="帮助与反馈"
                             android:textSize="@dimen/text_size_12"
                             android:layout_marginTop="@dimen/padding_6"
                             android:textColor="@color/color_666666"/>
@@ -1231,7 +1261,6 @@
             android:gravity="center"
             android:textSize="@dimen/text_size_10"
             android:textColor="#FA6400"
-            android:layout_marginEnd="-3dp"
             android:layout_alignEnd="@+id/img_shopping_cart"
             android:layout_width="@dimen/padding_12"
             android:layout_height="@dimen/padding_12"

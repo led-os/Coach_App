@@ -11,10 +11,17 @@ import com.jsjlzj.wayne.adapter.recycler.shopping.MineOrderAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.ui.store.shopping.ConfirmOrderActivity;
+import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
+import com.jsjlzj.wayne.ui.store.shopping.ScanLogisticsActivity;
+import com.jsjlzj.wayne.ui.store.shopping.ShoppingEvaluateActivity;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
+import com.jsjlzj.wayne.widgets.TimeCounter;
 import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
@@ -30,7 +37,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener {
+public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, MineOrderAdapter.OnItemClickListener {
 
     @BindView(R.id.rv_data)
     CustomXRecyclerView rvData;
@@ -67,6 +74,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         rvData.setLoadingListener(this);
         rvData.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new MineOrderAdapter(getActivity(),new ArrayList<>(),type);
+        adapter.setListener(this);
         rvData.setAdapter(adapter);
         loadData(true);
     }
@@ -142,4 +150,55 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
 
+    @Override
+    public void onLeftClick(MineOrderPageBean.DataBean.ResultBean bean) {
+        switch (bean.getShowStatus()){
+            case 3://查看物流
+                ScanLogisticsActivity.go2this(getActivity(),bean.getOrderCode());
+                break;
+            default:break;
+
+        }
+    }
+
+    @Override
+    public void onRightClick(MineOrderPageBean.DataBean.ResultBean bean) {
+        switch (bean.getShowStatus()){
+            case 0://支付
+                PaymentActivity.go2this(getActivity(),bean.getOrderCode(),String.valueOf(bean.getPayAmount()));
+                break;
+            case 5://已完成
+            case 6://交易关闭
+            case 1://已取消  再次购买
+//                ConfirmOrderActivity.go2this(getActivity(),transShoppingCarList(bean.getList()),null);
+                ShoppingEvaluateActivity.go2this(getActivity(),bean.getList().get(0));
+                break;
+            case 2://待发货  提醒发货
+                LogAndToastUtil.toast("发货成功");
+                break;
+            case 3://确认收货
+                presenter.confirmOrder(bean.getOrderCode());
+                break;
+            case 4://待评价
+                break;
+            default:break;
+
+        }
+    }
+
+    private List<ShoppingCarBean.DataBean.ListResultsBean> transShoppingCarList(List<MineOrderPageBean.DataBean.ResultBean.ListBean> list) {
+        List<ShoppingCarBean.DataBean.ListResultsBean> shoppingCarList = new ArrayList<>();
+        for (int i = 0 ;i < list.size() ; i++){
+            ShoppingCarBean.DataBean.ListResultsBean bean = new ShoppingCarBean.DataBean.ListResultsBean();
+            MineOrderPageBean.DataBean.ResultBean.ListBean orderBean = list.get(i);
+            bean.setBuyNum(orderBean.getProductCount());
+            bean.setProductId(orderBean.getOrderProductId());
+            bean.setPrice(orderBean.getProductPrice());
+            bean.setProductName(orderBean.getName());
+            bean.setSpData(orderBean.getProductSpec());
+            bean.setProductUrl(orderBean.getProductPic());
+            shoppingCarList.add(bean);
+        }
+        return shoppingCarList;
+    }
 }

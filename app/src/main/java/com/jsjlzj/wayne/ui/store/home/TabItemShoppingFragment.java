@@ -144,7 +144,6 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         map.put(HttpConstant.PAGE_NO, 1);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         presenter.getSearchProductList(map);
-        presenter.getShoppingNum();
     }
 
     private void initRecycler() {
@@ -209,7 +208,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
     @Override
     protected void fragment2Front() {
-
+        presenter.getShoppingNum();
     }
 
     @Override

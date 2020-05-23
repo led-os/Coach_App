@@ -83,7 +83,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.home.mine.LeaderDesActivity"></activity>
+        <activity android:name=".ui.store.shopping.ScanLogisticsActivity"></activity>
+        <activity android:name=".ui.store.shopping.ShoppingEvaluateActivity" />
+        <activity android:name=".ui.store.shopping.OrderDetailActivity" />
+        <activity android:name=".ui.store.home.mine.LeaderDesActivity" />
         <activity android:name=".ui.store.home.mine.MineOrderActivity" />
         <activity android:name=".ui.store.personal.set.ModifyPayPasswordActivity" />
         <activity android:name=".ui.store.personal.set.PayForgetPasswordActivity" />

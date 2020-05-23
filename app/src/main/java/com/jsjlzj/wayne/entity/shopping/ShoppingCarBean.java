@@ -87,7 +87,12 @@ public class ShoppingCarBean {
             private String productUrl;
             private int status;
             private int stock;
+            private String spData;
             private boolean isSelect;
+            private long skuId;
+
+
+
 
             public int getBuyNum() {
                 return buyNum;
@@ -167,6 +172,22 @@ public class ShoppingCarBean {
 
             public void setSelect(boolean select) {
                 isSelect = select;
+            }
+
+            public String getSpData() {
+                return spData;
+            }
+
+            public void setSpData(String spData) {
+                this.spData = spData;
+            }
+
+            public long getSkuId() {
+                return skuId;
+            }
+
+            public void setSkuId(long skuId) {
+                this.skuId = skuId;
             }
         }
     }

@@ -23,9 +23,9 @@ public class ShoppingBean {
     private float originalPrice;
     private String pic;
     private float price;
-    private String promotionPrice;
+    private float promotionPrice;
     private String sale;
-    private String flashPromotionPrice;
+    private float flashPromotionPrice;
     private String sdate;
     private String stimeDown;
 
@@ -69,11 +69,11 @@ public class ShoppingBean {
         this.price = price;
     }
 
-    public String getPromotionPrice() {
+    public float getPromotionPrice() {
         return promotionPrice;
     }
 
-    public void setPromotionPrice(String promotionPrice) {
+    public void setPromotionPrice(float promotionPrice) {
         this.promotionPrice = promotionPrice;
     }
 
@@ -85,11 +85,11 @@ public class ShoppingBean {
         this.sale = sale;
     }
 
-    public String getFlashPromotionPrice() {
+    public float getFlashPromotionPrice() {
         return flashPromotionPrice;
     }
 
-    public void setFlashPromotionPrice(String flashPromotionPrice) {
+    public void setFlashPromotionPrice(float flashPromotionPrice) {
         this.flashPromotionPrice = flashPromotionPrice;
     }
 

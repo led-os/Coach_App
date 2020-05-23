@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.TimeSecondAdapter;
+import com.jsjlzj.wayne.adapter.recycler.shopping.TimeSecondItemAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
@@ -46,7 +47,7 @@ public class TimeSecondFragment extends MVPBaseFragment<HomeView, HomePresenter>
     private int pageNo = 1, pageCount;
     private Map<Object, Object> map = new HashMap<>();
     private boolean isRefresh;
-    private TimeSecondAdapter timeSecondAdapter;
+    private TimeSecondItemAdapter timeSecondAdapter;
     private List<ShoppingBean> shoppingList = new ArrayList<>();
 
     public TimeSecondFragment() {
@@ -70,7 +71,7 @@ public class TimeSecondFragment extends MVPBaseFragment<HomeView, HomePresenter>
         type = getArguments().getInt("type", 0);
         rvTimeSecond.setLoadingListener(this);
         rvTimeSecond.setLayoutManager(new LinearLayoutManager(getActivity()));
-        timeSecondAdapter = new TimeSecondAdapter(getActivity(), type, new ArrayList<>());
+        timeSecondAdapter = new TimeSecondItemAdapter(getActivity(), type, new ArrayList<>());
         rvTimeSecond.setAdapter(timeSecondAdapter);
         loadData(true);
     }

@@ -193,6 +193,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
     public void onResume() {
         super.onResume();
         presenter.myselfT(null);
+        presenter.getShoppingNum();
     }
 
     @Override
@@ -239,7 +240,6 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
         llGywm.setOnClickListener(clickListener);
         llBzyfk.setOnClickListener(clickListener);
         llYhxy.setOnClickListener(clickListener);
-        presenter.getShoppingNum();
     }
 
     @Override

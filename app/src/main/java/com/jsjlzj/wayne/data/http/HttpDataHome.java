@@ -731,6 +731,12 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void getEnableCoupon(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestEnableCoupon(body);
+        setSubscribe(observable, observer);
+    }
+
     public void addShoppingCar(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestAddShoppingCar(body);
@@ -758,6 +764,16 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void confirmOrder(String orderCode, Observer observer) {
+        Observable observable = service.requestConfirmOrder(orderCode);
+        setSubscribe(observable, observer);
+    }
+
+    public void commitEvaluateOrder(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestEvaluateOrder(body);
+        setSubscribe(observable, observer);
+    }
     public void setPayPassword(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestPayPassword(body);

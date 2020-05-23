@@ -13,6 +13,10 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +34,17 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<ShoppingBean> list = new ArrayList<>();
     private int type;
 
-    public TimeSecondItemAdapter(Context context, int type, List<String> list) {
+    public TimeSecondItemAdapter(Context context, int type, List<ShoppingBean> list) {
         this.context = context;
         this.type = type;
         this.list.addAll(list);
     }
 
 
-    public void setData(List<String> list) {
+    public void setData(List<ShoppingBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -60,7 +64,7 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -77,7 +81,7 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
         TextView tvOldMoney;
         @BindView(R.id.tv_rob)
         TextView tvRob;
-        String categoryBean;
+        ShoppingBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,8 +89,12 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
         }
 
         void bindView(int pos) {
-//            categoryBean = list.get(pos);
-
+            bean = list.get(pos);
+            GlidUtils.setGrid(context,bean.getPic(),imgShop);
+            tvTitle.setText(bean.getName());
+            tvDes.setText(bean.getSdate());
+            tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloat(bean.getFlashPromotionPrice()));
+            tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+DateUtil.getTwoDotByFloat(bean.getPrice()));
             if(type == 0){
                 tvRob.setText("立即抢");
                 tvRob.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_rob_shop));
@@ -98,12 +106,12 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
             tvOldMoney.getPaint().setAntiAlias(true); //去掉锯齿
             tvRob.setOnClickListener(v -> {
                 if(listener != null){
-                    listener.onRobClick(type,categoryBean);
+                    listener.onRobClick(type,bean);
                 }
             });
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
-                    listener.onItemClick(categoryBean);
+                    listener.onItemClick(bean);
                 }
 
             });
@@ -118,8 +126,8 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
 
     public interface OnItemClickListener {
 
-        void onItemClick(String bean);
+        void onItemClick(ShoppingBean bean);
 
-        void onRobClick(int type,String bean);
+        void onRobClick(int type,ShoppingBean bean);
     }
 }

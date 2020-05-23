@@ -98,6 +98,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_SET_PAY_PASSWORD = 64;
     private static final int REQ_CODE_GET_ORDER_LIST = 65;
     private static final int REQ_CODE_SEARCH_PAY_RESULT = 66;
+    private static final int REQ_CODE_CONFIRM_ORDER = 67;
+    private static final int REQ_CODE_EVALUATE_ORDER = 68;
 
 
     private HomeModel model;
@@ -632,6 +634,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getEnableCouponList(REQ_CODE_ENABLE_COUPON_LIST, null,this);
         }
     }
+    public void getEnableCoupon(Map params) {
+        if (model != null) {
+//            view.showLoading();
+            model.getEnableCoupon(REQ_CODE_ENABLE_COUPON_LIST, params,this);
+        }
+    }
 
 
     public void addShoppingCar(Map params) {
@@ -642,7 +650,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
 
     public void deleteCar(Map params) {
         if (model != null) {
-            model.deleteCar(REQ_CODE_ADD_SHOPPING_CAR, params, this);
+            model.deleteCar(REQ_CODE_SHOPPING_CAR_LIST, params, this);
         }
     }
 
@@ -666,7 +674,19 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void confirmOrder(String orderCode) {
+        if (model != null) {
+            model.confirmOrder(REQ_CODE_CONFIRM_ORDER, orderCode, this);
+        }
+    }
 
+
+    public void commitEvaluateOrder(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.commitEvaluateOrder(REQ_CODE_EVALUATE_ORDER, params, this);
+        }
+    }
     public void setPayPassword(Map params) {
         if (model != null) {
             view.showLoading();
@@ -758,6 +778,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_ALL_CLASSIC:
                 view.getAllClassicSuccess(resp);
                 break;
+            case REQ_CODE_EVALUATE_ORDER:
+            case REQ_CODE_CONFIRM_ORDER:
             case REQ_CODE_CANCEL_ZAN:
             case REQ_CODE_CLICK_ZAN:
             case REQ_CODE_CLICK_COLLECT:

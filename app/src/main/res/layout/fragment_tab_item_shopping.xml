@@ -448,7 +448,6 @@
             android:gravity="center"
             android:textSize="@dimen/text_size_10"
             android:textColor="#FA6400"
-            android:layout_marginEnd="-3dp"
             android:layout_alignEnd="@+id/img_shopping_cart"
             android:layout_width="@dimen/padding_12"
             android:layout_height="@dimen/padding_12"

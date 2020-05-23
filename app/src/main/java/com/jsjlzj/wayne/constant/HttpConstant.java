@@ -520,6 +520,12 @@ public class HttpConstant {
     public static final String API_SHOPPING_ORDER_LIST = "myOrder/getMyOrderList";
     //查询支付结果
     public static final String API_SHOPPING_SEARCH_PAY_STATE = "order/pay/orderPayQuery";
+    //确定收货
+    public static final String API_SHOPPING_CONFIRM_ORDER = "myOrder/confirmOrder";
+    //评价
+    public static final String API_SHOPPING_EVALUATE_ORDER = "myOrder/evaluateOrder";
+    //确认订单页面可用优惠券
+    public static final String API_SHOPPING_ENABLE_COUPON = "order/settle/getSettleCoupon";
 
 
 
