@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.ui.store.home.mine;
 
 
+import android.app.Activity;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,7 +26,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate: 2020/05/08
  */
-public class CouponFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView {
+public class CouponFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, CouponAdapter.OnItemClickListener {
 
 
     @BindView(R.id.rv_coupon)
@@ -66,6 +67,7 @@ public class CouponFragment extends MVPBaseFragment<HomeView, HomePresenter> imp
     protected void initViewAndControl(View view) {
         rvCoupon.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new CouponAdapter(getActivity(),new ArrayList<>());
+        adapter.setListener(this);
         rvCoupon.setAdapter(adapter);
         presenter.getMineCouponList(type);
     }
@@ -80,5 +82,11 @@ public class CouponFragment extends MVPBaseFragment<HomeView, HomePresenter> imp
                 showEmpty(R.id.rel_empty,0,null);
             }
         }
+    }
+
+    @Override
+    public void onItemClick(MineCouponBean.DataBean bean) {
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
     }
 }

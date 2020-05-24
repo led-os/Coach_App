@@ -467,7 +467,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
 
     public void getShoppingNum() {
         if (model != null) {
-            view.showLoading();
+//            view.showLoading();
             model.getShoppingNum(REQ_CODE_SHOPPING_NUM, null, this);
         }
     }

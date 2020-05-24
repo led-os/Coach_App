@@ -267,6 +267,15 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
         presenter.getAllArea(null);
     }
 
+    /**
+     * 设置跳转到当前页签
+     * @param pos
+     */
+    public void setShowPosition(int pos){
+        viewPager.setCurrentItem(pos);
+        selectTab(tabLayout.getTabAt(pos).getCustomView());
+    }
+
     private View getTabView(int position) {
         View v = LayoutInflater.from(this).inflate(R.layout.main_tab_item, null);
         TextView tv = v.findViewById(R.id.tv_tab_item);
@@ -340,6 +349,9 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == TabItemCommunityFragment.REQUEST_CODE){
             tabItemCommunityFragment.onActivityResult(requestCode,resultCode,data);
+        }
+        if(requestCode == 1111 && resultCode == Activity.RESULT_OK){
+            setShowPosition(1);
         }
         String type = SPUtil.getUserFromSP().getAccountType();
         if ("STORE".equals(type)) {

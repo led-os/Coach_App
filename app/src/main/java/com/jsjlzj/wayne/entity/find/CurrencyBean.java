@@ -30,14 +30,14 @@ public class CurrencyBean {
          * productList : [{"coin":0,"description":"string","id":0,"name":"string","price":0,"productId":"string"}]
          */
 
-        private String amount;
+        private float amount;
         private List<ProductListBean> productList;
 
-        public String getAmount() {
+        public float getAmount() {
             return amount;
         }
 
-        public void setAmount(String amount) {
+        public void setAmount(float amount) {
             this.amount = amount;
         }
 

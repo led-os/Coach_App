@@ -31,7 +31,7 @@ public class FindLessonBean {
     private int lessonCount;
     private String lessonDesc;
     private String originPrice;
-    private String price;
+    private float price;
     private int studyPersons;
     private String teacherAvatar;
     private String teacherDesc;
@@ -94,11 +94,11 @@ public class FindLessonBean {
         this.originPrice = originPrice;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

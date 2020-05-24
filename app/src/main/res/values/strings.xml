@@ -278,6 +278,10 @@
     <string name="optimization">优选</string>
     <string name="again_buy">再次购买</string>
 
+
+    <string name="teacher_home">导师主页</string>
+    <string name="shopping_detail">商品详情</string>
+
     <string-array name="home_title_list">
         <!--        <item>推荐</item>-->
         <item>淘学</item>

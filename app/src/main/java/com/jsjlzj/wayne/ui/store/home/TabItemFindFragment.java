@@ -24,6 +24,7 @@ import com.jsjlzj.wayne.ui.store.find.CourserListFragment;
 import com.jsjlzj.wayne.ui.store.find.OptimizationFragment;
 import com.jsjlzj.wayne.ui.store.find.PlayHistoryActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
+import com.jsjlzj.wayne.ui.store.search.SearchNewCourserActivity;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
 import com.jsjlzj.wayne.widgets.MyViewPager;
 
@@ -88,7 +89,7 @@ public class TabItemFindFragment extends MVPBaseFragment<TalentPersonalView, Tal
         super.onMultiClick(view);
         switch (view.getId()) {
             case R.id.ll_search://搜索
-                SearchActivity.go2this(getActivity());
+                SearchNewCourserActivity.go2this(getActivity());
                 break;
             case R.id.img_history://历史记录
                 PlayHistoryActivity.go2this(getActivity());

@@ -127,7 +127,7 @@
         android:gravity="center"
         android:layout_marginStart="@dimen/padding_46"
         android:layout_marginEnd="@dimen/padding_46"
-        android:layout_marginBottom="@dimen/padding_52"
+        android:layout_marginBottom="@dimen/padding_19"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bg_solid_ff7c84_22"/>
 </RelativeLayout>

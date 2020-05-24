@@ -100,6 +100,10 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_SEARCH_PAY_RESULT = 66;
     private static final int REQ_CODE_CONFIRM_ORDER = 67;
     private static final int REQ_CODE_EVALUATE_ORDER = 68;
+    private static final int REQ_CODE_GET_CATEGORY_LIST = 69;
+    private static final int REQ_CODE_GET_COURSER_DETAIL = 70;
+    private static final int REQ_CODE_BUY_COURSER = 71;
+
 
 
     private HomeModel model;
@@ -130,6 +134,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+
+    public void getCategoryList() {
+        if (model != null) {
+            view.showLoading();
+            model.getCategoryList(REQ_CODE_GET_CATEGORY_LIST, null, this);
+        }
+    }
 
     public void getAmoySchoolData() {
         if (model != null) {
@@ -693,6 +704,19 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.setPayPassword(REQ_CODE_SET_PAY_PASSWORD, params, this);
         }
     }
+    public void getCourserDetail(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getCourserDetail(REQ_CODE_GET_COURSER_DETAIL, params, this);
+        }
+    }
+
+    public void buyCourserByCurrency(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.buyCourserByCurrency(REQ_CODE_BUY_COURSER, params, this);
+        }
+    }
 
     public void updateShoppingBynum(Map params) {
         if (model != null) {
@@ -788,6 +812,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_CANCEL_FOLLOW:
             case REQ_CODE_ADD_SHOPPING_CAR:
             case REQ_CODE_APPLY_LEADER:
+            case REQ_CODE_BUY_COURSER:
                 view.getMessageSuccess(resp);
                 break;
             case REQ_CODE_DELETE_DYNAMIC:
@@ -894,6 +919,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_SEARCH_PAY_RESULT:
                 view.searchPayResultSuccess(resp);
+                break;
+            case REQ_CODE_GET_CATEGORY_LIST:
+                view.getFindCategoryListSuccess(resp);
+                break;
+            case REQ_CODE_GET_COURSER_DETAIL:
+                view.getCourserDetailSuccess(resp);
+                break;
             default:
                 break;
         }

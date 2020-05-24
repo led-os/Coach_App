@@ -26,6 +26,7 @@ import com.jsjlzj.wayne.entity.find.FindLessonBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
+import com.jsjlzj.wayne.ui.MainActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -139,16 +140,12 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
     private void initRecycler() {
         freeExperAdapter = new FreeExperAdapter(getActivity(), freeExperList);
         rvFree.setNestedpParent(myViewPager);
-        freeExperAdapter.setListener(bean -> {
-            // TODO: 2020/5/4 课程详情 
-        });
         rvFree.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         rvFree.setAdapter(freeExperAdapter);
 
         dayStudyAdapter = new DayStudyAdapter(getActivity(), new ArrayList<>(), new ArrayList<>());
         rvDayStudy.setNestedpParent(myViewPager);
         dayStudyAdapter.setListener((bean, pos) -> {
-            // TODO: 2020/5/5 每日一学的全部
             if(pos == 1){
                 MoreLessonActivity.go2this(getActivity(),"热门听课榜",2,0);
             }else {
@@ -161,16 +158,10 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
         rvContent.setNestedScrollingEnabled(false);
         rvContent.setHasFixedSize(true);
         questionFindAdapter = new QuestionFindAdapter(getActivity(), new ArrayList<>());
-        questionFindAdapter.setListener(bean -> {
-            // TODO: 2020/5/5 点击挑战减脂条目
-        });
         rvContent.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvContent.setAdapter(questionFindAdapter);
 
         vipSelectAdapter = new VipSelectAdapter(getActivity(), new ArrayList<>());
-        vipSelectAdapter.setListener(bean -> {
-            // TODO: 2020/5/5 点击会员精选条目
-        });
         rvVipSelect.setNestedpParent(myViewPager);
         rvVipSelect.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         rvVipSelect.setAdapter(vipSelectAdapter);
@@ -251,6 +242,7 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
                 ContentFragmentTitleActivity.go2this(getActivity(), 1);
                 break;
             case R.id.ll_shopping://商城
+                ((MainActivity)getActivity()).setShowPosition(1);
                 break;
             case R.id.ll_match://赛事
                 ContentFragmentTitleActivity.go2this(getActivity(), 3);

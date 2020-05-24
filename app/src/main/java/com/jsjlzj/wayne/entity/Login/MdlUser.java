@@ -86,6 +86,7 @@ public class MdlUser implements Parcelable {
         private String deviceId;
         private int isBindWeChat;//"是否绑定微信(1:未绑定,2:已绑定)",
         private int isSetPwd;//"是否为教练(0:否;1:是)账号",
+        private int isSetPayPwd;//是否设置过支付密码（0：否；1：是）
         private int storeStatus;//"门店状态 0:未新增 1:审核中 2:未审核 3:审核通过",
         private String yunXinAccount;
         private String yunXinToken;

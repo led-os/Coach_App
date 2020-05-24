@@ -282,13 +282,19 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 }
                 break;
             case R.id.rel_vip://会员中心
+                WebViewContainerActivity.go2this(getActivity(),"会员中心",HttpConstant.WEB_URL_NEW_MEMBER_CENTER,
+                        WebViewContainerFragment.TYPE_NEW_MEMBER_CENTER);
                 break;
             case R.id.rel_sign_in://每日签到
+                WebViewContainerActivity.go2this(getActivity(),"每日签到",HttpConstant.WEB_URL_NEW_DAY_SIGN,
+                        WebViewContainerFragment.TYPE_NEW_DAY_SIGN);
                 break;
             case R.id.rel_discount://优惠券
-                CouponActivity.go2this(getActivity());
+                CouponActivity.go2this(getActivity(),1111);
                 break;
             case R.id.rel_integral://积分商城
+                WebViewContainerActivity.go2this(getActivity(),"积分商城",HttpConstant.WEB_URL_NEW_ESHOP,
+                        WebViewContainerFragment.TYPE_NEW_DAY_SIGN);
                 break;
             case R.id.tv_all_order://全部订单
             case R.id.img_all_order://全部订单

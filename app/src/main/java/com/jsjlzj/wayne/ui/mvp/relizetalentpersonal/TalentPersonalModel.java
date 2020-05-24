@@ -896,6 +896,7 @@ public class TalentPersonalModel extends BaseModel {
             }
         });
     }
+
     public void getCategoryList(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataStroe.getInstance().getCategoryList(param, new Observer<MdlBaseHttpResp<FindCategoryBean>>() {
             @Override

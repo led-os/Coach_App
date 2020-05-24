@@ -8,7 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -87,9 +90,8 @@ public class GroupProductAdapter extends RecyclerView.Adapter<GroupProductAdapte
             tvMoney.setText(DateUtil.getTwoDotByFloat(shoppingBean.getPrice()));
             tvOldMoney.setText(DateUtil.getTwoDotByFloat(shoppingBean.getOriginalPrice()));
             itemView.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.onItemClick(shoppingBean);
-                }
+                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+shoppingBean.getId(),
+                        WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
 
             });
         }

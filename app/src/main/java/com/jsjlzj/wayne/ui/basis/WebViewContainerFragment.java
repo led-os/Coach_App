@@ -67,10 +67,15 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
     public static final int TYPE_PRODUCT_DETAIL = 7;
     public static final int TYPE_COURSE_INTRODUCE = 8;
     public static final int TYPE_PRIVATE_POLICY = 9;
+    public static final int TYPE_NEW_COURSE_DETAIL = 10;
+    public static final int TYPE_NEW_TEACHER_HOME = 11;
+    public static final int TYPE_NEW_SHOPPING_DETAIL = 12;
+    public static final int TYPE_NEW_MEMBER_CENTER = 13;
+    public static final int TYPE_NEW_DAY_SIGN = 14;
      /**
       * 内部跳转
       */
-    public static final int TYPE_INNER_TAB = 9;
+    public static final int TYPE_INNER_TAB = 997;
     private static final int REQUEST_CODE = 998;
 
     public static WebViewContainerFragment getInstance(Bundle bundle) {
@@ -92,6 +97,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
              firstUrl = arguments.getString(ExtraConstant.EXTRA_WEB_URL);
              type = arguments.getInt(ExtraConstant.EXTRA_WEB_TYPE);
          }
+         System.out.println("==========webView"+firstUrl);
          initWebView();
          if (firstUrl != null) {
              // 避免出现在 webview 还没加载完成时就加载网页导致出现js获取的宽高为0的情况

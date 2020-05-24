@@ -61,13 +61,7 @@ public class PayPasswordFragment extends DialogFragment {
         ButterKnife.bind(this, view);
         int type = getArguments().getInt(ExtraConstant.EXTRA_SHOW_TYPE);
         tvPrice.setText("" + getArguments().getFloat(ExtraConstant.EXTRA_PRICE, 0f));
-        if(type == 4){
-//            imgType.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.icon_jidian));
-//            tvWelfare.setText(getResources().getString(R.string.jidian));
-        }else {
-//            imgType.setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.icon_welfare_pay));
-//            tvWelfare.setText(getResources().getString(R.string.welfare_pay));
-        }
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
         dialog.setCanceledOnTouchOutside(true);

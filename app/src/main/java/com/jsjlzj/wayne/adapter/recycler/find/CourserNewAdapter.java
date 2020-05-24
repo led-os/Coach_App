@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -84,9 +87,8 @@ public class CourserNewAdapter extends RecyclerView.Adapter<CourserNewAdapter.Vi
             tvDes.setText(findLessonBean.getLessonDesc());
             tvPlayNum.setText(DateUtil.getNumByInteger(findLessonBean.getStudyPersons())+"次播放量");
             itemView.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.onItemClick(findLessonBean);
-                }
+                WebViewContainerActivity.go2this(context,findLessonBean.getTitle(), HttpConstant.WEB_URL_NEW_COURSE_DETAIL+findLessonBean.getId(),
+                        WebViewContainerFragment.TYPE_NEW_COURSE_DETAIL);
 
             });
         }

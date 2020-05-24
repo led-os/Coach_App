@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.ColorRes;
@@ -69,6 +70,7 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
     protected ImageView mBackBtn, mRightBtn;
     protected TextView mTitleTv, mRightTv;
     protected SearchBarView mSearchBar;
+    protected RelativeLayout relTitleBar;
 
     @LayoutRes
     protected abstract int getLayoutResId();
@@ -83,7 +85,7 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         state = STATE_ACTIVE;
         setContentView(getLayoutResId());
         ButterKnife.bind(this);
-        StatusBarCompatUtil.compat(this, Color.parseColor("#25252A"));
+        StatusBarCompatUtil.compat(this, Color.parseColor("#f1404b"));
 //        StatusBarCompatUtil.compat(this, ResourceUtil.getColor(getStatusColor()));
         presenter = createPresenter();
         if(presenter != null){
@@ -182,6 +184,7 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
         mRightBtn = findViewById(R.id.btn_title_right);
         mRightTv = findViewById(R.id.tv_right_btn);
         mSearchBar = findViewById(R.id.search_bar_title);
+        relTitleBar = findViewById(R.id.rel_title_bar);
         if (mBackBtn != null) {
             mBackBtn.setOnClickListener(v -> onBackPressed());
         }

@@ -14,8 +14,10 @@ import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.publicac.report.ReportTypeActivity;
+import com.jsjlzj.wayne.ui.store.find.ConfirmCourserOrderActivity;
 import com.jsjlzj.wayne.ui.store.home.amoy.SignUpActivity;
 import com.jsjlzj.wayne.ui.store.list.MoreMatchActivity;
+import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
 import com.jsjlzj.wayne.widgets.dialog.ShareDialog;
 import com.netease.nim.uikit.common.ToastHelper;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
@@ -186,10 +188,60 @@ public class JsInterface {
         Utility.needLogin(mContext);
     }
 
+    /**
+     * 课程购买
+     * @param id
+     */
+    @JavascriptInterface
+    public void buyCourse(int id){
+        ConfirmCourserOrderActivity.go2this(mContext, id);
+    }
+
+    /**
+     * 客服
+     */
+    @JavascriptInterface
+    public void toService(){
+        LogAndToastUtil.toast("====JsInterface====toService");
+    }
+
+    /**
+     * 购物车
+     */
+    @JavascriptInterface
+    public void toBuyCar(){
+        LogAndToastUtil.toast("====JsInterface====toBuyCar");
+        ShoppingCartActivity.go2this(mContext);
+    }
+
+    /**
+     * 立即购买
+     * @param type
+     * @param buyNum
+     * @param productId
+     */
+    @JavascriptInterface
+    public void buyGoods(int type, int buyNum, int productId){
+        LogAndToastUtil.toast("====JsInterface====type:"+type+"buyNum:"+buyNum+"===productId:"+productId);
+
+    }
+
+    @JavascriptInterface
+    public void buyVip(String product){
+        LogAndToastUtil.toast("====JsInterface====buyVip"+product);
+    }
 
     @JavascriptInterface
     public String getToken(){
         LogAndToastUtil.log("====token===="+SPUtil.getTokenFromSP());
         return SPUtil.getTokenFromSP();
+    }
+
+    /**
+     * 跳转积分明细
+     */
+    @JavascriptInterface
+    public void toIntegral(){
+        LogAndToastUtil.toast("====JsInterface====toIntegral");
     }
 }

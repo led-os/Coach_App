@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.store.find;
 
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,6 +54,9 @@ public class CourserListFragment extends MVPBaseFragment<HomeView, HomePresenter
     @BindView(R.id.rv_list)
     CustomXRecyclerView rvList;
 
+    /**
+     * categoryId 为0 时搜索全部课程
+     */
     private int categoryId;
 
     private int pageNo = 1;
@@ -171,19 +175,28 @@ public class CourserListFragment extends MVPBaseFragment<HomeView, HomePresenter
     }
 
     private void loadData(boolean isRefresh) {
+        loadData(isRefresh,"");
+    }
+
+
+    public void loadData(boolean isRefresh,String searchKey){
         this.isRefresh = isRefresh;
         if (isRefresh) {
             pageNo = 1;
         }
         map.clear();
+        if(!TextUtils.isEmpty(searchKey)){
+            map.put(HttpConstant.TITLE,searchKey);
+        }
+        if(categoryId != 0){
+            map.put(HttpConstant.CATEGORY_ID, categoryId);
+        }
         map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
-        map.put(HttpConstant.CATEGORY_ID, categoryId);
         map.put(HttpConstant.SORT_LABEL,sortLabel);
         map.put(HttpConstant.SORT_TYPE,sortType);
         presenter.getSearchCategoryList(map);
     }
-
 
     @Override
     public void onRefresh() {

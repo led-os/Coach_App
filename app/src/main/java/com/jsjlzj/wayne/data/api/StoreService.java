@@ -10,6 +10,7 @@ import com.jsjlzj.wayne.entity.find.CashOutPageBean;
 import com.jsjlzj.wayne.entity.find.CurrencyBean;
 import com.jsjlzj.wayne.entity.find.CurrencyDetailPageBean;
 import com.jsjlzj.wayne.entity.find.FindCategoryBean;
+import com.jsjlzj.wayne.entity.find.FindLessonDetailBean;
 import com.jsjlzj.wayne.entity.find.FindLessonPageBean;
 import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
@@ -588,6 +589,13 @@ public interface StoreService {
 
     @POST(HttpConstant.API_SET_PAY_PASSWARD)   //设置支付密码
     Observable<MdlBaseHttpResp<MdlUser>> requestPayPassword(@Body RequestBody requestBody);
+
+
+    @POST(HttpConstant.API_COURSER_DETAIL)   //获取课程详情
+    Observable<MdlBaseHttpResp<FindLessonDetailBean>> requestCourserDetail(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_COURSER_BY_CURRENCY)
+    Observable<MdlBaseHttpResp<DataBean>> requestBuyCourserByCurrency(@Body RequestBody requestBody);
 
 
     @Multipart

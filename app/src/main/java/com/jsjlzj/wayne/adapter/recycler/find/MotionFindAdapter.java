@@ -9,7 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -84,9 +87,8 @@ public class MotionFindAdapter extends RecyclerView.Adapter<MotionFindAdapter.Vi
             tvPosition.setText(findLessonBean.getTeacherName()+"  "+findLessonBean.getTeacherDesc());
             tvStudy.setText(DateUtil.getNumByInteger(findLessonBean.getStudyPersons())+"人加入学习");
             itemView.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.onItemClick(findLessonBean);
-                }
+                WebViewContainerActivity.go2this(context,findLessonBean.getTitle(), HttpConstant.WEB_URL_NEW_COURSE_DETAIL+findLessonBean.getId(),
+                        WebViewContainerFragment.TYPE_NEW_COURSE_DETAIL);
 
             });
         }

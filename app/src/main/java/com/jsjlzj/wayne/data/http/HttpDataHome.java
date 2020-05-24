@@ -52,6 +52,12 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void getCategoryList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCategoryList(body);
+        setSubscribe(observable, observer);
+    }
+
     /**
      * 获取首页淘学数据
      *
@@ -777,6 +783,16 @@ public class HttpDataHome extends BaseHttpData {
     public void setPayPassword(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestPayPassword(body);
+        setSubscribe(observable, observer);
+    }
+    public void getCourserDetail(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCourserDetail(body);
+        setSubscribe(observable, observer);
+    }
+    public void buyCourserByCurrency(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestBuyCourserByCurrency(body);
         setSubscribe(observable, observer);
     }
 

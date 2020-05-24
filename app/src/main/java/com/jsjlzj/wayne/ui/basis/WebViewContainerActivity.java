@@ -2,12 +2,14 @@ package com.jsjlzj.wayne.ui.basis;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.jsjlzj.wayne.R;
@@ -15,10 +17,13 @@ import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.utils.StatusBarCompatUtil;
 
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_ARTICLE_DETAIL;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_BANNER_LINK_URL;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_DYNAMIC_DETAIL;
+import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_NEW_DAY_SIGN;
+import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_NEW_MEMBER_CENTER;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_PRIVATE_POLICY;
 
 
@@ -67,7 +72,7 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         String url = intent.getStringExtra(ExtraConstant.EXTRA_WEB_URL);
         String rowkey = intent.getStringExtra(ExtraConstant.EXTRA_WEB_DATA);
         if (!TextUtils.isEmpty(title)) {
-            if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL || type == TYPE_PRIVATE_POLICY){
+            if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL || type == TYPE_PRIVATE_POLICY || type == TYPE_NEW_MEMBER_CENTER){
                 if(type == TYPE_ARTICLE_DETAIL){
                     title = "详情";
                 }
@@ -79,7 +84,6 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         }else {
             initTitle("");
         }
-
         addWebFragment(url, rowkey, type);
         if(type == TYPE_DYNAMIC_DETAIL){
 //            AndroidBug5497Workaround.assistActivity(this);

@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -79,11 +82,14 @@ public class QuestionFindAdapter extends RecyclerView.Adapter<QuestionFindAdapte
             GlidUtils.setRoundGrid(context,findLessonBean.getTeacherAvatar(),imgHead,2);
             tvName.setText(findLessonBean.getTeacherName()+": "+findLessonBean.getTitle());
             itemView.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.onItemClick(findLessonBean);
-                }
+                WebViewContainerActivity.go2this(context,findLessonBean.getTitle(), HttpConstant.WEB_URL_NEW_COURSE_DETAIL+findLessonBean.getId(),
+                        WebViewContainerFragment.TYPE_NEW_COURSE_DETAIL);
 
             });
+//            imgHead.setOnClickListener(v -> {
+//                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.teacher_home),HttpConstant.WEB_URL_NEW_TEACHER_DETAIL+findLessonBean.getId(),
+//                        WebViewContainerFragment.TYPE_NEW_TEACHER_HOME);
+//            });
         }
     }
 

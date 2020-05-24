@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -78,9 +81,8 @@ public class CourserFindAdapter extends RecyclerView.Adapter<CourserFindAdapter.
             categoryBean = list.get(pos);
             GlidUtils.setRoundGrid(context,categoryBean.getCoverImg(),imgCourser,5);
             itemView.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.onItemClick(categoryBean);
-                }
+                WebViewContainerActivity.go2this(context,categoryBean.getTitle(), HttpConstant.WEB_URL_NEW_COURSE_DETAIL+categoryBean.getId(),
+                        WebViewContainerFragment.TYPE_NEW_COURSE_DETAIL);
 
             });
         }

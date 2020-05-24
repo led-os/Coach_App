@@ -397,7 +397,7 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
 
     public void getShoppingNum() {
         if (model != null) {
-            view.showLoading();
+//            view.showLoading();
             model.getShoppingNum(REQ_CODE_135, null, this);
         }
     }

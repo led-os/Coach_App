@@ -7,6 +7,8 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.CashOutPageBean;
 import com.jsjlzj.wayne.entity.find.CurrencyBean;
 import com.jsjlzj.wayne.entity.find.CurrencyDetailPageBean;
+import com.jsjlzj.wayne.entity.find.FindCategoryBean;
+import com.jsjlzj.wayne.entity.find.FindLessonDetailBean;
 import com.jsjlzj.wayne.entity.find.FindLessonPageBean;
 import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
@@ -70,6 +72,12 @@ public interface HomeView extends BaseView {
 
     default void getCategoryListSuccess(MdlBaseHttpResp<CategoryPageBean> resp) {
     }
+
+    //获取优选列表成功
+    default void getFindCategoryListSuccess(MdlBaseHttpResp<FindCategoryBean> resp){}
+
+    //获取优选列表成功
+    default void getCourserDetailSuccess(MdlBaseHttpResp<FindLessonDetailBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }

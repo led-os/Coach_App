@@ -39,8 +39,8 @@ public class CouponActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
     private String[] mTitles = new String[3];
     private List<MVPBaseFragment> fragments = new ArrayList<>();
 
-    public static void go2this(Activity activity){
-        activity.startActivity(new Intent(activity,CouponActivity.class));
+    public static void go2this(Activity activity,int requestCode){
+        activity.startActivityForResult(new Intent(activity,CouponActivity.class),requestCode);
     }
 
     @Override
