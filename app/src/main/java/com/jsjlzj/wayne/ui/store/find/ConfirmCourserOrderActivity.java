@@ -139,8 +139,8 @@ public class ConfirmCourserOrderActivity extends MVPBaseActivity<HomeView, HomeP
                 tvName.setText(bean.getTitle());
                 GlidUtils.setGrid(this, bean.getCoverImg(), imgPic);
                 tvDes.setText(bean.getLessonDesc());
-                tvMoneyCourser.setText("蜂隐币" + DateUtil.getTwoDotByFloat(bean.getPrice()));
-                tvAllMoney.setText("蜂隐币 " + DateUtil.getTwoDotByFloat(bean.getPrice()));
+                tvMoneyCourser.setText("蜂隐币" + DateUtil.getTwoDotByFloatFY(bean.getPrice()));
+                tvAllMoney.setText("蜂隐币 " + DateUtil.getTwoDotByFloatFY(bean.getPrice()));
                 totalMoney = bean.getPrice();
             }
         }
@@ -153,7 +153,7 @@ public class ConfirmCourserOrderActivity extends MVPBaseActivity<HomeView, HomeP
             if (resp.getData().getData() != null && resp.getData().getData().getProductList() != null
                     && resp.getData().getData().getProductList().size() > 0) {
                 currency = resp.getData().getData().getAmount();
-                tvMoney.setText("余额：" + currency + "蜂隐币");
+                tvMoney.setText("余额：" + DateUtil.getTwoDotByFloatFY(currency) + "蜂隐币");
             }
 
         }

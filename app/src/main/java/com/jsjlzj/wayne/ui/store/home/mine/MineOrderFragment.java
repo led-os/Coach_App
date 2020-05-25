@@ -9,6 +9,7 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.MineOrderAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
@@ -170,11 +171,11 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
             case 5://已完成
             case 6://交易关闭
             case 1://已取消  再次购买
-//                ConfirmOrderActivity.go2this(getActivity(),transShoppingCarList(bean.getList()),null);
-                ShoppingEvaluateActivity.go2this(getActivity(),bean.getList().get(0));
+                ConfirmOrderActivity.go2this(getActivity(),transShoppingCarList(bean.getList()),null);
+//                ShoppingEvaluateActivity.go2this(getActivity(),bean.getList().get(0));
                 break;
             case 2://待发货  提醒发货
-                LogAndToastUtil.toast("发货成功");
+                LogAndToastUtil.toast("提醒成功,请耐心等待");
                 break;
             case 3://确认收货
                 presenter.confirmOrder(bean.getOrderCode());
@@ -183,6 +184,14 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
                 break;
             default:break;
 
+        }
+    }
+
+    @Override
+    public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            LogAndToastUtil.toast("收货成功");
+            loadData(true);
         }
     }
 

@@ -15,10 +15,12 @@ import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.PayResult;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
+import com.jsjlzj.wayne.entity.shopping.VipDataBean;
 import com.jsjlzj.wayne.ui.AppManager;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
@@ -57,13 +59,24 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
      * 0 :微信  1 ：支付宝
      */
     private int payType = 1;
-
+     /**
+      * 1 : vip购买  其他
+      */
+    private int type;
     private String orderCode ,amount;
+    private int productId;
 
 
      public static void go2this(Activity activity,String orderCode,String amount){
         activity.startActivity(new Intent(activity,PaymentActivity.class)
                 .putExtra("orderCode",orderCode)
+                .putExtra("amount",amount));
+    }
+
+     public static void go2this(Activity activity,int type,int productId,String amount){
+        activity.startActivity(new Intent(activity,PaymentActivity.class)
+                .putExtra("type",type)
+                .putExtra("productId",productId)
                 .putExtra("amount",amount));
     }
 
@@ -120,9 +133,18 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     @Override
     protected void initViewAndControl() {
         initTitle("确认支付");
+        type = getIntent().getIntExtra("type",0);
+        productId = getIntent().getIntExtra("productId",0);
         amount = getIntent().getStringExtra("amount");
-        orderCode = getIntent().getStringExtra("orderCode");
-        tvPrice.setText(DateUtil.getTwoDotByFloat(Float.valueOf(amount)));
+        if(type == 1){
+            Map<Object,Object> map = new HashMap<>();
+            map.put("id",productId);
+            tvPrice.setText(DateUtil.getTwoDotByFloatFY(Float.valueOf(amount)));
+            presenter.commitVipOrder(map);
+        }else {
+            orderCode = getIntent().getStringExtra("orderCode");
+            tvPrice.setText(DateUtil.getTwoDotByFloat(Float.valueOf(amount)));
+        }
         imgZfb.setSelected(true);
         imgWx.setSelected(false);
     }
@@ -143,6 +165,8 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 break;
             case R.id.tv_to_pay:
                 toPay();
+                break;
+            default:
                 break;
         }
     }
@@ -208,6 +232,15 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
                 finish();
             }
+         }
+     }
+
+
+     @Override
+     public void commitVipOrderSuccess(MdlBaseHttpResp<VipDataBean> resp) {
+        LogAndToastUtil.log("成功");
+         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            orderCode = resp.getData().getData();
          }
      }
  }

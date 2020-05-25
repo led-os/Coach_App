@@ -168,6 +168,7 @@
             android:textColor="@color/color_232323"
             android:textSize="@dimen/text_size_13"
             android:hint="输入文字"
+            android:textCursorDrawable="@null"
             android:textColorHint="@color/color_dddddd"
             android:layout_below="@+id/tv_shop"
             android:layout_marginTop="@dimen/padding_8"

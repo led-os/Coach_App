@@ -120,32 +120,33 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
                 case 0://待支付
                     tvScan.setVisibility(View.GONE);
                     tvOrderState.setText("待支付");
-                    long overTime = bean.getList().get(0).getCreateTime();
-                    if (overTime > 0) {
-                        long payOverTime = overTime + 15*60*1000;
-                        if (payOverTime < System.currentTimeMillis()) {
-                            tvRightClick.setText(context.getResources().getString(R.string.again_buy));
-                            tvOrderState.setText("已取消");
-                        } else {
-                            if (countDownMap.get(bean.hashCode()) == null) {
-                                mTimeCounter = new TimeCounter(payOverTime - System.currentTimeMillis(), 1000, tvRightClick, R.string.again_buy, 2, () -> {
-                                    if(listener != null){
-                                        tvRightClick.setText(context.getResources().getString(R.string.again_buy));
-                                        tvOrderState.setText("已取消");
-                                    }
-                                });
-                                mTimeCounter.start();
-                                countDownMap.put(bean.hashCode(), mTimeCounter);
-                            } else {
-                                if(mTimeCounter != null){
-                                    mTimeCounter.setJoinTime(System.currentTimeMillis(),2);
-                                    mTimeCounter.start();
-                                }
-                            }
-                        }
-                    } else {
-                        tvRightClick.setVisibility(View.GONE);
-                    }
+                    long overTime = -1;
+
+//                    if (overTime > 0) {
+//                        long payOverTime = overTime + 15*60*1000;
+//                        if (payOverTime < System.currentTimeMillis()) {
+//                            tvRightClick.setText(context.getResources().getString(R.string.again_buy));
+//                            tvOrderState.setText("已取消");
+//                        } else {
+//                            if (countDownMap.get(bean.hashCode()) == null) {
+//                                mTimeCounter = new TimeCounter(payOverTime - System.currentTimeMillis(), 1000, tvRightClick, R.string.again_buy, 2, () -> {
+//                                    if(listener != null){
+//                                        tvRightClick.setText(context.getResources().getString(R.string.again_buy));
+//                                        tvOrderState.setText("已取消");
+//                                    }
+//                                });
+//                                mTimeCounter.start();
+//                                countDownMap.put(bean.hashCode(), mTimeCounter);
+//                            } else {
+//                                if(mTimeCounter != null){
+//                                    mTimeCounter.setJoinTime(System.currentTimeMillis(),2);
+//                                    mTimeCounter.start();
+//                                }
+//                            }
+//                        }
+//                    } else {
+//                        tvRightClick.setVisibility(View.GONE);
+//                    }
                     break;
                 case 1://已取消
                     tvScan.setVisibility(View.GONE);
@@ -181,6 +182,9 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
             rvShopping.setAdapter(shoppingCarAdapter);
             tvRightClick.setOnClickListener(v -> {
                 if(listener != null){
+                    if(bean.getShowStatus() == 3){
+
+                    }
                     listener.onRightClick(bean);
                 }
             });

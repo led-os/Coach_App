@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.ui.store.shopping.ShoppingEvaluateActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -159,7 +160,8 @@ public class ShoppingCarAdapter extends RecyclerView.Adapter<ShoppingCarAdapter.
             itemView.setOnClickListener(this);
             llSelect.setOnClickListener(this);
             tvEvaluate.setOnClickListener(v -> {
-                // TODO: 2020/5/17 去评论 
+                // TODO: 2020/5/17 去评论
+//                ShoppingEvaluateActivity.go2this(context,);
             });
             itemView.setOnLongClickListener(v -> {
                 if (listener != null) {

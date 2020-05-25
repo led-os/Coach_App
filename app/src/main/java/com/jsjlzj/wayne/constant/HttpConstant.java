@@ -42,29 +42,29 @@ public class HttpConstant {
     public static final int R_HTTP_ERROR_MSG = 0;//1000
 
     /********************************* web网页- url****************************************************/
-    public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com/#";//h5测试环境
+    public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
 //        public static String WEB_URL_BASE = "https://h5.jsjlhome.com/#";//h5正式环境
 
 //    public static final String WEB_URL_BASE =  "http://h5.gokgm.com:81/#";//动态详情页
-    public static final String WEB_URL_DYNAMIC_DETAIL = WEB_URL_BASE + "/dynamicDetail?id=";//动态详情页
-    public static final String WEB_URL_COURSE_DETAIL = WEB_URL_BASE + "/courseDetail?id=";//课程详情页
-    public static final String WEB_URL_AETICLE_DETAIL = WEB_URL_BASE + "/articleDetail?id=";//文章详情页
-    public static final String WEB_URL_SCHOOL_DETAIL = WEB_URL_BASE + "/schoolDetail?id=";//学校详情页
-    public static final String WEB_URL_PRODUCT_DETAIL = WEB_URL_BASE + "/productDetail?id=";//产品详情页
-    public static final String WEB_URL_MATCH_DETAIL = WEB_URL_BASE + "/matchDetail?id=";//赛事详情页
-    public static final String WEB_URL_USER_INFO = WEB_URL_BASE + "/user?id=";//用户主页
-    public static final String WEB_URL_COURSE_INTRODUCE = WEB_URL_BASE + "/course?id=";//课程介绍
-    public static final String WEB_URL_INVITATION_FRIEND = WEB_URL_BASE + "/share?inviteId=";//邀请好友页
-    public static final String WEB_URL_PRIVATE_POLICY = "http://h5.jsjlhome.com/h5-dev/agreement/regist_privacy.html";//隐私政策
+    public static final String WEB_URL_DYNAMIC_DETAIL = WEB_URL_BASE + "/#/dynamicDetail?id=";//动态详情页
+    public static final String WEB_URL_COURSE_DETAIL = WEB_URL_BASE + "/#/courseDetail?id=";//课程详情页
+    public static final String WEB_URL_AETICLE_DETAIL = WEB_URL_BASE + "/#/articleDetail?id=";//文章详情页
+    public static final String WEB_URL_SCHOOL_DETAIL = WEB_URL_BASE + "/#/schoolDetail?id=";//学校详情页
+    public static final String WEB_URL_PRODUCT_DETAIL = WEB_URL_BASE + "/#/productDetail?id=";//产品详情页
+    public static final String WEB_URL_MATCH_DETAIL = WEB_URL_BASE + "/#/matchDetail?id=";//赛事详情页
+    public static final String WEB_URL_USER_INFO = WEB_URL_BASE + "/#/user?id=";//用户主页
+    public static final String WEB_URL_COURSE_INTRODUCE = WEB_URL_BASE + "/#/course?id=";//课程介绍
+    public static final String WEB_URL_INVITATION_FRIEND = WEB_URL_BASE + "/#/share?inviteId=";//邀请好友页
+    public static final String WEB_URL_PRIVATE_POLICY = WEB_URL_BASE + "/#/agreement/regist_privacy.html";//隐私政策
 
-    public static final String WEB_URL_NEW_COURSE_DETAIL = WEB_URL_BASE + "/excellentCourse?id=";//新的课程详情
-    public static final String WEB_URL_NEW_COURSE_PLAY_DETAIL = WEB_URL_BASE + "/excellentCourseDetail?id=";//课程播放详情
-    public static final String WEB_URL_NEW_TEACHER_DETAIL = WEB_URL_BASE + "/teacherPage?id=";//老师主页
-    public static final String WEB_URL_NEW_SHOPPING_DETAIL = WEB_URL_BASE + "/goodsDetail?id=";//商品详情
-    public static final String WEB_URL_NEW_DAY_SIGN = WEB_URL_BASE + "/daysign";//每日签到
-    public static final String WEB_URL_NEW_POINTS = WEB_URL_BASE + "/points";//积分明细
-    public static final String WEB_URL_NEW_MEMBER_CENTER = WEB_URL_BASE + "/memberCenter";//会员中心
-    public static final String WEB_URL_NEW_ESHOP = WEB_URL_BASE + "/eshop";//积分商城
+    public static final String WEB_URL_NEW_COURSE_DETAIL = WEB_URL_BASE + "/#/excellentCourse?id=";//新的课程详情
+    public static final String WEB_URL_NEW_COURSE_PLAY_DETAIL = WEB_URL_BASE + "/#/excellentCourseDetail?id=";//课程播放详情
+    public static final String WEB_URL_NEW_TEACHER_DETAIL = WEB_URL_BASE + "/#/teacherPage?id=";//老师主页
+    public static final String WEB_URL_NEW_SHOPPING_DETAIL = WEB_URL_BASE + "/#/goodsDetail?id=";//商品详情
+    public static final String WEB_URL_NEW_DAY_SIGN = WEB_URL_BASE + "/#/daysign";//每日签到
+    public static final String WEB_URL_NEW_POINTS = WEB_URL_BASE + "/#/points";//积分明细
+    public static final String WEB_URL_NEW_MEMBER_CENTER = WEB_URL_BASE + "/#/memberCenter";//会员中心
+    public static final String WEB_URL_NEW_ESHOP = WEB_URL_BASE + "/#/eshop";//积分商城
     /********************************* web网页- url****************************************************/
 
     /**
@@ -543,6 +543,10 @@ public class HttpConstant {
     public static final String API_COURSER_DETAIL = "lms/lessonDetail";
     //蜂隐币购买课程
     public static final String API_COURSER_BY_CURRENCY = "lms/lessonDetail";
+    //获取商品详情信息
+    public static final String API_SHOPPING_DETAIL = "product/getSkuProduct";
+    //提交充值订单
+    public static final String API_COMMIT_VIP_ORDER = "vip/account/apple/rechargeSubmit";
 
 
 

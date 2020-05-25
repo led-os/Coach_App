@@ -23,7 +23,9 @@ import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingDetailBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
+import com.jsjlzj.wayne.entity.shopping.VipDataBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
@@ -76,8 +78,12 @@ public interface HomeView extends BaseView {
     //获取优选列表成功
     default void getFindCategoryListSuccess(MdlBaseHttpResp<FindCategoryBean> resp){}
 
-    //获取优选列表成功
+
     default void getCourserDetailSuccess(MdlBaseHttpResp<FindLessonDetailBean> resp){}
+
+    default void getShoppingDetailSuccess(MdlBaseHttpResp<ShoppingDetailBean> resp){}
+
+    default void commitVipOrderSuccess(MdlBaseHttpResp<VipDataBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }

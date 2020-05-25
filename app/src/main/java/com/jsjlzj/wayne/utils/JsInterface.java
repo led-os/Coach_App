@@ -17,6 +17,8 @@ import com.jsjlzj.wayne.ui.publicac.report.ReportTypeActivity;
 import com.jsjlzj.wayne.ui.store.find.ConfirmCourserOrderActivity;
 import com.jsjlzj.wayne.ui.store.home.amoy.SignUpActivity;
 import com.jsjlzj.wayne.ui.store.list.MoreMatchActivity;
+import com.jsjlzj.wayne.ui.store.shopping.ConfirmOrderActivity;
+import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
 import com.jsjlzj.wayne.widgets.dialog.ShareDialog;
 import com.netease.nim.uikit.common.ToastHelper;
@@ -210,7 +212,6 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void toBuyCar(){
-        LogAndToastUtil.toast("====JsInterface====toBuyCar");
         ShoppingCartActivity.go2this(mContext);
     }
 
@@ -218,17 +219,17 @@ public class JsInterface {
      * 立即购买
      * @param type
      * @param buyNum
-     * @param productId
+     * @param productJson
      */
     @JavascriptInterface
-    public void buyGoods(int type, int buyNum, int productId){
-        LogAndToastUtil.toast("====JsInterface====type:"+type+"buyNum:"+buyNum+"===productId:"+productId);
-
+    public void buyGoods(int type, int buyNum, String productJson){
+        LogAndToastUtil.log("====JsInterface====type:"+type+"buyNum:"+buyNum+"===productId:"+productJson);
+        ConfirmOrderActivity.go2this(mContext,type,buyNum,productJson);
     }
 
     @JavascriptInterface
-    public void buyVip(String product){
-        LogAndToastUtil.toast("====JsInterface====buyVip"+product);
+    public void buyVip(int productId,float amount){
+        PaymentActivity.go2this(mContext,1,productId,String.valueOf(amount));
     }
 
     @JavascriptInterface

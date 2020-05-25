@@ -25,8 +25,10 @@ import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingDetailBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
+import com.jsjlzj.wayne.entity.shopping.VipDataBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
 import com.jsjlzj.wayne.entity.store.MdlCV;
 import com.jsjlzj.wayne.entity.store.MdlInfo;
@@ -60,6 +62,7 @@ import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
 import com.jsjlzj.wayne.entity.trainer.MineStudyBean;
 import com.jsjlzj.wayne.entity.trainer.SignUpPageBean;
 
+import androidx.annotation.NonNull;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -596,6 +599,12 @@ public interface StoreService {
 
     @POST(HttpConstant.API_COURSER_BY_CURRENCY)
     Observable<MdlBaseHttpResp<DataBean>> requestBuyCourserByCurrency(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SHOPPING_DETAIL)
+    Observable<MdlBaseHttpResp<ShoppingDetailBean>> requestShoppingDetail(@Query("productId") @NonNull int productId);
+
+    @POST(HttpConstant.API_COMMIT_VIP_ORDER)
+    Observable<MdlBaseHttpResp<VipDataBean>> requestCommitVipOrder(@Body RequestBody requestBody);
 
 
     @Multipart

@@ -92,7 +92,6 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
             itemView.setOnClickListener(v -> {
                 WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+shoppingBean.getId(),
                         WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
-
             });
         }
     }

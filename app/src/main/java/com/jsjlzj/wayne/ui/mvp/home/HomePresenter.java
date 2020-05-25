@@ -103,6 +103,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_GET_CATEGORY_LIST = 69;
     private static final int REQ_CODE_GET_COURSER_DETAIL = 70;
     private static final int REQ_CODE_BUY_COURSER = 71;
+    private static final int REQ_CODE_GET_SHOPPING_DETAIL = 72;
+    private static final int REQ_CODE_COMMIT_VIP_ORDER = 73;
 
 
 
@@ -718,6 +720,20 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void commitVipOrder(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.commitVipOrder(REQ_CODE_COMMIT_VIP_ORDER, params, this);
+        }
+    }
+
+    public void getShoppingDetail(int params) {
+        if (model != null) {
+            view.showLoading();
+            model.getShoppingDetail(REQ_CODE_GET_SHOPPING_DETAIL, params, this);
+        }
+    }
+
     public void updateShoppingBynum(Map params) {
         if (model != null) {
             model.updateBynum(REQ_CODE_UPDATE_SHOPPING_CAR, params, this);
@@ -813,6 +829,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_ADD_SHOPPING_CAR:
             case REQ_CODE_APPLY_LEADER:
             case REQ_CODE_BUY_COURSER:
+
                 view.getMessageSuccess(resp);
                 break;
             case REQ_CODE_DELETE_DYNAMIC:
@@ -925,6 +942,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_GET_COURSER_DETAIL:
                 view.getCourserDetailSuccess(resp);
+                break;
+            case REQ_CODE_GET_SHOPPING_DETAIL:
+                view.getShoppingDetailSuccess(resp);
+                break;
+            case REQ_CODE_COMMIT_VIP_ORDER:
+                view.commitVipOrderSuccess(resp);
                 break;
             default:
                 break;

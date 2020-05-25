@@ -74,7 +74,7 @@ public class MineOrderPageBean {
         public static class ResultBean {
             /**
              * orderCode : 200519222965039
-             * showStatus : 2
+             * showStatus : 0,待支付|WAITPAY;1,已取消|CANCLEED;2,待发货|WAITSEND;3,待收货|WAITRECEIVED;4,待评价|RECEIVED;5,已完成|FINISH;6,交易关闭|CLOSE8
              * productCount : 1
              * payAmount : 100
              * list : [{"orderCode":200519222965039,"showStatus":null,"name":null,"productPic":"https://jh-tiyun-test.oss-cn-hangzhou.aliyuncs.com/file/20200519211654802_88GC853K.png","productSpec":"[{\"key\":\"容量\",\"value\":\"128G\"},{\"key\":\"颜色\",\"value\":\"玫瑰金\"}]","productPrice":100,"discountAmount":0,"productCount":1,"payAmount":null,"isEva":0,"sendTime":null,"totalDiscountAmount":null,"skuId":null,"payCode":null,"createTime":1589898559000,"receiverName":null,"receiverPhone":null,"receiverAddress":null,"aftersaleType":null,"orderProductId":1041}]
@@ -84,7 +84,16 @@ public class MineOrderPageBean {
             private int showStatus;
             private int productCount;
             private float payAmount;
+            private String time;
             private List<ListBean> list;
+
+            public String getTime() {
+                return time;
+            }
+
+            public void setTime(String time) {
+                this.time = time;
+            }
 
             public String getOrderCode() {
                 return orderCode;
@@ -160,11 +169,11 @@ public class MineOrderPageBean {
                 private int productCount;
                 private float payAmount;
                 private int isEva;
-                private long sendTime;
+                private String sendTime;
                 private Object totalDiscountAmount;
                 private long skuId;
                 private Object payCode;
-                private long createTime;
+                private String createTime;
                 private Object receiverName;
                 private Object receiverPhone;
                 private Object receiverAddress;
@@ -251,11 +260,11 @@ public class MineOrderPageBean {
                     this.isEva = isEva;
                 }
 
-                public long getSendTime() {
+                public String getSendTime() {
                     return sendTime;
                 }
 
-                public void setSendTime(long sendTime) {
+                public void setSendTime(String sendTime) {
                     this.sendTime = sendTime;
                 }
 
@@ -283,11 +292,11 @@ public class MineOrderPageBean {
                     this.payCode = payCode;
                 }
 
-                public long getCreateTime() {
+                public String getCreateTime() {
                     return createTime;
                 }
 
-                public void setCreateTime(long createTime) {
+                public void setCreateTime(String createTime) {
                     this.createTime = createTime;
                 }
 

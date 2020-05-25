@@ -129,15 +129,30 @@ public class DateUtil {
         return result.toString();
     }
 
-
+    /**
+     * 商城销售金额统一转换
+     * @param f
+     * @return
+     */
     public static String getTwoDotByFloat(float f){
         //构造方法的字符格式这里如果小数不足2位,会以0补足.
         DecimalFormat decimalFormat =new DecimalFormat("0.00");
         //format 返回的是字符串
         String distanceString = decimalFormat.format(f/100);
         return distanceString;
-//        BigDecimal bg = new BigDecimal(f);
-//        double f1 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-//        return String.valueOf(f1);
+    }
+
+
+    /**
+     * 蜂隐币统一转换
+     * @param f
+     * @return
+     */
+    public static String getTwoDotByFloatFY(float f){
+        //构造方法的字符格式这里如果小数不足2位,会以0补足.
+        DecimalFormat decimalFormat =new DecimalFormat("0.00");
+        //format 返回的是字符串
+        String distanceString = decimalFormat.format(f);
+        return distanceString;
     }
 }

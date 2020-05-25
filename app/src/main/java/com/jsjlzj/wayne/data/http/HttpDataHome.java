@@ -796,6 +796,17 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void commitVipOrder(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCommitVipOrder(body);
+        setSubscribe(observable, observer);
+    }
+    public void getShoppingDetail(int params, Observer observer) {
+
+        Observable observable = service.requestShoppingDetail(params);
+        setSubscribe(observable, observer);
+    }
+
     public void updateBynum(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestUpdateBynum(body);

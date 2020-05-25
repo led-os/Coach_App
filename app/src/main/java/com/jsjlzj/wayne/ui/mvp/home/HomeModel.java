@@ -24,7 +24,9 @@ import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingDetailBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
+import com.jsjlzj.wayne.entity.shopping.VipDataBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
@@ -1837,6 +1839,52 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void commitVipOrder(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().commitVipOrder(param, new Observer<MdlBaseHttpResp<VipDataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<VipDataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getShoppingDetail(int code, int param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getShoppingDetail(param, new Observer<MdlBaseHttpResp<ShoppingDetailBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<ShoppingDetailBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
