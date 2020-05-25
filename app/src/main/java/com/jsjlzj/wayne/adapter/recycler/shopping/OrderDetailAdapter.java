@@ -130,12 +130,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             tvEvaluate.setOnClickListener(v -> {
                 ShoppingEvaluateActivity.go2this(context,bean);
             });
-            itemView.setOnLongClickListener(v -> {
-                if (listener != null) {
-                    listener.onItemClick(bean);
-                }
-                return false;
-            });
+
         }
 
     }

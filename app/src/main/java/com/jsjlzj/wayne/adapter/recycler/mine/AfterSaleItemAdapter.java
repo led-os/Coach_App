@@ -101,7 +101,7 @@ public class AfterSaleItemAdapter extends RecyclerView.Adapter<AfterSaleItemAdap
             bean = list.get(pos);
             this.position = pos;
             tvName.setText(bean.getName());
-            tvPrice.setText("退款： ¥ " + DateUtil.getTwoDotByFloat(bean.getAmount()));
+            tvPrice.setText("退款： ¥ " + DateUtil.getTwoDotByFloatFY(bean.getAmount()));
             GlidUtils.setGrid(context, bean.getProductPic(), imgShopping);
 
             JSONArray array = JSON.parseArray(bean.getProductSpec());
