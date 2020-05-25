@@ -164,6 +164,14 @@ public class AfterSaleFragment extends MVPBaseFragment<HomeView, HomePresenter> 
          OrderDetailActivity.go2this(getActivity(),bean.getOrderCode());
      }
 
+
+     @Override
+     public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+             LogAndToastUtil.toast("操作成功");
+         }
+     }
+
      private List<ShoppingCarBean.DataBean.ListResultsBean> transShoppingCarList(List<MineOrderPageBean.DataBean.ResultBean.ListBean> list) {
         List<ShoppingCarBean.DataBean.ListResultsBean> shoppingCarList = new ArrayList<>();
         for (int i = 0 ;i < list.size() ; i++){
