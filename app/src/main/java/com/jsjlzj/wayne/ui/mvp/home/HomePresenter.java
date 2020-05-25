@@ -105,6 +105,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_BUY_COURSER = 71;
     private static final int REQ_CODE_GET_SHOPPING_DETAIL = 72;
     private static final int REQ_CODE_COMMIT_VIP_ORDER = 73;
+    private static final int REQ_CODE_AFTER_ORDER_LIST = 74;
+    private static final int REQ_CODE_AFTER_ORDER_CANCEL = 75;
 
 
 
@@ -681,6 +683,20 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void getAfterOrderList(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getAfterOrderList(REQ_CODE_AFTER_ORDER_LIST, params, this);
+        }
+    }
+
+    public void getAfterOrderCancel(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getAfterOrderCancel(REQ_CODE_AFTER_ORDER_CANCEL, params, this);
+        }
+    }
+
     public void searchPayResult(Map params) {
         if (model != null) {
             model.searchPayResult(REQ_CODE_SEARCH_PAY_RESULT, params, this);
@@ -829,7 +845,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_ADD_SHOPPING_CAR:
             case REQ_CODE_APPLY_LEADER:
             case REQ_CODE_BUY_COURSER:
-
+            case REQ_CODE_AFTER_ORDER_CANCEL:
                 view.getMessageSuccess(resp);
                 break;
             case REQ_CODE_DELETE_DYNAMIC:
@@ -948,6 +964,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_COMMIT_VIP_ORDER:
                 view.commitVipOrderSuccess(resp);
+                break;
+            case REQ_CODE_AFTER_ORDER_LIST:
+                view.getAfterOrderListSuccess(resp);
                 break;
             default:
                 break;

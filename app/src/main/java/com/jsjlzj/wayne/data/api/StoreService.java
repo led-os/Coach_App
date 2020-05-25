@@ -16,6 +16,7 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
@@ -575,11 +576,18 @@ public interface StoreService {
     Observable<MdlBaseHttpResp<MineOrderPageBean>> requestOrderList(@Body RequestBody requestBody);
 
 
+    @POST(HttpConstant.API_SHOPPING_AFTER_ORDER_LIST)
+    Observable<MdlBaseHttpResp<AfterSalePageBean>> requestAfterOrderList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_ORDER_CANCEL_AFTER)
+    Observable<MdlBaseHttpResp<DataBean>> requestAfterOrderCancel(@Body RequestBody requestBody);
+
+
     @POST(HttpConstant.API_SHOPPING_SEARCH_PAY_STATE)
     Observable<MdlBaseHttpResp<PayResultBean>> requestSearchPayResult(@Body RequestBody requestBody);
 
 
-    @POST(HttpConstant.API_SHOPPING_CONFIRM_ORDER)
+    @GET(HttpConstant.API_SHOPPING_CONFIRM_ORDER)
     Observable<MdlBaseHttpResp<DataBean>> requestConfirmOrder(@Query("orderCode") String orderCode);
 
     @POST(HttpConstant.API_SHOPPING_EVALUATE_ORDER)

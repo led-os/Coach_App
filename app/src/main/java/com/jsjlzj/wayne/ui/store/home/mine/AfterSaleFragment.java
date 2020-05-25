@@ -1,16 +1,17 @@
 package com.jsjlzj.wayne.ui.store.home.mine;
 
 
-import android.view.View;
-
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
+import android.view.View;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.adapter.recycler.mine.AfterSaleAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.MineOrderAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
@@ -20,10 +21,8 @@ import com.jsjlzj.wayne.ui.store.shopping.ConfirmOrderActivity;
 import com.jsjlzj.wayne.ui.store.shopping.OrderDetailActivity;
 import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ScanLogisticsActivity;
-import com.jsjlzj.wayne.ui.store.shopping.ShoppingEvaluateActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
-import com.jsjlzj.wayne.widgets.TimeCounter;
 import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
@@ -33,37 +32,32 @@ import java.util.Map;
 
 import butterknife.BindView;
 
-/**
- * @ClassName: MineOrderFragment
- * @Description: 我的订单fragmetn
- * @Author: 曾海强
- * @CreateDate:
- */
-public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, MineOrderAdapter.OnItemClickListener {
+ /**
+  *
+  * @ClassName:      退货或售后
+  * @Description:    java类作用描述
+  * @Author:         曾海强
+  * @CreateDate:
+  */
+public class AfterSaleFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, AfterSaleAdapter.OnItemClickListener {
 
     @BindView(R.id.rv_data)
     CustomXRecyclerView rvData;
-    /**
-     * -1 :全部  0,待支付；1,待发货；2，待收货；3，待评价；4，售后
-     */
-    private int type;
+
     private Map<Object,Object> map = new HashMap<>();
     private int pageNo = 1;
     private int pageCount;
     private boolean isRefresh;
-    private List<MineOrderPageBean.DataBean.ResultBean> orderList = new ArrayList<>();
-    private MineOrderAdapter adapter;
+    private List<AfterSalePageBean.DataBean.ResultBean> orderList = new ArrayList<>();
+    private AfterSaleAdapter adapter;
 
-    public static MineOrderFragment getInstance(int type){
-        MineOrderFragment fragment = new MineOrderFragment(type);
+    public static AfterSaleFragment getInstance(){
+        AfterSaleFragment fragment = new AfterSaleFragment();
         return fragment;
     }
 
-    public MineOrderFragment(int type) {
-        this.type = type;
-    }
 
-    public MineOrderFragment() {}
+    public AfterSaleFragment() {}
 
 
     @Override
@@ -75,7 +69,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     protected void initViewAndControl(View view) {
         rvData.setLoadingListener(this);
         rvData.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new MineOrderAdapter(getActivity(),new ArrayList<>(),type);
+        adapter = new AfterSaleAdapter(getActivity(),new ArrayList<>());
         adapter.setListener(this);
         rvData.setAdapter(adapter);
         loadData(true);
@@ -101,10 +95,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         map.clear();
         map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
-        if(type != -1){
-            map.put("type", type);
-        }
-        presenter.getOrderList(map);
+        presenter.getAfterOrderList(map);
     }
 
 
@@ -124,7 +115,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
     @Override
-    public void getOrderListSuccess(MdlBaseHttpResp<MineOrderPageBean> resp) {
+    public void getAfterOrderListSuccess(MdlBaseHttpResp<AfterSalePageBean> resp) {
         rvData.refreshComplete();
         rvData.loadMoreComplete();
         if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
@@ -136,7 +127,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
             } else {
                 pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
             }
-            List<MineOrderPageBean.DataBean.ResultBean> list = resp.getData().getData().getResult();
+            List<AfterSalePageBean.DataBean.ResultBean> list = resp.getData().getData().getResult();
             if (list != null && list.size() > 0) {
                 if (isRefresh) {
                     orderList.clear();
@@ -153,55 +144,27 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
 
     @Override
-    public void onLeftClick(MineOrderPageBean.DataBean.ResultBean bean) {
-        switch (bean.getShowStatus()){
-            case 3://查看物流
-                ScanLogisticsActivity.go2this(getActivity(),bean.getOrderCode());
-                break;
-            default:break;
-
+    public void onLeftClick(AfterSalePageBean.DataBean.ResultBean bean) {
+        if(bean.getStatus() == 9){//审核失败--联系客服
+            
+        }else {//撤销申请
+            map.clear();
+            map.put("id",bean.getGetMyAftersaleOrderResponseVo().getId());
+            presenter.getAfterOrderCancel(map);
         }
     }
 
     @Override
-    public void onRightClick(MineOrderPageBean.DataBean.ResultBean bean) {
-        switch (bean.getShowStatus()){
-            case 0://支付
-                PaymentActivity.go2this(getActivity(),bean.getOrderCode(),String.valueOf(bean.getPayAmount()));
-                break;
-            case 5://已完成
-            case 6://交易关闭
-            case 1://已取消  再次购买
-                ConfirmOrderActivity.go2this(getActivity(),transShoppingCarList(bean.getList()),null);
-//                ShoppingEvaluateActivity.go2this(getActivity(),bean.getList().get(0));
-                break;
-            case 2://待发货  提醒发货
-                LogAndToastUtil.toast("提醒成功,请耐心等待");
-                break;
-            case 3://确认收货
-                presenter.confirmOrder(bean.getOrderCode());
-                break;
-            case 4://待评价
-                break;
-            default:break;
-
-        }
-    }
-
-    @Override
-    public void onItemClick(MineOrderPageBean.DataBean.ResultBean bean) {
+    public void onRightClick(AfterSalePageBean.DataBean.ResultBean bean) {
         OrderDetailActivity.go2this(getActivity(),bean.getOrderCode());
     }
 
-    @Override
-    public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
-        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-            LogAndToastUtil.toast("收货成功");
-            loadData(true);
-        }
-    }
+     @Override
+     public void onItemCLick(AfterSalePageBean.DataBean.ResultBean bean) {
+         OrderDetailActivity.go2this(getActivity(),bean.getOrderCode());
+     }
 
-    private List<ShoppingCarBean.DataBean.ListResultsBean> transShoppingCarList(List<MineOrderPageBean.DataBean.ResultBean.ListBean> list) {
+     private List<ShoppingCarBean.DataBean.ListResultsBean> transShoppingCarList(List<MineOrderPageBean.DataBean.ResultBean.ListBean> list) {
         List<ShoppingCarBean.DataBean.ListResultsBean> shoppingCarList = new ArrayList<>();
         for (int i = 0 ;i < list.size() ; i++){
             ShoppingCarBean.DataBean.ListResultsBean bean = new ShoppingCarBean.DataBean.ListResultsBean();

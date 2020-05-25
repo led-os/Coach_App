@@ -1,9 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.store.shopping.OrderDetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_154"
+        android:background="@color/color_FF7C84">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/rel_title_bar"
+            android:layout_marginTop="@dimen/padding_24"
+            android:layout_height="@dimen/padding_42">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:paddingStart="@dimen/padding_14"
+                android:paddingEnd="@dimen/padding_14"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_back_w_l"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/btn_title_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingStart="@dimen/padding_10"
+                android:paddingTop="@dimen/padding_10"
+                android:paddingEnd="@dimen/padding_10"
+                android:paddingBottom="@dimen/padding_10"
+                android:src="@drawable/icon_kefu_order" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_50"
+                android:layout_marginRight="@dimen/padding_50"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:text="订单详情"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16" />
+
+            <TextView
+                android:id="@+id/tv_right_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/padding_29"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/padding_4"
+                android:gravity="center"
+                android:paddingStart="@dimen/padding_10"
+                android:paddingEnd="@dimen/padding_10"
+                android:singleLine="true"
+                android:text="@string/cancel"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_size_13"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:text="等待买家付款  剩29分钟自动关闭订单"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_13"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/padding_23"
+            android:layout_marginStart="@dimen/padding_19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

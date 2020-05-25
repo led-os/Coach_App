@@ -83,7 +83,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.search.SearchNewCourserActivity"></activity>
+        <activity android:name=".ui.store.search.SearchNewCourserActivity" />
         <activity android:name=".ui.store.shopping.ScanLogisticsActivity" />
         <activity android:name=".ui.store.shopping.ShoppingEvaluateActivity" />
         <activity android:name=".ui.store.shopping.OrderDetailActivity" />

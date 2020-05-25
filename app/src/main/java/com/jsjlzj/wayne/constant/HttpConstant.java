@@ -531,6 +531,10 @@ public class HttpConstant {
     public static final String API_SHOPPING_PAY_ORDER = "order/pay/orderPay";
     //获取订单列表
     public static final String API_SHOPPING_ORDER_LIST = "myOrder/getMyOrderList";
+    //获取订单列表
+    public static final String API_SHOPPING_AFTER_ORDER_LIST = "myOrder/getReturnOrder";
+    //撤销申请
+    public static final String API_ORDER_CANCEL_AFTER = "myOrder/getReturnOrderCancel";
     //查询支付结果
     public static final String API_SHOPPING_SEARCH_PAY_STATE = "order/pay/orderPayQuery";
     //确定收货

@@ -67,8 +67,13 @@ public class MineOrderActivity extends MVPBaseActivity<HomeView, HomePresenter> 
     private void initViewPager() {
         mTitles = getResources().getStringArray(R.array.order_title_list);
         for (int i = 0; i < mTitles.length; i++) {
-            MineOrderFragment mineOrderFragment = MineOrderFragment.getInstance(i-1);
-            fragments.add(mineOrderFragment);
+            if(i != mTitles.length - 1){
+                MineOrderFragment mineOrderFragment = MineOrderFragment.getInstance(i-1);
+                fragments.add(mineOrderFragment);
+            }else {
+                AfterSaleFragment afterSaleFragment = AfterSaleFragment.getInstance();
+                fragments.add(afterSaleFragment);
+            }
         }
         myViewPager.setSlide(true);
         myViewPager.setOffscreenPageLimit(mTitles.length - 1);

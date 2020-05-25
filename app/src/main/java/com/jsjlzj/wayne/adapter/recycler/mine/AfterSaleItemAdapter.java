@@ -1,4 +1,4 @@
-package com.jsjlzj.wayne.adapter.recycler.shopping;
+package com.jsjlzj.wayne.adapter.recycler.mine;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,18 +7,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
-import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
-import com.jsjlzj.wayne.ui.store.shopping.ShoppingEvaluateActivity;
+import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -29,26 +24,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @ClassName: OrderDetailAdapter
+ * @ClassName: AfterSaleItemAdapter
  * @Description: java类作用描述
  * @Author: 曾海强
- * @CreateDate: 2020/5/22 0:11
+ * @CreateDate: 2020/5/25 22:46
  */
-public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.ViewHolder> {
+public class AfterSaleItemAdapter extends RecyclerView.Adapter<AfterSaleItemAdapter.ViewHolder> {
 
     private Context context;
-    private List<MineOrderPageBean.DataBean.ResultBean.ListBean> list;
+    private List<AfterSalePageBean.DataBean.ResultBean.GetMyAftersaleOrderResponseVoBean> list = new ArrayList<>();
 
 
-    public OrderDetailAdapter(Context context, List<MineOrderPageBean.DataBean.ResultBean.ListBean> list) {
+    public AfterSaleItemAdapter(Context context, AfterSalePageBean.DataBean.ResultBean.GetMyAftersaleOrderResponseVoBean list) {
         this.context = context;
-        this.list = list;
+        this.list.add(list);
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_canteen_receiver, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_after_sale_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -93,7 +88,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         @BindView(R.id.tv_shop_car_num)
         TextView tvShopCarNum;
 
-        MineOrderPageBean.DataBean.ResultBean.ListBean bean;
+        AfterSalePageBean.DataBean.ResultBean.GetMyAftersaleOrderResponseVoBean bean;
         int position;
 
         ViewHolder(@NonNull View itemView) {
@@ -102,16 +97,13 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         }
 
         void bindView(int pos) {
+
             bean = list.get(pos);
             this.position = pos;
             tvName.setText(bean.getName());
-            tvPrice.setText("¥ " + DateUtil.getTwoDotByFloat(bean.getProductPrice()));
+            tvPrice.setText("退款： ¥ " + DateUtil.getTwoDotByFloat(bean.getAmount()));
             GlidUtils.setGrid(context, bean.getProductPic(), imgShopping);
-            llSelect.setVisibility(View.GONE);
-            imgAdd.setVisibility(View.GONE);
-            imgDelete.setVisibility(View.GONE);
-            tvNum.setVisibility(View.GONE);
-            tvShopCarNum.setVisibility(View.VISIBLE);
+
             JSONArray array = JSON.parseArray(bean.getProductSpec());
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < array.size(); i++) {
@@ -120,45 +112,17 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
                 stringBuilder.append(value);
                 stringBuilder.append(" ");
             }
-//            if(bean.getIsEva() == 0){//待评价
-//                tvEvaluate.setVisibility(View.VISIBLE);
-//            }else {
-//                tvEvaluate.setVisibility(View.GONE);
-//            }
+
             tvAttribute.setText(stringBuilder.toString());
-            tvShopCarNum.setText("x"+bean.getProductCount());
-            tvEvaluate.setOnClickListener(v -> {
-                ShoppingEvaluateActivity.go2this(context,bean);
-            });
-            itemView.setOnLongClickListener(v -> {
-                if (listener != null) {
-                    listener.onItemClick(bean);
-                }
-                return false;
-            });
+
         }
 
     }
 
-    public void setData(List<MineOrderPageBean.DataBean.ResultBean.ListBean> list) {
+    public void setData(List<AfterSalePageBean.DataBean.ResultBean.GetMyAftersaleOrderResponseVoBean> list) {
         this.list = list;
         notifyDataSetChanged();
     }
 
 
-    private OnItemClickListener listener;
-
-    public void setListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
-
-    public interface OnItemClickListener {
-
-        /**
-         * 条目点击
-         *
-         * @param bean 实体类
-         */
-        void onItemClick(MineOrderPageBean.DataBean.ResultBean.ListBean bean);
-    }
 }

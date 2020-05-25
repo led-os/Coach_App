@@ -120,6 +120,8 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
                 case 0://待支付
                     tvScan.setVisibility(View.GONE);
                     tvOrderState.setText("待支付");
+                    tvRightClick.setText("去支付");
+                    tvAllMoney.setText("共"+bean.getProductCount()+"件，应付 ¥"+ DateUtil.getTwoDotByFloat(bean.getPayAmount()));
                     long overTime = -1;
 
 //                    if (overTime > 0) {
@@ -182,9 +184,6 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
             rvShopping.setAdapter(shoppingCarAdapter);
             tvRightClick.setOnClickListener(v -> {
                 if(listener != null){
-                    if(bean.getShowStatus() == 3){
-
-                    }
                     listener.onRightClick(bean);
                 }
             });
@@ -193,7 +192,11 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
                     listener.onLeftClick(bean);
                 }
             });
-
+            itemView.setOnClickListener(v -> {
+                if(listener != null){
+                    listener.onItemClick(bean);
+                }
+            });
         }
     }
 
@@ -208,6 +211,8 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
         void onLeftClick(MineOrderPageBean.DataBean.ResultBean bean);
 
         void onRightClick(MineOrderPageBean.DataBean.ResultBean bean);
+
+        void onItemClick(MineOrderPageBean.DataBean.ResultBean bean);
 
     }
 }
