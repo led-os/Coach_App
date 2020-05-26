@@ -17,6 +17,7 @@ import com.jsjlzj.wayne.entity.find.CurrencyBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate: 2020/05/08
  */
-public class CurrencyActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
+public class CurrencyActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, CurrencyAdapter.OnItemClickListener {
 
     @BindView(R.id.img_back)
     ImageView imgBack;
@@ -45,6 +46,7 @@ public class CurrencyActivity extends MVPBaseActivity<HomeView, HomePresenter> i
     TextView tvRecharge;
 
     private CurrencyAdapter currencyAdapter;
+    private CurrencyBean.DataBean.ProductListBean bean;
 
     public static void go2this(Activity activity){
         activity.startActivity(new Intent(activity,CurrencyActivity.class));
@@ -67,6 +69,7 @@ public class CurrencyActivity extends MVPBaseActivity<HomeView, HomePresenter> i
         tvRecharge.setOnClickListener(clickListener);
         rvCurrency.setLayoutManager(new GridLayoutManager(this,3));
         currencyAdapter = new CurrencyAdapter(this,new ArrayList<>());
+        currencyAdapter.setListener(this);
         rvCurrency.setAdapter(currencyAdapter);
         presenter.getCurrencyList();
     }
@@ -85,7 +88,9 @@ public class CurrencyActivity extends MVPBaseActivity<HomeView, HomePresenter> i
             case R.id.tv_recharge://去充值
                 CurrencyBean.DataBean.ProductListBean bean = currencyAdapter.getSelectMoney();
                 String price = bean.getPrice();
-                LogAndToastUtil.toast(price);
+                if(bean != null){
+                    PaymentActivity.go2this(this,2,bean.getId(),bean.getPrice());
+                }
                 break;
         }
     }
@@ -96,10 +101,16 @@ public class CurrencyActivity extends MVPBaseActivity<HomeView, HomePresenter> i
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             if(resp.getData().getData() != null && resp.getData().getData().getProductList() != null
             && resp.getData().getData().getProductList().size() > 0){
+                bean = resp.getData().getData().getProductList().get(0);
                 tvMoney.setText(resp.getData().getData().getAmount()+"币");
                 currencyAdapter.setData(resp.getData().getData().getProductList());
             }
 
         }
+    }
+
+    @Override
+    public void onItemClick(CurrencyBean.DataBean.ProductListBean bean) {
+        this.bean = bean;
     }
 }

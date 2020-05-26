@@ -107,6 +107,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_COMMIT_VIP_ORDER = 73;
     private static final int REQ_CODE_AFTER_ORDER_LIST = 74;
     private static final int REQ_CODE_AFTER_ORDER_CANCEL = 75;
+    private static final int REQ_CODE_ORDER_DETAIL = 76;
 
 
 
@@ -697,6 +698,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void getOrderDetail(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getOrderDetail(REQ_CODE_ORDER_DETAIL, params, this);
+        }
+    }
+
     public void searchPayResult(Map params) {
         if (model != null) {
             model.searchPayResult(REQ_CODE_SEARCH_PAY_RESULT, params, this);
@@ -967,6 +975,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_AFTER_ORDER_LIST:
                 view.getAfterOrderListSuccess(resp);
+                break;
+            case REQ_CODE_ORDER_DETAIL:
+                view.getOrderDetailSuccess(resp);
                 break;
             default:
                 break;

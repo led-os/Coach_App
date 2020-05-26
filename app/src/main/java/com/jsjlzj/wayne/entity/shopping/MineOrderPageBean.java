@@ -179,6 +179,16 @@ public class MineOrderPageBean {
                 private Object receiverAddress;
                 private Object aftersaleType;
                 private int orderProductId;
+                private String payTime;
+
+
+                public String getPayTime() {
+                    return payTime;
+                }
+
+                public void setPayTime(String payTime) {
+                    this.payTime = payTime;
+                }
 
                 public long getOrderCode() {
                     return orderCode;

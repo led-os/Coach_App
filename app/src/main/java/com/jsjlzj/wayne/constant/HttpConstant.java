@@ -43,9 +43,9 @@ public class HttpConstant {
 
     /********************************* web网页- url****************************************************/
     public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
-//        public static String WEB_URL_BASE = "https://h5.jsjlhome.com/#";//h5正式环境
+//        public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
 
-//    public static final String WEB_URL_BASE =  "http://h5.gokgm.com:81/#";//动态详情页
+//    public static final String WEB_URL_BASE =  "http://h5.gokgm.com:81";//动态详情页
     public static final String WEB_URL_DYNAMIC_DETAIL = WEB_URL_BASE + "/#/dynamicDetail?id=";//动态详情页
     public static final String WEB_URL_COURSE_DETAIL = WEB_URL_BASE + "/#/courseDetail?id=";//课程详情页
     public static final String WEB_URL_AETICLE_DETAIL = WEB_URL_BASE + "/#/articleDetail?id=";//文章详情页
@@ -535,6 +535,8 @@ public class HttpConstant {
     public static final String API_SHOPPING_AFTER_ORDER_LIST = "myOrder/getReturnOrder";
     //撤销申请
     public static final String API_ORDER_CANCEL_AFTER = "myOrder/getReturnOrderCancel";
+    //订单详情
+    public static final String API_ORDER_DETAIL = "myOrder/getMyOrderDetail";
     //查询支付结果
     public static final String API_SHOPPING_SEARCH_PAY_STATE = "order/pay/orderPayQuery";
     //确定收货
@@ -546,7 +548,7 @@ public class HttpConstant {
     //获取课程详情
     public static final String API_COURSER_DETAIL = "lms/lessonDetail";
     //蜂隐币购买课程
-    public static final String API_COURSER_BY_CURRENCY = "lms/lessonDetail";
+    public static final String API_COURSER_BY_CURRENCY = "lms/buyLesson";
     //获取商品详情信息
     public static final String API_SHOPPING_DETAIL = "product/getSkuProduct";
     //提交充值订单

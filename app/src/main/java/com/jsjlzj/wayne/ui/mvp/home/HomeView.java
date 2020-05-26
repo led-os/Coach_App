@@ -22,6 +22,7 @@ import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
+import com.jsjlzj.wayne.entity.shopping.OrderDetailBean;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingDetailBean;
@@ -87,6 +88,8 @@ public interface HomeView extends BaseView {
     default void commitVipOrderSuccess(MdlBaseHttpResp<VipDataBean> resp){}
 
     default void getAfterOrderListSuccess(MdlBaseHttpResp<AfterSalePageBean> resp){}
+
+    default void getOrderDetailSuccess(MdlBaseHttpResp<OrderDetailBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }

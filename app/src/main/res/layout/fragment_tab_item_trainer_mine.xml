@@ -886,6 +886,7 @@
                             android:src="@drawable/ic_train_me_cwtz"/>
 
                         <TextView
+                            android:id="@+id/tv_cwtz"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="成为团长"

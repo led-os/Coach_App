@@ -93,6 +93,9 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
 
             llBg.setOnClickListener(v -> {
                 isSelectPos = pos;
+                if(listener != null){
+                    listener.onItemClick(bean);
+                }
                 notifyDataSetChanged();
             });
         }
@@ -101,7 +104,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
 
 
     public interface OnItemClickListener {
-        void onItemClick(String bean);
+        void onItemClick(CurrencyBean.DataBean.ProductListBean bean);
     }
 
     private OnItemClickListener listener;

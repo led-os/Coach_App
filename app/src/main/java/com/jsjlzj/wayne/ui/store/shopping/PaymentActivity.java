@@ -60,7 +60,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
      */
     private int payType = 1;
      /**
-      * 1 : vip购买  其他
+      * 1 : vip购买  2: 购买蜂币  其他
       */
     private int type;
     private String orderCode ,amount;

@@ -24,6 +24,7 @@ import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
+import com.jsjlzj.wayne.entity.shopping.OrderDetailBean;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingDetailBean;
@@ -581,6 +582,10 @@ public interface StoreService {
 
     @POST(HttpConstant.API_ORDER_CANCEL_AFTER)
     Observable<MdlBaseHttpResp<DataBean>> requestAfterOrderCancel(@Body RequestBody requestBody);
+
+
+    @POST(HttpConstant.API_ORDER_DETAIL)
+    Observable<MdlBaseHttpResp<OrderDetailBean>> requestOrderDetail(@Body RequestBody requestBody);
 
 
     @POST(HttpConstant.API_SHOPPING_SEARCH_PAY_STATE)

@@ -166,6 +166,8 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
     LinearLayout llBzyfk;
     @BindView(R.id.ll_yhxy)
     LinearLayout llYhxy;
+    @BindView(R.id.tv_cwtz)
+    TextView tvCwtz;
     private MdlInfo.DataBean bean;
 
     public TabItemTrainerMineFragment() {
@@ -273,9 +275,9 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                     if(bean.getRegimentalAuditStatus() == 0 || bean.getRegimentalAuditStatus() == 2){
                         LeaderDesActivity.go2this(getActivity());
                     }else if(bean.getRegimentalAuditStatus() == 1){
-                        LogAndToastUtil.toast("审核中。。。");
+                        LogAndToastUtil.toast("您的申请正在审核中");
                     }else if(bean.getRegimentalAuditStatus() == 3){
-                        LogAndToastUtil.toast("您已成为团长了");
+                        MineProfitActivity.go2this(getActivity());
                     }
                 }else {
                     MineProfitActivity.go2this(getActivity());
@@ -342,9 +344,9 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 if(bean.getRegimentalAuditStatus() == 0 || bean.getRegimentalAuditStatus() == 2){
                     LeaderDesActivity.go2this(getActivity());
                 }else if(bean.getRegimentalAuditStatus() == 1){
-                    LogAndToastUtil.toast("审核中。。。");
+                    LogAndToastUtil.toast("您的申请正在审核中");
                 }else if(bean.getRegimentalAuditStatus() == 3){
-                    LogAndToastUtil.toast("您已成为团长了");
+                    MineProfitActivity.go2this(getActivity());
                 }
                 break;
             case R.id.ll_cjrz://厂家入驻
@@ -421,8 +423,10 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
             }
             if(bean.getRegimentalLevel() == 0){
                 tvCommitMoney.setText("成为团长");
+                tvCwtz.setText("成为团长");
             }else {
                 tvCommitMoney.setText("提现");
+                tvCwtz.setText("团长收益");
             }
             tvInvitationCode.setText(bean.getUserId());
             tvMoney.setText(bean.getWithdrawableAmount());
