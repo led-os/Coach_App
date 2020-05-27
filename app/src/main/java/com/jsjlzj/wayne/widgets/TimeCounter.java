@@ -11,7 +11,7 @@ import com.jsjlzj.wayne.utils.DateUtil;
 public class TimeCounter extends CountDownTimer {
 
     /**
-     * 0 ： 模拟考试倒计时3s    1 ：考试时间倒计时02:00:00  2 : 支付订单倒计时
+     * 0 ： 模拟考试倒计时3s    1 ：考试时间倒计时02:00:00  2 : 支付订单倒计时  3.订单详情支付倒计时
      */
     private int showType;
     private TextView button;
@@ -35,8 +35,10 @@ public class TimeCounter extends CountDownTimer {
             button.setText(millisUntilFinished / 1000 +"");
         }else if(showType == 1){
             button.setText(""+ DateUtil.getDownTimer(millisUntilFinished));
-        }else {
+        }else if(showType == 2){
             button.setText("付款 "+DateUtil.getPayDownTimer(millisUntilFinished));
+        }else {
+            button.setText("等待买家付款 剩"+DateUtil.getPayDownTimerFromDetail(millisUntilFinished)+"自动关闭订单");
         }
     }
     public void setJoinTime(long joinTime,int type) {

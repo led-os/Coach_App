@@ -3,6 +3,7 @@ package com.jsjlzj.wayne.ui.store.home.mine;
 import android.app.Activity;
 import android.content.Intent;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -13,6 +14,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.ui.store.shopping.OrderDetailActivity;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
 import com.jsjlzj.wayne.widgets.MyViewPager;
 
@@ -110,5 +112,18 @@ public class MineOrderActivity extends MVPBaseActivity<HomeView, HomePresenter> 
         myViewPager.setCurrentItem(showPosition);
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == OrderDetailActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK){
+            for (int i = 0;i < fragments.size() ; i++){
+                MVPBaseFragment fragment = fragments.get(i);
+                if(fragment instanceof  MineOrderFragment){
+                    ((MineOrderFragment)fragment).loadData(true);
+                }else if(fragment instanceof AfterSaleFragment){
+                    ((AfterSaleFragment)fragment).loadData(true);
+                }
+            }
+        }
+    }
 }

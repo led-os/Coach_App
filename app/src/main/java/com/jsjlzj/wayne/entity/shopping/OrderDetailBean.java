@@ -51,9 +51,10 @@ public class OrderDetailBean {
         private String receiverAddress;
         private String receiverName;
         private String receiverPhone;
-        private String showStatus;
+        private int showStatus;
         private String time;
-        private String totalDiscountAmount;
+        private float totalDiscountAmount;
+
 
         public String getCreateTime() {
             return createTime;
@@ -135,11 +136,11 @@ public class OrderDetailBean {
             this.receiverPhone = receiverPhone;
         }
 
-        public String getShowStatus() {
+        public int getShowStatus() {
             return showStatus;
         }
 
-        public void setShowStatus(String showStatus) {
+        public void setShowStatus(int showStatus) {
             this.showStatus = showStatus;
         }
 
@@ -151,11 +152,11 @@ public class OrderDetailBean {
             this.time = time;
         }
 
-        public String getTotalDiscountAmount() {
+        public float getTotalDiscountAmount() {
             return totalDiscountAmount;
         }
 
-        public void setTotalDiscountAmount(String totalDiscountAmount) {
+        public void setTotalDiscountAmount(float totalDiscountAmount) {
             this.totalDiscountAmount = totalDiscountAmount;
         }
     }

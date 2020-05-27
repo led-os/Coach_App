@@ -16,6 +16,7 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.AfterSaleDetailBean;
 import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
@@ -583,9 +584,16 @@ public interface StoreService {
     @POST(HttpConstant.API_ORDER_CANCEL_AFTER)
     Observable<MdlBaseHttpResp<DataBean>> requestAfterOrderCancel(@Body RequestBody requestBody);
 
-
     @POST(HttpConstant.API_ORDER_DETAIL)
     Observable<MdlBaseHttpResp<OrderDetailBean>> requestOrderDetail(@Body RequestBody requestBody);
+    @POST(HttpConstant.API_CANCEL_AFTER_SALE)
+    Observable<MdlBaseHttpResp<DataBean>> requestCancelAfterSale(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_ORDER_AFTER_DETAIL)
+    Observable<MdlBaseHttpResp<AfterSaleDetailBean>> requestOrderAfterDetail(@Body RequestBody requestBody);
+
+    @GET(HttpConstant.API_ORDER_CANCEL)
+    Observable<MdlBaseHttpResp<DataBean>> requestOrderCancel(@Query("orderCode") String orderCode);
 
 
     @POST(HttpConstant.API_SHOPPING_SEARCH_PAY_STATE)

@@ -94,6 +94,7 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
                 .putExtra("couponBean",bean));
     }
 
+    //直接购买
     public static void go2this(Activity activity, int type, int buyNum, String productJson) {
         activity.startActivity(new Intent(activity, ConfirmOrderActivity.class).putExtra("type",type)
                 .putExtra("buyNum",buyNum)

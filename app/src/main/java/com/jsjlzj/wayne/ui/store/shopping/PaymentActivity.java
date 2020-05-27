@@ -73,6 +73,9 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 .putExtra("amount",amount));
     }
 
+     /**
+      * vip购买  购买蜂隐币
+      */
      public static void go2this(Activity activity,int type,int productId,String amount){
         activity.startActivity(new Intent(activity,PaymentActivity.class)
                 .putExtra("type",type)
@@ -136,7 +139,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         type = getIntent().getIntExtra("type",0);
         productId = getIntent().getIntExtra("productId",0);
         amount = getIntent().getStringExtra("amount");
-        if(type == 1){
+        if(type == 1 || type == 2){
             Map<Object,Object> map = new HashMap<>();
             map.put("id",productId);
             tvPrice.setText(DateUtil.getTwoDotByFloatFY(Float.valueOf(amount)));

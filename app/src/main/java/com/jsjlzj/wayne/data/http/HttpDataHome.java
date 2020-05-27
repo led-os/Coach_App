@@ -781,6 +781,22 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestOrderDetail(body);
         setSubscribe(observable, observer);
     }
+    public void getCancelAfterSale(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCancelAfterSale(body);
+        setSubscribe(observable, observer);
+    }
+    public void getOrderAfterDetail(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestOrderAfterDetail(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getOrderCancel(String orderCode, Observer observer) {
+//        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestOrderCancel(orderCode);
+        setSubscribe(observable, observer);
+    }
     public void searchPayResult(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestSearchPayResult(body);

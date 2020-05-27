@@ -1,8 +1,11 @@
 package com.jsjlzj.wayne.ui.store.home.mine;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -93,7 +96,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
 
-    private void loadData(boolean isRefresh) {
+    public void loadData(boolean isRefresh) {
         this.isRefresh = isRefresh;
         if (isRefresh) {
             pageNo = 1;
@@ -190,7 +193,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
     @Override
     public void onItemClick(MineOrderPageBean.DataBean.ResultBean bean) {
-        OrderDetailActivity.go2this(getActivity(),bean.getOrderCode());
+        OrderDetailActivity.go2this(getActivity(),bean.getOrderCode(),0,OrderDetailActivity.REQUEST_CODE);
     }
 
     @Override
@@ -216,4 +219,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
         }
         return shoppingCarList;
     }
+
+
+
 }

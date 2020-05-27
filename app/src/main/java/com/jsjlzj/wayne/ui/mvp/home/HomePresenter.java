@@ -108,6 +108,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_AFTER_ORDER_LIST = 74;
     private static final int REQ_CODE_AFTER_ORDER_CANCEL = 75;
     private static final int REQ_CODE_ORDER_DETAIL = 76;
+    private static final int REQ_CODE_ORDER_CANCEL = 77;
+    private static final int REQ_CODE_ORDER_AFTER_DETAIL = 78;
+    private static final int REQ_CODE_CANCEL_AFTER_SALE = 79;
 
 
 
@@ -704,6 +707,25 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getOrderDetail(REQ_CODE_ORDER_DETAIL, params, this);
         }
     }
+    public void getCancelAfterSale(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getCancelAfterSale(REQ_CODE_CANCEL_AFTER_SALE, params, this);
+        }
+    }
+    public void getOrderAfterDetail(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getOrderAfterDetail(REQ_CODE_ORDER_AFTER_DETAIL, params, this);
+        }
+    }
+
+    public void getOrderCancel(String orderCode) {
+        if (model != null) {
+            view.showLoading();
+            model.getOrderCancel(REQ_CODE_ORDER_CANCEL, orderCode, this);
+        }
+    }
 
     public void searchPayResult(Map params) {
         if (model != null) {
@@ -854,6 +876,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_APPLY_LEADER:
             case REQ_CODE_BUY_COURSER:
             case REQ_CODE_AFTER_ORDER_CANCEL:
+            case REQ_CODE_ORDER_CANCEL:
+            case REQ_CODE_CANCEL_AFTER_SALE:
                 view.getMessageSuccess(resp);
                 break;
             case REQ_CODE_DELETE_DYNAMIC:
@@ -978,6 +1002,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_ORDER_DETAIL:
                 view.getOrderDetailSuccess(resp);
+                break;
+            case REQ_CODE_ORDER_AFTER_DETAIL:
+                view.getOrderAfterDetailSuccess(resp);
                 break;
             default:
                 break;

@@ -83,7 +83,7 @@ public class JsInterface {
     public void toPage(String url,String title){
         LogAndToastUtil.log(url+"====JsInterface===="+title);
         if(!url.contains("http:")){
-            url = HttpConstant.WEB_URL_BASE + url ;
+            url = HttpConstant.WEB_URL_BASE +"/#"+ url ;
         }
         WebViewContainerActivity.go2this(mContext,title, url, WebViewContainerFragment.TYPE_INNER_TAB);
     }

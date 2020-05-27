@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.ui.store.home.mine.AfterSaleApplyActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingEvaluateActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
@@ -74,6 +75,8 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         TextView tvName;
         @BindView(R.id.tv_evaluate)
         TextView tvEvaluate;
+        @BindView(R.id.tv_sale_after)
+        TextView tvSaleAfter;
         @BindView(R.id.tv_attribute)
         TextView tvAttribute;
         @BindView(R.id.tv_price)
@@ -120,15 +123,23 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
                 stringBuilder.append(value);
                 stringBuilder.append(" ");
             }
-//            if(bean.getIsEva() == 0){//待评价
-//                tvEvaluate.setVisibility(View.VISIBLE);
-//            }else {
-//                tvEvaluate.setVisibility(View.GONE);
-//            }
+            if(bean.getIsEva() == 0 && (bean.getShowStatus() == 3 || bean.getShowStatus() == 5)){//待评价
+                tvEvaluate.setVisibility(View.VISIBLE);
+            }else {
+                tvEvaluate.setVisibility(View.GONE);
+            }
+            if(bean.getShowStatus() == 5){
+                tvSaleAfter.setVisibility(View.VISIBLE);
+            }else {
+                tvSaleAfter.setVisibility(View.GONE);
+            }
             tvAttribute.setText(stringBuilder.toString());
             tvShopCarNum.setText("x"+bean.getProductCount());
             tvEvaluate.setOnClickListener(v -> {
                 ShoppingEvaluateActivity.go2this(context,bean);
+            });
+            tvSaleAfter.setOnClickListener(view -> {
+                AfterSaleApplyActivity.go2this(context,bean);
             });
 
         }

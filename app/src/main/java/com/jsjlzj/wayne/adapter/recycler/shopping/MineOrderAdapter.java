@@ -171,9 +171,13 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
                     tvOrderState.setText("待评价");
                     break;
                 case 5://已完成
-                case 6://交易关闭
                     tvScan.setVisibility(View.GONE);
                     tvOrderState.setText("交易成功");
+                    tvRightClick.setText(context.getResources().getString(R.string.again_buy));
+                    break;
+                case 6://交易关闭
+                    tvScan.setVisibility(View.GONE);
+                    tvOrderState.setText("交易关闭");
                     tvRightClick.setText(context.getResources().getString(R.string.again_buy));
                     break;
                 default:break;
@@ -190,6 +194,11 @@ public class MineOrderAdapter extends RecyclerView.Adapter<MineOrderAdapter.View
             tvScan.setOnClickListener(v -> {
                 if(listener != null){
                     listener.onLeftClick(bean);
+                }
+            });
+            rvShopping.setOnClickListener(view -> {
+                if(listener != null){
+                    listener.onItemClick(bean);
                 }
             });
             itemView.setOnClickListener(v -> {

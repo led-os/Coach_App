@@ -121,7 +121,11 @@ public class AfterSaleAdapter extends RecyclerView.Adapter<AfterSaleAdapter.View
                     listener.onLeftClick(bean);
                 }
             });
-
+            rvShopping.setOnClickListener(view -> {
+                if(listener != null){
+                    listener.onItemCLick(bean);
+                }
+            });
             itemView.setOnClickListener(v -> {
                 if(listener != null){
                     listener.onItemCLick(bean);

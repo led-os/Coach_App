@@ -111,8 +111,11 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
     public void getMineProfitSuccess(MdlBaseHttpResp<MineProfitBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             if(resp.getData().getData() != null){
-                tvMoney.setText(resp.getData().getData().getWithdrawableAmount());
-                tvAllMoney.setText(resp.getData().getData().getTotalAmount());
+                tvMoney.setText(getResources().getString(R.string.chinese_money) + resp.getData().getData().getWithdrawableAmount());
+                tvAllMoney.setText(getResources().getString(R.string.chinese_money) + resp.getData().getData().getTotalAmount());
+                tvProfitLastMonth.setText(getResources().getString(R.string.chinese_money) + resp.getData().getData().getLastMonthSettlementIncome());
+                tvProfitMonth.setText(getResources().getString(R.string.chinese_money)+resp.getData().getData().getCurrentMonthEstimateIncome());
+                tvPredictLastMonth.setText(getResources().getString(R.string.chinese_money)+resp.getData().getData().getCurrentMonthSettlementIncome());
             }
         }
     }

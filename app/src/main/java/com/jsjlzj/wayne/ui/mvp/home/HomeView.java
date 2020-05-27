@@ -14,6 +14,7 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.shopping.AfterSaleDetailBean;
 import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
@@ -90,6 +91,12 @@ public interface HomeView extends BaseView {
     default void getAfterOrderListSuccess(MdlBaseHttpResp<AfterSalePageBean> resp){}
 
     default void getOrderDetailSuccess(MdlBaseHttpResp<OrderDetailBean> resp){}
+
+    /**
+     * 请求售后详情成功
+     * @param resp
+     */
+    default void getOrderAfterDetailSuccess(MdlBaseHttpResp<AfterSaleDetailBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }

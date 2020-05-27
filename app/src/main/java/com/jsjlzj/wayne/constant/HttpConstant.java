@@ -537,6 +537,12 @@ public class HttpConstant {
     public static final String API_ORDER_CANCEL_AFTER = "myOrder/getReturnOrderCancel";
     //订单详情
     public static final String API_ORDER_DETAIL = "myOrder/getMyOrderDetail";
+    //撤销退货申请
+    public static final String API_CANCEL_AFTER_SALE = "myOrder/getReturnOrderCancel";
+    //退货或售后详情
+    public static final String API_ORDER_AFTER_DETAIL = "myOrder/getReturnOrderDetail";
+    //订单详情---取消订单
+    public static final String API_ORDER_CANCEL = "myOrder/cancelOrder";
     //查询支付结果
     public static final String API_SHOPPING_SEARCH_PAY_STATE = "order/pay/orderPayQuery";
     //确定收货

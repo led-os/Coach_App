@@ -87,7 +87,7 @@ public class AfterSaleFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     }
 
 
-    private void loadData(boolean isRefresh) {
+    public void loadData(boolean isRefresh) {
         this.isRefresh = isRefresh;
         if (isRefresh) {
             pageNo = 1;
@@ -156,12 +156,12 @@ public class AfterSaleFragment extends MVPBaseFragment<HomeView, HomePresenter> 
 
     @Override
     public void onRightClick(AfterSalePageBean.DataBean.ResultBean bean) {
-        OrderDetailActivity.go2this(getActivity(),bean.getOrderCode());
+        OrderDetailActivity.go2this(getActivity(),bean.getGetMyAftersaleOrderResponseVo().getId(),1,OrderDetailActivity.REQUEST_CODE);
     }
 
      @Override
      public void onItemCLick(AfterSalePageBean.DataBean.ResultBean bean) {
-         OrderDetailActivity.go2this(getActivity(),bean.getOrderCode());
+         OrderDetailActivity.go2this(getActivity(),bean.getGetMyAftersaleOrderResponseVo().getId(),1,OrderDetailActivity.REQUEST_CODE);
      }
 
 

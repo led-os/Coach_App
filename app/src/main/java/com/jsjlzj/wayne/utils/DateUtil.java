@@ -3,6 +3,7 @@ package com.jsjlzj.wayne.utils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,6 +42,22 @@ public class DateUtil {
      */
     public static String getTime(long timeInMillis, SimpleDateFormat dateFormat) {
         return dateFormat.format(new Date(timeInMillis));
+    }
+
+    /**
+     * 将指定格式的字符串转换成
+     * @param time
+     * @return
+     */
+    public static long getLongTimeByStyle(String time,String style){
+        Date date = null;
+        try {
+            SimpleDateFormat format= new SimpleDateFormat(style);
+            date = format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date.getTime();
     }
 
     /**
@@ -128,6 +145,37 @@ public class DateUtil {
         }
         return result.toString();
     }
+
+
+    /**
+     * 订单详情 支付倒计时
+     * @param remain 付款 14:59
+     * @return
+     */
+    public static String getPayDownTimerFromDetail(long remain){
+        if(remain <= 0){
+            return "0秒";
+        }
+        StringBuilder result = new StringBuilder();
+        remain = remain / 1000;
+        long min,ss;
+        if(remain > 60){
+            min = remain / 60;
+            if(min < 10){
+                result.append("0");
+            }
+            result.append(min);
+            result.append("分钟");
+        }else if(remain > 1){
+            if(remain < 10){
+                result.append("0");
+            }
+            result.append(remain);
+            result.append("秒");
+        }
+        return result.toString();
+    }
+
 
     /**
      * 商城销售金额统一转换

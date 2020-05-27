@@ -191,7 +191,44 @@
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_after_state"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_after_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_13"
+                    android:text="您已成功发起退款申请，请耐心等待商家处理"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_12"
+                    android:layout_marginBottom="@dimen/padding_12"
+                    android:textColor="@color/color_222222"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0.5"
+                    android:background="@color/color_eeeeee"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"/>
+
+                <TextView
+                    android:id="@+id/tv_after_state_des"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:text="商家同意或超时未处理，系统将退钱给您。
+·如果商家拒绝您的申请，您可以修改退款申请再次发起，商家会重新处理。"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@color/color_999999"/>
+            </LinearLayout>
             <RelativeLayout
+                android:id="@+id/rel_shopp_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -213,145 +250,158 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="@dimen/padding_5" />
-                
+
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/ll_all_money"
-                android:paddingTop="@dimen/padding_16"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="商品总价"
-                    android:layout_marginStart="@dimen/padding_10"
-                    android:textSize="@dimen/text_size_12"
-                    android:textColor="@color/color_999999"
-                  />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:id="@+id/tv_all_money"
-                    android:textSize="@dimen/text_size_12"
-                    android:textColor="@color/color_999999"
-                    android:text="¥ 27.00 "
-                    android:layout_marginEnd="@dimen/padding_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_coupon"
-                android:paddingTop="@dimen/padding_6"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="优惠券"
-                    android:layout_marginStart="@dimen/padding_10"
-                    android:textSize="@dimen/text_size_12"
-                    android:textColor="@color/color_999999"
-                    />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:id="@+id/tv_coupon"
-                    android:textSize="@dimen/text_size_12"
-                    android:textColor="@color/color_999999"
-                    android:text="-¥ 6.00 "
-                    android:layout_marginEnd="@dimen/padding_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_freight"
-                android:paddingTop="@dimen/padding_6"
-                android:paddingBottom="@dimen/padding_10"
-                android:background="@color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="运费"
-                    android:layout_marginStart="@dimen/padding_10"
-                    android:textSize="@dimen/text_size_12"
-                    android:textColor="@color/color_999999"
-                    />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:id="@+id/tv_freight"
-                    android:textSize="@dimen/text_size_12"
-                    android:textColor="@color/color_999999"
-                    android:text="¥ 0.00"
-                    android:layout_marginEnd="@dimen/padding_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/padding_0.5"
-                android:background="@color/color_eeeeee"
-                android:layout_marginStart="@dimen/padding_10"
-                android:layout_marginEnd="@dimen/padding_10"/>
-
-            <LinearLayout
-                android:id="@+id/ll_actual"
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:background="@color/white"
-                android:layout_height="@dimen/padding_42">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="实付"
-                    android:layout_marginStart="@dimen/padding_10"
-                    android:textSize="@dimen/text_size_13"
-                    android:textColor="@color/color_222222"
-                    />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-
-                <TextView
-                    android:id="@+id/tv_actual_money"
-                    android:textSize="@dimen/text_size_13"
-                    android:textColor="@color/color_F1404B"
-                    android:text="¥ 21.00"
-                    android:layout_marginEnd="@dimen/padding_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <RelativeLayout
+                android:id="@+id/ll_money_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginBottom="@dimen/padding_10"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_all_money"
+                    android:paddingTop="@dimen/padding_16"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="商品总价"
+                        android:layout_marginStart="@dimen/padding_10"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_999999"
+                        />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_all_money"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_999999"
+                        android:text="¥ 27.00"
+                        android:layout_marginEnd="@dimen/padding_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_coupon"
+                    android:paddingTop="@dimen/padding_6"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="优惠券"
+                        android:layout_marginStart="@dimen/padding_10"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_999999"
+                        />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_coupon"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_999999"
+                        android:text="-¥ 6.00 "
+                        android:layout_marginEnd="@dimen/padding_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_freight"
+                    android:paddingTop="@dimen/padding_6"
+                    android:paddingBottom="@dimen/padding_10"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="运费"
+                        android:layout_marginStart="@dimen/padding_10"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_999999"
+                        />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_freight"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_999999"
+                        android:text="¥ 0.00"
+                        android:layout_marginEnd="@dimen/padding_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_0.5"
+                    android:background="@color/color_eeeeee"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_actual"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="@dimen/padding_42">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="实付"
+                        android:layout_marginStart="@dimen/padding_10"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_222222"
+                        />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_actual_money"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_F1404B"
+                        android:text="¥ 21.00"
+                        android:layout_marginEnd="@dimen/padding_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/padding_1"
+                android:paddingBottom="@dimen/padding_12"
                 android:background="@color/white">
 
                 <TextView
@@ -366,7 +416,6 @@
 
                 <TextView
                     android:id="@+id/tv_water"
-                    android:layout_below="@+id/tv_order_code"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_8"
                     android:layout_width="wrap_content"
@@ -379,7 +428,6 @@
                     android:id="@+id/tv_order_time"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_8"
-                    android:layout_below="@+id/tv_water"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_12"
@@ -390,36 +438,38 @@
                     android:id="@+id/tv_pay_time"
                     android:layout_marginStart="@dimen/padding_10"
                     android:layout_marginTop="@dimen/padding_8"
-                    android:layout_below="@+id/tv_order_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/padding_12"
                     android:textSize="@dimen/text_size_12"
                     android:textColor="@color/color_666666"
                     android:text="支付时间：2020-04-12 12:34"/>
 
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
 
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rel_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/padding_46"
         android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:background="@color/white">
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
         <TextView
             android:id="@+id/tv_right_click"
             android:gravity="center"
             android:text="付款"
             android:textSize="@dimen/text_size_12"
             android:textColor="@color/color_f1404b"
-            android:layout_alignParentEnd="true"
             android:visibility="visible"
-            android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/padding_10"
             android:layout_marginBottom="@dimen/padding_12"
             android:layout_width="@dimen/padding_77"
@@ -431,17 +481,15 @@
             android:id="@+id/tv_left_click"
             android:gravity="center"
             android:text="取消订单"
-            android:layout_toStartOf="@+id/tv_right_click"
             android:textSize="@dimen/text_size_12"
             android:textColor="@color/color_666666"
             android:visibility="visible"
-            android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/padding_14"
             android:layout_marginBottom="@dimen/padding_12"
             android:layout_width="@dimen/padding_77"
             android:layout_height="@dimen/padding_27"
             android:background="@drawable/bg_stroke_666666_13"/>
         
-    </RelativeLayout>
+    </LinearLayout>
     
 </RelativeLayout>
