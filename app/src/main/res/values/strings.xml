@@ -356,4 +356,13 @@
         <item>同城</item>
         <item>全部</item>
     </string-array>
+
+
+    <string-array name="reason_type_list">
+        <item>7天无理由退货</item>
+        <item>商品质量有问题</item>
+        <item>商品发错了</item>
+        <item>买错商品了</item>
+        <item>其他</item>
+    </string-array>
 </resources>

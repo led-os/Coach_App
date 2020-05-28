@@ -1,5 +1,7 @@
 package com.jsjlzj.wayne.entity.shopping;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @ClassName: CommitOrderBean
  * @Description: java类作用描述
@@ -33,6 +35,15 @@ public class CommitOrderBean {
         private String payAmount;
         private String outTradeNo;
         private String url;
+        private WxPayParamBean wxPayParam;
+
+        public WxPayParamBean getWxPayParam() {
+            return wxPayParam;
+        }
+
+        public void setWxPayParam(WxPayParamBean wxPayParam) {
+            this.wxPayParam = wxPayParam;
+        }
 
         public String getOrderCode() {
             return orderCode;
@@ -64,6 +75,84 @@ public class CommitOrderBean {
 
         public void setUrl(String url) {
             this.url = url;
+        }
+
+        public class WxPayParamBean{
+
+            /**
+             * package : Sign=WXPay
+             * appid : wx8bd15d5408120652
+             * sign : 6AB9CCB44889B6EED7AADF15EC3DF321
+             * partnerid : 1595772031
+             * prepayid : wx28163147075889b509f6eaa71222524400
+             * noncestr : 8t3JAl6eyEHmMdoG
+             * timestamp : 1590654707
+             */
+
+            @SerializedName("package")
+            private String packageX;
+            private String appid;
+            private String sign;
+            private String partnerid;
+            private String prepayid;
+            private String noncestr;
+            private String timestamp;
+
+            public String getPackageX() {
+                return packageX;
+            }
+
+            public void setPackageX(String packageX) {
+                this.packageX = packageX;
+            }
+
+            public String getAppid() {
+                return appid;
+            }
+
+            public void setAppid(String appid) {
+                this.appid = appid;
+            }
+
+            public String getSign() {
+                return sign;
+            }
+
+            public void setSign(String sign) {
+                this.sign = sign;
+            }
+
+            public String getPartnerid() {
+                return partnerid;
+            }
+
+            public void setPartnerid(String partnerid) {
+                this.partnerid = partnerid;
+            }
+
+            public String getPrepayid() {
+                return prepayid;
+            }
+
+            public void setPrepayid(String prepayid) {
+                this.prepayid = prepayid;
+            }
+
+            public String getNoncestr() {
+                return noncestr;
+            }
+
+            public void setNoncestr(String noncestr) {
+                this.noncestr = noncestr;
+            }
+
+            public String getTimestamp() {
+                return timestamp;
+            }
+
+            public void setTimestamp(String timestamp) {
+                this.timestamp = timestamp;
+            }
         }
     }
 }

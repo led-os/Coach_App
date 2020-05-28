@@ -159,18 +159,18 @@ public class MineOrderPageBean {
                  * orderProductId : 1041
                  */
 
-                private long orderCode;
+                private String orderCode;
                 private int showStatus;
                 private String name;
                 private String productPic;
                 private String productSpec;
                 private float productPrice;
-                private int discountAmount;
+                private float discountAmount;
                 private int productCount;
                 private float payAmount;
                 private int isEva;
                 private String sendTime;
-                private Object totalDiscountAmount;
+                private float totalDiscountAmount;
                 private long skuId;
                 private Object payCode;
                 private String createTime;
@@ -190,11 +190,11 @@ public class MineOrderPageBean {
                     this.payTime = payTime;
                 }
 
-                public long getOrderCode() {
+                public String getOrderCode() {
                     return orderCode;
                 }
 
-                public void setOrderCode(long orderCode) {
+                public void setOrderCode(String orderCode) {
                     this.orderCode = orderCode;
                 }
 
@@ -238,11 +238,11 @@ public class MineOrderPageBean {
                     this.productPrice = productPrice;
                 }
 
-                public int getDiscountAmount() {
+                public float getDiscountAmount() {
                     return discountAmount;
                 }
 
-                public void setDiscountAmount(int discountAmount) {
+                public void setDiscountAmount(float discountAmount) {
                     this.discountAmount = discountAmount;
                 }
 
@@ -278,11 +278,11 @@ public class MineOrderPageBean {
                     this.sendTime = sendTime;
                 }
 
-                public Object getTotalDiscountAmount() {
+                public float getTotalDiscountAmount() {
                     return totalDiscountAmount;
                 }
 
-                public void setTotalDiscountAmount(Object totalDiscountAmount) {
+                public void setTotalDiscountAmount(float totalDiscountAmount) {
                     this.totalDiscountAmount = totalDiscountAmount;
                 }
 

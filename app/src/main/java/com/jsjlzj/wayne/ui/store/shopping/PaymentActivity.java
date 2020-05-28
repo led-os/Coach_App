@@ -33,6 +33,7 @@ import com.tencent.mm.opensdk.modelpay.PayReq;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -60,7 +61,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
      */
     private int payType = 1;
      /**
-      * 1 : vip购买  2: 购买蜂币  其他
+      * "0,商城; 1,蜂币充值; 2,VIP充值",
       */
     private int type;
     private String orderCode ,amount;
@@ -158,13 +159,13 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         switch (view.getId()) {
             case R.id.ll_zfb:
                 payType = 1;
-                imgZfb.setSelected(true);
-                imgWx.setSelected(false);
+                imgZfb.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.cbx_select));
+                imgWx.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.cbx_unselect));
                 break;
             case R.id.ll_wx:
                 payType = 0;
-                imgZfb.setSelected(false);
-                imgWx.setSelected(true);
+                imgZfb.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.cbx_unselect));
+                imgWx.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.cbx_select));
                 break;
             case R.id.tv_to_pay:
                 toPay();
@@ -185,28 +186,27 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     public void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
             if (payType == 0) {
-//                PayResultBean.PayResponseBean orderBean = order.getPayResponse();
-//                if (orderBean == null) {
-//                    return;
-//                }
-//                Runnable payRunnable = new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        PayReq request = new PayReq();
-//                        request.appId = orderBean.getAppId();
-//                        request.partnerId = orderBean.getPartnerid();
-//                        request.prepayId = orderBean.getPrepayid();
-//                        request.packageValue = "Sign=WXPay";
-//                        request.nonceStr = orderBean.getNonceStr();
-//                        request.timeStamp = orderBean.getTimeStamp();
-//                        request.sign = orderBean.getPaySign();
-
-//                        MyApp.getApp().getIwxapi().sendReq(request);
-//                    }
-//                };
-//                // 必须异步调用
-//                Thread payThread = new Thread(payRunnable);
-//                payThread.start();
+                CommitOrderBean.DataBean.WxPayParamBean payParamBean = resp.getData().getData().getWxPayParam();
+                if (payParamBean == null) {
+                    return;
+                }
+                Runnable payRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        PayReq request = new PayReq();
+                        request.appId = payParamBean.getAppid();
+                        request.partnerId = payParamBean.getPartnerid();
+                        request.prepayId = payParamBean.getPrepayid();
+                        request.packageValue = "Sign=WXPay";
+                        request.nonceStr = payParamBean.getNoncestr();
+                        request.timeStamp = payParamBean.getTimestamp();
+                        request.sign = payParamBean.getSign();
+                        MyApp.getApp().getIwxapi().sendReq(request);
+                    }
+                };
+                // 必须异步调用
+                Thread payThread = new Thread(payRunnable);
+                payThread.start();
             } else if (payType == 1) {
                 // 订单信息
                 final String outTradeNo = resp.getData().getData().getUrl();

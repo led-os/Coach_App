@@ -229,7 +229,7 @@ public class JsInterface {
 
     @JavascriptInterface
     public void buyVip(int productId,float amount){
-        PaymentActivity.go2this(mContext,1,productId,String.valueOf(amount));
+        PaymentActivity.go2this(mContext,2,productId,String.valueOf(amount));
     }
 
     @JavascriptInterface

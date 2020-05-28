@@ -15,8 +15,8 @@ public class HttpConstant {
 //    public static String BASE_URL = "https://api.jsjlhome.com/";//线上环境
 
 
-    public static String WXAPPID = "wx465cfff1c19d069d";
-    public static String WXAPPSECET = "8659207754ddedc545fbd86cee2496d1";
+    public static String WXAPPID = "wx8bd15d5408120652";//"wx465cfff1c19d069d";
+    public static String WXAPPSECET = "6f08456d4f060a895aeed4f09c5eb292";//"8659207754ddedc545fbd86cee2496d1";
     public static final String JCMES_URL = "http://app.lightmes.cn/";
     public static final String UPDATA_DATE = "2019-06-13";
     public static final String PAGE_NO = "pageNo";
@@ -539,6 +539,8 @@ public class HttpConstant {
     public static final String API_ORDER_DETAIL = "myOrder/getMyOrderDetail";
     //撤销退货申请
     public static final String API_CANCEL_AFTER_SALE = "myOrder/getReturnOrderCancel";
+    //提交退货申请
+    public static final String API_SAVE_AFTER_SALE = "myOrder/saveAftersaleInfo";
     //退货或售后详情
     public static final String API_ORDER_AFTER_DETAIL = "myOrder/getReturnOrderDetail";
     //订单详情---取消订单
@@ -549,6 +551,8 @@ public class HttpConstant {
     public static final String API_SHOPPING_CONFIRM_ORDER = "myOrder/confirmOrder";
     //评价
     public static final String API_SHOPPING_EVALUATE_ORDER = "myOrder/evaluateOrder";
+    //查询物流信息
+    public static final String API_SHOPPING_SCAN_LOGISTICS = "myOrder/getExpressInfo";
     //确认订单页面可用优惠券
     public static final String API_SHOPPING_ENABLE_COUPON = "order/settle/getSettleCoupon";
     //获取课程详情

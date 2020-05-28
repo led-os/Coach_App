@@ -45,7 +45,9 @@ public class ArrayWheelAdapter<T> extends AbstractWheelTextAdapter {
             if (item instanceof CharSequence) {
                 return (CharSequence) item;
             }
-            return item.toString();
+            if(item != null){
+                return item.toString();
+            }
         }
         return null;
     }

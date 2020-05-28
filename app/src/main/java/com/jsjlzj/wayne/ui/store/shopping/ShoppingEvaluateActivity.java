@@ -247,6 +247,7 @@ public class ShoppingEvaluateActivity extends MVPBaseActivity<HomeView, HomePres
             case R.id.tv_commit:
                 commitEvaluate();
                 break;
+            default:break;
         }
     }
 

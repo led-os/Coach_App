@@ -89,7 +89,7 @@ public class CurrencyActivity extends MVPBaseActivity<HomeView, HomePresenter> i
                 CurrencyBean.DataBean.ProductListBean bean = currencyAdapter.getSelectMoney();
                 String price = bean.getPrice();
                 if(bean != null){
-                    PaymentActivity.go2this(this,2,bean.getId(),bean.getPrice());
+                    PaymentActivity.go2this(this,1,bean.getId(),bean.getPrice());
                 }
                 break;
         }

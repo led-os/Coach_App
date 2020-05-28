@@ -22,6 +22,7 @@ import com.jsjlzj.wayne.entity.shopping.BankCardBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.LogisticsBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.OrderDetailBean;
@@ -1808,6 +1809,29 @@ public class HomeModel extends BaseModel {
         });
     }
 
+   public void saveAfterSale(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().saveAfterSale(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
    public void getOrderAfterDetail(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().getOrderAfterDetail(param, new Observer<MdlBaseHttpResp<AfterSaleDetailBean>>() {
             @Override
@@ -1910,6 +1934,29 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getLogisticsInfo(int code, Map params, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getLogisticsInfo(params, new Observer<MdlBaseHttpResp<LogisticsBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<LogisticsBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

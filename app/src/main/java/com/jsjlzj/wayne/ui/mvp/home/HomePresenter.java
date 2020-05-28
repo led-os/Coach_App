@@ -111,6 +111,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_ORDER_CANCEL = 77;
     private static final int REQ_CODE_ORDER_AFTER_DETAIL = 78;
     private static final int REQ_CODE_CANCEL_AFTER_SALE = 79;
+    private static final int REQ_CODE_LOGISTICS_LIST = 80;
 
 
 
@@ -713,6 +714,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getCancelAfterSale(REQ_CODE_CANCEL_AFTER_SALE, params, this);
         }
     }
+
+    public void saveAfterSale(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.saveAfterSale(REQ_CODE_CANCEL_AFTER_SALE, params, this);
+        }
+    }
     public void getOrderAfterDetail(Map params) {
         if (model != null) {
             view.showLoading();
@@ -744,6 +752,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
         if (model != null) {
             view.showLoading();
             model.commitEvaluateOrder(REQ_CODE_EVALUATE_ORDER, params, this);
+        }
+    }
+
+    public void getLogisticsInfo(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getLogisticsInfo(REQ_CODE_LOGISTICS_LIST, params, this);
         }
     }
     public void setPayPassword(Map params) {
@@ -1005,6 +1020,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_ORDER_AFTER_DETAIL:
                 view.getOrderAfterDetailSuccess(resp);
+                break;
+            case REQ_CODE_LOGISTICS_LIST:
+                view.getLogisticsListSuccess(resp);
                 break;
             default:
                 break;

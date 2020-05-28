@@ -2,6 +2,9 @@ package com.jsjlzj.wayne.ui.store.shopping;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -103,6 +106,8 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
     LinearLayout llAfterState;
     @BindView(R.id.ll_money_info)
     LinearLayout llMoneyInfo;
+    @BindView(R.id.tv_copy)
+    TextView tvCopy;
     private String orderCode;
     private TimeCounter mTimeCounter;
     /**
@@ -143,6 +148,7 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
         btnTitleRight.setOnClickListener(clickListener);
         tvRightClick.setOnClickListener(clickListener);
         tvLeftClick.setOnClickListener(clickListener);
+        tvCopy.setOnClickListener(clickListener);
         orderCode = getIntent().getStringExtra("orderCode");
         type = getIntent().getIntExtra("type", 0);
 
@@ -172,9 +178,23 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
             case R.id.tv_left_click:
                 clickStatus(false);
                 break;
+            case R.id.tv_copy:
+                copyInfo(tvOrderCode.getText().toString());
+                break;
             default:
                 break;
         }
+    }
+
+
+    private void copyInfo(String copyStr) {
+        //获取剪贴板管理器：
+        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        // 创建普通字符型ClipData
+        ClipData mClipData = ClipData.newPlainText("Label", copyStr);
+        // 将ClipData内容放到系统剪贴板里。
+        cm.setPrimaryClip(mClipData);
+        LogAndToastUtil.toast("复制成功");
     }
 
     /**
@@ -209,6 +229,9 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
                     case 3://确认收货
                         presenter.confirmOrder(orderCode);
                         break;
+                    case 6://再次购买
+                        ConfirmOrderActivity.go2this(this, transShoppingCarList(orderDetailBean.getOrderList()), null);
+                        break;
                     default:
                         break;
                 }
@@ -227,6 +250,10 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
                     case 9:
                         clickCallPhone();
                         break;
+                    case 1://重新申请
+                        AfterSaleApplyActivity.go2this(this,orderBean);
+                        break;
+                    default:break;
                 }
             } else {
                 switch (showStatus) {
@@ -239,6 +266,7 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
                         }
                         break;
                     case 3://查看物流
+                        LogisticsActivity.go2this(this,orderCode);
                         break;
                     default:
                         break;
@@ -252,13 +280,13 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
         List<ShoppingCarBean.DataBean.ListResultsBean> shoppingCarList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             ShoppingCarBean.DataBean.ListResultsBean bean = new ShoppingCarBean.DataBean.ListResultsBean();
-            orderBean = list.get(i);
-            bean.setBuyNum(orderBean.getProductCount());
-            bean.setProductId(orderBean.getOrderProductId());
-            bean.setPrice(orderBean.getProductPrice());
-            bean.setProductName(orderBean.getName());
-            bean.setSpData(orderBean.getProductSpec());
-            bean.setProductUrl(orderBean.getProductPic());
+            MineOrderPageBean.DataBean.ResultBean.ListBean shoppingBean = list.get(i);
+            bean.setBuyNum(shoppingBean.getProductCount());
+            bean.setProductId(shoppingBean.getOrderProductId());
+            bean.setPrice(shoppingBean.getProductPrice());
+            bean.setProductName(shoppingBean.getName());
+            bean.setSpData(shoppingBean.getProductSpec());
+            bean.setProductUrl(shoppingBean.getProductPic());
             shoppingCarList.add(bean);
         }
         return shoppingCarList;
@@ -283,13 +311,14 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
                 afterDetailBean = resp.getData().getData();
                 initAfterSaleView();
                 List<MineOrderPageBean.DataBean.ResultBean.ListBean> list = new ArrayList<>();
-                MineOrderPageBean.DataBean.ResultBean.ListBean bean = new MineOrderPageBean.DataBean.ResultBean.ListBean();
-                bean.setName(afterDetailBean.getName());
-                bean.setProductPrice(afterDetailBean.getProductPrice());
-                bean.setProductPic(afterDetailBean.getProductPic());
-                bean.setProductSpec(afterDetailBean.getProductSpec());
-                bean.setProductCount(afterDetailBean.getProductCount());
-                list.add(bean);
+                orderBean = new MineOrderPageBean.DataBean.ResultBean.ListBean();
+                orderBean.setName(afterDetailBean.getName());
+                orderBean.setProductPrice(afterDetailBean.getProductPrice());
+                orderBean.setProductPic(afterDetailBean.getProductPic());
+                orderBean.setProductSpec(afterDetailBean.getProductSpec());
+                orderBean.setProductCount(afterDetailBean.getProductCount());
+                orderBean.setOrderCode(afterDetailBean.getOrderCode());
+                list.add(orderBean);
                 rvOrder.setLayoutManager(new LinearLayoutManager(this));
                 OrderDetailAdapter shoppingCarAdapter = new OrderDetailAdapter(this, list);
                 rvOrder.setAdapter(shoppingCarAdapter);
@@ -481,6 +510,7 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
                 //开启打电话的意图
                 startActivity(intent);
                 break;
+            default:break;
         }
     }
 }

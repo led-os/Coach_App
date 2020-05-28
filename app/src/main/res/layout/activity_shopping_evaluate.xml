@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_13"
+            android:paddingEnd="@dimen/padding_10"
             android:textColor="@color/color_222222"
             android:text="亿健2019新款跑步机 家用静音减震"
             android:layout_marginStart="@dimen/padding_12"
@@ -53,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/img_pic"
+            android:paddingEnd="@dimen/padding_10"
             android:text="x1"
             android:layout_alignParentEnd="true"/>
 

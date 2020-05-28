@@ -21,6 +21,7 @@ import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
 
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
+import com.jsjlzj.wayne.entity.shopping.LogisticsBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.OrderDetailBean;
@@ -97,6 +98,12 @@ public interface HomeView extends BaseView {
      * @param resp
      */
     default void getOrderAfterDetailSuccess(MdlBaseHttpResp<AfterSaleDetailBean> resp){}
+
+    /**
+     * 获取物流信息
+     * @param resp
+     */
+    default void getLogisticsListSuccess(MdlBaseHttpResp<LogisticsBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }

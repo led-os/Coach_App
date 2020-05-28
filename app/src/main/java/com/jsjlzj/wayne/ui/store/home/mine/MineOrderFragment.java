@@ -20,6 +20,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.shopping.ConfirmOrderActivity;
+import com.jsjlzj.wayne.ui.store.shopping.LogisticsActivity;
 import com.jsjlzj.wayne.ui.store.shopping.OrderDetailActivity;
 import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ScanLogisticsActivity;
@@ -159,7 +160,7 @@ public class MineOrderFragment extends MVPBaseFragment<HomeView, HomePresenter> 
     public void onLeftClick(MineOrderPageBean.DataBean.ResultBean bean) {
         switch (bean.getShowStatus()){
             case 3://查看物流
-                ScanLogisticsActivity.go2this(getActivity(),bean.getOrderCode());
+                LogisticsActivity.go2this(getActivity(),bean.getOrderCode());
                 break;
             default:break;
 

@@ -89,7 +89,6 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
                 break;
             case BaseResp.ErrCode.ERR_AUTH_DENIED:
                 if(baseResp.getType()==1) {
-
                     LogAndToastUtil.toast("您已拒绝授权");
                 }else{
                     LogAndToastUtil.toast("分享被拒绝");

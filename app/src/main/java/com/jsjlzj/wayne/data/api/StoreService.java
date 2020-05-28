@@ -21,6 +21,7 @@ import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardListBean;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
+import com.jsjlzj.wayne.entity.shopping.LogisticsBean;
 import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
 import com.jsjlzj.wayne.entity.shopping.LocationListBean;
@@ -586,8 +587,12 @@ public interface StoreService {
 
     @POST(HttpConstant.API_ORDER_DETAIL)
     Observable<MdlBaseHttpResp<OrderDetailBean>> requestOrderDetail(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_CANCEL_AFTER_SALE)
     Observable<MdlBaseHttpResp<DataBean>> requestCancelAfterSale(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SAVE_AFTER_SALE)
+    Observable<MdlBaseHttpResp<DataBean>> requestSaveAfterSale(@Body RequestBody requestBody);
 
     @POST(HttpConstant.API_ORDER_AFTER_DETAIL)
     Observable<MdlBaseHttpResp<AfterSaleDetailBean>> requestOrderAfterDetail(@Body RequestBody requestBody);
@@ -605,6 +610,9 @@ public interface StoreService {
 
     @POST(HttpConstant.API_SHOPPING_EVALUATE_ORDER)
     Observable<MdlBaseHttpResp<DataBean>> requestEvaluateOrder(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SHOPPING_SCAN_LOGISTICS)
+    Observable<MdlBaseHttpResp<LogisticsBean>> requestLogisticsInfo(@Body RequestBody requestBody);
 
 
     @POST(HttpConstant.API_SHOPPING_ENABLE_COUPON)
