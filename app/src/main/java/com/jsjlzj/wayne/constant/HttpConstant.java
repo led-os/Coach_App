@@ -523,6 +523,8 @@ public class HttpConstant {
     public static final String API_MINE_GET_BANKCARD = "getBankCardInfo";
     //申请提现
     public static final String API_MINE_APPLY_CASHOUT = "applyCashWithdrawal";
+    //申请厂家入驻
+    public static final String API_MINE_APPLY_SETTLED_IN = "applyCompany";
     //保存（修改）银行卡信息
     public static final String API_MINE_SAVE_BANKCARD = "saveBankCard";
     //将商品从购物车删除

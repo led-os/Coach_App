@@ -566,6 +566,9 @@ public interface StoreService {
     @POST(HttpConstant.API_MINE_APPLY_CASHOUT)
     Observable<MdlBaseHttpResp<DataBean>> requestApplyCashout(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_MINE_APPLY_SETTLED_IN)
+    Observable<MdlBaseHttpResp<DataBean>> requestApplySettledIn(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_MINE_SAVE_BANKCARD)
     Observable<MdlBaseHttpResp<DataBean>> requestSaveBankCard(@Body RequestBody requestBody);
 

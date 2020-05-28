@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.store.home.mine.FactorySettledInActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_19"
+                android:layout_marginStart="@dimen/padding_14"
+                android:textSize="@dimen/text_size_14"
+                android:text="套餐类型"
+                android:textColor="@color/color_222222"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_25"
+                android:layout_marginStart="@dimen/padding_8"/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_38"
+                android:layout_marginStart="@dimen/padding_14"
+                android:textSize="@dimen/text_size_14"
+                android:text="套餐权益"
+                android:textColor="@color/color_222222"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/padding_19"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_height="@dimen/padding_211"
+                android:background="@drawable/bg_solid_565656_4"
+                android:padding="@dimen/padding_5">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_settled_in"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_38"
+                android:layout_marginStart="@dimen/padding_14"
+                android:textSize="@dimen/text_size_14"
+                android:text="入驻平台优势"
+                android:textColor="@color/color_222222"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_settled_ptyy"
+                        android:layout_marginTop="@dimen/padding_28"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="平台运营"
+                        android:textSize="@dimen/text_size_14"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"
+                        android:text="官方运营团队"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_settled_cwjs"
+                        android:layout_marginTop="@dimen/padding_28"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="财务结算"
+                        android:textSize="@dimen/text_size_14"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"
+                        android:text="显示自动完成"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_settled_rzwh"
+                        android:layout_marginTop="@dimen/padding_28"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="入驻网红"
+                        android:textSize="@dimen/text_size_14"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"
+                        android:text="帮你带货"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_settled_xsyj"
+                        android:layout_marginTop="@dimen/padding_20"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="销售业绩"
+                        android:textSize="@dimen/text_size_14"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"
+                        android:text="额外收益翻10"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_settled_sjyy"
+                        android:layout_marginTop="@dimen/padding_20"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="数据运营"
+                        android:textSize="@dimen/text_size_14"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"
+                        android:text="独立数据运营系统"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_settled_wxyy"
+                        android:layout_marginTop="@dimen/padding_20"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="无需运营"
+                        android:textSize="@dimen/text_size_14"
+                        android:layout_marginTop="@dimen/padding_5"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"
+                        android:text="坐等单子找上门"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_to_settled"
+                android:textSize="@dimen/text_size_15"
+                android:textColor="#6C4304"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_42"
+                android:layout_marginTop="@dimen/padding_37"
+                android:layout_marginStart="@dimen/padding_19"
+                android:layout_marginBottom="@dimen/padding_15"
+                android:text="立即入驻"
+                android:background="@drawable/bg_settled_in"
+                android:layout_marginEnd="@dimen/padding_19"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -830,6 +830,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void applySettledIn(Map params) {
+        if (model != null) {
+            model.applySettledIn(REQ_CODE_APPLY_LEADER, params, this);
+        }
+    }
+
     public void saveBankCard(Map params) {
         if (model != null) {
             model.saveBankCard(REQ_CODE_APPLY_LEADER, params, this);

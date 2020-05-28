@@ -35,6 +35,7 @@ import com.jsjlzj.wayne.ui.publicac.mine.MineStudyActivity;
 import com.jsjlzj.wayne.ui.publicac.mine.PersonMineActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.CouponActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.CurrencyActivity;
+import com.jsjlzj.wayne.ui.store.home.mine.FactorySettledInActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.LeaderDesActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
 import com.jsjlzj.wayne.ui.store.home.mine.MineOrderActivity;
@@ -350,6 +351,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 }
                 break;
             case R.id.ll_cjrz://厂家入驻
+                FactorySettledInActivity.go2this(getActivity());
                 break;
             case R.id.ll_rwzx://任务中心
                 break;

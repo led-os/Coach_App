@@ -886,6 +886,12 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void applySettledIn(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestApplySettledIn(body);
+        setSubscribe(observable, observer);
+    }
+
     public void saveBankCard(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestSaveBankCard(body);
