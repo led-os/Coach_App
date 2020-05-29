@@ -365,4 +365,11 @@
         <item>买错商品了</item>
         <item>其他</item>
     </string-array>
+
+    <string-array name="settled_in_type_list">
+        <item>基础版</item>
+        <item>高级版</item>
+        <item>尊享版</item>
+        <item>至尊版</item>
+    </string-array>
 </resources>

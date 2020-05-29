@@ -190,19 +190,16 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 if (payParamBean == null) {
                     return;
                 }
-                Runnable payRunnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        PayReq request = new PayReq();
-                        request.appId = payParamBean.getAppid();
-                        request.partnerId = payParamBean.getPartnerid();
-                        request.prepayId = payParamBean.getPrepayid();
-                        request.packageValue = "Sign=WXPay";
-                        request.nonceStr = payParamBean.getNoncestr();
-                        request.timeStamp = payParamBean.getTimestamp();
-                        request.sign = payParamBean.getSign();
-                        MyApp.getApp().getIwxapi().sendReq(request);
-                    }
+                Runnable payRunnable = () -> {
+                    PayReq request = new PayReq();
+                    request.appId = payParamBean.getAppid();
+                    request.partnerId = payParamBean.getPartnerid();
+                    request.prepayId = payParamBean.getPrepayid();
+                    request.packageValue = "Sign=WXPay";
+                    request.nonceStr = payParamBean.getNoncestr();
+                    request.timeStamp = payParamBean.getTimestamp();
+                    request.sign = payParamBean.getSign();
+                    MyApp.getApp().getIwxapi().sendReq(request);
                 };
                 // 必须异步调用
                 Thread payThread = new Thread(payRunnable);

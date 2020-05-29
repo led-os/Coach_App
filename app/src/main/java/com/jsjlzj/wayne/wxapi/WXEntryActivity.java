@@ -19,6 +19,7 @@ import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.utils.eventbus.EnumEventBus;
 import com.jsjlzj.wayne.utils.eventbus.MdlEventBus;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -72,39 +73,52 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
 
     @Override
     public void onReq(BaseReq baseReq) {
-
     }
 
     @Override
     public void onResp(BaseResp baseResp) {
+        LogAndToastUtil.log(baseResp.getType() + "=====111111" + com.alibaba.fastjson.JSONObject.toJSONString(baseResp));
+        if (baseResp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+//            Log.d(TAG,"onPayFinish,errCode="+resp.errCode);
+//            AlertDialog.Builderbuilder=newAlertDialog.Builder(this);
+//            builder.setTitle(R.string.app_tip);
+            if (baseResp.errCode == BaseResp.ErrCode.ERR_OK) {
+                // TODO: 2020/5/29 支付成功
+                LogAndToastUtil.toast("支付成功");
+                finish();
+            } else if (baseResp.errCode == BaseResp.ErrCode.ERR_USER_CANCEL) {
+                LogAndToastUtil.toast("取消支付");
+                finish();
+            }
+            return;
+        }
         switch (baseResp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
-                if(baseResp.getType()==1){
+                if (baseResp.getType() == 1) {
                     String code = ((SendAuth.Resp) baseResp).code;
                     getAccessToken(code);
-                }else {
+                } else {
                     LogAndToastUtil.toast("分享成功");
                     finish();
                 }
                 break;
             case BaseResp.ErrCode.ERR_AUTH_DENIED:
-                if(baseResp.getType()==1) {
+                if (baseResp.getType() == 1) {
                     LogAndToastUtil.toast("您已拒绝授权");
-                }else{
+                } else {
                     LogAndToastUtil.toast("分享被拒绝");
                 }
                 finish();
                 break;
             case BaseResp.ErrCode.ERR_USER_CANCEL:
-                if(baseResp.getType()==1) {
+                if (baseResp.getType() == 1) {
                     LogAndToastUtil.toast("您已取消授权");
-                }else{
+                } else {
                     LogAndToastUtil.toast("取消分享");
                 }
                 finish();
                 break;
             default:
-                finish();
                 break;
         }
 
@@ -124,7 +138,8 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
         initHttp(url);
         call.enqueue(new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {}
+            public void onFailure(Call call, IOException e) {
+            }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -223,7 +238,7 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
             MyApp.user = resp.getData().getData();
             SPUtil.saveUser2SP(MyApp.user);
             SPUtil.saveToken2SP(MyApp.user.getToken());
-            EventBus.getDefault().post(new MdlEventBus(EnumEventBus.MESSAGE_BIND_WX,resp.getData().getData().getWxName()));
+            EventBus.getDefault().post(new MdlEventBus(EnumEventBus.MESSAGE_BIND_WX, resp.getData().getData().getWxName()));
             finish();
         } else {
             LogAndToastUtil.toast(resp.getMsg());

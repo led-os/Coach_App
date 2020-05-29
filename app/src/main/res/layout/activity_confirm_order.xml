@@ -177,7 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/padding_52"
                 android:background="@color/white"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:gravity="center_vertical">
                 <TextView
                     android:layout_width="wrap_content"
