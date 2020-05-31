@@ -61,6 +61,7 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
 
     @Override
     protected void initViewAndControl() {
+        System.out.println("==========================================================initViewAndControl");
         iwxapi = WXAPIFactory.createWXAPI(this, WXAPPID, false);
         iwxapi.handleIntent(getIntent(), this);
         iwxapi.registerApp(WXAPPID);
@@ -73,25 +74,12 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
 
     @Override
     public void onReq(BaseReq baseReq) {
+        System.out.println("=========================================================="+baseReq.toString());
     }
 
     @Override
     public void onResp(BaseResp baseResp) {
-        LogAndToastUtil.log(baseResp.getType() + "=====111111" + com.alibaba.fastjson.JSONObject.toJSONString(baseResp));
-        if (baseResp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-//            Log.d(TAG,"onPayFinish,errCode="+resp.errCode);
-//            AlertDialog.Builderbuilder=newAlertDialog.Builder(this);
-//            builder.setTitle(R.string.app_tip);
-            if (baseResp.errCode == BaseResp.ErrCode.ERR_OK) {
-                // TODO: 2020/5/29 支付成功
-                LogAndToastUtil.toast("支付成功");
-                finish();
-            } else if (baseResp.errCode == BaseResp.ErrCode.ERR_USER_CANCEL) {
-                LogAndToastUtil.toast("取消支付");
-                finish();
-            }
-            return;
-        }
+
         switch (baseResp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
                 if (baseResp.getType() == 1) {

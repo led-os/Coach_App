@@ -4,6 +4,7 @@ package com.jsjlzj.wayne.ui.store.find;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -27,6 +28,8 @@ import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.ui.MainActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -91,6 +94,12 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
     TextView tvScanAll;
     @BindView(R.id.rv_class_recommend)
     RecyclerView rvClassRecommend;
+    @BindView(R.id.tv_open_vip)
+    TextView tvOpenVip;
+    @BindView(R.id.img_close)
+    ImageView imgClose;
+    @BindView(R.id.rel_vip)
+    RelativeLayout relVip;
     private MyViewPager myViewPager;
 
     private List<BannerBean> images = new ArrayList<>();
@@ -135,6 +144,8 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
         tvFreeMore.setOnClickListener(clickListener);
         tvMotionMore.setOnClickListener(clickListener);
         tvScanAll.setOnClickListener(clickListener);
+        imgClose.setOnClickListener(clickListener);
+        tvOpenVip.setOnClickListener(clickListener);
     }
 
     private void initRecycler() {
@@ -261,6 +272,13 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
             case R.id.tv_scan_all://查看更多课程
                 MoreLessonActivity.go2this(getActivity(),"4门课程",5,0);
                 break;
+            case R.id.img_close://关闭
+                relVip.setVisibility(View.GONE);
+                break;
+            case R.id.tv_open_vip://开通vip
+                WebViewContainerActivity.go2this(getActivity(),"会员中心",HttpConstant.WEB_URL_NEW_MEMBER_CENTER,
+                        WebViewContainerFragment.TYPE_NEW_MEMBER_CENTER);
+                break;
             default:
                 break;
         }
@@ -280,7 +298,11 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
             if (resp.getData().getData().getHotList() != null && resp.getData().getData().getHotListeningList() != null) {
                 dayStudyAdapter.setData(resp.getData().getData().getHotList(), resp.getData().getData().getHotListeningList());
             }
-
+            if(resp.getData().getData().isVip()){
+                relVip.setVisibility(View.GONE);
+            }else {
+                relVip.setVisibility(View.VISIBLE);
+            }
         }
     }
 

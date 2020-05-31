@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.store.shopping;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -123,7 +124,13 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
             ShoppingDetailBean.DataBean shopping = JSONObject.parseObject(productJson, ShoppingDetailBean.DataBean.class);
             ShoppingCarBean.DataBean.ListResultsBean bean = new ShoppingCarBean.DataBean.ListResultsBean();
             bean.setBuyNum(buyNum);
-            bean.setPrice(shopping.getPrice());
+            float price = 0;
+            if(shopping.getSkuPromotionPrice() > 0 ){
+                price = shopping.getSkuPromotionPrice();
+            }else {
+                price = shopping.getSkuPrice();
+            }
+            bean.setPrice(price);
             bean.setSkuId(shopping.getSkuId());
             bean.setProductId(shopping.getSkuId());
             bean.setProductName(shopping.getName());

@@ -100,4 +100,6 @@ public interface TalentTabFragmentView extends BaseView {
     default void getSignUpListSuccess(MdlBaseHttpResp<SignUpPageBean> resp){}
 
     default void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp){}
+
+    default void getIsFinishInfoSuccess(MdlBaseHttpResp<DataBean> resp){}
 }

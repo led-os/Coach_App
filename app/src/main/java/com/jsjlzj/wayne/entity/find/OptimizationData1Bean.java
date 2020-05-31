@@ -33,6 +33,15 @@ public class OptimizationData1Bean {
         private List<FindLessonBean> freeExperienceList;
         private List<FindLessonBean> hotList;
         private List<FindLessonBean> hotListeningList;
+        private boolean isVip;
+
+        public boolean isVip() {
+            return isVip;
+        }
+
+        public void setVip(boolean vip) {
+            isVip = vip;
+        }
 
         public List<BannerBean> getBannerList() {
             return bannerList;

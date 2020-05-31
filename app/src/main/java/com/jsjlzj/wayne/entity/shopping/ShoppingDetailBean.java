@@ -52,7 +52,7 @@ public class ShoppingDetailBean {
         private String pic;
         private int publishStatus;
         private int sale;
-        private int price;
+        private float price;
         private Object promotionPrice;
         private String subTitle;
         private String description;
@@ -66,9 +66,9 @@ public class ShoppingDetailBean {
         private String detailDesc;
         private String detailMobileHtml;
         private int promotionType;
-        private int skuPrice;
+        private float skuPrice;
         private String skuPic;
-        private int skuPromotionPrice;
+        private float skuPromotionPrice;
         private int skuId;
         private String spData;
 
@@ -104,11 +104,11 @@ public class ShoppingDetailBean {
             this.sale = sale;
         }
 
-        public int getPrice() {
+        public float getPrice() {
             return price;
         }
 
-        public void setPrice(int price) {
+        public void setPrice(float price) {
             this.price = price;
         }
 
@@ -216,11 +216,11 @@ public class ShoppingDetailBean {
             this.promotionType = promotionType;
         }
 
-        public int getSkuPrice() {
+        public float getSkuPrice() {
             return skuPrice;
         }
 
-        public void setSkuPrice(int skuPrice) {
+        public void setSkuPrice(float skuPrice) {
             this.skuPrice = skuPrice;
         }
 
@@ -232,11 +232,11 @@ public class ShoppingDetailBean {
             this.skuPic = skuPic;
         }
 
-        public int getSkuPromotionPrice() {
+        public float getSkuPromotionPrice() {
             return skuPromotionPrice;
         }
 
-        public void setSkuPromotionPrice(int skuPromotionPrice) {
+        public void setSkuPromotionPrice(float skuPromotionPrice) {
             this.skuPromotionPrice = skuPromotionPrice;
         }
 

@@ -1,8 +1,12 @@
 package com.jsjlzj.wayne.utils;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.text.TextUtils;
 import android.webkit.JavascriptInterface;
 
 import com.alibaba.fastjson.JSONException;
@@ -10,6 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
@@ -20,6 +25,7 @@ import com.jsjlzj.wayne.ui.store.list.MoreMatchActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ConfirmOrderActivity;
 import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
+import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 import com.jsjlzj.wayne.widgets.dialog.ShareDialog;
 import com.netease.nim.uikit.common.ToastHelper;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
@@ -204,7 +210,7 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void toService(){
-        LogAndToastUtil.toast("====JsInterface====toService");
+        ((WebViewContainerActivity)mContext).clickCallPhone();
     }
 
     /**
@@ -245,4 +251,5 @@ public class JsInterface {
     public void toIntegral(){
         LogAndToastUtil.toast("====JsInterface====toIntegral");
     }
+
 }

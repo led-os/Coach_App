@@ -17,6 +17,7 @@ import com.jsjlzj.wayne.adapter.recycler.BaseAdapterHelper;
 import com.jsjlzj.wayne.adapter.recycler.MyRecyclerAdapter;
 import com.jsjlzj.wayne.adapter.recycler.WrapContentLinearLayoutManager;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlPosition;
 import com.jsjlzj.wayne.entity.store.MdlPositionList;
@@ -31,6 +32,7 @@ import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenActivity;
 import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenLabActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.JobIntentionActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.PositionInfoStoreActivity;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.MyRecyclerView;
 
 import java.util.ArrayList;
@@ -120,7 +122,7 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
         pageNo=1;
         selected=0;
         presenter.getPositionTypeList(null);
-
+        presenter.getIsFinishInfo();
     }
 
     public void getInfo() {
@@ -323,4 +325,11 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
         }
     }
 
+    @Override
+    public void getIsFinishInfoSuccess(MdlBaseHttpResp<DataBean> resp) {
+        LogAndToastUtil.log("====="+resp.getStatus());
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            Boolean isFinishInfo = (Boolean) resp.getData().getData();
+        }
+    }
 }

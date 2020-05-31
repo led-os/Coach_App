@@ -28,7 +28,10 @@ import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.jsjlzj.wayne.wxapi.RenewObserver;
 import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,14 +40,16 @@ import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.OnClick;
 
- /**
+import static com.jsjlzj.wayne.constant.HttpConstant.WXAPPID;
+
+/**
   *
   * @ClassName:      PaymentActivity
   * @Description:    java类作用描述
   * @Author:         曾海强
   * @CreateDate:
   */
-public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
+public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView,RenewObserver.OnWeiXinListener {
 
      private static final int SDK_PAY_FLAG = 1;
 
@@ -66,9 +71,10 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     private int type;
     private String orderCode ,amount;
     private int productId;
+    private IWXAPI iwxapi;
 
 
-     public static void go2this(Activity activity,String orderCode,String amount){
+    public static void go2this(Activity activity,String orderCode,String amount){
         activity.startActivity(new Intent(activity,PaymentActivity.class)
                 .putExtra("orderCode",orderCode)
                 .putExtra("amount",amount));
@@ -151,6 +157,8 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         }
         imgZfb.setSelected(true);
         imgWx.setSelected(false);
+        RenewObserver.getInstance().registerWeiXinListener(this);
+
     }
 
 
@@ -243,4 +251,18 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
             orderCode = resp.getData().getData();
          }
      }
- }
+
+    @Override
+    public void onPay() {
+        Map<Object,Object> map = new HashMap<>();
+        map.put("orderCode",orderCode);
+        map.put("payType",payType);
+        presenter.searchPayResult(map);
+    }
+
+    @Override
+    protected void onDestroy() {
+        RenewObserver.getInstance().unRegisterWeiXinListener(this);
+        super.onDestroy();
+    }
+}

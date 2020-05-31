@@ -288,6 +288,8 @@ public class HttpConstant {
 
     //已添加的求职期望类型列表
     public static final String API_GETPOSITIONTYPELIST = "trainer/position/getPositionTypeList";
+    //是否完善资料
+    public static final String API_IS_FINISH_INFO = "trainer/cv/isNeedPerfect";
 
     //取消职位收藏
     public static final String API_CANCELPOSITIONLIKE = "trainer/position/cancelPositionLike";

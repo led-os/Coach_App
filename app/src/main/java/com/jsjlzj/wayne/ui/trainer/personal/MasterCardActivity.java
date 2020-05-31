@@ -370,11 +370,15 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 submitList.append(authenticationUrls.get(i) + ",");
             }
         }
-        if (submitList.length() == 0) {
-            LogAndToastUtil.toast("请上传图片");
-            return;
+//        if (submitList.length() == 0) {
+//            LogAndToastUtil.toast("请上传图片");
+//            return;
+//        }
+        if(submitList.length() > 1){
+            map.put("certificatePhotos", submitList.toString().substring(0, submitList.toString().length() - 1));
+        }else {
+            map.put("certificatePhotos","");
         }
-        map.put("certificatePhotos", submitList.toString().substring(0, submitList.toString().length() - 1));
         presenter.saveCertificatePhotosT(map);
     }
 
@@ -386,11 +390,15 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 submitList.append(authenticationUrls.get(i) + ",");
             }
         }
-        if (submitList.length() == 0) {
-            LogAndToastUtil.toast("请上传图片");
-            return;
-        }
-        map.put("certificatePhotos", submitList.toString().substring(0, submitList.toString().length() - 1));
+//        if (submitList.length() == 0) {
+//            LogAndToastUtil.toast("请上传图片");
+//            return;
+//        }
+//        if(submitList.length() > 1){
+//            map.put("certificatePhotos", submitList.toString().substring(0, submitList.toString().length() - 1));
+//        }else {
+            map.put("certificatePhotos","");
+//        }
         presenter.saveCertificatePhotosT(map);
     }
 

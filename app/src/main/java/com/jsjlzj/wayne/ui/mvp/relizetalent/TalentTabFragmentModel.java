@@ -268,6 +268,30 @@ public class TalentTabFragmentModel extends BaseModel {
         });
     }
 
+    public void getIsFinishInfo(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataStroe.getInstance().getIsFinishInfo(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                TalentTabFragmentModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
 
     public void deleteWorkHopeT(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataStroe.getInstance().deleteWorkHopeT(param, new Observer<MdlBaseHttpResp>() {

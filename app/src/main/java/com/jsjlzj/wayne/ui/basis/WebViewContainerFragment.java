@@ -1,10 +1,13 @@
 package com.jsjlzj.wayne.ui.basis;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +29,14 @@ import androidx.fragment.app.FragmentActivity;
 import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.utils.JsInterface;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SPUtil;
+import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 
 import butterknife.BindView;
 

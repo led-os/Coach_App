@@ -151,7 +151,7 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
         tvCopy.setOnClickListener(clickListener);
         orderCode = getIntent().getStringExtra("orderCode");
         type = getIntent().getIntExtra("type", 0);
-
+        phone = getResources().getString(R.string.link_phone);
         if (type == 1) {
             map.put("id", orderCode);
             presenter.getOrderAfterDetail(map);
@@ -331,7 +331,7 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
         relLocation.setVisibility(View.GONE);
         llAfterState.setVisibility(View.VISIBLE);
         llMoneyInfo.setVisibility(View.GONE);
-        phone = afterDetailBean.getPhone();
+
         if(TextUtils.isEmpty(afterDetailBean.getAftersaleReason())){
             tvOrderCode.setText("退款原因：");
         }else {

@@ -232,6 +232,7 @@
                     android:textColor="@color/color_333333"
                     android:textCursorDrawable="@null"
                     android:inputType="number"
+                    android:maxLength="11"
                     android:textColorHint="@color/color_dddddd"
                     android:layout_marginEnd="@dimen/padding_24"
                     android:textSize="@dimen/padding_13"
@@ -379,7 +380,6 @@
 
                 <RelativeLayout
                     android:id="@+id/rel_yyzz"
-                    android:layout_below="@+id/tv_condition_des"
                     android:layout_marginStart="@dimen/padding_14"
                     android:layout_marginTop="@dimen/padding_19"
                     android:layout_width="@dimen/padding_154"

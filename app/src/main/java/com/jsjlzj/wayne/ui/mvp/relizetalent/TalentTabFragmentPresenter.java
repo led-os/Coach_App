@@ -19,6 +19,7 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
 import com.jsjlzj.wayne.ui.trainer.personal.MasterCardActivity;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.netease.nim.uikit.common.ToastHelper;
 import com.yalantis.ucrop.UCrop;
@@ -85,6 +86,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
     private static final int REQ_CODE_SIGNUP_LIST = 1324;
     private static final int REQ_CODE_CERTIFICATE_PHOTO = 1325;
     private static final int REQ_CODE_SHOPPING_NUM = 1326;
+    private static final int REQ_CODE_IS_FINFISH_INFO = 1327;
 
 
     private TalentTabFragmentModel model;
@@ -185,6 +187,13 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
         if (model != null) {
             view.showLoading();
             model.getPositionTypeList(REQ_CODE_115, param, this);
+        }
+    }
+
+
+    public void getIsFinishInfo() {
+        if (model != null) {
+            model.getIsFinishInfo(REQ_CODE_IS_FINFISH_INFO, null, this);
         }
     }
 
@@ -621,6 +630,9 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             case REQ_CODE_SHOPPING_NUM:
                 view.getShoppingNumSuccess(resp);
                 break;
+            case REQ_CODE_IS_FINFISH_INFO:
+                view.getIsFinishInfoSuccess(resp);
+                break;
         }
     }
 
@@ -686,10 +698,12 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
                     Uri uri = data.getData();
                     ContentResolver cr = activity.getContentResolver();
                     String[] proj = {MediaStore.Video.Media.DATA};
+                    LogAndToastUtil.toast("proj==="+proj);
                     Cursor cursor = activity.getContentResolver().query(uri, null, null, null, null);
 //                    if(cursor.moveToFirst()){
                     int column_index = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
                     String path = cursor.getString(column_index);
+                    LogAndToastUtil.toast("proj==="+path);
                     view.onUploadSuccess(path, curIndex);
 //                    }
                     cursor.close();

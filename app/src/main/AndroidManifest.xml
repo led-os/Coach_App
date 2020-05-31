@@ -174,7 +174,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.jsjlzj.wayne.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -186,7 +186,15 @@
 
                 <data android:scheme="sdksample" />
             </intent-filter>
-        </activity> <!-- 百度key -->
+        </activity>
+
+        <activity android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:launchMode="singleTop"/>
+
+        <!-- 百度key -->
         <activity
             android:name=".ui.yunxin.location.LocationAmapActivity"
             android:configChanges="keyboardHidden|orientation"

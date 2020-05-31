@@ -1,8 +1,10 @@
 package com.jsjlzj.wayne.ui.basis;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -14,10 +16,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.utils.StatusBarCompatUtil;
+import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_ARTICLE_DETAIL;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_BANNER_LINK_URL;
@@ -161,6 +165,33 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         }
     }
 
+
+    public void clickCallPhone() {
+        if (TextUtils.isEmpty(getResources().getString(R.string.link_phone))) {
+            return;
+        }
+        PermissionUtil.checkPermission(
+                this,
+                MyPermissionConstant.CALL_PHONE,
+                Manifest.permission.CALL_PHONE);
+    }
+
+    @Override
+    public void permissionSuccess(int permissionReqCode) {
+        super.permissionSuccess(permissionReqCode);
+        switch (permissionReqCode) {
+            case MyPermissionConstant.CALL_PHONE:
+                Intent intent = new Intent();
+                //设置拨打电话的动作
+                intent.setAction(Intent.ACTION_DIAL);//ACTION_DIAL  ACTION_CALL
+                //设置拨打电话的号码
+                intent.setData(Uri.parse("tel:" + getResources().getString(R.string.link_phone)));
+                //开启打电话的意图
+                startActivity(intent);
+                break;
+            default:break;
+        }
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

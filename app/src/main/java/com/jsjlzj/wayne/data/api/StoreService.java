@@ -235,6 +235,10 @@ public interface StoreService {
     @POST(HttpConstant.API_GETPOSITIONTYPELIST)//已添加的求职期望类型列表
     Observable<MdlBaseHttpResp<MdlPositionType>> getPositionTypeList(@Body RequestBody requestBody);
 
+
+    @POST(HttpConstant.API_IS_FINISH_INFO)//是否完成个人资料
+    Observable<MdlBaseHttpResp<DataBean>> getIsFinishInfo(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_CANCELPOSITIONLIKE)//取消职位收藏
     Observable<MdlBaseHttpResp> cancelPositionLike(@Body RequestBody requestBody);
 

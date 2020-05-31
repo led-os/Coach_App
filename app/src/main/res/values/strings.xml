@@ -282,6 +282,7 @@
 
     <string name="teacher_home">导师主页</string>
     <string name="shopping_detail">商品详情</string>
+    <string name="link_phone">18271850619</string>
 
     <string-array name="home_title_list">
         <!--        <item>推荐</item>-->

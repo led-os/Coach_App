@@ -80,7 +80,8 @@ public class PayResultActivity extends MVPBaseActivity<HomeView, HomePresenter> 
         super.onMultiClick(view);
         if(view.getId() == R.id.tv_detail){
             if(type == 0){
-                LogAndToastUtil.toast("查看详情");
+                OrderDetailActivity.go2this(this,orderCode,0,111);
+                finish();
             }else {
                 finish();
             }
