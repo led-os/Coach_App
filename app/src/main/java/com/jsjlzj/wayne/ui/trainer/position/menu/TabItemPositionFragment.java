@@ -276,6 +276,7 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
                 case R.id.btnSearch:
                     ScreenActivity.go2this(getActivity(), rcmdOrNew, false);
                     break;
+                default:break;
             }
         }
     }
@@ -300,10 +301,12 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
                     pageNo = 1;
                     getInfo();
                     break;
+                default:break;
             }
         }
     }
 
+    @Override
     public void getPositionTypeList(MdlBaseHttpResp<MdlPositionType> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             if (null != resp.getData().getData() && resp.getData().getData().size() > 0) {

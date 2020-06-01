@@ -92,6 +92,7 @@ public class CurrencyActivity extends MVPBaseActivity<HomeView, HomePresenter> i
                     PaymentActivity.go2this(this,1,bean.getId(),bean.getPrice());
                 }
                 break;
+            default:break;
         }
     }
 

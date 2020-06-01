@@ -11,17 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
-import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.CommitOrderBean;
+import com.jsjlzj.wayne.entity.shopping.CommitOrderBody;
 import com.jsjlzj.wayne.entity.shopping.PayResult;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
 import com.jsjlzj.wayne.entity.shopping.VipDataBean;
-import com.jsjlzj.wayne.ui.AppManager;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -30,17 +28,14 @@ import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.wxapi.RenewObserver;
 import com.tencent.mm.opensdk.modelpay.PayReq;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.OnClick;
-
-import static com.jsjlzj.wayne.constant.HttpConstant.WXAPPID;
 
 /**
   *
@@ -71,7 +66,8 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     private int type;
     private String orderCode ,amount;
     private int productId;
-    private IWXAPI iwxapi;
+    private boolean isPay;
+    private Map<Object,Object> map = new HashMap<>();
 
 
     public static void go2this(Activity activity,String orderCode,String amount){
@@ -123,7 +119,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                         JSONObject bean = JSONObject.parseObject(jsonObject.getString("alipay_trade_app_pay_response"));
                         String tradeNo = bean.getString("trade_no");
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        Map<Object,Object> map = new HashMap<>();
+                        map.clear();
                         map.put("orderCode",orderCode);
                         map.put("payType",payType);
                         map.put("tradeNo",tradeNo);
@@ -147,10 +143,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         productId = getIntent().getIntExtra("productId",0);
         amount = getIntent().getStringExtra("amount");
         if(type == 1 || type == 2){
-            Map<Object,Object> map = new HashMap<>();
-            map.put("id",productId);
             tvPrice.setText(DateUtil.getTwoDotByFloatFY(Float.valueOf(amount)));
-            presenter.commitVipOrder(map);
         }else {
             orderCode = getIntent().getStringExtra("orderCode");
             tvPrice.setText(DateUtil.getTwoDotByFloat(Float.valueOf(amount)));
@@ -176,15 +169,32 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 imgWx.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.cbx_select));
                 break;
             case R.id.tv_to_pay:
-                toPay();
+                if(type == 0){
+                    toPay();
+                }else {
+                    commitVipAndCurrency();
+                }
                 break;
             default:
                 break;
         }
     }
 
+
+    private void commitVipAndCurrency(){
+        map.clear();
+        List<CommitOrderBody> list = new ArrayList<>();
+        CommitOrderBody commitOrderBody = new CommitOrderBody();
+        commitOrderBody.setProductId(productId);list.add(commitOrderBody);
+        map.put("products", list);
+        map.put("type",type);
+        map.put("payType",payType);
+        presenter.commitOrder2(map);
+    }
+
     private void toPay() {
-        Map map = new HashMap();
+        isPay = true;
+        map.clear();
         map.put("orderCode",orderCode);
         map.put("payType",payType);
         presenter.toPayOrder(map);
@@ -193,41 +203,47 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     @Override
     public void commitOrder2Success(MdlBaseHttpResp<CommitOrderBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
-            if (payType == 0) {
-                CommitOrderBean.DataBean.WxPayParamBean payParamBean = resp.getData().getData().getWxPayParam();
-                if (payParamBean == null) {
-                    return;
-                }
-                Runnable payRunnable = () -> {
-                    PayReq request = new PayReq();
-                    request.appId = payParamBean.getAppid();
-                    request.partnerId = payParamBean.getPartnerid();
-                    request.prepayId = payParamBean.getPrepayid();
-                    request.packageValue = "Sign=WXPay";
-                    request.nonceStr = payParamBean.getNoncestr();
-                    request.timeStamp = payParamBean.getTimestamp();
-                    request.sign = payParamBean.getSign();
-                    MyApp.getApp().getIwxapi().sendReq(request);
-                };
-                // 必须异步调用
-                Thread payThread = new Thread(payRunnable);
-                payThread.start();
-            } else if (payType == 1) {
-                // 订单信息
-                final String outTradeNo = resp.getData().getData().getUrl();
-                Runnable payRunnable = () -> {
-                    PayTask alipay = new PayTask(PaymentActivity.this);
-                    Map<String, String> result = alipay.payV2(outTradeNo, true);
+            if(isPay){
+                if (payType == 0) {
+                    CommitOrderBean.DataBean.WxPayParamBean payParamBean = resp.getData().getData().getWxPayParam();
+                    if (payParamBean == null) {
+                        return;
+                    }
+                    Runnable payRunnable = () -> {
+                        PayReq request = new PayReq();
+                        request.appId = payParamBean.getAppid();
+                        request.partnerId = payParamBean.getPartnerid();
+                        request.prepayId = payParamBean.getPrepayid();
+                        request.packageValue = "Sign=WXPay";
+                        request.nonceStr = payParamBean.getNoncestr();
+                        request.timeStamp = payParamBean.getTimestamp();
+                        request.sign = payParamBean.getSign();
+                        MyApp.getApp().getIwxapi().sendReq(request);
+                    };
+                    // 必须异步调用
+                    Thread payThread = new Thread(payRunnable);
+                    payThread.start();
+                } else if (payType == 1) {
+                    // 订单信息
+                    final String outTradeNo = resp.getData().getData().getUrl();
+                    Runnable payRunnable = () -> {
+                        PayTask alipay = new PayTask(PaymentActivity.this);
+                        Map<String, String> result = alipay.payV2(outTradeNo, true);
 
-                    Message msg = new Message();
-                    msg.what = SDK_PAY_FLAG;
-                    msg.obj = result;
-                    mHandler.sendMessage(msg);
-                };
-                // 必须异步调用
-                Thread payThread = new Thread(payRunnable);
-                payThread.start();
+                        Message msg = new Message();
+                        msg.what = SDK_PAY_FLAG;
+                        msg.obj = result;
+                        mHandler.sendMessage(msg);
+                    };
+                    // 必须异步调用
+                    Thread payThread = new Thread(payRunnable);
+                    payThread.start();
+                }
+            }else {
+                orderCode = resp.getData().getData().getOrderCode();
+                toPay();
             }
+
         }
     }
 
@@ -237,7 +253,9 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
          if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             if(!TextUtils.isEmpty(resp.getData().getData().getOrderCode())){
                 LogAndToastUtil.toast("支付成功");
-                PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
+                if(type == 0){
+                    PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
+                }
                 finish();
             }
          }
@@ -254,7 +272,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
 
     @Override
     public void onPay() {
-        Map<Object,Object> map = new HashMap<>();
+        map.clear();
         map.put("orderCode",orderCode);
         map.put("payType",payType);
         presenter.searchPayResult(map);

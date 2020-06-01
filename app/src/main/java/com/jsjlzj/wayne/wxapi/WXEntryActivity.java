@@ -109,7 +109,6 @@ public class WXEntryActivity extends MVPBaseNoLoginActivity<LoginActivityView, L
             default:
                 break;
         }
-
     }
 
     public void initHttp(String url) {
