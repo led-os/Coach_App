@@ -63,7 +63,7 @@ public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView
     private CommunityItemFragment allCommunityItemFragment;
 
 
-    private String[] mTitles = new String[4];
+    private String[] mTitles = new String[3];
     private List<MVPBaseFragment> fragments = new ArrayList<>();
 
     public static void go2this(Activity context) {

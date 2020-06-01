@@ -8,8 +8,8 @@
     <ImageView
         android:id="@+id/img_head"
         android:layout_marginStart="@dimen/padding_20"
-        android:layout_width="@dimen/padding_32"
-        android:layout_height="@dimen/padding_32"
+        android:layout_width="@dimen/padding_36"
+        android:layout_height="@dimen/padding_36"
         android:layout_centerVertical="true"
         android:src="@drawable/ic_avatars"/>
 

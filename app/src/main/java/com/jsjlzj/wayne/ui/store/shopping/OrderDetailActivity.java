@@ -229,6 +229,9 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
                     case 3://确认收货
                         presenter.confirmOrder(orderCode);
                         break;
+                    case 5://查看物流
+                        LogisticsActivity.go2this(this,orderCode);
+                        break;
                     case 6://再次购买
                         ConfirmOrderActivity.go2this(this, transShoppingCarList(orderDetailBean.getOrderList()), null);
                         break;
@@ -257,6 +260,7 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
                 }
             } else {
                 switch (showStatus) {
+                    case 5:
                     case 0:
                         //再次购买
                         if (getResources().getString(R.string.again_buy).equals(tvRightClick.getText().toString())) {

@@ -79,7 +79,7 @@ public class QuestionFindAdapter extends RecyclerView.Adapter<QuestionFindAdapte
 
         void bindView(int pos) {
             findLessonBean = list.get(pos);
-            GlidUtils.setRoundGrid(context,findLessonBean.getTeacherAvatar(),imgHead,2);
+            GlidUtils.setCircleGrid(context,findLessonBean.getTeacherAvatar(),imgHead);
             tvName.setText(findLessonBean.getTeacherName()+": "+findLessonBean.getTitle());
             itemView.setOnClickListener(v -> {
                 WebViewContainerActivity.go2this(context,findLessonBean.getTitle(), HttpConstant.WEB_URL_NEW_COURSE_DETAIL+findLessonBean.getId(),

@@ -13,10 +13,14 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,19 +100,28 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
             tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloat(bean.getFlashPromotionPrice()));
             tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+DateUtil.getTwoDotByFloat(bean.getPrice()));
             if(type == 0){
-                tvRob.setText("立即抢");
+                tvRob.setText("立即抢购");
                 tvRob.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_rob_shop));
             }else {
                 tvRob.setText("开抢提醒");
                 tvRob.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_will_start_shop));
             }
-            tvOldMoney.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
-            tvOldMoney.getPaint().setAntiAlias(true); //去掉锯齿
             tvRob.setOnClickListener(v -> {
                 if(listener != null){
                     listener.onRobClick(type,bean);
                 }
+                if(type == 0){
+                    WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+bean.getId(),
+                            WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
+                }else {
+                    if(!"已提醒".equals(tvRob.getText().toString())){
+                        tvRob.setText("已提醒");
+                        LogAndToastUtil.toast("已开启提醒");
+                    }
+                }
             });
+            tvOldMoney.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
+            tvOldMoney.getPaint().setAntiAlias(true); //去掉锯齿
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(bean);

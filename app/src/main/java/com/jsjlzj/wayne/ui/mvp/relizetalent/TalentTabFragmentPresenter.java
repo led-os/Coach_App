@@ -633,6 +633,7 @@ public class TalentTabFragmentPresenter extends BasePresenter<TalentTabFragmentV
             case REQ_CODE_IS_FINFISH_INFO:
                 view.getIsFinishInfoSuccess(resp);
                 break;
+
         }
     }
 

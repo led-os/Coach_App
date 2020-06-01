@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.ui.store.shopping;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ public class TimeSecondActivity extends MVPBaseActivity<HomeView, HomePresenter>
     private TimeSecondFragment timeSecondFragment1;//限时秒杀
     private TimeSecondFragment timeSecondFragment2;//即将开始
 
-    public static void go2this(Activity context) {
+    public static void go2this(Context context) {
         Intent intent = new Intent(context, TimeSecondActivity.class);
         context.startActivity(intent);
     }

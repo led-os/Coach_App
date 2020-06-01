@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.address.MalAddressProvince;
@@ -35,6 +37,7 @@ import com.jsjlzj.wayne.ui.store.personal.TabItemStoreInfoFragment;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.InterviewDetailActivity;
 import com.jsjlzj.wayne.ui.store.talent.menu.TabItemTrainerFragment;
 import com.jsjlzj.wayne.ui.trainer.personal.TabItemTrainerMineFragment;
+import com.jsjlzj.wayne.ui.trainer.position.GotoFinishInfoFragment;
 import com.jsjlzj.wayne.ui.trainer.position.menu.TabItemPositionFragment;
 import com.jsjlzj.wayne.ui.yunxin.YunXingUtil;
 import com.jsjlzj.wayne.ui.yunxin.fragment.MySessionListFragment;
@@ -394,5 +397,17 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
         LoginByPhoneActivity.go2This(AppManager.getAppManager().currentActivity(), "", "", "", "", "");
         finish();
         LogAndToastUtil.log("云信登录异常" + exception);
+    }
+
+
+    @Override
+    public void getIsFinishInfoSuccess(MdlBaseHttpResp<DataBean> resp) {
+        LogAndToastUtil.log("====="+resp.getStatus());
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            Boolean isFinishInfo = (Boolean) resp.getData().getData();
+            if(isFinishInfo){
+                GotoFinishInfoFragment.showDialog(getSupportFragmentManager());
+            }
+        }
     }
 }

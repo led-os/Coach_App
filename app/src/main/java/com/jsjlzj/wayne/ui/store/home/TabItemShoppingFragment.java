@@ -163,7 +163,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvNewProduct.setAdapter(newProductAdapter);
 
         shopClassAdapter = new ShopClassAdapter(getActivity(),shopClassList);
-        rvShopClass.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        rvShopClass.setLayoutManager(new GridLayoutManager(getActivity(),4));
         shopClassAdapter.setListener(this);
         rvShopClass.setAdapter(shopClassAdapter);
 
@@ -304,7 +304,11 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     @Override
     public void onItemClick(HomeShoppingDataBean.DataBean.CategoryListBean bean) {
         Map<Object,Object> map = new HashMap<>();
-        map.put("productCategoryId",bean.getCategoryId());
+        if(bean.getCategoryId() == 0){
+            map.put("keywords","首页全部好货");
+        }else {
+            map.put("productCategoryId",bean.getCategoryId());
+        }
         map.put(HttpConstant.PAGE_NO, 1);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         presenter.getSearchProductList(map);

@@ -16,6 +16,7 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
+import com.jsjlzj.wayne.ui.store.shopping.TimeSecondActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -90,8 +91,9 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
             tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloat(shoppingBean.getFlashPromotionPrice()));
             tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloat(shoppingBean.getPrice()));
             itemView.setOnClickListener(v -> {
-                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+shoppingBean.getId(),
-                        WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
+//                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+shoppingBean.getId(),
+//                        WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
+                TimeSecondActivity.go2this(context);
             });
         }
     }

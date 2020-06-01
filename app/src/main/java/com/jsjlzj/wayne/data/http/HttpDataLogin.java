@@ -171,6 +171,10 @@ public class HttpDataLogin extends BaseHttpData {
         Observable observable = service.getAreaAll(body);
         setSubscribe(observable, observer);
     }
-
+    public void getIsFinishInfo(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.getIsFinishInfo(body);
+        setSubscribe(observable, observer);
+    }
 
 }

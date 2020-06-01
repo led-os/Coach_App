@@ -4,10 +4,12 @@ package com.jsjlzj.wayne.ui.mvp.relizelogin;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.data.http.HttpDataLogin;
 import com.jsjlzj.wayne.data.http.HttpDataStroe;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
+import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentModel;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 
 import java.util.Map;
@@ -349,6 +351,33 @@ public class LoginActivityModel extends BaseModel {
             }
         });
     }
+
+
+
+    public void getIsFinishInfo(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataLogin.getInstance().getIsFinishInfo(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                LoginActivityModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
 
     public void getAllArea( int code,Map param, final OnLoadHttpDataListener listener){
         HttpDataLogin.getInstance().getAreaAll(param, new Observer<MdlBaseHttpResp>() {

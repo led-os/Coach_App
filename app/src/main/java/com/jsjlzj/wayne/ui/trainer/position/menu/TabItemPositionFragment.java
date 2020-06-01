@@ -30,6 +30,7 @@ import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.publicac.AddressActivity;
 import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenActivity;
 import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenLabActivity;
+import com.jsjlzj.wayne.ui.trainer.position.GotoFinishInfoFragment;
 import com.jsjlzj.wayne.ui.trainer.publicac.JobIntentionActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.PositionInfoStoreActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
@@ -113,7 +114,7 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
 
     @Override
     protected void fragment2Front() {
-
+        presenter.getIsFinishInfo();
     }
 
     @Override
@@ -122,7 +123,6 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
         pageNo=1;
         selected=0;
         presenter.getPositionTypeList(null);
-        presenter.getIsFinishInfo();
     }
 
     public void getInfo() {
@@ -328,11 +328,16 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
         }
     }
 
+
     @Override
     public void getIsFinishInfoSuccess(MdlBaseHttpResp<DataBean> resp) {
         LogAndToastUtil.log("====="+resp.getStatus());
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             Boolean isFinishInfo = (Boolean) resp.getData().getData();
+            if(isFinishInfo){
+                GotoFinishInfoFragment.showDialog(getChildFragmentManager());
+            }
         }
     }
+
 }

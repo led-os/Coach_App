@@ -29,7 +29,7 @@ public class LoginActivityPresenter extends BasePresenter<LoginActivityView> {
     private static final int MESSAGE_ISBOTHREPLY = 43;//是否回复过
     private static final int MESSAGE_SAVE_MESSAGE = 44;//保存普通消息
     private static final int MESSAGE_SAVE_WECHAT = 45;//保存微信号
-
+    private static final int REQ_CODE_IS_FINFISH_INFO = 1327;
 
     private LoginActivityModel model;
 
@@ -136,6 +136,13 @@ public class LoginActivityPresenter extends BasePresenter<LoginActivityView> {
             model.resetPwd(REQ_RESET_PWD, param, this);
         }
     }
+
+    public void getIsFinishInfo() {
+        if (model != null) {
+            model.getIsFinishInfo(REQ_CODE_IS_FINFISH_INFO, null, this);
+        }
+    }
+
 
     public void getAllArea(Map param) {
         if (model != null) {
@@ -249,6 +256,9 @@ public class LoginActivityPresenter extends BasePresenter<LoginActivityView> {
                 break;
             case REQ_UPDATE_PSD:
                 view.updatePsd(resp);
+                break;
+            case REQ_CODE_IS_FINFISH_INFO:
+                view.getIsFinishInfoSuccess(resp);
                 break;
             default:
                 break;

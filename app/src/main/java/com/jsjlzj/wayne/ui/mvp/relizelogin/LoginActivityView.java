@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.ui.mvp.relizelogin;
 
 
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.address.MalAddressProvince;
@@ -54,4 +55,5 @@ public interface LoginActivityView extends BaseView {
     default void updatePsd(MdlBaseHttpResp<MdlUser> resp) {
     }
 
+    default void getIsFinishInfoSuccess(MdlBaseHttpResp<DataBean> resp){}
 }

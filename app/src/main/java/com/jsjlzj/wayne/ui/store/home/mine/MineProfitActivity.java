@@ -97,7 +97,7 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
                 }
                 break;
             case R.id.ll_profit_detail:
-                ProfitOrderActivity.go2this(this);
+//                ProfitOrderActivity.go2this(this);
                 break;
             case R.id.ll_record:
                 CashOutRecordActivity.go2this(this);

@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.data.api;
 
 
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlQuestion;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
@@ -106,4 +107,9 @@ public interface LoginService {
 
     @POST(HttpConstant.API_GETAREAALL)
     Observable<MdlBaseHttpResp<MalAddressProvince>> getAreaAll(@Body RequestBody requestBody);
+
+
+    @POST(HttpConstant.API_IS_FINISH_INFO)//是否完成个人资料
+    Observable<MdlBaseHttpResp<DataBean>> getIsFinishInfo(@Body RequestBody requestBody);
+
 }

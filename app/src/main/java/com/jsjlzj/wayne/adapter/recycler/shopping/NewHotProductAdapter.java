@@ -61,7 +61,7 @@ public class NewHotProductAdapter extends RecyclerView.Adapter<NewHotProductAdap
 
     @Override
     public int getItemCount() {
-        return list != null ? list.size() : 0;
+        return list != null ? list.size() > 2 ? 2 : list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -86,8 +86,8 @@ public class NewHotProductAdapter extends RecyclerView.Adapter<NewHotProductAdap
             tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloat(shoppingBean.getPrice()));
             tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+DateUtil.getTwoDotByFloat(shoppingBean.getOriginalPrice()));
             itemView.setOnClickListener(v -> {
-                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+shoppingBean.getId(),
-                        WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
+//                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+shoppingBean.getId(),
+//                        WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
             });
         }
     }

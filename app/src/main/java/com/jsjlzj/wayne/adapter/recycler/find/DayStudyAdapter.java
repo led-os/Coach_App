@@ -121,9 +121,8 @@ public class DayStudyAdapter extends RecyclerView.Adapter<DayStudyAdapter.ViewHo
                 }
             }
 
-            relBottom.setOnClickListener(v -> {
+            itemView.setOnClickListener(v -> {
                 if (listener != null) {
-                    // TODO: 2020/5/4 跳转到热门课程听课榜详情 h5
                     listener.onItemClick("",pos);
                 }
 
