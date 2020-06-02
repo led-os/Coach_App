@@ -65,6 +65,7 @@ public class HttpConstant {
     public static final String WEB_URL_NEW_POINTS = WEB_URL_BASE + "/#/points";//积分明细
     public static final String WEB_URL_NEW_MEMBER_CENTER = WEB_URL_BASE + "/#/memberCenter";//会员中心
     public static final String WEB_URL_NEW_ESHOP = WEB_URL_BASE + "/#/eshop";//积分商城
+    public static final String WEB_URL_BENEFIT_INFO = WEB_URL_BASE + "#/benefitInfo";//收益说明
     /********************************* web网页- url****************************************************/
 
     /**

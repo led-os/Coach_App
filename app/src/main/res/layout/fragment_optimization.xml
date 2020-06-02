@@ -188,8 +188,8 @@
 
             <ImageView
                 android:id="@+id/img_close"
-                android:layout_width="@dimen/padding_16"
-                android:layout_height="@dimen/padding_16"
+                android:layout_width="@dimen/padding_10"
+                android:layout_height="@dimen/padding_10"
                 android:src="@drawable/close_icon"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/padding_6"

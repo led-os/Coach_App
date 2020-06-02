@@ -12,6 +12,8 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -87,7 +89,7 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
         super.onMultiClick(view);
         switch (view.getId()){
             case R.id.img_profit_des:
-                // TODO: 2020/5/7 收益说明 
+                WebViewContainerActivity.go2this(this,"收益说明", HttpConstant.WEB_URL_BENEFIT_INFO, WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 break;
             case R.id.tv_commit_money:
                 if(Float.valueOf(tvMoney.getText().toString()) <= 0){
@@ -97,7 +99,7 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
                 }
                 break;
             case R.id.ll_profit_detail:
-//                ProfitOrderActivity.go2this(this);
+                ProfitOrderActivity.go2this(this);
                 break;
             case R.id.ll_record:
                 CashOutRecordActivity.go2this(this);
