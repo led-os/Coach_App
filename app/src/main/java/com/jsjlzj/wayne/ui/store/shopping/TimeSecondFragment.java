@@ -11,6 +11,7 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.TimeSecondAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.TimeSecondItemAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
@@ -35,7 +36,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class TimeSecondFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener {
+public class TimeSecondFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, TimeSecondItemAdapter.OnItemClickListener {
 
 
     @BindView(R.id.rv_time_second)
@@ -72,6 +73,7 @@ public class TimeSecondFragment extends MVPBaseFragment<HomeView, HomePresenter>
         rvTimeSecond.setLoadingListener(this);
         rvTimeSecond.setLayoutManager(new LinearLayoutManager(getActivity()));
         timeSecondAdapter = new TimeSecondItemAdapter(getActivity(), type, new ArrayList<>());
+        timeSecondAdapter.setListener(this);
         rvTimeSecond.setAdapter(timeSecondAdapter);
         loadData(true);
     }
@@ -137,6 +139,28 @@ public class TimeSecondFragment extends MVPBaseFragment<HomeView, HomePresenter>
                 // 无数据
                 showEmpty(R.id.rel_empty, 0, null);
             }
+        }
+    }
+
+    @Override
+    public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            LogAndToastUtil.toast("已开启提醒");
+        }
+    }
+
+    @Override
+    public void onItemClick(ShoppingBean bean) {
+
+    }
+
+    @Override
+    public void onRobClick(int type, ShoppingBean bean) {
+        if (type == 1) {
+            map.clear();
+            map.put("activityId",bean.getActivityId());
+            map.put("id",bean.getId());
+            presenter.getTimeSkillHint(map);
         }
     }
 }

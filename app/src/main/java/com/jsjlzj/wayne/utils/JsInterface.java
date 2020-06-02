@@ -97,7 +97,7 @@ public class JsInterface {
     @JavascriptInterface
     public void lookMoreActivity(){
         // TODO: 2020/3/24 跳转到更多赛事
-        LogAndToastUtil.toast("全部赛事");
+//        LogAndToastUtil.toast("全部赛事");
         MoreMatchActivity.go2this(mContext);
     }
 
@@ -162,9 +162,15 @@ public class JsInterface {
                 case 2:
                     break;
             }
-
-
         }
+    }
+
+    /**
+     * 点击评论框
+     */
+    @JavascriptInterface
+    public void openInput(String aa){
+        ((WebViewContainerActivity)mContext).showPopupWindow();
     }
 
     /**
@@ -173,6 +179,7 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void joinCourse(String courseId){
+
         SignUpActivity.go2this(mContext,"",courseId,0);
     }
 

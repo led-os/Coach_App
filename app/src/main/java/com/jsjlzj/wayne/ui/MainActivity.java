@@ -293,8 +293,8 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     }
 
     private void setTabTip(ReminderItem item) {
-        if (tabLayout != null && tabLayout.getTabCount() > 1) {
-            TabLayout.Tab tab = tabLayout.getTabAt(1);
+        if (tabLayout != null && tabLayout.getTabCount() > 2) {
+            TabLayout.Tab tab = tabLayout.getTabAt(2);
             if (tab != null) {
                 View customView = tab.getCustomView();
                 if (customView != null) {

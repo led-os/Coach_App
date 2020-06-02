@@ -83,7 +83,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.home.mine.ApplySettledInActivity"></activity>
+        <activity android:name=".ui.store.home.mine.ApplySettledInActivity"/>
         <activity android:name=".ui.store.home.mine.FactorySettledInActivity" />
         <activity android:name=".ui.store.shopping.LogisticsActivity" />
         <activity android:name=".ui.store.home.mine.AfterSaleApplyActivity" />
@@ -145,7 +145,8 @@
         <activity
             android:name=".ui.basis.WebViewContainerActivity"
             android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".ui.store.home.study.ChapterActivity" />
         <activity android:name=".ui.store.home.study.QuestionBankActivity" />
         <activity android:name=".ui.store.home.amoy.SignUpResultActivity" />

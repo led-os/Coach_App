@@ -2,16 +2,22 @@ package com.jsjlzj.wayne.ui.basis;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.SslErrorHandler;
@@ -21,9 +27,17 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.alibaba.fastjson.JSONObject;
@@ -41,8 +55,9 @@ import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 import butterknife.BindView;
 
 import static android.app.Activity.RESULT_OK;
+import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 
- /**
+/**
   *
   * @ClassName:      WebViewContainerFragment
   * @Description:    web页面
@@ -217,6 +232,16 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
         LogAndToastUtil.log("====detail_token===="+SPUtil.getTokenFromSP());
     }
 
+    public void endInput(String str){
+        mWebView.post(new Runnable() {
+            @Override
+            public void run() {
+                mWebView.loadUrl("javascript: endInput('"+ str +"')");
+            }
+        });
+
+    }
+
     public static JSONObject getBaseJSONObject() {
         JSONObject json = new JSONObject();
 //        json.put("token", DataCacheManager.getToken());
@@ -228,7 +253,20 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
         return json;
     }
 
-
+    @Override
+    public void onConfigurationChanged(Configuration config) {
+        super.onConfigurationChanged(config);
+        switch (config.orientation) {
+            case Configuration.ORIENTATION_LANDSCAPE:
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                break;
+            case Configuration.ORIENTATION_PORTRAIT:
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                break;
+        }
+    }
 
     // 发送通用字段
     private WebChromeClient mWebChromeClient = new WebChromeClient() {
@@ -292,6 +330,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
      /** 视频播放全屏 **/
      private void showCustomView(View view, WebChromeClient.CustomViewCallback callback) {
          // if a view already exists then immediately terminate the new one
+         LogAndToastUtil.log("=========showCustomView");
          if (customView != null) {
              callback.onCustomViewHidden();
              return;
@@ -310,6 +349,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
 
      /** 隐藏视频全屏 */
      public void hideCustomView() {
+         LogAndToastUtil.log("=========hideCustomView");
          if (customView == null) {
              return;
          }
@@ -480,6 +520,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
 //            getComData();
         }
     }
+
 
 
      @Override

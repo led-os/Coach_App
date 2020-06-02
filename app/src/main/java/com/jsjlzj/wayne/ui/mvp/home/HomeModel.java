@@ -1625,6 +1625,29 @@ public class HomeModel extends BaseModel {
         });
     }
 
+    public void getTimeSkillHint(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getTimeSkillHint(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
     public void addShoppingCar(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().addShoppingCar(param, new Observer<MdlBaseHttpResp<DataBean>>() {
             @Override

@@ -7,10 +7,19 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,8 +30,10 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.utils.StatusBarCompatUtil;
+import com.jsjlzj.wayne.utils.keyboard.KeyboardUtil;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 
+import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_ARTICLE_DETAIL;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_BANNER_LINK_URL;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_DYNAMIC_DETAIL;
@@ -204,5 +215,50 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         return false;
     }
 
+
+    private PopupWindow mPopWindow;
+
+
+    public void showPopupWindow() {
+        //设置contentView
+        View contentView = LayoutInflater.from(this).inflate(R.layout.layout_comment_editext, null);
+        mPopWindow = new PopupWindow(contentView,
+                ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+        mPopWindow.setContentView(contentView);
+        //防止PopupWindow被软件盘挡住（可能只要下面一句，可能需要这两句）
+//        mPopWindow.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
+        mPopWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        //设置软键盘弹出
+        InputMethodManager inputMethodManager = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);//这里给它设置了弹出的时间
+        //设置各个控件的点击响应
+        final EditText editText = contentView.findViewById(R.id.et_comment);
+        final TextView tvSend = contentView.findViewById(R.id.tv_send);
+        editText.setHint("写下你的评论吧");
+        editText.setInputType(TYPE_TEXT_FLAG_MULTI_LINE);
+        editText.setSingleLine(false);
+        editText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                //在这里做请求操作
+                String inputString = editText.getText().toString();
+                webFragment.endInput(inputString);
+                mPopWindow.dismiss();//让PopupWindow消失
+                KeyboardUtil.openKeyboard(editText,this);
+                return true;
+            }
+            return false;
+        });
+        tvSend.setOnClickListener(v -> {
+            String inputString = editText.getText().toString();
+            webFragment.endInput(inputString);
+            mPopWindow.dismiss();//让PopupWindow消失
+        });
+        //是否具有获取焦点的能力
+        mPopWindow.setFocusable(true);
+        //显示PopupWindow
+        View rootview = LayoutInflater.from(this).inflate(getLayoutResId(), null);
+        mPopWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
+        KeyboardUtil.openKeyboard(editText,this);
+    }
 
 }

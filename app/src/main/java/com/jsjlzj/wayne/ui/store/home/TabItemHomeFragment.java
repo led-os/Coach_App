@@ -94,11 +94,11 @@ public class TabItemHomeFragment extends MVPBaseFragment<TalentPersonalView, Tal
                     MatchFragment matchFragment = MatchFragment.getInstance();
                     fragments.add(matchFragment);
                     break;
+//                case 2:
+//                    DriedFoodFragment driedFoodFragment = DriedFoodFragment.getInstance();
+//                    fragments.add(driedFoodFragment);
+//                    break;
                 case 2:
-                    DriedFoodFragment driedFoodFragment = DriedFoodFragment.getInstance();
-                    fragments.add(driedFoodFragment);
-                    break;
-                case 3:
                     InformationFragment informationFragment = InformationFragment.getInstance();
                     fragments.add(informationFragment);
                     break;

@@ -506,6 +506,8 @@ public class HttpConstant {
     public static final String API_SEARCH_PRODUCT = "product/getProductList";
     //限时秒杀列表页
     public static final String API_TIME_SKILL_SHOPPING_LIST = "product/getActivityList";
+    //限时秒杀提醒
+    public static final String API_TIME_SKILL_HINT = "product/saveActivityProductLog";
     //购物车列表
     public static final String API_SHOPPING_CAR_LIST = "order/car/getShoppingCarList";
     //我的优惠劵列表

@@ -707,6 +707,12 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void getTimeSkillHint(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestTimeSkillHint(body);
+        setSubscribe(observable, observer);
+    }
+
     public void getShoppingCarList(Observer observer) {
         Observable observable = service.requestShoppingCarList();
         setSubscribe(observable, observer);

@@ -28,6 +28,24 @@ public class ShoppingBean {
     private float flashPromotionPrice;
     private String sdate;
     private String stimeDown;
+    private boolean tips;
+    private String activityId;
+
+    public String getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
+    }
+
+    public boolean isTips() {
+        return tips;
+    }
+
+    public void setTips(boolean tips) {
+        this.tips = tips;
+    }
 
     public String getId() {
         return id;

@@ -532,6 +532,9 @@ public interface StoreService {
     @POST(HttpConstant.API_TIME_SKILL_SHOPPING_LIST)
     Observable<MdlBaseHttpResp<ShoppingPageBean>> requestTimeSkillProductList(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_TIME_SKILL_HINT)
+    Observable<MdlBaseHttpResp<DataBean>> requestTimeSkillHint(@Body RequestBody requestBody);
+
     @GET(HttpConstant.API_SHOPPING_CAR_LIST)
     Observable<MdlBaseHttpResp<ShoppingCarBean>> requestShoppingCarList();
 

@@ -112,6 +112,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_ORDER_AFTER_DETAIL = 78;
     private static final int REQ_CODE_CANCEL_AFTER_SALE = 79;
     private static final int REQ_CODE_LOGISTICS_LIST = 80;
+    private static final int REQ_CODE_SKILL_HINT = 81;
 
 
 
@@ -622,6 +623,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
 
 
+    public void getTimeSkillHint(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getTimeSkillHint(REQ_CODE_SKILL_HINT, param, this);
+        }
+    }
+
+
     public void getShoppingCarList() {
         if (model != null) {
             view.showLoading();
@@ -899,6 +908,7 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_AFTER_ORDER_CANCEL:
             case REQ_CODE_ORDER_CANCEL:
             case REQ_CODE_CANCEL_AFTER_SALE:
+            case REQ_CODE_SKILL_HINT:
                 view.getMessageSuccess(resp);
                 break;
             case REQ_CODE_DELETE_DYNAMIC:

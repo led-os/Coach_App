@@ -87,8 +87,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             bean = list.get(pos);
             GlidUtils.setGrid(context,bean.getPic(),imgProduct);
             tvTitle.setText(bean.getName());
-            tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloat(bean.getPrice()));
-            tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+DateUtil.getTwoDotByFloat(bean.getOriginalPrice()));
+            tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloatFY(bean.getPrice()));
+            tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+DateUtil.getTwoDotByFloatFY(bean.getOriginalPrice()));
             itemView.setOnClickListener(v -> {
                 WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+bean.getId(),
                         WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
