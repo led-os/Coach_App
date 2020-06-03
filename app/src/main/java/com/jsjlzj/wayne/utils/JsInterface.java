@@ -112,11 +112,9 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void share(String url,String title,String content,String img){
-        LogAndToastUtil.log(title+"====JsInterface===="+content+"=========="+img);
         BitmapUtils.getBitmap(mContext, img, new BitmapUtils.GlideLoadBitmapCallback() {
             @Override
             public void getBitmapCallback(Bitmap bitmap) {
-                LogAndToastUtil.log("====bitmap===="+bitmap+"=========="+img);
                 JsInterface.this.bitmap = bitmap;
             }
         });
@@ -161,6 +159,7 @@ public class JsInterface {
                     break;
                 case 2:
                     break;
+                default:break;
             }
         }
     }
@@ -179,7 +178,6 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void joinCourse(String courseId){
-
         SignUpActivity.go2this(mContext,"",courseId,0);
     }
 

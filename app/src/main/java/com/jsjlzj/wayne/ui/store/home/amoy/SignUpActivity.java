@@ -15,12 +15,15 @@ import androidx.core.content.ContextCompat;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.entity.DataBean;
+import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.DataCheckUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.jsjlzj.wayne.utils.SPUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,7 +74,13 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
         type = getIntent().getIntExtra(ExtraConstant.EXTRA_SHOW_TYPE,0);
         String schoolId = getIntent().getStringExtra(ExtraConstant.EXTRA_SCHOOL_ID);
         LogAndToastUtil.log(schoolId + "title====courseId" + courseId);
-        initTitle("我要报名");
+        if(MyApp.isTrainer){
+            initTitle("我要报名");
+            tvCommit.setText("提交报名");
+        }else {
+            initTitle("我要推荐");
+            tvCommit.setText("提交推荐");
+        }
         tvCommit.setOnClickListener(clickListener);
         etName.addTextChangedListener(this);
         etPhone.addTextChangedListener(this);

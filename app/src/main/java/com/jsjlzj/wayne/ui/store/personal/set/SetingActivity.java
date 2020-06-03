@@ -109,6 +109,7 @@ public class SetingActivity extends MVPBaseActivity<TalentPersonalView, TalentPe
                 case R.id.btnLogout:
                     clickLogout();
                     break;
+                default:break;
             }
         }
     }

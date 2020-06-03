@@ -150,6 +150,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
         webSettings.setTextZoom(100);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setAllowFileAccessFromFileURLs(true);
         // 解决图片不显示
         webSettings.setBlockNetworkImage(false);
         // support zoom

@@ -145,6 +145,7 @@
         <activity
             android:name=".ui.basis.WebViewContainerActivity"
             android:hardwareAccelerated="true"
+            android:screenOrientation="fullUser"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".ui.store.home.study.ChapterActivity" />
