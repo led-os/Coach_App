@@ -8,6 +8,7 @@ import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.FindCategoryBean;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingListBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.MdlBenefits;
@@ -80,6 +81,29 @@ public class TalentPersonalModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<ShoppingPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getSearchNewProductList(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataStroe.getInstance().getSearchNewProductList(param, new Observer<MdlBaseHttpResp<ShoppingListBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                TalentPersonalModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<ShoppingListBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

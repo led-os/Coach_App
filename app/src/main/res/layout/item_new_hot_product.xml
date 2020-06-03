@@ -20,6 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_size_12"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:paddingBottom="@dimen/padding_10"
         android:text="¥68.9"
         android:textColor="@color/color_f1404b"/>
 
@@ -38,6 +41,7 @@
         android:id="@+id/tv_old_money"
         android:layout_width="wrap_content"
         android:textSize="@dimen/text_size_10"
+        android:visibility="gone"
         android:textColor="@color/color_999999"
         android:layout_marginTop="@dimen/padding_2"
         android:layout_below="@+id/tv_money"

@@ -24,6 +24,6 @@
         android:layout_centerHorizontal="true"
         android:visibility="gone"
         android:layout_marginTop="@dimen/padding_6"
-        android:background="@color/color_4F9BFA"/>
+        android:background="@color/color_222222"/>
 
 </RelativeLayout>

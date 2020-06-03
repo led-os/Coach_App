@@ -50,15 +50,15 @@
             android:paddingEnd="@dimen/padding_10"
             android:paddingBottom="@dimen/padding_10"
             android:src="@drawable/ic_profit_order_right"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/img_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingEnd="@dimen/padding_2"
             android:layout_centerVertical="true"
-            android:paddingStart="@dimen/padding_10"
+            android:padding="@dimen/padding_10"
+            android:layout_alignParentEnd="true"
             android:layout_toStartOf="@+id/btn_title_right"
             android:src="@drawable/ic_profit_order_info"/>
 

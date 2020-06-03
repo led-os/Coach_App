@@ -92,6 +92,8 @@ public class TabItemStudyFragment extends MVPBaseFragment<HomeView, HomePresente
         if(bean.getId() == -1){
             QuestionBankActivity.go2this(getActivity());
         }else if(bean.getId() == -2){
+            WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),HttpConstant.WEB_URL_SCAN_SCORE,
+                    WebViewContainerFragment.TYPE_SCAN_SCORE);
         }else {
             WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),HttpConstant.WEB_URL_COURSE_INTRODUCE + bean.getId(),
                     WebViewContainerFragment.TYPE_COURSE_INTRODUCE);

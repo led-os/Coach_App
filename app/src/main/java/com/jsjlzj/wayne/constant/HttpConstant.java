@@ -66,6 +66,9 @@ public class HttpConstant {
     public static final String WEB_URL_NEW_MEMBER_CENTER = WEB_URL_BASE + "/#/memberCenter";//会员中心
     public static final String WEB_URL_NEW_ESHOP = WEB_URL_BASE + "/#/eshop";//积分商城
     public static final String WEB_URL_BENEFIT_INFO = WEB_URL_BASE + "#/benefitInfo";//收益说明
+
+    public static final String WEB_URL_SCAN_SCORE  = "http://59.108.91.231/ost/queryScore.jsp";//国职考试成绩查询
+
     /********************************* web网页- url****************************************************/
 
     /**
@@ -504,6 +507,10 @@ public class HttpConstant {
     public static final String API_GROUP_PRODUCT = "product/getDiscountsProductList";
     //搜索商品列表
     public static final String API_SEARCH_PRODUCT = "product/getProductList";
+    //最新产品列表
+    public static final String API_SEARCH_NEW_PRODUCT = "product/getNewProductList";
+    //热门产品列表
+    public static final String API_SEARCH_HOT_PRODUCT = "product/getSaleProductList";
     //限时秒杀列表页
     public static final String API_TIME_SKILL_SHOPPING_LIST = "product/getActivityList";
     //限时秒杀提醒
@@ -538,6 +545,8 @@ public class HttpConstant {
     public static final String API_SHOPPING_PAY_ORDER = "order/pay/orderPay";
     //获取订单列表
     public static final String API_SHOPPING_ORDER_LIST = "myOrder/getMyOrderList";
+    //收益订单列表
+    public static final String API_SHOPPING_ORDER_PROFIT_LIST = "getMyProfitDetailPage";
     //获取订单列表
     public static final String API_SHOPPING_AFTER_ORDER_LIST = "myOrder/getReturnOrder";
     //撤销申请

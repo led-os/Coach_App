@@ -28,8 +28,10 @@ import com.jsjlzj.wayne.entity.shopping.LocationListBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.OrderDetailBean;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
+import com.jsjlzj.wayne.entity.shopping.ProfitOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingDetailBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingListBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.shopping.VipDataBean;
@@ -529,6 +531,12 @@ public interface StoreService {
     @POST(HttpConstant.API_SEARCH_PRODUCT)
     Observable<MdlBaseHttpResp<ShoppingPageBean>> requestSearchProductList(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_SEARCH_NEW_PRODUCT)
+    Observable<MdlBaseHttpResp<ShoppingListBean>> requestSearchNewProductList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SEARCH_HOT_PRODUCT)
+    Observable<MdlBaseHttpResp<ShoppingListBean>> requestSearchHotProductList(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_TIME_SKILL_SHOPPING_LIST)
     Observable<MdlBaseHttpResp<ShoppingPageBean>> requestTimeSkillProductList(@Body RequestBody requestBody);
 
@@ -587,6 +595,9 @@ public interface StoreService {
 
     @POST(HttpConstant.API_SHOPPING_ORDER_LIST)
     Observable<MdlBaseHttpResp<MineOrderPageBean>> requestOrderList(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_SHOPPING_ORDER_PROFIT_LIST)
+    Observable<MdlBaseHttpResp<ProfitOrderPageBean>> requestProfitOrderList(@Body RequestBody requestBody);
 
 
     @POST(HttpConstant.API_SHOPPING_AFTER_ORDER_LIST)

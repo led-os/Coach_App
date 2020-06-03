@@ -67,6 +67,7 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
     private static final int REQ_CODE_133 = 133;
     private static final int REQ_CODE_134 = 134;
     private static final int REQ_CODE_135 = 135;
+    private static final int REQ_CODE_136 = 136;
 
 
     private TalentPersonalModel model;
@@ -392,6 +393,13 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
         if (model != null) {
 //            view.showLoading();
             model.getSearchProductList(REQ_CODE_134, param, this);
+        }
+    }
+
+    public void getSearchNewProductList(Map param) {
+        if (model != null) {
+//            view.showLoading();
+            model.getSearchNewProductList(REQ_CODE_136, param, this);
         }
     }
 

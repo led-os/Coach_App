@@ -43,6 +43,7 @@ import androidx.fragment.app.FragmentActivity;
 import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
@@ -92,6 +93,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
     public static final int TYPE_NEW_SHOPPING_DETAIL = 12;
     public static final int TYPE_NEW_MEMBER_CENTER = 13;
     public static final int TYPE_NEW_DAY_SIGN = 14;
+    public static final int TYPE_SCAN_SCORE = 15;
      /**
       * 内部跳转
       */
@@ -126,7 +128,11 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
      }
 
      @Override
-     protected void fragment2Front() {}
+     protected void fragment2Front() {
+        if(firstUrl.contains(HttpConstant.WEB_URL_NEW_MEMBER_CENTER ) || firstUrl.contains(HttpConstant.WEB_URL_NEW_COURSE_DETAIL)){
+            reload();
+        }
+     }
 
      @Override
      protected TalentTabFragmentPresenter createPresenter() {
@@ -145,12 +151,12 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setSupportZoom(true);
         webSettings.setAllowFileAccess(true);
         webSettings.setTextZoom(100);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setSupportZoom(false);
         // 解决图片不显示
         webSettings.setBlockNetworkImage(false);
         // support zoom

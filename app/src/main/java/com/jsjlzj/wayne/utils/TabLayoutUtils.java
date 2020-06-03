@@ -95,7 +95,7 @@ public class TabLayoutUtils {
                 if (i == position) {
                     tvTitle.setTextSize(17);
                     inView.setVisibility(View.VISIBLE);
-                    tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color_4F9BFA));
+                    tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color_222222));
                 } else {
                     inView.setVisibility(View.GONE);
                     tvTitle.setTextSize(15);

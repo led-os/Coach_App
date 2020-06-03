@@ -12,6 +12,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -49,6 +52,8 @@ public class ProfitOrderActivity extends MVPBaseActivity<HomeView, HomePresenter
     MyViewPager myViewPager;
     private String[] mTitles = new String[3];
     private List<MVPBaseFragment> fragments = new ArrayList<>();
+    private ProfitOrderFragment shopFragment ;
+    private ProfitOrderFragment courseFragment;
     public static void go2this(Activity activity) {
         activity.startActivity(new Intent(activity, ProfitOrderActivity.class));
     }
@@ -75,8 +80,13 @@ public class ProfitOrderActivity extends MVPBaseActivity<HomeView, HomePresenter
     private void initViewPager() {
         mTitles = getResources().getStringArray(R.array.profit_title_list);
         for (int i = 0; i < mTitles.length; i++) {
-            CouponFragment courserListFragment = CouponFragment.getInstance(i);
-            fragments.add(courserListFragment);
+            if(i == 0){
+                shopFragment = ProfitOrderFragment.getInstance(2);
+                fragments.add(shopFragment);
+            }else {
+                courseFragment = ProfitOrderFragment.getInstance(1);
+                fragments.add(courseFragment);
+            }
         }
         myViewPager.setSlide(true);
         myViewPager.setOffscreenPageLimit(mTitles.length - 1);
@@ -121,6 +131,7 @@ public class ProfitOrderActivity extends MVPBaseActivity<HomeView, HomePresenter
                 finish();
                 break;
             case R.id.img_info:
+                WebViewContainerActivity.go2this(this,"收益说明", HttpConstant.WEB_URL_BENEFIT_INFO, WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                 break;
             case R.id.btn_title_right:
                 break;

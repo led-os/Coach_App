@@ -103,7 +103,7 @@ public class LoginRoleSelectActivity extends MVPBaseActivity<TalentPersonalView,
                     } else if (bean.getStoreStatus() == 3) {
                         MainActivity.go2this(LoginRoleSelectActivity.this, true);
                     } else if (bean.getStoreStatus() == 1) {
-
+                        LogAndToastUtil.toast("审核中。。。");
                     }
                     break;
                 case "TRAINER":

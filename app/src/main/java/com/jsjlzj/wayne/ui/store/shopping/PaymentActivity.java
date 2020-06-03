@@ -47,7 +47,7 @@ import butterknife.OnClick;
 public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView,RenewObserver.OnWeiXinListener {
 
      private static final int SDK_PAY_FLAG = 1;
-
+    public static final int REQUEST_CODE_BUY_VIP = 2345;
     @BindView(R.id.tv_price)
     TextView tvPrice;
     @BindView(R.id.img_zfb)
@@ -77,13 +77,22 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     }
 
      /**
-      * vip购买  购买蜂隐币
+      * 购买蜂隐币
       */
      public static void go2this(Activity activity,int type,int productId,String amount){
         activity.startActivity(new Intent(activity,PaymentActivity.class)
                 .putExtra("type",type)
                 .putExtra("productId",productId)
                 .putExtra("amount",amount));
+    }
+     /**
+      * vip购买
+      */
+     public static void go2this(Activity activity,int type,int productId,String amount,int requestCode){
+        activity.startActivityForResult(new Intent(activity,PaymentActivity.class)
+                .putExtra("type",type)
+                .putExtra("productId",productId)
+                .putExtra("amount",amount),requestCode);
     }
 
     @Override

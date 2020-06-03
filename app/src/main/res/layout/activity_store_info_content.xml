@@ -83,6 +83,7 @@
                 android:hint="可以简单介绍一下俱乐部发展状况, 服务领域等"
                 android:maxLength="5000"
                 android:minLines="5"
+                android:textCursorDrawable="@null"
                 android:padding="20dp"
                 android:textColor="#FF303030"
                 android:textColorHint="@color/text_gray"
@@ -93,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="20dp"
-                android:text="请输入俱乐部介绍"
+                android:text="1.工作内容\n2.任务要求\n3.特别描述"
                 android:textColor="@color/text_gray"
                 android:textSize="13sp" />
         </LinearLayout>

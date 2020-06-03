@@ -280,6 +280,7 @@
                     android:layout_marginTop="@dimen/padding_16">
 
                     <RelativeLayout
+                        android:id="@+id/rel_new"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
@@ -317,6 +318,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/rel_hot"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/img_pic"
+        android:layout_marginTop="@dimen/padding_14"
+        android:src="@drawable/ic_default_image"
+        android:layout_width="@dimen/padding_65"
+        android:layout_height="@dimen/padding_65"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:text="汤臣倍健乳清蛋白"
+        android:layout_toEndOf="@+id/img_pic"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_marginStart="@dimen/padding_13"
+        android:layout_alignTop="@+id/img_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_13"
+        android:textColor="@color/color_222222"/>
+    <TextView
+        android:id="@+id/tv_money"
+        android:text="+ ¥ 29.00"
+        android:layout_marginStart="@dimen/padding_13"
+        android:layout_alignTop="@+id/img_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_13"
+        android:layout_marginEnd="@dimen/padding_10"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/color_F1404B"/>
+
+    <TextView
+        android:layout_alignStart="@+id/tv_name"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginTop="@dimen/padding_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_order_money"
+        android:text="订单金额：¥ 290.00"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_222222"/>
+
+    <TextView
+        android:layout_alignStart="@+id/tv_name"
+        android:layout_below="@+id/tv_order_money"
+        android:layout_marginTop="@dimen/padding_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_order_code"
+        android:text="订单号：D0928312"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_222222"/>
+
+    <TextView
+        android:id="@+id/tv_copy"
+        android:layout_width="@dimen/padding_35"
+        android:layout_height="@dimen/padding_15"
+        android:text="复制"
+        android:textSize="@dimen/text_size_10"
+        android:textColor="@color/color_999999"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/padding_2"
+        android:layout_toEndOf="@+id/tv_order_code"
+        android:layout_alignTop="@+id/tv_order_code"
+        android:layout_marginStart="@dimen/padding_4"
+        android:background="@drawable/bg_stroke_dddddd_12"
+        />
+    <TextView
+        android:id="@+id/tv_create_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_999999"
+        android:layout_below="@+id/img_pic"
+        android:text="创建日：2019/09/12 12:34"
+        android:layout_marginTop="@dimen/padding_10"
+        android:layout_marginBottom="@dimen/padding_14"
+        android:layout_marginStart="@dimen/padding_10"/>
+
+    <TextView
+        android:id="@+id/tv_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_999999"
+        android:layout_toEndOf="@+id/tv_create_time"
+        android:layout_below="@+id/img_pic"
+        android:text="结算日：2019/09/12 12:34"
+        android:layout_marginTop="@dimen/padding_10"
+        android:layout_marginBottom="@dimen/padding_14"
+        android:layout_marginStart="@dimen/padding_20"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_0.5"
+        android:background="@color/color_eeeeee"
+        android:layout_below="@+id/tv_create_time"
+        android:layout_marginStart="@dimen/padding_10"/>
+</RelativeLayout>

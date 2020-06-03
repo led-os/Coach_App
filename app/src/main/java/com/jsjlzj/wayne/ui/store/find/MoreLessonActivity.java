@@ -16,6 +16,7 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
 import com.jsjlzj.wayne.entity.find.FindLessonPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingListBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -47,7 +48,7 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
     private int pageNo = 1;
     private int pageCount;
     /**
-     * 0 : 免费体验   1 ： 每日一学热门课程  2 ：热门听课   3 ：减脂  4 ： 更多运动   5 ： 4们课程   6 ： 分类推荐列表  7 :更多组合优惠  8 :更多指定类型商品
+     * 0 : 免费体验   1 ： 每日一学热门课程  2 ：热门听课   3 ：减脂  4 ： 更多运动   5 ： 4们课程   6 ： 分类推荐列表  7 :更多组合优惠  8 :更多指定类型商品  9 :更多最新  10 ：更多热卖
      */
     private int type;
 
@@ -57,6 +58,7 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
     private List<FindLessonBean> list = new ArrayList<>();
     private List<ShoppingBean> shoppingList = new ArrayList<>();
     private ProductAdapter groupProductAdapter;
+
 
 
     public static void go2this(Context activity, String title, int type, int categoryId) {
@@ -85,7 +87,7 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
         categoryId = getIntent().getIntExtra("categoryId", 0);
         rvData.setLoadingListener(this);
 
-        if(type != 7 && type != 8){
+        if(type != 7 && type != 8 && type != 9 && type != 10){
             rvData.setLayoutManager(new LinearLayoutManager(this));
             courserNewAdapter = new CourserNewAdapter(this, list);
             rvData.setAdapter(courserNewAdapter);
@@ -94,7 +96,12 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
             groupProductAdapter = new ProductAdapter(this,shoppingList);
             rvData.setAdapter(groupProductAdapter);
         }
+        if(type == 9 || type == 10){
+            rvData.setLoadingMoreEnabled(false);
+            rvData.setPullRefreshEnabled(false);
+        }
         loadData(true);
+
     }
 
 
@@ -135,6 +142,12 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
             case 8:
                 map.put("productCategoryId",categoryId);
                 presenter.getSearchProductList(map);
+                break;
+            case 9:
+                presenter.getSearchNewProductList();
+                break;
+            case 10:
+                presenter.getSearchHotProductList();
                 break;
             default:
                 break;
@@ -204,6 +217,35 @@ public class MoreLessonActivity extends MVPBaseActivity<HomeView, HomePresenter>
                 pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
             }
             List<ShoppingBean> list = resp.getData().getData().getResult();
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    shoppingList.clear();
+                }
+                shoppingList.addAll(list);
+                groupProductAdapter.setData(shoppingList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty, 0, null);
+            }
+        }
+    }
+
+
+    @Override
+    public void getNewShoppingListSuccess(MdlBaseHttpResp<ShoppingListBean> resp) {
+//        rvData.refreshComplete();
+//        rvData.loadMoreComplete();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
+//            pageNo = resp.getData().getData().getPageNo();
+//            int totalCount = resp.getData().getData().getTotalCount();
+//            int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
+//            if (a == 0) {
+//                pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
+//            } else {
+//                pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
+//            }
+            List<ShoppingBean> list = resp.getData().getData();
             if (list != null && list.size() > 0) {
                 if (isRefresh) {
                     shoppingList.clear();

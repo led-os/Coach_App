@@ -666,11 +666,13 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestSaveLocation(body);
         setSubscribe(observable, observer);
     }
+
     public void modifyLocation(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestModifyLocation(body);
         setSubscribe(observable, observer);
     }
+
     public void deleteLocation(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestDeleteLocation(body);
@@ -701,6 +703,18 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void getSearchNewProductList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSearchNewProductList(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getSearchHotProductList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestSearchHotProductList(body);
+        setSubscribe(observable, observer);
+    }
+
     public void getTimeSkillProductList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestTimeSkillProductList(body);
@@ -719,20 +733,20 @@ public class HttpDataHome extends BaseHttpData {
     }
 
 
-    public void commitOrder(Map params,Observer observer) {
+    public void commitOrder(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestCommitOrder(body);
         setSubscribe(observable, observer);
     }
 
-    public void commitOrder2(Map params,Observer observer) {
+    public void commitOrder2(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestCommitOrder2(body);
         setSubscribe(observable, observer);
     }
 
 
-    public void getMineCouponList(int useStatus,Observer observer) {
+    public void getMineCouponList(int useStatus, Observer observer) {
         Observable observable = service.requestMineCouponList(useStatus);
         setSubscribe(observable, observer);
     }
@@ -760,16 +774,25 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestDeleteCar(body);
         setSubscribe(observable, observer);
     }
+
     public void toPayOrder(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestPayOrder(body);
         setSubscribe(observable, observer);
     }
+
     public void getOrderList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestOrderList(body);
         setSubscribe(observable, observer);
     }
+
+    public void getProfitOrderList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestProfitOrderList(body);
+        setSubscribe(observable, observer);
+    }
+
     public void getAfterOrderList(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestAfterOrderList(body);
@@ -782,21 +805,25 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestAfterOrderCancel(body);
         setSubscribe(observable, observer);
     }
+
     public void getOrderDetail(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestOrderDetail(body);
         setSubscribe(observable, observer);
     }
+
     public void getCancelAfterSale(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestCancelAfterSale(body);
         setSubscribe(observable, observer);
     }
+
     public void saveAfterSale(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestSaveAfterSale(body);
         setSubscribe(observable, observer);
     }
+
     public void getOrderAfterDetail(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestOrderAfterDetail(body);
@@ -808,6 +835,7 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestOrderCancel(orderCode);
         setSubscribe(observable, observer);
     }
+
     public void searchPayResult(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestSearchPayResult(body);
@@ -824,21 +852,25 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestEvaluateOrder(body);
         setSubscribe(observable, observer);
     }
+
     public void getLogisticsInfo(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestLogisticsInfo(body);
         setSubscribe(observable, observer);
     }
+
     public void setPayPassword(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestPayPassword(body);
         setSubscribe(observable, observer);
     }
+
     public void getCourserDetail(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestCourserDetail(body);
         setSubscribe(observable, observer);
     }
+
     public void buyCourserByCurrency(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestBuyCourserByCurrency(body);
@@ -850,6 +882,7 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestCommitVipOrder(body);
         setSubscribe(observable, observer);
     }
+
     public void getShoppingDetail(int params, Observer observer) {
 
         Observable observable = service.requestShoppingDetail(params);
@@ -861,6 +894,7 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestUpdateBynum(body);
         setSubscribe(observable, observer);
     }
+
     public void applyLeader(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestApplyLeader(body);

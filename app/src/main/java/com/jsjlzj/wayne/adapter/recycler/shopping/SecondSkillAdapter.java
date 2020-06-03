@@ -88,8 +88,8 @@ public class SecondSkillAdapter extends RecyclerView.Adapter<SecondSkillAdapter.
             tvOldMoney.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
             tvOldMoney.getPaint().setAntiAlias(true); //去掉锯齿
             GlidUtils.setGrid(context,shoppingBean.getPic(),imgShopType);
-            tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloat(shoppingBean.getFlashPromotionPrice()));
-            tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloat(shoppingBean.getPrice()));
+            tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloatFY(shoppingBean.getPrice()));
+//            tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloatFY(shoppingBean.getPrice()));
             itemView.setOnClickListener(v -> {
 //                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+shoppingBean.getId(),
 //                        WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);

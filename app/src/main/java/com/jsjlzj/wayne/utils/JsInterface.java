@@ -32,6 +32,7 @@ import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 
+import static com.jsjlzj.wayne.ui.store.find.ConfirmCourserOrderActivity.REQUEST_CODE_BUY_COURSE;
 import static com.jsjlzj.wayne.utils.Utility.bmpToByteArray;
 import static com.jsjlzj.wayne.utils.Utility.buildTransaction;
 
@@ -207,7 +208,7 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void buyCourse(int id){
-        ConfirmCourserOrderActivity.go2this(mContext, id);
+        ConfirmCourserOrderActivity.go2this(mContext, id,REQUEST_CODE_BUY_COURSE);
     }
 
     /**
@@ -240,7 +241,7 @@ public class JsInterface {
 
     @JavascriptInterface
     public void buyVip(int productId,float amount){
-        PaymentActivity.go2this(mContext,2,productId,String.valueOf(amount));
+        PaymentActivity.go2this(mContext,2,productId,String.valueOf(amount),PaymentActivity.REQUEST_CODE_BUY_VIP);
     }
 
     @JavascriptInterface

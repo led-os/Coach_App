@@ -282,7 +282,7 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 AddEducationActivity.go2this(MasterCardActivity.this);
                 break;
             case R.id.create_elect_card://生成电子名片
-                InvitationActivity.go2this(this);
+//                InvitationActivity.go2this(this);
                 break;
             default:
                 break;

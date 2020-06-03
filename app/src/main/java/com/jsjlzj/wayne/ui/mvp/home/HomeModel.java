@@ -27,8 +27,10 @@ import com.jsjlzj.wayne.entity.shopping.MineCouponBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.OrderDetailBean;
 import com.jsjlzj.wayne.entity.shopping.PayResultBean;
+import com.jsjlzj.wayne.entity.shopping.ProfitOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingDetailBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingListBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.shopping.VipDataBean;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
@@ -1602,6 +1604,52 @@ public class HomeModel extends BaseModel {
         });
     }
 
+    public void getSearchNewProductList(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getSearchNewProductList(param, new Observer<MdlBaseHttpResp<ShoppingListBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<ShoppingListBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getSearchHotProductList(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getSearchHotProductList(param, new Observer<MdlBaseHttpResp<ShoppingListBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<ShoppingListBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
     public void getTimeSkillProductList(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().getTimeSkillProductList(param, new Observer<MdlBaseHttpResp<ShoppingPageBean>>() {
             @Override
@@ -1727,6 +1775,29 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<MineOrderPageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getProfitOrderList(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getProfitOrderList(param, new Observer<MdlBaseHttpResp<ProfitOrderPageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<ProfitOrderPageBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

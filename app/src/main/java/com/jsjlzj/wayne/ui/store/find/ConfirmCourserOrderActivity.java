@@ -41,6 +41,7 @@ import butterknife.ButterKnife;
  */
 public class ConfirmCourserOrderActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
 
+    public static final int REQUEST_CODE_BUY_COURSE = 1234;
     @BindView(R.id.rv_order)
     RecyclerView rvOrder;
     @BindView(R.id.tv_currency)
@@ -68,8 +69,8 @@ public class ConfirmCourserOrderActivity extends MVPBaseActivity<HomeView, HomeP
     private float totalMoney;
 
 
-    public static void go2this(Activity activity, int id) {
-        activity.startActivity(new Intent(activity, ConfirmCourserOrderActivity.class).putExtra("courserId", id));
+    public static void go2this(Activity activity, int id,int requestCode) {
+        activity.startActivityForResult(new Intent(activity, ConfirmCourserOrderActivity.class).putExtra("courserId", id),requestCode);
     }
 
     @Override
@@ -164,6 +165,7 @@ public class ConfirmCourserOrderActivity extends MVPBaseActivity<HomeView, HomeP
     public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             LogAndToastUtil.toast("购买成功");
+            setResult(Activity.RESULT_OK);
             finish();
         }
     }

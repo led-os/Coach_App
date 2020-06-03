@@ -124,11 +124,12 @@ public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView
                 followCommunityItemFragment = CommunityItemFragment.getInstance(i,tvLocation.getText().toString());
                 fragments.add(followCommunityItemFragment);
             }else if(i == 2){
-                cityCommunityItemFragment = CommunityItemFragment.getInstance(i,tvLocation.getText().toString());
-                fragments.add(cityCommunityItemFragment);
-            }else if(i == 3){
+//                cityCommunityItemFragment = CommunityItemFragment.getInstance(i,tvLocation.getText().toString());
+//                fragments.add(cityCommunityItemFragment);
                 allCommunityItemFragment = CommunityItemFragment.getInstance(i,tvLocation.getText().toString());
                 fragments.add(allCommunityItemFragment);
+            }else if(i == 3){
+
             }
 
         }
@@ -183,7 +184,9 @@ public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView
         if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
             String cityName = data.getStringExtra(ExtraConstant.EXTRA_NAME);
             tvLocation.setText(cityName);
-            cityCommunityItemFragment.setCityName(cityName);
+            hotCommunityItemFragment.setCityName(cityName);
+            followCommunityItemFragment.setCityName(cityName);
+            allCommunityItemFragment.setCityName(cityName);
         }
     }
 }

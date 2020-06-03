@@ -113,6 +113,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_CANCEL_AFTER_SALE = 79;
     private static final int REQ_CODE_LOGISTICS_LIST = 80;
     private static final int REQ_CODE_SKILL_HINT = 81;
+    private static final int REQ_CODE_PROFIT_ORDER_LIST = 82;
+    private static final int REQ_CODE_SHOPPING_LIST = 83;
 
 
 
@@ -615,6 +617,20 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void getSearchNewProductList() {
+        if (model != null) {
+//            view.showLoading();
+            model.getSearchNewProductList(REQ_CODE_SHOPPING_LIST, null, this);
+        }
+    }
+
+    public void getSearchHotProductList() {
+        if (model != null) {
+//            view.showLoading();
+            model.getSearchHotProductList(REQ_CODE_SHOPPING_LIST, null, this);
+        }
+    }
+
     public void getTimeSkillProductList(Map param) {
         if (model != null) {
             view.showLoading();
@@ -694,6 +710,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
         if (model != null) {
             view.showLoading();
             model.getOrderList(REQ_CODE_GET_ORDER_LIST, params, this);
+        }
+    }
+    public void getProfitOrderList(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getProfitOrderList(REQ_CODE_PROFIT_ORDER_LIST, params, this);
         }
     }
 
@@ -1039,6 +1061,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_LOGISTICS_LIST:
                 view.getLogisticsListSuccess(resp);
+                break;
+            case REQ_CODE_PROFIT_ORDER_LIST:
+                view.getProfitOrderListSuccess(resp);
+                break;
+            case REQ_CODE_SHOPPING_LIST:
+                view.getNewShoppingListSuccess(resp);
                 break;
             default:
                 break;

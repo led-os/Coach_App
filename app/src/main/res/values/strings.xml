@@ -288,7 +288,7 @@
         <!--        <item>推荐</item>-->
         <item>淘学</item>
         <item>赛事</item>
-<!--        <item>干货</item>-->
+        <!--        <item>干货</item>-->
         <item>资讯</item>
     </string-array>
 
@@ -354,8 +354,7 @@
     <string-array name="community_title_list">
         <item>热门</item>
         <item>关注</item>
-        <item>同城</item>
-<!--        <item>全部</item>-->
+        <item>全部</item>
     </string-array>
 
 

@@ -102,6 +102,10 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     RecyclerView rvShop;
     @BindView(R.id.rel_shopping_cart)
     RelativeLayout relShoppingCart;
+    @BindView(R.id.rel_new)
+    RelativeLayout relNew;
+    @BindView(R.id.rel_hot)
+    RelativeLayout relHot;
     @BindView(R.id.tv_number)
     TextView tvNumber;
 
@@ -137,6 +141,8 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         tvComposeMore.setOnClickListener(clickListener);
         tvSSkill.setOnClickListener(clickListener);
         relShoppingCart.setOnClickListener(clickListener);
+        relNew.setOnClickListener(clickListener);
+        relHot.setOnClickListener(clickListener);
         initRecycler();
         presenter.getHomeShoppingData();
         Map<Object,Object> map = new HashMap<>();
@@ -200,6 +206,12 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
                 break;
             case R.id.rel_shopping_cart:
                 ShoppingCartActivity.go2this(getActivity());
+                break;
+            case R.id.rel_new:
+                MoreLessonActivity.go2this(getActivity(),"最新产品",9,0);
+                break;
+            case R.id.rel_hot:
+                MoreLessonActivity.go2this(getActivity(),"热卖产品",10,0);
                 break;
             default:
                 break;
