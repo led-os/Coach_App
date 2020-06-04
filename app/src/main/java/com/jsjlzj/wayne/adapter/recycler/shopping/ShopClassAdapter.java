@@ -58,7 +58,7 @@ public class ShopClassAdapter extends RecyclerView.Adapter<ShopClassAdapter.View
 
     @Override
     public int getItemCount() {
-        return list != null ? list.size() > 4 ? 4 : list.size() : 0;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -76,7 +76,7 @@ public class ShopClassAdapter extends RecyclerView.Adapter<ShopClassAdapter.View
         void bindView(int pos) {
             categoryBean = list.get(pos);
             tvTitle.setText(categoryBean.getName());
-            tvDes.setText(categoryBean.getKeywords());
+            tvDes.setText(categoryBean.getDescription());
             if (pos == selectIndex) {
                 tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color_f1404b));
                 tvDes.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_class_shop));

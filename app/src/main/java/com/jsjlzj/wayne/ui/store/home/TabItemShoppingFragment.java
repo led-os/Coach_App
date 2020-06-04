@@ -169,7 +169,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvNewProduct.setAdapter(newProductAdapter);
 
         shopClassAdapter = new ShopClassAdapter(getActivity(),shopClassList);
-        rvShopClass.setLayoutManager(new GridLayoutManager(getActivity(),4));
+        rvShopClass.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         shopClassAdapter.setListener(this);
         rvShopClass.setAdapter(shopClassAdapter);
 
