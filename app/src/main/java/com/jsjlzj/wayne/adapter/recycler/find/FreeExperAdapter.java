@@ -86,7 +86,7 @@ public class FreeExperAdapter extends RecyclerView.Adapter<FreeExperAdapter.View
             findLessonBean = list.get(pos);
             GlidUtils.setRoundGrid(context,findLessonBean.getCoverImg(),imgUrl,4);
             tvTitle.setText(findLessonBean.getTitle());
-            tvNumber.setText(DateUtil.getNumByInteger(findLessonBean.getStudyPersons())+"次播放量");
+            tvNumber.setText(DateUtil.getNumByInteger(findLessonBean.getPlayCount())+"次播放量");
             tvPrice.setText(findLessonBean.getOriginPrice());
             tvPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
             tvPrice.getPaint().setAntiAlias(true); //去掉锯齿

@@ -164,7 +164,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvSShop.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvSShop.setAdapter(secondSkillAdapter);
 
-        newProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
+        newProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>(),1);
         rvNewProduct.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvNewProduct.setAdapter(newProductAdapter);
 
@@ -173,7 +173,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         shopClassAdapter.setListener(this);
         rvShopClass.setAdapter(shopClassAdapter);
 
-        hotProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>());
+        hotProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>(),2);
         rvHotProduct.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvHotProduct.setAdapter(hotProductAdapter);
 

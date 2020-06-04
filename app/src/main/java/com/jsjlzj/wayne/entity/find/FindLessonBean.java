@@ -37,6 +37,15 @@ public class FindLessonBean {
     private String teacherDesc;
     private String teacherName;
     private String title;
+    private int playCount;
+
+    public int getPlayCount() {
+        return playCount;
+    }
+
+    public void setPlayCount(int playCount) {
+        this.playCount = playCount;
+    }
 
     public String getCategoryId() {
         return categoryId;

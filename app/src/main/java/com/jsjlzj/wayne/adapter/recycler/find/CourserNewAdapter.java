@@ -85,7 +85,7 @@ public class CourserNewAdapter extends RecyclerView.Adapter<CourserNewAdapter.Vi
             GlidUtils.setRoundGrid(context, findLessonBean.getCoverImg(), imgUrl,5);
             tvTitle.setText(findLessonBean.getTitle());
             tvDes.setText(findLessonBean.getLessonDesc());
-            tvPlayNum.setText(DateUtil.getNumByInteger(findLessonBean.getStudyPersons())+"次播放量");
+            tvPlayNum.setText(DateUtil.getNumByInteger(findLessonBean.getPlayCount())+"次播放量");
             itemView.setOnClickListener(v -> {
                 WebViewContainerActivity.go2this(context,findLessonBean.getTitle(), HttpConstant.WEB_URL_NEW_COURSE_DETAIL+findLessonBean.getId(),
                         WebViewContainerFragment.TYPE_NEW_COURSE_DETAIL);

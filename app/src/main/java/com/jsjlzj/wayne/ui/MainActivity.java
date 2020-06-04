@@ -139,6 +139,10 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
 
     @Override
     protected void initViewAndControl() {
+        boolean isRestart = getIntent().getBooleanExtra("isRestart",false);
+        if(isRestart){
+            onCreate(null);
+        }
         MyApp.ME.dm = Utility.getDisplayScreenSize(this);
         MyApp.user = SPUtil.getUserFromSP();
         //登不上去的话 在AndroidManifest 有appkey

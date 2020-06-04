@@ -28,6 +28,15 @@ public class InvitationCodeBean {
          */
 
         private String url;
+        private String imgUrl;
+
+        public String getImgUrl() {
+            return imgUrl;
+        }
+
+        public void setImgUrl(String imgUrl) {
+            this.imgUrl = imgUrl;
+        }
 
         public String getUrl() {
             return url;

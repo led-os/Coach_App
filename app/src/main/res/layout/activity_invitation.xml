@@ -8,40 +8,70 @@
     tools:context=".ui.publicac.mine.InvitationActivity">
 
     <include layout="@layout/title_bar_layout"/>
-
-    <RelativeLayout
+    <Space
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="@dimen/padding_41"
-        android:layout_marginStart="@dimen/padding_36"
-        android:layout_marginEnd="@dimen/padding_36"
-        android:background="@drawable/icon_invalate_friend"
-        android:layout_marginBottom="@dimen/padding_51">
+        android:layout_weight="1"/>
+    <RelativeLayout
+        android:id="@+id/rel_friend"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginStart="@dimen/padding_30"
+        android:layout_marginEnd="@dimen/padding_30"
+        android:layout_marginBottom="@dimen/padding_20">
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
 
         <ImageView
             android:id="@+id/img_code"
-            android:layout_width="@dimen/padding_50"
-            android:layout_height="@dimen/padding_50"
+            android:layout_width="@dimen/padding_75"
+            android:layout_height="@dimen/padding_75"
             android:scaleType="fitXY"
-            android:layout_marginStart="@dimen/padding_25"
+            android:layout_marginStart="@dimen/padding_10"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/padding_5"/>
+            android:layout_marginBottom="@dimen/padding_10"/>
 
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/tv_invitation"
-        android:background="@drawable/bg_solid_4f9bfa_21"
-        android:layout_marginBottom="@dimen/padding_19"
-        android:text="邀请好友"
-        android:textSize="@dimen/text_size_16"
-        android:textColor="@color/white"
-        android:gravity="center"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/padding_42"
-        android:layout_marginStart="@dimen/padding_19"
-        android:layout_marginEnd="@dimen/padding_19"/>
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_save"
+            android:background="@drawable/bg_solid_ee712f_21"
+            android:layout_marginBottom="@dimen/padding_19"
+            android:text="保存专享海报"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/padding_42"
+            android:layout_marginStart="@dimen/padding_25"/>
+
+
+        <TextView
+            android:id="@+id/tv_invitation"
+            android:background="@drawable/bg_solid_dd4d45_21"
+            android:layout_marginBottom="@dimen/padding_19"
+            android:text="分享专属海报"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/padding_42"
+            android:layout_marginStart="@dimen/padding_10"
+            android:layout_marginEnd="@dimen/padding_25"/>
+
+
+    </LinearLayout>
 
 </LinearLayout>

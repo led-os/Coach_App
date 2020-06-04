@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -27,6 +31,11 @@ import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import butterknife.BindView;
 
 import static com.jsjlzj.wayne.utils.Utility.bmpToByteArray;
@@ -44,6 +53,12 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
     ImageView imgCode;
     @BindView(R.id.tv_invitation)
     TextView tvInvitation;
+    @BindView(R.id.tv_save)
+    TextView tvSave;
+    @BindView(R.id.back_img)
+    ImageView imgBack;
+    @BindView(R.id.rel_friend)
+    RelativeLayout relFriend;
     private Bitmap bitmap;
 
     public static void go2this(Activity context) {
@@ -64,6 +79,7 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
         mRightTv.setTextSize(15);
         mRightTv.setOnClickListener(clickListener);
         tvInvitation.setOnClickListener(clickListener);
+        tvSave.setOnClickListener(clickListener);
         presenter.getInvitationCode();
     }
 
@@ -82,6 +98,10 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
             case R.id.tv_invitation://分享专属海报
                 MdlUser.MdlUserBean bean = SPUtil.getUserFromSP();
                 share(HttpConstant.WEB_URL_INVITATION_FRIEND + bean.getId(), "邀请好友", "快来加入吧");
+                break;
+            case R.id.tv_save://保存专项海报
+                saveBitmap(relFriend,"fyyd_invitation");
+                LogAndToastUtil.toast("保存成功");
                 break;
         }
     }
@@ -114,13 +134,79 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
     @Override
     public void getInvitationSuccess(MdlBaseHttpResp<InvitationCodeBean> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
-            String imgUrl =resp.getData().getData().getUrl();
-            GlidUtils.setRoundGrid(this,imgUrl,imgCode,4);
-            BitmapUtils.getBitmap(this, imgUrl, bitmap -> {
-                LogAndToastUtil.log("====bitmap====" + bitmap + "==========" + imgUrl);
-                InvitationActivity.this.bitmap = bitmap;
-            });
+            String url =resp.getData().getData().getUrl();
+            String imgUrl = resp.getData().getData().getImgUrl();
+            GlidUtils.setGrid(this,imgUrl,imgBack);
+            GlidUtils.setRoundGrid(this,url,imgCode,4);
+            bitmap = Bitmap.createBitmap(relFriend.getWidth(), relFriend.getHeight(),
+                    Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            relFriend.draw(canvas);
+//            BitmapUtils.getBitmap(this, url, bitmap -> {
+//                LogAndToastUtil.log("====bitmap====" + bitmap + "==========" + imgUrl);
+//                InvitationActivity.this.bitmap = bitmap;
+//            });
         }
+    }
+
+
+    public void saveBitmap(View v, String name) {
+        String fileName = name + ".png";
+
+        String TAG = "TIKTOK";
+        LogAndToastUtil.log(TAG, "保存图片");
+        File f = new File( Environment.getExternalStorageDirectory().getAbsolutePath() , fileName);
+        if (f.exists()) {
+            f.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(f);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.flush();
+            out.close();
+            LogAndToastUtil.toast("已经保存");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 生成视图的预览
+     * @param activity
+     * @param v
+     * @return  视图生成失败返回null
+     *          视图生成成功返回视图的绝对路径
+     */
+    public static String saveImage(Activity activity, View v) {
+        Bitmap bitmap;
+        String path =  Environment.getExternalStorageDirectory().getAbsolutePath()  + "preview.png";
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        bitmap = view.getDrawingCache();
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int[] location = new int[2];
+        v.getLocationOnScreen(location);
+        try {
+            bitmap = Bitmap.createBitmap(bitmap, location[0], location[1], v.getWidth(), v.getHeight());
+            FileOutputStream fout = new FileOutputStream(path);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fout);
+            return path;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            LogAndToastUtil.log("TAG", "生成预览图片失败：" + e);
+        } catch (IllegalArgumentException e) {
+            LogAndToastUtil.log("TAG", "width is <= 0, or height is <= 0");
+        } finally {
+            // 清理缓存
+            view.destroyDrawingCache();
+        }
+        return null;
 
     }
+
 }

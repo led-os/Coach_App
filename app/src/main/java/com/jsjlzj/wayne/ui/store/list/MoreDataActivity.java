@@ -97,13 +97,13 @@ public class MoreDataActivity extends MVPBaseActivity<HomeView, HomePresenter> i
         rvMoreData.setLoadingListener(this);
         switch (type) {
             case 0:
+            case 2:
                 adapter = new InformationAdapter(this, videoList);
                 ((InformationAdapter)adapter).setListener(this);
                 rvMoreData.setLayoutManager(new LinearLayoutManager(this));
                 rvMoreData.setAdapter(adapter);
                 break;
             case 1:
-            case 2:
                 adapter = new HomeLikeAdapter(this, videoList,type);
                 ((HomeLikeAdapter)adapter).setAllOne(true);
                 rvMoreData.setLayoutManager(new LinearLayoutManager(this));
@@ -264,10 +264,10 @@ public class MoreDataActivity extends MVPBaseActivity<HomeView, HomePresenter> i
     private void setData() {
         switch (type){
             case 0:
+            case 2:
                 ((InformationAdapter)adapter).setData(this.videoList);
                 break;
             case 1:
-            case 2:
                 ((HomeLikeAdapter)adapter).setData(this.videoList);
                 break;
             case 3:

@@ -76,7 +76,7 @@ public class ShopClassAdapter extends RecyclerView.Adapter<ShopClassAdapter.View
         void bindView(int pos) {
             categoryBean = list.get(pos);
             tvTitle.setText(categoryBean.getName());
-            tvDes.setText(categoryBean.getDescription());
+            tvDes.setText(categoryBean.getKeywords());
             if (pos == selectIndex) {
                 tvTitle.setTextColor(ContextCompat.getColor(context,R.color.color_f1404b));
                 tvDes.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_class_shop));

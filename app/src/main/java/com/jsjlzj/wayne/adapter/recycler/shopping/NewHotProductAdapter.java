@@ -12,6 +12,7 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
+import com.jsjlzj.wayne.ui.store.find.MoreLessonActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -34,10 +35,12 @@ public class NewHotProductAdapter extends RecyclerView.Adapter<NewHotProductAdap
 
     private Context context;
     private List<ShoppingBean> list = new ArrayList<>();
+    private int type;
 
-    public NewHotProductAdapter(Context context, List<ShoppingBean> list) {
+    public NewHotProductAdapter(Context context, List<ShoppingBean> list,int type) {
         this.context = context;
         this.list.addAll(list);
+        this.type = type;
     }
 
 
@@ -86,6 +89,11 @@ public class NewHotProductAdapter extends RecyclerView.Adapter<NewHotProductAdap
             tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloatFY(shoppingBean.getPrice()));
             tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+DateUtil.getTwoDotByFloatFY(shoppingBean.getOriginalPrice()));
             itemView.setOnClickListener(v -> {
+                if(type == 1){
+                    MoreLessonActivity.go2this(context,"最新产品",9,0);
+                }else {
+                    MoreLessonActivity.go2this(context,"热卖产品",10,0);
+                }
 //                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+shoppingBean.getId(),
 //                        WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
             });

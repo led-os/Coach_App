@@ -1,6 +1,8 @@
 package com.jsjlzj.wayne.ui.basis;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.View;
@@ -9,6 +11,7 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.ui.AppManager;
 import com.jsjlzj.wayne.ui.MainActivity;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
@@ -81,7 +84,6 @@ public class LoginRoleSelectActivity extends MVPBaseActivity<TalentPersonalView,
             if (null == params) params = new HashMap<>();
             params.put("type", type);
             presenter.switchIdentity(params);
-
         }
     }
 
@@ -101,7 +103,15 @@ public class LoginRoleSelectActivity extends MVPBaseActivity<TalentPersonalView,
                     if (bean.getStoreStatus() != 1 && bean.getStoreStatus() != 3) {
                         AttestationActivity.go2this(LoginRoleSelectActivity.this);
                     } else if (bean.getStoreStatus() == 3) {
-                        MainActivity.go2this(LoginRoleSelectActivity.this, true);
+                        Intent intent = new Intent(LoginRoleSelectActivity.this,MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("isRestart",true);
+                        startActivity(intent);
+//                        finish();
+//                        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+//                        manager.restartPackage("com.jsjlzj.wayne");
+//                        finish();
                     } else if (bean.getStoreStatus() == 1) {
                         LogAndToastUtil.toast("审核中。。。");
                     }
