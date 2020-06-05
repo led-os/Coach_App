@@ -16,6 +16,8 @@
             android:id="@+id/pb_load"
             android:layout_width="65dp"
             android:layout_height="65dp"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="@color/colorPrimary"
             android:layout_centerInParent="true"/>
 
     </RelativeLayout>
