@@ -45,7 +45,9 @@ public class PositionVideoFragment extends MVPBaseFragment<TalentTabFragmentView
 
     @Override
     protected void initViewAndControl(View view) {
-        videoBeans = (List<VideoBean>) getArguments().getSerializable(ExtraConstant.EXTRA_DATA);
+        if(getArguments() != null){
+            videoBeans = (List<VideoBean>) getArguments().getSerializable(ExtraConstant.EXTRA_DATA);
+        }
         rvVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new PositionVideoAdapter(getActivity(),videoBeans);
         rvVideo.setAdapter(adapter);

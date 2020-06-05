@@ -139,10 +139,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
 
     @Override
     protected void initViewAndControl() {
-        boolean isRestart = getIntent().getBooleanExtra("isRestart",false);
-        if(isRestart){
-            onCreate(null);
-        }
+
         MyApp.ME.dm = Utility.getDisplayScreenSize(this);
         MyApp.user = SPUtil.getUserFromSP();
         //登不上去的话 在AndroidManifest 有appkey
@@ -408,10 +405,10 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     public void getIsFinishInfoSuccess(MdlBaseHttpResp<DataBean> resp) {
         LogAndToastUtil.log("====="+resp.getStatus());
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-            Boolean isFinishInfo = (Boolean) resp.getData().getData();
-            if(isFinishInfo){
-                GotoFinishInfoFragment.showDialog(getSupportFragmentManager());
-            }
+//            Boolean isFinishInfo = (Boolean) resp.getData().getData();
+//            if(isFinishInfo){
+//                GotoFinishInfoFragment.showDialog(getSupportFragmentManager(),0);
+//            }
         }
     }
 }

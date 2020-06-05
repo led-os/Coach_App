@@ -103,11 +103,15 @@ public class LoginRoleSelectActivity extends MVPBaseActivity<TalentPersonalView,
                     if (bean.getStoreStatus() != 1 && bean.getStoreStatus() != 3) {
                         AttestationActivity.go2this(LoginRoleSelectActivity.this);
                     } else if (bean.getStoreStatus() == 3) {
-                        Intent intent = new Intent(LoginRoleSelectActivity.this,MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("isRestart",true);
+                        Intent intent = new Intent(this,MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.putExtra("isStore",true);
                         startActivity(intent);
+//                        Intent intent = new Intent(LoginRoleSelectActivity.this,MainActivity.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        intent.putExtra("isRestart",true);
+//                        startActivity(intent);
 //                        finish();
 //                        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 //                        manager.restartPackage("com.jsjlzj.wayne");
@@ -117,7 +121,11 @@ public class LoginRoleSelectActivity extends MVPBaseActivity<TalentPersonalView,
                     }
                     break;
                 case "TRAINER":
-                    MainActivity.go2this(LoginRoleSelectActivity.this, false);
+                    Intent intent = new Intent(this,MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("isStore",false);
+                    startActivity(intent);
+//                    MainActivity.go2this(LoginRoleSelectActivity.this, false);
                     break;
                 default:
                     break;

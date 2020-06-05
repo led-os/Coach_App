@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/ic_loading00"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading01"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading02"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading03"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading04"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading05"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading06"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading07"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading08"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading09"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading10"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading11"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading12"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading13"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading14"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading15"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading16"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading17"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading18"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading19"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading20"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading21"
+        android:duration="@integer/loading_anim" />
+    <item
+        android:drawable="@drawable/ic_loading22"
+        android:duration="@integer/loading_anim" />
+    <!--<item-->
+        <!--android:drawable="@drawable/ic_loading23"-->
+        <!--android:duration="@integer/loading_anim" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/ic_loading24"-->
+        <!--android:duration="@integer/loading_anim" />-->
+    <!--<item-->
+        <!--android:drawable="@drawable/ic_loading25"-->
+        <!--android:duration="@integer/loading_anim" />-->
+
+</animation-list>

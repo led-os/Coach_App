@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.ui.mvp.relizetalentpersonal;
 
 
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
@@ -139,6 +140,10 @@ public interface TalentPersonalView extends BaseView {
 
     //获取首页商城数量成功
     default void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp){}
+
+
+    //完善信息成功
+    default void finishInfoSuccess(MdlBaseHttpResp<DataBean> resp){}
 
 
     //获取数据字典

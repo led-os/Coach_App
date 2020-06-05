@@ -68,6 +68,7 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
     private static final int REQ_CODE_134 = 134;
     private static final int REQ_CODE_135 = 135;
     private static final int REQ_CODE_136 = 136;
+    private static final int REQ_CODE_137 = 137;
 
 
     private TalentPersonalModel model;
@@ -326,6 +327,14 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
         }
     }
 
+    //是否完善门店信息
+    public void isFinishStoreInfo() {
+        if (model != null) {
+            view.showLoading();
+            model.isFinishStoreInfo(REQ_CODE_137, null, this);
+        }
+    }
+
     //沟通过达人列表
     public void getCommunitList(Map param) {
         if (model != null) {
@@ -531,6 +540,9 @@ public class TalentPersonalPresenter extends BasePresenter<TalentPersonalView> {
                 break;
             case REQ_CODE_135:
                 view.getShoppingNumSuccess(resp);
+                break;
+            case REQ_CODE_137:
+                view.finishInfoSuccess(resp);
                 break;
             default:
                 break;

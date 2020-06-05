@@ -97,8 +97,15 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
             GlidUtils.setGrid(context,bean.getPic(),imgShop);
             tvTitle.setText(bean.getName());
             tvDes.setText(bean.getSdate());
-            tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloatFY(bean.getPrice()));
-//            tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+DateUtil.getTwoDotByFloatFY(bean.getPrice()));
+
+            if(bean.getFlashPromotionPrice() > 0){
+                tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloatFY(bean.getFlashPromotionPrice()));
+                tvOldMoney.setText(context.getResources().getString(R.string.chinese_money)+DateUtil.getTwoDotByFloatFY(bean.getPrice()));
+                tvOldMoney.setVisibility(View.VISIBLE);
+            }else {
+                tvMoney.setText(context.getResources().getString(R.string.chinese_money)+ DateUtil.getTwoDotByFloatFY(bean.getPrice()));
+                tvOldMoney.setVisibility(View.GONE);
+            }
             if(type == 0){
                 tvRob.setText("立即抢购");
                 tvRob.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_rob_shop));

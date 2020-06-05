@@ -166,6 +166,12 @@ public class HttpDataStroe extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void isFinishStoreInfo(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.isFinishStoreInfo(body);
+        setSubscribe(observable, observer);
+    }
+
     public void commCV(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.commCV(body);

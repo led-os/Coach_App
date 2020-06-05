@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:textSize="@dimen/text_size_13"
-            android:textColor="@color/color_4F9BFA"
+            android:textColor="@color/color_222222"
             android:gravity="center"
             android:text="全部报名"
             android:layout_weight="1"/>

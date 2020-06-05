@@ -251,6 +251,9 @@ public class HttpConstant {
     //
     //搜索达人简历
     public static final String API_SEARCHCV = "store/cv/searchCV";
+    //
+    //门店端是否需要完善信息
+    public static final String API_STORE_FINISH_INFO = "store/isNeedPerfect";
 
     /**
      * 教练端-简历模块

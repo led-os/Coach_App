@@ -20,6 +20,7 @@ import com.jsjlzj.wayne.adapter.recycler.BaseAdapterHelper;
 import com.jsjlzj.wayne.adapter.recycler.MyRecyclerAdapter;
 import com.jsjlzj.wayne.adapter.recycler.WrapContentLinearLayoutManager;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlCV;
 import com.jsjlzj.wayne.entity.store.MdlPositionType;
@@ -34,6 +35,8 @@ import com.jsjlzj.wayne.ui.store.talent.position.RecruitActivity;
 import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenActivity;
 import com.jsjlzj.wayne.ui.store.talent.utilac.ScreenLabActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewActivity;
+import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewNewActivity;
+import com.jsjlzj.wayne.ui.trainer.position.GotoFinishInfoFragment;
 import com.jsjlzj.wayne.widgets.MyRecyclerView;
 
 import java.util.ArrayList;
@@ -119,11 +122,12 @@ public class TabItemTrainerFragment extends MVPBaseFragment<TalentPersonalView, 
         pageNo=1;
         selected=0;
         presenter.getPublishPositionTypeList(null);
-
     }
 
     public void getInfo() {
-        if (null == map) map = new HashMap<>();
+        if (null == map) {
+            map = new HashMap<>();
+        }
         map.clear();
         if (pageNo == 1) {
             listAll.clear();
@@ -144,7 +148,7 @@ public class TabItemTrainerFragment extends MVPBaseFragment<TalentPersonalView, 
 
     @Override
     protected void fragment2Front() {
-
+        presenter.isFinishStoreInfo();
     }
 
 
@@ -172,11 +176,13 @@ public class TabItemTrainerFragment extends MVPBaseFragment<TalentPersonalView, 
 
             @Override
             public void onUpdate(BaseAdapterHelper helper, final MdlCV.DataBean.ResultBean item, int position) {
-                if (item != null) setUI(helper, item);
+                if (item != null) {
+                    setUI(helper, item);
+                }
                 helper.setOnClickListener(R.id.llItem, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        PositionPreviewActivity.go2this(getActivity(), item.getId());
+                        PositionPreviewNewActivity.go2this(getActivity(), item.getId());
                     }
                 });
             }
@@ -301,19 +307,24 @@ public class TabItemTrainerFragment extends MVPBaseFragment<TalentPersonalView, 
                 case R.id.btnSearch:
                     ScreenActivity.go2this(getActivity(), rcmdOrNew, true);
                     break;
+                default:break;
             }
         }
     }
 
     private void unselectTab(TextView view) {
-        if (view == null) return;
+        if (view == null) {
+            return;
+        }
         view.setSelected(false);
         TextPaint paint = view.getPaint();
         paint.setFakeBoldText(false);
     }
 
     private void selectTab(TextView view) {
-        if (view == null) return;
+        if (view == null) {
+            return;
+        }
         view.setSelected(true);
         TextPaint paint = view.getPaint();
         paint.setFakeBoldText(true);
@@ -339,10 +350,12 @@ public class TabItemTrainerFragment extends MVPBaseFragment<TalentPersonalView, 
                     pageNo = 1;
                     getInfo();
                     break;
+                default:break;
             }
         }
     }
 
+    @Override
     public void showCV(MdlBaseHttpResp<MdlCV> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData() && null != resp.getData().getData().getResult()) {
             listAll.addAll(resp.getData().getData().getResult());
@@ -351,6 +364,7 @@ public class TabItemTrainerFragment extends MVPBaseFragment<TalentPersonalView, 
     }
 
 
+    @Override
     public void showPositionTypePublished(MdlBaseHttpResp<MdlPositionType> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
             if (null != resp.getData().getData() && resp.getData().getData().size() > 0) {
@@ -362,6 +376,16 @@ public class TabItemTrainerFragment extends MVPBaseFragment<TalentPersonalView, 
         }
         tabViewAdapter.notifyDataSetChanged();
         getInfo();
+    }
 
+
+    @Override
+    public void finishInfoSuccess(MdlBaseHttpResp<DataBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData()){
+            Boolean isFinishInfo = (Boolean) resp.getData().getData();
+            if(isFinishInfo){
+                GotoFinishInfoFragment.showDialog(getChildFragmentManager(), 1);
+            }
+        }
     }
 }

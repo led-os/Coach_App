@@ -160,6 +160,9 @@ public interface StoreService {
     @POST(HttpConstant.API_SEARCHCV)//搜索达人简历
     Observable<MdlBaseHttpResp<MdlCV>> searchCV(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_STORE_FINISH_INFO)//门店端是否需要完善信息
+    Observable<MdlBaseHttpResp<DataBean>> isFinishStoreInfo(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_COMMCVC)//沟通过列表
     Observable<MdlBaseHttpResp<MdlCV>> commCV(@Body RequestBody requestBody);
 

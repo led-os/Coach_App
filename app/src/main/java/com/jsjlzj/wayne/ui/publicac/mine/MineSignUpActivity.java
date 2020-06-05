@@ -113,7 +113,7 @@ public class MineSignUpActivity extends MVPBaseActivity<TalentTabFragmentView, T
         switch (view.getId()) {
             case R.id.tv_all_sign_up://全部报名
                 module = "";
-                tvAllSignUp.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+                tvAllSignUp.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
                 tvCourse.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
                 tvMatch.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
                 loadData(true);
@@ -122,13 +122,13 @@ public class MineSignUpActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 module = "sport_event";
                 tvAllSignUp.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
                 tvCourse.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
-                tvMatch.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+                tvMatch.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
                 loadData(true);
                 break;
             case R.id.tv_course://课程报名
                 module = "tao_learn";
                 tvAllSignUp.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
-                tvCourse.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+                tvCourse.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
                 tvMatch.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
                 loadData(true);
                 break;

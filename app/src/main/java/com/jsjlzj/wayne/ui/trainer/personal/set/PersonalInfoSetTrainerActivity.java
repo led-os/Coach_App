@@ -112,7 +112,7 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
     @Override
     protected void initViewAndControl() {
         initTitle("修改资料");
-        mRightTv.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+        mRightTv.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
         mRightTv.setTextSize(15);
         mRightTv.setText("保存");
         mRightTv.setVisibility(View.VISIBLE);

@@ -22,6 +22,7 @@ import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.set.NavigationActivity;
 import com.jsjlzj.wayne.ui.store.talent.position.RecruitActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewActivity;
+import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewNewActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.PositionInfoStoreActivity;
 import com.jsjlzj.wayne.ui.yunxin.YunXingUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
@@ -173,7 +174,7 @@ public class InterviewDetailActivity extends MVPBaseActivity<TalentTabFragmentVi
                         if (type == 2) {
                             PositionInfoStoreActivity.go2this(InterviewDetailActivity.this, bean.getPositionId());
                         } else {
-                            PositionPreviewActivity.go2this(InterviewDetailActivity.this, bean.getWorkHopeId());
+                            PositionPreviewNewActivity.go2this(InterviewDetailActivity.this, bean.getWorkHopeId());
                         }
                     }
                     break;

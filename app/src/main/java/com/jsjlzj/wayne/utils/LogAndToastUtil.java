@@ -8,8 +8,11 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 
+import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.ui.MyApp;
+import com.jsjlzj.wayne.ui.publicac.dialog.CustomProgressFragment;
+import com.jsjlzj.wayne.ui.publicac.dialog.LoadingFragment;
 
 import java.util.HashMap;
 import java.util.Stack;
@@ -41,13 +44,6 @@ public class LogAndToastUtil {
     public static void toast(Context context,int resId, Object... args) {
         toast(context,ResourceUtil.getString(resId), args);
     }
-
-
-
-
-
-
-
 
 
 
@@ -135,6 +131,7 @@ public class LogAndToastUtil {
     }
 
 
+
     public static ProgressDialog showWait(Context context, String message) {
         return showWait(context, message, true);
     }
@@ -147,7 +144,7 @@ public class LogAndToastUtil {
         if (context == null) {
             return null;
         }
-        ProgressDialog pd = new ProgressDialog(context);
+        CustomProgressFragment pd = new CustomProgressFragment(context, R.style.CustomDialog);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setCanceledOnTouchOutside(canceledOutside);
         pd.setMessage(message);

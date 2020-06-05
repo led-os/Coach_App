@@ -38,6 +38,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 
+/**
+ * 达人卡预览
+ */
 public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView {
 
     @BindView(R.id.btn_back)
@@ -175,7 +178,7 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
                 }
                 break;
             case R.id.ll_online_resume:
-                tvOnlineResume.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+                tvOnlineResume.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
                 tvVideo.setTextColor(ContextCompat.getColor(this, R.color.color_999999));
                 viewOnline.setVisibility(View.VISIBLE);
                 viewVideo.setVisibility(View.GONE);
@@ -183,7 +186,7 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
                 break;
             case R.id.ll_video:
                 tvOnlineResume.setTextColor(ContextCompat.getColor(this, R.color.color_999999));
-                tvVideo.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+                tvVideo.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
                 viewOnline.setVisibility(View.GONE);
                 viewVideo.setVisibility(View.VISIBLE);
                 showPositionVideoFragment();
@@ -215,7 +218,7 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
         }
         if (positionVideoFragment == null) {
             positionVideoFragment = new PositionVideoFragment();
-            if(data.getTeachVideos() != null){
+            if(data != null && data.getTeachVideos() != null){
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(ExtraConstant.EXTRA_DATA, (Serializable) data.getTeachVideos());
                 positionVideoFragment.setArguments(bundle);
@@ -231,6 +234,16 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
     @Override
     protected TalentTabFragmentPresenter createPresenter() {
         return new TalentTabFragmentPresenter(this);
+    }
+
+
+    @Override
+    public void showDetailCV(MdlBaseHttpResp<MdlDetailT> resp) {
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData()) {
+            setUi(resp);
+        } else {
+            LogAndToastUtil.toast(this, resp.getMsg());
+        }
     }
 
     public void setUi(MdlBaseHttpResp<MdlDetailT> resp) {
@@ -251,7 +264,7 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
             imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.collected));
             isLikeFlag = true;
         } else {
-            imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.uncollected));
+            imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.ic_dianzang));
         }
         if (TextUtils.isEmpty(id)) {
             workHopeList = data.getWorkHopeList();
@@ -286,7 +299,7 @@ public class PositionPreviewNewActivity extends MVPBaseActivity<TalentTabFragmen
     @Override
     public void showCVCancelLike(MdlBaseHttpResp resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData()) {
-            imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.uncollected));
+            imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.ic_dianzang));
             isLikeFlag = false;
             LogAndToastUtil.toast("取消成功");
         } else {

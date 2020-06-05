@@ -93,15 +93,13 @@
 
         <ImageView
             android:id="@+id/img_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/padding_18"
+            android:layout_height="@dimen/padding_18"
+            android:scaleType="fitXY"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:paddingStart="@dimen/padding_5"
-            android:paddingTop="@dimen/padding_10"
-            android:paddingEnd="@dimen/padding_10"
-            android:paddingBottom="@dimen/padding_10"
-            android:src="@drawable/uncollected"
+            android:src="@drawable/ic_dianzang"
+            android:layout_marginEnd="@dimen/padding_14"
             android:visibility="gone" />
 
         <ImageView
@@ -202,7 +200,8 @@
         <FrameLayout
             android:id="@+id/fragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/padding_60"/>
 
         <TextView
             android:id="@+id/tv_to_communicate"
@@ -212,7 +211,7 @@
             android:layout_marginStart="@dimen/padding_19"
             android:layout_marginTop="@dimen/padding_16"
             android:layout_marginEnd="@dimen/padding_19"
-            android:background="@drawable/bg_solid_4f9bfa_21"
+            android:background="@drawable/bg_solid_222222_21"
             android:gravity="center"
             android:text="立即沟通"
             android:textColor="@color/white"

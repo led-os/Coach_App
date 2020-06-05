@@ -27,6 +27,7 @@ import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BasePresenter;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 import com.jsjlzj.wayne.ui.publicac.dialog.EmptyFragment;
+import com.jsjlzj.wayne.ui.publicac.dialog.LoadingFragment;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.utils.StatusBarCompatUtil;
@@ -191,6 +192,30 @@ public abstract class MVPBaseActivity<MVP_V extends BaseView, MVP_P extends Base
     }
 
     private EmptyFragment mEmptyFragment;
+    private LoadingFragment loadingFragment;
+
+    /**
+     * 显示 loading
+     */
+    protected void showLoadingFragment() {
+        if (loadingFragment != null) {
+            loadingFragment.dismissAllowingStateLoss();
+            loadingFragment = null;
+        }
+        loadingFragment = new LoadingFragment();
+        getSupportFragmentManager().beginTransaction().add(loadingFragment, "loading_fragment").commitAllowingStateLoss();
+    }
+
+    /**
+     * 隐藏loading
+     */
+    protected void cancelLoadingFragment() {
+        if (loadingFragment != null && loadingFragment.isAdded()) {
+            loadingFragment.dismissAllowingStateLoss();
+            loadingFragment = null;
+        }
+    }
+
     /**
      * 显示空页面
      *

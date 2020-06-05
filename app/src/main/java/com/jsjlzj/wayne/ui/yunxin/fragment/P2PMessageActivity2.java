@@ -24,6 +24,7 @@ import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.InterviewActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewActivity;
+import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewNewActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.PositionInfoStoreActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.eventbus.EnumEventBus;
@@ -378,7 +379,7 @@ public class P2PMessageActivity2 extends MyBaseMessageActivity<LoginActivityView
                 break;
                 case R.id.btnStoreDarencard://门店 达人卡
                 case R.id.btnStoreDarencard2://门店 达人卡
-                    PositionPreviewActivity.go2this(P2PMessageActivity2.this, intenviewID);
+                    PositionPreviewNewActivity.go2this(P2PMessageActivity2.this, intenviewID);
                     break;
                 case R.id.btnStoreMianshi://门店 面试
                 case R.id.btnStoreMianshi2://门店 面试

@@ -23,6 +23,7 @@ import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
 import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewActivity;
+import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewNewActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.MyRecyclerView;
 
@@ -117,7 +118,7 @@ public class ConnectListActivity extends MVPBaseActivity<TalentPersonalView, Tal
                 helper.setOnClickListener(R.id.llItem, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        PositionPreviewActivity.go2this(ConnectListActivity.this, item.getId());
+                        PositionPreviewNewActivity.go2this(ConnectListActivity.this, item.getId());
                     }
                 });
             }

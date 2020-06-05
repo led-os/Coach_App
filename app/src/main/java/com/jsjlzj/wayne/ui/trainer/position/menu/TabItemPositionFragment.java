@@ -126,7 +126,9 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
     }
 
     public void getInfo() {
-        if (null == map) map = new HashMap<>();
+        if (null == map) {
+            map = new HashMap<>();
+        }
         map.clear();
         if (pageNo == 1) {
             listAll.clear();
@@ -321,6 +323,7 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
         getInfo();
     }
 
+    @Override
     public void showSearch(MdlBaseHttpResp<MdlPositionList> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData() && null != resp.getData().getData().getResult()) {
             listAll.addAll(resp.getData().getData().getResult());
@@ -331,11 +334,10 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
 
     @Override
     public void getIsFinishInfoSuccess(MdlBaseHttpResp<DataBean> resp) {
-        LogAndToastUtil.log("====="+resp.getStatus());
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             Boolean isFinishInfo = (Boolean) resp.getData().getData();
             if(isFinishInfo){
-                GotoFinishInfoFragment.showDialog(getChildFragmentManager());
+                GotoFinishInfoFragment.showDialog(getChildFragmentManager(),0);
             }
         }
     }

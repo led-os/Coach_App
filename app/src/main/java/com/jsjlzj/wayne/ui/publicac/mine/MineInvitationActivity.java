@@ -91,7 +91,7 @@ public class MineInvitationActivity extends MVPBaseActivity<TalentTabFragmentVie
         switch (view.getId()) {
             case R.id.tv_all://全部
                 type = 0;
-                tvAll.setTextColor(ContextCompat.getColor(this,R.color.color_4F9BFA));
+                tvAll.setTextColor(ContextCompat.getColor(this,R.color.color_222222));
                 tvStore.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
                 tvTrainer.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
                 loadData(true);
@@ -100,13 +100,13 @@ public class MineInvitationActivity extends MVPBaseActivity<TalentTabFragmentVie
                 type = 1;
                 tvAll.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
                 tvStore.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
-                tvTrainer.setTextColor(ContextCompat.getColor(this,R.color.color_4F9BFA));
+                tvTrainer.setTextColor(ContextCompat.getColor(this,R.color.color_222222));
                 loadData(true);
                 break;
             case R.id.tv_store://俱乐部
                 type = 2;
                 tvAll.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
-                tvStore.setTextColor(ContextCompat.getColor(this,R.color.color_4F9BFA));
+                tvStore.setTextColor(ContextCompat.getColor(this,R.color.color_222222));
                 tvTrainer.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
                 loadData(true);
                 break;

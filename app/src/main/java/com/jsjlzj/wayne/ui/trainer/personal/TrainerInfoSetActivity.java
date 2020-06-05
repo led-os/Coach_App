@@ -164,7 +164,7 @@ public class TrainerInfoSetActivity extends MVPBaseActivity<TalentTabFragmentVie
                     break;
                 case R.id.btnRight://预览
 
-                    PositionPreviewActivity.go2this(TrainerInfoSetActivity.this,"");
+                    PositionPreviewNewActivity.go2this(TrainerInfoSetActivity.this,"");
                     break;
                 case R.id.tvName://修改个人信息
                 case R.id.image://修改个人信息

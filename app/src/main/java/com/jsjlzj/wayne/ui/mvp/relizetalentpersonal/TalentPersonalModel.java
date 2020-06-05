@@ -4,6 +4,7 @@ package com.jsjlzj.wayne.ui.mvp.relizetalentpersonal;
 import com.jsjlzj.wayne.data.http.HttpDataBasis;
 import com.jsjlzj.wayne.data.http.HttpDataLogin;
 import com.jsjlzj.wayne.data.http.HttpDataStroe;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.FindCategoryBean;
@@ -548,6 +549,30 @@ public class TalentPersonalModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    public void isFinishStoreInfo(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataStroe.getInstance().isFinishStoreInfo(param, new Observer<MdlBaseHttpResp<DataBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                TalentPersonalModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<DataBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

@@ -139,13 +139,13 @@ public class ClassicDetailActivity extends MVPBaseActivity<HomeView, HomePresent
         switch (view.getId()) {
             case R.id.tv_news:
                 status = 1;
-                tvNews.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+                tvNews.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
                 tvHot.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
                 loadData(true);
                 break;
             case R.id.tv_hot:
                 status = 2;
-                tvHot.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+                tvHot.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
                 tvNews.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
                 loadData(true);
                 break;

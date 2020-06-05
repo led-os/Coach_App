@@ -183,7 +183,7 @@ public class MatchFragment extends MVPBaseFragment<HomeView, HomePresenter> impl
                 }
                 TextView tvTitle = view.findViewById(R.id.tv_title);
                 tvTitle.setTextSize(17);
-                tvTitle.setTextColor(ContextCompat.getColor(getActivity(),R.color.color_4F9BFA));
+                tvTitle.setTextColor(ContextCompat.getColor(getActivity(),R.color.color_222222));
                 tvTitle.setText(text);
                 tab.setCustomView(view);
                 switch (pos) {

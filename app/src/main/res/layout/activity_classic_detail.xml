@@ -47,7 +47,7 @@
                     android:paddingEnd="@dimen/padding_19"
                     android:paddingBottom="@dimen/padding_4"
                     android:text="最新"
-                    android:textColor="@color/color_4F9BFA"
+                    android:textColor="@color/color_222222"
                     android:textSize="@dimen/text_size_13" />
 
                 <TextView

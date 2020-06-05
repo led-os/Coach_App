@@ -75,7 +75,7 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
     @Override
     protected void initViewAndControl() {
         initRightTitle("邀请好友", "我的邀请");
-        mRightTv.setTextColor(ContextCompat.getColor(this, R.color.color_4F9BFA));
+        mRightTv.setTextColor(ContextCompat.getColor(this, R.color.color_222222));
         mRightTv.setTextSize(15);
         mRightTv.setOnClickListener(clickListener);
         tvInvitation.setOnClickListener(clickListener);
@@ -101,8 +101,8 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 break;
             case R.id.tv_save://保存专项海报
                 saveBitmap(relFriend,"fyyd_invitation");
-                LogAndToastUtil.toast("保存成功");
                 break;
+            default:break;
         }
     }
 
@@ -138,21 +138,24 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
             String imgUrl = resp.getData().getData().getImgUrl();
             GlidUtils.setGrid(this,imgUrl,imgBack);
             GlidUtils.setRoundGrid(this,url,imgCode,4);
-            bitmap = Bitmap.createBitmap(relFriend.getWidth(), relFriend.getHeight(),
-                    Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            relFriend.draw(canvas);
-//            BitmapUtils.getBitmap(this, url, bitmap -> {
-//                LogAndToastUtil.log("====bitmap====" + bitmap + "==========" + imgUrl);
-//                InvitationActivity.this.bitmap = bitmap;
-//            });
+//            bitmap = Bitmap.createBitmap(relFriend.getWidth(), relFriend.getHeight(),
+//                    Bitmap.Config.ARGB_8888);
+//            Canvas canvas = new Canvas(bitmap);
+//            relFriend.draw(canvas);
+            BitmapUtils.getBitmap(this, url, bitmap -> {
+                LogAndToastUtil.log("====bitmap====" + bitmap + "==========" + imgUrl);
+                InvitationActivity.this.bitmap = bitmap;
+            });
         }
     }
 
 
     public void saveBitmap(View v, String name) {
         String fileName = name + ".png";
-
+        Bitmap bitmap = Bitmap.createBitmap(relFriend.getWidth(), relFriend.getHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        v.draw(canvas);
         String TAG = "TIKTOK";
         LogAndToastUtil.log(TAG, "保存图片");
         File f = new File( Environment.getExternalStorageDirectory().getAbsolutePath() , fileName);
@@ -164,49 +167,12 @@ public class InvitationActivity extends MVPBaseActivity<TalentTabFragmentView, T
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.flush();
             out.close();
-            LogAndToastUtil.toast("已经保存");
+            LogAndToastUtil.toast("图片保存至"+ Environment.getExternalStorageDirectory().getAbsolutePath() + fileName);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-
-    /**
-     * 生成视图的预览
-     * @param activity
-     * @param v
-     * @return  视图生成失败返回null
-     *          视图生成成功返回视图的绝对路径
-     */
-    public static String saveImage(Activity activity, View v) {
-        Bitmap bitmap;
-        String path =  Environment.getExternalStorageDirectory().getAbsolutePath()  + "preview.png";
-        View view = activity.getWindow().getDecorView();
-        view.setDrawingCacheEnabled(true);
-        view.buildDrawingCache();
-        bitmap = view.getDrawingCache();
-        Rect frame = new Rect();
-        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        int[] location = new int[2];
-        v.getLocationOnScreen(location);
-        try {
-            bitmap = Bitmap.createBitmap(bitmap, location[0], location[1], v.getWidth(), v.getHeight());
-            FileOutputStream fout = new FileOutputStream(path);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fout);
-            return path;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            LogAndToastUtil.log("TAG", "生成预览图片失败：" + e);
-        } catch (IllegalArgumentException e) {
-            LogAndToastUtil.log("TAG", "width is <= 0, or height is <= 0");
-        } finally {
-            // 清理缓存
-            view.destroyDrawingCache();
-        }
-        return null;
-
     }
 
 }
