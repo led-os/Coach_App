@@ -16,7 +16,7 @@
             android:id="@+id/img_url"
             android:layout_width="@dimen/padding_154"
             android:layout_height="@dimen/padding_96"
-            android:scaleType="fitXY"
+            android:scaleType="centerInside"
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_default_image" />
 

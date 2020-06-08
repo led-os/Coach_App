@@ -75,7 +75,7 @@ public class ShoppTypeAdapter extends RecyclerView.Adapter<ShoppTypeAdapter.View
 
         void bindView(int pos) {
             categoryBean = list.get(pos);
-            GlidUtils.setGrid(context,categoryBean.getIcon(),imgShopType);
+            GlidUtils.setCircleGrid(context,categoryBean.getIcon(),imgShopType);
             tvShopType.setText(categoryBean.getName());
             itemView.setOnClickListener(v -> {
                 if (listener != null) {

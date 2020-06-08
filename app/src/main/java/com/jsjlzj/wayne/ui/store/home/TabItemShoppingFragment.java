@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.ui.store.home;
 
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.shopping.GroupProductAdapter;
 import com.jsjlzj.wayne.adapter.recycler.shopping.NewHotProductAdapter;
@@ -24,6 +26,7 @@ import com.jsjlzj.wayne.adapter.recycler.shopping.ShoppTypeAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.shopping.HomeShoppingDataBean;
+import com.jsjlzj.wayne.entity.shopping.ShoppingBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingNumBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingPageBean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
@@ -35,8 +38,12 @@ import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
 import com.jsjlzj.wayne.ui.store.search.SearchShopActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
 import com.jsjlzj.wayne.ui.store.shopping.TimeSecondActivity;
+import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
+import com.jsjlzj.wayne.widgets.MoveLayout;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
+import com.jsjlzj.wayne.widgets.MyDragView;
 import com.jsjlzj.wayne.widgets.NestedRecyclerView;
+import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +58,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate: 2020/04/20
  */
-public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView, ShopClassAdapter.OnItemClickListener {
+public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView, ShopClassAdapter.OnItemClickListener, XRecyclerView.LoadingListener, View.OnTouchListener {
 
 
     @BindView(R.id.ll_search)
@@ -99,7 +106,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     @BindView(R.id.rv_shop_class)
     RecyclerView rvShopClass;
     @BindView(R.id.rv_shop)
-    RecyclerView rvShop;
+    CustomXRecyclerView rvShop;
     @BindView(R.id.rel_shopping_cart)
     RelativeLayout relShoppingCart;
     @BindView(R.id.rel_new)
@@ -118,7 +125,12 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     private GroupProductAdapter groupProductAdapter;//组合优惠适配器
     private ShopClassAdapter shopClassAdapter;//底部分类适配器
     private ProductAdapter productAdapter;//底部商品列表
+
+    private int pageNo = 1;
+    private int pageCount;
+    private List<ShoppingBean> productList = new ArrayList<>();
     private List<HomeShoppingDataBean.DataBean.CategoryListBean> shopClassList = new ArrayList<>();
+    private boolean isRefresh = true;
 
     public TabItemShoppingFragment() {
     }
@@ -141,13 +153,15 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         tvComposeMore.setOnClickListener(clickListener);
         tvSSkill.setOnClickListener(clickListener);
         relShoppingCart.setOnClickListener(clickListener);
+//        relShoppingCart.setOnTouchListener(this);
         relNew.setOnClickListener(clickListener);
         relHot.setOnClickListener(clickListener);
         initRecycler();
         presenter.getHomeShoppingData();
+        pageNo = 1;
         Map<Object,Object> map = new HashMap<>();
         map.put("keywords","首页全部好货");
-        map.put(HttpConstant.PAGE_NO, 1);
+        map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         presenter.getSearchProductList(map);
     }
@@ -181,11 +195,14 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvCompose.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvCompose.setAdapter(groupProductAdapter);
 
+        rvShop.setPullRefreshEnabled(false);
+        rvShop.setLoadingMoreEnabled(true);
         rvShop.setHasFixedSize(true);
-        rvShop.setNestedScrollingEnabled(false);
+        rvShop.setNestedScrollingEnabled(true);
         productAdapter = new ProductAdapter(getActivity(),new ArrayList<>());
         rvShop.setLayoutManager(new GridLayoutManager(getActivity(),2));
         rvShop.setAdapter(productAdapter);
+        rvShop.setLoadingListener(this);
     }
 
     @Override
@@ -287,9 +304,23 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
     @Override
     public void getCategoryTypeListSuccess(MdlBaseHttpResp<ShoppingPageBean> resp) {
-        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-            if(resp.getData().getData() != null && resp.getData().getData().getResult() != null){
-                productAdapter.setData(resp.getData().getData().getResult());
+        rvShop.loadMoreComplete();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
+            pageNo = resp.getData().getData().getPageNo();
+            int totalCount = resp.getData().getData().getTotalCount();
+            int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
+            if (a == 0) {
+                pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
+            } else {
+                pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
+            }
+            List<ShoppingBean> list = resp.getData().getData().getResult();
+            if(isRefresh){
+                productList.clear();
+            }
+            if (list != null && list.size() > 0) {
+                productList.addAll(list);
+                productAdapter.setData(productList);
             }
         }
     }
@@ -321,8 +352,63 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         }else {
             map.put("productCategoryId",bean.getCategoryId());
         }
+        isRefresh = true;
         map.put(HttpConstant.PAGE_NO, 1);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         presenter.getSearchProductList(map);
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        if (pageNo < pageCount) {
+            isRefresh = false;
+            pageNo++;
+            Map<Object,Object> map = new HashMap<>();
+            map.put("keywords","首页全部好货");
+            map.put(HttpConstant.PAGE_NO, pageNo);
+            map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+            presenter.getSearchProductList(map);
+        } else {
+            ToastHelper.showToast(getActivity(), getString(R.string.has_no_more_data));
+        }
+    }
+
+
+    private int _xDelta;
+    private int _yDelta;
+
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        final int X = (int) event.getRawX();
+        final int Y = (int) event.getRawY();
+        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
+                RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) relShoppingCart.getLayoutParams();
+                _xDelta = X - lParams.leftMargin;
+                _yDelta = Y - lParams.topMargin;
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) relShoppingCart.getLayoutParams();
+                layoutParams.leftMargin = X - _xDelta;
+                layoutParams.topMargin = Y - _yDelta;
+                layoutParams.rightMargin = -250;
+                layoutParams.bottomMargin = -250;
+                view.setLayoutParams(layoutParams);
+                break;
+        }
+//        relRoot.invalidate();
+        return true;
     }
 }

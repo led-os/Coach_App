@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/shape_dialog_bg"
     android:layout_centerInParent="true"
@@ -10,12 +10,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="6dp">
 
         <ProgressBar
             android:id="@+id/pb_load"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:indeterminateTintMode="src_atop"
             android:indeterminateTint="@color/colorPrimary"
             android:layout_centerInParent="true"/>
@@ -27,8 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/padding_4"
         android:text="@string/loading"
         android:textColor="#9a9b98"
-        android:textSize="12sp"/>
+        android:textSize="10sp"/>
 
 </LinearLayout>

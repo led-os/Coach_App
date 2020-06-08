@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.ui.publicac.dialog.ZanFragment;
+import com.jsjlzj.wayne.ui.store.attestation.AttestationInfoActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.MasterCardActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -77,7 +78,11 @@ public class GotoFinishInfoFragment extends DialogFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_go_finish:
-                MasterCardActivity.go2this(getActivity());
+                if(type == 0){
+                    MasterCardActivity.go2this(getActivity());
+                }else {
+                    AttestationInfoActivity.go2this(getActivity(),2);
+                }
                 dismissAllowingStateLoss();
                 break;
             default:

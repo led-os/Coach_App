@@ -29,6 +29,8 @@ public class SPUtil {
     private static final String SP_FIRST = "SP_FIRST";
     private static final String SP_AGREE = "SP_AGREE";
     private static final String SP_CHECKBOX = "SP_CHECKBOX";
+    //是否刷新webview
+    private static final String SP_WEB_REFRESH = "SP_CHECKBOX";
 
     private static final SharedPreferences sp;
     static {
@@ -43,7 +45,14 @@ public class SPUtil {
         editor.apply();
     }
 
-
+    public static boolean getWebRefresh(){
+        return sp.getBoolean(SP_WEB_REFRESH, false);
+    }
+    public static void saveWebRefresh(boolean isRefresh){
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean(SP_WEB_REFRESH, isRefresh);
+        editor.apply();
+    }
     public static boolean getAgree(){
         return sp.getBoolean(SP_AGREE, false);
     }

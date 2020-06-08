@@ -10,6 +10,7 @@ import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
+import com.jsjlzj.wayne.ui.store.shopping.ConfirmOrderActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.Utility;
 
@@ -75,6 +76,9 @@ public abstract class BasePresenter<MVP_V extends BaseView> implements OnLoadHtt
                 }
                 LogAndToastUtil.log(view.getClass().getSimpleName() + "httppostt", resp + "");
             } else {
+                if(view instanceof ConfirmOrderActivity){
+                    return;
+                }
                 if (view instanceof Fragment) {
                     LogAndToastUtil.toast(((Fragment)view).getContext(),resp.getMsg());
                 } else if (view instanceof Activity) {

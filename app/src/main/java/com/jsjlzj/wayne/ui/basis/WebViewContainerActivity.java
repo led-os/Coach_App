@@ -33,6 +33,7 @@ import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.store.find.ConfirmCourserOrderActivity;
 import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
+import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.utils.StatusBarCompatUtil;
 import com.jsjlzj.wayne.utils.keyboard.KeyboardUtil;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
@@ -272,7 +273,9 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == Activity.RESULT_OK){
             if(requestCode == PaymentActivity.REQUEST_CODE_BUY_VIP || requestCode == ConfirmCourserOrderActivity.REQUEST_CODE_BUY_COURSE){
-
+                if(SPUtil.getWebRefresh()){
+                    webFragment.reload();
+                }
             }
         }
     }

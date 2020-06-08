@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.store.AchievementBean;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
+import com.jsjlzj.wayne.ui.basis.WebVideoActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -75,6 +76,9 @@ public class PositionVideoAdapter extends RecyclerView.Adapter<PositionVideoAdap
             bean = list.get(pos);
             GlidUtils.setGrid(context,bean.getCoverImg(),imgOne);
             tvPlayTime.setText(DateUtil.getDownTimer(bean.getVideoDuration()*1000));
+            itemView.setOnClickListener(v -> {
+//                WebVideoActivity.go2this(context,bean.getVideoUrl());
+            });
         }
     }
 

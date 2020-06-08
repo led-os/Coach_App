@@ -166,6 +166,7 @@ public class ConfirmCourserOrderActivity extends MVPBaseActivity<HomeView, HomeP
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             LogAndToastUtil.toast("购买成功");
             setResult(Activity.RESULT_OK);
+            SPUtil.saveWebRefresh(true);
             finish();
         }
     }

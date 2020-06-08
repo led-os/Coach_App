@@ -130,7 +130,7 @@ public class ConfirmOrderActivity extends MVPBaseActivity<HomeView, HomePresente
             }else {
                 price = shopping.getSkuPrice();
             }
-            bean.setPrice(price);
+            bean.setPrice(price*100);
             bean.setSkuId(shopping.getSkuId());
             bean.setProductId(shopping.getSkuId());
             bean.setProductName(shopping.getName());

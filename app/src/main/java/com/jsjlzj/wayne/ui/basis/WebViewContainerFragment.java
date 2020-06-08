@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.net.http.SslError;
@@ -94,6 +95,8 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
     public static final int TYPE_NEW_MEMBER_CENTER = 13;
     public static final int TYPE_NEW_DAY_SIGN = 14;
     public static final int TYPE_SCAN_SCORE = 15;
+
+    public static final int TYPE_PLAY_VIDEO = 16;
      /**
       * 内部跳转
       */
@@ -129,8 +132,9 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
 
      @Override
      protected void fragment2Front() {
+        LogAndToastUtil.log("====="+firstUrl+"======"+SPUtil.getWebRefresh());
         if(firstUrl.contains(HttpConstant.WEB_URL_NEW_MEMBER_CENTER ) || firstUrl.contains(HttpConstant.WEB_URL_NEW_COURSE_DETAIL)){
-            reload();
+
         }
      }
 
@@ -153,6 +157,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
         webSettings.setDomStorageEnabled(true);
         webSettings.setAllowFileAccess(true);
         webSettings.setTextZoom(100);
+
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setAllowFileAccessFromFileURLs(true);
@@ -287,14 +292,18 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
             return frameLayout;
         }
 
+        @SuppressLint("SourceLockedOrientationActivity")
         @Override
         public void onShowCustomView(View view, CustomViewCallback callback) {
             showCustomView(view, callback);
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
 
+        @SuppressLint("SourceLockedOrientationActivity")
         @Override
         public void onHideCustomView() {
             hideCustomView();
+            getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         }
 
 

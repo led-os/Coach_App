@@ -26,6 +26,7 @@ import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.wxapi.RenewObserver;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import java.util.ArrayList;
@@ -265,6 +266,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 if(type == 0){
                     PayResultActivity.go2this(this,0,resp.getData().getData().getOrderCode());
                 }
+                SPUtil.saveWebRefresh(true);
                 finish();
             }
          }

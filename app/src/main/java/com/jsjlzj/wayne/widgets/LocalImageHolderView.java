@@ -29,6 +29,6 @@ public class LocalImageHolderView extends Holder<BannerBean> {
 
     @Override
     public void updateUI(BannerBean data) {
-        GlidUtils.setRoundGrid(MyApp.ME.getApplicationContext(),data.getUrl(),imageView,2);
+        GlidUtils.setRoundGrid(MyApp.ME.getApplicationContext(),data.getUrl(),imageView,4);
     }
 }

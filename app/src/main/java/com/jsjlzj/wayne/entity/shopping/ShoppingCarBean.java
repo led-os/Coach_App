@@ -76,6 +76,7 @@ public class ShoppingCarBean {
              * stock : 0
              *
              *
+             *
              */
 
             private int buyNum;
@@ -90,9 +91,16 @@ public class ShoppingCarBean {
             private String spData;
             private boolean isSelect;
             private long skuId;
+            private long spuId;
 
 
+            public long getSpuId() {
+                return spuId;
+            }
 
+            public void setSpuId(long spuId) {
+                this.spuId = spuId;
+            }
 
             public int getBuyNum() {
                 return buyNum;

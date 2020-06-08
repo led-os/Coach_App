@@ -160,6 +160,7 @@
                 android:visibility="gone"
                 android:textColor="@color/color_999999"/>
         </RelativeLayout>
+
     </RelativeLayout>
 
 

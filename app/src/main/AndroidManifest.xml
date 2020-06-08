@@ -82,8 +82,10 @@
         android:roundIcon="@mipmap/ic_launcher_r"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.home.mine.ApplySettledInActivity"/>
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true">
+        <activity android:name=".ui.basis.WebVideoActivity"></activity>
+        <activity android:name=".ui.store.home.mine.ApplySettledInActivity" />
         <activity android:name=".ui.store.home.mine.FactorySettledInActivity" />
         <activity android:name=".ui.store.shopping.LogisticsActivity" />
         <activity android:name=".ui.store.home.mine.AfterSaleApplyActivity" />
@@ -144,10 +146,10 @@
         <activity android:name=".ui.store.home.study.AchievementRecordActivity" />
         <activity
             android:name=".ui.basis.WebViewContainerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:hardwareAccelerated="true"
             android:screenOrientation="fullUser"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-            android:configChanges="orientation|screenSize|keyboardHidden"/>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".ui.store.home.study.ChapterActivity" />
         <activity android:name=".ui.store.home.study.QuestionBankActivity" />
         <activity android:name=".ui.store.home.amoy.SignUpResultActivity" />
@@ -176,7 +178,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.jsjlzj.wayne.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -189,14 +191,12 @@
                 <data android:scheme="sdksample" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".wxapi.WXPayEntryActivity"
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:launchMode="singleTop"/>
-
-        <!-- 百度key -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- 百度key -->
         <activity
             android:name=".ui.yunxin.location.LocationAmapActivity"
             android:configChanges="keyboardHidden|orientation"
