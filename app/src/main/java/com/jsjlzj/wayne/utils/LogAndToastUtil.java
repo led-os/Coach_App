@@ -17,6 +17,9 @@ import com.jsjlzj.wayne.ui.publicac.dialog.LoadingFragment;
 import java.util.HashMap;
 import java.util.Stack;
 
+/**
+ * @author zenghaiqiang
+ */
 public class LogAndToastUtil {
     // 等待加载进度条对话框的 集合
     private static HashMap<Class<?>, Stack<ProgressDialog>> dicWait;
@@ -34,6 +37,7 @@ public class LogAndToastUtil {
         if(context==null)context= MyApp.ME.getApplicationContext();
         Toast.makeText(context,s+"",Toast.LENGTH_SHORT).show();
     }
+
     public static void toastL(Context context,String s, Object... args) {
         if (args != null && args.length > 0) {
             s = String.format(s, args);
@@ -41,6 +45,7 @@ public class LogAndToastUtil {
         if(context==null)context=MyApp.ME.getApplicationContext();
         Toast.makeText(context,s+"",Toast.LENGTH_LONG).show();
     }
+
     public static void toast(Context context,int resId, Object... args) {
         toast(context,ResourceUtil.getString(resId), args);
     }
