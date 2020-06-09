@@ -18,6 +18,8 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.StringRes;
 import androidx.core.app.ActivityCompat;
+
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.ClipboardManager;
 import android.text.Spannable;
@@ -41,6 +43,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -49,6 +52,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
+import java.util.UUID;
 
 public class Utility {
     public static final long DAY_MS = 86400000;
@@ -115,6 +119,34 @@ public class Utility {
 
         SPUtil.saveIMEI2SP(imei);
         return imei;
+    }
+
+    public static String makeDeviceId(Context context) {
+        String  deviceInfo = new StringBuilder()
+                .append(Build.BOARD).append("#")
+                .append(Build.BRAND).append("#")
+                //CPU_ABI，这个值和appp使用的so库是arm64-v8a还是armeabi-v7a有关，舍弃
+                //.append(Build.CPU_ABI).append("#")
+                .append(Build.DEVICE).append("#")
+                .append(Build.DISPLAY).append("#")
+                .append(Build.HOST).append("#")
+                .append(Build.ID).append("#")
+                .append(Build.MANUFACTURER).append("#")
+                .append(Build.MODEL).append("#")
+                .append(Build.PRODUCT).append("#")
+                .append(Build.TAGS).append("#")
+                .append(Build.TYPE).append("#")
+                .append(Build.USER).append("#")
+                .toString();
+        try {
+            //22a49a46-b39e-36d1-b75f-a0d0b9c72d6c
+            return UUID.nameUUIDFromBytes(deviceInfo.getBytes("utf8")).toString();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String androidId = Settings.System.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        return androidId;
     }
 
     /**

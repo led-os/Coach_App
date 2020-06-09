@@ -42,7 +42,7 @@ public class HttpManager {
 
     static {
         USER_AGENT = Utility.getUserAgent();
-        device= Utility.getIMEI(MyApp.ME.getApplicationContext());
+        device= Utility.makeDeviceId(MyApp.ME.getApplicationContext());
         Version = Utility.getVerName(MyApp.ME.getApplicationContext())+"";
     }
 
