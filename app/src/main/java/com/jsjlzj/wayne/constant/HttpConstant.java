@@ -11,8 +11,8 @@ public class HttpConstant {
     public static final String UPDATA_URL = "https://www.pgyer.com/X4kA";
 
     public static boolean isDebug = true;
-    public static String BASE_URL = "https://api-dev.jsjlhome.com/";//测试环境
-//    public static String BASE_URL = "https://api.jsjlhome.com/";//线上环境
+//    public static String BASE_URL = "https://api-dev.jsjlhome.com/";//测试环境
+    public static String BASE_URL = "https://api.jsjlhome.com/";//线上环境
 
 
     public static String WXAPPID = "wx8bd15d5408120652";//"wx465cfff1c19d069d";
@@ -42,8 +42,8 @@ public class HttpConstant {
     public static final int R_HTTP_ERROR_MSG = 0;//1000
 
     /********************************* web网页- url****************************************************/
-    public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
-//        public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
+//    public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
+        public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
 
 //    public static final String WEB_URL_BASE =  "http://h5.gokgm.com:81";//动态详情页
     public static final String WEB_URL_DYNAMIC_DETAIL = WEB_URL_BASE + "/#/dynamicDetail?id=";//动态详情页

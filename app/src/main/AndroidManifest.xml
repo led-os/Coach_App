@@ -84,7 +84,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true">
-        <activity android:name=".ui.basis.WebVideoActivity"></activity>
+        <activity android:name=".ui.basis.WebVideoActivity"/>
         <activity android:name=".ui.store.home.mine.ApplySettledInActivity" />
         <activity android:name=".ui.store.home.mine.FactorySettledInActivity" />
         <activity android:name=".ui.store.shopping.LogisticsActivity" />
