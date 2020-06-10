@@ -393,7 +393,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 break;
             case R.id.ll_yhxy://用户协议
                 WebViewContainerActivity.go2this(getActivity(), getString(R.string.user_argument),
-                        HttpConstant.WEB_URL_PRIVATE_POLICY, WebViewContainerFragment.TYPE_PRIVATE_POLICY);
+                        HttpConstant.WEB_URL_PRIVATE_POLICY_MINE, WebViewContainerFragment.TYPE_PRIVATE_POLICY);
                 break;
             case R.id.ll_bzyfk://帮助
                 HelpActivity.go2this(getActivity());

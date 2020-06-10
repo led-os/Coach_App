@@ -268,12 +268,13 @@
     <string name="please_in_public_content">请输入发布内容</string>
     <string name="search_poi_location">搜索附件位置</string>
     <string name="private_user_read">请你务必审慎阅读，充分理解"用户协议和隐私政策"各条款,包括但不限于：为了提供分享服务，我们需要收集你的设备信息，存储权限等个人信息。您可阅读</string>
-    <string name="user_private">《用户协议和隐私政策》</string>
+    <string name="user_private">《用户隐私声明》</string>
     <string name="detail_info_agree">了解详细信息。如您同意，请点击"同意"开始接受我们的服务</string>
     <string name="hint_about_user_private">若您不同意接受我们的</string>
     <string name="no_use_app">，将无法使用我们的APP</string>
     <string name="private_policy">隐私策略</string>
     <string name="user_argument">用户协议和隐私政策</string>
+    <string name="user_argument_login">用户隐私声明</string>
     <string name="hint">提示</string>
     <string name="optimization">优选</string>
     <string name="again_buy">再次购买</string>

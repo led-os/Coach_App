@@ -199,7 +199,7 @@ public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityVi
                     }
                     break;
                 case R.id.btnNode:
-                    WebViewContainerActivity.go2this(LoginByPhoneActivity.this, getString(R.string.user_argument),
+                    WebViewContainerActivity.go2this(LoginByPhoneActivity.this, getString(R.string.user_argument_login),
                             HttpConstant.WEB_URL_PRIVATE_POLICY, WebViewContainerFragment.TYPE_PRIVATE_POLICY);
                     break;
                 default:

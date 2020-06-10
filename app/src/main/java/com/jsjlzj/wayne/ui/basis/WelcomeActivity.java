@@ -53,7 +53,7 @@ public class WelcomeActivity extends AppCompatActivity implements PrivateAgreeme
         super.onResume();
         boolean isAgree = SPUtil.getAgree();
         if (!isAgree) {
-            fragment = PrivateAgreementFragment.showDialog(getSupportFragmentManager(), getResources().getString(R.string.user_argument), "不同意", "同意", 0, this);
+            fragment = PrivateAgreementFragment.showDialog(getSupportFragmentManager(), getResources().getString(R.string.user_argument_login), "不同意", "同意", 0, this);
         } else {
             doTab();
         }
@@ -145,7 +145,7 @@ public class WelcomeActivity extends AppCompatActivity implements PrivateAgreeme
 
     @Override
     public void onPrivateClick() {
-        WebViewContainerActivity.go2this(this, getString(R.string.user_argument),
+        WebViewContainerActivity.go2this(this, getString(R.string.user_argument_login),
                 HttpConstant.WEB_URL_PRIVATE_POLICY, WebViewContainerFragment.TYPE_PRIVATE_POLICY);
     }
 }

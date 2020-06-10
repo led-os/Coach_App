@@ -70,7 +70,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     public static void go2this(Activity context, boolean isStore) {
         //SPUtil.getFist()
         if (SPUtil.getFist() && isFlyme()) {
-            WebViewContainerActivity.go2this(context, "用户协议和隐私政策",
+            WebViewContainerActivity.go2this(context, "用户隐私声明",
                     HttpConstant.WEB_URL_PRIVATE_POLICY, WebViewContainerFragment.TYPE_PRIVATE_POLICY);
             SPUtil.saveFist();
         } else {

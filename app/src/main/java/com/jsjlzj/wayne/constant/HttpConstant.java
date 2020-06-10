@@ -55,7 +55,8 @@ public class HttpConstant {
     public static final String WEB_URL_USER_INFO = WEB_URL_BASE + "/#/user?id=";//用户主页
     public static final String WEB_URL_COURSE_INTRODUCE = WEB_URL_BASE + "/#/course?id=";//课程介绍
     public static final String WEB_URL_INVITATION_FRIEND = WEB_URL_BASE + "/#/share?inviteId=";//邀请好友页
-    public static final String WEB_URL_PRIVATE_POLICY = WEB_URL_BASE + "/agreement/index.html?type=userPrivacyPolicy";//隐私政策
+    public static final String WEB_URL_PRIVATE_POLICY = WEB_URL_BASE + "/agreement/index.html?type=userPrivacy";//隐私政策
+    public static final String WEB_URL_PRIVATE_POLICY_MINE = WEB_URL_BASE + "/agreement/index.html?type=userPrivacyPolicy";//隐私政策
 
     public static final String WEB_URL_NEW_COURSE_DETAIL = WEB_URL_BASE + "/#/excellentCourse?id=";//新的课程详情
     public static final String WEB_URL_NEW_COURSE_PLAY_DETAIL = WEB_URL_BASE + "/#/excellentCourseDetail?id=";//课程播放详情
