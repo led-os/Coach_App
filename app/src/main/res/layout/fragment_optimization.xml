@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_fafafa"
@@ -9,448 +10,453 @@
     android:scrollbars="none"
     tools:context=".ui.store.home.RecommendFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <com.bigkoo.convenientbanner.ConvenientBanner
-            android:id="@+id/scroll_banner"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/padding_120"
-            android:layout_marginStart="@dimen/padding_10"
-            android:layout_marginTop="@dimen/padding_10"
-            android:layout_marginEnd="@dimen/padding_10"
-            android:layout_marginBottom="@dimen/padding_10"
-            app:autoTurningTime="4000"
-            app:canLoop="true" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/padding_70"
-            android:layout_marginStart="@dimen/padding_8"
-            android:layout_marginEnd="@dimen/padding_8"
-            android:layout_marginBottom="@dimen/padding_10"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/scroll_banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_120"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_marginBottom="@dimen/padding_10"
+                app:autoTurningTime="4000"
+                app:canLoop="true" />
             <LinearLayout
-                android:id="@+id/ll_amoy"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_70"
+                android:layout_marginStart="@dimen/padding_8"
+                android:layout_marginEnd="@dimen/padding_8"
+                android:layout_marginBottom="@dimen/padding_10"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_amoy"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_find_yxtx" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_4"
+                        android:text="@string/amoy" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_state_duty"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_find_yxgz" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_4"
+                        android:text="@string/state_duty" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_shopping"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_find_yxsc" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_4"
+                        android:text="@string/shopping" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_match"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_find_yxss" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_4"
+                        android:text="@string/match" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_information"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_find_yxzx" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_4"
+                        android:text="@string/information" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_vip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_marginBottom="@dimen/padding_10"
+                android:visibility="gone">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_find_yxtx" />
+                    android:id="@+id/img_open_vip"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_145"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/icon_find_vip_open"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/img_close"
+                    android:layout_width="@dimen/padding_10"
+                    android:layout_height="@dimen/padding_10"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/padding_6"
+                    android:layout_marginEnd="@dimen/padding_6"
+                    android:src="@drawable/close_icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_4"
-                    android:text="@string/amoy" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_state_duty"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_find_yxgz" />
+                    android:layout_below="@+id/tv_free_vip"
+                    android:layout_marginStart="@dimen/padding_21"
+                    android:layout_marginTop="@dimen/padding_2"
+                    android:text="免费体验已过期"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_13" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_4"
-                    android:text="@string/state_duty" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_shopping"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_find_yxsc" />
+                    android:id="@+id/tv_open_vip"
+                    android:layout_width="@dimen/padding_81"
+                    android:layout_height="@dimen/padding_31"
+                    android:layout_below="@+id/tv_free_vip"
+                    android:layout_marginStart="@dimen/padding_21"
+                    android:layout_marginTop="@dimen/padding_35"
+                    android:background="@drawable/bg_solid_fece0d_15"
+                    android:gravity="center"
+                    android:text="开通VIP"
+                    android:textColor="@color/color_222222"
+                    android:textSize="@dimen/text_size_12" />
 
                 <TextView
+                    android:id="@+id/tv_free_vip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_4"
-                    android:text="@string/shopping" />
-            </LinearLayout>
+                    android:layout_marginStart="@dimen/padding_21"
+                    android:layout_marginTop="@dimen/padding_26"
+                    android:text="开通VIP继续学习吧"
+                    android:textColor="@color/color_222222"
+                    android:textSize="@dimen/text_size_17" />
+            </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_match"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/rel_free"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginBottom="@dimen/padding_10">
 
                 <ImageView
+                    android:id="@+id/img_video_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_find_yxss" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/padding_15"
+                    android:layout_marginEnd="@dimen/padding_14"
+                    android:src="@drawable/icon_home_right"
+                    android:visibility="gone" />
 
                 <TextView
+                    android:id="@+id/tv_free_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_4"
-                    android:text="@string/match" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_information"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_find_yxzx" />
+                    android:layout_alignTop="@+id/tv_free"
+                    android:layout_alignBottom="@+id/tv_free"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/padding_15"
+                    android:gravity="center_vertical"
+                    android:text="更多"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_12" />
 
                 <TextView
+                    android:id="@+id/tv_free"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/padding_4"
-                    android:text="@string/information" />
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/padding_18"
+                    android:paddingStart="@dimen/padding_15"
+                    android:text="免费体验"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_16" />
+
+                <com.jsjlzj.wayne.widgets.NestedRecyclerView
+                    android:id="@+id/rv_free"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_free"
+                    android:layout_marginStart="@dimen/padding_5"
+                    android:layout_marginTop="@dimen/padding_15" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rel_day_study"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginBottom="@dimen/padding_10">
+
+                <TextView
+                    android:id="@+id/tv_day_study"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_18"
+                    android:paddingStart="@dimen/padding_15"
+                    android:text="每日一学"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_16" />
+
+                <com.jsjlzj.wayne.widgets.NestedRecyclerView
+                    android:id="@+id/rv_day_study"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_day_study"
+                    android:layout_marginStart="@dimen/padding_3"
+                    android:layout_marginTop="@dimen/padding_15" />
+
+            </RelativeLayout>
+            <!--每日一学-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:background="@drawable/bg_solid_shape_6">
+
+                <TextView
+                    android:id="@+id/tv_content_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_53"
+                    android:background="@drawable/bg_solid_content_title"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/padding_20"
+                    android:paddingEnd="@dimen/padding_5"
+                    android:singleLine="true"
+                    android:text="要挑战减脂，必须先了解什么是减脂？"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_16" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_content_title"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:layout_marginBottom="@dimen/padding_10" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_210"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:background="@drawable/bg_solid_shape_6">
+
+                <TextView
+                    android:id="@+id/tv_vip_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_13"
+                    android:paddingStart="@dimen/padding_10"
+                    android:text="会员精选"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_16" />
+
+                <com.jsjlzj.wayne.widgets.NestedRecyclerView
+                    android:id="@+id/rv_vip_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tv_vip_select"
+                    android:layout_marginStart="@dimen/padding_9"
+                    android:layout_marginTop="@dimen/padding_13" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rel_motion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_marginBottom="@dimen/padding_10"
+                android:background="@drawable/bg_solid_shape_6">
+
+                <TextView
+                    android:id="@+id/tv_motion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_18"
+                    android:text="带你了解运动"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    android:id="@+id/tv_motion_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/tv_motion"
+                    android:layout_alignBottom="@+id/tv_motion"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/padding_15"
+                    android:gravity="center_vertical"
+                    android:text="更多"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/text_size_12" />
+
+                <com.jsjlzj.wayne.widgets.NestedRecyclerView
+                    android:id="@+id/rv_motion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_motion"
+                    android:layout_alignStart="@+id/tv_motion"
+                    android:layout_marginStart="@dimen/padding_3"
+                    android:layout_marginTop="@dimen/padding_8"
+                    android:paddingBottom="@dimen/padding_20" />
+
+            </RelativeLayout>
+
+            <!--带你了解运动-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_10"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:background="@drawable/bg_solid_shape_6">
+
+                <TextView
+                    android:id="@+id/tv_content_title_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/padding_53"
+                    android:background="@drawable/bg_solid_content_title_2"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/padding_5"
+                    android:paddingEnd="@dimen/padding_5"
+                    android:singleLine="true"
+                    android:text="让宝妈轻松恢复产前好身材的4门课程"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_16" />
+
+
+                <TextView
+                    android:id="@+id/tv_scan_all"
+                    android:layout_width="@dimen/padding_200"
+                    android:layout_height="@dimen/padding_40"
+                    android:layout_below="@+id/rv_content_2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/padding_20"
+                    android:layout_marginBottom="@dimen/padding_20"
+                    android:background="@drawable/bg_solid_scan_all"
+                    android:gravity="center"
+                    android:text="查看全部"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_16" />
+
+                <com.jsjlzj.wayne.widgets.NestedRecyclerView
+                    android:id="@+id/rv_content_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_content_title_2"
+                    android:layout_marginStart="@dimen/padding_8"
+                    android:layout_marginTop="@dimen/padding_15" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_class_recommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_18"
+                    android:layout_marginBottom="@dimen/padding_20"
+                    android:paddingStart="@dimen/padding_15"
+                    android:text="分类推荐"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/text_size_16" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_class_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_10" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/rel_vip"
-            android:layout_marginStart="@dimen/padding_10"
-            android:layout_marginEnd="@dimen/padding_10"
-            android:layout_marginBottom="@dimen/padding_10"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    </androidx.core.widget.NestedScrollView>
 
-            <ImageView
-                android:id="@+id/img_open_vip"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/padding_145"
-                android:scaleType="fitXY"
-                android:visibility="visible"
-                android:src="@drawable/icon_find_vip_open" />
-
-            <TextView
-                android:id="@+id/tv_free_vip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="开通VIP继续学习吧"
-                android:textSize="@dimen/text_size_17"
-                android:layout_marginStart="@dimen/padding_21"
-                android:layout_marginTop="@dimen/padding_26"
-                android:textColor="@color/color_222222"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_21"
-                android:text="免费体验已过期"
-                android:layout_marginTop="@dimen/padding_2"
-                android:textSize="@dimen/text_size_13"
-                android:textColor="@color/color_666666"
-                android:layout_below="@+id/tv_free_vip"/>
-
-            <TextView
-                android:id="@+id/tv_open_vip"
-                android:layout_width="@dimen/padding_81"
-                android:layout_height="@dimen/padding_31"
-                android:gravity="center"
-                android:text="开通VIP"
-                android:layout_below="@+id/tv_free_vip"
-                android:layout_marginTop="@dimen/padding_35"
-                android:textSize="@dimen/text_size_12"
-                android:textColor="@color/color_222222"
-                android:layout_marginStart="@dimen/padding_21"
-                android:background="@drawable/bg_solid_fece0d_15"
-                />
-
-            <ImageView
-                android:id="@+id/img_close"
-                android:layout_width="@dimen/padding_10"
-                android:layout_height="@dimen/padding_10"
-                android:src="@drawable/close_icon"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/padding_6"
-                android:layout_marginTop="@dimen/padding_6"/>
-        </RelativeLayout>
-
-
-
-        <RelativeLayout
-            android:id="@+id/rel_free"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_10"
-            android:layout_marginBottom="@dimen/padding_10">
-
-            <TextView
-                android:id="@+id/tv_free"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_18"
-                android:paddingStart="@dimen/padding_15"
-                android:text="免费体验"
-                android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_16" />
-
-            <TextView
-                android:id="@+id/tv_free_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/tv_free"
-                android:layout_alignBottom="@+id/tv_free"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/padding_15"
-                android:gravity="center_vertical"
-                android:text="更多"
-                android:textColor="@color/color_666666"
-                android:textSize="@dimen/text_size_12" />
-
-            <ImageView
-                android:id="@+id/img_video_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/padding_15"
-                android:layout_marginEnd="@dimen/padding_14"
-                android:src="@drawable/icon_home_right"
-                android:visibility="gone" />
-
-            <com.jsjlzj.wayne.widgets.NestedRecyclerView
-                android:id="@+id/rv_free"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_free"
-                android:layout_marginStart="@dimen/padding_5"
-                android:layout_marginTop="@dimen/padding_15" />
-
-        </RelativeLayout>
-        <!--每日一学-->
-        <RelativeLayout
-            android:id="@+id/rel_day_study"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding_10"
-            android:layout_marginBottom="@dimen/padding_10">
-
-            <TextView
-                android:id="@+id/tv_day_study"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_18"
-                android:paddingStart="@dimen/padding_15"
-                android:text="每日一学"
-                android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_16" />
-
-            <com.jsjlzj.wayne.widgets.NestedRecyclerView
-                android:id="@+id/rv_day_study"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_day_study"
-                android:layout_marginStart="@dimen/padding_3"
-                android:layout_marginTop="@dimen/padding_15" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_10"
-            android:layout_marginEnd="@dimen/padding_10"
-            android:layout_marginTop="@dimen/padding_10"
-            android:background="@drawable/bg_solid_shape_6">
-
-            <TextView
-                android:id="@+id/tv_content_title"
-                android:background="@drawable/bg_solid_content_title"
-                android:layout_width="match_parent"
-                android:text="要挑战减脂，必须先了解什么是减脂？"
-                android:textSize="@dimen/text_size_16"
-                android:textColor="@color/white"
-                android:paddingStart="@dimen/padding_20"
-                android:paddingEnd="@dimen/padding_5"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:gravity="center_vertical"
-                android:layout_height="@dimen/padding_53" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_content"
-                android:layout_marginTop="@dimen/padding_10"
-                android:layout_marginBottom="@dimen/padding_10"
-                android:layout_below="@+id/tv_content_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_marginTop="@dimen/padding_10"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/padding_210"
-            android:layout_marginStart="@dimen/padding_10"
-            android:layout_marginEnd="@dimen/padding_10"
-            android:background="@drawable/bg_solid_shape_6">
-
-            <TextView
-                android:id="@+id/tv_vip_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_13"
-                android:paddingStart="@dimen/padding_10"
-                android:text="会员精选"
-                android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_16" />
-
-            <com.jsjlzj.wayne.widgets.NestedRecyclerView
-                android:id="@+id/rv_vip_select"
-                android:layout_marginTop="@dimen/padding_13"
-                android:layout_below="@+id/tv_vip_select"
-                android:layout_marginStart="@dimen/padding_9"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-        </RelativeLayout>
-
-        <!--带你了解运动-->
-        <RelativeLayout
-            android:id="@+id/rel_motion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_10"
-            android:layout_marginEnd="@dimen/padding_10"
-            android:background="@drawable/bg_solid_shape_6"
-            android:layout_marginTop="@dimen/padding_10"
-            android:layout_marginBottom="@dimen/padding_10">
-
-            <TextView
-                android:id="@+id/tv_motion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_18"
-                android:layout_marginStart="@dimen/padding_10"
-                android:text="带你了解运动"
-                android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_16" />
-            <TextView
-                android:id="@+id/tv_motion_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/tv_motion"
-                android:layout_alignBottom="@+id/tv_motion"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/padding_15"
-                android:gravity="center_vertical"
-                android:text="更多"
-                android:textColor="@color/color_666666"
-                android:textSize="@dimen/text_size_12" />
-
-            <com.jsjlzj.wayne.widgets.NestedRecyclerView
-                android:id="@+id/rv_motion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_motion"
-                android:layout_alignStart="@+id/tv_motion"
-                android:layout_marginStart="@dimen/padding_3"
-                android:paddingBottom="@dimen/padding_20"
-                android:layout_marginTop="@dimen/padding_8" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_10"
-            android:layout_marginEnd="@dimen/padding_10"
-            android:layout_marginTop="@dimen/padding_10"
-            android:background="@drawable/bg_solid_shape_6">
-
-            <TextView
-                android:id="@+id/tv_content_title_2"
-                android:background="@drawable/bg_solid_content_title_2"
-                android:layout_width="match_parent"
-                android:text="让宝妈轻松恢复产前好身材的4门课程"
-                android:textSize="@dimen/text_size_16"
-                android:textColor="@color/white"
-                android:paddingStart="@dimen/padding_5"
-                android:paddingEnd="@dimen/padding_5"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:gravity="center"
-                android:layout_height="@dimen/padding_53" />
-
-
-            <com.jsjlzj.wayne.widgets.NestedRecyclerView
-                android:id="@+id/rv_content_2"
-                android:layout_marginStart="@dimen/padding_8"
-                android:layout_marginTop="@dimen/padding_15"
-                android:layout_below="@+id/tv_content_title_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/tv_scan_all"
-                android:textSize="@dimen/text_size_16"
-                android:textColor="@color/white"
-                android:text="查看全部"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/padding_20"
-                android:layout_width="@dimen/padding_200"
-                android:layout_height="@dimen/padding_40"
-                android:layout_below="@+id/rv_content_2"
-                android:layout_marginBottom="@dimen/padding_20"
-                android:background="@drawable/bg_solid_scan_all"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_class_recommend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_18"
-                android:paddingStart="@dimen/padding_15"
-                android:text="分类推荐"
-                android:layout_marginBottom="@dimen/padding_20"
-                android:textColor="@color/color_333333"
-                android:textSize="@dimen/text_size_16" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_class_recommend"
-                android:paddingBottom="@dimen/padding_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
-</ScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

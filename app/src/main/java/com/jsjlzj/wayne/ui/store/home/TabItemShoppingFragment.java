@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,6 +45,10 @@ import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 import com.jsjlzj.wayne.widgets.MyDragView;
 import com.jsjlzj.wayne.widgets.NestedRecyclerView;
 import com.netease.nim.uikit.common.ToastHelper;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +63,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate: 2020/04/20
  */
-public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView, ShopClassAdapter.OnItemClickListener, XRecyclerView.LoadingListener, View.OnTouchListener {
+public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView, ShopClassAdapter.OnItemClickListener, View.OnTouchListener, OnLoadMoreListener, OnRefreshListener {
 
 
     @BindView(R.id.ll_search)
@@ -106,7 +111,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     @BindView(R.id.rv_shop_class)
     RecyclerView rvShopClass;
     @BindView(R.id.rv_shop)
-    CustomXRecyclerView rvShop;
+    RecyclerView rvShop;
     @BindView(R.id.rel_shopping_cart)
     RelativeLayout relShoppingCart;
     @BindView(R.id.rel_new)
@@ -115,6 +120,8 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     RelativeLayout relHot;
     @BindView(R.id.tv_number)
     TextView tvNumber;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
 
 
     private List<BannerBean> images = new ArrayList<>();
@@ -157,6 +164,13 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         relNew.setOnClickListener(clickListener);
         relHot.setOnClickListener(clickListener);
         initRecycler();
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setOnLoadMoreListener(this);
+        initData();
+    }
+
+
+    private void initData(){
         presenter.getHomeShoppingData();
         pageNo = 1;
         Map<Object,Object> map = new HashMap<>();
@@ -195,14 +209,11 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         rvCompose.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
         rvCompose.setAdapter(groupProductAdapter);
 
-        rvShop.setPullRefreshEnabled(false);
-        rvShop.setLoadingMoreEnabled(true);
         rvShop.setHasFixedSize(true);
         rvShop.setNestedScrollingEnabled(true);
         productAdapter = new ProductAdapter(getActivity(),new ArrayList<>());
         rvShop.setLayoutManager(new GridLayoutManager(getActivity(),2));
         rvShop.setAdapter(productAdapter);
-        rvShop.setLoadingListener(this);
     }
 
     @Override
@@ -304,7 +315,8 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
     @Override
     public void getCategoryTypeListSuccess(MdlBaseHttpResp<ShoppingPageBean> resp) {
-        rvShop.loadMoreComplete();
+        refreshLayout.finishLoadMore();
+        refreshLayout.finishRefresh();
         if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
             pageNo = resp.getData().getData().getPageNo();
             int totalCount = resp.getData().getData().getTotalCount();
@@ -358,26 +370,6 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         presenter.getSearchProductList(map);
     }
 
-    @Override
-    public void onRefresh() {
-
-    }
-
-    @Override
-    public void onLoadMore() {
-        if (pageNo < pageCount) {
-            isRefresh = false;
-            pageNo++;
-            Map<Object,Object> map = new HashMap<>();
-            map.put("keywords","首页全部好货");
-            map.put(HttpConstant.PAGE_NO, pageNo);
-            map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
-            presenter.getSearchProductList(map);
-        } else {
-            ToastHelper.showToast(getActivity(), getString(R.string.has_no_more_data));
-        }
-    }
-
 
     private int _xDelta;
     private int _yDelta;
@@ -410,5 +402,27 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         }
 //        relRoot.invalidate();
         return true;
+    }
+
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        if (pageNo < pageCount) {
+            isRefresh = false;
+            pageNo++;
+            Map<Object,Object> map = new HashMap<>();
+            map.put("keywords","首页全部好货");
+            map.put(HttpConstant.PAGE_NO, pageNo);
+            map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
+            presenter.getSearchProductList(map);
+        } else {
+            refreshLayout.finishLoadMore();
+            ToastHelper.showToast(getActivity(), getString(R.string.has_no_more_data));
+        }
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        isRefresh = true;
+        initData();
     }
 }

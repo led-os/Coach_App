@@ -112,6 +112,10 @@ dependencies {
     // multidex
     implementation rootProject.ext.dependencies["multidex"]
 
+    // 刷新
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["SmartRefreshHeader"]
+
     implementation 'org.apache.commons:commons-lang3:3.7'
     compile(name: 'alipaySdk-15.7.5-20200422171619', ext: 'aar')
 }

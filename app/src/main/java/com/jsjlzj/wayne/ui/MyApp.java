@@ -37,6 +37,9 @@ import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.mixpush.MixPushConfig;
 import com.netease.nimlib.sdk.util.NIMUtil;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.yuyh.library.imgsel.ISNav;
@@ -49,6 +52,8 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.core.content.ContextCompat;
 
 import static com.jsjlzj.wayne.constant.HttpConstant.WXAPPID;
 
@@ -164,9 +169,24 @@ public class MyApp extends Application {
             initISNav();
             initDB();
             initRetrofit();
+            initSmartRefreshLayout();
             initZXingDisplayOpinion();
             forGlobalException();
         }
+    }
+
+
+    private void initSmartRefreshLayout() {
+        //设置全局的Header构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
+            layout.setPrimaryColors(ContextCompat.getColor(context,R.color.color_999999), ContextCompat.getColor(context,R.color.color_333333));
+            return new ClassicsHeader(context);
+        });
+        //设置全局的Footer构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
+            //指定为经典Footer，默认是 BallPulseFooter
+            return new ClassicsFooter(context).setDrawableSize(20);
+        });
     }
 
     private void initWeixin() {

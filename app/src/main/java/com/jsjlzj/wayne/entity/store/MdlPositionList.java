@@ -24,32 +24,32 @@ public class MdlPositionList {
     public class DataBean{
 
 
-    private String pageNo;
-    private String pageSize;
-    private String totalCount;
+    private int pageNo;
+    private int pageSize;
+    private int totalCount;
     private List<MdlPosition.DataBean> result;
 
-    public String getPageNo() {
+    public int getPageNo() {
         return pageNo;
     }
 
-    public void setPageNo(String pageNo) {
+    public void setPageNo(int pageNo) {
         this.pageNo = pageNo;
     }
 
-    public String getPageSize() {
+    public int getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(String pageSize) {
+    public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
 
-    public String getTotalCount() {
+    public int getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount(String totalCount) {
+    public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
     }
 

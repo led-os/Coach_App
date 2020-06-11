@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,9 @@ import com.jsjlzj.wayne.ui.store.home.ContentFragmentTitleActivity;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 import com.jsjlzj.wayne.widgets.MyViewPager;
 import com.jsjlzj.wayne.widgets.NestedRecyclerView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +53,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate: 2020/04/18
  */
-public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView {
+public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresenter> implements HomeView, OnRefreshListener {
 
 
     @BindView(R.id.scroll_banner)
@@ -100,6 +104,8 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
     ImageView imgClose;
     @BindView(R.id.rel_vip)
     RelativeLayout relVip;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
     private MyViewPager myViewPager;
 
     private List<BannerBean> images = new ArrayList<>();
@@ -134,7 +140,9 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
         initRecycler();
         presenter.getOptimizationData1();
         presenter.getOptimizationData2();
-
+        refreshLayout.setEnableRefresh(true);
+        refreshLayout.setEnableLoadMore(false);
+        refreshLayout.setOnRefreshListener(this);
         llAmoy.setOnClickListener(clickListener);
         llStateDuty.setOnClickListener(clickListener);
         llShopping.setOnClickListener(clickListener);
@@ -287,6 +295,7 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
 
     @Override
     public void getOptimizationData1Success(MdlBaseHttpResp<OptimizationData1Bean> resp) {
+        refreshLayout.finishRefresh();
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null && resp.getData().getData() != null) {
             images = resp.getData().getData().getBannerList();
             initBanner();
@@ -308,6 +317,7 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
 
     @Override
     public void getOptimizationData2Success(MdlBaseHttpResp<OptimizationData2Bean> resp) {
+        refreshLayout.finishRefresh();
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null && resp.getData().getData() != null) {
             if (resp.getData().getData().getJianzhiList() != null) {
                 questionFindAdapter.setData(resp.getData().getData().getJianzhiList());
@@ -325,5 +335,11 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
                 classRecommendAdapter.setData(resp.getData().getData().getCategoryList());
             }
         }
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        presenter.getOptimizationData1();
+        presenter.getOptimizationData2();
     }
 }

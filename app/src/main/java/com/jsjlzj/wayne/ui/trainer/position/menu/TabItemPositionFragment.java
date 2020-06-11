@@ -326,6 +326,10 @@ public class TabItemPositionFragment extends MVPBaseFragment<TalentTabFragmentVi
     @Override
     public void showSearch(MdlBaseHttpResp<MdlPositionList> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp.getData() && null != resp.getData().getData() && null != resp.getData().getData().getResult()) {
+            pageNo = resp.getData().getData().getPageNo();
+            if(pageNo == 1){
+                listAll.clear();
+            }
             listAll.addAll(resp.getData().getData().getResult());
             recyclerViewAdapter.notifyDataSetChanged();
         }
