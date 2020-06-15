@@ -14,6 +14,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.TabLayoutUtils;
+import com.jsjlzj.wayne.widgets.ChatView;
 import com.jsjlzj.wayne.widgets.MyViewPager;
 
 import org.jetbrains.annotations.NotNull;
@@ -57,6 +58,9 @@ public class CouponActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
     protected void initViewAndControl() {
         initTitle("优惠券");
         initViewPager();
+        ChatView chatView = new ChatView(this);
+        chatView.show();
+        chatView.setNum("12");
     }
 
 

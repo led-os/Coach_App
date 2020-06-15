@@ -223,7 +223,7 @@ public class LoginByPwdActivity extends MVPBaseNoLoginActivity<LoginActivityView
                             MainActivity.go2this(this, true);
                             break;
                         default:
-                            AttestationActivity.go2this(LoginByPwdActivity.this);
+                            LoginRoleSelectActivity.go2This(LoginByPwdActivity.this,true);
                             break;
                     }
                     break;

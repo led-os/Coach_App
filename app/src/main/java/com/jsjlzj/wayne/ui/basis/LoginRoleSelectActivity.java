@@ -107,15 +107,6 @@ public class LoginRoleSelectActivity extends MVPBaseActivity<TalentPersonalView,
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.putExtra("isStore",true);
                         startActivity(intent);
-//                        Intent intent = new Intent(LoginRoleSelectActivity.this,MainActivity.class);
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        intent.putExtra("isRestart",true);
-//                        startActivity(intent);
-//                        finish();
-//                        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-//                        manager.restartPackage("com.jsjlzj.wayne");
-//                        finish();
                     } else if (bean.getStoreStatus() == 1) {
                         LogAndToastUtil.toast("审核中。。。");
                     }
@@ -125,7 +116,6 @@ public class LoginRoleSelectActivity extends MVPBaseActivity<TalentPersonalView,
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("isStore",false);
                     startActivity(intent);
-//                    MainActivity.go2this(LoginRoleSelectActivity.this, false);
                     break;
                 default:
                     break;

@@ -267,7 +267,7 @@ public class LoginByPhoneActivity extends MVPBaseNoLoginActivity<LoginActivityVi
                                 MainActivity.go2this(this, true);
                                 break;
                             default:
-                                AttestationActivity.go2this(LoginByPhoneActivity.this);
+                                LoginRoleSelectActivity.go2This(LoginByPhoneActivity.this,true);
                                 break;
                         }
                         break;
