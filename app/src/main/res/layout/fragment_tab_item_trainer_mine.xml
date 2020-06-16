@@ -1246,6 +1246,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/padding_14"
         android:layout_marginBottom="@dimen/padding_38"
+        android:visibility="gone"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true">
 

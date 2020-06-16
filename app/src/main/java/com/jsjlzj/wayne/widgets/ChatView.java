@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.jsjlzj.wayne.R;
 
@@ -42,14 +43,14 @@ public class ChatView extends RelativeLayout {
     private float mTouchStartY;
     private boolean isScroll;
 
-    public ChatView(Activity activity) {
-        super(activity);
-        View view = LayoutInflater.from(activity).inflate(R.layout.view_chart, this);
+    public ChatView(Fragment activity) {
+        super(activity.getContext());
+        View view = LayoutInflater.from(activity.getContext()).inflate(R.layout.view_chart, this);
         setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_homepage_gwc));
-        wm = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
+        wm = (WindowManager) activity.getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         tvNum = view.findViewById(R.id.tv_number);
-        activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        activity.getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
         //通过像素密度来设置按钮的大小
         dpi = dpi(dm.densityDpi);
         //屏宽
@@ -84,7 +85,6 @@ public class ChatView extends RelativeLayout {
      *
      */
     private int dpi(int densityDpi) {
-        System.out.println("===================="+densityDpi);
         if (densityDpi <= 120) {
             return 33;
         } else if (densityDpi <= 160) {

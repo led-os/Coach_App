@@ -39,6 +39,7 @@ import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
 import com.jsjlzj.wayne.ui.store.search.SearchShopActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
 import com.jsjlzj.wayne.ui.store.shopping.TimeSecondActivity;
+import com.jsjlzj.wayne.widgets.ChatView;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 import com.jsjlzj.wayne.widgets.MoveLayout;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
@@ -138,6 +139,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     private List<ShoppingBean> productList = new ArrayList<>();
     private List<HomeShoppingDataBean.DataBean.CategoryListBean> shopClassList = new ArrayList<>();
     private boolean isRefresh = true;
+    private ChatView chatView;
 
     public TabItemShoppingFragment() {
     }
@@ -167,6 +169,9 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
         initData();
+        chatView = new ChatView(this);
+        chatView.show();
+        chatView.setOnClickListener(view1 -> ShoppingCartActivity.go2this(getActivity()));
     }
 
 
@@ -178,6 +183,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         presenter.getSearchProductList(map);
+
     }
 
     private void initRecycler() {
@@ -340,7 +346,8 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     @Override
     public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null){
-            tvNumber.setText(resp.getData().getData()+"");
+//            tvNumber.setText(resp.getData().getData()+"");
+            chatView.setNum(resp.getData().getData() + "");
         }
     }
 

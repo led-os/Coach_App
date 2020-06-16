@@ -50,6 +50,7 @@ import com.jsjlzj.wayne.ui.trainer.publicac.JobIntentionActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
+import com.jsjlzj.wayne.widgets.ChatView;
 
 import butterknife.BindView;
 
@@ -170,6 +171,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
     @BindView(R.id.tv_cwtz)
     TextView tvCwtz;
     private MdlInfo.DataBean bean;
+    private ChatView chatView;
 
     public TabItemTrainerMineFragment() {
     }
@@ -243,6 +245,9 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
         llGywm.setOnClickListener(clickListener);
         llBzyfk.setOnClickListener(clickListener);
         llYhxy.setOnClickListener(clickListener);
+        chatView = new ChatView(this);
+        chatView.show();
+        chatView.setOnClickListener(view1 -> ShoppingCartActivity.go2this(getActivity()));
     }
 
     @Override
@@ -369,7 +374,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 InvitationActivity.go2this(getActivity());
                 break;
             case R.id.rel_shopping_cart://购物车
-                ShoppingCartActivity.go2this(getActivity());
+
                 break;
 
 
@@ -446,7 +451,8 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
     @Override
     public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-            tvNumber.setText(resp.getData().getData()+"");
+//            tvNumber.setText(resp.getData().getData()+"");
+            chatView.setNum(resp.getData().getData() + "");
         }
     }
 

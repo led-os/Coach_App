@@ -34,16 +34,15 @@ public class HttpConstant {
             BASE_URL = BASE_URL;
     }
 
-    /**
-     * `
+    /**`
      * 请求成功
      */
     public static final int R_HTTP_OK = 1;//1000
     public static final int R_HTTP_ERROR_MSG = 0;//1000
 
     /********************************* web网页- url****************************************************/
-//    public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
-        public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
+    public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
+//        public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
 
 //    public static final String WEB_URL_BASE =  "http://h5.gokgm.com:81";//动态详情页
     public static final String WEB_URL_DYNAMIC_DETAIL = WEB_URL_BASE + "/#/dynamicDetail?id=";//动态详情页

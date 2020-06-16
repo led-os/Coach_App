@@ -9,13 +9,12 @@
     <ImageView
         android:id="@+id/img_shopping_cart"
         android:layout_width="@dimen/padding_44"
-        android:layout_height="@dimen/padding_44"
-        android:src="@drawable/ic_homepage_gwc"/>
+        android:layout_height="@dimen/padding_44"/>
 
     <TextView
         android:id="@+id/tv_number"
         android:layout_width="@dimen/padding_12"
-        android:layout_height="@dimen/padding_12"
+        android:layout_height="@dimen/padding_24"
         android:layout_alignEnd="@+id/img_shopping_cart"
         android:background="@drawable/bg_solid_ffffff_6"
         android:gravity="center"

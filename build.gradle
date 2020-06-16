@@ -114,6 +114,8 @@ ext {
             "tbs_tbssdk"        : "com.tencent.tbs.tbssdk:sdk:43697",
             "converter-scalars" : "com.squareup.retrofit2:converter-scalars:2.6.2",
             "scrollablepanel"   : "com.kelin.scrollablepanel:library:1.2.0",
+            "jiaozivideoplayer" : "cn.jzvd:jiaozivideoplayer:7.4.1",
+            "commons-lang3"     : "org.apache.commons:commons-lang3:3.7",
     ]
 }
 

@@ -58,9 +58,6 @@ public class CouponActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
     protected void initViewAndControl() {
         initTitle("优惠券");
         initViewPager();
-        ChatView chatView = new ChatView(this);
-        chatView.show();
-        chatView.setNum("12");
     }
 
 
