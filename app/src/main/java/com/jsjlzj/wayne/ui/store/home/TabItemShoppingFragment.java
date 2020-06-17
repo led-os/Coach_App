@@ -183,7 +183,6 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         presenter.getSearchProductList(map);
-
     }
 
     private void initRecycler() {

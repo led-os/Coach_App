@@ -171,7 +171,6 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
     @BindView(R.id.tv_cwtz)
     TextView tvCwtz;
     private MdlInfo.DataBean bean;
-    private ChatView chatView;
 
     public TabItemTrainerMineFragment() {
     }
@@ -245,9 +244,6 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
         llGywm.setOnClickListener(clickListener);
         llBzyfk.setOnClickListener(clickListener);
         llYhxy.setOnClickListener(clickListener);
-        chatView = new ChatView(this);
-        chatView.show();
-        chatView.setOnClickListener(view1 -> ShoppingCartActivity.go2this(getActivity()));
     }
 
     @Override
@@ -452,7 +448,6 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
     public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
 //            tvNumber.setText(resp.getData().getData()+"");
-            chatView.setNum(resp.getData().getData() + "");
         }
     }
 

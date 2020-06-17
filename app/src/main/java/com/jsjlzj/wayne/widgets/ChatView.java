@@ -49,10 +49,15 @@ public class ChatView extends RelativeLayout {
         setBackground(ContextCompat.getDrawable(getContext(),R.drawable.ic_homepage_gwc));
         wm = (WindowManager) activity.getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
-        tvNum = view.findViewById(R.id.tv_number);
+
         activity.getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
         //通过像素密度来设置按钮的大小
         dpi = dpi(dm.densityDpi);
+        tvNum = view.findViewById(R.id.tv_number);
+        RelativeLayout.LayoutParams params = (LayoutParams) tvNum.getLayoutParams();
+        params.width = dpi / 4;
+        params.height = dpi / 4;
+        tvNum.setLayoutParams(params);
         //屏宽
         screenWidth = wm.getDefaultDisplay().getWidth();
         //屏高
@@ -67,6 +72,7 @@ public class ChatView extends RelativeLayout {
         wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         wmParams.width = dpi;
         wmParams.height = dpi;
+
         wmParams.y = (int) ((screenHeight - dpi) * 3.0 /4);
         wmParams.x = (screenWidth - dpi - 42);
         wm.addView(this, wmParams);
@@ -78,6 +84,7 @@ public class ChatView extends RelativeLayout {
             tvNum.setText(number);
         }
     }
+
 
 
     /**
@@ -196,6 +203,8 @@ public class ChatView extends RelativeLayout {
                 break;
             case BUTTOM:
                 wmParams.y = screenHeight - dpi;
+                break;
+            default:
                 break;
         }
         wm.updateViewLayout(this, wmParams);
