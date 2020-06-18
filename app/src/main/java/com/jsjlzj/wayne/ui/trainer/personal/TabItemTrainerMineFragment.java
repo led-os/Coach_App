@@ -486,7 +486,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 }else {
                     break;
                 }
-                if(Y > 72 && Y < 1600){
+                if(Y > 72 && Y < screenHeight - 200){
                     int dx = X - temp[0];
                     int dy = Y - temp[1];
 
@@ -506,8 +506,8 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                         top = 72;
                         bottom = top + v.getHeight();
                     }
-                    if(top > 1600){
-                        top = 1600;
+                    if(top > screenHeight - 200){
+                        top = screenHeight - 200;
                         bottom = top + v.getHeight();
                     }
                     v.layout(left, top, right, bottom);
@@ -516,7 +516,7 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 temp[1] = (int) event.getRawY();
                 break;
             case MotionEvent.ACTION_UP:
-                if (Math.abs(event.getRawX() - downX) > 10 || Math.abs(event.getRawY() - downY) > 10 && Y > 72 && Y < 1600) {
+                if (Math.abs(event.getRawX() - downX) > 10 || Math.abs(event.getRawY() - downY) > 10 && Y > 72 && Y < screenHeight - 200) {
                     RelativeLayout.LayoutParams lpFeedback = new RelativeLayout.LayoutParams(
                             RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                     int left = v.getLeft() ;
