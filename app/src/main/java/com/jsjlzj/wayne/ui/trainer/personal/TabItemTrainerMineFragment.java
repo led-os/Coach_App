@@ -5,7 +5,9 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -60,7 +62,7 @@ import butterknife.BindView;
  * @Author: 曾海强
  * @CreateDate: 2020/05/05
  */
-public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView {
+public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView, View.OnTouchListener {
 
 
     @BindView(R.id.img_set)
@@ -197,7 +199,6 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
     public void onResume() {
         super.onResume();
         presenter.myselfT(null);
-        presenter.getShoppingNum();
     }
 
     @Override
@@ -244,6 +245,13 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
         llGywm.setOnClickListener(clickListener);
         llBzyfk.setOnClickListener(clickListener);
         llYhxy.setOnClickListener(clickListener);
+        relShoppingCart.setOnTouchListener(this);
+        presenter.getShoppingNum();
+        WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+        //屏宽
+        screenWidth = wm.getDefaultDisplay().getWidth();
+        //屏高
+        screenHeight = wm.getDefaultDisplay().getHeight();
     }
 
     @Override
@@ -370,10 +378,8 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 InvitationActivity.go2this(getActivity());
                 break;
             case R.id.rel_shopping_cart://购物车
-
+                ShoppingCartActivity.go2this(getActivity());
                 break;
-
-
             case R.id.ll_dynamic://动态
                 MineDynamicActivity.go2this(getActivity());
                 break;
@@ -447,8 +453,82 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
     @Override
     public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
-//            tvNumber.setText(resp.getData().getData()+"");
+            tvNumber.setText(resp.getData().getData()+"");
         }
+    }
+
+
+
+    private float downX;
+    private float downY;
+    private int screenWidth;
+    private int screenHeight;
+    private int[] temp = new int[2];
+
+    //是否拖动
+    private boolean isDrag = false;
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        int X = (int) event.getRawX();
+        int Y = (int) event.getRawY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                isDrag = false;
+                downX = X;
+                downY = Y;
+                temp[0] = (int) event.getRawX();
+                temp[1] = (int) event.getRawY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                if(Math.abs(X - downX) > 10 || Math.abs(Y - downY) > 10){
+                    isDrag = true;
+                }else {
+                    break;
+                }
+                if(Y > 72 && Y < 1600){
+                    int dx = X - temp[0];
+                    int dy = Y - temp[1];
+
+                    int left = v.getLeft() + dx;
+                    int top = v.getTop() + dy;
+                    int right = v.getRight() + dx;
+                    int bottom = v.getBottom() + dy;
+                    if (left < 0) {
+                        left = 0;
+                        right = left + v.getWidth();
+                    }
+                    if (right > screenWidth) {
+                        right = screenWidth;
+                        left = right - v.getWidth();
+                    }
+                    if (top < 72) {
+                        top = 72;
+                        bottom = top + v.getHeight();
+                    }
+                    if(top > 1600){
+                        top = 1600;
+                        bottom = top + v.getHeight();
+                    }
+                    v.layout(left, top, right, bottom);
+                }
+                temp[0] = (int) event.getRawX();
+                temp[1] = (int) event.getRawY();
+                break;
+            case MotionEvent.ACTION_UP:
+                if (Math.abs(event.getRawX() - downX) > 10 || Math.abs(event.getRawY() - downY) > 10 && Y > 72 && Y < 1600) {
+                    RelativeLayout.LayoutParams lpFeedback = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    int left = v.getLeft() ;
+                    int top = v.getTop() ;
+                    lpFeedback.setMargins(left, top, 0, 0);
+                    v.setLayoutParams(lpFeedback);
+                }
+                break;
+            default:
+                break;
+        }
+        return isDrag;
     }
 
 }

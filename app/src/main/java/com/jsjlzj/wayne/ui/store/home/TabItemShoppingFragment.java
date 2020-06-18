@@ -1,8 +1,10 @@
 package com.jsjlzj.wayne.ui.store.home;
 
 
+import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -39,6 +41,7 @@ import com.jsjlzj.wayne.ui.store.home.mine.MessageConnectActivity;
 import com.jsjlzj.wayne.ui.store.search.SearchShopActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
 import com.jsjlzj.wayne.ui.store.shopping.TimeSecondActivity;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.ChatView;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 import com.jsjlzj.wayne.widgets.MoveLayout;
@@ -169,55 +172,61 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
         initData();
-        chatView = new ChatView(this);
-        chatView.show();
-        chatView.setOnClickListener(view1 -> ShoppingCartActivity.go2this(getActivity()));
+//        chatView = new ChatView(this);
+//        chatView.show();
+//        chatView.setOnClickListener(view1 -> ShoppingCartActivity.go2this(getActivity()));
+        relShoppingCart.setOnTouchListener(this);
+        WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+        //屏宽
+        screenWidth = wm.getDefaultDisplay().getWidth();
+        //屏高
+        screenHeight = wm.getDefaultDisplay().getHeight();
     }
 
 
-    private void initData(){
+    private void initData() {
         presenter.getHomeShoppingData();
         pageNo = 1;
-        Map<Object,Object> map = new HashMap<>();
-        map.put("keywords","首页全部好货");
+        Map<Object, Object> map = new HashMap<>();
+        map.put("keywords", "首页全部好货");
         map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         presenter.getSearchProductList(map);
     }
 
     private void initRecycler() {
-        shoppTypeAdapter = new ShoppTypeAdapter(getActivity(),new ArrayList<>());
-        rvShopType.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        shoppTypeAdapter = new ShoppTypeAdapter(getActivity(), new ArrayList<>());
+        rvShopType.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         shoppTypeAdapter.setListener(bean -> {
-            MoreLessonActivity.go2this(getActivity(),bean.getName(),8,bean.getCategoryId());
+            MoreLessonActivity.go2this(getActivity(), bean.getName(), 8, bean.getCategoryId());
         });
         rvShopType.setAdapter(shoppTypeAdapter);
 
-        secondSkillAdapter = new SecondSkillAdapter(getActivity(),new ArrayList<>());
-        rvSShop.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        secondSkillAdapter = new SecondSkillAdapter(getActivity(), new ArrayList<>());
+        rvSShop.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         rvSShop.setAdapter(secondSkillAdapter);
 
-        newProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>(),1);
-        rvNewProduct.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        newProductAdapter = new NewHotProductAdapter(getActivity(), new ArrayList<>(), 1);
+        rvNewProduct.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         rvNewProduct.setAdapter(newProductAdapter);
 
-        shopClassAdapter = new ShopClassAdapter(getActivity(),shopClassList);
-        rvShopClass.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        shopClassAdapter = new ShopClassAdapter(getActivity(), shopClassList);
+        rvShopClass.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         shopClassAdapter.setListener(this);
         rvShopClass.setAdapter(shopClassAdapter);
 
-        hotProductAdapter = new NewHotProductAdapter(getActivity(),new ArrayList<>(),2);
-        rvHotProduct.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        hotProductAdapter = new NewHotProductAdapter(getActivity(), new ArrayList<>(), 2);
+        rvHotProduct.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         rvHotProduct.setAdapter(hotProductAdapter);
 
-        groupProductAdapter = new GroupProductAdapter(getActivity(),new ArrayList<>());
-        rvCompose.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false));
+        groupProductAdapter = new GroupProductAdapter(getActivity(), new ArrayList<>());
+        rvCompose.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         rvCompose.setAdapter(groupProductAdapter);
 
         rvShop.setHasFixedSize(true);
         rvShop.setNestedScrollingEnabled(true);
-        productAdapter = new ProductAdapter(getActivity(),new ArrayList<>());
-        rvShop.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        productAdapter = new ProductAdapter(getActivity(), new ArrayList<>());
+        rvShop.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         rvShop.setAdapter(productAdapter);
     }
 
@@ -232,7 +241,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
                 MessageConnectActivity.go2this(getActivity());
                 break;
             case R.id.tv_compose_more:
-                MoreLessonActivity.go2this(getActivity(),"组合优惠",7,0);
+                MoreLessonActivity.go2this(getActivity(), "组合优惠", 7, 0);
                 break;
             case R.id.tv_s_skill:
                 TimeSecondActivity.go2this(getActivity());
@@ -241,10 +250,10 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
                 ShoppingCartActivity.go2this(getActivity());
                 break;
             case R.id.rel_new:
-                MoreLessonActivity.go2this(getActivity(),"最新产品",9,0);
+                MoreLessonActivity.go2this(getActivity(), "最新产品", 9, 0);
                 break;
             case R.id.rel_hot:
-                MoreLessonActivity.go2this(getActivity(),"热卖产品",10,0);
+                MoreLessonActivity.go2this(getActivity(), "热卖产品", 10, 0);
                 break;
             default:
                 break;
@@ -287,31 +296,30 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     }
 
 
-
     @Override
     public void getHomeShoppingDataSuccess(MdlBaseHttpResp<HomeShoppingDataBean> resp) {
-        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
-            if(resp.getData().getData().getBannerList() != null){
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null) {
+            if (resp.getData().getData().getBannerList() != null) {
                 images = resp.getData().getData().getBannerList();
                 initBanner();
             }
-            if(resp.getData().getData().getCategoryList() != null){
+            if (resp.getData().getData().getCategoryList() != null) {
                 shoppTypeAdapter.setData(resp.getData().getData().getCategoryList());
                 shopClassList.clear();
-                shopClassList.add(new HomeShoppingDataBean.DataBean.CategoryListBean(0,"全部","优选好货"));
+                shopClassList.add(new HomeShoppingDataBean.DataBean.CategoryListBean(0, "全部", "优选好货"));
                 shopClassList.addAll(resp.getData().getData().getCategoryList());
                 shopClassAdapter.setData(shopClassList);
             }
-            if(resp.getData().getData().getActivityList() != null){
+            if (resp.getData().getData().getActivityList() != null) {
                 secondSkillAdapter.setData(resp.getData().getData().getActivityList());
             }
-            if(resp.getData().getData().getNewProductList() != null){
+            if (resp.getData().getData().getNewProductList() != null) {
                 newProductAdapter.setData(resp.getData().getData().getNewProductList());
             }
-            if(resp.getData().getData().getHotProductList() != null){
+            if (resp.getData().getData().getHotProductList() != null) {
                 hotProductAdapter.setData(resp.getData().getData().getHotProductList());
             }
-            if(resp.getData().getData().getDiscountsProductList() != null){
+            if (resp.getData().getData().getDiscountsProductList() != null) {
                 groupProductAdapter.setData(resp.getData().getData().getDiscountsProductList());
             }
         }
@@ -332,7 +340,7 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
                 pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
             }
             List<ShoppingBean> list = resp.getData().getData().getResult();
-            if(isRefresh){
+            if (isRefresh) {
                 productList.clear();
             }
             if (list != null && list.size() > 0) {
@@ -344,9 +352,9 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
     @Override
     public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
-        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null){
-//            tvNumber.setText(resp.getData().getData()+"");
-            chatView.setNum(resp.getData().getData() + "");
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null) {
+            tvNumber.setText(resp.getData().getData() + "");
+//            chatView.setNum(resp.getData().getData() + "");
         }
     }
 
@@ -364,11 +372,11 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
 
     @Override
     public void onItemClick(HomeShoppingDataBean.DataBean.CategoryListBean bean) {
-        Map<Object,Object> map = new HashMap<>();
-        if(bean.getCategoryId() == 0){
-            map.put("keywords","首页全部好货");
-        }else {
-            map.put("productCategoryId",bean.getCategoryId());
+        Map<Object, Object> map = new HashMap<>();
+        if (bean.getCategoryId() == 0) {
+            map.put("keywords", "首页全部好货");
+        } else {
+            map.put("productCategoryId", bean.getCategoryId());
         }
         isRefresh = true;
         map.put(HttpConstant.PAGE_NO, 1);
@@ -377,37 +385,76 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     }
 
 
-    private int _xDelta;
-    private int _yDelta;
+    private float downX;
+    private float downY;
+    private int screenWidth;
+    private int screenHeight;
+    private int[] temp = new int[2];
 
+    //是否拖动
+    private boolean isDrag = false;
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        final int X = (int) event.getRawX();
-        final int Y = (int) event.getRawY();
-        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+        int X = (int) event.getRawX();
+        int Y = (int) event.getRawY();
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) relShoppingCart.getLayoutParams();
-                _xDelta = X - lParams.leftMargin;
-                _yDelta = Y - lParams.topMargin;
-                break;
-            case MotionEvent.ACTION_UP:
-                break;
-            case MotionEvent.ACTION_POINTER_DOWN:
-                break;
-            case MotionEvent.ACTION_POINTER_UP:
+                isDrag = false;
+                downX = X;
+                downY = Y;
+                temp[0] = (int) event.getRawX();
+                temp[1] = (int) event.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
-                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) relShoppingCart.getLayoutParams();
-                layoutParams.leftMargin = X - _xDelta;
-                layoutParams.topMargin = Y - _yDelta;
-                layoutParams.rightMargin = -250;
-                layoutParams.bottomMargin = -250;
-                view.setLayoutParams(layoutParams);
+                if(Math.abs(X - downX) > 10 || Math.abs(Y - downY) > 10){
+                    isDrag = true;
+                }else {
+                    break;
+                }
+                if(Y > 72 && Y < 1600){
+                    int dx = X - temp[0];
+                    int dy = Y - temp[1];
+
+                    int left = v.getLeft() + dx;
+                    int top = v.getTop() + dy;
+                    int right = v.getRight() + dx;
+                    int bottom = v.getBottom() + dy;
+                    if (left < 0) {
+                        left = 0;
+                        right = left + v.getWidth();
+                    }
+                    if (right > screenWidth) {
+                        right = screenWidth;
+                        left = right - v.getWidth();
+                    }
+                    if (top < 72) {
+                        top = 72;
+                        bottom = top + v.getHeight();
+                    }
+                    if(top > 1600){
+                        top = 1600;
+                        bottom = top + v.getHeight();
+                    }
+                    v.layout(left, top, right, bottom);
+                }
+                temp[0] = (int) event.getRawX();
+                temp[1] = (int) event.getRawY();
+                break;
+            case MotionEvent.ACTION_UP:
+                if (Math.abs(event.getRawX() - downX) > 10 || Math.abs(event.getRawY() - downY) > 10 && Y > 72 && Y < 1600) {
+                    RelativeLayout.LayoutParams lpFeedback = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    int left = v.getLeft() ;
+                    int top = v.getTop() ;
+                    lpFeedback.setMargins(left, top, 0, 0);
+                    v.setLayoutParams(lpFeedback);
+                }
+                break;
+            default:
                 break;
         }
-//        relRoot.invalidate();
-        return true;
+        return isDrag;
     }
 
     @Override
@@ -415,8 +462,8 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         if (pageNo < pageCount) {
             isRefresh = false;
             pageNo++;
-            Map<Object,Object> map = new HashMap<>();
-            map.put("keywords","首页全部好货");
+            Map<Object, Object> map = new HashMap<>();
+            map.put("keywords", "首页全部好货");
             map.put(HttpConstant.PAGE_NO, pageNo);
             map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
             presenter.getSearchProductList(map);

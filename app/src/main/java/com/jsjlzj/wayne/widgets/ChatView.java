@@ -1,6 +1,5 @@
 package com.jsjlzj.wayne.widgets;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.util.DisplayMetrics;
@@ -9,13 +8,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import com.jsjlzj.wayne.R;
 
 /**
@@ -165,6 +161,8 @@ public class ChatView extends RelativeLayout {
 //                }
                 isScroll = false;
                 mTouchStartX = mTouchStartY = 0;
+                break;
+            default:
                 break;
         }
         return super.onTouchEvent(event);
