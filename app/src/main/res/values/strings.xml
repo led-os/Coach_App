@@ -29,9 +29,13 @@
     <string name="prepare_data">正在准备数据...</string>
     <string name="amoy">淘学</string>
     <string name="state_duty">国职</string>
+    <string name="find_ydxh">运动协会</string>
     <string name="shopping">商城</string>
     <string name="match">赛事</string>
+    <string name="find_ydk">运动库</string>
+    <string name="store">俱乐部</string>
     <string name="information">资讯</string>
+    <string name="find_bk">百科</string>
     <string name="chinese_money">¥</string>
 
     <string name="readed">已读</string>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.store.find.FindStoreActivity">
+
+    <include layout="@layout/title_bar_layout" />
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/scroll_banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_115"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_10"
+                app:autoTurningTime="4000"
+                app:canLoop="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_38"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/ll_business"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_business"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="全部商圈"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_666666"/>
+
+                    <ImageView
+                        android:id="@+id/img_business"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_find_store_bottom"
+                        android:layout_marginStart="@dimen/padding_8"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_sort"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_sort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="智能排序"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_666666"/>
+
+                    <ImageView
+                        android:id="@+id/img_sort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_find_store_bottom"
+                        android:layout_marginStart="@dimen/padding_8"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_select"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="筛选"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_666666"/>
+
+                    <ImageView
+                        android:id="@+id/img_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_find_store_bottom"
+                        android:layout_marginStart="@dimen/padding_8"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+                android:id="@+id/rv_store"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <include
+                android:id="@+id/include_condition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                layout="@layout/include_find_store_condition"/>
+
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</LinearLayout>

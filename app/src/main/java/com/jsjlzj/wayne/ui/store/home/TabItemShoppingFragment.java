@@ -165,22 +165,20 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
         tvComposeMore.setOnClickListener(clickListener);
         tvSSkill.setOnClickListener(clickListener);
         relShoppingCart.setOnClickListener(clickListener);
-//        relShoppingCart.setOnTouchListener(this);
         relNew.setOnClickListener(clickListener);
         relHot.setOnClickListener(clickListener);
         initRecycler();
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setOnLoadMoreListener(this);
         initData();
-//        chatView = new ChatView(this);
-//        chatView.show();
-//        chatView.setOnClickListener(view1 -> ShoppingCartActivity.go2this(getActivity()));
         relShoppingCart.setOnTouchListener(this);
         WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
         //屏宽
         screenWidth = wm.getDefaultDisplay().getWidth();
         //屏高
         screenHeight = wm.getDefaultDisplay().getHeight();
+
+
     }
 
 
@@ -354,7 +352,6 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
     public void getShoppingNumSuccess(MdlBaseHttpResp<ShoppingNumBean> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null) {
             tvNumber.setText(resp.getData().getData() + "");
-//            chatView.setNum(resp.getData().getData() + "");
         }
     }
 

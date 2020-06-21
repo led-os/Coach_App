@@ -28,7 +28,6 @@ import com.jsjlzj.wayne.entity.find.FindLessonBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
-import com.jsjlzj.wayne.ui.MainActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
@@ -62,8 +61,7 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
     LinearLayout llAmoy;
     @BindView(R.id.ll_state_duty)
     LinearLayout llStateDuty;
-    @BindView(R.id.ll_shopping)
-    LinearLayout llShopping;
+
     @BindView(R.id.ll_match)
     LinearLayout llMatch;
     @BindView(R.id.ll_information)
@@ -106,6 +104,14 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
     RelativeLayout relVip;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.ll_store)
+    LinearLayout llStore;
+    @BindView(R.id.ll_state_ydxh)
+    LinearLayout llStateYdxh;
+    @BindView(R.id.ll_ydk)
+    LinearLayout llYdk;
+    @BindView(R.id.ll_bk)
+    LinearLayout llBk;
     private MyViewPager myViewPager;
 
     private List<BannerBean> images = new ArrayList<>();
@@ -123,7 +129,8 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
         return fragment;
     }
 
-    public OptimizationFragment() {}
+    public OptimizationFragment() {
+    }
 
     public OptimizationFragment(MyViewPager myViewPager) {
         this.myViewPager = myViewPager;
@@ -145,7 +152,6 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
         refreshLayout.setOnRefreshListener(this);
         llAmoy.setOnClickListener(clickListener);
         llStateDuty.setOnClickListener(clickListener);
-        llShopping.setOnClickListener(clickListener);
         llMatch.setOnClickListener(clickListener);
         llInformation.setOnClickListener(clickListener);
         imgOpenVip.setOnClickListener(clickListener);
@@ -154,6 +160,10 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
         tvScanAll.setOnClickListener(clickListener);
         imgClose.setOnClickListener(clickListener);
         tvOpenVip.setOnClickListener(clickListener);
+        llStore.setOnClickListener(clickListener);
+        llStateYdxh.setOnClickListener(clickListener);
+        llYdk.setOnClickListener(clickListener);
+        llBk.setOnClickListener(clickListener);
     }
 
     private void initRecycler() {
@@ -165,10 +175,10 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
         dayStudyAdapter = new DayStudyAdapter(getActivity(), new ArrayList<>(), new ArrayList<>());
         rvDayStudy.setNestedpParent(myViewPager);
         dayStudyAdapter.setListener((bean, pos) -> {
-            if(pos == 1){
-                MoreLessonActivity.go2this(getActivity(),"热门听课榜",2,0);
-            }else {
-                MoreLessonActivity.go2this(getActivity(),"热门课程榜",1,0);
+            if (pos == 1) {
+                MoreLessonActivity.go2this(getActivity(), "热门听课榜", 2, 0);
+            } else {
+                MoreLessonActivity.go2this(getActivity(), "热门课程榜", 1, 0);
             }
         });
         rvDayStudy.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -260,9 +270,9 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
             case R.id.ll_state_duty://国职
                 ContentFragmentTitleActivity.go2this(getActivity(), 1);
                 break;
-            case R.id.ll_shopping://商城
-                ((MainActivity)getActivity()).setShowPosition(1);
-                break;
+//            case R.id.ll_shopping://商城
+//                ((MainActivity)getActivity()).setShowPosition(1);
+//                break;
             case R.id.ll_match://赛事
                 ContentFragmentTitleActivity.go2this(getActivity(), 3);
                 break;
@@ -272,20 +282,29 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
             case R.id.img_open_vip://开会员
                 break;
             case R.id.tv_free_more://更多免费体验
-                MoreLessonActivity.go2this(getActivity(),"免费体验",0,0);
+                MoreLessonActivity.go2this(getActivity(), "免费体验", 0, 0);
                 break;
             case R.id.tv_motion_more://了解运动更多
-                MoreLessonActivity.go2this(getActivity(),"了解运动",4,0);
+                MoreLessonActivity.go2this(getActivity(), "了解运动", 4, 0);
                 break;
             case R.id.tv_scan_all://查看更多课程
-                MoreLessonActivity.go2this(getActivity(),"4门课程",5,0);
+                MoreLessonActivity.go2this(getActivity(), "4门课程", 5, 0);
                 break;
             case R.id.img_close://关闭
                 relVip.setVisibility(View.GONE);
                 break;
             case R.id.tv_open_vip://开通vip
-                WebViewContainerActivity.go2this(getActivity(),"会员中心",HttpConstant.WEB_URL_NEW_MEMBER_CENTER,
+                WebViewContainerActivity.go2this(getActivity(), "会员中心", HttpConstant.WEB_URL_NEW_MEMBER_CENTER,
                         WebViewContainerFragment.TYPE_NEW_MEMBER_CENTER);
+                break;
+            case R.id.ll_store://俱乐部
+                FindStoreActivity.go2this(getContext());
+                break;
+            case R.id.ll_state_ydxh://运动协会
+                break;
+            case R.id.ll_ydk://运动库
+                break;
+            case R.id.ll_bk://百科
                 break;
             default:
                 break;
@@ -307,9 +326,9 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
             if (resp.getData().getData().getHotList() != null && resp.getData().getData().getHotListeningList() != null) {
                 dayStudyAdapter.setData(resp.getData().getData().getHotList(), resp.getData().getData().getHotListeningList());
             }
-            if(resp.getData().getData().isVip()){
+            if (resp.getData().getData().isVip()) {
                 relVip.setVisibility(View.GONE);
-            }else {
+            } else {
                 relVip.setVisibility(View.VISIBLE);
             }
         }
@@ -331,7 +350,7 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
             if (resp.getData().getData().getFourList() != null) {
                 courserFindAdapter.setData(resp.getData().getData().getFourList());
             }
-            if(resp.getData().getData().getCategoryList() != null){
+            if (resp.getData().getData().getCategoryList() != null) {
                 classRecommendAdapter.setData(resp.getData().getData().getCategoryList());
             }
         }

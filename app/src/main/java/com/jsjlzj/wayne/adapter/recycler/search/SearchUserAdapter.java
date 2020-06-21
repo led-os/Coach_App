@@ -87,7 +87,7 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
         void bindView(int pos) {
             bean = list.get(pos);
-            GlidUtils.setCircleGrid(context,bean.getHeadImg(),imgHead);
+            GlidUtils.setCircleGrid(context,bean.getAvatar(),imgHead);
             tvName.setText(bean.getName());
             tvFen.setText("粉丝"+bean.getFansCount());
             relItem.setOnClickListener(clickListener);

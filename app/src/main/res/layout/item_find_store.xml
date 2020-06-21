@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/img_pic"
+        android:layout_width="@dimen/padding_84"
+        android:layout_height="@dimen/padding_84"
+        android:layout_marginStart="@dimen/padding_19"
+        android:layout_marginTop="@dimen/padding_12"
+        android:layout_marginEnd="@dimen/padding_10"
+        android:layout_marginBottom="@dimen/padding_7"
+        android:src="@drawable/ic_default_image" />
+
+    <TextView
+        android:id="@+id/tv_store_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/img_pic"
+        android:layout_toEndOf="@+id/img_pic"
+        android:layout_marginTop="@dimen/padding_2"
+        android:text="GODS’GYM健身工作室(…"
+        android:layout_toStartOf="@+id/tv_is_new"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/text_size_15" />
+
+    <TextView
+        android:id="@+id/tv_is_new"
+        android:layout_width="@dimen/padding_31"
+        android:layout_height="@dimen/padding_15"
+        android:layout_alignTop="@+id/tv_store_name"
+        android:layout_marginEnd="@dimen/padding_23"
+        android:text="新店"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/padding_2"
+        android:background="@drawable/bg_solid_find_store"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_12" />
+
+    <LinearLayout
+        android:id="@+id/ll_fen"
+        android:layout_below="@+id/tv_store_name"
+        android:layout_alignStart="@+id/tv_store_name"
+        android:layout_marginTop="@dimen/padding_4"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_star_1"
+            android:src="@drawable/icon_find_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageView
+            android:id="@+id/img_star_2"
+            android:src="@drawable/icon_find_star"
+            android:layout_marginStart="@dimen/padding_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageView
+            android:id="@+id/img_star_3"
+            android:src="@drawable/icon_find_star"
+            android:layout_marginStart="@dimen/padding_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageView
+            android:id="@+id/img_star_4"
+            android:src="@drawable/icon_find_star"
+            android:layout_marginStart="@dimen/padding_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageView
+            android:id="@+id/img_star_5"
+            android:src="@drawable/icon_find_stare_self"
+            android:layout_marginStart="@dimen/padding_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/tv_"
+            android:textColor="@color/color_F1404B"
+            android:layout_marginStart="@dimen/padding_4"
+            android:textSize="@dimen/text_size_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.5分"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="钱江世纪城  私教工作室"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_toStartOf="@+id/tv_distant"
+        android:layout_marginTop="@dimen/padding_4"
+        android:layout_alignStart="@+id/ll_fen"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_666666"
+        android:layout_below="@+id/ll_fen"/>
+
+    <TextView
+        android:id="@+id/tv_distant"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/padding_19"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_333333"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="240m"
+        android:layout_alignTop="@+id/tv_des"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_F7B500"
+        android:layout_below="@+id/tv_des"
+        android:layout_marginTop="@dimen/padding_2"
+        android:text="“环境不错，设施齐全。”"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_alignStart="@+id/tv_store_name"
+        android:textSize="@dimen/text_size_12"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_store_name"
+        android:visibility="gone"
+        android:layout_below="@+id/img_pic">
+
+        <TextView
+            android:id="@+id/tv_tuan"
+            android:layout_width="@dimen/padding_15"
+            android:layout_height="@dimen/padding_15"
+            android:text="团"
+            android:gravity="center"
+            android:background="@drawable/bg_solid_ff7c84_2"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/padding_7"/>
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/color_f1404b"
+            android:text="¥9.9"
+            android:layout_toEndOf="@+id/tv_tuan"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/tv_tuan"
+            android:layout_marginStart="@dimen/padding_4"
+            android:layout_marginEnd="@dimen/padding_8"
+            android:layout_alignBottom="@+id/tv_tuan"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="百日瘦身计划减脂训练体验课…"
+            android:layout_toEndOf="@+id/tv_money"
+            android:textSize="@dimen/text_size_12"
+            android:layout_alignTop="@+id/tv_tuan"
+            android:layout_alignBottom="@+id/tv_tuan"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
