@@ -46,7 +46,7 @@ public class LeaderDesActivity extends MVPBaseActivity<HomeView, HomePresenter> 
     protected void initViewAndControl() {
         initRightTitle("申请成为团长",R.drawable.ic_profit_order_info);
         mRightBtn.setOnClickListener(view ->
-                WebViewContainerActivity.go2this(LeaderDesActivity.this,"收益说明", HttpConstant.WEB_URL_BENEFIT_INFO, WebViewContainerFragment.TYPE_BANNER_LINK_URL
+                WebViewContainerActivity.go2this(LeaderDesActivity.this,"收益说明", HttpConstant.WEB_URL_BENEFIT_INFO, WebViewContainerFragment.TYPE_PROFIT
                 ));
         tvCommit.setOnClickListener(view -> {
             ApplyLeaderActivity.go2this(this);

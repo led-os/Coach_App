@@ -76,7 +76,7 @@ public class SettledInAdapter extends RecyclerView.Adapter<SettledInAdapter.View
                     tvMoney.setText("15000");
                     break;
                 case 3:
-                    tvType.setText("至尊版");
+                    tvType.setText("贵族享版");
                     tvMoney.setText("20000");
                     break;
             }

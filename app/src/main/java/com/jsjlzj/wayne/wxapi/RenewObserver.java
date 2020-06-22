@@ -27,11 +27,11 @@ public class RenewObserver {
         }
     }
 
-    public void onPay() {
+    public void onPay(int errorCode) {
         if (onWeiXinListeners.size() > 0) {
             int size = onWeiXinListeners.size();
             for (int i = 0; i < size; i++) {
-                onWeiXinListeners.get(i).onPay();
+                onWeiXinListeners.get(i).onPay(errorCode);
             }
         }
     }
@@ -42,7 +42,7 @@ public class RenewObserver {
         /**
          * 支付
          */
-        void onPay();
+        void onPay(int errorCode);
 
     }
 

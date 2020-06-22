@@ -35,13 +35,13 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         System.out.println("=========================================================="+baseResp.getType());
         LogAndToastUtil.log(baseResp.getType() + "=====111111" + JSONObject.toJSONString(baseResp));
         if (baseResp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            if (baseResp.errCode == BaseResp.ErrCode.ERR_OK) {
-                RenewObserver.getInstance().onPay();
-                finish();
-            } else if (baseResp.errCode == BaseResp.ErrCode.ERR_USER_CANCEL) {
-                LogAndToastUtil.toast("取消支付");
-                finish();
-            }
+            RenewObserver.getInstance().onPay(baseResp.errCode);
+            finish();
+//            if (baseResp.errCode == BaseResp.ErrCode.ERR_OK) {
+//            } else if (baseResp.errCode == BaseResp.ErrCode.ERR_USER_CANCEL) {
+//                LogAndToastUtil.toast("取消支付");
+//                finish();
+//            }
             return;
         }
     }

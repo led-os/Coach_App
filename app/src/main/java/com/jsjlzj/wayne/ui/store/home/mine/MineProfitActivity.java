@@ -60,6 +60,8 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
     @BindView(R.id.img_profit_des)
     ImageView imgProfitDes;
 
+    private String money ;
+
     public static void go2this(Activity activity){
         activity.startActivity(new Intent(activity,MineProfitActivity.class));
     }
@@ -80,6 +82,7 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
         tvCommitMoney.setOnClickListener(clickListener);
         llProfitDetail.setOnClickListener(clickListener);
         llRecord.setOnClickListener(clickListener);
+        imgProfitDes.setOnClickListener(clickListener);
         presenter.getMineProfit();
     }
 
@@ -89,10 +92,10 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
         super.onMultiClick(view);
         switch (view.getId()){
             case R.id.img_profit_des:
-                WebViewContainerActivity.go2this(this,"收益说明", HttpConstant.WEB_URL_BENEFIT_INFO, WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+                WebViewContainerActivity.go2this(this,"收益说明", HttpConstant.WEB_URL_BENEFIT_INFO, WebViewContainerFragment.TYPE_PROFIT);
                 break;
             case R.id.tv_commit_money:
-                if(Float.valueOf(tvMoney.getText().toString()) <= 0){
+                if(Float.valueOf(money) <= 0){
                     LogAndToastUtil.toast("暂无提现额度");
                 }else {
                     CashOutActivity.go2this(this,tvMoney.getText().toString());
@@ -113,7 +116,8 @@ public class MineProfitActivity extends MVPBaseActivity<HomeView, HomePresenter>
     public void getMineProfitSuccess(MdlBaseHttpResp<MineProfitBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             if(resp.getData().getData() != null){
-                tvMoney.setText(getResources().getString(R.string.chinese_money) + resp.getData().getData().getWithdrawableAmount());
+                money = resp.getData().getData().getWithdrawableAmount();
+                tvMoney.setText(getResources().getString(R.string.chinese_money) + money);
                 tvAllMoney.setText(getResources().getString(R.string.chinese_money) + resp.getData().getData().getTotalAmount());
                 tvProfitLastMonth.setText(getResources().getString(R.string.chinese_money) + resp.getData().getData().getLastMonthSettlementIncome());
                 tvProfitMonth.setText(getResources().getString(R.string.chinese_money)+resp.getData().getData().getCurrentMonthEstimateIncome());

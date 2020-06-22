@@ -131,7 +131,7 @@ public class ProfitOrderActivity extends MVPBaseActivity<HomeView, HomePresenter
                 finish();
                 break;
             case R.id.img_info:
-                WebViewContainerActivity.go2this(this,"收益说明", HttpConstant.WEB_URL_BENEFIT_INFO, WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+                WebViewContainerActivity.go2this(this,"收益说明", HttpConstant.WEB_URL_BENEFIT_INFO, WebViewContainerFragment.TYPE_PROFIT);
                 break;
             case R.id.btn_title_right:
                 break;

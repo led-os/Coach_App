@@ -45,6 +45,7 @@ import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_DYNAMIC_DE
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_NEW_DAY_SIGN;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_NEW_MEMBER_CENTER;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_PRIVATE_POLICY;
+import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_PROFIT;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_SCAN_SCORE;
 
 
@@ -93,7 +94,8 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         String url = intent.getStringExtra(ExtraConstant.EXTRA_WEB_URL);
         String rowkey = intent.getStringExtra(ExtraConstant.EXTRA_WEB_DATA);
         if (!TextUtils.isEmpty(title)) {
-            if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL || type == TYPE_PRIVATE_POLICY || type == TYPE_NEW_MEMBER_CENTER || title.equals("积分明细") || type == TYPE_NEW_DAY_SIGN || type == TYPE_SCAN_SCORE){
+            if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL || type == TYPE_PRIVATE_POLICY || type == TYPE_NEW_MEMBER_CENTER
+                    || title.equals("积分明细") || type == TYPE_NEW_DAY_SIGN || type == TYPE_SCAN_SCORE || type == TYPE_PROFIT){
                 if(type == TYPE_ARTICLE_DETAIL){
                     title = "详情";
                 }

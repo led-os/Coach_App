@@ -117,20 +117,29 @@ public class TimeSecondItemAdapter extends RecyclerView.Adapter<TimeSecondItemAd
                 }
                 tvRob.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_will_start_shop));
             }
-            tvRob.setOnClickListener(v -> {
-
+            itemView.setOnClickListener(v -> {
                 if(type == 0){
                     WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+bean.getId(),
                             WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
                     if(listener != null){
                         listener.onRobClick(type,bean);
                     }
-                }else {
+                }
+            });
+
+            tvRob.setOnClickListener(v -> {
+                if(type == 1){
                     if(!"已提醒".equals(tvRob.getText().toString())){
                         tvRob.setText("已提醒");
                         if(listener != null){
                             listener.onRobClick(type,bean);
                         }
+                    }
+                }if(type == 0){
+                    WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+bean.getId(),
+                            WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
+                    if(listener != null){
+                        listener.onRobClick(type,bean);
                     }
                 }
             });

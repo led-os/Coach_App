@@ -28,6 +28,7 @@ import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.wxapi.RenewObserver;
+import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -102,6 +103,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         return R.layout.activity_payment;
     }
 
+
     @Override
     protected HomePresenter createPresenter() {
         return new HomePresenter(this);
@@ -137,6 +139,7 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         LogAndToastUtil.toast("支付失败");
+                        finish();
                     }
                     break;
                 }
@@ -190,9 +193,12 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         }
     }
 
-
+    /**
+     * 提交vip购买和蜂隐币订单
+     */
     private void commitVipAndCurrency(){
         map.clear();
+        isPay = false;
         List<CommitOrderBody> list = new ArrayList<>();
         CommitOrderBody commitOrderBody = new CommitOrderBody();
         commitOrderBody.setProductId(productId);list.add(commitOrderBody);
@@ -282,11 +288,15 @@ public class PaymentActivity extends MVPBaseActivity<HomeView, HomePresenter> im
      }
 
     @Override
-    public void onPay() {
-        map.clear();
-        map.put("orderCode",orderCode);
-        map.put("payType",payType);
-        presenter.searchPayResult(map);
+    public void onPay(int errCode) {
+        if (errCode == BaseResp.ErrCode.ERR_OK) {
+            map.clear();
+            map.put("orderCode",orderCode);
+            map.put("payType",payType);
+            presenter.searchPayResult(map);
+        } else if (errCode == BaseResp.ErrCode.ERR_USER_CANCEL) {
+                LogAndToastUtil.toast("取消支付");
+        }
     }
 
     @Override
