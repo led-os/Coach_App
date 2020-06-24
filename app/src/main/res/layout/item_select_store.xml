@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/padding_66"
+    android:layout_height="wrap_content">
+    
+    <ImageView
+        android:id="@+id/img_store"
+        android:src="@drawable/ic_avatars"
+        android:layout_width="@dimen/padding_61"
+        android:layout_height="@dimen/padding_61"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_name"
+        android:text="张三"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/text_size_13"
+        android:layout_marginTop="@dimen/padding_6"
+        android:layout_below="@+id/img_store"
+        android:textColor="@color/color_222222"/>
+    
+    <ImageView
+        android:id="@+id/img_select"
+        android:layout_width="@dimen/padding_24"
+        android:layout_height="@dimen/padding_24"
+        android:layout_marginEnd="-8dp"
+        android:src="@drawable/icon_find_store_no_select"
+        android:layout_alignEnd="@+id/img_store"
+        android:layout_alignTop="@+id/img_store"/>
+</RelativeLayout>
