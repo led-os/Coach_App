@@ -2,7 +2,6 @@ package com.jsjlzj.wayne.ui.store.find;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,16 +9,30 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.adapter.recycler.find.SelectTrainAdapter;
+import com.jsjlzj.wayne.adapter.recycler.mine.SelectPicOrVideoAdapter;
+import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.Login.MdlUpload;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.FindLessonBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.ui.store.home.mine.AfterSaleApplyActivity;
+import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.widgets.SelectFenView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @ClassName: FindStoreEvaluateActivity
@@ -27,7 +40,7 @@ import butterknife.ButterKnife;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
+public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, SelectPicOrVideoAdapter.OnImageClickListener, SelectTrainAdapter.OnItemClickListener {
 
     @BindView(R.id.tv_name)
     TextView tvName;
@@ -38,7 +51,6 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     SelectFenView sfvEnvironment;//环境评分
     @BindView(R.id.sfv_server)
     SelectFenView sfvServer;//服务评分
-
     @BindView(R.id.tv_fen)
     TextView tvFen;
     @BindView(R.id.et_content)
@@ -51,36 +63,13 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     ImageView imgSelectPic;
     @BindView(R.id.rv_trainer)
     RecyclerView rvTrainer;
-    @BindView(R.id.img_1_major)
-    ImageView img1Major;
-    @BindView(R.id.img_2_major)
-    ImageView img2Major;
-    @BindView(R.id.img_3_major)
-    ImageView img3Major;
-    @BindView(R.id.img_4_major)
-    ImageView img4Major;
-    @BindView(R.id.img_5_major)
-    ImageView img5Major;
-    @BindView(R.id.img_1_attitude)
-    ImageView img1Attitude;
-    @BindView(R.id.img_2_attitude)
-    ImageView img2Attitude;
-    @BindView(R.id.img_3_attitude)
-    ImageView img3Attitude;
-    @BindView(R.id.img_4_attitude)
-    ImageView img4Attitude;
-    @BindView(R.id.img_5_attitude)
-    ImageView img5Attitude;
-    @BindView(R.id.img_1_vivid)
-    ImageView img1Vivid;
-    @BindView(R.id.img_2_vivid)
-    ImageView img2Vivid;
-    @BindView(R.id.img_3_vivid)
-    ImageView img3Vivid;
-    @BindView(R.id.img_4_vivid)
-    ImageView img4Vivid;
-    @BindView(R.id.img_5_vivid)
-    ImageView img5Vivid;
+    @BindView(R.id.sfv_zy)
+    SelectFenView sfvZy;//专业评分
+    @BindView(R.id.sfv_attitude)
+    SelectFenView sfvAttitude;//态度评分
+    @BindView(R.id.sfv_vivid)
+    SelectFenView sfvVivid;//形象评分
+
     @BindView(R.id.tv_fen_store)
     TextView tvFenStore;
     @BindView(R.id.img_nick)
@@ -89,13 +78,20 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     LinearLayout llNick;
     @BindView(R.id.tv_public)
     TextView tvPublic;
+    private static int IMG_SIZE = 9;
 
     public static void go2this(Activity activity){
         activity.startActivity(new Intent(activity,FindStoreEvaluateActivity.class));
     }
 
     private int setFen,evaFen,serviceFen;
-    private float totalFen;
+    private int zyFen,attFen,vividFen;
+    private float totalFen,traninFen;
+    private SelectPicOrVideoAdapter selectPicOrVideoAdapter;
+    private List<String> imgVideoList = new ArrayList<>();
+    private SelectTrainAdapter trainAdapter;
+    private int curSelectPos;
+    private boolean isNick;
 
 
 
@@ -114,21 +110,47 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
         sfvSet.setFenType("设施", curFen -> {
             setFen = curFen;
             totalFen = (setFen + evaFen + serviceFen ) * 1.0f/ 3;
-            tvFen.setText(""+totalFen);
+            tvFen.setText(DateUtil.getTwoDotByFloatOne(totalFen));
         });
         sfvEnvironment.setFenType("环境", curFen -> {
             evaFen = curFen;
             totalFen = (setFen + evaFen + serviceFen ) * 1.0f/ 3;
-            tvFen.setText(""+totalFen);
+            tvFen.setText(DateUtil.getTwoDotByFloatOne(totalFen));
         });
         sfvEnvironment.setFenType("环境", curFen -> {
-            evaFen = curFen;
+            serviceFen = curFen;
             totalFen = (setFen + evaFen + serviceFen ) * 1.0f/ 3;
-            tvFen.setText(""+totalFen);
+            tvFen.setText(DateUtil.getTwoDotByFloatOne(totalFen));
         });
+        sfvZy.setFenType("专业", curFen -> {
+            zyFen = curFen;
+            traninFen = (zyFen + attFen + vividFen ) * 1.0f/ 3;
+            tvFenStore.setText(DateUtil.getTwoDotByFloatOne(traninFen));
+        });
+        sfvAttitude.setFenType("态度", curFen -> {
+            attFen = curFen;
+            traninFen = (zyFen + attFen + vividFen ) * 1.0f/ 3;
+            tvFenStore.setText(DateUtil.getTwoDotByFloatOne(traninFen));
+        });
+        sfvVivid.setFenType("形象", curFen -> {
+            vividFen = curFen;
+            traninFen = (zyFen + attFen + vividFen ) * 1.0f/ 3;
+            tvFenStore.setText(DateUtil.getTwoDotByFloatOne(traninFen));
+        });
+        rvPic.setLayoutManager(new GridLayoutManager(this,3));
+        imgVideoList.add("图片");
+        imgVideoList.add("视频");
+        selectPicOrVideoAdapter = new SelectPicOrVideoAdapter(this,imgVideoList);
+        selectPicOrVideoAdapter.setListener(this);
+        rvPic.setAdapter(selectPicOrVideoAdapter);
+        rvTrainer.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        trainAdapter = new SelectTrainAdapter(this,new ArrayList<>());
+        trainAdapter.setListener(this);
+        rvTrainer.setAdapter(trainAdapter);
         tvSelectPic.setOnClickListener(clickListener);
         imgSelectPic.setOnClickListener(clickListener);
-
+        llNick.setOnClickListener(clickListener);
+        tvPublic.setOnClickListener(clickListener);
     }
 
 
@@ -136,12 +158,110 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     protected void onMultiClick(View view) {
         super.onMultiClick(view);
         switch (view.getId()){
-
             case R.id.img_select_pic:
             case R.id.tv_select_pic:
-                // TODO: 2020/6/23 选择教练评价
+                SelectTrainActivity.go2this(this,SelectTrainActivity.REQUEST_CODE);
                 break;
-
+            case R.id.ll_nick://是否匿名
+                if(isNick){
+                    isNick = false;
+                    imgNick.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.cbx_unselect));
+                }else {
+                    isNick = true;
+                    imgNick.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.cbx_select));
+                }
+                break;
+            case R.id.tv_public://发布
+                break;
+            default:break;
         }
+    }
+
+
+    @Override
+    public void selectPhoto(int position) {
+        if(position == imgVideoList.size() - 1){
+            // TODO: 2020/6/24 选择视频文件 
+        }else {
+            SelectImageUtils.selectPhoto(this, getString(R.string.takephoto), false, true, 1);
+        }
+    }
+
+    @Override
+    public void onUploadSuccess(String path, int position) {
+        this.curSelectPos = position;
+        presenter.upload(path);
+    }
+
+
+    @Override
+    public void showUpload(MdlBaseHttpResp<MdlUpload> resp) {
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null) {
+            MdlUpload.DataBean bean = resp.getData().getData();
+            if (imgVideoList.size() < curSelectPos +1) {
+                imgVideoList.add(bean.getUrl());
+            } else { // 替换图片
+                imgVideoList.set(curSelectPos, bean.getUrl());
+            }
+            if (imgVideoList.size() < IMG_SIZE) {
+                // 如果最后一张已经是空白图的话不操作，否则添加一张空白图
+                if(imgVideoList.size() > 2){
+                    if (!imgVideoList.get(imgVideoList.size() - 2).equals("图片")) {
+                        imgVideoList.add("图片");
+                    }
+                }
+                if (!imgVideoList.get(imgVideoList.size() - 1).equals("视频")) {
+                    imgVideoList.add("视频");
+                }
+            }
+            selectPicOrVideoAdapter.notifyDataSetChanged();
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        presenter.onRequestPermissionsResult(this, requestCode, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(this, requestCode, resultCode, data);
+        if(resultCode == SelectTrainActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK){
+            int selectPos = data.getIntExtra(ExtraConstant.EXTRA_POSITION,0);
+            trainAdapter.setSelectPos(selectPos);
+        }
+    }
+
+
+    @Override
+    public void onImageClick(int position) {
+        presenter.autoObtainStoragePermission(this, position);
+    }
+
+    @Override
+    public void onRemoveImgClick(int position) {
+        // 删除图片
+        imgVideoList.remove(position);
+        if (imgVideoList.size() < IMG_SIZE) {
+            // 如果最后一张已经是空白图的话不操作，否则添加一张空白图
+            if(imgVideoList.size() > 2){
+                if (!imgVideoList.get(imgVideoList.size() - 2).equals("图片")) {
+                    imgVideoList.add("图片");
+                }
+            }
+            if (!imgVideoList.get(imgVideoList.size() - 1).equals("视频")) {
+                imgVideoList.add("视频");
+            }
+        }
+        selectPicOrVideoAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemClick(FindLessonBean bean) {
+
     }
 }

@@ -33,6 +33,14 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
     private Context context;
     private List<ChannelListBean> list = new ArrayList<>();
+    /**
+     *  1 : 选择教练
+     */
+    private int type;
+
+    public void setType(int type){
+        this.type = type;
+    }
 
     public SearchUserAdapter(Context context, List<ChannelListBean> list) {
         this.context = context;
@@ -95,6 +103,9 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
                 tvFavorite.setText("已关注");
                 tvFavorite.setTextColor(ContextCompat.getColor(context,R.color.color_999999));
                 tvFavorite.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_stroke_dddddd_21));
+            }
+            if(type == 1){
+
             }
             tvName.setOnClickListener(clickListener);
             imgHead.setOnClickListener(clickListener);

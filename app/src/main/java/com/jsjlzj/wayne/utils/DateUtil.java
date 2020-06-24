@@ -203,4 +203,18 @@ public class DateUtil {
         String distanceString = decimalFormat.format(f);
         return distanceString;
     }
+
+
+    /**
+     * 蜂隐币统一转换
+     * @param f
+     * @return
+     */
+    public static String getTwoDotByFloatOne(float f){
+        //构造方法的字符格式这里如果小数不足2位,会以0补足.
+        DecimalFormat decimalFormat =new DecimalFormat("0.0");
+        //format 返回的是字符串
+        String distanceString = decimalFormat.format(f);
+        return distanceString;
+    }
 }

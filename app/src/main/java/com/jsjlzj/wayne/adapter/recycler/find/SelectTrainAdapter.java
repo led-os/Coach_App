@@ -7,28 +7,33 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @ClassName: SelectStoreAdapter
+ * @ClassName: SelectTrainAdapter
  * @Description: java类作用描述
  * @Author: 曾海强
  * @CreateDate: 2020/6/22 22:23
  */
-public class SelectStoreAdapter extends RecyclerView.Adapter<SelectStoreAdapter.ViewHolder> {
+public class SelectTrainAdapter extends RecyclerView.Adapter<SelectTrainAdapter.ViewHolder> {
 
 
     private Context context;
     private List<String> list = new ArrayList<>();
+    private int selectPos = -1;
 
-
-    public SelectStoreAdapter(Context context, List<String> list) {
+    public SelectTrainAdapter(Context context, List<String> list) {
         this.context = context;
         this.list.addAll(list);
     }
@@ -37,6 +42,11 @@ public class SelectStoreAdapter extends RecyclerView.Adapter<SelectStoreAdapter.
     public void setData(List<String> list) {
         this.list.clear();
         this.list.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void setSelectPos(int pos){
+        this.selectPos = pos;
         notifyDataSetChanged();
     }
 
@@ -73,14 +83,17 @@ public class SelectStoreAdapter extends RecyclerView.Adapter<SelectStoreAdapter.
         }
 
         void bindView(int pos) {
+            if(selectPos == pos){
+                imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_find_store_select));
+            }else {
+                imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_find_store_no_select));
+            }
 //            GlidUtils.setRoundGrid(context,findLessonBean.getCoverImg(),imgUrl,2);
 //            tvTitle.setText(findLessonBean.getTitle());
-//            itemView.setOnClickListener(v -> {
-//                WebViewContainerActivity.go2this(context,findLessonBean.getTitle(), HttpConstant.WEB_URL_NEW_COURSE_DETAIL+findLessonBean.getId(),
-//                        WebViewContainerFragment.TYPE_NEW_COURSE_DETAIL);
-//
-//
-//            });
+            itemView.setOnClickListener(v -> {
+                selectPos = pos;
+                notifyDataSetChanged();
+            });
         }
     }
 
