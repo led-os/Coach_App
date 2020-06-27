@@ -7,11 +7,18 @@ import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.CashOutPageBean;
+import com.jsjlzj.wayne.entity.find.CommentBean;
+import com.jsjlzj.wayne.entity.find.CommentDetailBean;
 import com.jsjlzj.wayne.entity.find.CurrencyBean;
 import com.jsjlzj.wayne.entity.find.CurrencyDetailPageBean;
 import com.jsjlzj.wayne.entity.find.FindCategoryBean;
 import com.jsjlzj.wayne.entity.find.FindLessonDetailBean;
 import com.jsjlzj.wayne.entity.find.FindLessonPageBean;
+import com.jsjlzj.wayne.entity.find.FindStoreBannerBean;
+import com.jsjlzj.wayne.entity.find.FindStoreConditionBean;
+import com.jsjlzj.wayne.entity.find.FindStorePageBean;
+import com.jsjlzj.wayne.entity.find.FindStoreRecommendBean;
+import com.jsjlzj.wayne.entity.find.FindTrainerBean;
 import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
@@ -2143,6 +2150,194 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<VipDataBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getStoreBanner(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getStoreBanner(param, new Observer<MdlBaseHttpResp<FindStoreBannerBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<FindStoreBannerBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getCommitComment(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getCommitComment(param, new Observer<MdlBaseHttpResp<CommentBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<CommentBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getCommentDetail(int code, int param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getCommentDetail(param, new Observer<MdlBaseHttpResp<CommentDetailBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<CommentDetailBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getFindStoreListCondition(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getFindStoreListCondition(param, new Observer<MdlBaseHttpResp<FindStorePageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<FindStorePageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    public void getBusinessDistrict(int code, Map params , final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getBusinessDistrict(params, new Observer<MdlBaseHttpResp<FindStorePageBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<FindStorePageBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getFindTrainerList(int code, int storeId, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getFindTrainerList(storeId, new Observer<MdlBaseHttpResp<FindTrainerBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<FindTrainerBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getFindStoreRecommendList(int code, int commendId, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getFindStoreRecommendList(commendId, new Observer<MdlBaseHttpResp<FindStoreRecommendBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<FindStoreRecommendBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getFindStoreCondition(int code, Map param, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getFindStoreCondition(param, new Observer<MdlBaseHttpResp<FindStoreConditionBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<FindStoreConditionBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 

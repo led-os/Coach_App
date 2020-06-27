@@ -4,12 +4,20 @@ import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.BusinessDistrictBean;
 import com.jsjlzj.wayne.entity.find.CashOutPageBean;
+import com.jsjlzj.wayne.entity.find.CommentBean;
+import com.jsjlzj.wayne.entity.find.CommentDetailBean;
 import com.jsjlzj.wayne.entity.find.CurrencyBean;
 import com.jsjlzj.wayne.entity.find.CurrencyDetailPageBean;
 import com.jsjlzj.wayne.entity.find.FindCategoryBean;
 import com.jsjlzj.wayne.entity.find.FindLessonDetailBean;
 import com.jsjlzj.wayne.entity.find.FindLessonPageBean;
+import com.jsjlzj.wayne.entity.find.FindStoreBannerBean;
+import com.jsjlzj.wayne.entity.find.FindStoreConditionBean;
+import com.jsjlzj.wayne.entity.find.FindStorePageBean;
+import com.jsjlzj.wayne.entity.find.FindStoreRecommendBean;
+import com.jsjlzj.wayne.entity.find.FindTrainerBean;
 import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
@@ -116,6 +124,41 @@ public interface HomeView extends BaseView {
      * @param resp
      */
     default void getNewShoppingListSuccess(MdlBaseHttpResp<ShoppingListBean> resp){}
+    /**
+     * 获取俱乐部banner成功
+     * @param resp
+     */
+    default void getFindStoreBannerSuccess(MdlBaseHttpResp<FindStoreBannerBean> resp){}
+    /**
+     * 获取筛选条件列表
+     * @param resp
+     */
+    default void getFindStoreConditionSuccess(MdlBaseHttpResp<FindStoreConditionBean> resp){}
+    /**
+     * 获取俱乐部推荐列表成功
+     * @param resp
+     */
+    default void getFindStoreRecommendListSuccess(MdlBaseHttpResp<FindStoreRecommendBean> resp){}
+    /**
+     * 获取俱乐部列表成功 -- 分页
+     * @param resp
+     */
+    default void getFindStoreListConditionSuccess(MdlBaseHttpResp<FindStorePageBean> resp){}
+    /**
+     * 获取商圈分类列表 -- 分页
+     * @param resp
+     */
+    default void getFindStoreBusinessSuccess(MdlBaseHttpResp<BusinessDistrictBean> resp){}
+    /**
+     * 获取俱乐部教练列表成功
+     * @param resp
+     */
+    default void getFindStoreTrainerListSuccess(MdlBaseHttpResp<FindTrainerBean> resp){}
+    /**
+     * 获取评论详情
+     * @param resp
+     */
+    default void getCommentDetailSuccess(MdlBaseHttpResp<CommentDetailBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }
@@ -130,6 +173,9 @@ public interface HomeView extends BaseView {
 
 
     default void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
+    }
+
+    default void getCommentSuccess(MdlBaseHttpResp<CommentBean> resp) {
     }
 
     default void deleteDynamicSuccess(MdlBaseHttpResp<DataBean> resp) {

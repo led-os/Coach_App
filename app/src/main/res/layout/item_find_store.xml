@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
 
     <ImageView
@@ -22,6 +23,8 @@
         android:layout_toEndOf="@+id/img_pic"
         android:layout_marginTop="@dimen/padding_2"
         android:text="GODS’GYM健身工作室(…"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:layout_toStartOf="@+id/tv_is_new"
         android:textColor="@color/color_333333"
         android:textSize="@dimen/text_size_15" />
@@ -51,14 +54,14 @@
 
         <ImageView
             android:id="@+id/img_star_1"
-            android:src="@drawable/icon_find_star"
+            android:src="@drawable/icon_evaluate_xing_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <ImageView
             android:id="@+id/img_star_2"
-            android:src="@drawable/icon_find_star"
+            android:src="@drawable/icon_evaluate_xing_no"
             android:layout_marginStart="@dimen/padding_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +69,7 @@
 
         <ImageView
             android:id="@+id/img_star_3"
-            android:src="@drawable/icon_find_star"
+            android:src="@drawable/icon_evaluate_xing_no"
             android:layout_marginStart="@dimen/padding_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,7 +77,7 @@
 
         <ImageView
             android:id="@+id/img_star_4"
-            android:src="@drawable/icon_find_star"
+            android:src="@drawable/icon_evaluate_xing_no"
             android:layout_marginStart="@dimen/padding_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,20 +85,20 @@
 
         <ImageView
             android:id="@+id/img_star_5"
-            android:src="@drawable/icon_find_stare_self"
+            android:src="@drawable/icon_evaluate_xing_no"
             android:layout_marginStart="@dimen/padding_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <TextView
-            android:id="@+id/tv_"
+            android:id="@+id/tv_fen"
             android:textColor="@color/color_F1404B"
             android:layout_marginStart="@dimen/padding_4"
             android:textSize="@dimen/text_size_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.5分"/>
+            android:text="0.0分"/>
     </LinearLayout>
 
     <TextView
@@ -122,8 +125,23 @@
         android:layout_height="wrap_content"
         android:text="240m"
         android:layout_alignTop="@+id/tv_des"/>
+    
+    <TextView
+        android:id="@+id/tv_to_comment"
+        android:layout_width="@dimen/padding_65"
+        android:layout_height="@dimen/padding_27"
+        android:gravity="center"
+        android:text="去点评"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/color_666666"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/padding_19"
+        android:layout_below="@+id/tv_store_name"
+        android:layout_marginTop="@dimen/padding_14"
+        android:background="@drawable/bg_stroke_999999_21"/>
 
     <TextView
+        android:id="@+id/tv_self"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_F7B500"
@@ -136,47 +154,13 @@
         android:textSize="@dimen/text_size_12"/>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_lesson"
+        android:layout_below="@+id/img_pic"
+        android:paddingTop="@dimen/padding_2"
+        android:paddingBottom="@dimen/padding_10"
         android:layout_alignStart="@+id/tv_store_name"
-        android:visibility="gone"
-        android:layout_below="@+id/img_pic">
-
-        <TextView
-            android:id="@+id/tv_tuan"
-            android:layout_width="@dimen/padding_15"
-            android:layout_height="@dimen/padding_15"
-            android:text="团"
-            android:gravity="center"
-            android:background="@drawable/bg_solid_ff7c84_2"
-            android:textSize="@dimen/text_size_12"
-            android:textColor="@color/white"
-            android:layout_marginTop="@dimen/padding_7"/>
-
-        <TextView
-            android:id="@+id/tv_money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_12"
-            android:textColor="@color/color_f1404b"
-            android:text="¥9.9"
-            android:layout_toEndOf="@+id/tv_tuan"
-            android:gravity="center_vertical"
-            android:layout_alignTop="@+id/tv_tuan"
-            android:layout_marginStart="@dimen/padding_4"
-            android:layout_marginEnd="@dimen/padding_8"
-            android:layout_alignBottom="@+id/tv_tuan"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="百日瘦身计划减脂训练体验课…"
-            android:layout_toEndOf="@+id/tv_money"
-            android:textSize="@dimen/text_size_12"
-            android:layout_alignTop="@+id/tv_tuan"
-            android:layout_alignBottom="@+id/tv_tuan"/>
-
-    </RelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

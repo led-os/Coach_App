@@ -11,10 +11,10 @@ public class HttpConstant {
     public static final String UPDATA_URL = "https://www.pgyer.com/X4kA";
 
     public static boolean isDebug = true;
-//    public static String BASE_URL = "https://api-dev.jsjlhome.com/";//测试环境
-    public static String BASE_URL = "https://api.jsjlhome.com/";//线上环境
-//        public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
-    public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
+    public static String BASE_URL = "https://api-dev.jsjlhome.com/";//测试环境
+//    public static String BASE_URL = "https://api.jsjlhome.com/";//线上环境
+        public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
+//    public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
 
     public static String WXAPPID = "wx8bd15d5408120652";//"wx465cfff1c19d069d";
     public static String WXAPPSECET = "6f08456d4f060a895aeed4f09c5eb292";//"8659207754ddedc545fbd86cee2496d1";
@@ -27,6 +27,14 @@ public class HttpConstant {
     public static final String SORT_LABEL = "sortLabel";
     public static final String SORT_TYPE = "sortType";
     public static final String TITLE = "title";
+    public static final String LATITUDE = "latitude";
+    public static final String LONGITUDE = "longitude";
+    public static final String ORDER_TYPE_CODE = "orderTypeCode";
+    public static final String BUSINESS_DISTRICTID = "businessDistrictId";
+    public static final String DISTANCE = "distance";
+    public static final String FILTER_KEY_CODES = "filterKeyCodes";
+    public static final String FILTER_LABELS = "filterLabels";
+    public static final String KEY_WORD = "keyword";
 
     static {
         if (true)
@@ -66,6 +74,9 @@ public class HttpConstant {
     public static final String WEB_URL_NEW_MEMBER_CENTER = WEB_URL_BASE + "/#/memberCenter";//会员中心
     public static final String WEB_URL_NEW_ESHOP = WEB_URL_BASE + "/#/eshop";//积分商城
     public static final String WEB_URL_BENEFIT_INFO = WEB_URL_BASE + "#/benefitInfo";//收益说明
+    public static final String WEB_URL_CLUB_DETAIL = WEB_URL_BASE + "/#/clubDetail?id=";//俱乐部详情
+    public static final String WEB_URL_LESSON_DETAIL = WEB_URL_BASE + "/#/lessonDetail?id=";//团购详情
+    public static final String WEB_URL_COACH = WEB_URL_BASE + "/#/coachDetail?id=";//教练详情
 
     public static final String WEB_URL_SCAN_SCORE  = "http://59.108.91.231/ost/queryScore.jsp";//国职考试成绩查询
 
@@ -582,6 +593,22 @@ public class HttpConstant {
     public static final String API_SHOPPING_DETAIL = "product/getSkuProduct";
     //提交充值订单
     public static final String API_COMMIT_VIP_ORDER = "vip/account/apple/rechargeSubmit";
+    //俱乐部banner
+    public static final String API_STORE_BANNER = "club/banners";
+    //获取筛选标签列表
+    public static final String API_FIND_STORE_CONDITION = "club/label/filterLabelList";
+    //获取俱乐部评论成功推荐列表
+    public static final String API_FIND_STORE_RECOMMEND_LIST = "club/favouriteList";
+    //根据筛选条件获取俱乐部列表
+    public static final String API_FIND_STORE_LIST_CONDITION = "club/list";
+    //俱乐部热门商圈列表
+    public static final String API_FIND_STORE_BUSINESS_DISTRICT = "club/businessDistricts";
+    //获取俱乐部教练列表
+    public static final String API_FIND_STORE_STORE_TRAINER_LIST = "club/trainer/list";
+    //发表评论
+    public static final String API_FIND_COMMIT_COMMENT = "club/comment/save";
+    //评论详情
+    public static final String API_FIND_COMMENT_DETAIL = "club/comment/detail";
 
 
 

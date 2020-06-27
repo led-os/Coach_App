@@ -95,7 +95,8 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         String rowkey = intent.getStringExtra(ExtraConstant.EXTRA_WEB_DATA);
         if (!TextUtils.isEmpty(title)) {
             if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL || type == TYPE_PRIVATE_POLICY || type == TYPE_NEW_MEMBER_CENTER
-                    || title.equals("积分明细") || type == TYPE_NEW_DAY_SIGN || type == TYPE_SCAN_SCORE || type == TYPE_PROFIT){
+                    || title.equals("积分明细") || type == TYPE_NEW_DAY_SIGN || type == TYPE_SCAN_SCORE || type == TYPE_PROFIT
+                    || url.contains("/clubComments")){
                 if(type == TYPE_ARTICLE_DETAIL){
                     title = "详情";
                 }
@@ -268,6 +269,8 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         mPopWindow.showAtLocation(rootview, Gravity.BOTTOM, 0, 0);
         KeyboardUtil.openKeyboard(editText,this);
     }
+
+
 
 
     @Override

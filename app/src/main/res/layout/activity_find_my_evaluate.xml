@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ui.store.find.FindMyEvaluateActivity">
+
+    <include layout="@layout/title_bar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_head"
+                android:layout_width="@dimen/padding_42"
+                android:layout_height="@dimen/padding_46"
+                android:layout_marginTop="@dimen/padding_20"
+                android:layout_marginStart="@dimen/padding_16"
+                android:src="@drawable/ic_avatars"/>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小煎鸡"
+                android:textSize="@dimen/text_size_15"
+                android:layout_toEndOf="@+id/img_head"
+                android:layout_alignTop="@+id/img_head"
+                android:layout_marginStart="@dimen/padding_12"
+                android:textColor="@color/color_222222"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_666666"
+                android:textSize="@dimen/text_size_12"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginTop="@dimen/padding_3"
+                android:layout_alignStart="@+id/tv_name"
+                android:text="刚刚"
+                android:id="@+id/tv_time"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_content"
+                android:textSize="@dimen/text_size_13"
+                android:textColor="@color/color_444444"
+                android:text="课程种类很多，私教老师也很专业。值得推荐！"
+                android:paddingStart="@dimen/padding_19"
+                android:paddingEnd="@dimen/padding_19"
+                android:layout_below="@+id/img_head"
+                android:layout_marginTop="@dimen/padding_8"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pic"
+                android:layout_marginTop="@dimen/padding_8"
+                android:layout_marginStart="@dimen/padding_13"
+                android:layout_below="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <com.jsjlzj.wayne.widgets.SelectFenView
+                android:id="@+id/sfv_all_store"
+                android:layout_below="@+id/rv_pic"
+                android:layout_marginStart="@dimen/padding_19"
+                android:layout_marginTop="@dimen/padding_20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/ll_fen"
+                android:layout_below="@+id/sfv_all_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_19"
+                android:layout_marginTop="@dimen/padding_15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="设施："
+                    android:textSize="@dimen/text_size_13"
+                    android:textColor="@color/color_666666"/>
+
+                <TextView
+                    android:id="@+id/tv_set_fen"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/text_size_13"
+                    android:layout_marginStart="@dimen/padding_5"
+                    android:textColor="@color/color_222222"
+                    android:layout_height="wrap_content"
+                    android:text="5.0分"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_19"
+                    android:text="环境："
+                    android:textSize="@dimen/text_size_13"
+                    android:textColor="@color/color_666666"/>
+
+                <TextView
+                    android:id="@+id/tv_eve_fen"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/text_size_13"
+                    android:layout_marginStart="@dimen/padding_5"
+                    android:textColor="@color/color_222222"
+                    android:layout_height="wrap_content"
+                    android:text="5.0分"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="服务："
+                    android:layout_marginStart="@dimen/padding_19"
+                    android:textSize="@dimen/text_size_13"
+                    android:textColor="@color/color_666666"/>
+
+                <TextView
+                    android:id="@+id/tv_service_fen"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/text_size_13"
+                    android:layout_marginStart="@dimen/padding_5"
+                    android:textColor="@color/color_222222"
+                    android:layout_height="wrap_content"
+                    android:text="5.0分"/>
+            </LinearLayout>
+            
+            <RelativeLayout
+                android:id="@+id/rel_store"
+                android:layout_marginTop="@dimen/padding_19"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_below="@+id/ll_fen"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_84"
+                android:background="@drawable/bg_solid_fafafa_4">
+
+                <ImageView
+                    android:id="@+id/img_pic"
+                    android:layout_width="@dimen/padding_61"
+                    android:layout_height="@dimen/padding_61"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_12"
+                    android:src="@drawable/ic_default_image"/>
+
+                <TextView
+                    android:id="@+id/tv_store_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_15"
+                    android:textSize="@dimen/text_size_15"
+                    android:text="GODS’GYM健身工作室(…"
+                    android:paddingEnd="@dimen/padding_10"
+                    android:layout_marginTop="@dimen/padding_2"
+                    android:layout_alignTop="@+id/img_pic"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:layout_toEndOf="@+id/img_pic"
+                    android:layout_toStartOf="@+id/tv_is_new"
+                    android:textColor="@color/color_333333"/>
+                <TextView
+                    android:id="@+id/tv_is_new"
+                    android:layout_width="@dimen/padding_31"
+                    android:layout_height="@dimen/padding_15"
+                    android:layout_alignTop="@+id/tv_store_name"
+                    android:layout_marginEnd="@dimen/padding_23"
+                    android:text="新店"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/padding_2"
+                    android:background="@drawable/bg_solid_find_store"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_12" />
+
+                <LinearLayout
+                    android:id="@+id/ll_fen_store"
+                    android:layout_below="@+id/tv_store_name"
+                    android:layout_alignStart="@+id/tv_store_name"
+                    android:layout_marginTop="@dimen/padding_4"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_star_1"
+                        android:src="@drawable/icon_evaluate_xing_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <ImageView
+                        android:id="@+id/img_star_2"
+                        android:src="@drawable/icon_evaluate_xing_no"
+                        android:layout_marginStart="@dimen/padding_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <ImageView
+                        android:id="@+id/img_star_3"
+                        android:src="@drawable/icon_evaluate_xing_no"
+                        android:layout_marginStart="@dimen/padding_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <ImageView
+                        android:id="@+id/img_star_4"
+                        android:src="@drawable/icon_evaluate_xing_no"
+                        android:layout_marginStart="@dimen/padding_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <ImageView
+                        android:id="@+id/img_star_5"
+                        android:src="@drawable/icon_evaluate_xing_no"
+                        android:layout_marginStart="@dimen/padding_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_fen"
+                        android:textColor="@color/color_F1404B"
+                        android:layout_marginStart="@dimen/padding_4"
+                        android:textSize="@dimen/text_size_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0分"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="钱江世纪城  私教工作室"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:layout_marginTop="@dimen/padding_4"
+                    android:layout_alignStart="@+id/ll_fen_store"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@color/color_666666"
+                    android:layout_below="@+id/ll_fen_store"/>
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rel_trainer"
+                android:layout_marginTop="@dimen/padding_19"
+                android:layout_marginStart="@dimen/padding_14"
+                android:layout_marginEnd="@dimen/padding_14"
+                android:layout_below="@+id/rel_store"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_58"
+                android:background="@drawable/bg_solid_f9f9f9_5">
+
+                <ImageView
+                    android:id="@+id/img_trainer_head"
+                    android:layout_width="@dimen/padding_35"
+                    android:layout_height="@dimen/padding_35"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_4"
+                    android:layout_marginTop="@dimen/padding_12"
+                    android:src="@drawable/ic_default_image"/>
+
+                <TextView
+                    android:id="@+id/tv_trainer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/img_trainer_head"
+                    android:layout_toEndOf="@+id/img_trainer_head"
+                    android:ellipsize="end"
+                    android:paddingEnd="@dimen/padding_10"
+                    android:singleLine="true"
+                    android:text="张杰的教练"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/text_size_10" />
+
+                <TextView
+                    android:id="@+id/tv_trainer"
+                    android:layout_below="@+id/tv_trainer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Amy"
+                    android:layout_toEndOf="@+id/img_trainer_head"
+                    android:layout_marginTop="@dimen/padding_4"
+                    android:textSize="@dimen/text_size_13"
+                    android:textColor="@color/color_222222"/>
+                <com.jsjlzj.wayne.widgets.SelectFenView
+                    android:id="@+id/sfv_trainer_fen"
+                    android:layout_alignTop="@+id/img_trainer_head"
+                    android:layout_toEndOf="@+id/tv_trainer_name"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:id="@+id/ll_trainer_fen"
+                    android:layout_alignStart="@+id/sfv_trainer_fen"
+                    android:layout_below="@+id/sfv_trainer_fen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="专业："
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:id="@+id/tv_zy_fen"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:layout_marginStart="@dimen/padding_3"
+                        android:textColor="@color/color_222222"
+                        android:layout_height="wrap_content"
+                        android:text="5.0分"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/padding_10"
+                        android:text="态度："
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:id="@+id/tv_att_fen"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:layout_marginStart="@dimen/padding_3"
+                        android:textColor="@color/color_222222"
+                        android:layout_height="wrap_content"
+                        android:text="5.0分"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="形象："
+                        android:layout_marginStart="@dimen/padding_10"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/color_666666"/>
+
+                    <TextView
+                        android:id="@+id/tv_vivid_fen"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/text_size_12"
+                        android:layout_marginStart="@dimen/padding_3"
+                        android:textColor="@color/color_222222"
+                        android:layout_height="wrap_content"
+                        android:text="5.0分"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

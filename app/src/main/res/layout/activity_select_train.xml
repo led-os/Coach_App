@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ui.store.find.SelectTrainActivity">
 
     <include layout="@layout/title_bar_layout"/>
 
-    <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_trainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

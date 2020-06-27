@@ -7,6 +7,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
@@ -82,6 +83,8 @@ public class MyApp extends Application {
      * 当前城市
      */
     private String currentProvince;
+    private String areaName;
+    private String province;
     // 当前位置
     private String curPosition;
     private IWXAPI iwxapi;
@@ -110,6 +113,15 @@ public class MyApp extends Application {
         return curPosition;
     }
 
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+
     public IWXAPI getIwxapi() {
         return iwxapi;
     }
@@ -125,7 +137,10 @@ public class MyApp extends Application {
             latitude = (float) bdLocation.getLatitude();    //获取纬度信息
             longitude = (float) bdLocation.getLongitude();
             currentProvince = bdLocation.getCity();  // 获取当前城市
+            province = bdLocation.getProvince();
+            areaName = bdLocation.getDistrict();
             curPosition = bdLocation.getAddrStr();
+            LogAndToastUtil.log("====="+ JSONObject.toJSONString(bdLocation));
             LogAndToastUtil.log("latitude:" + latitude + "longitude:" + longitude + "currentProvince:" + currentProvince + "curPosition:" + curPosition);
             super.onReceiveLocation(bdLocation);
         }

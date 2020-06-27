@@ -301,7 +301,7 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
                 FindStoreActivity.go2this(getContext());
                 break;
             case R.id.ll_state_ydxh://运动协会
-                FindStoreEvaluateActivity.go2this(getActivity());
+
                 break;
             case R.id.ll_ydk://运动库
                 break;

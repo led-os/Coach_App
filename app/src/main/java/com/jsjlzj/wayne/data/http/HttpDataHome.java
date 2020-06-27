@@ -883,6 +883,48 @@ public class HttpDataHome extends BaseHttpData {
         setSubscribe(observable, observer);
     }
 
+    public void getFindStoreRecommendList(int commendId, Observer observer) {
+        Observable observable = service.requestFindStoreRecommendList(commendId);
+        setSubscribe(observable, observer);
+    }
+
+    public void getFindStoreListCondition(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestFindStoreListCondition(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getBusinessDistrict(Map params , Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestFindStoreBusinessDistrict(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getFindTrainerList(int storeId , Observer observer) {
+        Observable observable = service.requestFindTrainerList(storeId);
+        setSubscribe(observable, observer);
+    }
+
+    public void getCommitComment(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestCommitComment(body);
+        setSubscribe(observable, observer);
+    }
+    public void getCommentDetail(int id, Observer observer) {
+        Observable observable = service.requestCommentDetail(id);
+        setSubscribe(observable, observer);
+    }
+    public void getStoreBanner(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestStoreBanner(body);
+        setSubscribe(observable, observer);
+    }
+
+    public void getFindStoreCondition(Map params, Observer observer) {
+        Observable observable = service.requestFindStoreCondition();
+        setSubscribe(observable, observer);
+    }
+
     public void getShoppingDetail(int params, Observer observer) {
 
         Observable observable = service.requestShoppingDetail(params);

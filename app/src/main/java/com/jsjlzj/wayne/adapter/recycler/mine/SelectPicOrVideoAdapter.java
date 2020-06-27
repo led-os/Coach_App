@@ -75,15 +75,34 @@ public class SelectPicOrVideoAdapter extends RecyclerView.Adapter<SelectPicOrVid
             if ("图片".equals(bean)) {
                 tvPic.setText("上传图片");
                 removeIv.setVisibility(View.GONE);
+                tvPic.setVisibility(View.VISIBLE);
+                imgPic.setVisibility(View.VISIBLE);
+                imgSelectPic.setVisibility(View.GONE);
                 imgPic.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_update_pic));
             }else if("视频".equals(bean)){
                 tvPic.setText("上传视频");
                 removeIv.setVisibility(View.GONE);
+                tvPic.setVisibility(View.VISIBLE);
+                imgPic.setVisibility(View.VISIBLE);
+                imgSelectPic.setVisibility(View.GONE);
                 imgPic.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_update_video));
             }else {
+                tvPic.setVisibility(View.GONE);
+                imgPic.setVisibility(View.GONE);
                 removeIv.setVisibility(View.VISIBLE);
+                imgSelectPic.setVisibility(View.VISIBLE);
                 GlidUtils.setGrid(context, bean, imgSelectPic);
             }
+            itemView.setOnClickListener(v -> {
+                if(listener != null){
+                    listener.onImageClick(pos);
+                }
+            });
+            removeIv.setOnClickListener(v -> {
+                if(listener != null){
+                    listener.onRemoveImgClick(pos);
+                }
+            });
         }
     }
 

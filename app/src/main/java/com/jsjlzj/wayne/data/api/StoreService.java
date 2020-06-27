@@ -6,12 +6,20 @@ import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.BusinessDistrictBean;
 import com.jsjlzj.wayne.entity.find.CashOutPageBean;
+import com.jsjlzj.wayne.entity.find.CommentBean;
+import com.jsjlzj.wayne.entity.find.CommentDetailBean;
 import com.jsjlzj.wayne.entity.find.CurrencyBean;
 import com.jsjlzj.wayne.entity.find.CurrencyDetailPageBean;
 import com.jsjlzj.wayne.entity.find.FindCategoryBean;
 import com.jsjlzj.wayne.entity.find.FindLessonDetailBean;
 import com.jsjlzj.wayne.entity.find.FindLessonPageBean;
+import com.jsjlzj.wayne.entity.find.FindStoreBannerBean;
+import com.jsjlzj.wayne.entity.find.FindStoreConditionBean;
+import com.jsjlzj.wayne.entity.find.FindStorePageBean;
+import com.jsjlzj.wayne.entity.find.FindStoreRecommendBean;
+import com.jsjlzj.wayne.entity.find.FindTrainerBean;
 import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
@@ -47,6 +55,7 @@ import com.jsjlzj.wayne.entity.store.MdlPositionType;
 import com.jsjlzj.wayne.entity.store.MdlSkillRequired;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
 import com.jsjlzj.wayne.entity.store.home.AmoySchoolBean;
+import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryListBean;
 import com.jsjlzj.wayne.entity.store.home.CategoryPageBean;
 import com.jsjlzj.wayne.entity.store.home.RecommendBean;
@@ -658,6 +667,32 @@ public interface StoreService {
 
     @POST(HttpConstant.API_COMMIT_VIP_ORDER)
     Observable<MdlBaseHttpResp<VipDataBean>> requestCommitVipOrder(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_STORE_BANNER)
+    Observable<MdlBaseHttpResp<FindStoreBannerBean>> requestStoreBanner(@Body RequestBody requestBody);
+
+    @GET(HttpConstant.API_FIND_STORE_CONDITION)
+    Observable<MdlBaseHttpResp<FindStoreConditionBean>> requestFindStoreCondition();
+
+    @GET(HttpConstant.API_FIND_STORE_RECOMMEND_LIST)
+    Observable<MdlBaseHttpResp<FindStoreRecommendBean>> requestFindStoreRecommendList(@Query("commentId") int commentId);
+
+    @POST(HttpConstant.API_FIND_STORE_LIST_CONDITION)
+    Observable<MdlBaseHttpResp<FindStorePageBean>> requestFindStoreListCondition(@Body RequestBody requestBody);
+
+    @POST(HttpConstant.API_FIND_STORE_BUSINESS_DISTRICT)
+    Observable<MdlBaseHttpResp<BusinessDistrictBean>> requestFindStoreBusinessDistrict(@Body RequestBody requestBody);
+
+    @GET(HttpConstant.API_FIND_STORE_STORE_TRAINER_LIST)
+    Observable<MdlBaseHttpResp<FindTrainerBean>> requestFindTrainerList(
+            @Query("storeId") int storeId);
+
+
+    @POST(HttpConstant.API_FIND_COMMIT_COMMENT)
+    Observable<MdlBaseHttpResp<CommentBean>> requestCommitComment(@Body RequestBody requestBody);
+
+    @GET(HttpConstant.API_FIND_COMMENT_DETAIL)
+    Observable<MdlBaseHttpResp<CommentDetailBean>> requestCommentDetail(@Query("id") int id);
 
 
     @Multipart

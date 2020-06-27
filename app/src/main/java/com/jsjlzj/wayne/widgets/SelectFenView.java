@@ -67,48 +67,27 @@ public class SelectFenView extends LinearLayout {
 
     @OnClick({R.id.img_1, R.id.img_2, R.id.img_3, R.id.img_4, R.id.img_5})
     public void onViewClicked(View view) {
+        if(listener == null) return;
         switch (view.getId()) {
             case R.id.img_1:
-                img1.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img2.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
-                img3.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
-                img4.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
-                img5.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
+                setCurFen(1);
                 listener.onFenClick(1);
                 break;
             case R.id.img_2:
-                img1.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img2.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img3.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
-                img4.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
-                img5.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
+                setCurFen(2);
                 listener.onFenClick(2);
                 break;
             case R.id.img_3:
-                img1.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img2.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img3.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img4.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
-                img5.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
+                setCurFen(3);
                 listener.onFenClick(3);
                 break;
             case R.id.img_4:
-                img1.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img2.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img3.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img4.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img5.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing_no));
+                setCurFen(4);
                 listener.onFenClick(4);
                 break;
             case R.id.img_5:
-                img1.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img2.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img3.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img4.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                img5.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_evaluate_xing));
-                if(listener != null){
-                    listener.onFenClick(5);
-                }
+                setCurFen(5);
+                listener.onFenClick(5);
                 break;
             default:break;
         }
@@ -116,6 +95,70 @@ public class SelectFenView extends LinearLayout {
 
     public int getCurFen() {
         return curFen;
+    }
+
+    public void setCurFen(float score){
+        if (score == 1) {
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+        }else if(score > 1 && score < 2){
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_half));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+        } else if (score == 2) {
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+        }else if(score > 2 && score < 3){
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_half));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+        } else if (score == 3) {
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+        } else if(score > 3 && score < 4){
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_half));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+        }else if (score == 4) {
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+        }else if(score > 4 && score < 5){
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_half));
+        } else if (score == 5) {
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing));
+        }else {
+            img1.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img2.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img3.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img4.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+            img5.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_evaluate_xing_no));
+        }
     }
 
     public void setFenType(String type,OnFenClickListener listener){

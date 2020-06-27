@@ -20,6 +20,7 @@ import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.publicac.report.ReportTypeActivity;
 import com.jsjlzj.wayne.ui.store.find.ConfirmCourserOrderActivity;
+import com.jsjlzj.wayne.ui.store.find.FindStoreEvaluateActivity;
 import com.jsjlzj.wayne.ui.store.home.amoy.SignUpActivity;
 import com.jsjlzj.wayne.ui.store.list.MoreMatchActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ConfirmOrderActivity;
@@ -258,4 +259,25 @@ public class JsInterface {
         LogAndToastUtil.toast("====JsInterface====toIntegral");
     }
 
+
+    @JavascriptInterface
+    public void makePhoneCall(String phone){
+        LogAndToastUtil.toast("====JsInterface====makePhoneCall"+phone);
+    }
+
+    @JavascriptInterface
+    public void clubComment(int clubId,String clubName){
+        FindStoreEvaluateActivity.go2this(mContext,clubId,clubName);
+        LogAndToastUtil.toast(clubId+"====JsInterface====clubComment"+clubName);
+    }
+
+    @JavascriptInterface
+    public void toClubImgInfo(int clubId){
+        LogAndToastUtil.toast(clubId+"====JsInterface====toClubImgInfo");
+    }
+
+    @JavascriptInterface
+    public void toClubPosition(String lng,String lat){
+        LogAndToastUtil.toast(lng+"====JsInterface====toClubPosition"+lat);
+    }
 }

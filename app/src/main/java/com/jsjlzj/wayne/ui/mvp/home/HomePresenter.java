@@ -19,6 +19,7 @@ import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -115,6 +116,14 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_SKILL_HINT = 81;
     private static final int REQ_CODE_PROFIT_ORDER_LIST = 82;
     private static final int REQ_CODE_SHOPPING_LIST = 83;
+    private static final int REQ_CODE_GET_FIND_STORE_BANNER = 84;
+    private static final int REQ_CODE_GET_FIND_STORE_CONDITION = 85;
+    private static final int REQ_CODE_GET_FIND_STORE_RECOMMEND_LIST = 86;
+    private static final int REQ_CODE_GET_FIND_STORE_LIST_CONDITION = 87;
+    private static final int REQ_CODE_GET_FIND_STORE_BUSINESS_DISTINCT = 88;
+    private static final int REQ_CODE_GET_FIND_STORE_TRAINER_LIST = 89;
+    private static final int REQ_CODE_GET_COMMIT_COMMENT = 90;
+    private static final int REQ_CODE_GET_COMMENT_DETAIL = 91;
 
 
 
@@ -819,6 +828,56 @@ public class HomePresenter extends BasePresenter<HomeView> {
         }
     }
 
+    public void getStoreBanner() {
+        if (model != null) {
+            model.getStoreBanner(REQ_CODE_GET_FIND_STORE_BANNER, null, this);
+        }
+    }
+    public void getCommitComment(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getCommitComment(REQ_CODE_GET_COMMIT_COMMENT, params, this);
+        }
+    }
+
+    public void getCommentDetail(int commentId) {
+        if (model != null) {
+            model.getCommentDetail(REQ_CODE_GET_COMMENT_DETAIL, commentId, this);
+        }
+    }
+    public void getFindStoreListCondition(Map params) {
+        if (model != null) {
+            view.showLoading();
+            model.getFindStoreListCondition(REQ_CODE_GET_FIND_STORE_LIST_CONDITION, params, this);
+        }
+    }
+
+    public void getBusinessDistrict(String provinceName ,String cityName ,String areaName) {
+        if (model != null) {
+            Map<Object,Object> map = new HashMap<>();
+            map.put("provinceName",provinceName);
+            map.put("cityName",cityName);
+            map.put("areaName",areaName);
+            model.getBusinessDistrict(REQ_CODE_GET_FIND_STORE_BUSINESS_DISTINCT, map, this);
+        }
+    }
+    public void getFindTrainerList(int storeId) {
+        if (model != null) {
+            model.getFindTrainerList(REQ_CODE_GET_FIND_STORE_TRAINER_LIST, storeId, this);
+        }
+    }
+    public void getFindStoreRecommendList(int commendId) {
+        if (model != null) {
+            model.getFindStoreRecommendList(REQ_CODE_GET_FIND_STORE_RECOMMEND_LIST, commendId, this);
+        }
+    }
+
+    public void getFindStoreCondition() {
+        if (model != null) {
+            model.getFindStoreCondition(REQ_CODE_GET_FIND_STORE_CONDITION, null, this);
+        }
+    }
+
     public void getShoppingDetail(int params) {
         if (model != null) {
             view.showLoading();
@@ -932,6 +991,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
             case REQ_CODE_CANCEL_AFTER_SALE:
             case REQ_CODE_SKILL_HINT:
                 view.getMessageSuccess(resp);
+                break;
+            case REQ_CODE_GET_COMMIT_COMMENT:
+                view.getCommentSuccess(resp);
                 break;
             case REQ_CODE_DELETE_DYNAMIC:
                 view.deleteDynamicSuccess(resp);
@@ -1067,6 +1129,27 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_SHOPPING_LIST:
                 view.getNewShoppingListSuccess(resp);
+                break;
+            case REQ_CODE_GET_FIND_STORE_BANNER:
+                view.getFindStoreBannerSuccess(resp);
+                break;
+            case REQ_CODE_GET_FIND_STORE_CONDITION:
+                view.getFindStoreConditionSuccess(resp);
+                break;
+            case REQ_CODE_GET_FIND_STORE_RECOMMEND_LIST:
+                view.getFindStoreRecommendListSuccess(resp);
+                break;
+            case REQ_CODE_GET_FIND_STORE_LIST_CONDITION:
+                view.getFindStoreListConditionSuccess(resp);
+                break;
+            case REQ_CODE_GET_FIND_STORE_BUSINESS_DISTINCT:
+                view.getFindStoreBusinessSuccess(resp);
+                break;
+            case REQ_CODE_GET_FIND_STORE_TRAINER_LIST:
+                view.getFindStoreTrainerListSuccess(resp);
+                break;
+            case REQ_CODE_GET_COMMENT_DETAIL:
+                view.getCommentDetailSuccess(resp);
                 break;
             default:
                 break;

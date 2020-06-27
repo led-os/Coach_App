@@ -287,6 +287,9 @@
 
     <string name="teacher_home">导师主页</string>
     <string name="shopping_detail">商品详情</string>
+    <string name="clube_detail">俱乐部详情</string>
+    <string name="tuan_detail">团购详情</string>
+    <string name="trainer_detail">教练详情</string>
     <string name="link_phone">18271850619</string>
 
     <string-array name="home_title_list">
@@ -375,6 +378,23 @@
         <item>基础版</item>
         <item>高级版</item>
         <item>尊享版</item>
-        <item>至尊版</item>
+        <item>贵族享版</item>
+    </string-array>
+
+
+    <string-array name="find_store_nearby_list">
+        <item>附近</item>
+        <item>500m</item>
+        <item>1km</item>
+        <item>2km</item>
+        <item>5km</item>
+        <item>10km</item>
+    </string-array>
+    <string-array name="find_store_sort_list">
+        <item>智能排序</item>
+        <item>离我最近</item>
+        <item>好评优先</item>
+        <item>最新发布</item>
+        <item>人气优先</item>
     </string-array>
 </resources>

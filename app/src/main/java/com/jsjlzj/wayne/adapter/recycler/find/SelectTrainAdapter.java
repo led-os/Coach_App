@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
+import com.jsjlzj.wayne.entity.find.FindTrainerBean;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
+import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,24 +32,33 @@ public class SelectTrainAdapter extends RecyclerView.Adapter<SelectTrainAdapter.
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<FindTrainerBean.DataBean> list = new ArrayList<>();
     private int selectPos = -1;
 
-    public SelectTrainAdapter(Context context, List<String> list) {
+    public SelectTrainAdapter(Context context, List<FindTrainerBean.DataBean> list) {
         this.context = context;
         this.list.addAll(list);
     }
 
 
-    public void setData(List<String> list) {
+    public void setData(List<FindTrainerBean.DataBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void setSelectPos(int pos){
-        this.selectPos = pos;
-        notifyDataSetChanged();
+    public void setSelectTrainId(int selectTrainId){
+        selectPos = 0;
+        List<FindTrainerBean.DataBean> newList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            FindTrainerBean.DataBean bean = list.get(i);
+            if(bean.getId() == selectTrainId){
+                newList.add(0,bean);
+            }else {
+                newList.add(bean);
+            }
+        }
+        setData(newList);
     }
 
     @NonNull
@@ -64,7 +75,7 @@ public class SelectTrainAdapter extends RecyclerView.Adapter<SelectTrainAdapter.
 
     @Override
     public int getItemCount() {
-        return 8;
+        return list != null ? list.size() : 0;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -75,7 +86,7 @@ public class SelectTrainAdapter extends RecyclerView.Adapter<SelectTrainAdapter.
         TextView tvName;
         @BindView(R.id.img_select)
         ImageView imgSelect;
-        String bean;
+        FindTrainerBean.DataBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,18 +94,36 @@ public class SelectTrainAdapter extends RecyclerView.Adapter<SelectTrainAdapter.
         }
 
         void bindView(int pos) {
+            bean = list.get(pos);
             if(selectPos == pos){
                 imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_find_store_select));
             }else {
                 imgSelect.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_find_store_no_select));
             }
-//            GlidUtils.setRoundGrid(context,findLessonBean.getCoverImg(),imgUrl,2);
-//            tvTitle.setText(findLessonBean.getTitle());
+            GlidUtils.setRoundGrid(context,bean.getHeadImg(),imgStore,2);
+            tvName.setText(bean.getName());
             itemView.setOnClickListener(v -> {
-                selectPos = pos;
-                notifyDataSetChanged();
+                selectPos = 0;
+                transListToFirst(pos);
+                if(listener != null){
+                    listener.onItemClick(bean);
+                }
             });
         }
+    }
+
+
+    public void transListToFirst(int pos){
+        List<FindTrainerBean.DataBean> newList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            FindTrainerBean.DataBean bean = list.get(i);
+            if(pos == i){
+                newList.add(0,bean);
+            }else {
+                newList.add(bean);
+            }
+        }
+        setData(newList);
     }
 
     private OnItemClickListener listener;
@@ -105,6 +134,6 @@ public class SelectTrainAdapter extends RecyclerView.Adapter<SelectTrainAdapter.
 
     public interface OnItemClickListener {
 
-        void onItemClick(FindLessonBean bean);
+        void onItemClick(FindTrainerBean.DataBean bean);
     }
 }

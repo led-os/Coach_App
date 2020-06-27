@@ -1,7 +1,9 @@
 package com.jsjlzj.wayne.ui.store.find;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,19 +20,25 @@ import com.jsjlzj.wayne.adapter.recycler.find.SelectTrainAdapter;
 import com.jsjlzj.wayne.adapter.recycler.mine.SelectPicOrVideoAdapter;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.DataBean;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.CommentBean;
 import com.jsjlzj.wayne.entity.find.FindLessonBean;
+import com.jsjlzj.wayne.entity.find.FindTrainerBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.home.mine.AfterSaleApplyActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.widgets.SelectFenView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -80,8 +88,10 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     TextView tvPublic;
     private static int IMG_SIZE = 9;
 
-    public static void go2this(Activity activity){
-        activity.startActivity(new Intent(activity,FindStoreEvaluateActivity.class));
+    public static void go2this(Context activity, int storeId,String storeName){
+        activity.startActivity(new Intent(activity,FindStoreEvaluateActivity.class)
+                .putExtra("storeId",storeId)
+                .putExtra("storeName",storeName));
     }
 
     private int setFen,evaFen,serviceFen;
@@ -92,6 +102,9 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     private SelectTrainAdapter trainAdapter;
     private int curSelectPos;
     private boolean isNick;
+    private int storeId;//俱乐部id
+    private int selectTrainId;//选择的教练id
+    private Map<Object,Object> map = new HashMap<>();
 
 
 
@@ -107,6 +120,7 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
 
     @Override
     protected void initViewAndControl() {
+        initTitle("评价");
         sfvSet.setFenType("设施", curFen -> {
             setFen = curFen;
             totalFen = (setFen + evaFen + serviceFen ) * 1.0f/ 3;
@@ -117,7 +131,7 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
             totalFen = (setFen + evaFen + serviceFen ) * 1.0f/ 3;
             tvFen.setText(DateUtil.getTwoDotByFloatOne(totalFen));
         });
-        sfvEnvironment.setFenType("环境", curFen -> {
+        sfvServer.setFenType("服务", curFen -> {
             serviceFen = curFen;
             totalFen = (setFen + evaFen + serviceFen ) * 1.0f/ 3;
             tvFen.setText(DateUtil.getTwoDotByFloatOne(totalFen));
@@ -137,6 +151,9 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
             traninFen = (zyFen + attFen + vividFen ) * 1.0f/ 3;
             tvFenStore.setText(DateUtil.getTwoDotByFloatOne(traninFen));
         });
+        storeId = getIntent().getIntExtra("storeId",1);
+        String storeName = getIntent().getStringExtra("storeName");
+        tvName.setText(storeName);
         rvPic.setLayoutManager(new GridLayoutManager(this,3));
         imgVideoList.add("图片");
         imgVideoList.add("视频");
@@ -151,6 +168,7 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
         imgSelectPic.setOnClickListener(clickListener);
         llNick.setOnClickListener(clickListener);
         tvPublic.setOnClickListener(clickListener);
+        presenter.getFindTrainerList(storeId);
     }
 
 
@@ -160,7 +178,7 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
         switch (view.getId()){
             case R.id.img_select_pic:
             case R.id.tv_select_pic:
-                SelectTrainActivity.go2this(this,SelectTrainActivity.REQUEST_CODE);
+                SelectTrainActivity.go2this(this,storeId,selectTrainId,SelectTrainActivity.REQUEST_CODE);
                 break;
             case R.id.ll_nick://是否匿名
                 if(isNick){
@@ -172,11 +190,56 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
                 }
                 break;
             case R.id.tv_public://发布
+                commitComment();
                 break;
             default:break;
         }
     }
 
+    private void commitComment() {
+        if(TextUtils.isEmpty(etContent.getText())){
+            LogAndToastUtil.toast("请输入评论内容");
+            return;
+        }
+        StringBuilder submitList = new StringBuilder();
+        for (int i = 0; i < imgVideoList.size(); i++) {
+            if (!TextUtils.isEmpty(imgVideoList.get(i)) && !imgVideoList.get(i).equals("图片") && !imgVideoList.get(i).equals("视频") ) {
+                submitList.append(imgVideoList.get(i) + ",");
+            }
+        }
+        if (submitList.length() == 0) {
+            LogAndToastUtil.toast("请上传图片");
+            return;
+        }
+        map.clear();
+        map.put("content",etContent.getText().toString());
+        map.put("image",submitList.toString().substring(0, submitList.toString().length() - 1));
+        map.put("isAnonymous",isNick ? 1 : 0);
+        map.put("storeAllScore",tvFen.getText().toString());
+        map.put("storeEnvScore",evaFen);
+        map.put("storeFacilityScore",setFen);
+        map.put("storeId",storeId);
+        map.put("storeServiceScore",serviceFen);
+        if(selectTrainId != 0){
+            map.put("trainerAllScore",tvFenStore.getText().toString());
+            map.put("trainerId",selectTrainId);
+            map.put("trainerImageScore",vividFen);
+            map.put("trainerServiceScore",attFen);
+            map.put("trainerSpecialityScore",zyFen);
+        }
+//        map.put("video","");
+//        map.put("videoImg","");
+        presenter.getCommitComment(map);
+    }
+
+
+    @Override
+    public void getCommentSuccess(MdlBaseHttpResp<CommentBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            StoreEvaluateSuccessActivity.go2this(this,  resp.getData().getData());
+            finish();
+        }
+    }
 
     @Override
     public void selectPhoto(int position) {
@@ -198,9 +261,9 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     public void showUpload(MdlBaseHttpResp<MdlUpload> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null) {
             MdlUpload.DataBean bean = resp.getData().getData();
-            if (imgVideoList.size() < curSelectPos +1) {
-                imgVideoList.add(bean.getUrl());
-            } else { // 替换图片
+            if (curSelectPos ==  imgVideoList.size() - 2) {
+                imgVideoList.add(0,bean.getUrl());
+            } else if(curSelectPos < imgVideoList.size() - 2){ // 替换图片
                 imgVideoList.set(curSelectPos, bean.getUrl());
             }
             if (imgVideoList.size() < IMG_SIZE) {
@@ -230,9 +293,9 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         presenter.onActivityResult(this, requestCode, resultCode, data);
-        if(resultCode == SelectTrainActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK){
-            int selectPos = data.getIntExtra(ExtraConstant.EXTRA_POSITION,0);
-            trainAdapter.setSelectPos(selectPos);
+        if(requestCode == SelectTrainActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK){
+            selectTrainId = data.getIntExtra("selectTrainId",0);
+            trainAdapter.setSelectTrainId(selectTrainId);
         }
     }
 
@@ -261,7 +324,15 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     }
 
     @Override
-    public void onItemClick(FindLessonBean bean) {
+    public void onItemClick(FindTrainerBean.DataBean bean) {
+        selectTrainId = bean.getId();
+    }
 
+
+    @Override
+    public void getFindStoreTrainerListSuccess(MdlBaseHttpResp<FindTrainerBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            trainAdapter.setData(resp.getData().getData());
+        }
     }
 }

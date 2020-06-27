@@ -7,7 +7,11 @@ import android.os.Bundle;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.adapter.recycler.find.FindTrainAdapter;
 import com.jsjlzj.wayne.adapter.recycler.search.SearchUserAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.FindTrainerBean;
 import com.jsjlzj.wayne.entity.store.search.ChannelListBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
@@ -18,6 +22,8 @@ import com.netease.nim.uikit.common.ToastHelper;
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 
 /**
@@ -25,16 +31,19 @@ import butterknife.BindView;
  * @date: 2020/06/24
  * @author: 曾海强
  */
-public class SelectTrainActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, SearchUserAdapter.OnSearchUserClickListener {
+public class SelectTrainActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, FindTrainAdapter.OnSearchUserClickListener {
 
     public static final int REQUEST_CODE = 10000;
     @BindView(R.id.rv_trainer)
-    CustomXRecyclerView rvTrainer;
-    private SearchUserAdapter adapter;
-    private int pageNo = 1, pageCount;
+    RecyclerView rvTrainer;
+    private FindTrainAdapter adapter;
+    private int storeId;
+    private int selectTrainId;
 
-    public static void go2this(Activity activity,int requestCode){
-        activity.startActivityForResult(new Intent(activity,SelectTrainActivity.class),requestCode);
+    public static void go2this(Activity activity,int storeId,int selectTrainId,int requestCode){
+        activity.startActivityForResult(new Intent(activity,SelectTrainActivity.class)
+                .putExtra("storeId",storeId)
+                .putExtra("selectTrainId",selectTrainId),requestCode);
     }
 
     @Override
@@ -49,36 +58,36 @@ public class SelectTrainActivity extends MVPBaseActivity<HomeView, HomePresenter
 
     @Override
     protected void initViewAndControl() {
-        rvTrainer.setLoadingMoreEnabled(true);
-        rvTrainer.setPullRefreshEnabled(false);
-        rvTrainer.setLoadingListener(this);
+        initTitle("选择教练");
+        selectTrainId = getIntent().getIntExtra("selectTrainId",0);
+        storeId = getIntent().getIntExtra("storeId",1);
         rvTrainer.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new SearchUserAdapter(this,new ArrayList<>());
+        adapter = new FindTrainAdapter(this,new ArrayList<>(),selectTrainId);
         adapter.setListener(this);
         rvTrainer.setAdapter(adapter);
+        presenter.getFindTrainerList(storeId);
     }
 
 
     @Override
-    public void onRefresh() {}
+    public void onItemClick(FindTrainerBean.DataBean bean) {
+
+    }
 
     @Override
-    public void onLoadMore() {
-        if (pageNo < pageCount) {
-            pageNo++;
-//            loadData(false);
-        } else {
-            ToastHelper.showToast(this, getString(R.string.has_no_more_data));
+    public void onFavoriteClick(FindTrainerBean.DataBean bean) {
+        Intent intent = new Intent();
+        intent.putExtra("selectTrainId",bean.getId());
+        setResult(RESULT_OK,intent);
+        finish();
+    }
+
+
+    @Override
+    public void getFindStoreTrainerListSuccess(MdlBaseHttpResp<FindTrainerBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK){
+            adapter.setData(resp.getData().getData());
         }
     }
 
-    @Override
-    public void onItemClick(ChannelListBean string) {
-
-    }
-
-    @Override
-    public void onFavoriteClick(ChannelListBean string) {
-
-    }
 }

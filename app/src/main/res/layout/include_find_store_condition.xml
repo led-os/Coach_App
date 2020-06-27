@@ -1,44 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:maxHeight="@dimen/padding_200"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/rel_business"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/padding_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_business"
-            android:background="@color/white"
-            android:layout_width="match_parent"
+            android:paddingTop="@dimen/padding_10"
+            android:layout_width="@dimen/padding_120"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_nearby"
+            android:paddingTop="@dimen/padding_10"
+            android:layout_toEndOf="@+id/rv_business"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:id="@+id/rel_sort"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_sort"
+        android:paddingTop="@dimen/padding_10"
+        android:paddingBottom="@dimen/padding_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_sort"
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
+        android:background="@color/white"
+        android:visibility="gone" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_select"
+    <RelativeLayout
+        android:id="@+id/rel_select"
+        android:paddingTop="@dimen/padding_10"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:visibility="visible" >
+        
+        <TextView
+            android:id="@+id/tv_type"
+            android:text="类型"
+            android:layout_marginStart="@dimen/padding_19"
+            android:textSize="@dimen/text_size_13"
+            android:textColor="@color/color_333333"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/padding_27"/>
+
+        <TextView
+            android:id="@+id/tv_new_store"
+            android:layout_width="@dimen/padding_58"
+            android:layout_height="@dimen/padding_23"
+            android:text="新店"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/padding_6"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/color_222222"
+            android:layout_alignStart="@+id/tv_type"
+            android:background="@drawable/bg_solid_f9f9f9_12"
+            android:layout_below="@+id/tv_type"/>
+
+        <TextView
+            android:id="@+id/tv_business_ing"
+            android:layout_width="@dimen/padding_58"
+            android:layout_height="@dimen/padding_23"
+            android:text="营业中"
+            android:gravity="center"
+            android:layout_toEndOf="@+id/tv_new_store"
+            android:layout_marginTop="@dimen/padding_6"
+            android:layout_marginStart="@dimen/padding_15"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/color_222222"
+            android:background="@drawable/bg_solid_f9f9f9_12"
+            android:layout_below="@+id/tv_type"/>
+
+        <TextView
+            android:id="@+id/tv_stop"
+            android:layout_width="@dimen/padding_58"
+            android:layout_height="@dimen/padding_23"
+            android:text="可停车"
+            android:gravity="center"
+            android:layout_toEndOf="@+id/tv_business_ing"
+            android:layout_marginTop="@dimen/padding_6"
+            android:layout_marginStart="@dimen/padding_15"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/color_222222"
+            android:background="@drawable/bg_solid_f9f9f9_12"
+            android:layout_below="@+id/tv_type"/>
+
+        <TextView
+            android:id="@+id/tv_house"
+            android:layout_width="@dimen/padding_84"
+            android:layout_height="@dimen/padding_23"
+            android:text="24小时营业"
+            android:gravity="center"
+            android:layout_toEndOf="@+id/tv_stop"
+            android:layout_marginTop="@dimen/padding_6"
+            android:layout_marginStart="@dimen/padding_15"
+            android:textSize="@dimen/text_size_12"
+            android:textColor="@color/color_222222"
+            android:background="@drawable/bg_solid_f9f9f9_12"
+            android:layout_below="@+id/tv_type"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_select"
+            android:paddingBottom="@dimen/padding_10"
+            android:layout_below="@+id/tv_new_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_1"
+            android:background="@color/color_dddddd"
+            android:layout_below="@+id/rv_select"/>
+        <LinearLayout
+            android:layout_marginTop="@dimen/padding_1"
+            android:layout_below="@+id/rv_select"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/padding_42">
+
+            <TextView
+                android:id="@+id/tv_reset"
+                android:layout_width="0dp"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/text_size_13"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="重置"
+                android:layout_weight="1"/>
+
+            <View
+                android:layout_width="@dimen/padding_1"
+                android:layout_height="@dimen/padding_31"
+                android:layout_gravity="center_vertical"
+                android:background="@color/color_dddddd"/>
+
+            <TextView
+                android:id="@+id/tv_finish"
+                android:layout_width="0dp"
+                android:textColor="@color/color_f1404b"
+                android:textSize="@dimen/text_size_13"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="完成"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
 
     <View
@@ -46,7 +164,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#45000000"/>
+        android:background="#45000000" />
 
 
 </LinearLayout>

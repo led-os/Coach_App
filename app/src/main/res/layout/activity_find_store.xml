@@ -118,19 +118,27 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <com.jsjlzj.wayne.widgets.CustomXRecyclerView
-                android:id="@+id/rv_store"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:id="@+id/rel_empty">
+                <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+                    android:id="@+id/rv_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
+
+            </RelativeLayout>
             <include
                 android:id="@+id/include_condition"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 layout="@layout/include_find_store_condition"/>
 
         </RelativeLayout>
