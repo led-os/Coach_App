@@ -124,6 +124,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_GET_FIND_STORE_TRAINER_LIST = 89;
     private static final int REQ_CODE_GET_COMMIT_COMMENT = 90;
     private static final int REQ_CODE_GET_COMMENT_DETAIL = 91;
+    private static final int REQ_CODE_GET_CLUB_PIC_LIST = 92;
+    private static final int REQ_CODE_GET_CLUB_VIDEO_LIST = 93;
 
 
 
@@ -845,6 +847,28 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getCommentDetail(REQ_CODE_GET_COMMENT_DETAIL, commentId, this);
         }
     }
+    public void getClubPicList(String storeId,int pageNo,int pageSize) {
+        if (model != null) {
+            model.getClubPicList(REQ_CODE_GET_CLUB_PIC_LIST, storeId,pageNo,pageSize, this);
+        }
+    }
+
+    public void getClubVideoList(String storeId,int pageNo,int pageSize) {
+        if (model != null) {
+            model.getClubVideoList(REQ_CODE_GET_CLUB_VIDEO_LIST, storeId, pageNo,pageSize,this);
+        }
+    }
+    public void getClubCommentPicList(String storeId,int pageNo,int pageSize) {
+        if (model != null) {
+            model.getClubCommentPicList(REQ_CODE_GET_CLUB_PIC_LIST, storeId,pageNo,pageSize, this);
+        }
+    }
+
+    public void getClubCommentVideoList(String storeId,int pageNo,int pageSize) {
+        if (model != null) {
+            model.getClubCommentVideoList(REQ_CODE_GET_CLUB_VIDEO_LIST, storeId, pageNo,pageSize,this);
+        }
+    }
     public void getFindStoreListCondition(Map params) {
         if (model != null) {
             view.showLoading();
@@ -1150,6 +1174,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_GET_COMMENT_DETAIL:
                 view.getCommentDetailSuccess(resp);
+                break;
+            case REQ_CODE_GET_CLUB_PIC_LIST:
+                view.getClubPicListSuccess(resp);
+                break;
+            case REQ_CODE_GET_CLUB_VIDEO_LIST:
+                view.getClubVideoListSuccess(resp);
                 break;
             default:
                 break;

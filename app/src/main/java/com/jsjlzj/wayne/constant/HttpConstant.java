@@ -609,6 +609,14 @@ public class HttpConstant {
     public static final String API_FIND_COMMIT_COMMENT = "club/comment/save";
     //评论详情
     public static final String API_FIND_COMMENT_DETAIL = "club/comment/detail";
+    //俱乐部图片
+    public static final String API_FIND_CLUB_PIC_LIST = "club/storeImages";
+    //俱乐部视频列表
+    public static final String API_FIND_CLUB_VIDEO_LIST = "club/storeVideos";
+    //俱乐部-评论图片
+    public static final String API_FIND_CLUB_COMMENT_PIC_LIST = "club/comment/commentImages";
+    //俱乐部-评论视频列表
+    public static final String API_FIND_CLUB_COMMENT_VIDEO_LIST = "club/comment/commentVideos";
 
 
 

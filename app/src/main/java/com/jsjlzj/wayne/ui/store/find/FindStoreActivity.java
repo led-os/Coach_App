@@ -255,40 +255,52 @@ public class FindStoreActivity extends MVPBaseActivity<HomeView, HomePresenter> 
                 SearchFindStoreActivity.go2this(this);
                 break;
             case R.id.ll_business:
-                tvBusiness.setTextColor(ContextCompat.getColor(this, R.color.color_f1404b));
-                imgBusiness.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_top_red));
-                tvSelect.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
-                imgSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
-                tvSort.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
-                imgSort.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
-                includeCondition.setVisibility(View.VISIBLE);
-                relBusiness.setVisibility(View.VISIBLE);
-                rvSort.setVisibility(View.GONE);
-                relSelect.setVisibility(View.GONE);
+                if(includeCondition.getVisibility() == View.VISIBLE){
+                    includeCondition.setVisibility(View.GONE);
+                }else {
+                    tvBusiness.setTextColor(ContextCompat.getColor(this, R.color.color_f1404b));
+                    imgBusiness.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_top_red));
+                    tvSelect.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
+                    imgSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
+                    tvSort.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
+                    imgSort.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
+                    includeCondition.setVisibility(View.VISIBLE);
+                    relBusiness.setVisibility(View.VISIBLE);
+                    rvSort.setVisibility(View.GONE);
+                    relSelect.setVisibility(View.GONE);
+                }
                 break;
             case R.id.ll_select:
-                tvBusiness.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
-                imgBusiness.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
-                tvSelect.setTextColor(ContextCompat.getColor(this, R.color.color_f1404b));
-                imgSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_top_red));
-                tvSort.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
-                imgSort.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
-                includeCondition.setVisibility(View.VISIBLE);
-                relBusiness.setVisibility(View.GONE);
-                rvSort.setVisibility(View.GONE);
-                relSelect.setVisibility(View.VISIBLE);
+                if(includeCondition.getVisibility() == View.VISIBLE){
+                    includeCondition.setVisibility(View.GONE);
+                }else {
+                    tvBusiness.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
+                    imgBusiness.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
+                    tvSelect.setTextColor(ContextCompat.getColor(this, R.color.color_f1404b));
+                    imgSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_top_red));
+                    tvSort.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
+                    imgSort.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
+                    includeCondition.setVisibility(View.VISIBLE);
+                    relBusiness.setVisibility(View.GONE);
+                    rvSort.setVisibility(View.GONE);
+                    relSelect.setVisibility(View.VISIBLE);
+                }
                 break;
             case R.id.ll_sort:
-                tvBusiness.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
-                imgBusiness.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
-                tvSelect.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
-                imgSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
-                tvSort.setTextColor(ContextCompat.getColor(this, R.color.color_f1404b));
-                imgSort.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_top_red));
-                includeCondition.setVisibility(View.VISIBLE);
-                relBusiness.setVisibility(View.GONE);
-                rvSort.setVisibility(View.VISIBLE);
-                relSelect.setVisibility(View.GONE);
+                if(includeCondition.getVisibility() == View.VISIBLE){
+                    includeCondition.setVisibility(View.GONE);
+                }else {
+                    tvBusiness.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
+                    imgBusiness.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
+                    tvSelect.setTextColor(ContextCompat.getColor(this, R.color.color_666666));
+                    imgSelect.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_bottom));
+                    tvSort.setTextColor(ContextCompat.getColor(this, R.color.color_f1404b));
+                    imgSort.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.icon_find_store_top_red));
+                    includeCondition.setVisibility(View.VISIBLE);
+                    relBusiness.setVisibility(View.GONE);
+                    rvSort.setVisibility(View.VISIBLE);
+                    relSelect.setVisibility(View.GONE);
+                }
                 break;
             case R.id.view_other:
                 includeCondition.setVisibility(View.GONE);

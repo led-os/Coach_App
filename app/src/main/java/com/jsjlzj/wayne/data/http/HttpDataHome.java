@@ -914,6 +914,23 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestCommentDetail(id);
         setSubscribe(observable, observer);
     }
+
+    public void getClubPicList(String storeId, int pageNo,int pageSize,Observer observer) {
+        Observable observable = service.requestClubPicList(storeId,pageNo,pageSize);
+        setSubscribe(observable, observer);
+    }
+    public void getClubVideoList(String storeId, int pageNo,int pageSize, Observer observer) {
+        Observable observable = service.requestClubVideoList(storeId,pageNo,pageSize);
+        setSubscribe(observable, observer);
+    }
+    public void getClubCommentPicList(String storeId, int pageNo,int pageSize,Observer observer) {
+        Observable observable = service.requestClubCommentPicList(storeId,pageNo,pageSize);
+        setSubscribe(observable, observer);
+    }
+    public void getClubCommentVideoList(String storeId, int pageNo,int pageSize, Observer observer) {
+        Observable observable = service.requestClubCommentVideoList(storeId,pageNo,pageSize);
+        setSubscribe(observable, observer);
+    }
     public void getStoreBanner(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestStoreBanner(body);

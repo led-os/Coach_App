@@ -23,6 +23,8 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.find.PictureListBean;
+import com.jsjlzj.wayne.entity.find.VideoListBean;
 import com.jsjlzj.wayne.entity.shopping.AfterSaleDetailBean;
 import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardBean;
@@ -2235,6 +2237,98 @@ public class HomeModel extends BaseModel {
             }
         });
     }
+
+    public void getClubPicList(int code, String storeId,int pageNo,int pageSize, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getClubPicList(storeId,pageNo,pageSize, new Observer<MdlBaseHttpResp<PictureListBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<PictureListBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+   public void getClubVideoList(int code, String storeId,int pageNo,int pageSize, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getClubVideoList(storeId,pageNo,pageSize, new Observer<MdlBaseHttpResp<VideoListBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<VideoListBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getClubCommentPicList(int code, String storeId,int pageNo,int pageSize, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getClubCommentPicList(storeId,pageNo,pageSize, new Observer<MdlBaseHttpResp<PictureListBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<PictureListBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+    public void getClubCommentVideoList(int code, String storeId,int pageNo,int pageSize, final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getClubCommentVideoList(storeId,pageNo,pageSize, new Observer<MdlBaseHttpResp<VideoListBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<VideoListBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
 
     public void getFindStoreListCondition(int code, Map param, final OnLoadHttpDataListener listener) {
         HttpDataHome.getInstance().getFindStoreListCondition(param, new Observer<MdlBaseHttpResp<FindStorePageBean>>() {

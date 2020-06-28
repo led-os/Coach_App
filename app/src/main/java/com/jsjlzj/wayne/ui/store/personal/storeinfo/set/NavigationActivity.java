@@ -28,6 +28,7 @@ import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.store.talent.position.RecruitActivity;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.dialog.MapDialog;
 
 import java.text.DecimalFormat;
@@ -63,6 +64,7 @@ public class NavigationActivity extends MVPBaseActivity<TalentTabFragmentView, T
         mBaiduMap = mapView.getMap();
         address = getIntent().getStringExtra("address");
         coordinate = getIntent().getStringExtra("coordinate");
+        LogAndToastUtil.log(coordinate+"======address"+address);
         tvAddress.setText(address);
         latLngStr = coordinate.split(",");
         if (latLngStr != null && latLngStr.length == 2) {

@@ -24,6 +24,8 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.find.PictureListBean;
+import com.jsjlzj.wayne.entity.find.VideoListBean;
 import com.jsjlzj.wayne.entity.shopping.AfterSaleDetailBean;
 import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
@@ -693,6 +695,22 @@ public interface StoreService {
 
     @GET(HttpConstant.API_FIND_COMMENT_DETAIL)
     Observable<MdlBaseHttpResp<CommentDetailBean>> requestCommentDetail(@Query("id") int id);
+
+    @GET(HttpConstant.API_FIND_CLUB_PIC_LIST)
+    Observable<MdlBaseHttpResp<PictureListBean>> requestClubPicList(@Query("storeId") String storeId,
+                        @Query("pageNo") int pageNo, @Query("pageSize") int pageSize);
+
+    @GET(HttpConstant.API_FIND_CLUB_VIDEO_LIST)
+    Observable<MdlBaseHttpResp<VideoListBean>> requestClubVideoList(@Query("storeId") String storeId,
+            @Query("pageNo") int pageNo, @Query("pageSize") int pageSize);
+
+    @GET(HttpConstant.API_FIND_CLUB_COMMENT_PIC_LIST)
+    Observable<MdlBaseHttpResp<PictureListBean>> requestClubCommentPicList(@Query("storeId") String storeId,
+                        @Query("pageNo") int pageNo, @Query("pageSize") int pageSize);
+
+    @GET(HttpConstant.API_FIND_CLUB_COMMENT_VIDEO_LIST)
+    Observable<MdlBaseHttpResp<VideoListBean>> requestClubCommentVideoList(@Query("storeId") String storeId,
+            @Query("pageNo") int pageNo, @Query("pageSize") int pageSize);
 
 
     @Multipart

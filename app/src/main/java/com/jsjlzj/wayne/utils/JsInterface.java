@@ -20,9 +20,11 @@ import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.publicac.report.ReportTypeActivity;
 import com.jsjlzj.wayne.ui.store.find.ConfirmCourserOrderActivity;
+import com.jsjlzj.wayne.ui.store.find.FindPicVideoActivity;
 import com.jsjlzj.wayne.ui.store.find.FindStoreEvaluateActivity;
 import com.jsjlzj.wayne.ui.store.home.amoy.SignUpActivity;
 import com.jsjlzj.wayne.ui.store.list.MoreMatchActivity;
+import com.jsjlzj.wayne.ui.store.personal.storeinfo.set.NavigationActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ConfirmOrderActivity;
 import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingCartActivity;
@@ -114,12 +116,7 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void share(String url,String title,String content,String img){
-        BitmapUtils.getBitmap(mContext, img, new BitmapUtils.GlideLoadBitmapCallback() {
-            @Override
-            public void getBitmapCallback(Bitmap bitmap) {
-                JsInterface.this.bitmap = bitmap;
-            }
-        });
+        BitmapUtils.getBitmap(mContext, img, bitmap -> JsInterface.this.bitmap = bitmap);
         new ShareDialog(mContext,index -> {
             if(index == 2){
                 ReportTypeActivity.go2this(mContext);
@@ -262,22 +259,24 @@ public class JsInterface {
 
     @JavascriptInterface
     public void makePhoneCall(String phone){
-        LogAndToastUtil.toast("====JsInterface====makePhoneCall"+phone);
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" +phone));
+        mContext.startActivity(intent);
     }
 
     @JavascriptInterface
-    public void clubComment(int clubId,String clubName){
-        FindStoreEvaluateActivity.go2this(mContext,clubId,clubName);
-        LogAndToastUtil.toast(clubId+"====JsInterface====clubComment"+clubName);
+    public void clubComment(String clubId,String clubName){
+        FindStoreEvaluateActivity.go2this(mContext,Integer.valueOf(clubId),clubName);
     }
 
     @JavascriptInterface
-    public void toClubImgInfo(int clubId){
-        LogAndToastUtil.toast(clubId+"====JsInterface====toClubImgInfo");
+    public void toClubImgInfo(String clubId,int type){
+        FindPicVideoActivity.go2this(mContext,clubId,type);
     }
 
     @JavascriptInterface
-    public void toClubPosition(String lng,String lat){
-        LogAndToastUtil.toast(lng+"====JsInterface====toClubPosition"+lat);
+    public void toClubPosition(String lng,String lat,String address){
+        NavigationActivity.go2this(mContext, address,  lng+","+lat);
     }
 }

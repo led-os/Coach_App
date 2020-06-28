@@ -22,6 +22,8 @@ import com.jsjlzj.wayne.entity.find.JiFenPageBean;
 import com.jsjlzj.wayne.entity.find.MineProfitBean;
 import com.jsjlzj.wayne.entity.find.OptimizationData1Bean;
 import com.jsjlzj.wayne.entity.find.OptimizationData2Bean;
+import com.jsjlzj.wayne.entity.find.PictureListBean;
+import com.jsjlzj.wayne.entity.find.VideoListBean;
 import com.jsjlzj.wayne.entity.shopping.AfterSaleDetailBean;
 import com.jsjlzj.wayne.entity.shopping.AfterSalePageBean;
 import com.jsjlzj.wayne.entity.shopping.BankCardItemBean;
@@ -159,6 +161,16 @@ public interface HomeView extends BaseView {
      * @param resp
      */
     default void getCommentDetailSuccess(MdlBaseHttpResp<CommentDetailBean> resp){}
+    /**
+     * 获取俱乐部图片列表
+     * @param resp
+     */
+    default void getClubPicListSuccess(MdlBaseHttpResp<PictureListBean> resp){}
+    /**
+     * 获取俱乐部视频列表
+     * @param resp
+     */
+    default void getClubVideoListSuccess(MdlBaseHttpResp<VideoListBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }

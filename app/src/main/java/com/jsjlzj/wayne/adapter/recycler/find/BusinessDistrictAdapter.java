@@ -30,7 +30,7 @@ public class BusinessDistrictAdapter extends RecyclerView.Adapter<BusinessDistri
 
     private Context context;
     private List<BusinessDistrictBean.DataBean> list = new ArrayList<>();
-    private int selectPos = 1;
+    private int selectPos = 0;
 
     public BusinessDistrictAdapter(Context context, List<BusinessDistrictBean.DataBean> list) {
         this.context = context;
