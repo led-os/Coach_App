@@ -2,19 +2,16 @@ package com.jsjlzj.wayne.ui.store.find;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
-import com.yuyh.library.imgsel.common.Constant;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 
@@ -70,10 +67,14 @@ public class FindPicVideoActivity extends MVPBaseActivity<HomeView, HomePresente
         if (type == 1) {
             imgPic.setVisibility(View.VISIBLE);
             imgVideo.setVisibility(View.GONE);
+            tvPic.setTextSize(16);
+            tvVideo.setTextSize(13);
             showPicFragment();
         } else {
             imgPic.setVisibility(View.GONE);
             imgVideo.setVisibility(View.VISIBLE);
+            tvPic.setTextSize(13);
+            tvVideo.setTextSize(16);
             showVideoFragment();
         }
         btnBack.setOnClickListener(clickListener);
@@ -91,11 +92,15 @@ public class FindPicVideoActivity extends MVPBaseActivity<HomeView, HomePresente
             case R.id.tv_pic:
                 imgPic.setVisibility(View.VISIBLE);
                 imgVideo.setVisibility(View.GONE);
+                tvPic.setTextSize(16);
+                tvVideo.setTextSize(13);
                 showPicFragment();
                 break;
             case R.id.tv_video:
                 imgPic.setVisibility(View.GONE);
                 imgVideo.setVisibility(View.VISIBLE);
+                tvPic.setTextSize(13);
+                tvVideo.setTextSize(16);
                 showVideoFragment();
                 break;
             default:

@@ -56,7 +56,7 @@
                 android:layout_toEndOf="@+id/tv_pic"
                 android:layout_marginStart="@dimen/padding_18"
                 android:textColor="@color/color_232323"
-                android:textSize="@dimen/text_size_16"
+                android:textSize="@dimen/text_size_13"
                 android:text="视频"/>
             <ImageView
                 android:id="@+id/img_video"

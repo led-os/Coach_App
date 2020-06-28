@@ -126,6 +126,8 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_GET_COMMENT_DETAIL = 91;
     private static final int REQ_CODE_GET_CLUB_PIC_LIST = 92;
     private static final int REQ_CODE_GET_CLUB_VIDEO_LIST = 93;
+    private static final int REQ_CODE_GET_CLUB_COMMENT_PIC_LIST = 94;
+    private static final int REQ_CODE_GET_CLUB_COMMENT_VIDEO_LIST = 95;
 
 
 
@@ -860,13 +862,13 @@ public class HomePresenter extends BasePresenter<HomeView> {
     }
     public void getClubCommentPicList(String storeId,int pageNo,int pageSize) {
         if (model != null) {
-            model.getClubCommentPicList(REQ_CODE_GET_CLUB_PIC_LIST, storeId,pageNo,pageSize, this);
+            model.getClubCommentPicList(REQ_CODE_GET_CLUB_COMMENT_PIC_LIST, storeId,pageNo,pageSize, this);
         }
     }
 
     public void getClubCommentVideoList(String storeId,int pageNo,int pageSize) {
         if (model != null) {
-            model.getClubCommentVideoList(REQ_CODE_GET_CLUB_VIDEO_LIST, storeId, pageNo,pageSize,this);
+            model.getClubCommentVideoList(REQ_CODE_GET_CLUB_COMMENT_VIDEO_LIST, storeId, pageNo,pageSize,this);
         }
     }
     public void getFindStoreListCondition(Map params) {
@@ -1180,6 +1182,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_GET_CLUB_VIDEO_LIST:
                 view.getClubVideoListSuccess(resp);
+                break;
+            case REQ_CODE_GET_CLUB_COMMENT_PIC_LIST:
+                view.getClubCommentPicListSuccess(resp);
+                break;
+            case REQ_CODE_GET_CLUB_COMMENT_VIDEO_LIST:
+                view.getClubCommentVideoListSuccess(resp);
                 break;
             default:
                 break;

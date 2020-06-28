@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.adapter.recycler.find.PictureAdapter;
+import com.jsjlzj.wayne.adapter.recycler.find.VideoAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.find.PictureListBean;
@@ -21,6 +23,7 @@ import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 import com.netease.nim.uikit.common.ToastHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -46,6 +49,10 @@ public class PictureActivity extends MVPBaseActivity<HomeView, HomePresenter> im
      * 0 :  商家图片列表   1 ： 商家视频列表    2 ： 网友图片列表   3 ： 网友视频列表
      */
     private int type;
+    private PictureAdapter pictureAdapter;
+    private VideoAdapter videoAdapter;
+    private List<String> pictureList = new ArrayList<>();
+    private List<VideoListBean.DataBean.ResultBean> videoList = new ArrayList<>();
 
     public static void go2this(Context context,String storeId, String title,int type) {
         context.startActivity(new Intent(context, PictureActivity.class)
@@ -70,11 +77,18 @@ public class PictureActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         title = getIntent().getStringExtra("title");
         storeId = getIntent().getStringExtra("storeId");
         initTitle(title);
-        loadData(true);
         rvPic.setPullRefreshEnabled(true);
         rvPic.setLoadingMoreEnabled(true);
         rvPic.setLoadingListener(this);
         rvPic.setLayoutManager(new GridLayoutManager(this,2));
+        if(type == 1 || type == 3){
+            videoAdapter = new VideoAdapter(this,videoList);
+            rvPic.setAdapter(videoAdapter);
+        }else {
+            pictureAdapter = new PictureAdapter(this,pictureList);
+            rvPic.setAdapter(pictureAdapter);
+        }
+        loadData(true);
 
     }
 
@@ -118,7 +132,7 @@ public class PictureActivity extends MVPBaseActivity<HomeView, HomePresenter> im
     public void getClubPicListSuccess(MdlBaseHttpResp<PictureListBean> resp) {
         rvPic.refreshComplete();
         rvPic.loadMoreComplete();
-        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp) {
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK) {
             pageNo = resp.getData().getData().getPageNo();
             int totalCount = resp.getData().getData().getTotalCount();
             int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
@@ -128,17 +142,17 @@ public class PictureActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
             }
             List<String> list = resp.getData().getData().getResult();
-//            if (list != null && list.size() > 0) {
-//                if (isRefresh) {
-//                    videoList.clear();
-//                }
-//                videoList.addAll(list);
-//                informationAdapter.setData(videoList);
-//                hideEmpty();
-//            } else if (isRefresh) {
-//                // 无数据
-//                showEmpty(R.id.rel_empty, 0, null);
-//            }
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    pictureList.clear();
+                }
+                pictureList.addAll(list);
+                pictureAdapter.setData(pictureList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty, 0, null);
+            }
         }
     }
 
@@ -156,17 +170,74 @@ public class PictureActivity extends MVPBaseActivity<HomeView, HomePresenter> im
                 pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
             }
             List<VideoListBean.DataBean.ResultBean> list = resp.getData().getData().getResult();
-//            if (list != null && list.size() > 0) {
-//                if (isRefresh) {
-//                    videoList.clear();
-//                }
-//                videoList.addAll(list);
-//                informationAdapter.setData(videoList);
-//                hideEmpty();
-//            } else if (isRefresh) {
-//                // 无数据
-//                showEmpty(R.id.rel_empty, 0, null);
-//            }
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    videoList.clear();
+                }
+                videoList.addAll(list);
+                videoAdapter.setData(videoList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty, 0, null);
+            }
+        }
+    }
+
+    @Override
+    public void getClubCommentPicListSuccess(MdlBaseHttpResp<PictureListBean> resp) {
+        rvPic.refreshComplete();
+        rvPic.loadMoreComplete();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp) {
+            pageNo = resp.getData().getData().getPageNo();
+            int totalCount = resp.getData().getData().getTotalCount();
+            int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
+            if (a == 0) {
+                pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
+            } else {
+                pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
+            }
+            List<String> list = resp.getData().getData().getResult();
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    pictureList.clear();
+                }
+                pictureList.addAll(list);
+                pictureAdapter.setData(pictureList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty, 0, null);
+            }
+        }
+    }
+
+
+    @Override
+    public void getClubCommentVideoListSuccess(MdlBaseHttpResp<VideoListBean> resp) {
+        rvPic.refreshComplete();
+        rvPic.loadMoreComplete();
+        if (resp.getStatus() == HttpConstant.R_HTTP_OK && null != resp) {
+            pageNo = resp.getData().getData().getPageNo();
+            int totalCount = resp.getData().getData().getTotalCount();
+            int a = totalCount % HttpConstant.PAGE_SIZE_NUMBER;
+            if (a == 0) {
+                pageCount = totalCount / HttpConstant.PAGE_SIZE_NUMBER;
+            } else {
+                pageCount = (totalCount / HttpConstant.PAGE_SIZE_NUMBER) + 1;
+            }
+            List<VideoListBean.DataBean.ResultBean> list = resp.getData().getData().getResult();
+            if (list != null && list.size() > 0) {
+                if (isRefresh) {
+                    videoList.clear();
+                }
+                videoList.addAll(list);
+                videoAdapter.setData(videoList);
+                hideEmpty();
+            } else if (isRefresh) {
+                // 无数据
+                showEmpty(R.id.rel_empty, 0, null);
+            }
         }
     }
 }

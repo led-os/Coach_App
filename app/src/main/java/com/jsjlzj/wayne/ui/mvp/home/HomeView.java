@@ -171,6 +171,16 @@ public interface HomeView extends BaseView {
      * @param resp
      */
     default void getClubVideoListSuccess(MdlBaseHttpResp<VideoListBean> resp){}
+    /**
+     * 获取俱乐部图片列表--评论
+     * @param resp
+     */
+    default void getClubCommentPicListSuccess(MdlBaseHttpResp<PictureListBean> resp){}
+    /**
+     * 获取俱乐部视频列表--评论
+     * @param resp
+     */
+    default void getClubCommentVideoListSuccess(MdlBaseHttpResp<VideoListBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }
