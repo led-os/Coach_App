@@ -2,6 +2,8 @@ package com.jsjlzj.wayne.ui.trainer.personal;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaMetadataRetriever;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +14,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
+import com.cmcy.medialib.utils.MediaSelector;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.EducationAdapter;
 import com.jsjlzj.wayne.adapter.ExpAdapter;
@@ -21,12 +25,15 @@ import com.jsjlzj.wayne.adapter.recycler.ImageSelectAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
+import com.jsjlzj.wayne.entity.find.VideoBodyBean;
+import com.jsjlzj.wayne.entity.store.learn.VideoTeacherBean;
 import com.jsjlzj.wayne.entity.trainer.MdlDetailT;
 import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.publicac.mine.InvitationActivity;
+import com.jsjlzj.wayne.ui.store.find.FindStoreEvaluateActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.set.PersonalInfoSetTrainerActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.AddEducationActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.AddExpActivity;
@@ -34,12 +41,14 @@ import com.jsjlzj.wayne.ui.trainer.publicac.AddJobIntentionActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.AdvantageActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.JobIntentionActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.PositionPhotoActivity;
+import com.jsjlzj.wayne.utils.BitmapUtils;
 import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
 import com.jsjlzj.wayne.widgets.MyListView;
 import com.jsjlzj.wayne.widgets.dialog.PositinStateDialog;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -103,6 +112,7 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
 
     private String workStatusCode;
     private Map<Object, Object> map = new HashMap<>();
+    private List<VideoTeacherBean> listVideo = new ArrayList<>();
 
     @Override
     protected TalentTabFragmentPresenter createPresenter() {
@@ -149,7 +159,7 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
      * 0 : 认证证书  1 ：教育场景视频
      */
     private int selectImgType;
-
+    private boolean isVideoImage = false;
 
     @Override
     protected void initViewAndControl() {
@@ -205,6 +215,7 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
         // 默认的一张空白占位图
         sceneUrls.add("");
         sceneAdapter = new ImageSelectAdapter(this, sceneUrls);
+        sceneAdapter.setType(1);
         sceneAdapter.setListener(new ImageSelectAdapter.OnImageClickListener() {
             @Override
             public void onImageClick(int position) {
@@ -216,6 +227,7 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
             public void onRemoveImgClick(int position) {
                 // 删除图片
                 sceneUrls.remove(position);
+                listVideo.remove(position);
                 if (sceneUrls.size() < IMG_SIZE) {
                     // 如果最后一张已经是空白图的话不操作，否则添加一张空白图
                     if (!sceneUrls.get(sceneUrls.size() - 1).equals("")) {
@@ -295,15 +307,26 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
         if(type == 0){
             SelectImageUtils.selectPhoto(this, getString(R.string.takephoto), false, true, 1);
         }else {
-            Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(i, REQUEST_CODE_SELECT_VIDEO);
-//            Intent intent = new Intent();
-//            intent.setType("video/*");
-//            intent.setAction(Intent.ACTION_GET_CONTENT);
-//            intent.addCategory(Intent.CATEGORY_OPENABLE);
-//            startActivityForResult(intent,
-//                    REQUEST_CODE_SELECT_VIDEO);
-
+            MediaSelector.get()
+                    .showCamera(true)//默认显示，可以不用设置
+                    .setSelectMode(MediaSelector.MODE_SINGLE)//默认多选
+                    .setMaxCount(20)//默认最多选择5张，设置单选后此设置无效
+                    .setMediaType(MediaSelector.VIDEO)//默认选择图片
+                    .setListener(new MediaSelector.MediaSelectorListener(){
+                        @Override
+                        public void onMediaResult(List<String> resultList) {
+                            LogAndToastUtil.log("====="+ JSONObject.toJSONString(resultList));
+                            if(resultList != null && resultList.size() > 0){
+                                MediaMetadataRetriever media = new MediaMetadataRetriever();
+                                media.setDataSource(resultList.get(0));
+                                String strDuration = media.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+                                videoDuration = Integer.parseInt(strDuration) / 1000;
+                                BitmapUtils.saveImageToGallery(MasterCardActivity.this,media.getFrameAtTime());
+                                presenter.uploadVideo(resultList.get(0));
+                            }
+                        }
+                    })//选择完成的回调, （可以设置回调或者用onActivityResult方式接收）
+                    .jump(this);
         }
     }
 
@@ -322,6 +345,8 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
     }
 
 
+    private String videoImage,videoUrl;
+    private int videoDuration;
     @Override
     public void showUpload(MdlBaseHttpResp<MdlUpload> resp) {
         if (resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData() != null) {
@@ -342,20 +367,32 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
                 authentictionAdapter.notifyDataSetChanged();
                 submitAuthentiction();
             } else {
-                if (sceneUrls.size() < scenePos) {
-                    sceneUrls.add(bean.getUrl());
-                    // 替换图片
-                } else {
-                    sceneUrls.set(scenePos, bean.getUrl());
-                }
-                if (sceneUrls.size() < IMG_SIZE) {
-                    // 如果最后一张已经是空白图的话不操作，否则添加一张空白图
-                    if (!sceneUrls.get(sceneUrls.size() - 1).equals("")) {
-                        sceneUrls.add("");
+                if(isVideoImage){
+                    isVideoImage = false;
+                    videoImage = bean.getUrl();
+                    listVideo.add(new VideoTeacherBean(String.valueOf(videoDuration),videoUrl,videoImage));
+                    if(scenePos == IMG_SIZE -1 && sceneUrls.get(sceneUrls.size() - 1).isEmpty()){
+                        sceneUrls.set(scenePos,bean.getUrl());
+                    }else if (scenePos == sceneUrls.size() - 1) {
+                        sceneUrls.add(bean.getUrl());// 替换图片
+                    } else {
+                        sceneUrls.set(scenePos, bean.getUrl());
                     }
+                    if (sceneUrls.size() < IMG_SIZE) {
+                        // 如果最后一张已经是空白图的话不操作，否则添加一张空白图
+                        if (!sceneUrls.get(sceneUrls.size() - 1).equals("")) {
+                            sceneUrls.add("");
+                        }
+                    }
+                    sceneAdapter.notifyDataSetChanged();
+                    submitScene();
+                }else {
+                    videoUrl = bean.getUrl();
+                    String page = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "coach"+File.separator + "videoImage.jpg";
+                    isVideoImage = true;
+                    presenter.upload(page);
                 }
-                sceneAdapter.notifyDataSetChanged();
-                submitScene();
+
             }
 
         }
@@ -384,22 +421,10 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
 
     private void submitScene() {
         map.clear();
-        StringBuilder submitList = new StringBuilder();
-        for (int i = 0; i < authenticationUrls.size(); i++) {
-            if (!TextUtils.isEmpty(authenticationUrls.get(i))) {
-                submitList.append(authenticationUrls.get(i) + ",");
-            }
+        if(listVideo.size() > 0){
+            map.put("teachVideos", listVideo);
+            presenter.saveTeachVideo(map);
         }
-//        if (submitList.length() == 0) {
-//            LogAndToastUtil.toast("请上传图片");
-//            return;
-//        }
-//        if(submitList.length() > 1){
-//            map.put("certificatePhotos", submitList.toString().substring(0, submitList.toString().length() - 1));
-//        }else {
-            map.put("certificatePhotos","");
-//        }
-        presenter.saveCertificatePhotosT(map);
     }
 
     @Override
@@ -514,6 +539,19 @@ public class MasterCardActivity extends MVPBaseActivity<TalentTabFragmentView, T
                     }
                     authentictionAdapter.notifyDataSetChanged();
                 }
+            }
+            if(data.getTeachVideos() != null){
+                sceneUrls.clear();
+                int size = Math.min(data.getTeachVideos().size(),3);
+                for (int i = 0; i < size; i++) {
+                    VideoTeacherBean bean = new VideoTeacherBean(String.valueOf(data.getTeachVideos().get(i).getVideoDuration()),data.getTeachVideos().get(i).getVideoUrl(),data.getTeachVideos().get(i).getCoverImg());
+                    sceneUrls.add(bean.getCoverImg());
+                    listVideo.add(bean);
+                }
+                if (sceneUrls.size() < IMG_SIZE) {
+                    sceneUrls.add("");
+                }
+                sceneAdapter.notifyDataSetChanged();
             }
 
 

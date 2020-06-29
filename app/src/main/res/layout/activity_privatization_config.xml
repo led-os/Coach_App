@@ -46,6 +46,7 @@
             android:background="@null"
             android:hint="请在此填写或粘贴URL"
             android:maxLines="2"
+            android:textCursorDrawable="@drawable/cursor_text_focus"
             android:padding="6dp"
             android:textColor="@color/black"
             android:textColorHint="@color/color_3d3d3d"

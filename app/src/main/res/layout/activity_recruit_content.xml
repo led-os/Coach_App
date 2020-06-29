@@ -83,6 +83,7 @@
                 android:hint="详细描述的职位能获得更多达人的关注\n详细描述的职位能获得更多达人的关注殊符号"
                 android:maxLength="5000"
                 android:minLines="5"
+                android:textCursorDrawable="@drawable/cursor_text_focus"
                 android:padding="20dp"
                 android:textColor="#FF303030"
                 android:textColorHint="#878787"

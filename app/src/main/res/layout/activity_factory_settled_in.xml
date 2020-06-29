@@ -50,15 +50,233 @@
                 android:layout_width="match_parent"
                 android:layout_marginStart="@dimen/padding_10"
                 android:layout_marginEnd="@dimen/padding_10"
-                android:layout_height="@dimen/padding_211"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:background="@drawable/bg_solid_565656_4"
                 android:padding="@dimen/padding_5">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/icon_settled_in"/>
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_height="@dimen/padding_39">
+
+                    <TextView
+                        android:text="套餐类型"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:text="价格(元)"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:text="发布商品数(个)"
+                        android:textSize="@dimen/text_size_12"
+                        android:textColor="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:background="@drawable/bg_solid_line_1"
+                    android:layout_height="@dimen/padding_39">
+
+                    <TextView
+                        android:text="基础版"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:layout_width="@dimen/padding_0.5"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+                    <TextView
+                        android:text="2000"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:layout_width="@dimen/padding_0.5"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+                    <TextView
+                        android:text="50"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_height="@dimen/padding_0.5"
+                    android:background="@color/black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:background="@drawable/bg_solid_line_2"
+                    android:layout_height="@dimen/padding_39">
+
+                    <TextView
+                        android:text="高级版"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:layout_width="@dimen/padding_0.5"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+                    <TextView
+                        android:text="3800"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:layout_width="@dimen/padding_0.5"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+                    <TextView
+                        android:text="100"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_height="@dimen/padding_0.5"
+                    android:background="@color/black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:background="@drawable/bg_solid_line_3"
+                    android:layout_height="@dimen/padding_39">
+
+                    <TextView
+                        android:text="尊享版"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:layout_width="@dimen/padding_0.5"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+                    <TextView
+                        android:text="5000"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:layout_width="@dimen/padding_0.5"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+                    <TextView
+                        android:text="150"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_height="@dimen/padding_0.5"
+                    android:background="@color/black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_marginBottom="@dimen/padding_16"
+                    android:background="@drawable/bg_solid_line_4"
+                    android:layout_height="@dimen/padding_39">
+
+                    <TextView
+                        android:text="贵族版"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:layout_width="@dimen/padding_0.5"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+                    <TextView
+                        android:text="8000"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+
+                    <View
+                        android:layout_width="@dimen/padding_0.5"
+                        android:layout_height="match_parent"
+                        android:background="@color/black"/>
+                    <TextView
+                        android:text="200"
+                        android:textSize="@dimen/text_size_13"
+                        android:textColor="@color/color_565656"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
             </LinearLayout>
 
             <TextView

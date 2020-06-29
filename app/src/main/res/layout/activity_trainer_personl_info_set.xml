@@ -358,6 +358,7 @@
                     android:layout_below="@+id/tv_simple"
                     android:background="@null"
                     android:maxLength="140"
+                    android:textCursorDrawable="@drawable/cursor_text_focus"
                     android:gravity="start"
                     android:paddingTop="@dimen/padding_8"
                     android:paddingBottom="@dimen/padding_10"

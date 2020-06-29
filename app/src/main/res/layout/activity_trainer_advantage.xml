@@ -92,6 +92,7 @@
                 android:gravity="top|left"
                 android:hint="请输入内容"
                 android:maxLength="5000"
+                android:textCursorDrawable="@drawable/cursor_text_focus"
                 android:minLines="5"
                 android:padding="20dp"
                 android:textColor="#FF303030"

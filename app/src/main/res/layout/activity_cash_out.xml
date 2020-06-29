@@ -44,6 +44,7 @@
             android:textSize="@dimen/text_size_25"
             android:textColor="@color/color_f1404b"
             android:inputType="number"
+            android:textCursorDrawable="@drawable/cursor_text_focus"
             android:textColorHint="@color/color_dddddd"
             android:layout_alignBottom="@+id/tv_money_des"
             android:layout_marginStart="@dimen/padding_7"

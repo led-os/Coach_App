@@ -23,9 +23,17 @@ public class ImageSelectAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<String> imgs;
     private OnImageClickListener listener;
+    /**
+     * 0 :图片  1 ：视频
+     */
+    private int type ;
 
     public OnImageClickListener getListener() {
         return listener;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public void setListener(OnImageClickListener listener) {
@@ -58,12 +66,14 @@ public class ImageSelectAdapter extends RecyclerView.Adapter {
 
         private final ImageView ivPhoto;
         private final ImageView removeImg;
+        private final ImageView imgPlay;
         private int position;
 
         ImageHolder(View itemView) {
             super(itemView);
             ivPhoto = itemView.findViewById(R.id.iv_photo);
             removeImg = itemView.findViewById(R.id.remove_iv);
+            imgPlay = itemView.findViewById(R.id.img_play);
             removeImg.setOnClickListener(this);
             ivPhoto.setOnClickListener(this);
         }
@@ -76,6 +86,11 @@ public class ImageSelectAdapter extends RecyclerView.Adapter {
             } else {
                 removeImg.setVisibility(View.VISIBLE);
                 GlidUtils.setGrid(context, imgUrl, ivPhoto);
+            }
+            if(type != 0 && !imgUrl.isEmpty()){
+                imgPlay.setVisibility(View.VISIBLE);
+            }else {
+                imgPlay.setVisibility(View.GONE);
             }
         }
 

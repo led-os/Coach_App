@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_30"
         android:layout_marginBottom="@dimen/dp_30"
+        android:textCursorDrawable="@drawable/cursor_text_focus"
         android:background="@null"
         android:gravity="center"
         android:textColor="@color/black"

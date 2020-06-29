@@ -23,9 +23,9 @@
         android:background="@drawable/tv_bg_gray"
         android:gravity="center"
         android:maxLength="6"
+        android:textCursorDrawable="@drawable/cursor_text_focus"
         android:minLines="3"
         android:textColor="@color/black"
-        android:textCursorDrawable="@null"
         android:textSize="@dimen/font_14" />
 
     <View

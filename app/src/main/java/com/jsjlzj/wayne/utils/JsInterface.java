@@ -280,4 +280,9 @@ public class JsInterface {
     public void toClubPosition(String lng,String lat,String address){
         NavigationActivity.go2this(mContext, address,  lng+","+lat);
     }
+
+    @JavascriptInterface
+    public void routerBack(){
+        mContext.finish();
+    }
 }

@@ -63,6 +63,7 @@
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_dddddd"
             android:hint="提供更多信息有助于举报被快速处理~"
+            android:textCursorDrawable="@drawable/cursor_text_focus"
             android:gravity="start"
             android:textSize="@dimen/text_size_13"
             android:paddingTop="@dimen/padding_14"

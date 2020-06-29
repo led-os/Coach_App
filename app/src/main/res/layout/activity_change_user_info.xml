@@ -44,6 +44,7 @@
                 android:paddingStart="@dimen/padding_16"
                 android:paddingEnd="@dimen/padding_16"
                 android:singleLine="true"
+                android:textCursorDrawable="@drawable/cursor_text_focus"
                 android:textColor="@color/color_333333"
                 android:textSize="@dimen/text_size_15"
                 tools:text="赵明明" />

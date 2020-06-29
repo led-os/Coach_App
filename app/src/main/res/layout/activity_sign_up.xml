@@ -34,7 +34,7 @@
             android:textSize="@dimen/text_size_15"
             android:hint="请输入您的姓名"
             android:textColor="@color/color_333333"
-            android:textCursorDrawable="@null"
+            android:textCursorDrawable="@drawable/cursor_text_focus"
             android:textColorHint="@color/color_dddddd"
             android:background="@null"/>
 
@@ -61,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/padding_17"
             android:hint="请输入您的电话"
-            android:textCursorDrawable="@null"
+            android:textCursorDrawable="@drawable/cursor_text_focus"
             android:textSize="@dimen/text_size_15"
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_dddddd"
@@ -91,7 +91,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/padding_17"
             android:hint="请填写推荐人姓名"
-            android:textCursorDrawable="@null"
+            android:textCursorDrawable="@drawable/cursor_text_focus"
             android:textSize="@dimen/text_size_15"
             android:textColor="@color/color_333333"
             android:textColorHint="@color/color_dddddd"

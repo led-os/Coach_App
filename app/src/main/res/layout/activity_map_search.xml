@@ -79,6 +79,7 @@
             android:maxLines="1"
             android:paddingLeft="10dp"
             android:inputType="text"
+            android:textCursorDrawable="@drawable/cursor_text_focus"
             android:imeOptions="actionSearch"
             android:hint="请输入办公大楼，例：安联大厦"
             android:textColor="@color/text_black"

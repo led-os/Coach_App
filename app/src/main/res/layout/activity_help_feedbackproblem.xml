@@ -76,6 +76,7 @@
         android:gravity="top|left"
         android:hint="请填写你的建议，我们将为您不断改进～"
         android:minLines="6"
+        android:textCursorDrawable="@drawable/cursor_text_focus"
         android:padding="15dp"
         android:textColor="@color/text_black"
         android:textSize="14sp" />
@@ -92,6 +93,7 @@
         android:inputType="phone"
         android:maxLines="1"
         android:padding="15dp"
+        android:textCursorDrawable="@drawable/cursor_text_focus"
         android:textColor="@color/text_black"
         android:textSize="14sp" />
 </LinearLayout>

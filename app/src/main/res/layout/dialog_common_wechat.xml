@@ -15,6 +15,7 @@
         android:layout_marginRight="25dp"
         android:background="@drawable/bg_dialog_edit"
         android:gravity="center"
+        android:textCursorDrawable="@drawable/cursor_text_focus"
         android:hint="请输入您的微信号"
         android:maxLines="1"
         android:padding="8dp"

@@ -193,6 +193,22 @@ public class DateUtil {
 
     /**
      * 蜂隐币统一转换
+     * @param distance
+     * @return
+     */
+    public static String getDistanceByInt(int distance){
+        int result;
+        if(distance > 1000){
+            result =  distance / 1000;
+            return result + "km";
+        }else {
+            return distance + "m";
+        }
+    }
+
+
+    /**
+     * 蜂隐币统一转换
      * @param f
      * @return
      */

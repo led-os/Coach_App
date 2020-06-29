@@ -20,6 +20,7 @@ import com.jsjlzj.wayne.entity.find.FindStoreBean;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.store.find.FindStoreEvaluateActivity;
+import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -191,7 +192,7 @@ public class FindStoreAdapter extends RecyclerView.Adapter<FindStoreAdapter.View
             }else {
                 tvToComment.setVisibility(View.GONE);
                 if(bean.getDistance() != 0){
-                    tvDistant.setText(bean.getDistance() + "m");
+                    tvDistant.setText(DateUtil.getDistanceByInt(bean.getDistance()));
                     tvDistant.setVisibility(View.VISIBLE);
                 }else {
                     tvDistant.setVisibility(View.GONE);

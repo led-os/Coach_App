@@ -205,6 +205,7 @@
                     android:paddingBottom="@dimen/padding_16"
                     android:layout_marginTop="@dimen/padding_12"
                     android:hint="有任何问题可以告知我们~"
+                    android:textCursorDrawable="@drawable/cursor_text_focus"
                     android:background="@null"/>
             </RelativeLayout>
 

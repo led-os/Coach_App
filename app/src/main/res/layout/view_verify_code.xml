@@ -95,6 +95,7 @@
         android:id="@+id/edit_text_view"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:textCursorDrawable="@drawable/cursor_text_focus"
         android:background="@android:color/transparent"
         android:textColor="@color/transparent"
         android:longClickable="false"

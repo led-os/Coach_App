@@ -116,6 +116,9 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
             }
             map.put("name", etName.getText().toString());
             map.put("mobile", etPhone.getText().toString());
+            if(!TextUtils.isEmpty(etRecommend.getText().toString())){
+                map.put("referee",etRecommend.getText().toString());
+            }
             map.put("id", courseId);
             if (type == 0) {
                 presenter.getAmoySiguUp(map);

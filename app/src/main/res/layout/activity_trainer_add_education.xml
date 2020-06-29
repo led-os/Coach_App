@@ -85,6 +85,7 @@
                     android:background="@null"
                     android:gravity="center|left"
                     android:paddingTop="10dp"
+                    android:textCursorDrawable="@drawable/cursor_text_focus"
                     android:hint="填输入学校名"
                     android:textColor="@color/text_gray"
                     android:textSize="14sp" />
@@ -154,6 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:textCursorDrawable="@drawable/cursor_text_focus"
                     android:gravity="center|left"
                     android:paddingTop="10dp"
                     android:hint="填输入专业名称"

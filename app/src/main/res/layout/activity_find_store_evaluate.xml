@@ -92,7 +92,7 @@
                     android:textSize="@dimen/text_size_14"
                     android:textColor="@color/color_333333"
                     android:hint="请输入评论内容"
-                    android:textCursorDrawable="@null"
+                    android:textCursorDrawable="@drawable/cursor_text_focus"
                     android:textColorHint="@color/color_dddddd"
                     android:maxLength="200"
                     android:layout_marginTop="@dimen/padding_17"

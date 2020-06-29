@@ -281,7 +281,6 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
                     .setListener(new MediaSelector.MediaSelectorListener(){
                         @Override
                         public void onMediaResult(List<String> resultList) {
-                            LogAndToastUtil.log("==============================="+ JSONObject.toJSONString(resultList));
                             if(resultList != null && resultList.size() > 0){
                                 isUploadVideo = true;
                                 MediaMetadataRetriever media = new MediaMetadataRetriever();
@@ -300,7 +299,6 @@ public class FindStoreEvaluateActivity extends MVPBaseActivity<HomeView, HomePre
     @Override
     public void onUploadSuccess(String path, int position) {
         this.curSelectPos = position;
-        LogAndToastUtil.log("=========================onUploadSuccess"+path);
         isUploadVideo = false;
         presenter.upload(path);
     }

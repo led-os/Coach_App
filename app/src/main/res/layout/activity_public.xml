@@ -57,7 +57,7 @@
         android:textColorHint="@color/color_dddddd"
         android:textColor="@color/color_333333"
         android:hint="记录你的感受和经验~"
-        android:textCursorDrawable="@drawable/bg_cursor_color"
+        android:textCursorDrawable="@drawable/cursor_text_focus"
         android:background="@null"
         android:textSize="@dimen/text_size_15"/>
 

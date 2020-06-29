@@ -16,8 +16,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.store.home.mine.AfterSaleApplyActivity;
 import com.jsjlzj.wayne.ui.store.shopping.ShoppingEvaluateActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
@@ -141,7 +144,10 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             tvSaleAfter.setOnClickListener(view -> {
                 AfterSaleApplyActivity.go2this(context,bean);
             });
-
+            itemView.setOnClickListener(v -> {
+                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+bean.getSkuId(),
+                        WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
+            });
         }
 
     }

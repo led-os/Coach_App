@@ -510,6 +510,7 @@
                 android:textColor="@color/color_aaaaaa_content_text"
                 android:textSize="@dimen/text_size_12"
                 android:layout_marginStart="@dimen/padding_14"
+                android:paddingBottom="@dimen/padding_20"
                 android:layout_marginTop="@dimen/padding_12"
                 android:text="请上传制作精品视频，便于提高您应聘的成功率"/>
 
