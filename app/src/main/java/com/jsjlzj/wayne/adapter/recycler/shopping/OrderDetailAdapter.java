@@ -145,7 +145,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
                 AfterSaleApplyActivity.go2this(context,bean);
             });
             itemView.setOnClickListener(v -> {
-                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+bean.getSkuId(),
+                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.shopping_detail), HttpConstant.WEB_URL_NEW_SHOPPING_DETAIL+bean.getOrderProductId(),
                         WebViewContainerFragment.TYPE_NEW_SHOPPING_DETAIL);
             });
         }
