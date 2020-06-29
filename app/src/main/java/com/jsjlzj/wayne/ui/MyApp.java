@@ -21,6 +21,7 @@ import com.jsjlzj.wayne.data.http.HttpManager;
 import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.address.MalAddressProvince;
 import com.jsjlzj.wayne.entity.store.MdlDict;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.mvp.address.BDAbsLocationListener;
 import com.jsjlzj.wayne.ui.yunxin.MyNimSDKOptionConfig;
 import com.jsjlzj.wayne.ui.yunxin.location.NimDemoLocationProvider;
@@ -91,10 +92,19 @@ public class MyApp extends Application {
 
     public static List<String> searchList = new ArrayList<>();
     public DisplayMetrics dm;
-
+    private WebViewContainerActivity currentWebView;
 
     public static MyApp getApp() {
         return ME;
+    }
+
+    public WebViewContainerActivity getWebViewActivity() {
+        return currentWebView;
+    }
+
+    public void setWebViewActivity(WebViewContainerActivity currentWebView) {
+        this.currentWebView = currentWebView;
+        LogAndToastUtil.log("============setWebViewActivity"+currentWebView);
     }
 
     public float getLatitude() {

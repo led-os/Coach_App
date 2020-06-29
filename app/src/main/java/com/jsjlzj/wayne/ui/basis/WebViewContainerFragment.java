@@ -46,6 +46,7 @@ import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.constant.MyPermissionConstant;
+import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
@@ -223,7 +224,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
             }
         });
         mWebView.setWebChromeClient(mWebChromeClient);
-        mWebView.addJavascriptInterface(new JsInterface(getActivity()), "AndroidWebView");
+        mWebView.addJavascriptInterface(new JsInterface((MVPBaseActivity) getActivity()), "AndroidWebView");
     }
 
     public void reload() {
@@ -281,6 +282,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
                 getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
                 break;
+            default:break;
         }
     }
 

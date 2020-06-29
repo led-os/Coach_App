@@ -1047,7 +1047,7 @@
                             android:paddingBottom="@dimen/padding_14"
                             android:textSize="@dimen/text_size_12"
                             android:layout_marginTop="@dimen/padding_6"
-                            android:textColor="@color/color_666666"/>
+                            android:textColor="@color/color_red_f04c62"/>
 
                     </LinearLayout>
 

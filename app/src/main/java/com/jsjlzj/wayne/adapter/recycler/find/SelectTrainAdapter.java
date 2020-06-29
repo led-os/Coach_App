@@ -103,10 +103,15 @@ public class SelectTrainAdapter extends RecyclerView.Adapter<SelectTrainAdapter.
             GlidUtils.setRoundGrid(context,bean.getHeadImg(),imgStore,2);
             tvName.setText(bean.getName());
             itemView.setOnClickListener(v -> {
-                selectPos = 0;
-                transListToFirst(pos);
+                if(pos == 0 && selectPos == 0){
+                    selectPos = -1;
+                    notifyDataSetChanged();
+                }else {
+                    selectPos = 0;
+                    transListToFirst(pos);
+                }
                 if(listener != null){
-                    listener.onItemClick(bean);
+                    listener.onItemClick(bean,selectPos);
                 }
             });
         }
@@ -134,6 +139,6 @@ public class SelectTrainAdapter extends RecyclerView.Adapter<SelectTrainAdapter.
 
     public interface OnItemClickListener {
 
-        void onItemClick(FindTrainerBean.DataBean bean);
+        void onItemClick(FindTrainerBean.DataBean bean,int selectPos);
     }
 }

@@ -116,6 +116,7 @@ public class JsInterface {
      */
     @JavascriptInterface
     public void share(String url,String title,String content,String img){
+        LogAndToastUtil.log("share-===="+url);
         BitmapUtils.getBitmap(mContext, img, bitmap -> JsInterface.this.bitmap = bitmap);
         new ShareDialog(mContext,index -> {
             if(index == 2){

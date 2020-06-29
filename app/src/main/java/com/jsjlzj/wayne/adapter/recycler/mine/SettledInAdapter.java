@@ -65,19 +65,19 @@ public class SettledInAdapter extends RecyclerView.Adapter<SettledInAdapter.View
             switch (pos){
                 case 0:
                     tvType.setText("基础版");
-                    tvMoney.setText("5000");
+                    tvMoney.setText("2000");
                     break;
                 case 1:
                     tvType.setText("高级版");
-                    tvMoney.setText("10000");
+                    tvMoney.setText("3800");
                     break;
                 case 2:
                     tvType.setText("尊享版");
-                    tvMoney.setText("15000");
+                    tvMoney.setText("5000");
                     break;
                 case 3:
-                    tvType.setText("贵族享版");
-                    tvMoney.setText("20000");
+                    tvType.setText("贵族版");
+                    tvMoney.setText("8000");
                     break;
             }
         }

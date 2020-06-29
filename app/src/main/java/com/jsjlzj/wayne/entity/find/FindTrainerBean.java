@@ -37,6 +37,7 @@ public class FindTrainerBean  {
         private int workYears;
         private String trainerType;
         private String expertiseArea;
+        private boolean isSelect;
 
         public int getId() {
             return id;
@@ -84,6 +85,14 @@ public class FindTrainerBean  {
 
         public void setExpertiseArea(String expertiseArea) {
             this.expertiseArea = expertiseArea;
+        }
+
+        public boolean isSelect() {
+            return isSelect;
+        }
+
+        public void setSelect(boolean select) {
+            isSelect = select;
         }
     }
 }

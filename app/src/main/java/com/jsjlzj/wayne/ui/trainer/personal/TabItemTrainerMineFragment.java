@@ -282,10 +282,8 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
             case R.id.img_right_money:
                 //不是团长
                 if(bean.getRegimentalLevel() == 0){
-                    if(bean.getRegimentalAuditStatus() == 0 || bean.getRegimentalAuditStatus() == 2){
-                        LeaderDesActivity.go2this(getActivity());
-                    }else if(bean.getRegimentalAuditStatus() == 1){
-                        LogAndToastUtil.toast("您的申请正在审核中");
+                    if(bean.getRegimentalAuditStatus() == 0 || bean.getRegimentalAuditStatus() == 2 || bean.getRegimentalAuditStatus() == 1){
+                        LeaderDesActivity.go2this(getActivity(),bean.getRegimentalAuditStatus());
                     }else if(bean.getRegimentalAuditStatus() == 3){
                         MineProfitActivity.go2this(getActivity());
                     }
@@ -351,10 +349,8 @@ public class TabItemTrainerMineFragment extends MVPBaseFragment<TalentTabFragmen
                 MineSignUpActivity.go2this(getActivity());
                 break;
             case R.id.ll_cwtz://成为团长
-                if(bean.getRegimentalAuditStatus() == 0 || bean.getRegimentalAuditStatus() == 2){
-                    LeaderDesActivity.go2this(getActivity());
-                }else if(bean.getRegimentalAuditStatus() == 1){
-                    LogAndToastUtil.toast("您的申请正在审核中");
+                if(bean.getRegimentalAuditStatus() == 0 || bean.getRegimentalAuditStatus() == 2 || bean.getRegimentalAuditStatus() == 1){
+                    LeaderDesActivity.go2this(getActivity(),bean.getRegimentalAuditStatus());
                 }else if(bean.getRegimentalAuditStatus() == 3){
                     MineProfitActivity.go2this(getActivity());
                 }

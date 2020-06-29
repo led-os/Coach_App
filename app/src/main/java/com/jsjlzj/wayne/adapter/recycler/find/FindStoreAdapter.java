@@ -1,5 +1,6 @@
 package com.jsjlzj.wayne.adapter.recycler.find;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,14 +37,14 @@ import butterknife.ButterKnife;
 public class FindStoreAdapter extends RecyclerView.Adapter<FindStoreAdapter.ViewHolder> {
 
 
-    private Context context;
+    private Activity context;
     private List<FindStoreBean> list = new ArrayList<>();
     /**
      *  1： 评论成功推荐列表
      */
     private int type ;
 
-    public FindStoreAdapter(Context context, List<FindStoreBean> list) {
+    public FindStoreAdapter(Activity context, List<FindStoreBean> list) {
         this.context = context;
         this.list.addAll(list);
     }

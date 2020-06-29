@@ -34,6 +34,7 @@ import butterknife.BindView;
  */
 public class ApplyLeaderActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView {
 
+    public static final int REQUEST_CODE_APPLY = 10002;
     @BindView(R.id.et_name)
     EditText etName;
     @BindView(R.id.et_code)
@@ -51,8 +52,8 @@ public class ApplyLeaderActivity extends MVPBaseActivity<HomeView, HomePresenter
     private String province, provinceCode, city, cityCode, area, areaCode;
     private Map<Object,Object> map = new HashMap<>();
 
-    public static void go2this(Activity activity) {
-        activity.startActivity(new Intent(activity, ApplyLeaderActivity.class));
+    public static void go2this(Activity activity,int requestCode) {
+        activity.startActivityForResult(new Intent(activity, ApplyLeaderActivity.class),requestCode);
     }
 
     @Override
@@ -147,6 +148,7 @@ public class ApplyLeaderActivity extends MVPBaseActivity<HomeView, HomePresenter
     public void getMessageSuccess(MdlBaseHttpResp<DataBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK){
             LogAndToastUtil.toast("申请成功");
+            setResult(RESULT_OK);
             finish();
         }
     }

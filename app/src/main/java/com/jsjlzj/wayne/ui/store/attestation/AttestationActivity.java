@@ -15,6 +15,7 @@ import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
 import com.jsjlzj.wayne.ui.MyApp;
+import com.jsjlzj.wayne.ui.basis.LoginRoleSelectActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
@@ -54,7 +55,7 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
 
     private EditText edName, edStoreName, edPositionName, edWxId;
     private ImageView imCamera;
-    private TextView edContent;
+    private TextView edContent,btnService;
 
     @Override
     protected void initViewAndControl() {
@@ -63,12 +64,13 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
         edStoreName = findView(R.id.edStoreName);
         edPositionName = findView(R.id.edPositionName);
         edWxId = findView(R.id.edWxId);
-
+        btnService = findView(R.id.btnService);
         imCamera = findView(R.id.imCamera);
         edContent.setClickable(false);
         imCamera.setOnClickListener(clickListener);
         findView(R.id.btnConfirm).setOnClickListener(clickListener);
         findView(R.id.btnBack).setOnClickListener(clickListener);
+        btnService.setOnClickListener(clickListener);
         edContent.setOnClickListener(clickListener);
         edStoreName.setOnClickListener(clickListener);
     }
@@ -86,6 +88,9 @@ public class AttestationActivity extends MVPBaseActivity<TalentPersonalView, Tal
             switch (view.getId()) {
                 case R.id.imCamera://照相机
                     clickSelectHeadPic();
+                    break;
+                case R.id.btnService:
+                    LoginRoleSelectActivity.go2This(AttestationActivity.this,true);
                     break;
                 case R.id.btnConfirm://
                     done();

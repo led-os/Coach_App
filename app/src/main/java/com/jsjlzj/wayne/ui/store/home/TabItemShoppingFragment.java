@@ -2,6 +2,7 @@ package com.jsjlzj.wayne.ui.store.home;
 
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -289,8 +290,10 @@ public class TabItemShoppingFragment extends MVPBaseFragment<TalentPersonalView,
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
-//                    BannerBean bean = images.get(position);
-//                    WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+                    BannerBean bean = images.get(position);
+                    if(!TextUtils.isEmpty(bean.getLink())){
+                        WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+                    }
                 })
                 .setCanLoop(true);
     }

@@ -231,7 +231,7 @@ public class PositionInfoStoreActivity extends MVPBaseActivity<TalentTabFragment
             WXWebpageObject webpageObject=new WXWebpageObject();
             webpageObject.webpageUrl=BASE_URL+"static/h5/index.html?id="+id;
             WXMediaMessage msg=new WXMediaMessage(webpageObject);
-            msg.title="健身教练之家";
+            msg.title="蜂隐运动";
             msg.description="健身私教";
             Bitmap thumBitmap= BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
             msg.thumbData = bmpToByteArray(thumBitmap, true);

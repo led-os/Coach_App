@@ -58,7 +58,6 @@
         <TextView
             android:id="@+id/tv_share"
             android:text="分享"
-         
             android:textSize="@dimen/text_size_13"
             android:textColor="@color/color_f1404b"
             android:layout_marginStart="@dimen/padding_28"

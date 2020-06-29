@@ -255,7 +255,7 @@
 
     <string name="please_add_storage_permission">请授予内存空间访问权限</string>
     <string name="study">学习</string>
-    <string name="question_bank">国智题库</string>
+    <string name="question_bank">国职题库</string>
     <string name="chapter_subject">章节答题</string>
     <string name="achievement_record">成绩记录</string>
     <string name="online_subject">在线答题</string>
@@ -290,7 +290,7 @@
     <string name="clube_detail">俱乐部详情</string>
     <string name="tuan_detail">团购详情</string>
     <string name="trainer_detail">教练详情</string>
-    <string name="link_phone">18271850619</string>
+    <string name="link_phone">057186011889</string>
 
     <string-array name="home_title_list">
         <!--        <item>推荐</item>-->
@@ -378,7 +378,7 @@
         <item>基础版</item>
         <item>高级版</item>
         <item>尊享版</item>
-        <item>贵族享版</item>
+        <item>贵族版</item>
     </string-array>
 
 

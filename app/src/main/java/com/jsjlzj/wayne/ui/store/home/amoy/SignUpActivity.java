@@ -2,20 +2,18 @@ package com.jsjlzj.wayne.ui.store.home.amoy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
 import com.jsjlzj.wayne.entity.DataBean;
-import com.jsjlzj.wayne.entity.Login.MdlUser;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
@@ -23,12 +21,14 @@ import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.utils.DataCheckUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
-import com.jsjlzj.wayne.utils.SPUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @ClassName: SignUpActivity
@@ -46,20 +46,24 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
     EditText etPhone;
     @BindView(R.id.tv_commit)
     TextView tvCommit;
+    @BindView(R.id.et_recommend)
+    EditText etRecommend;
+    @BindView(R.id.ll_recommend)
+    LinearLayout llRecommend;
 
     /**
      * 0 :淘学报名   1： 赛事报名
      */
-    private int type ;
+    private int type;
     private String courseId;
     private Map<Object, Object> map = new HashMap<>();
 
 
-    public static void go2this(Activity context, String schoolId, String courseId,int type) {
+    public static void go2this(Activity context, String schoolId, String courseId, int type) {
         Intent intent = new Intent(context, SignUpActivity.class);
         intent.putExtra(ExtraConstant.EXTRA_TITLE, courseId);
         intent.putExtra(ExtraConstant.EXTRA_SCHOOL_ID, schoolId);
-        intent.putExtra(ExtraConstant.EXTRA_SHOW_TYPE,type);
+        intent.putExtra(ExtraConstant.EXTRA_SHOW_TYPE, type);
         context.startActivity(intent);
     }
 
@@ -71,13 +75,14 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
     @Override
     protected void initViewAndControl() {
         courseId = getIntent().getStringExtra(ExtraConstant.EXTRA_TITLE);
-        type = getIntent().getIntExtra(ExtraConstant.EXTRA_SHOW_TYPE,0);
+        type = getIntent().getIntExtra(ExtraConstant.EXTRA_SHOW_TYPE, 0);
         String schoolId = getIntent().getStringExtra(ExtraConstant.EXTRA_SCHOOL_ID);
         LogAndToastUtil.log(schoolId + "title====courseId" + courseId);
-        if(MyApp.isTrainer){
+        if (MyApp.isTrainer) {
             initTitle("我要报名");
             tvCommit.setText("提交报名");
-        }else {
+            llRecommend.setVisibility(View.VISIBLE);
+        } else {
             initTitle("我要推荐");
             tvCommit.setText("提交推荐");
         }
@@ -97,24 +102,24 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
     protected void onMultiClick(View view) {
         super.onMultiClick(view);
         if (view.getId() == R.id.tv_commit) {
-            if(TextUtils.isEmpty(etName.getText().toString())){
-                LogAndToastUtil.toast(this,"请输入联系人姓名！");
+            if (TextUtils.isEmpty(etName.getText().toString())) {
+                LogAndToastUtil.toast(this, "请输入联系人姓名！");
                 return;
             }
-            if(TextUtils.isEmpty(etPhone.getText().toString())){
-                LogAndToastUtil.toast(this,"请输入手机号！");
+            if (TextUtils.isEmpty(etPhone.getText().toString())) {
+                LogAndToastUtil.toast(this, "请输入手机号！");
                 return;
             }
-            if(!DataCheckUtils.checkPhone(etPhone.getText().toString())){
-                LogAndToastUtil.toast(this,"手机号格式错误，请重新输入！");
+            if (!DataCheckUtils.checkPhone(etPhone.getText().toString())) {
+                LogAndToastUtil.toast(this, "手机号格式错误，请重新输入！");
                 return;
             }
             map.put("name", etName.getText().toString());
             map.put("mobile", etPhone.getText().toString());
             map.put("id", courseId);
-            if(type == 0){
+            if (type == 0) {
                 presenter.getAmoySiguUp(map);
-            }else {
+            } else {
                 presenter.getMatchSiguUp(map);
             }
         }
@@ -151,5 +156,12 @@ public class SignUpActivity extends MVPBaseActivity<HomeView, HomePresenter> imp
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             finish();
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

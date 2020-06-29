@@ -187,14 +187,16 @@ public class LogAndToastUtil {
             if (context == null) {
                 return;
             }
-            Stack<ProgressDialog> stack = dicWait.get(context.getClass());
-            if (stack != null && stack.size() > 0) {
-                ProgressDialog pd = stack.pop();
-                if (pd.isShowing()) {
-                    pd.cancel();
-                }
-                if (stack.size() == 0) {
-                    dicWait.remove(context.getClass());
+            if(dicWait != null){
+                Stack<ProgressDialog> stack = dicWait.get(context.getClass());
+                if (stack != null && stack.size() > 0) {
+                    ProgressDialog pd = stack.pop();
+                    if (pd.isShowing()) {
+                        pd.cancel();
+                    }
+                    if (stack.size() == 0) {
+                        dicWait.remove(context.getClass());
+                    }
                 }
             }
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.ui.publicac.report;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ public class ReportTypeActivity extends MVPBaseActivity<LoginActivityView, Login
     @BindView(R.id.tv_9)
     TextView tv9;
 
-    public static void go2this(Activity context) {
+    public static void go2this(Context context) {
         Intent intent = new Intent(context, ReportTypeActivity.class);
         context.startActivity(intent);
     }

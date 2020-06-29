@@ -29,6 +29,8 @@ import com.jsjlzj.wayne.entity.find.FindStoreConditionBean;
 import com.jsjlzj.wayne.entity.find.FindStorePageBean;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
 import com.jsjlzj.wayne.ui.MyApp;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -228,8 +230,10 @@ public class FindStoreActivity extends MVPBaseActivity<HomeView, HomePresenter> 
                 .setPageIndicator(new int[]{R.drawable.bg_circle_ccfffff_6, R.drawable.bg_circle_4f9bfa_6})
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setOnItemClickListener(position -> {
-//                    BannerBean bean = images.get(position);
-//                    WebViewContainerActivity.go2this(this, bean.getTitle(), bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+                    BannerBean bean = images.get(position);
+                    if(!TextUtils.isEmpty(bean.getLink())){
+                        WebViewContainerActivity.go2this(this, bean.getTitle(), bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
+                    }
                 })
                 .setCanLoop(true);
     }

@@ -98,7 +98,6 @@ public class PictureActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         if (isRefresh) {
             pageNo = 1;
         }
-        LogAndToastUtil.log("==================="+storeId);
         if(type == 0){
             presenter.getClubPicList(storeId,pageNo, HttpConstant.PAGE_SIZE_NUMBER);
         }else if(type == 1){

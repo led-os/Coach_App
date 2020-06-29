@@ -1,6 +1,7 @@
 package com.jsjlzj.wayne.adapter.recycler.mine;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,6 @@ public class SelectPicOrVideoAdapter extends RecyclerView.Adapter<SelectPicOrVid
         return list != null ? list.size() : 0;
     }
 
-
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.img_pic)
         ImageView imgPic;
@@ -63,6 +63,8 @@ public class SelectPicOrVideoAdapter extends RecyclerView.Adapter<SelectPicOrVid
         ImageView imgSelectPic;
         @BindView(R.id.remove_iv)
         ImageView removeIv;
+        @BindView(R.id.img_play)
+        ImageView imgPlay;
         private String bean;
 
         public ViewHolder(@NonNull View itemView) {
@@ -78,28 +80,41 @@ public class SelectPicOrVideoAdapter extends RecyclerView.Adapter<SelectPicOrVid
                 tvPic.setVisibility(View.VISIBLE);
                 imgPic.setVisibility(View.VISIBLE);
                 imgSelectPic.setVisibility(View.GONE);
-                imgPic.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_update_pic));
-            }else if("视频".equals(bean)){
+                imgPlay.setVisibility(View.GONE);
+                imgPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_update_pic));
+            } else if ("视频".equals(bean)) {
                 tvPic.setText("上传视频");
+                imgPlay.setVisibility(View.GONE);
                 removeIv.setVisibility(View.GONE);
                 tvPic.setVisibility(View.VISIBLE);
                 imgPic.setVisibility(View.VISIBLE);
                 imgSelectPic.setVisibility(View.GONE);
-                imgPic.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.icon_update_video));
-            }else {
-                tvPic.setVisibility(View.GONE);
-                imgPic.setVisibility(View.GONE);
-                removeIv.setVisibility(View.VISIBLE);
-                imgSelectPic.setVisibility(View.VISIBLE);
-                GlidUtils.setGrid(context, bean, imgSelectPic);
+                imgPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_update_video));
+            } else {
+                if(pos == list.size() -1){
+                    imgPlay.setVisibility(View.VISIBLE);
+                    removeIv.setVisibility(View.VISIBLE);
+                    tvPic.setVisibility(View.GONE);
+                    imgPic.setVisibility(View.GONE);
+                    imgSelectPic.setVisibility(View.VISIBLE);
+                    GlidUtils.setGrid(context, bean, imgSelectPic);
+                }else {
+                    imgPlay.setVisibility(View.GONE);
+                    tvPic.setVisibility(View.GONE);
+                    imgPic.setVisibility(View.GONE);
+                    removeIv.setVisibility(View.VISIBLE);
+                    imgSelectPic.setVisibility(View.VISIBLE);
+                    GlidUtils.setGrid(context, bean, imgSelectPic);
+                }
+
             }
             itemView.setOnClickListener(v -> {
-                if(listener != null){
+                if (listener != null) {
                     listener.onImageClick(pos);
                 }
             });
             removeIv.setOnClickListener(v -> {
-                if(listener != null){
+                if (listener != null) {
                     listener.onRemoveImgClick(pos);
                 }
             });
@@ -115,12 +130,14 @@ public class SelectPicOrVideoAdapter extends RecyclerView.Adapter<SelectPicOrVid
     public interface OnImageClickListener {
         /**
          * 点击图片
+         *
          * @param position 点击的角标
          */
         void onImageClick(int position);
 
         /**
          * 删除图片
+         *
          * @param position 删除的角标
          */
         void onRemoveImgClick(int position);

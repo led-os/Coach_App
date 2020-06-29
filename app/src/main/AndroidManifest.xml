@@ -459,6 +459,32 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".ui.store.personal.storeinfo.ImageViewActivity" /> <!-- 百度key -->
         <activity android:name=".ui.basis.WebViewActivity" /> <!-- 云信后台服务，请使用独立进程。 -->
+
+
+        <activity
+            android:name="com.cmcy.medialib.MultiSelectorActivity"
+            android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name="com.cmcy.medialib.PhotoPreviewActivity"
+            android:configChanges="keyboardHidden|orientation|navigation|screenSize"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.cmcy.medialib.clipimage.ClipImageActivity"
+            android:configChanges="keyboardHidden|orientation|navigation"
+            android:screenOrientation="portrait"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
+
+
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="OWi5ffyRIRixathZqvRa8DVfmqlvaFFM" /> <!-- 云信后台辅助服务 -->

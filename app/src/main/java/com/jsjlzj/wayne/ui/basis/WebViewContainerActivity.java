@@ -34,7 +34,6 @@ import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.store.find.ConfirmCourserOrderActivity;
 import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
 import com.jsjlzj.wayne.utils.SPUtil;
-import com.jsjlzj.wayne.utils.StatusBarCompatUtil;
 import com.jsjlzj.wayne.utils.keyboard.KeyboardUtil;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 
@@ -58,7 +57,7 @@ import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_SCAN_SCORE
 public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView  {
 
     public static final String TAG_FRAGMENT = "webview";
-    private WebViewContainerFragment webFragment;
+    public WebViewContainerFragment webFragment;
 
     public static void go2this(Context context, String title, String url, int type, String data) {
         Intent intent = new Intent(context, WebViewContainerActivity.class);
@@ -86,10 +85,6 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
     protected void initViewAndControl() {
         Intent intent = getIntent();
         int type = intent.getIntExtra(ExtraConstant.EXTRA_WEB_TYPE, TYPE_BANNER_LINK_URL);
-        if(type == TYPE_BANNER_LINK_URL){
-            finish();
-            return;
-        }
         String title = intent.getStringExtra(ExtraConstant.EXTRA_WEB_TITLE);
         String url = intent.getStringExtra(ExtraConstant.EXTRA_WEB_URL);
         String rowkey = intent.getStringExtra(ExtraConstant.EXTRA_WEB_DATA);

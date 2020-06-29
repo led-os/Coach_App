@@ -19,10 +19,13 @@ import com.jsjlzj.wayne.entity.store.ItemsBean;
 import com.jsjlzj.wayne.entity.store.MdlDict;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
 import com.jsjlzj.wayne.ui.MyApp;
+import com.jsjlzj.wayne.ui.basis.LoginByPhoneSmesActivity;
+import com.jsjlzj.wayne.ui.basis.LoginRoleSelectActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
+import com.jsjlzj.wayne.ui.store.find.SelectTrainActivity;
 import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
@@ -105,7 +108,6 @@ public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView,
             edName.setEnabled(false);
             tvNumber.setClickable(false);
             btnTips.setVisibility(View.VISIBLE);
-//            btnService.setVisibility(View.VISIBLE);
             bgView.setVisibility(View.VISIBLE);
             btnConfirm.setVisibility(View.GONE);
         }else if(isFlag == 2){
@@ -132,9 +134,9 @@ public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView,
             switch (view.getId()) {
                 case R.id.bgView:
                     break;
-//                case R.id.btnService:
-//                    showPhoneDialog();
-//                    break;
+                case R.id.btnService:
+                    LoginRoleSelectActivity.go2This(AttestationInfoActivity.this,true);
+                    break;
                 case R.id.tvNumber:
                     showNumberDialog();
                     break;
