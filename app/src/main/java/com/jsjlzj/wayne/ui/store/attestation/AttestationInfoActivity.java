@@ -21,10 +21,12 @@ import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
 import com.jsjlzj.wayne.ui.MyApp;
 import com.jsjlzj.wayne.ui.basis.LoginByPhoneSmesActivity;
 import com.jsjlzj.wayne.ui.basis.LoginRoleSelectActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalView;
+import com.jsjlzj.wayne.ui.publicac.dialog.CallPhoneDialog;
 import com.jsjlzj.wayne.ui.store.find.SelectTrainActivity;
 import com.jsjlzj.wayne.utils.GlidUtils;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
@@ -222,13 +224,18 @@ public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView,
 //                        .start(this, HEAD_PIC);
 //                break;
             case MyPermissionConstant.CALL_PHONE:
-                Intent intent = new Intent();
-                //设置拨打电话的动作
-                intent.setAction(Intent.ACTION_DIAL);//ACTION_DIAL  ACTION_CALL
-                //设置拨打电话的号码
-                intent.setData(Uri.parse("tel:" + getString(R.string.phone)));
-                //开启打电话的意图
-                startActivity(intent);
+                new CallPhoneDialog(AttestationInfoActivity.this,new CallPhoneDialog.ClickListener(){
+                    @Override
+                    public void clickConfirm(int isMan) {
+                        Intent intent = new Intent();
+                        //设置拨打电话的动作
+                        intent.setAction(Intent.ACTION_DIAL);
+                        //设置拨打电话的号码
+                        intent.setData(Uri.parse("tel:" + getResources().getString(R.string.link_phone)));
+                        //开启打电话的意图
+                        startActivity(intent);
+                    }
+                }).show();
                 break;
         }
     }

@@ -142,19 +142,19 @@ public class MyApp extends Application {
      * 百度地图定位监听器
      */
     private BDAbsLocationListener bdListener = new BDAbsLocationListener() {
-        @Override
-        public void onReceiveLocation(BDLocation bdLocation) {
-            latitude = (float) bdLocation.getLatitude();    //获取纬度信息
-            longitude = (float) bdLocation.getLongitude();
-            currentProvince = bdLocation.getCity();  // 获取当前城市
-            province = bdLocation.getProvince();
-            areaName = bdLocation.getDistrict();
-            curPosition = bdLocation.getAddrStr();
-            LogAndToastUtil.log("====="+ JSONObject.toJSONString(bdLocation));
-            LogAndToastUtil.log("latitude:" + latitude + "longitude:" + longitude + "currentProvince:" + currentProvince + "curPosition:" + curPosition);
-            super.onReceiveLocation(bdLocation);
-        }
-    };
+                @Override
+                public void onReceiveLocation(BDLocation bdLocation) {
+                    latitude = (float) bdLocation.getLatitude();    //获取纬度信息
+                    longitude = (float) bdLocation.getLongitude();
+                    currentProvince = bdLocation.getCity();  // 获取当前城市
+                    province = bdLocation.getProvince();
+                    areaName = bdLocation.getDistrict();
+                    curPosition = bdLocation.getAddrStr();
+                    LogAndToastUtil.log("====="+ JSONObject.toJSONString(bdLocation));
+                    LogAndToastUtil.log("latitude:" + latitude + "longitude:" + longitude + "currentProvince:" + currentProvince + "curPosition:" + curPosition);
+                    super.onReceiveLocation(bdLocation);
+                }
+            };
 
     //初始化百度配置信息
     public void initBdConfigure() {
@@ -163,7 +163,7 @@ public class MyApp extends Application {
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         option.setCoorType("gcj02");
         option.setScanSpan(0);
-        option.setOpenGps(false);
+        option.setOpenGps(true);
         option.setLocationNotify(true);
         option.setIgnoreKillProcess(true);
         option.setWifiCacheTimeOut(5 * 60 * 1000);

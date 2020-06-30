@@ -22,7 +22,9 @@ import com.jsjlzj.wayne.ui.mvp.base.MyBaseMessageActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
+import com.jsjlzj.wayne.ui.publicac.dialog.CallPhoneDialog;
 import com.jsjlzj.wayne.ui.store.personal.storeinfo.InterviewActivity;
+import com.jsjlzj.wayne.ui.store.shopping.OrderDetailActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.PositionPreviewNewActivity;
 import com.jsjlzj.wayne.ui.trainer.publicac.PositionInfoStoreActivity;
@@ -554,13 +556,18 @@ public class P2PMessageActivity2 extends MyBaseMessageActivity<LoginActivityView
     public void permissionSuccess(int permissionReqCode) {
         switch (permissionReqCode) {
             case MyPermissionConstant.CALL_PHONE:
-                Intent intent = new Intent();
-                //设置拨打电话的动作
-                intent.setAction(Intent.ACTION_DIAL);//ACTION_DIAL  ACTION_CALL
-                //设置拨打电话的号码
-                intent.setData(Uri.parse("tel:" + strPhone));
-                //开启打电话的意图
-                startActivity(intent);
+                new CallPhoneDialog(P2PMessageActivity2.this,strPhone,new CallPhoneDialog.ClickListener(){
+                    @Override
+                    public void clickConfirm(int isMan) {
+                        Intent intent = new Intent();
+                        //设置拨打电话的动作
+                        intent.setAction(Intent.ACTION_DIAL);
+                        //设置拨打电话的号码
+                        intent.setData(Uri.parse("tel:" + strPhone));
+                        //开启打电话的意图
+                        startActivity(intent);
+                    }
+                }).show();
                 break;
             case MyPermissionConstant.SEND_PHONE:
                 Intent intent1 = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + strPhone));

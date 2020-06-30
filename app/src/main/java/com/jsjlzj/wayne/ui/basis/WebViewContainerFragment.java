@@ -137,10 +137,6 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
 
      @Override
      protected void fragment2Front() {
-        LogAndToastUtil.log("====="+firstUrl+"======"+SPUtil.getWebRefresh());
-        if(firstUrl.contains(HttpConstant.WEB_URL_NEW_MEMBER_CENTER ) || firstUrl.contains(HttpConstant.WEB_URL_NEW_COURSE_DETAIL)){
-
-        }
      }
 
      @Override
@@ -151,7 +147,7 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
      @Override
      public void onStop() {
          super.onStop();
-         mWebView.reload();
+//         mWebView.reload();
      }
 
     @SuppressLint("SetJavaScriptEnabled")

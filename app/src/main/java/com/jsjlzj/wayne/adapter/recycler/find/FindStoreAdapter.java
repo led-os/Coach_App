@@ -43,7 +43,7 @@ public class FindStoreAdapter extends RecyclerView.Adapter<FindStoreAdapter.View
     /**
      *  1： 评论成功推荐列表
      */
-    private int type ;
+    private int type = 0;
 
     public FindStoreAdapter(Activity context, List<FindStoreBean> list) {
         this.context = context;

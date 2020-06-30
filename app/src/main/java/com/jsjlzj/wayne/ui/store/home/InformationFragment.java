@@ -128,7 +128,7 @@ public class InformationFragment extends MVPBaseFragment<HomeView, HomePresenter
                         WebViewContainerActivity.go2this(getActivity(),bean.getTitle(),bean.getLink(), WebViewContainerFragment.TYPE_BANNER_LINK_URL);
                     }
                 })
-                .setCanLoop(true);
+                .setCanLoop(images.size() > 1);
     }
 
 

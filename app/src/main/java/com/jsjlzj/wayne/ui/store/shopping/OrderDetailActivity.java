@@ -25,9 +25,11 @@ import com.jsjlzj.wayne.entity.shopping.AfterSaleDetailBean;
 import com.jsjlzj.wayne.entity.shopping.MineOrderPageBean;
 import com.jsjlzj.wayne.entity.shopping.OrderDetailBean;
 import com.jsjlzj.wayne.entity.shopping.ShoppingCarBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
+import com.jsjlzj.wayne.ui.publicac.dialog.CallPhoneDialog;
 import com.jsjlzj.wayne.ui.store.home.mine.AfterSaleApplyActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
@@ -506,13 +508,18 @@ public class OrderDetailActivity extends MVPBaseActivity<HomeView, HomePresenter
         super.permissionSuccess(permissionReqCode);
         switch (permissionReqCode) {
             case MyPermissionConstant.CALL_PHONE:
-                Intent intent = new Intent();
-                //设置拨打电话的动作
-                intent.setAction(Intent.ACTION_DIAL);//ACTION_DIAL  ACTION_CALL
-                //设置拨打电话的号码
-                intent.setData(Uri.parse("tel:" + phone));
-                //开启打电话的意图
-                startActivity(intent);
+                new CallPhoneDialog(OrderDetailActivity.this,phone,new CallPhoneDialog.ClickListener(){
+                    @Override
+                    public void clickConfirm(int isMan) {
+                        Intent intent = new Intent();
+                        //设置拨打电话的动作
+                        intent.setAction(Intent.ACTION_DIAL);
+                        //设置拨打电话的号码
+                        intent.setData(Uri.parse("tel:" + phone));
+                        //开启打电话的意图
+                        startActivity(intent);
+                    }
+                }).show();
                 break;
             default:break;
         }

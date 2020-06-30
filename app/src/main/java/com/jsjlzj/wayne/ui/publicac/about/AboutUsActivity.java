@@ -14,10 +14,12 @@ import android.widget.TextView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.ui.MyApp;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.ui.publicac.dialog.CallPhoneDialog;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.Utility;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
@@ -114,14 +116,20 @@ public class AboutUsActivity extends MVPBaseActivity<TalentTabFragmentView, Tale
         super.permissionSuccess(permissionReqCode);
         switch (permissionReqCode) {
             case  MyPermissionConstant.CALL_PHONE:
-                Intent intent = new Intent();
-                //设置拨打电话的动作
-                intent.setAction(Intent.ACTION_DIAL);
-                //设置拨打电话的号码
-                intent.setData(Uri.parse("tel:" + getString(R.string.phone)));
-                //开启打电话的意图
-                startActivity(intent);
+                new CallPhoneDialog(AboutUsActivity.this,new CallPhoneDialog.ClickListener(){
+                    @Override
+                    public void clickConfirm(int isMan) {
+                        Intent intent = new Intent();
+                        //设置拨打电话的动作
+                        intent.setAction(Intent.ACTION_DIAL);
+                        //设置拨打电话的号码
+                        intent.setData(Uri.parse("tel:" + getResources().getString(R.string.link_phone)));
+                        //开启打电话的意图
+                        startActivity(intent);
+                    }
+                }).show();
                 break;
+            default:break;
         }
     }
 }

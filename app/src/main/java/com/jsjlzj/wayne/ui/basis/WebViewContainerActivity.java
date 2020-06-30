@@ -31,11 +31,13 @@ import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.ui.publicac.dialog.CallPhoneDialog;
 import com.jsjlzj.wayne.ui.store.find.ConfirmCourserOrderActivity;
 import com.jsjlzj.wayne.ui.store.shopping.PaymentActivity;
 import com.jsjlzj.wayne.utils.SPUtil;
 import com.jsjlzj.wayne.utils.keyboard.KeyboardUtil;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
+import com.jsjlzj.wayne.widgets.dialog.SexDialog;
 
 import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 import static com.jsjlzj.wayne.ui.basis.WebViewContainerFragment.TYPE_ARTICLE_DETAIL;
@@ -196,13 +198,18 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         super.permissionSuccess(permissionReqCode);
         switch (permissionReqCode) {
             case MyPermissionConstant.CALL_PHONE:
-                Intent intent = new Intent();
-                //设置拨打电话的动作
-                intent.setAction(Intent.ACTION_DIAL);//ACTION_DIAL  ACTION_CALL
-                //设置拨打电话的号码
-                intent.setData(Uri.parse("tel:" + getResources().getString(R.string.link_phone)));
-                //开启打电话的意图
-                startActivity(intent);
+                new CallPhoneDialog(WebViewContainerActivity.this,new CallPhoneDialog.ClickListener(){
+                    @Override
+                    public void clickConfirm(int isMan) {
+                        Intent intent = new Intent();
+                        //设置拨打电话的动作
+                        intent.setAction(Intent.ACTION_DIAL);
+                        //设置拨打电话的号码
+                        intent.setData(Uri.parse("tel:" + getResources().getString(R.string.link_phone)));
+                        //开启打电话的意图
+                        startActivity(intent);
+                    }
+                }).show();
                 break;
             default:break;
         }
