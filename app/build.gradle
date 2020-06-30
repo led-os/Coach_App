@@ -119,7 +119,7 @@ dependencies {
     implementation rootProject.ext.dependencies["commons-lang3"]
     implementation rootProject.ext.dependencies["jiaozivideoplayer"]
     implementation 'com.github.cmcy:media-selector:2.0.4'
-
+//    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
     //支付宝支付
     compile(name: 'alipaySdk-15.7.5-20200422171619', ext: 'aar')
 }
