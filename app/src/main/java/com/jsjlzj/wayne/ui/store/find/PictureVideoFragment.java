@@ -160,9 +160,8 @@ public class PictureVideoFragment extends MVPBaseFragment<HomeView, HomePresente
             }
             tvBusNum.setText(resp.getData().getData().getTotalCount()+"个");
             rvBusiness.setLayoutManager(new GridLayoutManager(getActivity(),2));
-            VideoAdapter adapter2 = new VideoAdapter(getActivity(),resp.getData().getData().getResult());
+            VideoAdapter adapter2 = new VideoAdapter(getActivity(),resp.getData().getData().getResult(),false);
             rvBusiness.setAdapter(adapter2);
-
         }
     }
 
@@ -192,7 +191,7 @@ public class PictureVideoFragment extends MVPBaseFragment<HomeView, HomePresente
             }
             tvNetNum.setText(resp.getData().getData().getTotalCount()+"个");
             rvNet.setLayoutManager(new GridLayoutManager(getActivity(),2));
-            VideoAdapter adapter4 = new VideoAdapter(getActivity(),resp.getData().getData().getResult());
+            VideoAdapter adapter4 = new VideoAdapter(getActivity(),resp.getData().getData().getResult(),true);
             rvNet.setAdapter(adapter4);
         }
     }

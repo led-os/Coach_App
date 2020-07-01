@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/padding_5"
     android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/rel_img"
         android:layout_width="match_parent"
+        android:layout_margin="@dimen/padding_5"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/img_pic"
@@ -27,8 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="4周年盛典/#品牌介绍"
+        android:visibility="gone"
         android:textSize="@dimen/text_size_13"
         android:paddingBottom="@dimen/padding_9"
         android:textColor="@color/color_222222"
-        android:layout_marginTop="@dimen/padding_10"/>
+        android:layout_marginTop="@dimen/padding_5"/>
 </RelativeLayout>

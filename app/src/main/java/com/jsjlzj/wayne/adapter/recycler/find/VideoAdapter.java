@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.find.VideoListBean;
+import com.jsjlzj.wayne.ui.basis.PlayVideoActivity;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -32,11 +33,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     private Context context;
     private List<VideoListBean.DataBean.ResultBean> list = new ArrayList<>();
+    private boolean isNet;
 
 
-    public VideoAdapter(Context context, List<VideoListBean.DataBean.ResultBean> list) {
+    public VideoAdapter(Context context, List<VideoListBean.DataBean.ResultBean> list,boolean isNet) {
         this.context = context;
         this.list.addAll(list);
+        this.isNet = isNet;
     }
 
     public void setData(List<VideoListBean.DataBean.ResultBean> list){
@@ -83,8 +86,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             GlidUtils.setRoundGrid(context, bean.getVideoImg(), imgPic, 2);
             tvVideo.setText(bean.getTitle());
             itemView.setOnClickListener(v -> {
-
+                PlayVideoActivity.go2this(context,isNet ? "" : bean.getTitle(),bean.getVideoImg(),bean.getUrl());
             });
+            if(isNet){
+                tvVideo.setVisibility(View.GONE);
+            }else {
+                tvVideo.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

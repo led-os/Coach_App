@@ -82,7 +82,11 @@ public class PictureActivity extends MVPBaseActivity<HomeView, HomePresenter> im
         rvPic.setLoadingListener(this);
         rvPic.setLayoutManager(new GridLayoutManager(this,2));
         if(type == 1 || type == 3){
-            videoAdapter = new VideoAdapter(this,videoList);
+            if(type == 1){
+                videoAdapter = new VideoAdapter(this,videoList,false);
+            }else {
+                videoAdapter = new VideoAdapter(this,videoList,true);
+            }
             rvPic.setAdapter(videoAdapter);
         }else {
             pictureAdapter = new PictureAdapter(this,pictureList);
