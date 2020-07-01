@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.find.VideoListBean;
+import com.jsjlzj.wayne.ui.store.find.PictureDetailActivity;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.ViewHold
 
 
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private ArrayList<String> list = new ArrayList<>();
 
 
     public PictureAdapter(Context context, List<String> list) {
@@ -72,7 +72,7 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.ViewHold
             String imgUrl = list.get(pos);
             GlidUtils.setRoundGrid(context, imgUrl, imgPic,2);
             itemView.setOnClickListener(v -> {
-
+                PictureDetailActivity.go2this(context,list,pos);
             });
         }
     }

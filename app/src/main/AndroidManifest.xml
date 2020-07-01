@@ -4,6 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jsjlzj.wayne">
 
+    <permission
+        android:name="${applicationId}.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="com.jsjlzj.wayne.permission.RECEIVE_MSG"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="com.jsjlzj.wayne.permission.MIPUSH_RECEIVE"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="com.jsjlzj.wayne.push.permission.MESSAGE"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="com.jsjlzj.wayne.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" /> <!-- Required -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Optional for location -->
+    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" /> <!-- 多媒体相关 -->
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESFENT" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 和下面的 uses-permission 一起加入到你的 AndroidManifest 文件中。 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.netease.nim.demo 替换为自己的包名 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 配置权限，已经配置过的条目则无须添加 -->
+    <!-- 小米推送 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 魅族推送 -->
+    <!-- 兼容flyme5.0以下版本，魅族内部集成pushSDK必填，不然无法收到消息，将{你的包名} 改开发者App的包名 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- 兼容flyme3.0配置权限 -->
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.jsjlzj.wayne.permission.RECEIVE_MSG" />
+    <uses-permission android:name="com.jsjlzj.wayne.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+    <uses-permission android:name="com.jsjlzj.wayne.push.permission.MESSAGE" />
+    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.jsjlzj.wayne.permission.C2D_MESSAGE" />
+
+    <dist:module dist:instant="true" />
+
     <application
         android:name=".ui.MyApp"
         android:allowBackup="true"
@@ -14,9 +84,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.basis.PlayVideoActivity"
+        <activity android:name=".ui.store.find.PictureDetailActivity"></activity>
+        <activity
+            android:name=".ui.basis.PlayVideoActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.store.find.FindPicVideoActivity" />
         <activity android:name=".ui.store.find.PictureActivity" />
         <activity android:name=".ui.store.find.FindMyEvaluateActivity" />
@@ -407,7 +479,6 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="OWi5ffyRIRixathZqvRa8DVfmqlvaFFM" />
-
         <meta-data
             android:name="com.netease.nim.appKey"
             android:value="bf5606a5ce653fa3aa7cbcec86d7262e" /> <!-- 云信后台辅助服务 -->
@@ -567,75 +638,5 @@
             </intent-filter>
         </service>
     </application>
-    <permission
-        android:name="${applicationId}.permission.JPUSH_MESSAGE"
-        android:protectionLevel="signature" />
-    <permission
-        android:name="com.jsjlzj.wayne.permission.RECEIVE_MSG"
-        android:protectionLevel="signature" />
-    <permission
-        android:name="com.jsjlzj.wayne.permission.MIPUSH_RECEIVE"
-        android:protectionLevel="signature" />
-    <permission
-        android:name="com.jsjlzj.wayne.push.permission.MESSAGE"
-        android:protectionLevel="signature" />
-
-    <permission
-        android:name="com.jsjlzj.wayne.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
-    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" /> <!-- Required -->
-    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- Required  一些系统要求的权限，如访问网络等 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Optional for location -->
-    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" /> <!-- 多媒体相关 -->
-    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESFENT" />
-    <uses-permission
-        android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission
-        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission
-        android:name="android.permission.READ_LOGS"
-        tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 和下面的 uses-permission 一起加入到你的 AndroidManifest 文件中。 -->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.netease.nim.demo 替换为自己的包名 -->
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 配置权限，已经配置过的条目则无须添加 -->
-    <!-- 小米推送 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 魅族推送 -->
-    <!-- 兼容flyme5.0以下版本，魅族内部集成pushSDK必填，不然无法收到消息，将{你的包名} 改开发者App的包名 -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- 兼容flyme3.0配置权限 -->
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.jsjlzj.wayne.permission.RECEIVE_MSG" />
-    <uses-permission android:name="com.jsjlzj.wayne.permission.MIPUSH_RECEIVE" />
-    <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
-    <uses-permission android:name="com.jsjlzj.wayne.push.permission.MESSAGE" />
-    <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" />
-
-    <uses-permission android:name="com.jsjlzj.wayne.permission.C2D_MESSAGE" />
-
-    <dist:module dist:instant="true" />
 
 </manifest>
