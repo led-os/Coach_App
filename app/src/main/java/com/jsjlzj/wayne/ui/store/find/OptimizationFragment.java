@@ -35,6 +35,7 @@ import com.jsjlzj.wayne.ui.mvp.base.MVPBaseFragment;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.ui.store.home.ContentFragmentTitleActivity;
+import com.jsjlzj.wayne.ui.store.wiki.WikiActivity;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 import com.jsjlzj.wayne.widgets.MyViewPager;
@@ -311,7 +312,7 @@ public class OptimizationFragment extends MVPBaseFragment<HomeView, HomePresente
                 LogAndToastUtil.toast("敬请开放");
                 break;
             case R.id.ll_bk://百科
-                LogAndToastUtil.toast("敬请开放");
+                WikiActivity.go2this(getActivity());
                 break;
             default:
                 break;

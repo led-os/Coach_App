@@ -84,7 +84,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.find.PictureDetailActivity"></activity>
+        <activity android:name=".ui.store.wiki.WikiActivity"></activity>
+        <activity android:name=".ui.store.find.PictureDetailActivity" />
         <activity
             android:name=".ui.basis.PlayVideoActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
