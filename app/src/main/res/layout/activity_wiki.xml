@@ -49,12 +49,17 @@
                 android:id="@+id/rv_menu"
                 android:layout_width="@dimen/padding_92"
                 android:layout_height="wrap_content"/>
+            <View
+                android:layout_toEndOf="@+id/rv_menu"
+                android:layout_width="@dimen/padding_0.5"
+                android:layout_height="match_parent"
+                android:background="@color/color_eeeeee"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/rv_menu"
                 android:id="@+id/rel_empty">
-                <com.jsjlzj.wayne.widgets.CustomXRecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_wiki"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />

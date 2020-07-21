@@ -78,6 +78,9 @@ import com.jsjlzj.wayne.entity.trainer.MdlWorkStatus;
 import com.jsjlzj.wayne.entity.trainer.MdlsaveAdvantage;
 import com.jsjlzj.wayne.entity.trainer.MineStudyBean;
 import com.jsjlzj.wayne.entity.trainer.SignUpPageBean;
+import com.jsjlzj.wayne.entity.wiki.WikiBean;
+import com.jsjlzj.wayne.entity.wiki.WikiCategoryBean;
+import com.jsjlzj.wayne.entity.wiki.WikiRecommendBean;
 
 import androidx.annotation.NonNull;
 import io.reactivex.Observable;
@@ -712,6 +715,17 @@ public interface StoreService {
     Observable<MdlBaseHttpResp<VideoListBean>> requestClubCommentVideoList(@Query("storeId") String storeId,
             @Query("pageNo") int pageNo, @Query("pageSize") int pageSize);
 
+
+    @POST(HttpConstant.API_WIKI_HOME)
+    Observable<MdlBaseHttpResp<WikiBean>> requestWikiHomeData();
+
+
+    @POST(HttpConstant.API_WIKI_HOME_RECOMMEND)
+    Observable<MdlBaseHttpResp<WikiRecommendBean>> requestWikiHomeRecommendData();
+
+
+    @GET(HttpConstant.API_WIKI_CATEGORY_DATA)
+    Observable<MdlBaseHttpResp<WikiCategoryBean>> requestWikiHomeCategoryData(@Query("parentId") int parentId);
 
     @Multipart
     @POST(HttpConstant.API_UPLOAD)//上次文件

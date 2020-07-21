@@ -11,10 +11,10 @@ public class HttpConstant {
     public static final String UPDATA_URL = "https://www.pgyer.com/X4kA";
 
     public static boolean isDebug = true;
-//    public static String BASE_URL = "https://api-dev.jsjlhome.com/";//测试环境
-    public static String BASE_URL = "https://api.jsjlhome.com/";//线上环境
-//        public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
-    public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
+    public static String BASE_URL = "https://api-dev.jsjlhome.com/";//测试环境
+//    public static String BASE_URL = "https://api.jsjlhome.com/";//线上环境
+        public static String WEB_URL_BASE = "http://h5dev.jsjlhome.com";//h5测试环境
+//    public static String WEB_URL_BASE = "https://h5.jsjlhome.com";//h5正式环境
 
     public static String WXAPPID = "wx8bd15d5408120652";//"wx465cfff1c19d069d";
     public static String WXAPPSECET = "6f08456d4f060a895aeed4f09c5eb292";//"8659207754ddedc545fbd86cee2496d1";
@@ -617,6 +617,12 @@ public class HttpConstant {
     public static final String API_FIND_CLUB_COMMENT_PIC_LIST = "club/comment/commentImages";
     //俱乐部-评论视频列表
     public static final String API_FIND_CLUB_COMMENT_VIDEO_LIST = "club/comment/commentVideos";
+    //百度百科首页
+    public static final String API_WIKI_HOME = "v4/encyclopedia/index";
+    //百度百科首页-推荐
+    public static final String API_WIKI_HOME_RECOMMEND = "v4/encyclopedia/recommendList";
+    //百度百科首页-二三级数据
+    public static final String API_WIKI_CATEGORY_DATA = "v4/encyclopedia/categoryList";
 
 
 

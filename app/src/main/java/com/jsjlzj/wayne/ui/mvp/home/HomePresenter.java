@@ -128,6 +128,9 @@ public class HomePresenter extends BasePresenter<HomeView> {
     private static final int REQ_CODE_GET_CLUB_VIDEO_LIST = 93;
     private static final int REQ_CODE_GET_CLUB_COMMENT_PIC_LIST = 94;
     private static final int REQ_CODE_GET_CLUB_COMMENT_VIDEO_LIST = 95;
+    private static final int REQ_CODE_GET_WIKI_HOME = 96;
+    private static final int REQ_CODE_GET_WIKI_RECOMMEND_HOME = 97;
+    private static final int REQ_CODE_GET_WIKI_CATEGORY = 98;
 
 
 
@@ -837,6 +840,21 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getStoreBanner(REQ_CODE_GET_FIND_STORE_BANNER, null, this);
         }
     }
+    public void getWikiHomeData() {
+        if (model != null) {
+            model.getWikiHomeData(REQ_CODE_GET_WIKI_HOME,  this);
+        }
+    }
+    public void getWikiHomeRecommendData() {
+        if (model != null) {
+            model.getWikiHomeRecommendData(REQ_CODE_GET_WIKI_RECOMMEND_HOME,  this);
+        }
+    }
+    public void getWikiHomeCategoryData(int parentId) {
+        if (model != null) {
+            model.getWikiHomeCategoryData(REQ_CODE_GET_WIKI_CATEGORY,  parentId,this);
+        }
+    }
     public void getCommitComment(Map params) {
         if (model != null) {
             view.showLoading();
@@ -1188,6 +1206,15 @@ public class HomePresenter extends BasePresenter<HomeView> {
                 break;
             case REQ_CODE_GET_CLUB_COMMENT_VIDEO_LIST:
                 view.getClubCommentVideoListSuccess(resp);
+                break;
+            case REQ_CODE_GET_WIKI_HOME:
+                view.getWikiHomeDataSuccess(resp);
+                break;
+            case REQ_CODE_GET_WIKI_RECOMMEND_HOME:
+                view.getWikiRecommendHomeDataSuccess(resp);
+                break;
+            case REQ_CODE_GET_WIKI_CATEGORY:
+                view.getWikiCategoryHomeDataSuccess(resp);
                 break;
             default:
                 break;

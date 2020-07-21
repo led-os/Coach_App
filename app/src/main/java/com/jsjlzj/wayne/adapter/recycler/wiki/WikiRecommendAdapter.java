@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.entity.wiki.WikiBean;
+import com.jsjlzj.wayne.entity.wiki.WikiRecommendBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,26 +21,26 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @ClassName: WikiMenuAdapter
+ * @ClassName: WikiRecommendAdapter
  * @Description: java类作用描述
  * @Author: 曾海强
- * @CreateDate: 2020/7/14 22:41
+ * @CreateDate: 2020/7/21 23:55
  */
-public class WikiMenuAdapter extends RecyclerView.Adapter<WikiMenuAdapter.ViewHolder> {
+public class WikiRecommendAdapter extends RecyclerView.Adapter<WikiRecommendAdapter.ViewHolder> {
 
 
 
     private Context context;
-    private List<WikiBean.DataBean.LeftCategoryListBean> list = new ArrayList<>();
+    private List<WikiRecommendBean.DataBean> list = new ArrayList<>();
     private int selPos;
 
-    public WikiMenuAdapter(Context context, List<WikiBean.DataBean.LeftCategoryListBean> list) {
+    public WikiRecommendAdapter(Context context, List<WikiRecommendBean.DataBean> list) {
         this.context = context;
         this.list.addAll(list);
     }
 
 
-    public void setData(List<WikiBean.DataBean.LeftCategoryListBean> list) {
+    public void setData(List<WikiRecommendBean.DataBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -48,7 +49,7 @@ public class WikiMenuAdapter extends RecyclerView.Adapter<WikiMenuAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_wiki_menu, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_wiki_recommend, parent, false);
         return new ViewHolder(view);
     }
 
@@ -65,7 +66,7 @@ public class WikiMenuAdapter extends RecyclerView.Adapter<WikiMenuAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_name)
         TextView tvName;
-        WikiBean.DataBean.LeftCategoryListBean bean;
+        WikiRecommendBean.DataBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,7 +75,7 @@ public class WikiMenuAdapter extends RecyclerView.Adapter<WikiMenuAdapter.ViewHo
 
         void bindView(int pos) {
             bean = list.get(pos);
-            tvName.setText(bean.getName());
+
             if(selPos == pos){
                 tvName.setBackground(ContextCompat.getDrawable(context,R.drawable.bg_solid_f1404b_15));
                 tvName.setTextColor(ContextCompat.getColor(context,R.color.white));
@@ -101,6 +102,6 @@ public class WikiMenuAdapter extends RecyclerView.Adapter<WikiMenuAdapter.ViewHo
     }
 
     public interface OnItemClickListener {
-        void onItemClick(WikiBean.DataBean.LeftCategoryListBean bean);
+        void onItemClick(WikiRecommendBean.DataBean bean);
     }
 }

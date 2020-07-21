@@ -13,7 +13,12 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.wiki.WikiMenuAdapter;
+import com.jsjlzj.wayne.constant.HttpConstant;
+import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
+import com.jsjlzj.wayne.entity.wiki.WikiBean;
+import com.jsjlzj.wayne.entity.wiki.WikiCategoryBean;
+import com.jsjlzj.wayne.entity.wiki.WikiRecommendBean;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
 import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
@@ -21,6 +26,7 @@ import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
+import com.netease.nim.uikit.common.util.string.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +48,11 @@ public class WikiActivity extends MVPBaseActivity<HomeView, HomePresenter> imple
     @BindView(R.id.rv_menu)
     RecyclerView rvMenu;
     @BindView(R.id.rv_wiki)
-    CustomXRecyclerView rvWiki;
+    RecyclerView rvWiki;
 
     private WikiMenuAdapter wikiMenuAdapter;
     private List<BannerBean> images = new ArrayList<>();
-
+    private List<WikiBean.DataBean.LeftCategoryListBean> list = new ArrayList<>();
 
     public static void go2this(Context context) {
         context.startActivity(new Intent(context, WikiActivity.class));
@@ -66,20 +72,13 @@ public class WikiActivity extends MVPBaseActivity<HomeView, HomePresenter> imple
     protected void initViewAndControl() {
         initRightTitle("健身百科",R.drawable.ic_search);
         mRightBtn.setOnClickListener(clickListener);
-        List<String> list = new ArrayList<>();
-        list.add("推荐");
-        list.add("饮食");
-        list.add("减脂");
-        list.add("增肌");
-        list.add("朔型");
-        list.add("跑步");
-        list.add("瑜伽");
-        list.add("体态");
-        list.add("舞蹈");
+
         wikiMenuAdapter = new WikiMenuAdapter(this,list);
         rvMenu.setLayoutManager(new LinearLayoutManager(this));
         rvMenu.setAdapter(wikiMenuAdapter);
         wikiMenuAdapter.setListener(this);
+        presenter.getWikiHomeData();
+        presenter.getWikiHomeRecommendData();
     }
 
 
@@ -132,7 +131,47 @@ public class WikiActivity extends MVPBaseActivity<HomeView, HomePresenter> imple
 
 
     @Override
-    public void onItemClick(String bean) {
+    public void onItemClick(WikiBean.DataBean.LeftCategoryListBean bean) {
         // TODO: 2020/7/14 点击跳转
+        if(bean.getId() == -1){
+            presenter.getWikiHomeRecommendData();
+        }else {
+            presenter.getWikiHomeCategoryData(bean.getId());
+        }
+    }
+
+
+    @Override
+    public void getWikiHomeDataSuccess(MdlBaseHttpResp<WikiBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
+            if(resp.getData().getData().getBanners() != null){
+                images = resp.getData().getData().getBanners();
+                initBanner();
+            }
+            if(resp.getData().getData().getLeftCategoryList() != null){
+                list.clear();
+                list.add(new WikiBean.DataBean.LeftCategoryListBean(-1,"推荐"));
+                list.addAll(resp.getData().getData().getLeftCategoryList());
+                wikiMenuAdapter.setData(list);
+            }
+        }
+    }
+
+
+
+    @Override
+    public void getWikiRecommendHomeDataSuccess(MdlBaseHttpResp<WikiRecommendBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
+
+        }
+    }
+
+
+    @Override
+    public void getWikiCategoryHomeDataSuccess(MdlBaseHttpResp<WikiCategoryBean> resp) {
+        if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
+
+
+        }
     }
 }

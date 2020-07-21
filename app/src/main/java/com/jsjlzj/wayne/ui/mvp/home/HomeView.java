@@ -54,6 +54,9 @@ import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
 import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.LearnBean;
 import com.jsjlzj.wayne.entity.store.search.SearchBean;
+import com.jsjlzj.wayne.entity.wiki.WikiBean;
+import com.jsjlzj.wayne.entity.wiki.WikiCategoryBean;
+import com.jsjlzj.wayne.entity.wiki.WikiRecommendBean;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseView;
 
 /**
@@ -181,6 +184,22 @@ public interface HomeView extends BaseView {
      * @param resp
      */
     default void getClubCommentVideoListSuccess(MdlBaseHttpResp<VideoListBean> resp){}
+
+    /**
+     * 获取百科首页成功
+     * @param resp
+     */
+    default void getWikiHomeDataSuccess(MdlBaseHttpResp<WikiBean> resp){}
+    /**
+     * 获取百科首页成功-推荐页面
+     * @param resp
+     */
+    default void getWikiRecommendHomeDataSuccess(MdlBaseHttpResp<WikiRecommendBean> resp){}
+    /**
+     * 获取百科首页成功-分类列表
+     * @param resp
+     */
+    default void getWikiCategoryHomeDataSuccess(MdlBaseHttpResp<WikiCategoryBean> resp){}
 
     default void getVideoListSuccess(MdlBaseHttpResp<VideoPageBean> resp) {
     }

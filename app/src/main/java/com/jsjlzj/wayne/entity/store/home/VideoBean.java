@@ -44,6 +44,8 @@ public class VideoBean {
     private String moodLabel;
     private String videoUrl;
     private int official;
+    private int shareCount;
+    private String title;
 
     public int getId() {
         return id;
@@ -205,5 +207,21 @@ public class VideoBean {
 
     public void setOfficial(int official) {
         this.official = official;
+    }
+
+    public int getShareCount() {
+        return shareCount;
+    }
+
+    public void setShareCount(int shareCount) {
+        this.shareCount = shareCount;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

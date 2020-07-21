@@ -931,6 +931,19 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestClubCommentVideoList(storeId,pageNo,pageSize);
         setSubscribe(observable, observer);
     }
+
+    public void getWikiHomeData(Observer observer) {
+        Observable observable = service.requestWikiHomeData();
+        setSubscribe(observable, observer);
+    }
+    public void getWikiHomeRecommendData(Observer observer) {
+        Observable observable = service.requestWikiHomeRecommendData();
+        setSubscribe(observable, observer);
+    }
+    public void getWikiHomeCategoryData(int parentId,Observer observer) {
+        Observable observable = service.requestWikiHomeCategoryData(parentId);
+        setSubscribe(observable, observer);
+    }
     public void getStoreBanner(Map params, Observer observer) {
         RequestBody body = GenJsonParamRequestBody(params);
         Observable observable = service.requestStoreBanner(body);

@@ -52,6 +52,9 @@ import com.jsjlzj.wayne.entity.store.learn.ChapterSubjectListBean;
 import com.jsjlzj.wayne.entity.store.learn.DoneChapterBean;
 import com.jsjlzj.wayne.entity.store.learn.ExamSubjectListBean;
 import com.jsjlzj.wayne.entity.store.search.SearchBean;
+import com.jsjlzj.wayne.entity.wiki.WikiBean;
+import com.jsjlzj.wayne.entity.wiki.WikiCategoryBean;
+import com.jsjlzj.wayne.entity.wiki.WikiRecommendBean;
 import com.jsjlzj.wayne.ui.mvp.base.listener.OnLoadHttpDataListener;
 import com.jsjlzj.wayne.ui.mvp.base.mvp.BaseModel;
 import com.jsjlzj.wayne.ui.mvp.relizetalentpersonal.TalentPersonalModel;
@@ -2176,6 +2179,77 @@ public class HomeModel extends BaseModel {
 
             @Override
             public void onNext(MdlBaseHttpResp<FindStoreBannerBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getWikiHomeData(int code,final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getWikiHomeData(new Observer<MdlBaseHttpResp<WikiBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<WikiBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+    public void getWikiHomeRecommendData(int code,final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getWikiHomeRecommendData(new Observer<MdlBaseHttpResp<WikiRecommendBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<WikiRecommendBean> mdlBaseHttpResp) {
+                listener.onSuccess(code, mdlBaseHttpResp);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                listener.onFailure(code, e);
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
+    }
+
+
+    public void getWikiHomeCategoryData(int code,int parentId,final OnLoadHttpDataListener listener) {
+        HttpDataHome.getInstance().getWikiHomeCategoryData(parentId,new Observer<MdlBaseHttpResp<WikiCategoryBean>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                HomeModel.this.disposable = d;
+            }
+
+            @Override
+            public void onNext(MdlBaseHttpResp<WikiCategoryBean> mdlBaseHttpResp) {
                 listener.onSuccess(code, mdlBaseHttpResp);
             }
 
