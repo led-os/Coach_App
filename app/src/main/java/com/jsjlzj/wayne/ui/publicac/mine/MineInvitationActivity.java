@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.mine.MineInvitationAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
@@ -16,7 +17,9 @@ import com.jsjlzj.wayne.entity.trainer.InvitationBean;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
+import com.netease.nim.uikit.common.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +35,7 @@ import butterknife.BindView;
   * @Author:         曾海强
   * @CreateDate:
   */
-public class MineInvitationActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView {
+public class MineInvitationActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTabFragmentPresenter> implements TalentTabFragmentView, XRecyclerView.LoadingListener {
 
 
     @BindView(R.id.tv_all)
@@ -77,6 +80,7 @@ public class MineInvitationActivity extends MVPBaseActivity<TalentTabFragmentVie
         rvMineInvitation.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MineInvitationAdapter(this,invitationList);
         rvMineInvitation.setAdapter(adapter);
+        rvMineInvitation.setLoadingListener(this);
         loadData(true);
     }
 
@@ -110,6 +114,7 @@ public class MineInvitationActivity extends MVPBaseActivity<TalentTabFragmentVie
                 tvTrainer.setTextColor(ContextCompat.getColor(this,R.color.color_666666));
                 loadData(true);
                 break;
+            default:break;
 
         }
     }
@@ -151,8 +156,23 @@ public class MineInvitationActivity extends MVPBaseActivity<TalentTabFragmentVie
                  adapter.setData(invitationList);
              } else if (isRefresh) {
                  // 无数据
-                 showEmpty(R.id.rel_empty, 0, null);
+//                 showEmpty(R.id.rel_empty, 0, null);
              }
+         }
+     }
+
+     @Override
+     public void onRefresh() {
+         loadData(true);
+     }
+
+     @Override
+     public void onLoadMore() {
+         if (pageNo < pageCount ) {
+             pageNo++;
+             loadData(false);
+         } else {
+             ToastHelper.showToast(this, getString(R.string.has_no_more_data));
          }
      }
  }

@@ -9,6 +9,7 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.baidu.mapapi.http.HttpClient;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.jsjlzj.wayne.R;
@@ -28,6 +29,9 @@ import com.jsjlzj.wayne.widgets.CustomXRecyclerView;
 import com.jsjlzj.wayne.widgets.LocalImageHolderView;
 import com.netease.nim.uikit.common.util.string.StringUtil;
 
+import org.json.HTTP;
+
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
