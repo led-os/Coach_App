@@ -84,7 +84,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.store.wiki.WikiActivity"></activity>
+        <activity android:name=".ui.store.wiki.SearchWikiActivity"></activity>
+        <activity android:name=".ui.store.wiki.WikiActivity" />
         <activity android:name=".ui.store.find.PictureDetailActivity" />
         <activity
             android:name=".ui.basis.PlayVideoActivity"

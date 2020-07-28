@@ -157,6 +157,17 @@ public class HttpDataHome extends BaseHttpData {
         Observable observable = service.requestInformationList(body);
         setSubscribe(observable, observer);
     }
+    /**
+     * 获取V4文章列表数据
+     *
+     * @param params
+     * @param observer
+     */
+    public void getV4InformationList(Map params, Observer observer) {
+        RequestBody body = GenJsonParamRequestBody(params);
+        Observable observable = service.requestV4InformationList(body);
+        setSubscribe(observable, observer);
+    }
 
     /**
      * 获取首页产品数据

@@ -7,37 +7,41 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jsjlzj.wayne.R;
-import com.jsjlzj.wayne.entity.wiki.WikiRecommendBean;
+import com.jsjlzj.wayne.entity.store.home.VideoBean;
+import com.jsjlzj.wayne.entity.wiki.WikiCategoryBean;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * @ClassName: WikiRecommendAdapter
+ * @ClassName: WikiItemCategoryAapter
  * @Description: java类作用描述
  * @Author: 曾海强
- * @CreateDate: 2020/7/21 23:55
+ * @CreateDate: 2020/7/26 14:01
  */
-public class WikiRecommendAdapter extends RecyclerView.Adapter<WikiRecommendAdapter.ViewHolder> {
+public class WikiItemCategoryAdapter extends RecyclerView.Adapter<WikiItemCategoryAdapter.ViewHolder> {
 
 
     private Context context;
-    private List<WikiRecommendBean.DataBean> list = new ArrayList<>();
+    private List<WikiCategoryBean.DataBean.ItemsBean> list = new ArrayList<>();
 
-    public WikiRecommendAdapter(Context context, List<WikiRecommendBean.DataBean> list) {
+    public WikiItemCategoryAdapter(Context context, List<WikiCategoryBean.DataBean.ItemsBean> list) {
         this.context = context;
         this.list.addAll(list);
     }
 
 
-    public void setData(List<WikiRecommendBean.DataBean> list) {
+    public void setData(List<WikiCategoryBean.DataBean.ItemsBean> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -46,7 +50,7 @@ public class WikiRecommendAdapter extends RecyclerView.Adapter<WikiRecommendAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_wiki_recommend, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_wiki_item_category, parent, false);
         return new ViewHolder(view);
     }
 
@@ -62,8 +66,6 @@ public class WikiRecommendAdapter extends RecyclerView.Adapter<WikiRecommendAdap
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_title)
-        TextView tvTitle;
         @BindView(R.id.img_pic)
         ImageView imgPic;
         @BindView(R.id.tv_name)
@@ -74,9 +76,7 @@ public class WikiRecommendAdapter extends RecyclerView.Adapter<WikiRecommendAdap
         ImageView imgRight;
         @BindView(R.id.rel_type)
         RelativeLayout relType;
-        @BindView(R.id.rv_category)
-        RecyclerView rvCategory;
-        WikiRecommendBean.DataBean bean;
+        WikiCategoryBean.DataBean.ItemsBean bean;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,20 +85,11 @@ public class WikiRecommendAdapter extends RecyclerView.Adapter<WikiRecommendAdap
 
         void bindView(int pos) {
             bean = list.get(pos);
-            if(pos == 0){
-                tvTitle.setVisibility(View.VISIBLE);
-                tvTitle.setText("热门词条");
-            }else {
-                tvTitle.setVisibility(View.GONE);
-            }
-            WikiRecommendBean.DataBean.CategoryBean categoryBean = bean.getCategory();
-            GlidUtils.setRoundGrid(context,categoryBean.getImageUrl(),imgPic,4);
-            tvName.setText(categoryBean.getName());
-            tvDes.setText(DateUtil.getNumByInteger(categoryBean.getViewCount()) + "万人阅读 "+ DateUtil.getNumByInteger(categoryBean.getContentCount())+"条内容");
-            rvCategory.setLayoutManager(new LinearLayoutManager(context));
-            WikiCategoryAdapter adapter = new WikiCategoryAdapter(context,bean.getArticleList());
-            rvCategory.setAdapter(adapter);
-            relType.setOnClickListener(v -> {
+            GlidUtils.setRoundGrid(context,bean.getImageUrl(),imgPic,4);
+            tvName.setText(bean.getName());
+            tvDes.setText(DateUtil.getNumByInteger(bean.getViewCount()) + "万人阅读 "+ DateUtil.getNumByInteger(bean.getContentCount())+"条内容");
+
+            itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onItemClick(bean);
                 }
@@ -114,6 +105,6 @@ public class WikiRecommendAdapter extends RecyclerView.Adapter<WikiRecommendAdap
     }
 
     public interface OnItemClickListener {
-        void onItemClick(WikiRecommendBean.DataBean bean);
+        void onItemClick(WikiCategoryBean.DataBean.ItemsBean bean);
     }
 }

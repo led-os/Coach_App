@@ -368,6 +368,9 @@ public interface StoreService {
     @POST(HttpConstant.API_HOME_INFORMATION_LIST)
     Observable<MdlBaseHttpResp<VideoPageBean>> requestInformationList(@Body RequestBody requestBody);
 
+    @POST(HttpConstant.API_HOME_V4_INFORMATION_LIST)
+    Observable<MdlBaseHttpResp<VideoPageBean>> requestV4InformationList(@Body RequestBody requestBody);
+
     @POST(HttpConstant.API_HOME_PRODUCT)
     Observable<MdlBaseHttpResp<AmoySchoolBean>> requestProduce(@Body RequestBody requestBody);
 

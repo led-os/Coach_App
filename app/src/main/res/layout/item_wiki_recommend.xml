@@ -11,16 +11,19 @@
         android:layout_marginStart="@dimen/padding_14"
         android:layout_marginTop="@dimen/padding_10"
         android:text="热门词条"
+        android:visibility="gone"
         android:textColor="@color/color_f1404b"
         android:textSize="@dimen/text_size_13"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
+        android:id="@+id/rel_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_12"
         android:layout_marginStart="@dimen/padding_14"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
         <ImageView
@@ -63,6 +66,18 @@
             android:layout_height="@dimen/padding_23"/>
     </RelativeLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_category"
+        android:layout_marginTop="@dimen/padding_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/rel_type"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/padding_0.5"
+        android:background="@color/color_eeeeee"
+        android:layout_marginStart="@dimen/padding_14"
+        app:layout_constraintTop_toBottomOf="@+id/rv_category"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

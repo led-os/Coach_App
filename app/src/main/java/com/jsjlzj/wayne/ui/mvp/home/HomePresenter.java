@@ -227,6 +227,12 @@ public class HomePresenter extends BasePresenter<HomeView> {
             model.getInformationList(REQ_CODE_INFORMATION_LIST, param, this);
         }
     }
+    public void getV4InformationList(Map param) {
+        if (model != null) {
+            view.showLoading();
+            model.getV4InformationList(REQ_CODE_INFORMATION_LIST, param, this);
+        }
+    }
 
 
     public void getProductData() {

@@ -14,6 +14,8 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.adapter.recycler.wiki.WikiMenuAdapter;
+import com.jsjlzj.wayne.adapter.recycler.wiki.WikiRecommendAdapter;
+import com.jsjlzj.wayne.adapter.recycler.wiki.WikiTitleAdapter;
 import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.BannerBean;
@@ -90,7 +92,7 @@ public class WikiActivity extends MVPBaseActivity<HomeView, HomePresenter> imple
     protected void onMultiClick(View view) {
         super.onMultiClick(view);
         if(view.getId() == R.id.btn_title_right){
-
+            SearchWikiActivity.go2this(this);
         }
     }
 
@@ -161,12 +163,12 @@ public class WikiActivity extends MVPBaseActivity<HomeView, HomePresenter> imple
         }
     }
 
-
-
     @Override
     public void getWikiRecommendHomeDataSuccess(MdlBaseHttpResp<WikiRecommendBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
-
+            rvWiki.setLayoutManager(new LinearLayoutManager(this));
+            WikiRecommendAdapter recommendAdapter = new WikiRecommendAdapter(this,resp.getData().getData());
+            rvWiki.setAdapter(recommendAdapter);
         }
     }
 
@@ -174,8 +176,9 @@ public class WikiActivity extends MVPBaseActivity<HomeView, HomePresenter> imple
     @Override
     public void getWikiCategoryHomeDataSuccess(MdlBaseHttpResp<WikiCategoryBean> resp) {
         if(resp.getStatus() == HttpConstant.R_HTTP_OK && resp.getData().getData() != null){
-
-
+            rvWiki.setLayoutManager(new LinearLayoutManager(this));
+            WikiTitleAdapter titleAdapter = new WikiTitleAdapter(this,resp.getData().getData());
+            rvWiki.setAdapter(titleAdapter);
         }
     }
 }

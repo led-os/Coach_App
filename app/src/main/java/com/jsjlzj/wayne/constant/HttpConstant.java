@@ -396,6 +396,8 @@ public class HttpConstant {
     public static final String API_HOME_INFORMATION = "trainer/index/information";
     //首页资讯列表
     public static final String API_HOME_INFORMATION_LIST = "trainer/index/information/list";
+    //v4文章列表
+    public static final String API_HOME_V4_INFORMATION_LIST = "v4/encyclopedia/articleList";
     //首页产品
     public static final String API_HOME_PRODUCT = "trainer/index/product";
     //首页产品列表
