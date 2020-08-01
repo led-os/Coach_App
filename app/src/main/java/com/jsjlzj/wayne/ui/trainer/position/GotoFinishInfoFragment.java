@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.ui.publicac.dialog.ZanFragment;
 import com.jsjlzj.wayne.ui.store.attestation.AttestationInfoActivity;
+import com.jsjlzj.wayne.ui.store.personal.storeinfo.StoreInfoSetActivity;
 import com.jsjlzj.wayne.ui.trainer.personal.MasterCardActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -81,7 +82,7 @@ public class GotoFinishInfoFragment extends DialogFragment {
                 if(type == 0){
                     MasterCardActivity.go2this(getActivity());
                 }else {
-                    AttestationInfoActivity.go2this(getActivity(),2);
+                    StoreInfoSetActivity.go2this(getActivity());
                 }
                 dismissAllowingStateLoss();
                 break;

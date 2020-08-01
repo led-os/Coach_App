@@ -1,6 +1,5 @@
 package com.jsjlzj.wayne.ui.store.personal.storeinfo;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.HttpConstant;
-import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.entity.Login.MdlUpload;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.MdlStoreInfo;
@@ -28,18 +26,15 @@ import com.jsjlzj.wayne.ui.store.talent.position.recruit.RecruitCoordinateSelect
 import com.jsjlzj.wayne.utils.ImageUtil;
 import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.SelectImageUtils;
-import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 import com.jsjlzj.wayne.widgets.dialog.EditDialog;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import me.iwf.photopicker.PhotoPicker;
 import me.iwf.photopicker.utils.MyFileProviderUtil;
 
 /**
- * 门店信息
+ * 编辑俱乐部信息
  */
 public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView {
     private MdlStoreInfo.DataBean bean;
@@ -50,7 +45,7 @@ public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, Ta
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, StoreInfoSetActivity.class);
-        intent.putExtra("isResult", "");
+
         context.startActivity(intent);
     }
 
@@ -107,7 +102,7 @@ public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, Ta
                     StoreInfoPreviewActivity.go2this(StoreInfoSetActivity.this,"");
                     break;
                 case R.id.tvStoreName://店名
-//                    showEditDialog();
+                    showEditDialog();
                     break;
                 case R.id.tvStoreContent://描述
                     String text="";
@@ -139,11 +134,10 @@ public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, Ta
                     }
                     break;
                 case R.id.tvStoreAddress://门店位置
-                    RecruitCoordinateSelectActivity.go2this2(StoreInfoSetActivity.this);
+                    RecruitCoordinateSelectActivity.go2this2(StoreInfoSetActivity.this,bean.getStoreAddress(),bean.getStoreDoorplate());
                     break;
                 case R.id.image:
                     presenter.autoObtainStoragePermission(StoreInfoSetActivity.this,0);
-//                    clickSelectHeadPic();
                     break;
             }
         }
@@ -152,10 +146,6 @@ public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, Ta
     private static final int HEAD_PIC = 10000;
     private static final int CROP_HEAD_PIC = 10001;
     private String cropHeadPicPath,imgUrl;
-
-    private void clickSelectHeadPic() {
-        PermissionUtil.checkPermission(this, MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-    }
 
     @Override
     public void selectPhoto(int position) {
@@ -175,20 +165,6 @@ public class StoreInfoSetActivity extends MVPBaseActivity<TalentPersonalView, Ta
     }
 
 
-//    @Override
-//    public void permissionSuccess(int permissionReqCode) {
-//        super.permissionSuccess(permissionReqCode);
-//        switch (permissionReqCode) {
-//            case MyPermissionConstant.READ_EXTERNAL_STORAGE + HEAD_PIC:
-//                PhotoPicker.builder()
-//                        .setPhotoCount(0)
-//                        .setShowCamera(true)
-//                        .setShowGif(false)
-//                        .setPreviewEnabled(false)
-//                        .start(this, HEAD_PIC);
-//                break;
-//        }
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

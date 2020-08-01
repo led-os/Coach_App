@@ -114,8 +114,6 @@ public class AttestationInfoActivity extends MVPBaseActivity<TalentPersonalView,
             btnConfirm.setVisibility(View.GONE);
         }else if(isFlag == 2){
             presenter.getStoreInfo(null);
-            edName.setEnabled(false);
-            tvNumber.setClickable(false);
             bgView.setVisibility(View.VISIBLE);
             btnTips.setVisibility(View.GONE);
             btnConfirm.setVisibility(View.GONE);

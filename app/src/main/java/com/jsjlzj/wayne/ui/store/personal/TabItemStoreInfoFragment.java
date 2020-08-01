@@ -27,6 +27,7 @@ import com.jsjlzj.wayne.ui.store.personal.manage.ConnectListActivity;
 import com.jsjlzj.wayne.ui.store.personal.manage.InterviewListActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.PersonalInfoSetActivity;
 import com.jsjlzj.wayne.ui.store.personal.set.SetingActivity;
+import com.jsjlzj.wayne.ui.store.personal.storeinfo.StoreInfoSetActivity;
 import com.jsjlzj.wayne.ui.store.talent.position.PositionSelectActivity;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
@@ -172,7 +173,7 @@ public class TabItemStoreInfoFragment extends MVPBaseFragment<TalentPersonalView
                 clickLogout();
                 break;
             case R.id.ll_store://俱乐部信息
-                AttestationInfoActivity.go2this(getActivity(),2);
+                StoreInfoSetActivity.go2this(getActivity());
                 break;
             default:break;
         }

@@ -96,14 +96,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/image" />
 
             <!-- 门店名称 -->
-
             <TextView
                 android:id="@+id/tvStoreNameTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
-                android:text="门店名称"
+                android:text="俱乐部名称"
                 android:textColor="@color/text_black"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"

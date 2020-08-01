@@ -90,7 +90,7 @@
             android:textSize="13sp" />
     </LinearLayout>
 
-    <com.jsjlzj.wayne.widgets.MyRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"

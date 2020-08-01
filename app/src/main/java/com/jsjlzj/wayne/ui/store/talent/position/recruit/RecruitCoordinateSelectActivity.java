@@ -33,6 +33,8 @@ public class RecruitCoordinateSelectActivity extends MVPBaseActivity<TalentPerso
     private String province;
     private String city;
     private String coordinate;
+    private String location;
+    private String homeCode;
 
     public static void go2this(Activity context) {
         Intent intent = new Intent(context, RecruitCoordinateSelectActivity.class);
@@ -40,9 +42,11 @@ public class RecruitCoordinateSelectActivity extends MVPBaseActivity<TalentPerso
         context.startActivityForResult(intent,FLAG_RECRUIT_ADDRESS);
     }
 
-    public static void go2this2(Activity context) {
+    public static void go2this2(Activity context,String location,String homeCode) {
         Intent intent = new Intent(context, RecruitCoordinateSelectActivity.class);
         intent.putExtra("type", 2);
+        intent.putExtra("location",location);
+        intent.putExtra("homeCode",homeCode);
         context.startActivity(intent);
     }
 
@@ -63,7 +67,12 @@ public class RecruitCoordinateSelectActivity extends MVPBaseActivity<TalentPerso
         tvRecruitCoordinate = findView(R.id.tvRecruitCoordinate);
         edRecruitCoordinateContent = findView(R.id.edRecruitCoordinateContent);
         edDoorNumber = findView(R.id.edDoorNumber);
-
+        location = getIntent().getStringExtra("location");
+        homeCode = getIntent().getStringExtra("homeCode");
+        tvRecruitCoordinate.setText(location);
+        edDoorNumber.setText(homeCode);
+        edDoorNumber.setSelection(homeCode.length());
+        postponeEnterTransition();
         tvRecruitCoordinate.setOnClickListener(clickListener);
         findView(R.id.btnBack).setOnClickListener(clickListener);
         findView(R.id.btnKeep).setOnClickListener(clickListener);
@@ -92,7 +101,7 @@ public class RecruitCoordinateSelectActivity extends MVPBaseActivity<TalentPerso
 //                        LogAndToastUtil.toast("俱乐部地址描述不能为空！");
 //                        return;
 //                    }
-                    if (TextUtils.isEmpty(area) || TextUtils.isEmpty(province) || TextUtils.isEmpty(city) || TextUtils.isEmpty(coordinate) || TextUtils.isEmpty(address)) {
+                    if (TextUtils.isEmpty(coordinate) || TextUtils.isEmpty(address)) {
                         LogAndToastUtil.toast("俱乐部地址不能为空！");
                         return;
                     }
@@ -134,7 +143,8 @@ public class RecruitCoordinateSelectActivity extends MVPBaseActivity<TalentPerso
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && null != data && requestCode == 1) {
+        LogAndToastUtil.log("====requestCode"+requestCode+resultCode+"==="+data);
+        if (resultCode == RESULT_OK  && requestCode == 1) {
             area = data.getStringExtra("area");
             city = data.getStringExtra("city");
             coordinate = data.getStringExtra("coordinate");

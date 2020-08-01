@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 标签选中时的背景 -->
-    <item android:drawable="@drawable/dr_bg_tv_y_m" android:state_selected="true" />
+    <item android:drawable="@drawable/bg_stroke_dddddd_5" android:state_selected="true" />
     <!-- 标签的正常背景 -->
     <item android:drawable="@drawable/dr_bg_tv_g" android:state_selected="false" />
 </selector>

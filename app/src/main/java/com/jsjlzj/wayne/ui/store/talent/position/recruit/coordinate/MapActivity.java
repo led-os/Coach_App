@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
@@ -39,9 +40,11 @@ import com.jsjlzj.wayne.ui.mvp.base.listener.OnMultiClickListener;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentView;
 import com.jsjlzj.wayne.ui.store.talent.position.recruit.MapSearchActivity;
+import com.jsjlzj.wayne.utils.LogAndToastUtil;
 import com.jsjlzj.wayne.utils.permission.PermissionUtil;
 import com.jsjlzj.wayne.widgets.MyRecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -102,12 +105,13 @@ public class MapActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTa
         sugAdapter.setOnItemClickListener(new MyRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView.ViewHolder viewHolder, View view, int position) {
+                LogAndToastUtil.log("====="+JSONObject.toJSONString(sugAdapter.getItem(position)));
                 Intent intent = new Intent();
-                intent.putExtra("area", area);
-                intent.putExtra("city", city);
-                intent.putExtra("coordinate", lon + "," + lat);
-                intent.putExtra("province", province);
-                intent.putExtra("address", address);
+                intent.putExtra("area", sugAdapter.getItem(position).getArea());
+                intent.putExtra("city", sugAdapter.getItem(position).getCity());
+                intent.putExtra("coordinate", sugAdapter.getItem(position).getLocation().longitude + "," + sugAdapter.getItem(position).getLocation().latitude);
+                intent.putExtra("province", sugAdapter.getItem(position).getProvince());
+                intent.putExtra("address", sugAdapter.getItem(position).getAddress());
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -328,7 +332,6 @@ public class MapActivity extends MVPBaseActivity<TalentTabFragmentView, TalentTa
     public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
 
     }
-
     @Override
     public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
         List<PoiInfo> poiInfos = reverseGeoCodeResult.getPoiList();

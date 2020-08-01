@@ -150,7 +150,7 @@ public class MyApp extends Application {
                     province = bdLocation.getProvince();
                     areaName = bdLocation.getDistrict();
                     curPosition = bdLocation.getAddrStr();
-                    LogAndToastUtil.log("====="+ JSONObject.toJSONString(bdLocation));
+                    locationClient.stop();
                     LogAndToastUtil.log("latitude:" + latitude + "longitude:" + longitude + "currentProvince:" + currentProvince + "curPosition:" + curPosition);
                     super.onReceiveLocation(bdLocation);
                 }
