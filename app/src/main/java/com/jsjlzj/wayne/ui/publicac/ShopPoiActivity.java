@@ -38,6 +38,7 @@ import butterknife.BindView;
  */
 public class ShopPoiActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, SelectLocationAdapter.OnItemClickListener {
 
+    public static final int REQUEST_CODE = 10010;
 
     @BindView(R.id.tv_location)
     TextView tvLocation;

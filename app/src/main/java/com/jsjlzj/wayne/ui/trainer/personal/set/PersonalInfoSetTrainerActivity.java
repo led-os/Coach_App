@@ -180,6 +180,7 @@ public class PersonalInfoSetTrainerActivity extends MVPBaseActivity<TalentTabFra
             case R.id.image:
                 presenter.autoObtainStoragePermission(PersonalInfoSetTrainerActivity.this, 0);
                 break;
+            default:break;
         }
     }
 

@@ -44,7 +44,7 @@ import butterknife.BindView;
  */
 public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView, TalentPersonalPresenter> implements TalentPersonalView {
 
-    public static final int REQUEST_CODE = 10010;
+
 
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
@@ -101,7 +101,7 @@ public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView
         super.onMultiClick(view);
         switch (view.getId()) {
             case R.id.tv_location:
-                ShopPoiActivity.go2this(getActivity(),tvLocation.getText().toString(),REQUEST_CODE);
+                ShopPoiActivity.go2this(getActivity(),tvLocation.getText().toString(),ShopPoiActivity.REQUEST_CODE);
                 break;
             case R.id.lin_search_bar:
                 SearchActivity.go2this(getActivity());
@@ -181,7 +181,7 @@ public class TabItemCommunityFragment extends MVPBaseFragment<TalentPersonalView
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK){
+        if(requestCode == ShopPoiActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK){
             String cityName = data.getStringExtra(ExtraConstant.EXTRA_NAME);
             tvLocation.setText(cityName);
             hotCommunityItemFragment.setCityName(cityName);

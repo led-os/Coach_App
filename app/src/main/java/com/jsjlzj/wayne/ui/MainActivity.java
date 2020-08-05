@@ -29,6 +29,7 @@ import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityPresenter;
 import com.jsjlzj.wayne.ui.mvp.relizelogin.LoginActivityView;
+import com.jsjlzj.wayne.ui.publicac.ShopPoiActivity;
 import com.jsjlzj.wayne.ui.store.home.TabItemCommunityFragment;
 import com.jsjlzj.wayne.ui.store.home.TabItemFindFragment;
 import com.jsjlzj.wayne.ui.store.home.TabItemHomeFragment;
@@ -351,7 +352,7 @@ public class MainActivity extends MVPBaseActivity<LoginActivityView, LoginActivi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == TabItemCommunityFragment.REQUEST_CODE){
+        if(requestCode == ShopPoiActivity.REQUEST_CODE){
             tabItemCommunityFragment.onActivityResult(requestCode,resultCode,data);
         }
         if(requestCode == 1111 && resultCode == Activity.RESULT_OK){
