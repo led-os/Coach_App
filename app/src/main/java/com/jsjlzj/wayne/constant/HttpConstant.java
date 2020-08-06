@@ -77,6 +77,8 @@ public class HttpConstant {
     public static final String WEB_URL_CLUB_DETAIL = WEB_URL_BASE + "/#/clubDetail?id=";//俱乐部详情
     public static final String WEB_URL_LESSON_DETAIL = WEB_URL_BASE + "/#/lessonDetail?id=";//团购详情
     public static final String WEB_URL_COACH = WEB_URL_BASE + "/#/coachDetail?id=";//教练详情
+    public static final String WEB_WORD_DETAIL = WEB_URL_BASE + "/#/entryDetail?id=";//词条详情
+    public static final String WEB_WORD_ARTICLE_DETAIL = WEB_URL_BASE + "/#/entryArticleDetail?id=";//词条文章详情
 
     public static final String WEB_URL_SCAN_SCORE  = "http://59.108.91.231/ost/queryScore.jsp";//国职考试成绩查询
 

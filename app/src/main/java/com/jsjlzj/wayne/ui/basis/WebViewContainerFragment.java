@@ -100,6 +100,8 @@ public class WebViewContainerFragment extends MVPBaseFragment<TalentTabFragmentV
     public static final int TYPE_CLUBE_DETAIL = 18;
     public static final int TYPE_TUAN_DETAIL = 19;
     public static final int TYPE_TRAINER_DETAIL = 20;
+    public static final int TYPE_WORD_DETAIL = 21;
+    public static final int TYPE_WORD_ARTICLE_DETAIL = 22;
 
     public static final int TYPE_PLAY_VIDEO = 16;
      /**

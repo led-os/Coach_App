@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.wiki.WikiRecommendBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 import java.util.ArrayList;
@@ -99,6 +102,8 @@ public class WikiRecommendAdapter extends RecyclerView.Adapter<WikiRecommendAdap
             WikiCategoryAdapter adapter = new WikiCategoryAdapter(context,bean.getArticleList());
             rvCategory.setAdapter(adapter);
             relType.setOnClickListener(v -> {
+                WebViewContainerActivity.go2this(context,"", HttpConstant.WEB_WORD_DETAIL+categoryBean.getId(),
+                        WebViewContainerFragment.TYPE_WORD_DETAIL);
                 if (listener != null) {
                     listener.onItemClick(bean);
                 }

@@ -12,8 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jsjlzj.wayne.R;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.entity.wiki.WikiCategoryBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.utils.DateUtil;
 import com.jsjlzj.wayne.utils.GlidUtils;
 
@@ -90,6 +93,8 @@ public class WikiItemCategoryAdapter extends RecyclerView.Adapter<WikiItemCatego
             tvDes.setText(DateUtil.getNumByInteger(bean.getViewCount()) + "万人阅读 "+ DateUtil.getNumByInteger(bean.getContentCount())+"条内容");
 
             itemView.setOnClickListener(v -> {
+                WebViewContainerActivity.go2this(context,"", HttpConstant.WEB_WORD_DETAIL+bean.getId(),
+                        WebViewContainerFragment.TYPE_WORD_DETAIL);
                 if (listener != null) {
                     listener.onItemClick(bean);
                 }

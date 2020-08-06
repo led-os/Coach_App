@@ -61,7 +61,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/img_pic"
             android:layout_marginTop="@dimen/padding_15"
-            android:layout_marginEnd="@dimen/padding_14"
+            android:layout_marginEnd="@dimen/padding_28"
             android:layout_width="@dimen/padding_23"
             android:layout_height="@dimen/padding_23"/>
     </RelativeLayout>

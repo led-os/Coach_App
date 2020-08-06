@@ -15,6 +15,8 @@ import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.entity.MdlBaseHttpResp;
 import com.jsjlzj.wayne.entity.store.home.VideoBean;
 import com.jsjlzj.wayne.entity.store.home.VideoPageBean;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerActivity;
+import com.jsjlzj.wayne.ui.basis.WebViewContainerFragment;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.home.HomePresenter;
 import com.jsjlzj.wayne.ui.mvp.home.HomeView;
@@ -39,7 +41,7 @@ import butterknife.ButterKnife;
  * @Author: 曾海强
  * @CreateDate:
  */
-public class SearchWikiActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener {
+public class SearchWikiActivity extends MVPBaseActivity<HomeView, HomePresenter> implements HomeView, XRecyclerView.LoadingListener, InformationAdapter.OnItemClickListener {
 
     @BindView(R.id.rv_search_wiki)
     CustomXRecyclerView rvSearchWiki;
@@ -77,6 +79,7 @@ public class SearchWikiActivity extends MVPBaseActivity<HomeView, HomePresenter>
         rvSearchWiki.setLayoutManager(new LinearLayoutManager(this));
         adapter = new InformationAdapter(this,videoList);
         rvSearchWiki.setAdapter(adapter);
+        adapter.setListener(this);
         loadData(true);
     }
 
@@ -174,4 +177,9 @@ public class SearchWikiActivity extends MVPBaseActivity<HomeView, HomePresenter>
     }
 
 
+    @Override
+    public void onItemClick(VideoBean bean) {
+        WebViewContainerActivity.go2this(this,getResources().getString(R.string.detail), HttpConstant.WEB_WORD_ARTICLE_DETAIL+bean.getId(),
+                WebViewContainerFragment.TYPE_WORD_ARTICLE_DETAIL);
+    }
 }
