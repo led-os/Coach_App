@@ -81,6 +81,8 @@ public class WikiCategoryAdapter extends RecyclerView.Adapter<WikiCategoryAdapte
             tvName.setText(bean.getTitle());
             tvRead.setText(DateUtil.getNumByInteger(bean.getViewCount())+"人阅读");
             itemView.setOnClickListener(v -> {
+                WebViewContainerActivity.go2this(context,context.getResources().getString(R.string.detail), HttpConstant.WEB_WORD_ARTICLE_DETAIL+bean.getId(),
+                        WebViewContainerFragment.TYPE_WORD_ARTICLE_DETAIL);
                 if (listener != null) {
                     listener.onItemClick(bean);
                 }

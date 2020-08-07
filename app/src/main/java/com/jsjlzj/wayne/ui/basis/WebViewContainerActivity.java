@@ -27,6 +27,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.jsjlzj.wayne.R;
 import com.jsjlzj.wayne.constant.ExtraConstant;
+import com.jsjlzj.wayne.constant.HttpConstant;
 import com.jsjlzj.wayne.constant.MyPermissionConstant;
 import com.jsjlzj.wayne.ui.mvp.base.MVPBaseActivity;
 import com.jsjlzj.wayne.ui.mvp.relizetalent.TalentTabFragmentPresenter;
@@ -93,7 +94,7 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
         if (!TextUtils.isEmpty(title)) {
             if(url.contains("/comment") || type == TYPE_BANNER_LINK_URL || type == TYPE_PRIVATE_POLICY || type == TYPE_NEW_MEMBER_CENTER
                     || title.equals("积分明细") || type == TYPE_NEW_DAY_SIGN || type == TYPE_SCAN_SCORE || type == TYPE_PROFIT
-                    || url.contains("/clubComments")){
+                    || url.contains("/clubComments") || url.contains("/entryType")){
                 if(type == TYPE_ARTICLE_DETAIL){
                     title = "详情";
                 }
@@ -103,7 +104,12 @@ public class WebViewContainerActivity extends MVPBaseActivity<TalentTabFragmentV
                 mRightBtn.setOnClickListener(clickListener);
             }
         }else {
-            initTitle("");
+            if(url.contains(HttpConstant.WEB_WORD_DETAIL)){
+                initRightTitle(title,R.drawable.ic_share2);
+                mRightBtn.setOnClickListener(clickListener);
+            }else {
+                initTitle("");
+            }
         }
         addWebFragment(url, rowkey, type);
         if(type == TYPE_DYNAMIC_DETAIL){
