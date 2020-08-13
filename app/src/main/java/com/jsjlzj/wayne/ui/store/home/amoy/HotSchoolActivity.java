@@ -131,10 +131,8 @@ public class HotSchoolActivity extends MVPBaseActivity<HomeView, HomePresenter> 
         map.put(HttpConstant.PAGE_NO, pageNo);
         map.put(HttpConstant.PAGE_SIZE, HttpConstant.PAGE_SIZE_NUMBER);
         map.put("categoryId", categoryId);
-        if(!StringUtil.isEmpty(city) && latitude != 0 && longitude != 0){
-//            map.put("city",city);
-//            map.put("latitude",latitude);
-//            map.put("longitude",longitude);
+        if(!StringUtil.isEmpty(city)){
+            map.put("city",city);
         }
         presenter.getOrganizationList(map);
     }
@@ -195,6 +193,7 @@ public class HotSchoolActivity extends MVPBaseActivity<HomeView, HomePresenter> 
             String cityName = data.getStringExtra(ExtraConstant.EXTRA_NAME);
             tvLocation.setText(cityName);
             city = tvLocation.getText().toString();
+            loadData(true);
         }
     }
 }
