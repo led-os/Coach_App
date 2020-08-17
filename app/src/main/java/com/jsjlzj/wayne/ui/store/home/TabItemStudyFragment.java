@@ -141,7 +141,7 @@ public class TabItemStudyFragment extends MVPBaseFragment<HomeView, HomePresente
             if (null != bean.getLibrary() && bean.getLibrary().size() > 0) {
                 libraryBeans = bean.getLibrary();
                 if (libraryBeans != null && libraryBeans.size() > 0) {
-                    libraryBeans.add(new LibraryBean("",-1,"国职题库"));
+                    libraryBeans.add(new LibraryBean("",-1,"国职模拟试题"));
                     libraryBeans.add(new LibraryBean("",-2,"国职考试成绩查询"));
                     adapter.setData(libraryBeans);
                 }
